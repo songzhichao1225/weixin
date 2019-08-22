@@ -1,0 +1,96 @@
+<view class="personalData" wx:if="{{flag}}">
+  <view class="listSon">
+    <view class="avatar" bindtap="chooseImg">
+      <text class="txt">头像</text>
+      <image class="arrow" src="/assets/right.png"></image>
+      <image class="avatarImg" wx:if="{{imgURL!=''}}" src="https://app.tiaozhanmeiyitian.com/{{imgURL}}"></image>
+      <image class="avatarImg" wx:if="{{imgURL==''}}" src="{{imgURLT}}"></image>
+    </view>
+  </view>
+  <view class="listSon">
+    <view class="avatar">
+      <text class="txt">昵称</text>
+      <image class="arrow" src="/assets/right.png"></image>
+      <input type="text" bindblur="name" placeholder="{{personalData.nickname}}"></input>
+    </view>
+  </view>
+  <view class="listSon">
+    <view class="avatar" bindtap="{{personalData.sex==2?'sexModify':''}}">
+      <text class="txt">性别</text>
+      <text class="text">（设定不可更改）</text>
+      <image class="arrow" src="/assets/right.png"></image>
+      <text class="rightT">{{sex}}</text>
+    </view>
+  </view>
+  <view class="listSon">
+    <view class="avatar">
+      <text class="txt">出生年月</text>
+      <image class="arrow" src="/assets/right.png"></image>
+       <picker disabled="{{false}}"  mode="date" value="{{date}}"  bindchange="bindDateChange">
+    <view class="picker" style="height:120rpx;">
+       <text style="float:right;font-size:28rpx;line-height:120rpx;margin-right:20rpx;color: #9B9B9B;">{{date}}</text>
+    </view>
+  </picker>
+    </view>
+  </view>
+
+  <view class="listSon">
+    <view class="avatar">
+      <text class="txt">常驻地</text>
+      <image class="arrow" src="/assets/right.png"></image>
+       <picker disabled="{{false}}"  mode="region" value="{{permanent}}"  bindchange="bindcityChange">
+    <view class="picker" style="height:120rpx;">
+       <text style="float:right;font-size:28rpx;line-height:120rpx;margin-right:20rpx;color: #9B9B9B;">{{permanent}}</text>
+    </view>
+  </picker>
+    </view>
+  </view>
+  <view class="listSon">
+    <view class="avatar">
+      <text class="txt">身高cm</text>
+      <image class="arrow" src="/assets/right.png"></image>
+      <input type="text" bindblur="tall" placeholder="{{personalData.tall}}cm"></input>
+    </view>
+  </view>
+  <view class="listSon">
+    <view class="avatar">
+      <text class="txt">体重kg</text>
+      <image class="arrow" src="/assets/right.png"></image>
+      <input type="text" bindblur="weight"  placeholder="{{personalData.weight}}kg"></input>
+    </view>
+  </view>
+
+
+  <view class="listSon">
+    <view class="sport" bindtap="selectSport">
+      <text class="txt">喜爱的运动</text>
+      <image class="arrow" src="/assets/right.png"></image>
+      <view class="sportList" wx:if="{{arrListSon.length!=0}}">
+        <view wx:for="{{arrListSon}}" wx:key class="sportListSon">{{item}}</view>
+      </view>
+    </view>
+  </view> 
+
+
+  <view class="listSon">
+    <view class="avatar">
+      <text class="txt">个人简介</text>
+      <image class="arrow" src="/assets/right.png"></image>
+      <input style="width:500rpx;" bindblur="comment"  value="{{personalData.comment}}" placeholder="走自己的路让别人说去吧!" placeholder-style="color: #9B9B9B;" type="text"></input>
+    </view>
+  </view>
+
+
+  <button class="btn" bindtap="confirm">提交</button>
+  <view class="boss" wx:if="{{shost}}">
+    <view class="sex">
+      <view class="man" bindtap="sexMan" data-name="男">男</view>
+      <view class="female" bindtap="sexFemale" data-name="女">女</view>
+    </view>
+  </view>
+
+
+
+
+
+</view>

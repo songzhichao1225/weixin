@@ -1,0 +1,94 @@
+{
+  "pages": [
+    "pages/homePage/content/content",
+    "pages/information/information",
+    "pages/favoriteSport/favoriteSport",
+    "pages/personalData/personalData",
+    "pages/homePage/generalGold/generalGold",
+    "pages/mineOpinion/mineOpinion",
+    "pages/assistant/assistant",
+    "pages/golDranking/golDranking",
+    "pages/mineFriend/mineFriend",
+    "pages/mineGold/mineGold",
+    "pages/mine/mine",
+    "pages/aboutMine/aboutMine",
+    "pages/aboutApp/aboutApp",
+    "pages/mineWallet/mineWallet",
+    "pages/goldDetails/goldDetails",
+    "pages/gold/gold", 
+    "pages/homePage/activities/activities",
+    "pages/personal/personal",
+    "pages/homePage/goldMall/goldMall",
+    "pages/searchPartner/searchPartner",
+    "pages/homePage/mallDetails/mallDetails",
+    "pages/nearby/nearby",
+    "pages/homePage/area/area",
+    "pages/homePage/screen/screen",
+    "pages/authorization/authorization",
+    "pages/news/news",
+    "pages/homePage/cityList/cityList",
+    "pages/logs/logs"
+  ],
+  "subpackages": [
+    {
+      "root": "generalization",
+      "pages": [
+        "promotion/promotion",
+        "verify/verify",
+        "promoted/promoted",
+        "complaint/complaint",
+        "Stadium/Stadium",
+        "stadiumDetail/stadiumDetail",
+        "binDing/binDing",
+        "activities/activities",
+        "notTrue/notTrue",
+        "orderToday/orderToday",
+        "history/history",
+        "TrueAndfalse/TrueAndfalse"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black", 
+    "navigationBarTitleText": "挑战约球"
+  },
+  "tabBar": {
+    "borderStyle": "white", 
+    "selectedColor": "#D85D27",
+    "color": "#9B9B9B",
+    "list": [
+      {
+        "pagePath": "pages/homePage/content/content",
+        "text": "首页",
+        "iconPath": "assets/icon-footer-sy-nor@2x.png",
+        "selectedIconPath": "assets/icon-footer-sy-sel@2x.png"
+      },
+      {
+        "pagePath": "pages/nearby/nearby",
+        "text": "附近的伙伴",
+        "iconPath": "assets/icon-footer-hb-nor@2x.png",
+        "selectedIconPath": "assets/icon-footer-hb-sel@2x.png"
+      },
+      {
+        "pagePath": "pages/news/news",
+        "text": "消息",
+        "iconPath": "assets/icon-footer-xx-nor@2x.png",
+        "selectedIconPath": "assets/icon-footer-xx-sel@2x.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "assets/icon-footer-wd-nor@2x.png",
+        "selectedIconPath": "assets/icon-footer-wd-sel@2x.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap50.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  }
+}

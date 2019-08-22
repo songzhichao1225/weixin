@@ -1,0 +1,106 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.6.5",
+	"appid": "wx1b53af237e2e0d8e",
+	"projectname": "%E6%8C%91%E6%88%98PK",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 6,
+			"list": [
+				{
+					"id": 0,
+					"name": "不属实",
+					"pathName": "generalization/notTrue/notTrue",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "绑定手机号",
+					"pathName": "generalization/binDing/binDing",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "场馆信息",
+					"pathName": "generalization/stadiumDetail/stadiumDetail",
+					"query": "siteUid=0d1a264bdc84ae539d82ea61",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "generalization/orderToday/orderToday",
+					"pathName": "generalization/orderToday/orderToday",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "generalization/activities/activities",
+					"pathName": "generalization/binDing/binDing",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "协商历史",
+					"pathName": "generalization/history/history",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "属实或不属实",
+					"pathName": "generalization/notTrue/notTrue",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

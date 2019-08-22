@@ -1,0 +1,64 @@
+<view class="stadium">
+  <!-- <view class="input">
+    <image src="/assets/SearchIcon@2x.png"></image>
+    <input type="text" placeholder="请输入场馆信息" placeholder-style="font-size: 14px;color: #9B9B9B;"></input>
+  </view> -->
+  <view class="navTap">
+    <view class="navSon" bindtap="navSon" wx:for="{{nav}}" wx:key data-num="{{item.index}}">
+      <text class="name" style="{{dataIndex==index?'color: #4A4A4A;':''}}">{{item.name}}</text>
+      <text class="line" wx:if="{{dataIndex==index}}"></text>
+    </view>
+  </view>
+
+
+  <view class="processingNot" wx:if="{{dataIndex==0}}">
+    <scroll-view scroll-y style="height:100%;">
+      <view class="stadiumList" wx:for="{{stadiumList}}"  wx:key data-siteUid="{{item.siteUid}}" data-name="{{item.cg_name}}"  bindtap="stadiumDetail">
+        <image class="avatar" src="/assets/tiaozhan.png"></image>
+        <!-- https://app.tiaozhanmeiyitian.com/{{item.siteImg}} -->
+        <view class="content">
+          <text style="margin-top:28rpx;">{{item.cg_name}}</text>
+          <text style="margin-top:20rpx;">{{item.city}} {{item.area}}</text>
+        </view>
+       <view class="num"><image src="/assets/tousu.png"></image><text class="right">待处理投诉{{item.count}}</text></view>
+      </view>
+    </scroll-view>
+  </view>
+
+   <view class="processingNot" wx:if="{{dataIndex==1}}">
+    <scroll-view scroll-y style="height:100%;">
+      <view class="stadiumList" wx:for="{{stadiumList}}" wx:key data-siteUid="{{item.siteUid}}" data-name="{{item.cg_name}}"  bindtap="stadiumDetail">
+        <image class="avatar" src="/assets/tiaozhan.png"></image>
+        <view class="content">
+          <text style="margin-top:28rpx;">{{item.cg_name}}</text>
+          <text style="margin-top:20rpx;">{{item.city}} {{item.area}}</text>
+        </view>
+       <view class="num"><image src="/assets/tousu.png"></image><text class="right">处理中投诉{{item.count}}</text></view>
+      </view>
+    </scroll-view>
+  </view>
+
+
+   <view class="processingNot" wx:if="{{dataIndex==2}}">
+    <scroll-view scroll-y style="height:100%;">
+      <view class="stadiumList" wx:for="{{stadiumList}}" wx:key data-siteUid="{{item.siteUid}}" data-name="{{item.cg_name}}"  bindtap="stadiumDetail">
+        <image class="avatar" src="/assets/tiaozhan.png"></image>
+        <view class="content">
+          <text style="margin-top:28rpx;">{{item.cg_name}}</text>
+          <text style="margin-top:20rpx;">{{item.city}} {{item.area}}</text>
+        </view>
+       <view class="num"><image src="/assets/tousu.png"></image><text class="right">已处理投诉{{item.count}}</text></view>
+      </view>
+    </scroll-view>
+  </view>
+ 
+
+
+
+
+
+
+
+
+
+</view>

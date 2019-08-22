@@ -1,0 +1,95 @@
+<view class="stadiumD">
+  <swiper autoplay="{{true}}" class="banner" indicator-dots="true" indicator-color="#fff" indicator-active-color="#3fc">
+    <swiper-item><image style="width:100%;" src="/assets/img.jpg"></image></swiper-item>
+  </swiper>
+
+  <view class="navTap">
+    <view class="navSon" bindtap="navSon" wx:for="{{nav}}" wx:key data-num="{{item.index}}">
+      <text class="name" style="{{dataIndex==index?'color: #4A4A4A;':''}}">{{item.name}}</text>
+      <text class="line" wx:if="{{dataIndex==index}}"></text>
+    </view>
+  </view>
+
+
+  <view class="list" wx:if="{{dataIndex==0}}">
+    <scroll-view scroll-y style="height:100%;" bindscrolltolower="lower">
+    <view wx:if="{{dataList.length==0}}" style="font-size:30rpx;text-align:center;margin-top:40rpx;">暂无待处理的投诉活动</view>
+      <view class="listSon" wx:for="{{dataList}}" wx:key>
+        <view class="image">
+          <text class="type">待处理</text>
+          <image class="img" src="https://app.tiaozhanmeiyitian.com/{{item.imgURL}}"></image>
+          <image wx:if="{{item.SportId=='网球'}}" class="way" src='/assets/icon_dj_wq.png'></image>
+          <image wx:if="{{item.SportId=='高尔夫'}}" class="way" src='/assets/icon_dj_gef.png'></image>
+          <image wx:if="{{item.SportId=='篮球'}}" class="way" src='/assets/icon_dj_lq.png'></image>
+          <image wx:if="{{item.SportId=='乒乓球'}}" class="way" src='/assets/icon_dj_ppq.png'></image>
+          <image wx:if="{{item.SportId=='排球'}}" class="way" src='/assets/icon_dj_pq.png'></image>
+          <image wx:if="{{item.SportId=='台球'}}" class="way" src='/assets/icon_dj_tq.png'></image>
+          <image wx:if="{{item.SportId=='羽毛球'}}" class="way" src='/assets/icon_dj_ymq.png'></image>
+          <image wx:if="{{item.SportId=='足球'}}" class="way" src='/assets/icon_dj_zq.png'></image>
+          <text class="level">{{item.vip}}</text>
+        </view>
+        <view class="content">
+          <view class="name">
+            <text>{{item.nickname}}</text>
+            <image wx:if="{{item.sex==0}}" src='/assets/sex0@2x.png'></image>
+            <image wx:if="{{item.sex==1}}" src='/assets/sex1@2x.png'></image>
+          </view>
+          <text class="moshi"><text style="color:#D85D27;float:left;margin-left:0;">{{item.SportMode}}</text>
+          <text>{{item.SportId}}</text>
+          <text>{{item.SportType}}</text></text>
+          <text>{{item.year}}  {{item.week}}  {{item.time}}</text>
+          <text>{{item.sitename}}</text>
+          <text class="moshi"><text style="margin-left:0;">场地费:{{item.SiteMoney}}元</text>
+          <text style="color:#D0021B;">提成:{{item.RoyaltyMoney}}元</text></text>
+        </view>
+        <view class="status">
+          <image wx:if="{{item.PublicStatus==2}}" src='/assets/dai.png'></image>
+          <image wx:if="{{item.PublicStatus==6}}" src='/assets/pinjia.png'></image>
+          <image wx:if="{{item.PublicStatus==3}}" src='/assets/huodong.png'></image>
+          <image wx:if="{{item.PublicStatus==1}}" src='/assets/pipei.png'></image>
+          <image wx:if="{{item.PublicStatus==7}}" src='/assets/tuichu.png'></image>
+          <image wx:if="{{item.PublicStatus==5}}" src='/assets/wancheng.png'></image>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="detail" wx:if="{{dataIndex==1}}">
+    <text class="name">{{detail.name}}</text>
+    <view class="praise">
+      <text class="totalPoints">总分</text>
+      <image src="/assets/{{detail.scores>=1?'StarSel2@2x.png':''}}"></image>
+      <image src="/assets/{{detail.scores>=2?'StarSel2@2x.png':''||detail.scores>1&&detail.scores<2?'StarSelYb2@2x.png':''}}"></image>
+      <image src="/assets/{{detail.scores>=3?'StarSel2@2x.png':'StarNor2@2x.png'&&detail.scores>2&&detail.scores<3?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
+      <image src="/assets/{{detail.scores>=4?'StarSel2@2x.png':'StarNor2@2x.png'&&detail.scores>3&&detail.scores<4?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
+      <image src="/assets/{{detail.scores>=5?'StarSel2@2x.png':'StarNor2@2x.png'&&detail.scores>4&&detail.scores<5?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
+      <text class="lookof">{{detail.scores}}分</text>
+    </view>
+    <text class="mark">设施: {{detail.equscore}}分  服务: {{detail.envscore}}分  价格: {{detail.xjbScore}}分</text>
+    <view class="address">
+      <image class="imgLeft" src="/assets/IconHdxqDw@2x.png"></image>
+      <text>{{detail.address}}</text>
+      <image class="imgRight" src="/assets/IconTel.png"></image>
+    </view>
+    <view class="portsProjects"><text>运动项目：   </text><text>{{detail.supportSportName}}</text></view>
+    <view class="serviceFacilities"><text>服务设施:</text><image wx:if="{{detail.wifi==1}}" src="/assets/icon_wifi.png"></image><image wx:if="{{detail.parking==1}}" src="/assets/icon_tcc.png"></image></view>
+
+
+    
+
+  </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</view>

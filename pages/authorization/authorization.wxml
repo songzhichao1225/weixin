@@ -1,0 +1,14 @@
+<!--index.wxml-->
+<view class="authorization">
+    <image class="logo" src="/assets/tiaozhan.png"></image>
+      <button class="btn" open-type="getUserInfo" wx:if="{{binding==1}}" lang="zh_CN" bindgetuserinfo="getUserInfo">微信登录</button>
+     <button class="btn" open-type="getPhoneNumber" wx:if="{{binding==2}}"  lang="zh_CN" bindgetphonenumber="onGotUserInfo">微信登录</button>
+
+
+     
+</view>
+
+
+
+
+

@@ -1,0 +1,52 @@
+.logo {
+  width: 154rpx;
+  height: 154rpx;
+  display: block;
+  margin: 80rpx auto;
+}
+
+.phone {
+  width: 90%;
+  margin: 80rpx auto;
+  height: 60rpx;
+  background: #d85d27;
+  border-radius: 200px;
+  padding: 20rpx 0;
+}
+
+.phone text {
+  display: block;
+  float: left;
+  font-size: 30rpx;
+  color: #fff;
+  padding: 10rpx 10rpx;
+}
+
+.phone input {
+  display: block;
+  float: left;
+  font-size: 30rpx;
+  margin-left: 12rpx;
+  color: #fff;
+  margin-top: 4rpx;
+  border-bottom: 2rpx solid #ccc;
+}
+
+.phone .btn {
+  font-size: 30rpx;
+  padding: 0;
+  width: 120rpx;
+  background: transparent;
+  color: #fff;
+  float: right;
+  line-height: 60rpx;
+}
+
+.button {
+  width: 90%;
+  height: 100rpx;
+  margin: 80rpx auto;
+  background: #d85d27;
+  border-radius: 200px;
+  color: #fff;
+}

@@ -1,0 +1,11 @@
+<view class="assistant">
+ <text class="title">常见问题</text>
+ <view class="details">
+ <view class="son"><text>挑战约球是什么？</text><image src="/assets/HomeIconJt@2x.png"></image></view>
+   <view style="margin-top:24rpx;" class="content"><text>乐刻运动，2015年在杭州成立，是由杭州乐刻网络技术有限公司开发，是国内领先的运动O2O平台，全国规模最大的24小时连锁健身品牌。</text></view>
+ 
+ 
+ </view>
+
+
+</view>

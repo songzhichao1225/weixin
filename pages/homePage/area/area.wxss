@@ -1,0 +1,34 @@
+
+.section{
+  width: 80%;
+  margin: 0.5rem auto 0;
+  overflow: hidden;
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+.section>image{
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  float: left;
+  margin:0.25rem 0 0 0.25rem;
+}
+.section>input{
+  width: 12rem;
+  height: 1.5rem;
+  float: left;
+  margin-left: 0.2rem;
+  font-size: 14px;
+  background-color: #ccc;
+}
+.sug_info{
+  width: 80%;
+  margin: 1rem auto 0;
+}
+.sug_info>text{
+  display: block;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 14px;
+}

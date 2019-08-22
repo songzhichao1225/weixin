@@ -1,0 +1,74 @@
+<!--index.wxml-->
+<view class="nearby" bindtap='itemSelectionH'>
+  <view class="search">
+    <!-- <text class="joon">搜索伙伴</text> -->
+    <image class="image" src='/assets/SearchIcon@2x.png'></image>
+    <input type="search" disabled='true' bindtap='inputTap' confirm-type='搜索' placeholder='请输入手机号' maxlength='11' placeholder-style='font-size:14px;color: #9B9B9B;'></input>
+  </view>
+
+  <view class="projectNav">
+    <view style='margin:0;' catchtap='itemSelection'>
+      <text>{{sexT}}</text>
+      <image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
+    </view>
+    <view catchtap='sortHid'>
+      <text>{{sportT}}</text>
+      <image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
+    </view>
+    <view catchtap='statusHid'>
+      <text>{{levelT}}</text>
+      <image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
+    </view>
+  </view>
+
+  <view class="nearbyList">
+
+    <text wx:if="{{nearbyData.length==0&&flag==true}}" style='display:block;text-align:center;margin-top:2rem;'>没有找到相应伙伴</text>
+
+    <scroll-view scroll-y style="height: 100%" bindscrolltolower="lower" wx:if="{{nearbyData.length>0}}">
+      <view class="characterList" wx:for="{{nearbyData}}" wx:key data-uid="{{item.uuid}}" bindtap='getUserDetailInfo'>
+        <image class="img" src='https://app.tiaozhanmeiyitian.com/{{item.userInfo.imgURL}}'></image>
+        <view class="content">
+          <view class="header">
+            <text class="text">{{item.userInfo.nickname}}</text>
+            <image wx:if="{{item.userInfo.sex==0}}" class='image' src='/assets/sex0@2x.png'></image>
+            <image wx:if="{{item.userInfo.sex==1}}" class='image' src='/assets/sex1@2x.png'></image>
+            <image src='/assets/{{item.hightName}}' class='imageTwo'></image>
+            <text class="textTwo">{{item.hightLevel}}</text>
+          </view>
+          <view class="signs">
+            <text style="margin:0;">年龄:{{item.userInfo.age}}岁</text>
+            <text>体重:{{item.userInfo.tall}}Kg</text>
+            <text>身高:{{item.userInfo.weight}}cm</text>
+          </view>
+          <view class="interest">
+            <text style='float:left;display:block;'>喜爱运行项目:{{item.sportidNameStr}}</text>
+          </view>
+        </view>
+        <text style="display:block;font-size:12px;position: absolute;bottom:0;right:0;">{{item.range}}</text>
+      </view>
+    </scroll-view>
+
+
+
+    <view class="mask" wx:if="{{hidden}}">
+      <view class="activity" wx:if="{{hiddenOne}}">
+        <view class="activitySon" bindtap='secondary' wx:for="{{activity}}" wx:key data-name="{{item.name}}" data-num="{{item.num}}">
+          <text style="display:block;text-align:center;">{{item.name}}</text>
+        </view>
+      </view>
+
+      <view class="sort" wx:if="{{sortHid}}">
+        <view class="sortSon" wx:for="{{sort}}" bindtap='sortSe' data-num="{{item.selectD}}" data-name="{{item.name}}" wx:key>
+          <text style="display:block;text-align:center;">{{item.name}}</text>
+        </view>
+      </view>
+
+      <view class="sort" style='left:66.66%;' wx:if="{{statusHid}}">
+        <view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key data-name="{{item.name}}" data-num="{{item.num}}">
+          <text>{{item.name}}</text>     
+        </view>
+      </view>
+    </view>   
+  </view>
+</view>

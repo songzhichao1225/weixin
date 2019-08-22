@@ -1,0 +1,73 @@
+<view class="mineGold" wx:if="{{flag}}">
+  <view class="commonGold">
+    <text class="title">通用金币</text>
+    <view class="bossX">
+      <view class="mall" bindtap='mall'>
+        <image src="/assets/orgen1@2x.png"></image>
+        <text class="text">{{coins}}个</text>
+        <text class="txt">金币商城换好物</text>
+      </view>
+      <view class="mall" bindtap="generaGold">
+        <image src="/assets/paihang.png"></image>
+        <text class="text">赢金币</text>
+        <text class="txt">完成任务赢金币</text>
+      </view>
+      <view class="mall" bindtap='goldDetails'>
+        <image src="/assets/blue2@2x.png"></image>
+        <text class="text">金币明细</text>
+        <text class="txt">通用金币获得明细</text>
+      </view>
+      </view>
+  </view>
+
+
+
+  <view class="commonGold">
+    <text class="title">专用金币</text>
+    <view class="bossX">
+      <view class="mall" bindtap='golDranking' style="width:348rpx;margin-left:0;">
+        <image src="/assets/paihang.png"></image>
+        <text class="text">排行榜</text>
+        <text class="txt">专用金币排行榜</text>
+      </view>
+      <view class="mall" bindtap="techCoins" style="width:348rpx;">  
+        <image src="/assets/blue2@2x.png"></image>
+         <text class="text">金币明细</text>  
+        <text class="txt">专用金币获得明细</text>
+      </view>
+    </view>
+  </view>
+
+<view class="grade">
+    <text class="title">专用金币等级</text>
+    <view class="boss">
+      <view class="badminton" wx:for="{{userTechcoins}}" wx:key>
+        <text>{{item.sport_name}}</text>
+        <text style='width:40%;text-align:center;position: absolute;left:50%;margin-left:-20%;'>{{item.total}}个</text>
+        <view style="float:right;">
+          <text class="sliderL" style='color:#fff;font-size:10px;'>{{item.nowlevel}}</text>
+          <view class="slider">
+            <view style='width:{{item.total/item.maxcoins*100}}%'></view>
+            <text>{{item.total}}/{{item.maxcoins}}</text>
+          </view>
+          <text class="sliderL" style="background:#fff;color:#D85D27;font-size:10px;">{{item.nextlevel}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+
+<view class="rule">
+    <text class="title">专用金币获得规则</text>
+   <view wx:for="{{list}}" wx:key><text class="dian"></text><text class="characters">赢{{index+1}}级选手一次得{{item}}元金币，输方扣掉相应金币</text></view>
+  
+
+
+    
+  </view>
+
+
+
+
+</view>

@@ -1,0 +1,103 @@
+page {
+  height: 100%;
+}
+
+text {
+  display: block;
+}
+
+.gold {
+  height: 100%;
+}
+
+.gold .headerNum {
+  width: 750rpx;
+  height: 344rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.gold .headerNum image {
+  width: 750rpx;
+  height: 344rpx;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+
+.gold .headerNum .number {
+  font-size: 72rpx;
+  color: #fff;
+  z-index: 5;
+  text-align: center;
+  margin-top: 96rpx;
+}
+
+.gold .headerNum .details {
+  font-size: 24rpx;
+  color: #fff;
+  z-index: 5;
+  text-align: center;
+}
+
+.gold .title {
+  width: 278rpx;
+  margin: 0 auto;
+  position: relative;
+}
+
+.gold .title image {
+  width: 278rpx;
+  height: 12rpx;
+}
+
+.gold .title text {
+  display: block;
+  position: absolute;
+  top: 15rpx;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+  width: 100%;
+}
+
+.gold .mallList {
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.gold .mallList .mallListSon {
+  width: 48%;
+  height: 12.6rem;
+  float: left;
+  margin-left: 4%;
+  margin-top: 0.8rem;
+  position: relative;
+}
+
+.gold .mallList .mallListSon:nth-child(2n+1) {
+  margin-left: 0;
+}
+
+.gold .mallList .mallListSon image {
+  width: 100%;
+  height: 10.6rem;
+  border-radius: 3px;
+}
+
+.gold .mallList .mallListSon text {
+  font-size: 12px;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+
+.gold .viewMore {
+  text-align: center;
+  font-size: 14px;
+  color: #9b9b9b;
+  padding:30rpx 0 38rpx 0;
+}

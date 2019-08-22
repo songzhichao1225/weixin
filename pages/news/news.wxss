@@ -1,0 +1,101 @@
+page {
+  height: 100%;
+}
+
+.systemMessage {
+  width: 100%;
+  overflow: hidden;
+}
+
+.systemMessage .systemSon {
+  height: 216rpx;
+  width: 100%;
+  border-bottom: 2rpx solid #f0eff0;
+  overflow: hidden;
+  position: relative;
+}
+.systemMessage .systemSon .content {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.systemMessage .systemSon text {
+  display: block;
+}
+
+.systemMessage .systemSon  .title {
+  margin-top: 26rpx;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+  float: left;
+  margin-bottom: 16rpx;
+}
+
+.systemMessage .systemSon  .time {
+  margin-top: 26rpx;
+  font-size: 12px;
+  color: #9b9b9b;
+  float: right;
+}
+
+.systemMessage .systemSon .tent {
+  font-size: 14px;
+  color: #9b9b9b;
+  clear: both;
+}
+
+.systemMessage .systemSon .request {
+  clear: both;
+  overflow: hidden;
+  margin-top: 30rpx;
+}
+
+.systemMessage .systemSon .request image {
+  width: 74rpx;
+  height: 74rpx;
+  border-radius: 2rpx;
+  display: block;
+  float: left;
+}
+
+.systemMessage .systemSon .request text {
+  font-family: PingFang-SC-Medium;
+  font-size: 14px;
+  color: #9b9b9b;
+  letter-spacing: -0.34px;
+  margin-left: 6rpx;
+  float: left;
+}
+
+.systemMessage .systemSon .status {
+  font-size: 14px;
+  color: #9b9b9b;
+  position: absolute;
+  right: 2.5%;
+  bottom: 6rpx;
+}
+
+.systemMessage .systemSon .btn {
+  position: absolute;
+  right: 2.5%;
+  bottom: 6rpx;
+}
+
+.systemMessage .systemSon .btn view {
+  width: 100rpx;
+  height: 48rpx;
+  font-size: 24rpx;
+  color: #fff;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 48rpx;
+  background: #d85d27;
+  border-radius: 6px;
+  display: block;
+  float: left;
+}
+
+.systemMessage .systemSon .btn view:first-child {
+  margin-right: 6rpx;
+}

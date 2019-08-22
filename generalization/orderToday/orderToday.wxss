@@ -1,0 +1,107 @@
+page {
+  height: 100%;
+  background: #F5F5F5;
+}
+
+.select {
+  width: 90%;
+  margin: 22rpx auto 0;
+  overflow: hidden;
+}
+
+.select picker {
+  width: 174rpx;
+  height: 56rpx;
+  float: left;
+  line-height: 56rpx;
+  background: #fff;
+  border-radius: 200px;
+
+}
+
+.select picker .picker {
+  width: 160rpx;
+  height: 60rpx;
+  font-size: 10px;
+  color: #333;
+  margin-left: 20rpx;
+}
+
+.select picker .picker .pickerOimg {
+  width: 12rpx;
+  height: 8.2rpx;
+  margin-left: 10rpx;
+}
+
+.select .text {
+  display: block;
+  float: left;
+  font-size: 12px;
+  color: #333;
+  line-height: 56rpx;
+  margin-left: 16rpx;
+}
+
+.select .sum {
+  display: block;
+  float: right;
+  font-size: 12px;
+  color: #333;
+  line-height: 56rpx;
+}
+
+.orderList {
+  width: 95%;
+  height: 194rpx;
+  margin: 24rpx auto 0;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  padding-top: 20rpx;
+}
+
+.orderList text {
+  font-size: 12px;
+  color: #333;
+  display: block;
+}
+
+.orderList .id {
+  margin-left: 52rpx;
+}
+
+.orderList .time {
+  margin-top: 15rpx;
+  overflow: hidden;
+}
+
+.orderList .time text:first-child {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #9b9b9b;
+  float: left;
+  margin-top: 10rpx;
+  margin-left: 24rpx;
+}
+
+.orderList .time text:nth-child(2) {
+  float: left;
+  margin-left: 16rpx;
+}
+
+.orderList .money {
+  font-size: 18px;
+  color: #d0021b;
+  position: absolute;
+  right: 30rpx;
+  bottom:20rpx;
+}
+.orderList image{
+  display: block;
+  width: 96rpx;
+  height: 96rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

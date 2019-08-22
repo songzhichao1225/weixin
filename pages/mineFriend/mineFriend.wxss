@@ -1,0 +1,98 @@
+.mineFriend {
+  height: 100%;
+}
+
+.mineFriend .header {
+  width: 100%;
+  height: 68rpx;
+}
+
+.mineFriend .header .headerSon {
+  display: inline-block;
+  font-size: 16px;
+  color: #9b9b9b;
+  height: 70rpx;
+  line-height: 70rpx;
+  width: 120rpx;
+  text-align: center;
+}
+
+
+
+.characterList{
+  width: 95%;
+  margin: 1rem  auto 0;
+  overflow: hidden;
+  position: relative;
+  border-bottom:2rpx solid #ccc;
+  padding-bottom: 0.5rem;
+}
+.characterList .img{
+  width: 4.4rem;
+  height:4.4rem;
+  display: block;
+  border-radius: 15rpx 15rpx;
+  float: left;
+
+}
+.characterList .content{
+  float: left;
+  width:69%;
+  margin-left: 0.8rem;
+}
+.characterList .content .header {
+  overflow: hidden;
+}
+.characterList .content .header .text{
+font-size: 16px;
+color: #333333;
+display: block;
+float: left;
+}
+.characterList .content .header .image{
+display: block;
+width: 0.8rem;
+height: 0.8rem;
+float: left;
+margin:0.4rem 0 0 0.3rem;
+}
+
+.characterList .content .header .imageTwo{
+display: block;
+width: 1.4rem;
+height: 1.4rem;
+float: left;
+margin:0.1rem 0 0 0.3rem;
+}
+.characterList .content .header .textTwo{
+display: block;
+float: left;
+padding:0.1rem 0.2rem;
+margin:0.3rem 0 0 0.3rem;
+background: #F5A623;
+border-radius: 2px;
+font-size: 10px;
+color: #FFFFFF;
+}
+.characterList .content .signs{
+  font-size: 14px;
+  color: #4A4A4A;
+  overflow: hidden;
+ 
+}
+.characterList .content .signs text{
+  display: block;
+  float: left;
+  margin-left: 0.5rem;
+}
+.characterList .content .interest{
+  font-size: 14px;
+  color: #4A4A4A;
+}
+
+::-webkit-scrollbar{
+width: 0;
+height: 0;
+color: transparent;
+}
+

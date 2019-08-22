@@ -1,0 +1,52 @@
+<view class="mine" wx:if="{{flag}}">
+
+  <image class="banner" src='/assets/WdBgBanner@2x.png'></image>
+  <view class="headerTop">
+ <view class="header" bindtap="personalData">
+    <image  class="avatar" wx:if="{{mineDetail.imgURL!=''}}" src='https://app.tiaozhanmeiyitian.com/{{mineDetail.imgURL}}'></image>
+      <open-data class="avatar" wx:elif="{{mineDetail.imgURL==''}}" type="userAvatarUrl"></open-data>
+    <view class="name">
+    <text class="nickName" wx:if="{{mineDetail.nickname!=''}}">{{mineDetail.nickname}}</text>
+     <open-data class="nickName" wx:elif="{{mineDetail.nickname==''}}" type="userNickName" ></open-data> 
+    <view style="clear:both;"></view>
+    <image wx:if="{{mineDetail.userHightLevel.name=='网球'}}" class="aIcon" src='/assets/icon_dj_wq.png'></image>
+         <image wx:if="{{mineDetail.userHightLevel.name=='高尔夫'}}"  class="aIcon" src='/assets/icon_dj_gef.png'></image>
+          <image wx:if="{{mineDetail.userHightLevel.name=='篮球'}}" class="aIcon" src='/assets/icon_dj_lq.png'></image>
+           <image wx:if="{{mineDetail.userHightLevel.name=='乒乓球'}}" class="aIcon" src='/assets/icon_dj_ppq.png'></image>
+            <image wx:if="{{mineDetail.userHightLevel.name=='排球'}}"   class="aIcon" src='/assets/icon_dj_pq.png'></image>
+             <image wx:if="{{mineDetail.userHightLevel.name=='台球'}}" class="aIcon" src='/assets/icon_dj_tq.png'></image>
+              <image  wx:if="{{mineDetail.userHightLevel.name=='羽毛球'}}" class="aIcon" src='/assets/icon_dj_ymq.png'></image>
+               <image  wx:if="{{mineDetail.userHightLevel.name=='足球'}}" class="aIcon" src='/assets/icon_dj_zq.png'></image>
+     <text class="navl">{{mineDetail.userHightLevel.level}}</text>
+    </view>
+    <!-- <open-data class="avatar" wx:if="{{avatar==''}}" type="userAvatarUrl" id="name"></open-data>
+    <open-data class="name" wx:if="{{name==''}}" type="userNickName" class='userName'></open-data> -->
+    <image class="arrow"  src='/assets/right.png'></image>  
+  </view>
+
+  <view class="gold">
+    <view bindtap='gold' style="border-right:2rpx solid #ccc;">
+      <text style='color:#D85D27;'>{{goldNum}}</text>
+      <text>通用金币</text>
+    </view>
+    <view bindtap='golDranking'>
+      <image class="rankingList" src='/assets/PicWdPhb@2x.png'></image>
+      <text class="txt">专用金币排行榜</text>
+    </view>
+  </view>
+
+  </view>
+
+
+
+  <text class="serve">我的服务</text>
+  <view class="application">
+    <view class="son" wx:for="{{applicationList}}" wx:key bindtap='{{item.click}}'>
+      <image src='/assets/{{item.img}}'></image>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+
+
+
+</view>

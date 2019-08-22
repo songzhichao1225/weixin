@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "成为推广运营专员",
+  "usingComponents": {
+    "ff-canvas": "@antv/f2-canvas"
+  }
+}

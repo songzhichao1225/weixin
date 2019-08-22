@@ -1,0 +1,34 @@
+<view class="searchPartner">
+ <view class="search"><image src='/assets/SearchIcon@2x.png'></image><input bindblur='inputBlur' placeholder-style='font-size:14px;' placeholder='请输入手机号'></input></view>
+<view style='background:#efefef;height:100%;padding-top:0.2rem;'>
+<view style="background:#fff;margin-top:0.5rem;"  wx:for="{{searchData}}" wx:key data-uid="{{item.uuid}}" bindtap='getUserDetailInfo'>
+  <view class="characterList">
+        <image class="img" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+        <view class="content">
+          <view class="header">
+            <text class="text">{{item.nickname}}</text>
+            <image wx:if="{{item.sex==0}}" class='image' src='/assets/sex0@2x.png'></image>
+            <image wx:if="{{item.sex==1}}" class='image' src='/assets/sex1@2x.png'></image>
+            <image src='/assets/{{item.hightName}}' class='imageTwo'></image>
+            <text class="textTwo">{{item.hightLevel}}</text>
+          </view>
+          <view class="signs"> 
+            <text style="margin:0;">年龄:{{item.age}}岁</text>
+            <text>体重:{{item.weight}}Kg</text>
+            <text>身高:{{item.tall}}cm</text>
+          </view>
+          <view class="interest">
+            <text style='float:left;display:block;'>喜爱运行项目:{{item.sportidNameStr}}</text>
+          </view>
+        </view>       
+        <text style="display:block;font-size:12px;position: absolute;bottom:0;right:0;">{{item.userRage}}</text>
+      </view>
+      </view>
+
+</view>
+
+
+
+
+</view>
+ 

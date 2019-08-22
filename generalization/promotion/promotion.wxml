@@ -1,0 +1,132 @@
+<view class="generalization" wx:if="{{flag}}">
+  <view class="mineIs" wx:if="{{msg==4002}}">
+    <view class="header">
+      <image src="/assets/tuiguang.png"></image>
+      <view class="title">
+        <text class="name">成为推广运营专员</text>
+        <text>一次推广 永享提成</text>
+        <text>运营维护 轻松有趣</text>
+        <button class="btn" bindtap="join">立即加入</button>
+      </view>
+      <view class="nav">
+        <view class="navSon" bindtap="navTap" style="{{indexNum==index?'color:#fff;font-size:32rpx;':''}}" wx:for="{{logs}}" wx:key data-num="{{item.num}}">{{item.name}}</view>
+      </view> 
+
+
+      
+    </view>
+
+    <!-- 对应nav下的内容 -->
+    <view class="content">
+      <view class="introduction">
+        <view class="introductionSon" wx:for="{{content}}" wx:key>
+          <image class="img" src="{{item.img}}"></image>
+          <view class="text" style="{{item.style}}">
+            <text>{{item.title}}</text>
+            <text>{{item.text}}</text>
+          </view>
+        </view>
+        <button class="join" bindtap="join">立即加入</button>
+      </view>
+
+    </view>
+  </view>
+
+  <view class="Joined" wx:if="{{status==1}}">
+    <view class="banner">
+      <image src="/assets/img.jpg"></image>
+      <view class="text">
+        <text>您已通过推广运营收入(元)</text>
+        <text>{{promtion.data1}}</text>
+        <text>推广ID:{{promtion.PromotId}}</text>
+        <view class="order">
+          <view>
+            <text>{{promtion.data4}}</text>
+            <text>今日订单数</text>
+          </view>
+          <view>
+            <text>{{promtion.data3}}</text>
+            <text>所有订单数</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="chart">
+      <view class="line"></view>
+      <text class="title">收益报表</text>
+      <view class="daysMonth">
+        <view wx:for="{{timer}}" bindtap="timer" wx:key data-num="{{item.num}}">{{item.name}}</view>
+
+      </view>
+      <text class="money">(金额:元)</text>
+      <view class="chartT">
+        <ff-canvas id="column-dom" canvas-id="column" opts="{{ opts }}"></ff-canvas>
+
+        <text class="days">(时间:天)</text>
+      </view>
+    </view>
+
+    <view class="mineNew">
+      <view class="line"></view>
+      <text class="title">我的信息</text>
+      <view style="height:60rpx;"></view>
+
+       <view class="processed" style="background-image: linear-gradient(90deg, #1B7AFB 0%, #6EBFFF 100%);border-radius: 6px;" bindtap="orderToday">
+        <image src="/assets/icon-sy-jrdd.png"></image>
+        <text class="content">今日订单</text>
+        <text class="rightText">{{promtion.data4}}</text>
+      </view>
+
+      <view class="processed" bindtap="complaint">
+        <image src="/assets/icon-sy-dclts.png"></image>
+        <text class="content">待处理投诉</text>
+        <text class="rightText">{{promtion.data5}}</text>
+      </view>
+      <view class="processed address" bindtap="stadium">
+        <image src="/assets/icon-sy-tgcg.png"></image>
+        <text class="content">已推广运营场馆</text>
+        <text class="rightText">{{promtion.data6}}</text>
+      </view>
+    </view>
+    <view class="stadium">
+      <view class="line"></view>
+      <text class="title">附近可推广运营场馆</text>
+      <text class="look" bindtap="lookMore">查看更多></text>
+      <view style="clear:both;height:1rpx;"></view>
+      <view class="stadiumList" wx:for="{{clearList}}" wx:key  data-siteUid="{{item.uid}}" data-name="{{item.name}}"  bindtap="stadiumDetail">
+        <image class="stadiumImg" src="/assets/tiaozhan.png"></image>
+        <!-- https://app.tiaozhanmeiyitian.com/{{item.siteimgs}} -->
+        <view class="content">
+          <text class="name">{{item.name}}</text>
+          <view class="praise">
+            <image src="/assets/{{item.fraction>=1?'StarSel2@2x.png':''}}"></image>
+            <image src="/assets/{{item.fraction>=2?'StarSel2@2x.png':''||item.fraction>1&&item.fraction<2?'StarSelYb2@2x.png':''}}"></image>
+            <image src="/assets/{{item.fraction>=3?'StarSel2@2x.png':'StarNor2@2x.png'&&item.fraction>2&&item.fraction<3?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
+            <image src="/assets/{{item.fraction>=4?'StarSel2@2x.png':'StarNor2@2x.png'&&item.fraction>3&&item.fraction<4?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
+            <image src="/assets/{{item.fraction>=5?'StarSel2@2x.png':'StarNor2@2x.png'&&item.fraction>4&&item.fraction<5?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
+            <text class="lookof">{{item.fraction}}分</text>
+          </view>
+          <text class="type">{{item.type}}</text>
+          <text class="distance">{{item.range}}</text>
+        </view>
+      </view>
+
+    </view>
+
+
+
+    <view class="prompt">
+      <image src="/assets/tishi.png"></image>
+      <text>考虑到后期能及时、方便的运营维护“已推广场馆”，建议推广距离您常住地较近的场馆，谢谢！</text>
+    </view>
+
+    <view class="correctRate">
+      <text>处理投诉正确率</text>
+      <text>{{promtion.data2}}%</text>
+    </view>
+  </view>
+
+
+</view>

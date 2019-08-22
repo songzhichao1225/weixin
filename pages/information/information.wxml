@@ -1,0 +1,51 @@
+<view class="information">
+<form bindsubmit="submit">
+  <text class='title'>请填写您的身份证信息</text>
+  <view class="name">
+    <text>姓名</text>
+    <input type="text" placeholder="请输入姓名" name="name" maxlength="4" placeholder-style="font-size:28rpx;color:#9b9b9b;"></input>
+  </view>
+  <view class="name">
+    <text>身份证号</text>
+    <input style="margin-left:31rpx;" type="idcard" name="cardId" placeholder="最多18个字符" maxlength="18" placeholder-style="font-size:28rpx;color:#9b9b9b;"></input>
+  </view>
+
+  <view class="positiveId">
+    <text class="title">手持身份证正面照</text>
+    <text class="example" bindtap="positive">示例图</text>
+    <view class="positiveUp" wx:if="{{imgURL==''}}" bindtap="positiveUp">
+      <view class="heng" ></view>
+      <view  class="shu"></view>
+    </view>
+     <image class="images" bindtap="positiveUp" wx:if="{{img!=''}}" src="{{img}}"></image>
+  </view>
+
+
+  <view class="positiveId">
+    <text class="title">手持身份证反面照</text>
+    <text class="example" bindtap="opposite">示例图</text>
+    <view class="positiveUp" wx:if="{{imgURLT==''}}" bindtap="positiveDown">
+      <view class="heng" ></view>
+      <view  class="shu"></view>
+    </view>
+     <image class="images" bindtap="positiveDown"  wx:if="{{imgT!=''}}" src="{{imgT}}"></image>
+  </view>
+
+
+
+  <view class="agreement">
+    <view class="bossY">
+      <view class="circle"></view>
+    </view>
+    <text class="text">已阅读并接受《推广运营协议》</text>
+  </view>
+  <button class="btn" form-type="submit" >提交</button>
+  </form>
+</view>
+
+
+<view class="mask" wx:if="{{mask}}">
+ <image class="imagesId" wx:if="{{change==0}}" src="/assets/zheng.png"></image>
+  <image class="imagesId" wx:if="{{change==1}}" src="/assets/fan.png"></image>
+ <image class="cacel" bindtap="cacel" src="/assets/BtnDown@2x.png"></image>
+ </view>

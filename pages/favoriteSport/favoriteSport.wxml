@@ -1,0 +1,5 @@
+<view class="favoriteSport">
+  <view class="listSon" bindtap="sport" wx:for="{{listSon}}" style="{{item.flag==true?'color:#D85D27;border-color:#D85D27;':''}};" data-num="{{item.num}}" wx:key>{{item.name}}</view>
+
+</view>
+<button class="btn" bindtap="confirm">确认</button>

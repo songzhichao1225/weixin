@@ -1,0 +1,13 @@
+<view class="history" wx:for="{{historyList}}" wx:key>
+  <view class="title">
+    <image src="https://app.tiaozhanmeiyitian.com/{{item.playerimgurl}}"></image>
+    <view class="information">
+      <text>{{item.playerName}}</text>
+      <text>{{item.intime}}</text>
+    </view>
+  </view>
+
+  <text class="content">{{item.title}}</text>
+  <image wx:if="{{item.baseURL!=''}}" class="imgT" src="https://app.tiaozhanmeiyitian.com/{{item.baseURL}}"></image>
+</view>
+

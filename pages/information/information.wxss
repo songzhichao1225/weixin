@@ -1,0 +1,132 @@
+.information {
+  width: 90%;
+  margin: 40rpx auto 0;
+}
+
+.information .title {
+  font-size: 15px;
+  color: #333;
+}
+
+.information .name {
+  margin-top: 30rpx;
+  overflow: hidden;
+}
+
+.information .name text {
+  display: block;
+  font-size: 14px;
+  color: #333;
+  float: left;
+  line-height: 26px;
+}
+
+.information .name  input {
+  margin-left: 86rpx;
+  display: block;
+  float: left;
+}
+
+.information .positiveId {
+  margin-top: 50rpx;
+}
+
+.information .positiveId .title {
+  font-size: 14px;
+  color: #333;
+}
+
+.information .positiveId .example {
+  font-size: 14px;
+  color: #d85d27;
+  padding-left: 30rpx;
+}
+
+.information .positiveId .positiveUp {
+  width: 148rpx;
+  height: 148rpx;
+  border: 1px dashed #ddd;
+  margin-top: 24rpx;
+  position: relative;
+}
+
+.information .positiveId .positiveUp .heng {
+  width: 2rpx;
+  height: 76rpx;
+  margin: 37rpx auto 0;
+  background-color: #d3d3d3;
+}
+
+.information .positiveId .positiveUp  .shu {
+  width: 76rpx;
+  height: 2rpx;
+  background-color: #d3d3d3;
+  position: absolute;
+  top: 74rpx;
+  left: 36rpx;
+}
+
+.agreement {
+  margin-top: 30rpx;
+  overflow: hidden;
+}
+
+.agreement .bossY {
+  width: 28rpx;
+  height: 28rpx;
+  border: 2rpx solid #d85d27;
+  border-radius: 50%;
+  float: left;
+}
+
+.agreement .circle {
+  width: 20rpx;
+  height: 20rpx;
+  background-color: #d85d27;
+  border-radius: 50%;
+  margin: 4rpx auto;
+}
+
+.agreement>text {
+  font-size: 12px;
+  color: #333;
+  display: block;
+  float: left;
+  margin-left: 10rpx;
+}
+
+.information .btn {
+  width: 600rpx;
+  height: 80rpx;
+  background: #d85d27;
+  border-radius: 21.5px;
+  font-size: 18px;
+  color: #fff;
+  line-height: 80rpx;
+  margin-top: 64rpx;
+}
+.images{
+  width: 300rpx;
+  height: 300rpx;
+  display: block;
+}
+.mask{
+  width: 750rpx;
+  height: 100%;
+  background:rgba(0, 0, 0, 0.5);
+  position:absolute;
+  top: 0;
+  z-index: 9
+}
+.mask .imagesId{
+  width: 582rpx;
+  height: 818rpx;
+  display: block;
+  margin: 200rpx auto 0;
+}
+.mask  .cacel{
+  width: 66rpx;
+  height: 66rpx;
+  display: block;
+  margin: 40rpx auto; 
+}

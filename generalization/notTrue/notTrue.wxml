@@ -1,0 +1,23 @@
+<view class="title" wx:if="{{status==0}}">
+  <image class="img" src="/assets/tishi.png"></image>
+  <text class="tishi">您提交“不属实”后，对方可以要求平台介入处理，如果平台核实后对方提交的问题属实，将会影响您的“投诉处理正确率”请务必客观严谨处理投诉问题。</text>
+</view>
+<text class="navtar" wx:if="{{status==0}}">不属实说明:</text>
+<text class="navtar" wx:if="{{status==1}}">属实说明:</text>
+<view class="textarea">
+  <textarea placeholder="{{status==0?'请填写不属实说明':'请填写属实说明'}}" maxlength="200" bindinput="textarea"></textarea>
+  <text>{{textDetail.length}}/200字</text>
+</view>
+
+<text class="up">上传凭证</text>
+
+<view class="imgUp" bindtap="chooseImg">
+  <image wx:if="{{imgURL==''}}" src="/assets/Shangchuanzhaopian.png"></image>
+  <image wx:if="{{imgURL!=''}}" src="{{imgURL}}"></image>
+</view>
+<view class="btncomfir">
+  <view bindtap="canle">取消</view>
+  <view bindtap="comfirm">确认</view>
+
+
+</view>

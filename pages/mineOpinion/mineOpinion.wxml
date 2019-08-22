@@ -1,0 +1,14 @@
+<view class="textarea">
+<textarea bindinput="textarea" maxlength="400" placeholder="请输入您的意见或建议，被采纳的意见将会有金币奖励给您奥~" placeholder-style="font-size: 15px;color: #9B9B9B;"></textarea>
+
+<text class="num">{{number}}/400</text>
+
+</view>
+
+<view class="input"><text class="text">电话</text><text class="txt">(必填)</text><input bindinput="iphone" type="number" maxlength="11" placeholder="便于我们与您联系!" placeholder-style="font-size: 15px;color: #9B9B9B;"></input></view>
+
+
+<view class="input"><text class="text">邮箱</text><text class="txt">(选填)</text><input  placeholder="便于我们与您联系!" placeholder-style="font-size: 15px;color: #9B9B9B;"></input></view>
+
+
+<button class="btn" bindtap="btn">提交</button>

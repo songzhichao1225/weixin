@@ -1,0 +1,41 @@
+<view class="mineFriend">
+ <view class="header">
+   <scroll-view scroll-x style='white-space: nowrap; display: flex;margin-top:24rpx;'>
+      <view class="headerSon" bindtap='select' data-name="{{item.name}}" data-num="{{item.num}}" style="{{item.color==true?'color:#D85D27;border-bottom:4rpx solid #D85D27;':'color:#9b9b9b;border-bottom:4rpx solid #9b9b9b'}}" wx:for="{{headerList}}" wx:key><text>{{item.name}}</text></view>
+    </scroll-view>
+ </view>
+
+<view class="content">
+  <view  wx:if="{{nearbyData.length==0}}" style="font-size:30rpx; text-align:center;margin-top:80rpx;">您还没有好友！</view>
+<scroll-view scroll-y style="height:100%" bindscrolltolower="lower" wx:elif="{{nearbyData.length>0}}">
+      <view class="characterList" wx:for="{{nearbyData}}" wx:key data-uid="{{item.uuid}}" bindtap='getUserDetailInfo'>
+        <image class="img" src='https://app.tiaozhanmeiyitian.com/{{item.userInfo.imgURL}}'></image>
+        <view class="content">
+          <view class="header">
+            <text class="text">{{item.userInfo.nickname}}</text>
+            <image wx:if="{{item.userInfo.sex==0}}" class='image' src='/assets/sex0@2x.png'></image>
+            <image wx:if="{{item.userInfo.sex==1}}" class='image' src='/assets/sex1@2x.png'></image>
+            <image src='/assets/{{item.hightName}}' class='imageTwo'></image>
+            <text class="textTwo">{{item.hightLevel}}</text>
+          </view>
+          <view class="signs">
+            <text style="margin:0;">年龄:{{item.userInfo.age}}岁</text>
+            <text>体重:{{item.userInfo.tall}}Kg</text>
+            <text>身高:{{item.userInfo.weight}}cm</text>
+          </view>
+          <view class="interest">
+            <text style='float:left;display:block;'>喜爱运行项目:{{item.sportidNameStr}}</text>
+          </view>
+        </view>
+        <text style="display:block;font-size:12px;position: absolute;bottom:0;right:0;">{{item.range}}</text>
+      </view>
+    </scroll-view>
+
+
+
+</view>
+
+
+
+
+</view>

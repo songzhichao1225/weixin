@@ -1,0 +1,36 @@
+<view class="select">
+  <picker mode="date" bindchange="pickerOne" end="timeEnd">
+    <view class="picker">
+      {{pickerOne}}
+      <image class="pickerOimg" src="/assets/home_icon_jt_xia_nor@2x.png"></image>
+    </view>
+  </picker>
+  <text class="text">至</text>
+  <picker style="margin-top:3rpx;margin-left:18rpx;" start="{{pickerOne}}" mode="date" bindchange="pickerTwo" end="timeEnd">
+    <view class="picker">
+      {{pickerTwo}}
+      <image class="pickerOimg" src="/assets/home_icon_jt_xia_nor@2x.png"></image>
+    </view>
+  </picker>
+  <text class="sum">收入  ￥{{money}}</text>
+</view>
+<scroll-view scroll-y style="height:95%;" bindscrolltolower="lower">
+  <view class="orderList" wx:for="{{orderList}}" wx:key>
+    <text class="id">活动ID {{item.orderId}}</text>
+    <view class="time"><text></text> <text>{{item.CreateTime}}-{{item.FinishedTime}}</text></view>
+    <view class="time"><text style="background:#7ED321;"></text> <text>{{item.SiteName}} {{item.Sport}}</text></view>
+    <view class="time"><text style="background:#D85D27;"></text> <text>场地费￥{{item.SiteMoney}}</text><text style="color: #D0021B;margin-left:16rpx;display:block;float:left;">提成率{{item.Royalty}}%</text></view>
+    <text class="money">{{item.RoyaltyMoney}}</text>
+        <image wx:if="{{item.PublicStatus==2}}" src='/assets/dai.png'></image>
+        <image wx:if="{{item.PublicStatus==6}}" src='/assets/pinjia.png'></image>
+        <image wx:if="{{item.PublicStatus==3}}" src='/assets/huodong.png'></image>
+        <image wx:if="{{item.PublicStatus==1}}" src='/assets/pipei.png'></image>
+        <image wx:if="{{item.PublicStatus==7}}" src='/assets/tuichu.png'></image>
+        <image wx:if="{{item.PublicStatus==5}}" src='/assets/wancheng.png'></image>
+        <image wx:if="{{item.PublicStatus==4}}" src='/assets/jieguo.png'></image>
+        <image wx:if="{{item.PublicStatus==8}}" src='/assets/jieshu.png'></image>
+  </view>
+
+
+
+</scroll-view>

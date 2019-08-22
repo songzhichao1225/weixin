@@ -1,0 +1,103 @@
+
+page{
+  height: 100%;
+  
+}
+
+.searchPartner{
+  height: 100%;
+  margin: 0 auto;
+
+}
+.searchPartner .search{
+  width: 90%;
+  height: 1.3rem;
+  margin: 0 auto 0.8rem;
+  border-radius: 200px;
+  background-color: #ccc;
+  
+}
+.searchPartner .search image{
+  width: 0.8rem;
+  height: 0.8rem;
+  display: block;
+  margin: 0.25rem 0 0 0.25rem;
+  float: left
+}
+.searchPartner .search input{
+  display: block;
+  float: left;
+  font-size: 14px;
+}
+
+.characterList{
+  width: 95%;
+  margin: 0  auto ;
+  overflow: hidden;
+  position: relative;
+  padding:0.8rem 0;
+}
+.characterList .img{
+  width: 4.4rem;
+  height:4.4rem;
+  display: block;
+  border-radius: 50%;
+  float: left;
+
+}
+.characterList .content{
+  float: left;
+  width:69%;
+  margin-left: 0.8rem;
+}
+.characterList .content .header {
+  overflow: hidden;
+}
+.characterList .content .header .text{
+font-size: 16px;
+color: #333333;
+display: block;
+float: left;
+margin-top: 0.1rem;
+}
+.characterList .content .header .image{
+display: block;
+width: 0.8rem;
+height: 0.8rem;
+float: left;
+margin:0.3rem 0 0 0.3rem;
+}
+
+.characterList .content .header .imageTwo{
+display: block;
+width: 1.4rem;
+height: 1.4rem;
+float: left;
+margin:0 0 0 0.3rem;
+}
+.characterList .content .header .textTwo{
+display: block;
+float: left;
+padding:0.1rem 0.2rem;
+margin:0.3rem 0 0 0.3rem;
+background: #F5A623;
+border-radius: 2px;
+font-size: 10px;
+color: #FFFFFF;
+}
+.characterList .content .signs{
+  font-size: 14px;
+  color: #4A4A4A;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+.characterList .content .signs text{
+  display: block;
+  float: left;
+  margin-left: 0.5rem;
+}
+.characterList .content .interest{
+  font-size: 14px;
+  color: #4A4A4A;
+}
+

@@ -1,0 +1,27 @@
+<view class="gold" wx:if="{{flag}}">
+  <view class="headerNum">
+    <image src='/assets/BgTyjb.png'></image>
+    <text class="number">{{goldNum}}</text>
+    <text class="details" bindtap='goldDetails'>通用金币明细 >></text>
+  </view>
+
+
+  <view class="title">
+    <image src='/assets/yuan@2x.png'></image>
+    <text>推荐商品</text>
+  </view>
+
+
+   <view class="mallList">
+      <view class="mallListSon" wx:for="{{goldMall}}" bindtap='details' wx:key data-name="{{item.name}}" data-cost="{{item.cost}}" data-uuid="{{item.UUID}}">
+        <image src="https://app.tiaozhanmeiyitian.com/{{item.imgpath}}"></image>
+        <text>{{item.name}}</text>
+        <text style='color:#D0021B;'>{{item.cost}}金币</text>
+      </view>
+
+    </view>
+
+
+  <view class="viewMore"><text bindtap='viewMore'>查看更多></text></view>
+
+</view>

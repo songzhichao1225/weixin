@@ -1,0 +1,166 @@
+<!--index.wxml-->
+<view class="content" bindtap='itemSelectionH' wx:if="{{flag}}">
+  <view class="headerCity">
+    <text bindtap='cityList'>{{selectCity}}</text>
+    <image src='/assets/HomeIconJt@2x.png'></image>
+    <view class="inputBox">
+      <image style='display:block;width:0.8rem;height:0.8rem;margin:0.25rem 0 0 0.45rem;' src='/assets/SearchIcon@2x.png'></image>
+      <input type='text' disabled='true' bindtap='inputS' placeholder='请输入地址' value="{{addressN}}" placeholder-style="font-size:14px;" confirm-type="search"></input>
+    </view>
+  </view>
+  <swiper autoplay="{{true}}" class="banner" indicator-dots="true" indicator-color="#fff" indicator-active-color="#3fc">
+    <block wx:for="{{bannerArr}}" wx:key>
+      <swiper-item>
+        <image src="https://app.tiaozhanmeiyitian.com/{{item.picurl}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="homeSelect">
+    <!-- <view bindtap='isSign' data-status="{{isSign}}">
+      <image wx:if="{{isSign==0}}" src='/assets/HomeIconQiandao@2x.png'></image>
+      <image wx:if="{{isSign==1}}" src='/assets/home-icon-qiandao-hui@2x.png'></image>
+      <text>{{isSign==0?'签到':'已签到'}}</text>
+    </view> -->
+    <view bindtap="generaGold">
+      <image src='/assets/HomeIconJinbi@2x.png'></image>
+      <text>赢通用金币</text>
+    </view>
+    <view bindtap='goldMall'>
+      <image src='/assets/HomeIconShangcheng@2x.png'></image>
+      <text>兑换商城</text>
+    </view>
+    <view bindtap='generalization'>
+      <image src='/assets/generalization.png'></image>
+      <text>我是推广员</text>
+    </view>
+    <view bindtap='goldMall'>
+      <image src='/assets/cooperate.png'></image>
+      <text>成为合作场馆</text>
+    </view>
+    <!-- <view>
+      <image src='/assets/HomeIconWenzhang@2x.png'></image>
+      <text>精选文章</text>
+    </view> -->
+  </view>
+
+  <view class="projectNav">
+    <view style='margin:0;' catchtap='itemSelection'>
+      <text>运动项目</text>
+      <image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
+    </view>
+    <view catchtap='sortHid'>
+      <text>智能排序</text>
+      <image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
+    </view>
+    <view catchtap='statusHid'>
+      <text>状态</text>
+      <image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
+    </view>
+    <view bindtap='screen'>
+      <text>筛选</text>
+      <image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
+    </view>
+  </view>
+
+  <view class="projectList">
+    <!-- <text wx:if="{{projectData.length==0}}" class="model" >没有找到相匹配的项目</text> -->
+    <view class="projectSon" wx:if="{{projectData.length>0}}" bindtap="activites" data-uuid="{{item.uuid}}" wx:for="{{projectData}}" wx:key>
+      <view class="avatar">
+        <image class="avatarP" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+        <image wx:if="{{item.SportName=='网球'}}" class="aIcon" src='/assets/icon_dj_wq.png'></image>
+         <image wx:if="{{item.SportName=='高尔夫'}}"  class="aIcon" src='/assets/icon_dj_gef.png'></image>
+          <image wx:if="{{item.SportName=='篮球'}}" class="aIcon" src='/assets/icon_dj_lq.png'></image>
+           <image wx:if="{{item.SportName=='乒乓球'}}" class="aIcon" src='/assets/icon_dj_ppq.png'></image>
+            <image wx:if="{{item.SportName=='排球'}}" class="aIcon" src='/assets/icon_dj_pq.png'></image>
+             <image wx:if="{{item.SportName=='台球'}}" class="aIcon" src='/assets/icon_dj_tq.png'></image>
+              <image  wx:if="{{item.SportName=='羽毛球'}}" class="aIcon" src='/assets/icon_dj_ymq.png'></image>
+               <image  wx:if="{{item.SportName=='足球'}}" class="aIcon" src='/assets/icon_dj_zq.png'></image>
+        <text>{{item.nowLevel}}</text>
+      </view>
+      <view class="introduction">
+        <view class="title">
+          <text>{{item.nickname}}</text>
+          <image wx:if="{{item.sex==0}}" src='/assets/sex0@2x.png'></image>
+          <image wx:if="{{item.sex==1}}" src='/assets/sex1@2x.png'></image>
+        </view>
+        <view class="mode">
+          <text style='margin:0;color:#D85D27;'>{{item.SportMode}}模式</text>
+          <text>{{item.HighestLevelName}}</text>
+          <text>{{item.SportTypeName}}</text>
+          <text>缺{{item.lockNumber}}人</text>
+        </view>
+        <view class="time">
+          <text style='margin:0;'>{{item.startDays}}</text>
+          <text>{{item.week}}</text>
+          <text>{{item.startTimes}}-{{item.endTimes}}</text> </view>
+        <view class="address">
+          <text style='margin:0;'>{{item.address}}</text>
+          <!-- <text>（北京市…）</text> -->
+        </view>
+        <view class="cost">
+          <text style='margin:0;'>场地费:AA</text>
+          <text>打赏费:{{item.Tips}}/人</text>
+          <text>{{item.range}}</text>
+        </view>
+      </view>
+      <view class="status">
+        <image wx:if="{{item.PublicStatus==2}}" src='/assets/dai.png'></image>
+        <image wx:if="{{item.PublicStatus==6}}" src='/assets/pinjia.png'></image>
+        <image wx:if="{{item.PublicStatus==3}}" src='/assets/huodong.png'></image>
+        <image wx:if="{{item.PublicStatus==1}}" src='/assets/pipei.png'></image>
+        <image wx:if="{{item.PublicStatus==7}}" src='/assets/tuichu.png'></image>
+        <image wx:if="{{item.PublicStatus==5}}" src='/assets/wancheng.png'></image>
+      </view>
+    </view>
+
+
+    <view class="mask" wx:if="{{hidden}}">
+      <view class="activity" wx:if="{{hiddenOne}}">
+        <view class="activitySon" catchtap='secondary' wx:for="{{activity}}" wx:key data-num="{{item.id}}">
+          <text>{{item.name}}</text>
+          <image src='/assets/HomeIconJtRightNol@2x.png'></image>
+        </view>
+      </view>
+      <view class="activityTwo" wx:if="{{hiddenTwo}}">
+        <view class="activityTwoSon" wx:for="{{activitySon}}" bindtap='activityTwoSon' wx:key data-num="{{item.id}}">
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+
+      <view class="sort" wx:if="{{sortHid}}">
+        <view class="sortSon" wx:for="{{sort}}" bindtap='sortSe' data-num="{{item.num}}" wx:key>
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+
+      <view class="sort" style='left:50%;' wx:if="{{statusHid}}">
+        <view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key data-num="{{item.num}}">
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="flexd" bindtap="download">
+    <image src="/assets/comeOn@2x.png"></image>
+  </view>
+
+  <view class="isSignN" wx:if="{{flagIs}}">
+    <view class="isSignbox">
+      <image class="img" src='/assets/PicQiandao.png'></image>
+      <text class="txt">恭喜+1枚通用金币
+ 目前通用金币{{goldNum}}个</text>
+    </view>
+    <view class="close" bindtap='close'>
+    <image src='/assets/BtnDown@2x.png'></image>
+    </view>
+  </view>
+
+  <download  wx:if="{{download}}" bindtap="closeDowload" ></download>
+
+
+
+
+  
+
+</view>

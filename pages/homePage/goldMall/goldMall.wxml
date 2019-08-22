@@ -1,0 +1,32 @@
+<view class="goldMall" wx:if="{{falg}}">
+  <!-- <view class="navTop">
+   <scroll-view scroll-x>
+   <view wx:for="{{navSon}}" wx:key  bindtap='clickSe' data-name="{{item.name}}">{{item.name}}</view>
+   </scroll-view>
+ 
+ 
+ </view> -->
+
+  <swiper indicator-dots="true" indicator-color="#ccc" indicator-active-color="#3fc" class="swiper">
+    <swiper-item></swiper-item>
+
+  </swiper>
+
+  <view class="navTor">
+    <view class="navSon">
+      <view wx:for="{{navSon}}" wx:key bindtap='clickSe' data-name="{{item.name}}">
+        <image src="{{item.img}}"></image>{{item.name}}</view>
+    </view>
+  </view>
+  <scroll-view scroll-y style="height: 55%;" bindscrolltolower="scrolltolower" bindscroll="scroll">
+    <view class="mallList">
+      <view class="mallListSon" wx:for="{{goldMall}}" bindtap='details' wx:key data-name="{{item.name}}" data-cost="{{item.cost}}" data-uuid="{{item.UUID}}">
+        <image src="https://app.tiaozhanmeiyitian.com/{{item.imgpath}}"></image>
+        <text>{{item.name}}</text>
+        <text style='color:#D0021B;'>{{item.cost}}金币</text>
+      </view>
+
+    </view>
+  </scroll-view>
+
+</view>

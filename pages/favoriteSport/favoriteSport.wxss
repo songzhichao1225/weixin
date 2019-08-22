@@ -1,0 +1,41 @@
+.favoriteSport {
+  width: 95%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.favoriteSport .listSon {
+  width: 204rpx;
+  height: 60rpx;
+  border: 1px solid #9b9b9b;
+  border-radius: 3px;
+  font-size: 14px;
+  color: #9b9b9b;
+  letter-spacing: -0.34px;
+  text-align: center;
+  line-height: 60rpx;
+  float: left;
+  margin-top: 24rpx;
+  margin-left: 40rpx;
+}
+
+.favoriteSport .listSon:first-child {
+  margin-left: 0;
+}
+
+.favoriteSport .listSon:nth-child(3n+1) {
+  margin-left: 0;
+}
+
+.btn {
+  width: 600rpx;
+  height: 80rpx;
+  background: #d85d27;
+  border-radius: 43rpx;
+  margin: 200rpx auto 0;
+  font-size: 18px;
+  color: #fff;
+  letter-spacing: -0.43px;
+  text-align: center;
+  line-height: 80rpx;
+}

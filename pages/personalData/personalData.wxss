@@ -1,0 +1,166 @@
+page {
+  height: 100%;
+  
+}
+
+text {
+  display: block;
+}
+
+.personalData {
+  height: 100%;
+}
+
+.listSon {
+  border-top: 2rpx solid #ccc;
+}
+
+.avatar {
+  width: 95%;
+  height: 120rpx;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.personalData .txt {
+  font-size: 32rpx;
+  color: #333;
+  letter-spacing: -0.39px;
+  line-height: 120rpx;
+  float: left;
+}
+
+.personalData  .avatar .avatarImg {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  float: right;
+  margin-top: 24rpx;
+  margin-right: 12rpx;
+}
+
+.personalData    .arrow {
+  width: 20rpx;
+  height: 34rpx;
+  float: right;
+  margin-top: 43rpx;
+}
+
+.text {
+  font-size: 12px;
+  color: #9b9b9b;
+  float: left;
+  line-height: 120rpx;
+}
+.rightT{
+  font-size: 14px;
+  color: #9b9b9b;
+  float: right;
+  line-height: 120rpx;
+  margin-right: 20rpx;
+}
+
+.personalData  .avatar input {
+  display: block;
+  float: right;
+  width: 200rpx;
+  height: 40rpx;
+  margin-top: 30rpx;
+  font-size: 14px;
+  color: #9b9b9b;
+  text-align: right;
+  margin-right: 20rpx;
+}
+
+.sport {
+  width: 95%;
+  margin: 0 auto;
+  min-height: 120rpx;
+  overflow: hidden;
+  padding-bottom: 20rpx;
+}
+
+.btn {
+  width: 654rpx;
+  height: 80rpx;
+  background: #d85d27;
+  border-radius: 43rpx;
+  font-size: 18px;
+  color: #fff;
+  display: block;
+ 
+  
+}
+
+.sportList {
+  clear: both;
+}
+
+.sportList .sportListSon {
+  width: 172rpx;
+  height: 60rpx;
+  border: 1px solid #d85d27;
+  border-radius: 3px;
+  float: left;
+  font-size: 14px;
+  color: #d85d27;
+  letter-spacing: -0.34px;
+  text-align: center;
+  line-height: 60rpx;
+  margin-left: 40rpx;
+  margin-top: 20rpx;
+}
+.sportList .sportListSon:first-child{
+  margin-left: 0;
+}
+.sportList .sportListSon:nth-child(3n+1){
+  margin-left: 0;
+}
+
+.boss {
+  position: absolute;
+  top: 0;
+  width: 750rpx;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9;
+  padding-bottom:80rpx;
+}
+
+.boss .sex {
+  width: 750rpx;
+  height: 380rpx;
+  position: absolute;
+  bottom: 0;
+  background: #fff;
+  z-index: 9
+}
+
+.boss .sex .man {
+  width: 664rpx;
+  height: 80rpx;
+  border: 1px solid #9B9B9B;
+  border-radius: 60px;
+  margin: 96rpx auto 48rpx;
+  overflow: hidden;
+  font-size: 16px;
+  color: #9B9B9B;
+  letter-spacing: -0.34px;
+  text-align: center;
+  line-height: 80rpx;
+}
+
+.boss .sex .female {
+  width: 664rpx;
+  height: 80rpx;
+  border: 1px solid #9B9B9B;
+  border-radius: 60px;
+  margin: 0 auto;
+  overflow: hidden;
+  font-size: 16px;
+  color: #9B9B9B;
+  letter-spacing: -0.34px;
+  text-align: center;
+  line-height: 80rpx;
+}
+

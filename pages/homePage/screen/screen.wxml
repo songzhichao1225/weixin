@@ -1,0 +1,31 @@
+<!--logs.wxml-->
+<view class="screen">
+  <view class="boss">
+    <text>运动模式</text>
+    <view class="modeH">
+    <text bindtap='modeTap' data-num="1" style="{{dataIndex==1?'border-color: #D85D27;color: #D85D27;':''}}">娱乐模式</text>
+    <text class="right" bindtap='modeTap' data-num="2" style="{{dataIndex==2?'border-color: #D85D27;color: #D85D27;':''}}">竞技模式</text>
+    </view>
+    <view class="modeH">
+    <text bindtap='modeTap' data-num="3" style="{{dataIndex==3?'border-color: #D85D27;color: #D85D27;':''}}">发布者找陪练</text>
+    <text class="right" bindtap='modeTap' data-num="4" style="{{dataIndex==4?'border-color: #D85D27;color: #D85D27;':''}}">发布者是陪练</text>
+    </view>
+  </view>
+
+  <view class="boss">
+    <text>场地承担方式</text>
+    <view class="modeH">
+    <text bindtap='siteTap' data-num="1" style="{{siteIndex==1?'border-color: #D85D27;color: #D85D27;':''}}">AA</text>
+    <text  bindtap='siteTap' class="right" data-num="2" style="{{siteIndex==2?'border-color: #D85D27;color: #D85D27;':''}}">输者买单</text>
+    </view>
+  </view>
+
+   <view class="boss">
+    <text>发布者性别</text>
+    <view class="modeH">
+    <text bindtap='sexTap' data-num="0" style="{{sexIndex==0?'border-color: #D85D27;color: #D85D27;':''}}">男</text>
+    <text bindtap='sexTap' class="right" data-num="1" style="{{sexIndex==1?'border-color: #D85D27;color: #D85D27;':''}}" >女</text>
+    </view>
+  </view>
+   <button class='btn' bindtap='confirm'>确认</button>
+</view>

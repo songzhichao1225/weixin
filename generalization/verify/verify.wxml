@@ -1,0 +1,28 @@
+<view class="verify">
+  <image class="headerImg" wx:if="{{status==0}}" src="/assets/icon-shz.png"></image>
+  <image class="headerImg" wx:if="{{status==2}}" src="/assets/icon-shsb.png"></image>
+  <text class="title">提交成功 等待审核</text>
+  <view class="Bar">
+    <view class="oneY" style="background:#D85D27;"></view>
+    <view class="oneX" style="background:#D85D27;"></view>
+    <view class="oneY" style="{{status==2?'background:#D85D27;':'background: #e8e8e8;'}}"></view>
+    <view class="oneX" style="{{status==2?'background:#D85D27;':'background: #e8e8e8;'}}"></view>
+    <view class="oneY" style="{{status==2?'background:#D0021B;':'background: #e8e8e8;'}}"></view>
+  </view>
+  <view class="content">
+    <text>提交</text>
+    <text>审核中</text>
+    <text style="{{status==2?'text-align:right;color:#D0021B;':'text-align:right;'}}">{{status==2?'审核失败':'审核成功/失败'}}</text>
+  </view>
+
+  <view class="fail" wx:if="{{status==2}}">抱歉，您上传的身份证照片不符合要求，请 <text bindtap="join">重新上传</text>!<text class="demand">查看上传要求</text></view>
+
+  <view class="promotion">
+    <text>您提交的信息如下</text>
+    <text class="name">真实姓名  {{name}}</text>
+    <text class="cardId">证件类型 身份证</text>
+    <text class="number">证件号码 {{cardId}}</text>
+  </view>
+</view>
+
+<button class="btn" wx:if="{{status==2}}" bindtap="join">重新上传</button>

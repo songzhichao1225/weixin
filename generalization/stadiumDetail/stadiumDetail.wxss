@@ -1,0 +1,287 @@
+page {
+  height: 100%;
+}
+
+.stadiumD {
+  height: 100%;
+}
+
+.stadiumD .banner {
+  width: 100%;
+  height: 12.1rem;
+}
+
+.stadiumD .navTap {
+  width: 90%;
+  margin: 60rpx auto 0;
+  font-size: 16px;
+  color: #9b9b9b;
+  overflow: hidden;
+}
+
+.stadiumD .navTap .navSon {
+  width: 160rpx;
+  float: left;
+}
+
+.stadiumD .navTap .navSon:nth-child(2) {
+  margin-left: 40rpx;
+}
+
+.stadiumD .navTap .navSon .name {
+  text-align: center;
+  display: block;
+}
+
+.stadiumD .navTap .navSon .line {
+  width: 40rpx;
+  height: 4rpx;
+  background: #333;
+  display: block;
+  margin: 10rpx auto 0;
+}
+
+.list {
+  height: 90%;
+}
+
+.list .listSon {
+  width: 95%;
+  height: 266rpx;
+  margin: 20rpx auto 0;
+}
+
+.listSon {
+  position: relative;
+}
+
+.listSon .image {
+  width: 184rpx;
+  height: 266rpx;
+  position: relative;
+  float: left;
+}
+
+.listSon .image .img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 24rpx;
+  margin-top: 34rpx;
+  margin-left: 24rpx;
+}
+
+.listSon .image .type {
+  width: 84rpx;
+  height: 34rpx;
+  display: block;
+  background: #d85d27;
+  border-radius: 0 0 50% 0;
+  color: #fff;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 36rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.listSon .image .way {
+  width: 36rpx;
+  height: 36rpx;
+  margin-left: 40rpx;
+  float: left;
+}
+
+.listSon .image .level {
+  background-image: linear-gradient(90deg, #fca400 0%, #fee073 100%);
+  border-radius: 2px;
+  font-size: 10px;
+  color: #fff;
+  display: block;
+  width: 46rpx;
+  height: 26rpx;
+  float: left;
+  margin-top: 6rpx;
+  margin-left: 10rpx;
+  text-align: center;
+  line-height: 26rpx;
+}
+
+.listSon .content {
+  width: 70%;
+  height: 266rpx;
+  float: right;
+}
+
+.listSon .content .name {
+  overflow: hidden;
+  margin-top: 34rpx;
+}
+
+.listSon .content .name text {
+  display: block;
+  font-size: 14px;
+  color: #333;
+  float: left;
+}
+
+.listSon .content .name image {
+  width: 30rpx;
+  height: 30rpx;
+  float: left;
+  margin-left: 6rpx;
+  margin-top: 4rpx;
+}
+
+.content {
+  font-size: 28rpx;
+  color: #4a4a4a;
+}
+
+.content text {
+  display: block;
+  line-height: 40rpx;
+}
+
+.content .moshi {
+  overflow: hidden;
+}
+
+.content .moshi text {
+  float: left;
+  margin-left: 20rpx;
+}
+
+.status {
+  width: 96rpx;
+  height: 84rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+}
+
+.status image {
+  width: 100%;
+  height: 100%;
+}
+
+.detail {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.detail .name {
+  font-size: 16px;
+  color: #333;
+  display: block;
+  margin-top: 10rpx;
+  font-weight: bold;
+}
+
+.detail .praise {
+  height: 50rpx;
+  margin-top: 10rpx;
+}
+
+.detail .praise image {
+  display: block;
+  width: 24rpx;
+  height: 24rpx;
+  float: left;
+  margin-left: 0.2rem;
+  margin-top: 13rpx;
+}
+
+.totalPoints {
+  display: block;
+  font-size: 14px;
+  color: #333;
+  float: left;
+  line-height: 50rpx;
+}
+
+.lookof {
+  font-size: 14px;
+  color: #9b9b9b;
+  display: block;
+  float: left;
+  margin-left: 10rpx;
+  line-height: 50rpx;
+}
+
+.detail .mark {
+  display: block;
+  font-size: 14px;
+  color: #9b9b9b;
+  margin-top: 12rpx;
+}
+
+.detail .address {
+  margin-top: 52rpx;
+  overflow: hidden;
+  height: 40rpx;
+}
+
+.detail .address .imgLeft {
+  width: 20rpx;
+  height: 24rpx;
+  float: left;
+  margin-top: 8rpx;
+}
+
+.detail .address text {
+  font-size: 14px;
+  color: #333;
+  display: block;
+  float: left;
+  margin-left: 12rpx;
+  line-height: 40rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detail .address .imgRight {
+  width: 34rpx;
+  height: 34rpx;
+  float: right;
+  margin-top: 4rpx;
+}
+
+.detail .portsProjects {
+  height: 60rpx;
+  margin-top: 52rpx;
+}
+
+.detail .portsProjects text:first-child {
+  font-size: 14px;
+  color: #333;
+  line-height: 20rpx;
+}
+
+.detail .portsProjects text:last-child {
+  font-size: 14px;
+  color: #9b9b9b;
+  line-height: 20rpx;
+}
+
+.detail .serviceFacilities {
+  height: 40rpx;
+  margin-top: 60rpx;
+  overflow: hidden;
+}
+
+.detail .serviceFacilities text {
+  font-size: 14px;
+  color: #333;
+  float: left;
+}
+.detail .serviceFacilities image{
+  width: 32rpx;
+  height: 26rpx;
+  float: left;
+  display: block;
+  margin-left: 24rpx;
+  margin-top: 8rpx;
+}

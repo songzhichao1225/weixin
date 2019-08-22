@@ -1,0 +1,17 @@
+ <view class="stadiumList" wx:for="{{clearList}}" wx:key data-siteUid="{{item.uid}}" data-name="{{item.name}}"  bindtap="stadiumDetail">
+        <image class="stadiumImg" src="/assets/tiaozhan.png"></image>
+        <!-- https://app.tiaozhanmeiyitian.com/{{item.siteimgs}} -->
+        <view class="content">
+          <text class="name">{{item.name}}</text>
+          <view class="praise">
+            <image src="/assets/{{item.fraction>=1?'StarSel2@2x.png':''}}"></image>
+            <image src="/assets/{{item.fraction>=2?'StarSel2@2x.png':''||item.fraction>1&&item.fraction<2?'StarSelYb2@2x.png':''}}"></image>
+            <image src="/assets/{{item.fraction>=3?'StarSel2@2x.png':'StarNor2@2x.png'&&item.fraction>2&&item.fraction<3?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
+            <image src="/assets/{{item.fraction>=4?'StarSel2@2x.png':'StarNor2@2x.png'&&item.fraction>3&&item.fraction<4?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
+            <image src="/assets/{{item.fraction>=5?'StarSel2@2x.png':'StarNor2@2x.png'&&item.fraction>4&&item.fraction<5?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
+            <text class="lookof">{{item.fraction}}分</text>
+          </view>
+          <text class="type">{{item.type}}</text>
+          <text class="distance">{{item.range}}</text>
+        </view>
+      </view>

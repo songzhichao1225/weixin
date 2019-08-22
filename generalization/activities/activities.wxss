@@ -1,0 +1,345 @@
+page {
+  height: 100%;
+  font-family: PingFangSC-Semibold;
+}
+
+text {
+  display: block;
+}
+
+image {
+  display: block;
+}
+
+.activities {
+  padding-bottom: 4rem;
+}
+
+.contnet {
+  width: 95%;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #fff;
+  padding-top: 1.2rem;
+}
+
+.status {
+  width: 93.8rpx;
+  height: 83.4rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.status image {
+  width: 100%;
+  height: 100%;
+}
+
+.contnet .contentTop {
+  overflow: hidden;
+}
+
+.contnet .contentTop .contentImg {
+  width: 152rpx;
+  height: 152rpx;
+  border-radius: 10px;
+  display: block;
+  float: left;
+  margin-top: 14rpx;
+}
+
+.contnet .contentTop .contentText {
+  float: left;
+  margin-left: 2.8rem;
+  margin-top: 0.8rem;
+}
+
+.contnet .contentTop .contentText text {
+  display: block;
+  font-size: 14px;
+  color: #333;
+}
+
+.contnet .publisher {
+  margin: 2.4rem auto 0;
+  overflow: hidden;
+}
+
+.contnet .publisher .header {
+  width: 100%;
+  height: 2.1rem;
+}
+
+.contnet .publisher .header image {
+  display: block;
+  float: left;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 5px;
+  margin-left: 1.7rem;
+}
+
+.contnet .publisher .header text {
+  line-height: 2.1rem;
+  display: block;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+  float: left;
+}
+
+.contnet .publisher .publisherTxt {
+  height: 1.3rem;
+  margin-top: 25rpx;
+}
+
+.contnet .publisher .publisherTxt text:first-child {
+  font-size: 14px;
+  color: #9b9b9b;
+  float: left;
+  line-height: 1.3rem;
+}
+
+.contnet .publisher .publisherTxt image {
+  width: 0.6rem;
+  height: 0.8rem;
+  display: block;
+  float: left;
+  margin-top: 0.25rem;
+  margin-left: 1.1rem;
+}
+
+.contnet .publisher .publisherTxt text {
+  font-size: 14px;
+  color: #333;
+  float: left;
+  line-height: 1.3rem;
+}
+
+.contnet .publisher .publisherTxt .cooperate {
+  color: #d85d27;
+  font-size: 12px;
+  margin-left: 0.8rem;
+}
+
+.contnet .publisher .publisherTxt .money {
+  color: #d85d27;
+  margin-left: 1.1rem;
+}
+
+.contnet .publisher .publisherTxt .way {
+  color: #9b9b9b;
+  margin-left: 2.8rem;
+}
+
+.contnet .publisher .publisherTxt .time {
+  margin-left: 1.1rem;
+}
+
+.participants {
+  margin: 1.8rem auto 0;
+}
+
+.participants .people {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+.participants .TeamA {
+  margin-top: 50rpx;
+  overflow: hidden;
+}
+
+.participants .TeamA text {
+  font-size: 17px;
+  color: #333;
+  float: left;
+  margin-top: 26rpx;
+}
+
+.participants .TeamB {
+  margin-top: 50rpx;
+  overflow: hidden;
+}
+
+.participants .TeamB text {
+  font-size: 17px;
+  color: #333;
+  float: left;
+  margin-top: 26rpx;
+}
+
+.participants .peopleList {
+  width: 538rpx;
+  float: left;
+  margin-left: 50rpx;
+}
+
+.participants .peopleList .son:nth-child(3N+1) {
+  margin-left: 0;
+}
+
+.participants .peopleList .son {
+  width: 157.8rpx;
+  height: 86rpx;
+  float: left;
+  margin-left: 26rpx;
+  position: relative;
+  margin-top: 26rpx;
+}
+
+.participants .peopleList .son .logo {
+  width: 87.2rpx;
+  height: 87.2rpx;
+  display: block;
+  float: left;
+  border-radius: 6rpx;
+}
+
+.participants .peopleList .son .project {
+  width: 44.6rpx;
+  height: 39.8rpx;
+  display: block;
+  float: left;
+  margin-left: 16.2rpx;
+  margin-top: 12rpx;
+}
+
+.participants .peopleList .son  .grade {
+  width: 52.6rpx;
+  height: 22rpx;
+  background: #f5a623;
+  border-radius: 4rpx;
+  font-size: 20rpx;
+  margin-top: 12.2rpx;
+  text-align: center;
+  line-height: 22rpx;
+  color: #fff;
+  float: left;
+  margin-left: 12rpx;
+}
+
+.participants .peopleList .son .TeamAson {
+  width: 87.2rpx;
+  height: 30rpx;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 0 0 3px 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  text-align: center;
+  line-height: 30rpx;
+  font-size: 12px;
+}
+
+.releaseTime {
+  width: 95%;
+  margin: 40rpx auto 0;
+  overflow: hidden;
+}
+
+.releaseTime text:first-child {
+  font-size: 14px;
+  color: #9b9b9b;
+  float: left;
+}
+
+.releaseTime text:last-child {
+  font-size: 14px;
+  color: #333;
+  float: left;
+  margin-left: 34rpx;
+}
+
+.btn {
+  width: 654rpx;
+  height: 80rpx;
+  background: #d85d27;
+  border-radius: 40rpx;
+  margin: 28rpx auto;
+  font-size: 36rpx;
+  color: #fff;
+  line-height: 80rpx;
+  position: fixed;
+  z-index: 1000;
+  bottom: 0;
+  left: 48rpx;
+}
+
+.invite {
+  width: 87.2rpx;
+  height: 87.2rpx;
+  font-size: 12px;
+  line-height: 80rpx;
+  text-align: center;
+  position: relative;
+}
+
+.invite image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.result {
+  width: 95%;
+  margin: 40rpx auto 0;
+}
+
+.result .people {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.result .resultDe {
+  height: 72rpx;
+}
+
+.result .resultDe text {
+  font-size: 15px;
+  color: #333;
+  display: block;
+  float: left;
+  line-height: 72rpx;
+}
+
+.result .resultDe image {
+  width: 72rpx;
+  height: 72rpx;
+  display: inline-block;
+  border-radius: 50%;
+  margin-left: 20rpx;
+}
+
+.result .time {
+  font-size: 12px;
+  color: #9b9b9b;
+  margin-top: 60rpx;
+}
+.result .content {
+  font-size: 14px;
+  color: #4a4a4a;
+  margin-top: 10rpx;
+}
+.result .circumstance{
+  margin-top: 40rpx;
+}
+
+.result .circumstance text {
+  display: inline-block;
+  width: 140rpx;
+  height: 52rpx;
+  font-size: 12px;
+  color: #4a4a4a;
+  line-height: 52rpx;
+  text-align: center;
+  border:2rpx solid  #4A4A4A;
+  border-radius: 2px;
+  margin-left: 10rpx;
+}
+
+

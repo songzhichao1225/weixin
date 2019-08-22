@@ -1,0 +1,47 @@
+<view class="generaGold">
+  <image class="banne" src='/assets/bg-banner.png' mode='widthFix'></image>
+  <view class="showt">
+    <text>今日剩余分享次数</text>
+    <text>{{num}}</text>
+    <view class="goldImg">
+      <image src="/assets/pic-syjb@2x.png"></image>
+    </view>
+  </view>
+  <button class="btn" open-type="{{num>=0?'share':''}}">立即分享 一起赚金币 ></button>
+
+  <view class="option">
+    <view>
+      <text>2人</text>
+      <text>今日邀请数量</text>
+    </view>
+    <view>
+      <text>{{peopleNum}}人</text>
+      <text>累计好友注册数</text>
+    </view>
+    <view>
+      <text>{{dataNum}}个</text>
+      <text>累计分享所得金币</text>
+    </view>
+  </view>
+
+
+
+  <view class="share">
+
+    <view class="centent">每分享一次可获得
+      <text>10枚</text> 通用金币</view>
+    <view class="title">分享小程序赢金币</view>
+
+  </view>
+
+  <view class="share">
+    <view class="centent">分享后好友注册双方均可获得
+      <text>50枚</text> 通用金币</view>
+    <view class="title" style="background-image: linear-gradient(90deg, #FD5665 0%, #FF3150 100%);">好友注册赢金币</view>
+
+  </view>
+
+
+
+
+</view>

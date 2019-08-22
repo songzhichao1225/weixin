@@ -1,0 +1,11 @@
+<view class="goldDetail">
+  <view class="son" wx:for="{{goldList}}" wx:key>
+  <view class="sonList">
+  <view style='margin-top:30rpx;float:left;'>
+   <text style='font-size:32rpx;'>{{item.Reason}}</text>
+   <text style='font-size: 12px;color: #9B9B9B;'>{{item.CoinsDate}}</text>
+   </view>
+   <text style='font-size: 32rpx;color: #D85D27;float:right;margin-top:50rpx;'> {{item.GetCoins}}</text>
+  </view>
+  </view>
+</view>

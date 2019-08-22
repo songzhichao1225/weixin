@@ -1,0 +1,6 @@
+<view class="section"> 
+  <image src='/assets/SearchIcon@2x.png'></image><input placeholder="输入关键字" auto-focus type="text" bindinput="bindKeyInput"/> 
+</view> 
+<view class="sug_info"> 
+  <text wx:for="{{sugData}}" wx:key bindtap='selectAddress' data-name="{{item.name}}">{{item.name}}</text> 
+</view>

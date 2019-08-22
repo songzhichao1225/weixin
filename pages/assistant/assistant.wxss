@@ -1,0 +1,38 @@
+.assistant {
+  height: 100%;
+}
+
+.assistant .title {
+  font-size: 15px;
+  color: #9b9b9b;
+  display: block;
+  margin-left: 24rpx;
+}
+
+.assistant  .details {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.assistant .details .son {
+  overflow: hidden;
+}
+
+.content {
+  font-size: 15px;
+  color: #9b9b9b;
+}
+
+.assistant .details .son text {
+  font-size: 16px;
+  color: #333;
+  display: block;
+  float: left;
+}
+
+.assistant .details .son image {
+  width: 28rpx;
+  height: 18rpx;
+  float: right;
+  margin-top: 16rpx;
+}

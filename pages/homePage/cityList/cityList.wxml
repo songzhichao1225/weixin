@@ -1,0 +1,4 @@
+
+
+  <list-html data="{{city}}"  my-city="{{myCity}}"  binddetail="binddetail" config="{{config}}"></list-html>
+

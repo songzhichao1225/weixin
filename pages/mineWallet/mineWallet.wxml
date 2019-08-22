@@ -1,0 +1,6 @@
+<view class="mineWallet" wx:if="{{flag}}">
+<image class="img" src='/assets/HomeIconJinbi@3x.png'></image>
+<text class="text">我的钱包</text>
+<text class="money">{{total}}</text>
+<button class="withdrawal">提现</button>
+</view>
