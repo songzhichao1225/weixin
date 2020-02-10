@@ -9,7 +9,7 @@
     </view>
   </view>
   <swiper autoplay="{{true}}" class="banner" indicator-dots="true" indicator-color="#fff" indicator-active-color="#3fc">
-    <block wx:for="{{bannerArr}}" wx:key>
+    <block wx:for="{{bannerArr}}" wx:key='*this'>
       <swiper-item>
         <image src="https://app.tiaozhanmeiyitian.com/{{item.picurl}}" class="slide-image" />
       </swiper-item>
@@ -64,7 +64,7 @@
 
   <view class="projectList">
     <!-- <text wx:if="{{projectData.length==0}}" class="model" >没有找到相匹配的项目</text> -->
-    <view class="projectSon" wx:if="{{projectData.length>0}}" bindtap="activites" data-uuid="{{item.uuid}}" wx:for="{{projectData}}" wx:key>
+    <view class="projectSon" wx:if="{{projectData.length>0}}" bindtap="activites" data-uuid="{{item.uuid}}" wx:for="{{projectData}}" wx:key='*this'>
       <view class="avatar">
         <image class="avatarP" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
         <image wx:if="{{item.SportName=='网球'}}" class="aIcon" src='/assets/icon_dj_wq.png'></image>
@@ -116,25 +116,25 @@
 
     <view class="mask" wx:if="{{hidden}}">
       <view class="activity" wx:if="{{hiddenOne}}">
-        <view class="activitySon" catchtap='secondary' wx:for="{{activity}}" wx:key data-num="{{item.id}}">
+        <view class="activitySon" catchtap='secondary' wx:for="{{activity}}" wx:key='*this' data-num="{{item.id}}">
           <text>{{item.name}}</text>
           <image src='/assets/HomeIconJtRightNol@2x.png'></image>
         </view>
       </view>
       <view class="activityTwo" wx:if="{{hiddenTwo}}">
-        <view class="activityTwoSon" wx:for="{{activitySon}}" bindtap='activityTwoSon' wx:key data-num="{{item.id}}">
+        <view class="activityTwoSon" wx:for="{{activitySon}}" bindtap='activityTwoSon' wx:key='*this' data-num="{{item.id}}">
           <text>{{item.name}}</text>
         </view>
       </view>
 
       <view class="sort" wx:if="{{sortHid}}">
-        <view class="sortSon" wx:for="{{sort}}" bindtap='sortSe' data-num="{{item.num}}" wx:key>
+        <view class="sortSon" wx:for="{{sort}}" bindtap='sortSe' data-num="{{item.num}}" wx:key='*this'>
           <text>{{item.name}}</text>
         </view>
       </view>
 
       <view class="sort" style='left:50%;' wx:if="{{statusHid}}">
-        <view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key data-num="{{item.num}}">
+        <view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key='*this' data-num="{{item.num}}">
           <text>{{item.name}}</text>
         </view>
       </view>
