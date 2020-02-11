@@ -26,7 +26,7 @@
     <text wx:if="{{nearbyData.length==0&&flag==true}}" style='display:block;text-align:center;margin-top:2rem;'>没有找到相应伙伴</text>
 
     <scroll-view scroll-y style="height: 100%" bindscrolltolower="lower" wx:if="{{nearbyData.length>0}}">
-      <view class="characterList" wx:for="{{nearbyData}}" wx:key data-uid="{{item.uuid}}" bindtap='getUserDetailInfo'>
+      <view class="characterList" wx:for="{{nearbyData}}"wx:key="index" data-uid="{{item.uuid}}" bindtap='getUserDetailInfo'>
         <image class="img" src='https://app.tiaozhanmeiyitian.com/{{item.userInfo.imgURL}}'></image>
         <view class="content">
           <view class="header">

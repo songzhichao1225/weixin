@@ -1,7 +1,7 @@
 <view class="goldDranking">
   <view class="header" style='background:#D85D27;padding:0rpx 0 6rpx 0;'>
-    <scroll-view scroll-x style='white-space: nowrap; display: flex;margin-top:24rpx;'>
-      <view class="headerSon" bindtap='select' data-name="{{item.name}}" data-num="{{item.num}}" style="{{item.color==true?'border-bottom:2rpx solid #FFF;color:#fff;':'color:#ececec;'}}" wx:for="{{headerList}}" wx:key>
+    <scroll-view scroll-x style='white-space: nowrap; display: flex;'>
+      <view class="headerSon" bindtap='select' data-name="{{item.name}}" data-num="{{item.num}}" style="{{item.color==true?'border-bottom:2rpx solid #FFF;color:#fff;':'color:#ececec;'}}" wx:for="{{headerList}}" wx:key="index">
         <text>{{item.name}}</text>
       </view>
     </scroll-view>
@@ -10,7 +10,7 @@
   <view class="header" style='background:#fff;padding-bottom:6rpx;'>
     <scroll-view scroll-x style='white-space: nowrap; display: flex;margin-top:24rpx;padding-right:40rpx;'>
       <view class="Son" bindtap='selectTwo' data-name="{{item.name}}" data-nameE="{{item.nameE}}" data-title="{{item.title}}" data-num="{{item.num}}" style="{{item.color==true?'color:#D85D27;border-bottom:4rpx solid #D85D27;':'color:#9b9b9b;'}}" wx:for="{{rankingType}}" wx:key>
-        <text>{{item.name}}</text>
+        <text>{{item.name}}</text>  
       </view>
     </scroll-view>
   </view>

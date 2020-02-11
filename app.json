@@ -25,7 +25,7 @@
     "pages/homePage/area/area",
     "pages/homePage/screen/screen",
     "pages/authorization/authorization",
-    "pages/news/news",
+    "pages/homePage/news/news",
     "pages/homePage/cityList/cityList",
     "pages/logs/logs"
   ],
@@ -52,10 +52,10 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black", 
-    "navigationBarTitleText": "挑战约球"
+    "navigationBarTitleText": "找对手"
   },
   "tabBar": {
-    "borderStyle": "white", 
+    "borderStyle": "black", 
     "selectedColor": "#D85D27",
     "color": "#9B9B9B",
     "list": [
@@ -72,10 +72,10 @@
         "selectedIconPath": "assets/icon-footer-hb-sel@2x.png"
       },
       {
-        "pagePath": "pages/news/news",
-        "text": "消息",
-        "iconPath": "assets/icon-footer-xx-nor@2x.png",
-        "selectedIconPath": "assets/icon-footer-xx-sel@2x.png"
+        "pagePath": "pages/golDranking/golDranking",
+        "text": "排行榜",
+        "iconPath": "assets/pai1.png",
+        "selectedIconPath": "assets/paiTwo.png"
       },
       {
         "pagePath": "pages/mine/mine",

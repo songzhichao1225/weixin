@@ -4,33 +4,28 @@ const util = require('../../utils/util.js')
 Page({
   data: {
     headerList: [
-    {
-      name: '篮球',
-      num: '0',
-      color: true,
-    },
-    {
-      name: '足球',
-      num: '1',
-      color: false,
-    },
+      {
+        name: '羽毛球',
+        num: '1',
+        color: false,
+      },
     {
       name: '乒乓球',
       num: '2',
       color: false,
     },
     {
-      name: '羽毛球',
+      name: '台球',
       num: '3',
       color: false,
     },
     {
-      name: '台球',
+      name: '篮球',
       num: '4',
-      color: false,
+      color: true,
     },
     {
-      name: '网球',
+      name: '足球',
       num: '5',
       color: false,
     },
@@ -40,8 +35,13 @@ Page({
       color: false,
     },
     {
-      name: '高尔夫',
+      name: '网球',
       num: '7',
+      color: false,
+    },
+    {
+      name: '高尔夫',
+      num: '8',
       color: false,
     }
     ],
@@ -84,7 +84,7 @@ Page({
     ],
     title:'好友',
     drankingList:[],
-    typeTitle:'篮球',
+    typeTitle:'4',
     nameE:'myFriends'
     
   },
@@ -95,12 +95,12 @@ Page({
     let type = e.currentTarget.dataset.name
     let num = e.currentTarget.dataset.num
     let { headerList } = this.data
-    let headerColor = "headerList[" + num + "].color";
+    let headerColor = "headerList[" + parseInt(num-1) + "].color";
     for (let i in headerList) {
       let headerColorT = "headerList[" + i + "].color";
       this.setData({ [headerColorT]: false })
     }
-    this.setData({ [headerColor]: true, typeTitle: type })
+    this.setData({ [headerColor]: true, typeTitle: num })
     this.drankingList()
   },
   selectTwo:function(e){
@@ -124,7 +124,7 @@ Page({
       title: '加载中',
       mask: true
     })
-    util.Request("/api/getRanking", { 'sportType': typeTitle, 'type': nameE }, "get",
+    util.Request("/api/getRanking", { 'sportid': typeTitle, 'type': nameE }, "get",
       (res) => {
         this.setData({ drankingList:res.data.data})
         wx.hideLoading()

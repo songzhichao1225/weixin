@@ -2,19 +2,23 @@
 <view class="content" bindtap='itemSelectionH' wx:if="{{flag}}">
   <view class="headerCity">
     <text bindtap='cityList'>{{selectCity}}</text>
-    <image src='/assets/HomeIconJt@2x.png'></image>
+    <image  class="image" src='/assets/HomeIconJt@2x.png'></image>
     <view class="inputBox">
-      <image style='display:block;width:0.8rem;height:0.8rem;margin:0.25rem 0 0 0.45rem;' src='/assets/SearchIcon@2x.png'></image>
+      <image style='display:block;width:0.8rem;height:0.8rem;margin:0.25rem 0 0 0.45rem;float:left;' src='/assets/SearchIcon@2x.png'></image>
       <input type='text' disabled='true' bindtap='inputS' placeholder='请输入地址' value="{{addressN}}" placeholder-style="font-size:14px;" confirm-type="search"></input>
     </view>
+     <image class="news" bindtap="news" src="../../../assets/news.png"></image>
   </view>
-  <swiper autoplay="{{true}}" class="banner" indicator-dots="true" indicator-color="#fff" indicator-active-color="#3fc">
+  <view class="bannerBack">
+  <image class="back" src="../../../assets/bannerback@2x.png"></image>
+  <swiper autoplay="{{true}}" class="banner" indicator-dots="true" indicator-color="#ddd" indicator-active-color="#fff">
     <block wx:for="{{bannerArr}}" wx:key='*this'>
       <swiper-item>
         <image src="https://app.tiaozhanmeiyitian.com/{{item.picurl}}" class="slide-image" />
       </swiper-item>
     </block>
   </swiper>
+  </view>
   <view class="homeSelect">
     <!-- <view bindtap='isSign' data-status="{{isSign}}">
       <image wx:if="{{isSign==0}}" src='/assets/HomeIconQiandao@2x.png'></image>

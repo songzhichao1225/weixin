@@ -310,6 +310,13 @@ Page({
     }
 
   },
+  //跳转消息
+  news:function(){
+    wx.navigateTo({
+      url: '/pages/homePage/news/news'
+    })
+
+  },
   //点击签到
   isSign: function(e) {
     if (wx.getStorageSync('token')) {

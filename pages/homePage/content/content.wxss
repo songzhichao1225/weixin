@@ -54,18 +54,19 @@ page {
   height: 100%;
 }
 .content .headerCity {
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   overflow: hidden;
+  background:#F5520B ;
 }
 
 .inputBox {
-  width: 70%;
+  width: 65%;
   margin-left: 0.7rem;
   height: 1.3rem;
   float: left;
   border-radius: 200px;
-  background: #ccc;
+  background: #fff;
   margin-top: 0.2rem;
 }
 
@@ -77,9 +78,15 @@ page {
   float: left;
   height: 1.8rem;
   line-height: 1.8rem;
+  color: #fff;
 }
-
-.content .headerCity image {
+.content .news{
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.2rem;
+  margin-left: 0.5rem;
+}
+.content .headerCity .image {
   display: block;
   width: 0.7rem;
   height: 0.4rem;
@@ -87,29 +94,35 @@ page {
   margin-top: 0.7rem;
 }
 
+
 .content .headerCity input {
   display: block;
   float: left;
-  width: 11rem;
+  width: 50%;
   height: 1.3rem;
   margin-left: 0.2rem;
   font-size: 14px;
 }
-
+ .content .bannerBack .back{
+   width: 100%;
+   height: 6rem;
+ }
 .content .banner {
-  width: 100%;
-  height: 12.1rem;
+  width: 90%;
+  height: 7.25rem;
+  margin: -6.2rem auto;
 }
 
 .content .banner image {
   width: 100%;
   height: 100%;
+  border-radius: 0.75rem;
 }
 
 .content .homeSelect {
   width: 100%;
   height: 5.5rem;
-  margin: 1.1rem auto 0;
+  margin: 7.1rem auto 0;
   display: flex;
   border-bottom: 0.06rem solid #ccc;
   margin-bottom: 1rem;
