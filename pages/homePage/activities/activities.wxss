@@ -44,31 +44,46 @@ image {
   font-size: 28rpx;
   color: #d85d27;
   text-align: center;
-  line-height: 35rpx;
-  margin-top: 16rpx;
+  line-height: 1.56rem;
+  border-top: 0.06rem solid #E9E9E9;
+  border-bottom: 0.06rem solid #E9E9E9;
+}
+
+.line {
+  height: 0.63rem;
+  background: rgba(243, 243, 243, 1);
+  margin-top: 1rem;
 }
 
 .contnet {
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   overflow: hidden;
   background: #fff;
-  padding-top: 1.2rem;
-  
+  padding-top: 1rem;
+
 }
- .status{
+.contnet .boss{
+  width: 95%;
+  margin: 0 auto;
+}
+
+.status {
   width: 93.8rpx;
   height: 83.4rpx;
   position: absolute;
   right: 0;
   top: 0;
 }
-.status image{
+
+.status image {
   width: 100%;
   height: 100%;
 }
 
 .contnet .contentTop {
+  width: 95%;
+  margin: 0 auto;
   overflow: hidden;
 }
 
@@ -78,7 +93,6 @@ image {
   border-radius: 10px;
   display: block;
   float: left;
-  margin-top:14rpx;
 }
 
 .contnet .contentTop .contentText {
@@ -94,13 +108,16 @@ image {
 }
 
 .contnet .publisher {
-  margin: 2.4rem auto 0;
+  width: 95%;
+  margin: 0.75rem auto 0;
   overflow: hidden;
 }
 
 .contnet .publisher .header {
   width: 100%;
   height: 2.1rem;
+  padding: 0.73rem 0;
+  border-bottom: 0.06rem solid #E9E9E9;
 }
 
 .contnet .publisher .header image {
@@ -122,15 +139,28 @@ image {
 }
 
 .contnet .publisher .publisherTxt {
-  height: 1.3rem;
-  margin-top: 25rpx;
+  height: 1.25rem;
+  margin-top: 0.5rem;
 }
 
-.contnet .publisher .publisherTxt text:first-child {
+.contnet .publisher .publisherTxt .one {
+  width: 48%;
+  float: left;
+}
+
+.contnet .publisher .publisherTxt .two {
+  width: 48%;
+  float: left;
+}
+
+.contnet .publisher .publisherTxt .one text:first-child {
   font-size: 14px;
   color: #9b9b9b;
-  float: left;
   line-height: 1.3rem;
+}
+
+.contnet .publisher .publisherTxt .two text:first-child {
+  color: #9B9B9B;
 }
 
 .contnet .publisher .publisherTxt image {
@@ -139,7 +169,7 @@ image {
   display: block;
   float: left;
   margin-top: 0.25rem;
-  margin-left: 1.1rem;
+  margin-left: 0.7rem;
 }
 
 .contnet .publisher .publisherTxt text {
@@ -157,31 +187,35 @@ image {
 
 .contnet .publisher .publisherTxt .money {
   color: #d85d27;
-  margin-left: 1.1rem;
+  margin-left: 0.6rem;
 }
 
 .contnet .publisher .publisherTxt .way {
   color: #9b9b9b;
-  margin-left: 2.8rem;
 }
 
 .contnet .publisher .publisherTxt .time {
-  margin-left: 1.1rem;
+  margin-left: 0.6rem;
 }
 
 .participants {
-  margin: 1.8rem auto 0;
+  margin: 0.69rem auto 0;
+  width: 95%;
 }
 
 .participants .people {
   font-size: 16px;
   color: #333;
   font-weight: bold;
+  padding: 0.56rem 0;
+  border-bottom: 0.06rem solid #E9E9E9;
 }
 
 .participants .TeamA {
-  margin-top: 50rpx;
+  margin-top: 0.81rem;
   overflow: hidden;
+  padding-bottom: 1.56rem;
+  border-bottom: 0.06rem solid #E9E9E9;
 }
 
 .participants .TeamA text {
@@ -192,15 +226,17 @@ image {
 }
 
 .participants .TeamB {
-  margin-top: 50rpx;
+  margin-top: 0.81rem;
   overflow: hidden;
-}
+  padding-bottom: 1.56rem;
+  border-bottom: 0.06rem solid #E9E9E9;
+} 
 
 .participants .TeamB text {
   font-size: 17px;
   color: #333;
   float: left;
-  margin-top:26rpx;
+  margin-top: 26rpx;
 }
 
 .participants .peopleList {
@@ -239,7 +275,7 @@ image {
   margin-top: 12rpx;
 }
 
-.participants .peopleList .son  .grade {
+.participants .peopleList .son .grade {
   width: 52.6rpx;
   height: 22rpx;
   background: #f5a623;
@@ -254,10 +290,9 @@ image {
 }
 
 .participants .peopleList .son .TeamAson {
-  width: 87.2rpx;
+  width: 100%;
   height: 30rpx;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 0 0 3px 3px;
+  background: #D85D27;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -266,6 +301,23 @@ image {
   line-height: 30rpx;
   font-size: 12px;
 }
+
+.participants .peopleList .son .TeamAsonTwo {
+  width: 87.2rpx;
+  height: 30rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  text-align: center;
+  line-height: 30rpx;
+  font-size: 12px;
+  background: linear-gradient(180deg, rgba(98, 98, 98, 0.6) 0%, rgba(51, 51, 51, 0.6) 100%);
+  border-radius: 0rem 0rem 0.19rem 0.19rem;
+
+
+}
+
 
 .releaseTime {
   width: 95%;
@@ -308,6 +360,9 @@ image {
   line-height: 80rpx;
   text-align: center;
   position: relative;
+  color: #D85D27;
+  border-radius: 0.19rem;
+  border: 0.06rem solid rgba(216, 93, 39, 1);
 }
 
 .invite image {

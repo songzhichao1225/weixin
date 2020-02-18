@@ -83,7 +83,7 @@
         <view class="TeamA">
           <text>A队</text>
           <view class="peopleList">
-            <view class="son" wx:for="{{activitiesData.teamA}}" wx:key>
+            <view class="son" wx:for="{{activitiesData.teamA}}" wx:key='index'>
             <view class="invite" wx:if="{{item.name=='邀请'}}"><image src='/assets/peologo.png' ></image>邀请</view>
               <image class="logo"  wx:if="{{item.name!='邀请'}}" bindtap="getUserDetailInfo" data-uid="{{item.uuid}}"  src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
               <image wx:if="{{item.name!='邀请'}}" class="project" src="/assets/{{activitiesData.ballImgSon}}"></image>
@@ -95,7 +95,7 @@
         <view class="TeamB">
           <text>B队</text>
           <view class="peopleList">
-            <view class="son" wx:for="{{activitiesData.teamB}}" wx:key>
+            <view class="son" wx:for="{{activitiesData.teamB}}" wx:key='index'>
              <view class="invite" wx:if="{{item.name=='邀请'}}"><image src='/assets/peologo.png' ></image>邀请</view>
               <image class="logo"  wx:if="{{item.name!='邀请'}}" bindtap="getUserDetailInfo" data-uid="{{item.uuid}}" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
               <image class="project"  wx:if="{{item.name!='邀请'}}" src="/assets/{{activitiesData.ballImgSon}}"></image>

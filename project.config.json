@@ -48,6 +48,10 @@
 			"currentL": -1,
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 7,
 			"list": [
@@ -81,15 +85,15 @@
 				},
 				{
 					"id": 4,
-					"name": "generalization/activities/activities",
-					"pathName": "generalization/binDing/binDing",
-					"query": "",
+					"name": "个人中心",
+					"pathName": "pages/personal/personal",
+					"query": "uuid=13ae22f6-2515-f387-7534-e01837382116",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "协商历史",
-					"pathName": "generalization/history/history",
+					"id": 5,
+					"name": "排行榜",
+					"pathName": "pages/golDranking/golDranking",
 					"query": "",
 					"scene": null
 				},
@@ -101,9 +105,16 @@
 					"scene": null
 				},
 				{
+					"id": 7,
+					"name": "活动详情",
+					"pathName": "pages/homePage/activities/activities",
+					"query": "uuid=ec626134-13aa-f7fd-8f65-5f8eb9cda077",
+					"scene": null
+				},
+				{
 					"id": -1,
-					"name": "generalization/orderToday/orderToday",
-					"pathName": "generalization/promotion/promotion",
+					"name": "系统消息",
+					"pathName": "pages/homePage/news/news",
 					"query": "",
 					"scene": null
 				}

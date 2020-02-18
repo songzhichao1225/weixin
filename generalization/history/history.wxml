@@ -1,4 +1,4 @@
-<view class="history" wx:for="{{historyList}}" wx:key>
+<view class="history" wx:for="{{historyList}}" wx:key='index'>
   <view class="title">
     <image src="https://app.tiaozhanmeiyitian.com/{{item.playerimgurl}}"></image>
     <view class="information">

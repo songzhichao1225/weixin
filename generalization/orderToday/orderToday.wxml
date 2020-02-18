@@ -15,7 +15,7 @@
   <text class="sum">收入  ￥{{money}}</text>
 </view>
 <scroll-view scroll-y style="height:95%;" bindscrolltolower="lower">
-  <view class="orderList" wx:for="{{orderList}}" wx:key>
+  <view class="orderList" wx:for="{{orderList}}" wx:key='index'>
     <text class="id">活动ID {{item.orderId}}</text>
     <view class="time"><text></text> <text>{{item.CreateTime}}-{{item.FinishedTime}}</text></view>
     <view class="time"><text style="background:#7ED321;"></text> <text>{{item.SiteName}} {{item.Sport}}</text></view>

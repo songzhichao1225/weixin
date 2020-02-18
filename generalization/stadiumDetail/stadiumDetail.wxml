@@ -4,7 +4,7 @@
   </swiper>
 
   <view class="navTap">
-    <view class="navSon" bindtap="navSon" wx:for="{{nav}}" wx:key data-num="{{item.index}}">
+    <view class="navSon" bindtap="navSon" wx:for="{{nav}}" wx:key='index' data-num="{{item.index}}">
       <text class="name" style="{{dataIndex==index?'color: #4A4A4A;':''}}">{{item.name}}</text>
       <text class="line" wx:if="{{dataIndex==index}}"></text>
     </view>
@@ -14,7 +14,7 @@
   <view class="list" wx:if="{{dataIndex==0}}">
     <scroll-view scroll-y style="height:100%;" bindscrolltolower="lower">
     <view wx:if="{{dataList.length==0}}" style="font-size:30rpx;text-align:center;margin-top:40rpx;">暂无待处理的投诉活动</view>
-      <view class="listSon" wx:for="{{dataList}}" wx:key>
+      <view class="listSon" wx:for="{{dataList}}" wx:key='index'>
         <view class="image">
           <text class="type">待处理</text>
           <image class="img" src="https://app.tiaozhanmeiyitian.com/{{item.imgURL}}"></image>

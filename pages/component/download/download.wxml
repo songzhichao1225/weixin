@@ -1,1 +1,1 @@
-<view class="download"><image src="/assets/xiazai.png"></image></view>
+<view class="download"><image class="img" src="/assets/xiazai.png"></image></view>

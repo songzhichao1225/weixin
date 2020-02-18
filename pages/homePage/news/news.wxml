@@ -1,7 +1,7 @@
 <view class="news">
 
-  <view class="systemMessage" wx:for="{{systemMessage}}" wx:key>
-    <view class="systemSon" wx:if="{{item.title=='匹配成功通知'||item.title=='活动通知'}}">
+  <view class="systemMessage" wx:for="{{systemMessage}}" wx:key='index'>
+    <view class="systemSon" wx:if="{{item.msgType=='sysmsg'}}">
       <view class="content">
         <text class="title">{{item.title}}</text>
         <text class="time">{{item.addTime}}</text>
@@ -9,29 +9,15 @@
       </view>
     </view>
 
-    <view class="systemSon" wx:if="{{item.title=='请求结果通知'}}">
+  
+
+    <view class="systemSon" wx:if="{{item.msgType=='addfriendsmsg'}}">
       <view class="content">
         <text class="title">{{item.title}}</text>
         <text class="time">{{item.addTime}}</text>
         <view class="request">
           <image src="https://app.tiaozhanmeiyitian.com/{{item.authorimgURL}}"></image>
-          <text>{{item.content}}</text>
-        </view>
-        <text class="status">已同意</text>
-      </view>
-
-
-      
-    </view>
-
-    <view class="systemSon" wx:if="{{item.title=='加好友通知'}}">
-      <view class="content">
-        <text class="title">{{item.title}}</text>
-        <text class="time">{{item.addTime}}</text>
-        <view class="request">
-          <image src="https://app.tiaozhanmeiyitian.com/{{item.authorimgURL}}"></image>
-          <text>{{item.authornickname}}
-            {{item.content}}
+          <text>{{item.content}}
           </text>
         </view>
         <view class="btn"><view>拒绝</view><view>接受</view></view>

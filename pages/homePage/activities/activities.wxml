@@ -1,125 +1,187 @@
 <view class="activities" wx:if="{{flag}}">
-  <view class="prompt">
-    <image src='/assets/HomeIconJinbi@2x.png'></image>
-    <text>分享活动给您的好友，好友成功下载APP，您即可获得10个通用金币奖励哦~</text>
-  </view>
-  <view class="countdown" wx:if="{{end}}">截至报名倒计时:  {{countDownDay}}天{{countDownHour}}小时{{countDownMinute}}分{{countDownSecond}}秒</view>
-  <view class="countdown" wx:if="{{!end}}">活动已开始截至报名</view>
-  <view style="border-bottom:2rpx solid #ccc;padding-bottom:24rpx;position: relative;">
+	<!-- <view class="prompt">
+		<image src='/assets/HomeIconJinbi@2x.png'></image>
+		<text>分享活动给您的好友，好友成功下载APP，您即可获得10个通用金币奖励哦~</text>
+	</view> -->
+	<view class="countdown" wx:if="{{end}}">截至报名倒计时: {{countDownDay}}天{{countDownHour}}小时{{countDownMinute}}分{{countDownSecond}}秒</view>
+	<view class="countdown" wx:if="{{!end}}">活动已开始截至报名</view>
+	<view style="border-bottom:2rpx solid #ccc;padding-bottom:24rpx;position: relative;">
 
-  <view class="status">
-        <image wx:if="{{activitiesData.PublicStatus==2}}" src='/assets/dai.png'></image>
-        <image wx:if="{{activitiesData.PublicStatus==6}}" src='/assets/pinjia.png'></image>
-        <image wx:if="{{activitiesData.PublicStatus==3}}" src='/assets/huodong.png'></image>
-        <image wx:if="{{activitiesData.PublicStatus==1}}" src='/assets/pipei.png'></image>
-        <image wx:if="{{activitiesData.PublicStatus==7}}" src='/assets/tuichu.png'></image>
-        <image wx:if="{{activitiesData.PublicStatus==5}}" src='/assets/wancheng.png'></image>
-      </view>
+		<view class="status">
+			<image wx:if="{{activitiesData.PublicStatus==2}}" src='/assets/dai.png'></image>
+			<image wx:if="{{activitiesData.PublicStatus==6}}" src='/assets/pinjia.png'></image>
+			<image wx:if="{{activitiesData.PublicStatus==3}}" src='/assets/huodong.png'></image>
+			<image wx:if="{{activitiesData.PublicStatus==1}}" src='/assets/pipei.png'></image>
+			<image wx:if="{{activitiesData.PublicStatus==7}}" src='/assets/tuichu.png'></image>
+			<image wx:if="{{activitiesData.PublicStatus==5}}" src='/assets/wancheng.png'></image>
+		</view>
 
-    <view class="contnet">
-      <view class="contentTop">
-        <image class="contentImg" src='/assets/{{activitiesData.ballImg}}'></image>
-        <view class="contentText">
-          <text>ID {{activitiesData.orderId}}</text>
-          <text>{{activitiesData.sportName}}  {{activitiesData.sportTypeName}}</text>
-          <text>{{activitiesData.SportMode}}模式</text>
-        </view>   
+		<view class="contnet">
 
-      </view>
+			<view class="contentTop">
+				<image class="contentImg" src='/assets/{{activitiesData.ballImg}}'></image>
+				<view class="contentText">
+					<text>ID {{activitiesData.orderId}}</text>
+					<text>{{activitiesData.sportName}} {{activitiesData.sportTypeName}}</text>
+					<text>{{activitiesData.SportMode}}模式</text>
+				</view>
 
-      <view class="publisher">
-        <view class="header">
-          <text>发布者</text>
-          <image bindtap="getUserDetailInfo" data-uid="{{activitiesData.teamA[0].uuid}}" src='https://app.tiaozhanmeiyitian.com/{{activitiesData.publishPlayerImg}}'></image>
-          <text style='margin-left:0.3rem;font-weight:400;font-size:14px;'>{{activitiesData.publishPlayerName}}</text>
-        </view>
-        <view class="publisherTxt" style='margin-top:1rem;'>
-          <text>场馆名称</text>
-          <text class="time">{{activitiesData.siteName}}</text>
-          <text wx:if="{{activitiesData.isCooper==1}}" class="cooperate">(合作场馆)</text>
-        </view>
-        <view class="publisherTxt">
-          <text>场馆地点</text>
-          <image src='/assets/IconHdxqDw@2x.png'></image>
-          <text>{{activitiesData.siteAddress}}</text>
-        </view>
-        <view class="publisherTxt">
-          <text>场馆费用</text>
-          <text class="money">{{activitiesData.SiteMoney}}.00元</text>
-          <text class="way">承担方式</text>
-          <text style='margin-left:0.8rem;'>{{activitiesData.PaySiteMoneyType==1?'AA':'输者买单'}}</text>
-        </view>
-        <view class="publisherTxt">
-          <text>活动时间</text>
-          <text class="time">{{activitiesData.startDays}}  {{activitiesData.startWeek}} {{activitiesData.startTimes}}-{{activitiesData.endTimes}}</text>
-        </view>
+			</view>
+			<view class="line"></view>
+				<view class="publisher">
+					<view class="header">
+						<text>发布者</text>
+						<image bindtap="getUserDetailInfo" data-uid="{{activitiesData.teamA[0].uuid}}" src='https://app.tiaozhanmeiyitian.com/{{activitiesData.publishPlayerImg}}'></image>
+						<text style='margin-left:0.3rem;font-weight:400;font-size:14px;'>{{activitiesData.publishPlayerName}}</text>
+					</view>
+					<view class="publisherTxt" style='margin-top:1rem;'>
+						<text style="color:#9B9B9B">场馆名称</text>
+						<text class="time">{{activitiesData.siteName}}</text>
+						<text wx:if="{{activitiesData.isCooper==1}}" class="cooperate">(合作场馆)</text>
+					</view>
+					<view class="publisherTxt">
+						<text style="color:#9B9B9B">场馆地点</text>
+						<image src='/assets/IconHdxqDw@2x.png'></image>
+						<text style="padding-left:0.3rem">{{activitiesData.siteAddress}}</text>
+					</view>
+					<view class="publisherTxt">
+						<view class="one">
+							<text>{{activitiesData.referee==0?'场地费用':'场地费+裁判费'}}</text>
+							<text class="money">￥{{activitiesData.referee==0?activitiesData.SiteMoney:(activitiesData.SiteMoney)+(activitiesData.refereeFee)}}</text>
+						</view>
+						<view class="two">
+							<text class="way">承担方式</text>
+							<text style='margin-left:0.8rem;'>{{activitiesData.PaySiteMoneyType==1?'AA':'输者买单'}}</text>
+						</view>
 
-
-        <view class="publisherTxt">
-          <text>活动时长</text>
-          <text class="time">{{activitiesData.PlayTime}}小时</text>
-        </view>
-
-        <view class="publisherTxt">
-          <text>成员性别</text>
-          <text class="time">{{activitiesData.TeamMateSex==2?'不限':''&&activitiesData.TeamMateSex==1?'女':''  &&activitiesData.TeamMateSex==0?'男':''}}</text>
-          <text class="way">成员级别</text>
-          <text style="margin-left:0.8rem;">{{activitiesData.OpponentsLevelMin}}-{{activitiesData.OpponentsLevelMax}}级</text>
-        </view>
-
-        <view class="publisherTxt">
-          <text>打赏费用</text>
-          <text class="time">{{activitiesData.Tips	}}</text>
-          <text class="way">缺人数</text>
-          <text style='margin-left:0.8rem;'>{{activitiesData.lackNumber}}人</text>
-        </view>
-
-        <view class="publisherTxt">
-          <text>活动备注</text>
-          <text class="time">{{activitiesData.Comments}}</text>
-        </view>
-
-      </view>
+					</view>
+					<view class="publisherTxt">
+						<text style="color:#9B9B9B">活动时间</text>
+						<text class="time">{{activitiesData.startDays}} {{activitiesData.startWeek}} {{activitiesData.startTimes}}-{{activitiesData.endTimes}}</text>
+					</view>
 
 
-      <view class="participants">
-        <text class="people">参与人员</text>
+					<view class="publisherTxt">
+						<view class="one">
+							<text>活动时长</text>
+							<text class="time">{{activitiesData.PlayTime}}小时</text>
+						</view>
+						<view class="two" wx:if="{{activitiesData.venueid!==0}}">
+							<text>场地号</text>
+							<text class="time" style="color:#D85D27">{{activitiesData.venueid}}</text>
+						</view>
 
-        <view class="TeamA">
-          <text>A队</text>
-          <view class="peopleList">
-            <view class="son" wx:for="{{activitiesData.teamA}}" wx:key>
-            <view class="invite" wx:if="{{item.name=='邀请'}}"><image src='/assets/peologo.png' ></image>邀请</view>
-              <image class="logo"  wx:if="{{item.name!='邀请'}}" bindtap="getUserDetailInfo" data-uid="{{item.uuid}}"  src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
-              <image wx:if="{{item.name!='邀请'}}" class="project" src="/assets/{{activitiesData.ballImgSon}}"></image>
-              <text wx:if="{{item.name!='邀请'}}" class="grade">{{item.heightLevel}}</text>
-              <text class="TeamAson">A{{index+1}}</text>
-            </view>
-          </view>
-        </view>
-        <view class="TeamB">
-          <text>B队</text>
-          <view class="peopleList">
-            <view class="son" wx:for="{{activitiesData.teamB}}" wx:key>
-             <view class="invite" wx:if="{{item.name=='邀请'}}"><image src='/assets/peologo.png' ></image>邀请</view>
-              <image class="logo"  wx:if="{{item.name!='邀请'}}" bindtap="getUserDetailInfo" data-uid="{{item.uuid}}" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
-              <image class="project"  wx:if="{{item.name!='邀请'}}" src="/assets/{{activitiesData.ballImgSon}}"></image>
-              <text  wx:if="{{item.name!='邀请'}}" class="grade">{{item.heightLevel}}</text>
-              <text class="TeamAson">B{{index+1}}</text>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-    <view class="releaseTime">
-      <text>发布时间</text> <text>{{activitiesData.CreateTime}}</text> </view>
+					</view>
 
-      <view class="releaseTime">
-      <text>匹配时间</text> <text>{{activitiesData.CreateTime}}</text> </view>
+					<view class="publisherTxt">
+						<view class="one">
+							<text>成员性别</text>
+							<text class="time">{{activitiesData.TeamMateSex==2?'不限':''&&activitiesData.TeamMateSex==1?'女':'' &&activitiesData.TeamMateSex==0?'男':''}}</text>
+						</view>
+						<view class="two">
+							<text class="way">成员级别</text>
+							<text style="margin-left:0.6rem;">{{activitiesData.OpponentsLevelMin}}-{{activitiesData.OpponentsLevelMax}}级</text>
 
-      <view class="releaseTime">
-      <text>开始时间</text> <text>{{activitiesData.StartTime}}</text> </view>
-  </view>
-  <button class="btn" open-type="share">分享给好友</button>
- 
+						</view>
+					</view>
+
+					<view class="publisherTxt">
+						<view class="one">
+							<text>打赏费用</text>
+							<text class="time">{{activitiesData.Tips }}</text>
+						</view>
+						<view class="two">
+							<text class="way">缺人数</text>
+							<text style='margin-left:0.6rem;'>{{activitiesData.lackNumber}}人</text>
+						</view>
+					</view>
+
+					<view class="publisherTxt" wx:if="{{activitiesData.referee!==0}}">
+						<view class="one">
+							<text>裁判应得</text>
+							<text class="time">{{activitiesData.refereeFee/activitiesData.RefereeNumber }}元/人</text>
+						</view>
+						<view class="two">
+							<text class="way">裁判等级</text>
+							<text style='margin-left:0.6rem;'>{{activitiesData.Refereegrade}}</text>
+						</view>
+					</view>
+
+
+					<view class="publisherTxt" wx:if="{{activitiesData.Comments!==''}}">
+						<text>活动备注</text>
+						<text class="time">{{activitiesData.Comments}}</text>
+					</view>
+
+				</view>
+
+        <view class="line"></view>
+
+				<view class="participants">
+					<text class="people">参与人员</text>
+
+					<view class="TeamA">
+						<text>A队</text>
+						<view class="peopleList">
+							<view class="son" wx:for="{{activitiesData.teamA}}" wx:key='index'>
+								<view class="invite" wx:if="{{item.name=='报名'}}">
+									报名
+									<text class="TeamAson">A{{index+1}}</text>
+								</view>
+								<image class="logo" wx:if="{{item.name!='报名'}}" bindtap="getUserDetailInfo" data-uid="{{item.uuid}}" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+								<image wx:if="{{item.name!='报名'}}" class="project" src="/assets/{{activitiesData.ballImgSon}}"></image>
+								<text wx:if="{{item.name!='报名'}}" class="grade">{{item.heightLevel}}</text>
+								<text wx:if="{{item.name!='报名'}}" class="TeamAsonTwo">A{{index+1}}</text>
+							</view>
+						</view>
+					</view>
+					<view class="TeamB">
+						<text>B队</text>
+						<view class="peopleList">
+							<view class="son" wx:for="{{activitiesData.teamB}}" wx:key='index'>
+								<view class="invite" wx:if="{{item.name=='报名'}}">
+									报名
+									<text class="TeamAson">B{{index+1}}</text>
+								</view>
+								<image class="logo" wx:if="{{item.name!='报名'}}" bindtap="getUserDetailInfo" data-uid="{{item.uuid}}" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+								<image class="project" wx:if="{{item.name!='报名'}}" src="/assets/{{activitiesData.ballImgSon}}"></image>
+								<text  wx:if="{{item.name!='报名'}}" class="grade">{{item.heightLevel}}</text>
+
+							</view>
+						</view>
+					</view>
+
+
+					<view class="TeamB">
+						<text>裁判</text>
+						<view class="peopleList" style="margin-left:19px;">
+							<view class="son" wx:for="{{activitiesData.teamC}}" wx:key='index'>
+								<view class="invite" wx:if="{{item.name=='报名'}}">
+									报名
+									<text class="TeamAson">C{{index+1}}</text>
+								</view>
+								<image class="logo" wx:if="{{item.name!='报名'}}" bindtap="getUserDetailInfo" data-uid="{{item.uuid}}" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+								<image class="project" wx:if="{{item.name!='报名'}}" src="/assets/{{activitiesData.ballImgSon}}"></image>
+								<text  wx:if="{{item.name!='报名'}}" class="grade">{{item.heightLevel}}</text>
+
+							</view>
+						</view>
+					</view>
+
+
+
+
+				</view>
+		</view>
+		<view class="releaseTime">
+			<text>发布时间</text> <text>{{activitiesData.CreateTime}}</text> </view>
+
+		<view class="releaseTime">
+			<text>匹配时间</text> <text>{{activitiesData.CreateTime}}</text> </view>
+
+		<view class="releaseTime">
+			<text>开始时间</text> <text>{{activitiesData.StartTime}}</text> </view>
+	</view>
+	<button class="btn" open-type="share">分享给好友</button>
+
 </view>

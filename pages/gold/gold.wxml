@@ -13,7 +13,7 @@
 
 
    <view class="mallList">
-      <view class="mallListSon" wx:for="{{goldMall}}" bindtap='details' wx:key data-name="{{item.name}}" data-cost="{{item.cost}}" data-uuid="{{item.UUID}}">
+      <view class="mallListSon" wx:for="{{goldMall}}" bindtap='details' wx:key='index' data-name="{{item.name}}" data-cost="{{item.cost}}" data-uuid="{{item.UUID}}">
         <image src="https://app.tiaozhanmeiyitian.com/{{item.imgpath}}"></image>
         <text>{{item.name}}</text>
         <text style='color:#D0021B;'>{{item.cost}}金币</text>

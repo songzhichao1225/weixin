@@ -22,6 +22,7 @@
     "pages/searchPartner/searchPartner",
     "pages/homePage/mallDetails/mallDetails",
     "pages/nearby/nearby",
+    "pages/counterCoin/counterCoin",
     "pages/homePage/area/area",
     "pages/homePage/screen/screen",
     "pages/authorization/authorization",
@@ -44,7 +45,9 @@
         "notTrue/notTrue",
         "orderToday/orderToday",
         "history/history",
-        "TrueAndfalse/TrueAndfalse"
+        "TrueAndfalse/TrueAndfalse",
+        "mineGolDranking/mineGolDranking",
+        "mineGolDrankingTwo/mineGolDrankingTwo"
       ]
     }
   ],

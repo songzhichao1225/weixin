@@ -103,7 +103,7 @@ text {
   position: absolute;
   left: 50%;
   margin-left: -21rpx;
-  top: -10rpx;
+  top: 0rpx;
 }
 
 .mine .gold view .txt {

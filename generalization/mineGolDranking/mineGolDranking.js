@@ -90,7 +90,7 @@ Page({
     typeTitle:'1',
     nameE:'myFriends',
     name:'羽毛球',
-    flag:1
+    flag:2
   },
   onLoad: function () {
     this.drankingList()

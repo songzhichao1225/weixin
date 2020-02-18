@@ -41,7 +41,7 @@
 <view class="grade">
     <text class="title">专用金币等级</text>
     <view class="boss">
-      <view class="badminton" wx:for="{{userTechcoins}}" wx:key>
+      <view class="badminton" wx:for="{{userTechcoins}}" wx:key='index'>
         <text>{{item.sport_name}}</text>
         <text style='width:40%;text-align:center;position: absolute;left:50%;margin-left:-20%;'>{{item.total}}个</text>
         <view style="float:right;">
@@ -60,7 +60,7 @@
 
 <view class="rule">
     <text class="title">专用金币获得规则</text>
-   <view wx:for="{{list}}" wx:key><text class="dian"></text><text class="characters">赢{{index+1}}级选手一次得{{item}}元金币，输方扣掉相应金币</text></view>
+   <view wx:for="{{list}}" wx:key='index'><text class="dian"></text><text class="characters">赢{{index+1}}级选手一次得{{item}}元金币，输方扣掉相应金币</text></view>
   
 
 

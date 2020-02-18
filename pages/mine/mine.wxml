@@ -26,8 +26,8 @@
 
   <view class="gold">
     <view bindtap='gold' style="border-right:2rpx solid #ccc;">
-      <text style='color:#D85D27;'>{{goldNum}}</text>
-      <text>通用金币</text>
+      <image class="rankingList" style="height:36rpx;" src='/assets/zuanshi.png'></image>
+      <text class="txt">对手币排行榜</text>
     </view>
     <view bindtap='golDranking'>
       <image class="rankingList" src='/assets/PicWdPhb@2x.png'></image>
@@ -41,7 +41,7 @@
 
   <text class="serve">我的服务</text>
   <view class="application">
-    <view class="son" wx:for="{{applicationList}}" wx:key bindtap='{{item.click}}'>
+    <view class="son" wx:for="{{applicationList}}" wx:key='index' bindtap='{{item.click}}'>
       <image src='/assets/{{item.img}}'></image>
       <text>{{item.name}}</text>
     </view>

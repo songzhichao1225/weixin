@@ -32,13 +32,16 @@ Page({
           projectNow.SportMode = '找陪练 '
         } 
 
-        let object={name:"邀请",hid:false}
+        let object={name:"报名",hid:false}
         let needNum = projectNow.needNumber/2
         for (let i = 0; i = needNum - projectNow.teamA.length; i++) {
             projectNow.teamA.push(object)
           }
         for (let i = 0; i = needNum - projectNow.teamB.length; i++) {
             projectNow.teamB.push(object)
+          }
+          for (let i = 0; i = projectNow.RefereeNumber - projectNow.teamC.length; i++) {
+            projectNow.teamC.push(object)
           }
         this.countdown(projectNow.StartTime)
         

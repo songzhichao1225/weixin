@@ -57,6 +57,12 @@ Page({
       }
     )
   },
+  //对手币
+  counterCoin:function(){
+    wx.navigateTo({
+      url: '/pages/counterCoin/counterCoin'
+    })
+  },
   download: function () {
     this.setData({ download: true })
   },

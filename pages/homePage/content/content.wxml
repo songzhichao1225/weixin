@@ -3,16 +3,16 @@
   <view class="headerCity">
     <text bindtap='cityList'>{{selectCity}}</text>
     <image  class="image" src='/assets/HomeIconJt@2x.png'></image>
-    <view class="inputBox">
-      <image style='display:block;width:0.8rem;height:0.8rem;margin:0.25rem 0 0 0.45rem;float:left;' src='/assets/SearchIcon@2x.png'></image>
-      <input type='text' disabled='true' bindtap='inputS' placeholder='请输入地址' value="{{addressN}}" placeholder-style="font-size:14px;" confirm-type="search"></input>
+    <view class="inputBox"  bindtap='inputS'>
+      <image style='display:block;width:0.8rem;height:0.8rem;margin:0.5rem 0 0 0.45rem;float:left;' src='/assets/SearchIcon@2x.png'></image>
+      <input type='text' disabled='true' placeholder='请输入地址' value="{{addressN}}" placeholder-style="font-size:14px;" confirm-type="search"></input>
     </view>
      <image class="news" bindtap="news" src="../../../assets/news.png"></image>
   </view>
   <view class="bannerBack">
   <image class="back" src="../../../assets/bannerback@2x.png"></image>
   <swiper autoplay="{{true}}" class="banner" indicator-dots="true" indicator-color="#ddd" indicator-active-color="#fff">
-    <block wx:for="{{bannerArr}}" wx:key='*this'>
+    <block wx:for="{{bannerArr}}" wx:key='index'>
       <swiper-item>
         <image src="https://app.tiaozhanmeiyitian.com/{{item.picurl}}" class="slide-image" />
       </swiper-item>
@@ -68,7 +68,7 @@
 
   <view class="projectList">
     <!-- <text wx:if="{{projectData.length==0}}" class="model" >没有找到相匹配的项目</text> -->
-    <view class="projectSon" wx:if="{{projectData.length>0}}" bindtap="activites" data-uuid="{{item.uuid}}" wx:for="{{projectData}}" wx:key='*this'>
+    <view class="projectSon" wx:if="{{projectData.length>0}}" bindtap="activites" data-uuid="{{item.uuid}}" wx:for="{{projectData}}" wx:key='index'>
       <view class="avatar">
         <image class="avatarP" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
         <image wx:if="{{item.SportName=='网球'}}" class="aIcon" src='/assets/icon_dj_wq.png'></image>
@@ -120,25 +120,25 @@
 
     <view class="mask" wx:if="{{hidden}}">
       <view class="activity" wx:if="{{hiddenOne}}">
-        <view class="activitySon" catchtap='secondary' wx:for="{{activity}}" wx:key='*this' data-num="{{item.id}}">
+        <view class="activitySon" catchtap='secondary' wx:for="{{activity}}" wx:key='index' data-num="{{item.id}}">
           <text>{{item.name}}</text>
           <image src='/assets/HomeIconJtRightNol@2x.png'></image>
         </view>
       </view>
       <view class="activityTwo" wx:if="{{hiddenTwo}}">
-        <view class="activityTwoSon" wx:for="{{activitySon}}" bindtap='activityTwoSon' wx:key='*this' data-num="{{item.id}}">
+        <view class="activityTwoSon" wx:for="{{activitySon}}" bindtap='activityTwoSon' wx:key='index' data-num="{{item.id}}">
           <text>{{item.name}}</text>
         </view>
       </view>
 
       <view class="sort" wx:if="{{sortHid}}">
-        <view class="sortSon" wx:for="{{sort}}" bindtap='sortSe' data-num="{{item.num}}" wx:key='*this'>
+        <view class="sortSon" wx:for="{{sort}}" bindtap='sortSe' data-num="{{item.num}}" wx:key='index'>
           <text>{{item.name}}</text>
         </view>
       </view>
 
       <view class="sort" style='left:50%;' wx:if="{{statusHid}}">
-        <view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key='*this' data-num="{{item.num}}">
+        <view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key='index' data-num="{{item.num}}">
           <text>{{item.name}}</text>
         </view>
       </view>

@@ -1,4 +1,4 @@
- <view class="stadiumList" wx:for="{{clearList}}" wx:key data-siteUid="{{item.uid}}" data-name="{{item.name}}"  bindtap="stadiumDetail">
+ <view class="stadiumList" wx:for="{{clearList}}" wx:key='index' data-siteUid="{{item.uid}}" data-name="{{item.name}}"  bindtap="stadiumDetail">
         <image class="stadiumImg" src="/assets/tiaozhan.png"></image>
         <!-- https://app.tiaozhanmeiyitian.com/{{item.siteimgs}} -->
         <view class="content">

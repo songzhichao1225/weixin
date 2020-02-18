@@ -79,7 +79,7 @@ Page({
   },
   gold:function(){
     wx.navigateTo({
-      url: '/pages/gold/gold?goldNum=' + this.data.goldNum
+      url: '/generalization/mineGolDrankingTwo/mineGolDrankingTwo'
     })
   }, 
   mineMoney:function(){
@@ -104,7 +104,7 @@ Page({
   },
   golDranking:function(){
     wx.navigateTo({
-      url: '/pages/golDranking/golDranking'
+      url: '/generalization/mineGolDranking/mineGolDranking'
     })
   },
   mineOpinion:function(){

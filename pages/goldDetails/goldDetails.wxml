@@ -1,5 +1,5 @@
 <view class="goldDetail">
-  <view class="son" wx:for="{{goldList}}" wx:key>
+  <view class="son" wx:for="{{goldList}}" wx:key='index'>
   <view class="sonList">
   <view style='margin-top:30rpx;float:left;'>
    <text style='font-size:32rpx;'>{{item.Reason}}</text>

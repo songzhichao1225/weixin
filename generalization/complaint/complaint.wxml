@@ -6,7 +6,7 @@
 
   <view class="list">
     <scroll-view scroll-y style="height:100%;" bindscrolltolower="lower">
-      <view class="listSon" wx:for="{{dataList}}" wx:key data-uuid="{{item.publicUUid}}" bindtap="details">
+      <view class="listSon" wx:for="{{dataList}}" wx:key='index' data-uuid="{{item.publicUUid}}" bindtap="details">
         <view class="image">
           <text class="type">待处理</text>
           <image class="img" src="https://app.tiaozhanmeiyitian.com/{{item.imgURL}}"></image>

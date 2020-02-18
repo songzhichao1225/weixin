@@ -35,6 +35,7 @@
             <image wx:if="{{item.userInfo.sex==1}}" class='image' src='/assets/sex1@2x.png'></image>
             <image src='/assets/{{item.hightName}}' class='imageTwo'></image>
             <text class="textTwo">{{item.hightLevel}}</text>
+            <image src='/assets/jia.png' data-uuid="{{item.uuid}}" catchtap="joinFriends" style="width:1.4rem;height:1.3rem;float:right"></image>
           </view>
           <view class="signs">
             <text style="margin:0;">年龄:{{item.userInfo.age}}岁</text>
@@ -53,19 +54,19 @@
 
     <view class="mask" wx:if="{{hidden}}">
       <view class="activity" wx:if="{{hiddenOne}}">
-        <view class="activitySon" bindtap='secondary' wx:for="{{activity}}" wx:key data-name="{{item.name}}" data-num="{{item.num}}">
+        <view class="activitySon" bindtap='secondary' wx:for="{{activity}}" wx:key='index' data-name="{{item.name}}" data-num="{{item.num}}">
           <text style="display:block;text-align:center;">{{item.name}}</text>
         </view>
       </view>
 
       <view class="sort" wx:if="{{sortHid}}">
-        <view class="sortSon" wx:for="{{sort}}" bindtap='sortSe' data-num="{{item.selectD}}" data-name="{{item.name}}" wx:key>
+        <view class="sortSon" wx:for="{{sort}}" bindtap='sortSe' data-num="{{item.selectD}}" data-name="{{item.name}}" wx:key='index'>
           <text style="display:block;text-align:center;">{{item.name}}</text>
         </view>
       </view>
 
       <view class="sort" style='left:66.66%;' wx:if="{{statusHid}}">
-        <view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key data-name="{{item.name}}" data-num="{{item.num}}">
+        <view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key='index' data-name="{{item.name}}" data-num="{{item.num}}">
           <text>{{item.name}}</text>     
         </view>
       </view>

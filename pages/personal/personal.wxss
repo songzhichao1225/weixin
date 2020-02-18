@@ -16,28 +16,39 @@ text {
   width: 100%;
   background-image: linear-gradient(0deg, #e77c26 0%, #d85d27 100%);
   color: #fff;
-  padding-bottom:1rem;
+  padding-bottom: 1rem;
   overflow: hidden;
 }
 
+.personal .tap .headContent {
+  width: 90%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.personal .tap .headContent .right {
+  float: right;
+  margin-top: 0.8rem;
+}
+
 .personal .tap .image {
-  width: 5.6rem;
-  height: 5.6rem;
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
   margin: 0.8rem auto 0;
   display: block;
+  float: left;
 }
 
 .personal .tap .name {
   font-size: 18px;
   overflow: hidden;
   display: flex;
-  justify-content: center;
 }
 
 .personal .tap .name .sex {
-  width: 0.9rem;
-  height: 0.9rem;
+  width: 0.7rem;
+  height: 0.7rem;
   margin-top: 0.2rem;
   margin-left: 0.2rem;
   display: block;
@@ -45,21 +56,27 @@ text {
 }
 
 .personal .tap .name .option {
-  width: 1.4rem;
-  height: 1.3rem;
+  width: 1.06rem;
+  height: 1.06rem;
   display: block;
   float: left;
   margin-left: 0.2rem;
 }
 
 .personal .tap .name .mode {
-  padding: 0.02rem 0.1rem;
-  background: #f5a623;
-  border-radius: 2px;
+  padding: 0 0.1rem;
+  background: linear-gradient(270deg, rgba(252, 164, 0, 1) 0%, rgba(254, 224, 115, 1) 100%);
+  border-radius: 0.13rem;
   font-size: 10px;
   float: left;
   margin-left: 0.3rem;
   margin-top: 0.2rem;
+}
+
+.personal .tap .headContent .right .duishoubi {
+  font-size: 0.75rem;
+  margin-top: 0.31rem;
+  overflow: hidden;
 }
 
 .personal .tap .signature {
@@ -100,31 +117,30 @@ text {
   margin-bottom: 1.5rem;
 }
 
-.people .mark {
-  font-size: 14px;
-  color: #4a4a4a;
+.right .praise .mark {
+  font-size: 0.75rem;
   float: right;
+  margin-left: 0.44rem;
 }
 
-.people .praise {
-  float: right;
+.right .praise {
+  float: left;
   overflow: hidden;
-  margin-right: 0.5rem;
+  margin-top: 0.31rem;
 }
 
-.people .praise text {
+.right .praise text {
   display: block;
   float: left;
-  font-size: 14px;
-  color: #4a4a4a;
+  font-size: 0.75rem;
 }
 
-.people .praise image {
+.right .praise image {
   display: block;
-  width: 0.9rem;
-  height: 0.9rem;
+  width: 0.85rem;
+  height: 0.85rem;
   float: left;
-  margin-left: 0.2rem;
+  margin-left: 0.13rem;
 }
 
 .people .personalDetails {
@@ -159,30 +175,39 @@ text {
   font-size: 16px;
   color: #4a4a4a;
   display: block;
-  margin-bottom:1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.impression .List {
+.headContent .List {
   overflow: hidden;
   clear: both;
-  border-top: 1px solid #ededed;
+  margin-top: 6.5rem;
 }
 
-.impression .List text {
-  font-size: 12px;
-  color: #4a4a4a;
-  padding: 1rem 0 0 1.4rem;
+.headContent .List text {
+  display: block;
+  width: 48%;
+  height: 1.31rem;
+  border-radius: 0.13rem;
+  border: 0.06rem solid rgba(255, 255, 255, 1);
+  font-size: 0.75rem;
+  text-align: center;
+  line-height: 1.31rem;
+  margin-top: 0.2rem;
+}
+.headContent .List text:nth-child(2n){
+  margin-left: 2%;
 }
 
 .grade {
   width: 90%;
-  margin: 1.5rem auto 0;
+  margin: 0.63rem auto 0;
 }
 
 .grade .title {
   font-size: 16px;
   color: #4a4a4a;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.63rem;
 }
 
 .grade .badminton {
@@ -248,15 +273,16 @@ text {
   font-size: 10px;
   text-align: center;
 }
-.boss{
+
+.boss {
   border-top: 1px solid #EDEDED;
   border-bottom: 1px solid #EDEDED;
   overflow: hidden;
   clear: both;
-  padding:0.8rem 0;
+  padding: 0.8rem 0;
 }
 
-.btn{
+.btn {
   width: 80%;
   height: 2.5rem;
   background: #d85d27;

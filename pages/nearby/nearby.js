@@ -206,6 +206,41 @@
      })
      this.nearbyData()
    },
+   //加好友
+   joinFriends:function(e){
+    util.Request("/api/addFriends", {friendsId:e.currentTarget.dataset.uuid}, "post",
+    (res) => {
+      if(res.data.code===2000){
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none',
+          duration: 2000
+        })
+      }else{
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'fail',
+          duration: 2000
+        })
+      }
+      
+      
+
+     
+     
+    },
+    () => {
+      console.log("失败")
+    },
+    () => {
+    }
+  )
+
+
+
+
+
+   },
    //上拉加载
    lower: function() {
 

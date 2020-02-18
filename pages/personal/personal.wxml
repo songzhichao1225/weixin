@@ -1,86 +1,93 @@
 <view class="personal" wx:if="{{flag}}">
-  <view class="tap">
-    <image class="image" src='https://app.tiaozhanmeiyitian.com/{{personalData.imgURL}}'></image>
-    <view class="name">
-      <text>{{personalData.nickname}}</text>
-      <image class="sex" wx:if="{{personalData.sex==0}}" src='/assets/sex0@2x.png'></image>
-      <image class="sex" wx:if="{{personalData.sex==1}}" src='/assets/sex1@2x.png'></image>
-      <image wx:if="{{personalData.userHightLevel.name=='网球'}}" class="option" src='/assets/icon_dj_wq.png'></image>
-      <image wx:if="{{personalData.userHightLevel.name=='高尔夫'}}" class="option" src='/assets/icon_dj_gef.png'></image>
-      <image wx:if="{{personalData.userHightLevel.name=='篮球'}}" class="option" src='/assets/icon_dj_lq.png'></image>
-      <image wx:if="{{personalData.userHightLevel.name=='乒乓球'}}" class="option" src='/assets/icon_dj_ppq.png'></image>
-      <image wx:if="{{personalData.userHightLevel.name=='排球'}}" class="option" src='/assets/icon_dj_pq.png'></image>
-      <image wx:if="{{personalData.userHightLevel.name=='台球'}}" class="option" src='/assets/icon_dj_tq.png'></image>
-      <image wx:if="{{personalData.userHightLevel.name=='羽毛球'}}" class="option" src='/assets/icon_dj_ymq.png'></image>
-      <image wx:if="{{personalData.userHightLevel.name=='足球'}}" class="option" src='/assets/icon_dj_zq.png'></image>
-      <text class="mode">{{personalData.userHightLevel.level}}</text>
-    </view>
-    <text class="signature">{{personalData.comment}}</text>
-    <view class="button">
-      <view bindtap='addFriend' data-uuid="{{personalData.uuid}}">+好友</view>
-      <view style='float:right;'>私信</view>
-    </view>
-  </view>
+	<view class="tap">
+		<view class="headContent">
+			<image class="image" src='https://app.tiaozhanmeiyitian.com/{{personalData.imgURL}}'></image>
+			<view class="right">
+				<view class="name">
+					<text style="font-size:0.88rem;">{{personalData.nickname}}</text>
+					<image class="sex" wx:if="{{personalData.sex==0}}" src='/assets/sex0@2x.png'></image>
+					<image class="sex" wx:if="{{personalData.sex==1}}" src='/assets/sex1@2x.png'></image>
+					<image wx:if="{{personalData.userHightLevel.name=='网球'}}" class="option" src='/assets/icon_dj_wq.png'></image>
+					<image wx:if="{{personalData.userHightLevel.name=='高尔夫'}}" class="option" src='/assets/icon_dj_gef.png'></image>
+					<image wx:if="{{personalData.userHightLevel.name=='篮球'}}" class="option" src='/assets/icon_dj_lq.png'></image>
+					<image wx:if="{{personalData.userHightLevel.name=='乒乓球'}}" class="option" src='/assets/icon_dj_ppq.png'></image>
+					<image wx:if="{{personalData.userHightLevel.name=='排球'}}" class="option" src='/assets/icon_dj_pq.png'></image>
+					<image wx:if="{{personalData.userHightLevel.name=='台球'}}" class="option" src='/assets/icon_dj_tq.png'></image>
+					<image wx:if="{{personalData.userHightLevel.name=='羽毛球'}}" class="option" src='/assets/icon_dj_ymq.png'></image>
+					<image wx:if="{{personalData.userHightLevel.name=='足球'}}" class="option" src='/assets/icon_dj_zq.png'></image>
+					<text class="mode">{{personalData.userHightLevel.level}}</text>
+				</view>
+				<view class="duishoubi">
+					<text>对手币</text>
+					<text style="padding-left:1.56rem;">20个</text>
+					<text style="padding-left:0.6rem;color:#ddd" bindtap="counterCoin">对手币？</text>
+				</view>
+				<view class="praise">
+					<text>好评率</text>
+					<image style="margin-left:1.56rem" src="/assets/{{personalData.userEvaluate>=1?'StarSel2@2x.png':''}}"></image>
+					<image src="/assets/{{personalData.userEvaluate>=2?'StarSel2@2x.png':''||personalData.userEvaluate>1&&personalData.userEvaluate<2?'StarSelYb2@2x.png':''}}"></image>
+					<image src="/assets/{{personalData.userEvaluate>=3?'StarSel2@2x.png':'StarNor2@2x.png'&&personalData.userEvaluate>2&&personalData.userEvaluate<3?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
+					<image src="/assets/{{personalData.userEvaluate>=4?'StarSel2@2x.png':'StarNor2@2x.png'&&personalData.userEvaluate>3&&personalData.userEvaluate<4?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
+					<image src="/assets/{{personalData.userEvaluate>=5?'StarSel2@2x.png':'StarNor2@2x.png'&&personalData.userEvaluate>4&&personalData.userEvaluate<5?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
+					<text class="mark">{{personalData.userEvaluate}}分</text>
+				</view>
+				<view style="font-size:0.75rem;margin-top:0.31rem;">
+					<text>履约率</text>
+					<text style="margin-left:1.56rem;">{{personalData.userPerform}}</text>
+				</view>
+			</view>
+			<view class="List">
+				<text wx:for="{{personalData.userLabel}}" wx:key='index'>{{item.LabelName}}{{item.LabelCount}}</text>
+			</view>
+		</view>
 
-  <view class="people">
-    <text class="title">个人</text>
-    <text class="mark">{{personalData.userEvaluate}}分</text>
-    <view class="praise">
-      <text>好评率</text>
-      <image src="/assets/{{personalData.userEvaluate>=1?'StarSel2@2x.png':''}}"></image>
-      <image src="/assets/{{personalData.userEvaluate>=2?'StarSel2@2x.png':''||personalData.userEvaluate>1&&personalData.userEvaluate<2?'StarSelYb2@2x.png':''}}"></image>
-      <image src="/assets/{{personalData.userEvaluate>=3?'StarSel2@2x.png':'StarNor2@2x.png'&&personalData.userEvaluate>2&&personalData.userEvaluate<3?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
-      <image src="/assets/{{personalData.userEvaluate>=4?'StarSel2@2x.png':'StarNor2@2x.png'&&personalData.userEvaluate>3&&personalData.userEvaluate<4?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
-      <image src="/assets/{{personalData.userEvaluate>=5?'StarSel2@2x.png':'StarNor2@2x.png'&&personalData.userEvaluate>4&&personalData.userEvaluate<5?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
-    </view>
-    <view class="personalDetails">
-      <text class="txt"><text>性别:</text>
-      <text class="sexColor">{{personalData.sex==0?'男':'女'}}</text></text>
-      <text class="txt"><text>年龄:</text>
-      <text class="sexColor">{{personalData.age}}</text></text>
-      <text class="txt"><text>身高:</text>
-      <text class="sexColor">{{personalData.age}}</text></text>
-      <text class="txt"><text>体重:</text>
-      <text class="sexColor">{{personalData.weight}}</text></text>
-      <text class="text"><text>喜爱运动:</text>
-      <text class="sexColor">{{personalData.faveriteSport}}</text></text>
-      <text class="text"><text>常住地:</text>
-      <text class="sexColorT">{{personalData.address}}</text></text>
-      <text class="text"><text>履约率:</text>
-      <text class="sexColorT">{{personalData.userPerform}}</text></text>
-      <text class="text"><text>通用金币:</text>
-      <text class="sexColorT">{{personalData.commonCoins}}</text></text>
-    </view>
-  </view>
+	</view>
+
+	<view class="people">
 
 
-  <view class="impression">
-    <text class="title">队友印象</text>
-    <view class="List">
-      <text wx:for="{{personalData.userLabel}}" wx:key>{{item.LabelName}}{{item.LabelCount}}</text>
-    </view>
-  </view>
-
-  <view class="grade">
-    <text class="title">专用金币等级</text>
-    <view class="boss">
-      <view class="badminton" wx:for="{{personalData.userTechcoins}}" wx:key>
-        <text>{{item.sport_name}}</text>
-        <text style='width:40%;text-align:center;position: absolute;left:50%;margin-left:-20%;'>{{item.total}}个</text>
-        <view style="float:right;">
-          <text class="sliderL" style='color:#fff;font-size:10px;'>{{item.nowlevel}}</text>
-          <view class="slider">
-            <view style='width:{{item.total/item.maxcoins*100}}%'></view>
-            <text>{{item.mincoins}}/{{item.maxcoins}}</text>
-          </view>
-          <text class="sliderL" style="background: #fff;color:#D85D27;font-size:10px;">{{item.nextlevel}}</text>
-        </view>
-      </view>
-    </view>
-  </view>
-  <view class="btn" bindtap="download">发起挑战</view>
+		<view class="personalDetails">
+			<text class="txt"><text>性别:</text>
+			<text class="sexColor">{{personalData.sex==0?'男':'女'}}</text></text>
+			<text class="txt"><text>年龄:</text>
+			<text class="sexColor">{{personalData.age}}</text></text>
+			<text class="txt"><text>身高:</text>
+			<text class="sexColor">{{personalData.age}}cm</text></text>
+			<text class="txt"><text>体重:</text>
+			<text class="sexColor">{{personalData.weight}}kg</text></text>
+			<text class="text"><text>常驻地:</text>
+			<text class="sexColorT">{{personalData.address}}</text></text>
+			<text class="text" wx:if="{{personalData.faveriteSport!==''}}"><text>技术水平自我评定:</text>
+			<text class="sexColor" style="width:60%;">{{personalData.faveriteSport}}</text></text>
+			<text class="text" wx:if="{{personalData.comment!==''}}"><text>个人简介:</text>
+			<text class="sexColorT">{{personalData.comment}}</text></text>
+		</view>
+	</view>
+  <view style="height:0.63rem;background:#F3F3F3;margin-top:0.63rem;"></view>
 
 
-  <download wx:if="{{download}}" bindtap="closeDowload"></download>
+
+
+	<view class="grade">
+		<text class="title">技术分及等级</text>
+		<view class="boss">
+			<view class="badminton" wx:for="{{personalData.userTechcoins}}" wx:key='index'>
+				<text>{{item.sport_name}}</text>
+				<text style='width:40%;text-align:center;position: absolute;left:50%;margin-left:-20%;'>{{item.total}}个</text>
+				<view style="float:right;">
+					<text class="sliderL" style='color:#fff;font-size:10px;'>{{item.nowlevel}}</text>
+					<view class="slider">
+						<view style='width:{{item.total/item.maxcoins*100}}%'></view>
+						<text>{{item.mincoins}}/{{item.maxcoins}}</text>
+					</view>
+					<text class="sliderL" style="background: #E9E9E9;color:#fff;font-size:10px;">{{item.nextlevel}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="btn" bindtap="download">发起挑战</view>
+
+
+	<download wx:if="{{download}}" bindtap="closeDowload"></download>
 
 </view>

@@ -9,7 +9,7 @@
         <button class="btn" bindtap="join">立即加入</button>
       </view>
       <view class="nav">
-        <view class="navSon" bindtap="navTap" style="{{indexNum==index?'color:#fff;font-size:32rpx;':''}}" wx:for="{{logs}}" wx:key data-num="{{item.num}}">{{item.name}}</view>
+        <view class="navSon" bindtap="navTap" style="{{indexNum==index?'color:#fff;font-size:32rpx;':''}}" wx:for="{{logs}}" wx:key='index' data-num="{{item.num}}">{{item.name}}</view>
       </view> 
 
 
@@ -19,7 +19,7 @@
     <!-- 对应nav下的内容 -->
     <view class="content">
       <view class="introduction">
-        <view class="introductionSon" wx:for="{{content}}" wx:key>
+        <view class="introductionSon" wx:for="{{content}}" wx:key='index'>
           <image class="img" src="{{item.img}}"></image>
           <view class="text" style="{{item.style}}">
             <text>{{item.title}}</text>
@@ -57,7 +57,7 @@
       <view class="line"></view>
       <text class="title">收益报表</text>
       <view class="daysMonth">
-        <view wx:for="{{timer}}" bindtap="timer" wx:key data-num="{{item.num}}">{{item.name}}</view>
+        <view wx:for="{{timer}}" bindtap="timer" wx:key='index' data-num="{{item.num}}">{{item.name}}</view>
 
       </view>
       <text class="money">(金额:元)</text>
@@ -95,7 +95,7 @@
       <text class="title">附近可推广运营场馆</text>
       <text class="look" bindtap="lookMore">查看更多></text>
       <view style="clear:both;height:1rpx;"></view>
-      <view class="stadiumList" wx:for="{{clearList}}" wx:key  data-siteUid="{{item.uid}}" data-name="{{item.name}}"  bindtap="stadiumDetail">
+      <view class="stadiumList" wx:for="{{clearList}}" wx:key='index'  data-siteUid="{{item.uid}}" data-name="{{item.name}}"  bindtap="stadiumDetail">
         <image class="stadiumImg" src="/assets/tiaozhan.png"></image>
         <!-- https://app.tiaozhanmeiyitian.com/{{item.siteimgs}} -->
         <view class="content">
