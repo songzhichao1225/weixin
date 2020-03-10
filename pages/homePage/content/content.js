@@ -7,40 +7,49 @@ Page({
   data: {
     activity: [], //获取项目分类
     activitySon: [], //获取项目详细分类
-    mydata: {}, //选中城市返回    
+    mydata: {}, //选中城市返回 
+    sportName: '运动项目',
     sort: [{
-        name: "距离由近到远",
-        num: 0
-      },
-      {
-        name: "时间由近到远",
-        num: 1
-      },
-      {
-        name: "级别由高到低",
-        num: 2
-      },
-      {
-        name: "级别由低到高",
-        num: 3
-      },
-      {
-        name: "好评优选",
-        num: 4
-      },
+      name: "距离由近到远",
+      num: 0
+    },
+    {
+      name: "时间由近到远",
+      num: 1
+    },
+    {
+      name: "级别由高到低",
+      num: 2
+    },
+    {
+      name: "级别由低到高",
+      num: 3
+    },
+    {
+      name: "好评优选",
+      num: 4
+    },
     ],
     statusH: [{
-        name: "全部",
-        num: 0
-      },
-      {
-        name: "匹配中",
-        num: 1
-      },
-      {
-        name: "活动中",
-        num: 2
-      },
+      name: "全部",
+      num: 0
+    },
+    {
+      name: "1km",
+      num: 1
+    },
+    {
+      name: "2km",
+      num: 2
+    },
+    {
+      name: "4km",
+      num: 4
+    },
+    {
+      name: "10km",
+      num: 10
+    },
     ],
     bannerArr: [], //banner图
     hidden: false, //项目选项显隐
@@ -71,16 +80,27 @@ Page({
     flagIs: '', //是否签到成功
     download: false,
     shost: false, //是否完善信息
+    numId: 0,//项目筛选id
+    range: 0,//距离范围默认0
+    rangeName: '距离范围',
+    sprtSeName: '推荐排序',
+    startTime: '',
+    endTime: '',
+    joinCondition: '',
+    mingrade: 0,
+    maxgrade: 0,
+    praise: 0
+
   },
-  map: function() {
+  map: function () {
     var that = this;
     /*获取定位地理位置*/
     //新建bmap
     let BMap = new bmap.BMapWX({
       ak: that.data.ak
     });
-    let fail = function(data) {}
-    let success = function(data) {
+    let fail = function (data) { }
+    let success = function (data) {
       //返回数据内，已经包含经纬度
       //使用wxMarkerData获取数据
       let wxMarkerData = data.wxMarkerData;
@@ -107,7 +127,7 @@ Page({
 
   },
 
-  onLoad: function() {
+  onLoad: function () {
     this.map()
 
 
@@ -118,7 +138,7 @@ Page({
           bannerArr: res.data.data
         })
       },
-      () => {},
+      () => { },
       () => {
 
       }
@@ -142,16 +162,17 @@ Page({
         })
 
       },
-      () => {},
+      () => { },
       () => {
 
       }
     )
 
   },
+ 
 
   //初始化获取活动列表函数
-  goleloand: function(show) {
+  goleloand: function (show) {
     let {
       acitvitysort,
       sportType,
@@ -164,7 +185,14 @@ Page({
       longitude,
       latitude,
       address,
-      pages
+      pages,
+      range,
+      startTime,
+      endTime,
+      joinCondition,
+      mingrade,
+      maxgrade,
+      praise,
     } = this.data //获取活动列表的参数
     let jsonData = {}
     jsonData.sex = sex
@@ -172,68 +200,73 @@ Page({
     jsonData.SportType = sportType
     jsonData.payType = payType
     jsonData.SportMode = sportMode
-    jsonData.status = status
     jsonData.sportid = sportId
     jsonData.city = selectCity
     jsonData.lng = longitude
     jsonData.lat = latitude
     jsonData.area = address
     jsonData.page = pages
-    jsonData.joinCondition = ''
+    jsonData.range = range
+    jsonData.startTime = startTime,
+    jsonData.endTime = endTime,
+    jsonData.joinCondition = joinCondition,
+    jsonData.mingrade = mingrade,
+    jsonData.maxgrade = maxgrade,
+    jsonData.praise = praise,
 
-    util.request("/api/getIndexAcitivitylst", jsonData, "GET",
-      (res) => {
+      util.request("/api/getIndexAcitivitylist", jsonData, "GET",
+        (res) => {
 
-        let projectDataNow = res.data.data.activeLst
+          let projectDataNow = res.data.data.activeLst
 
-        for (let i in projectDataNow) {
-          if (projectDataNow[i].SportMode == '1') {
-            projectDataNow[i].SportMode = '娱乐'
-          } else if (projectDataNow[i].SportMode == '2') {
-            projectDataNow[i].SportMode = '竞技 '
-          } else if (projectDataNow[i].SportMode == '3') {
-            projectDataNow[i].SportMode = '陪练 '
-          } else if (projectDataNow[i].SportMode == '4') {
-            projectDataNow[i].SportMode = '找陪练 '
-          } else if (projectDataNow[i].PaySiteMoneyType == 1) {
-            projectDataNow[i].PaySiteMoneyType = 'AA'
-          } else if (projectDataNow[i].PaySiteMoneyType == 0) {
-            projectDataNow[i].PaySiteMoneyType = '输者买单'
+          for (let i in projectDataNow) {
+            if (projectDataNow[i].SportMode == '1') {
+              projectDataNow[i].SportMode = '娱乐'
+            } else if (projectDataNow[i].SportMode == '2') {
+              projectDataNow[i].SportMode = '竞技 '
+            } else if (projectDataNow[i].SportMode == '3') {
+              projectDataNow[i].SportMode = '陪练 '
+            } else if (projectDataNow[i].SportMode == '4') {
+              projectDataNow[i].SportMode = '找陪练 '
+            } else if (projectDataNow[i].PaySiteMoneyType == 1) {
+              projectDataNow[i].PaySiteMoneyType = 'AA'
+            } else if (projectDataNow[i].PaySiteMoneyType == 0) {
+              projectDataNow[i].PaySiteMoneyType = '输者买单'
+            }
+
           }
 
-        }
+          if (show == true) {
+            let mData = [...this.data.projectData, ...projectDataNow]
+            this.setData({
+              projectData: mData
+            })
+          } else {
+            this.setData({
+              projectData: projectDataNow
+            })
+          }
 
-        if (show == true) {
-          let mData = [...this.data.projectData, ...projectDataNow]
+          wx.hideLoading()
           this.setData({
-            projectData: mData
+            flag: true
           })
-        } else {
-          this.setData({
-            projectData: projectDataNow
-          })
+          wx.stopPullDownRefresh() //停止下拉刷新
+
+        },
+        () => {
+          wx.stopPullDownRefresh() //停止下拉刷新
+        },
+        () => {
+
         }
-
-        wx.hideLoading()
-        this.setData({
-          flag: true
-        })
-        wx.stopPullDownRefresh() //停止下拉刷新
-
-      },
-      () => {
-        wx.stopPullDownRefresh() //停止下拉刷新
-      },
-      () => {
-
-      }
-    )
+      )
 
   },
 
 
   //页面返回 带参
-  onShow: function() {
+  onShow: function () {
 
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];
@@ -260,7 +293,13 @@ Page({
       this.setData({
         payType: currPage.data.screenData.payType,
         sex: currPage.data.screenData.sex,
-        sportMode: currPage.data.screenData.sportMode
+        sportMode: currPage.data.screenData.sportMode === null ? 0 : currPage.data.screenData.sportMode,
+        startTime: currPage.data.screenData.dateNow + currPage.data.screenData.startTime === '选择日期选择开始时间' ? 0 : currPage.data.screenData.dateNow + currPage.data.screenData.startTime,
+        endTime: currPage.data.screenData.dateNow + currPage.data.screenData.endTime === '选择日期选择结束时间' ? 0 : currPage.data.screenData.dateNow + currPage.data.screenData.endTime,
+        joinCondition: currPage.data.screenData.joinCondition === null ? 0 : currPage.data.screenData.joinCondition,
+        mingrade: currPage.data.screenData.mingrade === '最低等级' ? 0 : currPage.data.screenData.mingrade,
+        maxgrade: currPage.data.screenData.maxgrade === '最高等级' ? 0 : currPage.data.screenData.maxgrade,
+        praise: currPage.data.screenData.praise === null ? 0 : currPage.data.screenData.praise
       })
       this.goleloand()
     }
@@ -272,8 +311,8 @@ Page({
           isSign: res.data.data.isSign
         })
       },
-      () => {},
-      () => {}
+      () => { },
+      () => { }
     )
 
 
@@ -283,14 +322,14 @@ Page({
         (res) => {
           wx.setStorageSync('information', res.data.msg)
         },
-        () => {},
-        () => {}
+        () => { },
+        () => { }
       )
     }
   },
 
   //跳转选择地址
-  inputS: function() {
+  inputS: function () {
     let {
       selectCity,
       cityInfo
@@ -311,14 +350,14 @@ Page({
 
   },
   //跳转消息
-  news:function(){
+  news: function () {
     wx.navigateTo({
       url: '/pages/homePage/news/news'
     })
 
   },
   //点击签到
-  isSign: function(e) {
+  isSign: function (e) {
     if (wx.getStorageSync('token')) {
       if (e.currentTarget.dataset.status == 0) {
         util.Request("/api/userSignIn", {}, "post",
@@ -331,7 +370,7 @@ Page({
           () => {
             console.log("失败")
           },
-          () => {}
+          () => { }
         )
         util.Request("/api/getCommonCoins", {}, "get",
           (res) => {
@@ -362,20 +401,20 @@ Page({
     }
   },
   //关闭签到弹窗
-  close: function() {
+  close: function () {
     this.setData({
       flagIs: false
     })
   },
 
   //跳转城市列表
-  cityList: function() {
+  cityList: function () {
     wx.navigateTo({
       url: '/pages/homePage/cityList/cityList'
     })
   },
   //项目选择
-  itemSelection: function() {
+  itemSelection: function () {
     if (this.data.hidden == true) {
       this.setData({
         sortHid: false,
@@ -392,7 +431,7 @@ Page({
       })
     }
   },
-  itemSelectionH: function() {
+  itemSelectionH: function () {
     this.setData({
       hidden: false,
       hiddenOne: false,
@@ -401,7 +440,7 @@ Page({
     })
   },
   //项目选择二级
-  secondary: function(e) {
+  secondary: function (e) {
     let id = e.currentTarget.dataset.num
     this.setData({
       sportId: e.currentTarget.dataset.num,
@@ -409,21 +448,26 @@ Page({
       sportType: '',
       acitvitysort: '',
       status: '',
+      sportName: e.currentTarget.dataset.name,
+      numId: id
     })
     this.goleloand()
+    if (e.currentTarget.dataset.num === 0) {
+      this.setData({ hidden: false })
+    }
 
     //获取项目分类下的详细分类
     if (id != 0) {
       util.request("/api/getDatialSport", {
-          "id": id
-        }, "get",
+        "id": id
+      }, "get",
         (res) => {
           this.setData({
             activitySon: res.data.data
           })
         },
-        () => {},
-        () => {}
+        () => { },
+        () => { }
       )
       this.setData({
         hiddenTwo: true
@@ -434,17 +478,19 @@ Page({
     })
 
   },
+
   //点击选中二级运动项目
-  activityTwoSon: function(e) {
+  activityTwoSon: function (e) {
     this.setData({
       sportType: e.currentTarget.dataset.num,
-      pages: 1
+      pages: 1,
+      sportName: this.data.sportName + e.currentTarget.dataset.name
     })
 
     this.goleloand()
   },
   //智能排序下拉
-  sortHid: function() {
+  sortHid: function () {
     if (this.data.hidden == true) {
       this.setData({
         sortHid: false,
@@ -465,15 +511,16 @@ Page({
 
   },
   //智能排序选中
-  sortSe: function(e) {
+  sortSe: function (e) {
     this.setData({
       acitvitysort: e.currentTarget.dataset.num,
-      pages: 1
+      pages: 1,
+      sprtSeName: e.currentTarget.dataset.name
     })
     this.goleloand()
   },
   //状态下拉0
-  statusHid: function() {
+  statusHid: function () {
     if (this.data.hidden == true) {
       this.setData({
         sortHid: false,
@@ -492,21 +539,22 @@ Page({
     }
   },
   //状态选中
-  statusSe: function(e) {
+  statusSe: function (e) {
     this.setData({
-      status: e.currentTarget.dataset.num,
-      pages: 1
+      range: e.currentTarget.dataset.num,
+      pages: 1,
+      rangeName: e.currentTarget.dataset.name
     })
     this.goleloand()
   },
   //跳转筛选页面
-  screen: function() {
+  screen: function () {
     wx.navigateTo({
       url: '/pages/homePage/screen/screen'
     })
   },
   //上拉加载
-  onReachBottom: function() {
+  onReachBottom: function () {
     this.setData({
       pages: this.data.pages + 1
     })
@@ -519,27 +567,27 @@ Page({
     this.goleloand()
   },
   //跳转兑换商城
-  goldMall: function() {
+  goldMall: function () {
     wx.navigateTo({
       url: '/pages/homePage/goldMall/goldMall'
     })
   },
-  activites: function(e) {
+  activites: function (e) {
     wx.navigateTo({
       url: '/pages/homePage/activities/activities?uuid=' + e.currentTarget.dataset.uuid
     })
   },
-  download: function() {
+  download: function () {
     this.setData({
       download: true
     })
   },
-  closeDowload: function() {
+  closeDowload: function () {
     this.setData({
       download: false
     })
   },
-  generaGold: function() {
+  generaGold: function () {
     if (wx.getStorageSync('token') && wx.getStorageSync('information') != '信息完善') {
       wx.showModal({
         content: '完善个人信息',
@@ -567,7 +615,7 @@ Page({
       })
     }
   },
-  generalization: function() {
+  generalization: function () {
     if (wx.getStorageSync('token')) {
       wx.navigateTo({
         url: '/generalization/promotion/promotion'

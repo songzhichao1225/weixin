@@ -2,17 +2,16 @@ const util = require('../../../utils/util.js')
 
 Page({
   data: {
-    num: 10,
-    dataNum:0,
-    peopleNum:0,
+    coins:0,
+    isSign:0,
 
   },
   onLoad: function() {
-    util.request("/api/getcomm", {
-      'uuid': wx.getStorageSync('uuid')
-      }, "post",
+    util.Request("/api/getCommonCoins", {}, "get",
       (res) => {
-        this.setData({ dataNum: res.data.data, peopleNum: res.data.data/50})
+       this.setData({
+         coins:res.data.data.coins
+       })
       },
       () => {
         console.log("失败")
@@ -20,37 +19,48 @@ Page({
       () => {
       }
     )
+    util.Request("/api/getUserIsSign", {}, "get",
+      (res) => {
+        this.setData({
+          isSign: res.data.data.isSign
+        })
+        
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {
+      }
+    )
+    
 
 
 
     wx.hideLoading()
   },
-  onShareAppMessage: function(res) {
-    let {
-      num
-    } = this.data
-    let that = this
-    return {
-      title: '挑战',
-      path: '/pages/homePage/content/content?uuid='+wx.getStorageSync('uuid'),
-      success: function(res) {
-        that.setData({
-          num: num - 1
+// 签到
+  Sign:function(){
+    util.Request("/api/userSignIn", {}, "post",
+      (res) => {
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none',
+          duration: 1500,
+          mask: true
         })
-        util.request("/api/getSmallOpenId", {
-             'uuid ':wx.getStorageSync('uuid'),
-            'addGoldcoin': 10,
-            'Whether': 1
-          }, "post",
-          (res) => {
-          },
-          () => {
-            console.log("失败")
-          },
-          () => {
-          }
-        )
+        if (res.data.code === 2000) {
+          this.setData({
+            isSign: 1
+          })
+        }
+
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {
       }
-    }
+    )
   }
+
 })

@@ -145,7 +145,7 @@ Page({
   details:function(e){
    let uuid=e.currentTarget.dataset.uuid
     wx.navigateTo({
-      url: '/pages/personal/personal?uuid=' + uuid
+      url: '/generalization/personal/personal?uuid=' + uuid
     })
   }
 

@@ -1,0 +1,51 @@
+<view class="Invitational">
+	<view class="navHead">
+		<view class="fater">
+			<view class="son">我的好友 <view class="line"></view> </view>
+			<view class="son">附近球友</view>
+			<view class="son">关注好友</view>
+		</view>
+
+	</view>
+
+  <swiper style="height:36rem">
+  
+  <swiper-item>
+    <scroll-view scroll-y style="height: 100%" bindscrolltolower="lower">
+      <view class="characterList" wx:for="{{getInviteFriends}}"wx:key="index" data-uid="{{item.uuid}}" bindtap='getUserDetailInfo'>
+        <image class="img" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+        <view class="content">
+          <view class="header">
+            <text class="text">{{item.nickname}}</text>
+            <image wx:if="{{item.sex==0}}" class='image' src='/assets/sex0@2x.png'></image>
+            <image wx:if="{{item.sex==1}}" class='image' style="width:0.6rem;" src='/assets/sex1@2x.png'></image>
+            <image src='/assets/{{item.userLevelNum}}' class='imageTwo'></image>
+            <text class="textTwo">{{item.userLevel}}</text>
+         </view>
+          <view class="signs">
+            <text style="margin:0;">年龄:{{item.userInfo.age}}岁</text>
+            <text>体重:{{item.userInfo.tall}}Kg</text>
+            <text>身高:{{item.userInfo.weight}}cm</text>
+          </view>
+          <view class="interest">
+            <text style='float:left;display:block;'>喜爱运行项目:{{item.sportidNameStr}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+  
+  </swiper-item>
+
+
+  
+  
+  
+  </swiper>
+
+
+
+
+
+
+</view>

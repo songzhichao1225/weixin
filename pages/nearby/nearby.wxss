@@ -158,24 +158,24 @@ display: block;
 width: 0.8rem;
 height: 0.8rem;
 float: left;
-margin:0.4rem 0 0 0.3rem;
+margin:0.2rem 0 0 0.3rem;
 }
 
 .characterList .content .header .imageTwo{
 display: block;
-width: 1.4rem;
-height: 1.4rem;
+width: 1.06rem;
+height: 1.06rem;
 float: left;
 margin:0.1rem 0 0 0.3rem;
 }
 .characterList .content .header .textTwo{
 display: block;
 float: left;
-padding:0.1rem 0.2rem;
+padding:0rem 0.2rem;
 margin:0.3rem 0 0 0.3rem;
-background: #F5A623;
-border-radius: 2px;
-font-size: 10px;
+background:linear-gradient(270deg,rgba(252,164,0,1) 0%,rgba(254,224,115,1) 100%);
+border-radius:0.13rem;
+font-size: 0.5rem;
 color: #FFFFFF;
 }
 .characterList .content .signs{

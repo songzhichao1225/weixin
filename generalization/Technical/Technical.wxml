@@ -1,0 +1,66 @@
+<view class="mineGold" wx:if="{{flag}}">
+
+
+
+
+  <view class="commonGold">
+    <view class="bossX">
+      <view class="mall" bindtap='golDranking' style="width:348rpx;margin-left:0;">
+        <image src="/assets/paihang.png"></image>
+        <text class="text">排行榜</text>
+        <text class="txt">技术分排行榜</text>
+      </view>
+      <view class="mall" bindtap="techCoins" style="width:348rpx;">
+        <image src="/assets/blue2@2x.png"></image>
+        <text class="text">明细</text>
+        <text class="txt">技术分获得明细</text>
+      </view>
+    </view>
+  </view>
+  <view class="line"></view>
+  <view class="grade">
+
+    <text class="title">技术分及等级</text>
+    <view class="titleHeade">
+      <view>运动项目</view>
+      <view>技术分</view>
+      <view>等级</view>
+    </view>
+    <view class="boss">
+      <view class="badminton" wx:for="{{userTechcoins}}" wx:key='index'>
+        <text>{{item.sport_name}}</text>
+        <text style='width:40%;text-align:center;position: absolute;left:50%;margin-left:-20%;'>{{item.total}}个</text>
+        <view style="float:right;">
+          <text class="sliderL" style='color:#fff;font-size:10px;'>{{item.nowlevel}}</text>
+          <view class="slider">
+            <view style='width:{{item.total/item.maxcoins*100}}%'></view>
+            <text>{{item.total}}/{{item.maxcoins}}</text>
+          </view>
+          <text class="sliderL" style="background:#fff;color:#D85D27;font-size:10px;">{{item.nextlevel}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="line" style="margin-top:50px;"></view>
+  <view class="rule">
+    <text class="title">技术等级/技术分划分规则</text>
+    <view wx:for="{{listTwo}}" wx:key='index'>
+      <text class="dian"></text>
+      <text class="characters">Lv{{index+1}}:技术分({{listTwo[index-1]==null?0:listTwo[index-1]}}-{{item}})</text>
+    </view>
+  </view>
+  <view class="line"></view>
+  <view class="rule">
+    <text class="title">技术分获得规则</text>
+    <view wx:for="{{list}}" wx:key='index'>
+      <text class="dian"></text>
+      <text class="characters">赢Lv{{index+1}}级选手一次得{{item}}技术分，输方扣掉相应技术分</text>
+    </view>
+  </view>
+
+
+
+
+</view>

@@ -10,7 +10,8 @@ Page({
       title: '加载中',
       mask: true
     })
-    util.Request("/api/getUserGoldLst", { 'goldType': option.goldType,"sportType":'足球' }, "get", 
+    console.log(option)
+    util.Request("/api/getUserGoldLst", { 'goldType': 'commonCoins', }, "get", 
       (res) => {
         this.setData({goldList:res.data.data.goldLst})
         wx.hideLoading()

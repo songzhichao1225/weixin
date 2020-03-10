@@ -6,29 +6,24 @@
     "pages/personalData/personalData",
     "pages/homePage/generalGold/generalGold",
     "pages/mineOpinion/mineOpinion",
-    "pages/assistant/assistant",
     "pages/golDranking/golDranking",
-    "pages/mineFriend/mineFriend",
-    "pages/mineGold/mineGold",
     "pages/mine/mine",
-    "pages/aboutMine/aboutMine",
-    "pages/aboutApp/aboutApp",
     "pages/mineWallet/mineWallet",
     "pages/goldDetails/goldDetails",
     "pages/gold/gold", 
     "pages/homePage/activities/activities",
-    "pages/personal/personal",
     "pages/homePage/goldMall/goldMall",
     "pages/searchPartner/searchPartner",
     "pages/homePage/mallDetails/mallDetails",
     "pages/nearby/nearby",
-    "pages/counterCoin/counterCoin",
     "pages/homePage/area/area",
     "pages/homePage/screen/screen",
     "pages/authorization/authorization",
     "pages/homePage/news/news",
     "pages/homePage/cityList/cityList",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/publishing/publishing",
+    "pages/sportsList/sportsList"
   ],
   "subpackages": [
     {
@@ -47,7 +42,22 @@
         "history/history",
         "TrueAndfalse/TrueAndfalse",
         "mineGolDranking/mineGolDranking",
-        "mineGolDrankingTwo/mineGolDrankingTwo"
+        "mineGolDrankingTwo/mineGolDrankingTwo",
+        "duiGolDranking/duiGolDranking",
+        "exchange/exchange",
+        "Technical/Technical",
+        "mineActivities/mineActivities",
+        "mineGold/mineGold",
+        "personal/personal",
+        "counterCoin/counterCoin",
+        "aboutApp/aboutApp",
+        "mineFriend/mineFriend",
+        "aboutMine/aboutMine",
+        "assistant/assistant",
+        "map/map",
+        "venueDetails/venueDetails",
+        "bookIn/bookIn",
+        "Invitational/Invitational"
       ]
     }
   ],
@@ -75,6 +85,12 @@
         "selectedIconPath": "assets/icon-footer-hb-sel@2x.png"
       },
       {
+        "pagePath": "pages/publishing/publishing",
+        "text": "发布活动",
+        "iconPath": "assets/btTtab.png",
+        "selectedIconPath": "assets/btTtab.png"
+      },
+      {
         "pagePath": "pages/golDranking/golDranking",
         "text": "排行榜",
         "iconPath": "assets/pai1.png",
@@ -88,6 +104,8 @@
       }
     ]
   },
+
+
   "sitemapLocation": "sitemap50.json",
   "permission": {
     "scope.userLocation": {

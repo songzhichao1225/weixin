@@ -1,0 +1,237 @@
+.mineActivities {
+  height: 100%;
+}
+
+.mineActivities .head {
+  background: #d85d27;
+  overflow: hidden;
+  height: 44px;
+}
+
+.mineActivities .head>view {
+  float: left;
+  color: #fff;
+  font-size: 0.88rem;
+  width: 25%;
+  text-align: center;
+  line-height: 42px;
+}
+
+.mineActivities .head>view:first-child {
+  margin-left: 25%;
+}
+
+.mineActivities  .content {
+  width: 100%;
+  position: relative;
+}
+
+.mineActivities  .content>image {
+  width: 100%;
+  height: 10.88rem;
+}
+
+.mineActivities  .content .bannerCon {
+  width: 90%;
+  margin: 0 auto;
+  height: 12.19rem;
+  background: #fff;
+  position: absolute;
+  left: 5%;
+  top: 0;
+  z-index: 9;
+  box-shadow: 0.13rem 0.19rem 0.69rem 0rem rgba(225, 225, 225, 0.5);
+  border-radius: 0.38rem;
+}
+
+.mineActivities  .content  .bannerCon .left {
+  width: 65%;
+  float: left;
+  overflow: hidden;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.mineActivities  .content  .bannerCon .left .one {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.mineActivities  .content  .bannerCon .left .one>view {
+  flex: 1;
+  height: 4rem;
+}
+
+.mineActivities  .content  .bannerCon .left .one>view>image {
+  width: 40%;
+  height: 40%;
+  margin-left: 30%;
+}
+
+.mineActivities  .content  .bannerCon .left .one>view>text {
+  font-size: 0.75rem;
+  display: block;
+  text-align: center;
+}
+
+.line {
+  width: 80%;
+  height: 0.19rem;
+  background: #e1e0e1;
+  margin: 0 auto 1rem;
+}
+
+.mineActivities  .content  .bannerCon  .rightRight {
+  float: left;
+  width: 2%;
+  height: 10rem;
+  margin-top: 1rem;
+}
+
+.mineActivities  .content  .bannerCon  .rightRight>image {
+  width: 100%;
+  height: 100%;
+}
+
+.mineActivities  .content  .bannerCon .right {
+  width: 22%;
+  float: right;
+  margin-top: 2rem;
+}
+
+.mineActivities  .content  .bannerCon .right .Two {
+  height: 4rem;
+}
+
+.mineActivities  .content  .bannerCon .right .Two>image {
+  width: 40%;
+  height: 40%;
+  margin-left: 30%;
+}
+
+.mineActivities  .content  .bannerCon .right .Two>text {
+  font-size: 0.75rem;
+  display: block;
+  text-align: center;
+}
+
+.listBoss {
+  border-top: 0.06rem solid #e9e9e9;
+  overflow: hidden;
+  position: relative;
+}
+
+.listBoss .content {
+  width: 95%;
+  margin: 1.12rem auto;
+  overflow: hidden;
+}
+
+.listBoss .content .leftLst>.image {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.63rem;
+}
+
+.listBoss .content .leftLst> .imageTwo {
+  width: 1.1rem;
+  height: 1.1rem;
+  float: left;
+}
+
+.listBoss .content .leftLst {
+  width: 4rem;
+  float: left;
+}
+
+.listBoss .content .leftLst .GradeTxt {
+  padding: 0 0.4rem;
+  background: linear-gradient(270deg, rgba(252, 164, 0, 1) 0%, rgba(254, 224, 115, 1) 100%);
+  border-radius: 0.13rem;
+  font-size: 0.5rem;
+  color: #fff;
+  display: block;
+  float: left;
+  margin-left: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.listBoss .content .rightLst {
+  margin-left: 1.06rem;
+  float: left;
+  font-size: 0.88rem;
+}
+
+.listBoss .content .rightLst>text {
+  display: block;
+  line-height: 1.25rem;
+}
+
+.listBoss .content .rightLst .lstHead {
+  font-weight: bold;
+  line-height: 1.25rem;
+}
+
+.listBoss .content .rightLst .lstHead image {
+  width: 0.8rem;
+  height: 0.8rem;
+  margin-top: 0.2rem;
+}
+
+.listBoss .content .rightLst .lstTwo {
+  line-height: 1.25rem;
+}
+
+.listBoss .content .btn {
+  width: 5rem;
+  height: 1.75rem;
+  background: rgba(216, 93, 39, 1);
+  border-radius: 0.38rem;
+  color: #fff;
+  font-size: 0.75rem;
+  text-align: center;
+  line-height: 1.75rem;
+  float: right;
+  margin-top: 0.5rem;
+}
+
+.listBoss  .status {
+  width: 94rpx;
+  height: 84rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 99;
+}
+
+.listBoss  .status image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.btnBos{
+  margin-top: 0.5rem;
+}
+.btnBos>view{
+  float: left;
+  margin-left: 0.5rem;
+}
+
+.complaints {
+  width: 2.44rem;
+  height: 1.25rem;
+  padding: 0 0.2rem;
+  border-radius: 0.13rem;
+  border: 0.06rem solid rgba(216, 93, 39, 1);
+}
+
+.isConfirmResult {
+  width: 5rem;
+  height: 1.75rem;
+  background: rgba(216, 93, 39, 1);
+  border-radius: 0.38rem;
+  color: #fff;
+  line-height: 1.75rem;
+  text-align: center;
+  font-size: 0.75rem;
+}

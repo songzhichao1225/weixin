@@ -1,76 +1,97 @@
-page{
+page {
   height: 100%;
 }
-.goldMall{
+
+.goldMall {
   height: 100%;
- 
 }
-.goldMall .navTop{
+
+.goldMall .navTop {
   height: 96rpx;
 }
-.goldMall .navTop scroll-view{
+
+.goldMall .navTop scroll-view {
   height: 96rpx;
   display: flex;
 }
-.goldMall .navTop view{
-  padding:0.2rem 0.5rem;
+
+.goldMall .navTop view {
+  padding: 0.2rem 0.5rem;
   float: left;
-   flex:1;
+  flex: 1;
 }
-.goldMall .navTor{
-   width: 90%;
-   margin: 0 auto;
+
+.goldMall .navTor {
+  width: 90%;
+  margin: 0 auto;
 }
-.goldMall .navTor .navSon{
+
+.goldMall .navTor .navSon {
   display: flex;
-  flex-wrap:wrap;
-  
+  flex-wrap: wrap;
 }
-.goldMall .navTor .navSon view{
+
+.goldMall .navTor .navSon view {
   width: 86rpx;
   flex: 1;
   font-size: 20rpx;
   text-align: center;
-  margin-top:24rpx;
+  margin-top: 24rpx;
   margin-left: 51.2rpx;
-   
-}
-.goldMall .navTor .navSon view image{
-   width: 86rpx;
-   height: 86rpx;
 }
 
-.goldMall .navTor .navSon view:first-child{
+.goldMall .navTor .navSon view image {
+  width: 86rpx;
+  height: 86rpx;
+}
+
+.goldMall .navTor .navSon view:first-child {
   margin-left: 0;
 }
-.goldMall .navTor .navSon view:nth-child(6){
+
+.goldMall .navTor .navSon view:nth-child(6) {
   margin-left: 0;
 }
-.goldMall .mallList{
+
+.goldMall .mallList {
   width: 90%;
   margin: 0 auto;
 }
-.goldMall .mallList .mallListSon{
+
+.goldMall .mallList .mallListSon {
   width: 48%;
-  height: 12.6rem;
+  height: 10.6rem;
   float: left;
   margin-left: 4%;
   margin-top: 0.8rem;
   position: relative;
 }
-.goldMall .mallList .mallListSon:nth-child(2n+1){
+
+.goldMall .mallList .mallListSon:nth-child(2n+1) {
   margin-left: 0;
 }
-.goldMall .mallList .mallListSon image{
+
+.goldMall .mallList .mallListSon image {
   width: 100%;
-  height: 10.6rem;
+  height: 8.6rem;
   border-radius: 3px;
 }
-.goldMall .mallList .mallListSon text{
+
+.goldMall .mallList .mallListSon text {
   font-size: 12px;
-  color: #333333;
+  color: #333;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   display: block;
+}
+
+.goldMall .getCommonCoins {
+  height: 3.06rem;
+  background: linear-gradient(270deg, rgba(253, 133, 73, 1) 0%, rgba(236, 69, 46, 1) 100%);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.88rem;
+  text-align: center;
+  line-height: 3.06rem
 }

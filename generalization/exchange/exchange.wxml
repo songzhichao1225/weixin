@@ -1,0 +1,47 @@
+<view class="exchange">
+  <view class="content">
+
+    <picker mode="region" bindchange="region">
+      <view class="picker" value="{{region}}">
+        {{region[0]}},{{region[1]}},{{region[2]}}
+      </view>
+    </picker>
+
+    <view class="picker">
+      <input class="weui-input" bindinput="address" placeholder="详细地址，如街道、楼牌号等" placeholder-style="font-size:0.88rem;" />
+    </view>
+
+    <view class="picker">
+      <input class="weui-input" bindinput="name"  placeholder="姓名" placeholder-style="font-size:0.88rem;" />
+    </view>
+
+    <view class="picker">
+      <input class="weui-input"  bindinput="phone" type="number" maxlength='11' placeholder="手机号码" placeholder-style="font-size:0.88rem;" />
+    </view>
+
+
+  </view>
+  <view class="line"></view>
+  <view class="footer">
+    <view class="picker">
+      <text class="left">购买数量</text>
+      <view class="right">
+        <text bindtap="numJ">-</text>
+        <text>{{num}}</text>
+        <text bindtap="numA">+</text>
+      </view>
+
+
+    </view>
+    <view class="picker">
+      <input class="weui-input" bindinput="comment" placeholder="备注" placeholder-style="font-size:0.88rem;" />
+    </view>
+  </view>
+  <view class="line"></view>
+  <view class="picker" style="border:none;width:95%;margin:0 auto;font-size:0.88rem;">
+  <text>商品合计:</text><text style="float:right;color:#D85D27;">对手币{{cost}}个</text>
+  </view>
+
+  <view class="btn" bindtap="exchange">兑换</view>
+
+</view>

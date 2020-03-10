@@ -11,6 +11,6 @@
   <text class="text">服务：不支持退换货    此商品包运费</text>
   <text class='txt' style='text-align:center;'>更多详情</text> 
    <image class="image" wx:for="{{imgUrl}}" mode='widthFix' wx:key='index' src='https://app.tiaozhanmeiyitian.com/{{item}}'></image>
-   <button class="btn">立即兑换</button> 
+   <button class="btn" bindtap="exchange" data-cost="{{cost}}">立即兑换</button> 
 </view> 
     

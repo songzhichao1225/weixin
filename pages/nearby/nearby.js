@@ -140,7 +140,7 @@
      })
      this.nearbyData()
    },
-
+  
    nearbyData: function(show) {
      let parameter = {}
      parameter.mylat = wx.getStorageSync("lat")
@@ -351,7 +351,7 @@
 
      if (wx.getStorageSync('token')) {
        wx.navigateTo({
-         url: '/pages/personal/personal?uuid=' + e.currentTarget.dataset.uid
+         url: '/generalization/personal/personal?uuid=' + e.currentTarget.dataset.uid
        })
      } else {
        wx.navigateTo({

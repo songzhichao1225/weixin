@@ -4,6 +4,7 @@ const util = require('../../../utils/util.js')
 Page({
   data: {
     goldMall:[],
+    coins:0,
     navSon:[
       { img: "/assets/jbsc_qb.png", name:'全部'},
       { img: "/assets/jbsc_lq.png", name: '篮球' },
@@ -17,7 +18,8 @@ Page({
       { img: "/assets/jbsc_qt.png", name: '其他' }],
     falg:false,
     category:'',
-    pages:1
+    pages:1,
+    banerLst:[]
   },
   onLoad: function () {
     wx.showLoading({
@@ -28,7 +30,29 @@ Page({
       category:'全部'
     })
     this.categoryFn()
- 
+    util.request("/api/getGoodsBanner", {}, "get",
+      (res) => {
+        this.setData({
+          banerLst:res.data.data
+        })
+        console.log(res.data.data)
+      },
+      () => { console.log("失败") },
+      () => {
+      }
+    )
+    util.Request("/api/getCommonCoins", {}, "get",
+      (res) => {
+       
+        console.log(res.data.data)
+        this.setData({
+          coins:res.data.data.coins
+        })
+      },
+      () => { console.log("失败") },
+      () => {
+      }
+    )
   }, 
   //点击切换类
   clickSe:function(e){
@@ -41,6 +65,8 @@ Page({
       pages:1
     })
     this.categoryFn()
+
+   
 
   },
   
@@ -91,4 +117,9 @@ Page({
    
 
   },
+  cost: function (e) {
+    wx.navigateTo({
+      url: '/generalization/exchange/exchange?cost=' + e.currentTarget.dataset.cost + '&uuid=' + e.currentTarget.dataset.uuid
+    })
+  }
 })

@@ -1,0 +1,197 @@
+.mineGold {
+  height: 100%;
+  padding-bottom: 80rpx;
+}
+
+.mineGold .commonGold {
+  margin-top: 24rpx;
+  overflow: hidden;
+}
+
+text {
+  display: block;
+  float: left;
+}
+
+.bossX {
+  width: 95%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.mineGold .commonGold .title {
+  font-size: 17px;
+  color: #333;
+  font-weight: bold;
+  display: block;
+  margin-left: 24rpx;
+  margin-top: 20rpx;
+  margin-bottom: 24rpx;
+}
+
+.mall:first-child {
+  margin-left: 6rpx;
+}
+
+.mall {
+  width: 226rpx;
+  height: 160rpx;
+  margin-left: 12rpx;
+  float: left;
+  position: relative;
+}
+
+.mall image {
+  width: 100%;
+  height: 100%;
+}
+
+.mall text {
+  display: block;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.mall .text {
+  top: 40rpx;
+  font-size: 17px;
+  color: #fff;
+}
+
+.mall .txt {
+  top: 80rpx;
+  font-size: 13px;
+  color: #fff;
+  margin-top: 10rpx;
+}
+
+.grade {
+  width: 94%;
+  margin: 0.75rem auto 0;
+}
+
+.grade .title {
+  font-size: 17px;
+  color: #333;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 24rpx;
+  margin-top: 20rpx;
+}
+
+.grade .badminton {
+  clear: both;
+  position: relative;
+}
+
+.grade .badminton text {
+  font-size: 14px;
+  color: #4a4a4a;
+}
+
+.grade .badminton .slider {
+  width: 4.2rem;
+  height: 0.3rem;
+  background: #ffe9c4;
+  border-radius: 6px;
+  float: left;
+  margin: 0.2rem 0 0 0.2rem;
+  position: relative;
+}
+
+.grade .badminton .slider text {
+  position: absolute;
+  top: -0.5rem;
+  font-size: 8px;
+  color: #8b572a;
+  left: 38%;
+}
+
+.grade .badminton .slider view {
+  width: 70%;
+  height: 0.3rem;
+  background: #f5a623;
+  border-radius: 6px;
+}
+
+.sliderL {
+  width: 45rpx;
+  height: 28rpx;
+  background-image: linear-gradient(90deg, #fca400 0%, #fee073 100%);
+  border-radius: 2px;
+  color: #fff;
+  font-size: 10px;
+  text-align: center;
+  line-height: 28rpx;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.rule {
+  width: 95%;
+  margin: 0 auto 0;
+}
+
+.rule .title {
+  font-size: 17px;
+  color: #333;
+  margin-bottom: 40rpx;
+  padding:0.75rem 0;
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  border-bottom: 0.06rem solid #E9E9E9;
+}
+
+.rule view .dian {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background: #9b9b9b;
+  float: left;
+  display: block;
+  margin-top: 18rpx;
+}
+.rule view {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 36rpx;
+}
+
+.rule view .characters {
+  font-size: 14px;
+  color: #333;
+  display: block;
+  float: left;
+  margin-left: 20rpx;
+}
+.mineGold .line{
+   height: 0.63rem;
+   background: #F3F3F3;
+   margin-top: 0.75rem;
+}
+.mineGold .titleHeade{
+  clear: both;
+  border:0.06rem solid #E9E9E9;
+  border-left:none;
+  border-right:none;
+  overflow: hidden;
+  padding: 0.56rem 0;
+}
+.mineGold .titleHeade>view{
+  float: left;
+  font-size: 0.88rem;
+  width: 33%;
+  text-align: center;
+}
+.mineGold .titleHeade>view:first-child{
+  text-align: left;
+}
+.boss{
+  margin-top: 0.88rem;
+}

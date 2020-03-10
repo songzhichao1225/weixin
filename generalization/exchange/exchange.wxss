@@ -1,0 +1,57 @@
+.exchange{
+  height: 100%;
+}
+.exchange .content{
+  width: 95%;
+  margin: 0 auto;
+  font-size: 0.88rem;
+}
+.exchange  .picker{
+  height: 2.63rem;
+  line-height: 2.63rem;
+  border-bottom: 0.06rem solid #E9E9E9;
+  
+}
+.exchange  .picker .weui-input{
+  height: 2.63rem;
+}
+.exchange .line{
+  height: 0.63rem;
+  background: #F3F3F3;
+}
+.exchange .footer{
+  width: 95%;
+  margin: 0 auto;
+}
+.exchange .left{
+  font-size: 0.88rem;
+  float: left;
+}
+.exchange .right{
+  float: right;
+  font-size: 0.75rem;
+}
+.exchange .right text:first-child{
+ padding:0 0.58rem;
+ background: #9B9B9B;
+ margin-right: 0.8rem;
+ font-size: 1rem
+
+}
+.exchange .right text:last-child{
+ padding:0 0.58rem;
+ background: #9B9B9B;
+ margin-left: 0.8rem;
+ font-size: 1rem
+}
+.exchange  .btn{
+  width: 70%;
+  height: 2.69rem;
+  background: #D85D27;
+  color: #fff;
+  font-size: 1.06rem;
+  text-align: center;
+  line-height: 2.69rem;
+  margin: 4rem auto 0;
+  border-radius: 2rem;
+}

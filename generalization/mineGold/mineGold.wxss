@@ -1,0 +1,99 @@
+page{
+  height:100%;
+}
+.rivalCoins{
+  height: 100%;
+}
+.rivalCoins .header{
+   width: 90%;
+   margin:  auto;
+   overflow: hidden;
+}
+.rivalCoins .header .pai{
+  width: 49%;
+  height: 5rem;
+  position: relative;
+  float: left;
+}
+.rivalCoins .header .pai image{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.rivalCoins .header .pai .text{
+  position: absolute;
+  top: 1.19rem;
+  width: 100%;
+  color: #fff;
+}
+.rivalCoins .header .pai .text text:first-child{
+  display: block;
+  font-size: 1rem;
+  text-align: center
+}
+.rivalCoins .header .pai .text text:last-child{
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+}
+.rivalCoins .line{
+  height: 0.63rem;
+  background:rgba(243,243,243,1);
+  margin-top: 0.75rem;
+}
+.rivalCoins .title{
+  width: 140px;
+   margin: 0.63rem auto 0;
+   position: relative;
+}
+.rivalCoins .title image{
+  display: block;
+  width: 140px;
+  height: 6px;
+  padding-top: 8px;
+}
+.rivalCoins .title .titleSon{
+  display: block;
+  position: absolute;
+  top: 0;
+  text-align: center;
+  font-size: 0.75rem;
+  width: 100%;
+}
+
+.rivalCoins .mallList{
+  width: 90%;
+  margin: 0 auto;
+}
+.rivalCoins .mallList .mallListSon{
+  width: 48%;
+  height: 10.6rem;
+  float: left;
+  margin-left: 4%;
+  margin-top: 0.8rem;
+  position: relative;
+}
+.rivalCoins .mallList .mallListSon:nth-child(2n+1){
+  margin-left: 0;
+}
+.rivalCoins .mallList .mallListSon image{
+  width: 100%;
+  height: 8.6rem;
+  border-radius: 3px;
+}
+.rivalCoins .mallList .mallListSon text{
+  font-size: 12px;
+  color: #333333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+.rivalCoins .More{
+  border-top: 0.06rem solid #E9E9E9;
+  font-size: 0.88rem;
+  text-align: center;
+  line-height: 2rem;
+  color: #9B9B9B;
+}

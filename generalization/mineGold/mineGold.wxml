@@ -1,0 +1,57 @@
+<view class="rivalCoins">
+  <view class="header">
+    <view class="pai" bindtap="golDranking">
+      <image src="/assets/paihang.png"></image>
+      <view class="text">
+        <text>排行榜</text>
+        <text>对手币排行榜</text>
+      </view>
+    </view>
+
+    <view class="pai" bindtap="generalGold" style="margin-left:2%;">
+      <image src="/assets/ying.png"></image>
+      <view class="text">
+        <text>赢对手币</text>
+        <text>完成任务赢对手币</text>
+      </view>
+    </view>
+
+    <view class="pai" bindtap="goldMall" style="margin-top:.38rem;">
+      <image src="/assets/jinbiShopping.png"></image>
+      <view class="text">
+        <text>兑换商城</text>
+        <text>对手币换好物</text>
+      </view>
+    </view>
+
+    <view class="pai" bindtap="goldDetail" style="margin-top:.38rem;margin-left:2%;">
+      <image src="/assets/zhuanyong.png"></image>
+      <view class="text">
+        <text>明细</text>
+        <text>对手币获得明细</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="line"></view>
+
+  <view class="title">
+    <image src="/assets/yuan.png"></image>
+    <text class="titleSon">推荐商品</text>
+  </view>
+
+
+  <scroll-view scroll-y style="height: 55%;margin-top:1rem;padding-bottom:1rem;" >
+    <view class="mallList">
+      <view class="mallListSon" wx:for="{{goldMall}}" bindtap='details' wx:key='index' data-name="{{item.name}}" data-cost="{{item.cost}}" data-uuid="{{item.UUID}}">
+        <image src="https://app.tiaozhanmeiyitian.com/{{item.imgpath}}"></image>
+        <text>{{item.name}}</text>
+        <text>{{item.cost}}对手币  <text style="float:right;margin-right:2rem;">{{item.price}}.0</text></text>
+        <text style='color:#D0021B;' catchtap="cost" data-uuid="{{item.UUID}}" data-cost="{{item.cost}}">立即兑换</text>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="More"  bindtap="goldMall">查看更多></view>
+
+
+</view>

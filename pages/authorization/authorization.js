@@ -70,7 +70,6 @@ Page({
     let {
       binding
     } = this.data
-    wx.setStorageSync('imgURL', e.detail.userInfo.avatarUrl)
     let sex = 0
     if (e.detail.userInfo.gender == 1) {
       sex = 0
@@ -86,6 +85,7 @@ Page({
         wx.setStorageSync('token', res.data.data.token); //存储token
         wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
         wx.setStorageSync('sex', res.data.data.sex); //存储用户性别
+        wx.setStorageSync('imgURL', res.data.data.imgURL);//存储用户头像
         setTimeout(function() {
           wx.switchTab({
             url: '/pages/homePage/content/content'

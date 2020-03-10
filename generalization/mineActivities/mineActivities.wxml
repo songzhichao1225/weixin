@@ -1,0 +1,123 @@
+<view class="mineActivities">
+  <view class="head">
+    <view>我发布的</view>
+    <view>我报名的</view>
+  </view>
+  <view class="content">
+    <image src="/assets/WdBgBanner@2x.png"></image>
+    <view class="bannerCon">
+      <view class="left">
+        <view class="one">
+          <view class="the">
+            <image src="/assets/jooksd.png"></image>
+            <text>匹配中</text>
+          </view>
+          <view class="the">
+            <image src="/assets/jooksd.png"></image>
+            <text>待出发</text>
+          </view>
+          <view class="the">
+            <image src="/assets/koog.png"></image>
+            <text>活动中</text>
+          </view>
+        </view>
+
+        <view class="line"></view>
+
+        <view class="one">
+          <view class="the">
+            <image src="/assets/lookhi.png"></image>
+            <text>待确认结束/待填写结果</text>
+          </view>
+          <view class="the">
+            <image src="/assets/akohj.png"></image>
+            <text>待评价</text>
+          </view>
+          <view class="the">
+            <image src="/assets/jookg.png"></image>
+            <text>已完成</text>
+          </view>
+        </view>
+      </view>
+      <view class="rightRight">
+        <image src="/assets/line_quanbu.png"></image>
+      </view>
+      <view class="right">
+        <view class="Two">
+          <image src="/assets/lppljh.png"></image>
+          <text>全部</text>
+        </view>
+        <view class="Two" style="margin-top:1.2rem;">
+          <image src="/assets/loogjhf.png"></image>
+          <text>投诉中</text>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <scroll-view scroll-y style="height:50%;margin-top:2rem;">
+    <view class="listBoss" wx:for="{{listSon}}" wx:key='index'>
+      <view class="content">
+        <view class="leftLst">
+          <image class="image" src="https://app.tiaozhanmeiyitian.com/{{item.imgURL}}"></image>
+          <image wx:if="{{item.sportName=='网球'}}" class="imageTwo" src='/assets/icon_dj_wq.png'></image>
+          <image wx:if="{{item.sportName=='高尔夫'}}" class="imageTwo" src='/assets/icon_dj_gef.png'></image>
+          <image wx:if="{{item.sportName=='篮球'}}" class="imageTwo" src='/assets/icon_dj_lq.png'></image>
+          <image wx:if="{{item.sportName=='乒乓球'}}" class="imageTwo" src='/assets/icon_dj_ppq.png'></image>
+          <image wx:if="{{item.sportName=='排球'}}" class="imageTwo" src='/assets/icon_dj_pq.png'></image>
+          <image wx:if="{{item.sportName=='台球'}}" class="imageTwo" src='/assets/icon_dj_tq.png'></image>
+          <image wx:if="{{item.sportName=='羽毛球'}}" class="imageTwo" src='/assets/icon_dj_ymq.png'></image>
+          <image wx:if="{{item.sportName=='足球'}}" class="imageTwo" src='/assets/icon_dj_zq.png'></image>
+          <text class="GradeTxt">{{item.userLevel}}</text>
+        </view>
+        <view class="rightLst">
+          <view class="lstHead">{{item.nickname}}
+            <image src="/assets/sex0@2x.png"></image>
+          </view>
+          <text class="lstTwo"> <text style="color:#D85D27;font-weight:500;">{{item.SportMode}}模式</text>
+          <text style="padding-left:1rem;">{{item.sportName}}</text>
+          <text style="padding-left:1rem;">{{item.sportTypeName}}</text></text>
+          <text><text>{{item.startDays}}</text>
+          <text style="padding-left:0.5rem;">{{item.week}}</text>
+          <text style="padding-left:0.5rem;">{{item.startTimes}}-{{item.endTimes}}</text></text>
+          <text>{{item.sitesName}}</text>
+          <text>场地费:<text style="padding-left:0.5rem;">{{item.PaySiteMoneyType==1?'AA':'输者买单'}}</text>
+          <text style="padding-left:1rem;">{{item.SportMode=='1'?'打赏费':'陪练费'||item.SportMode=='2'?'打赏费:':'陪练费'}}</text>
+          <text style="padding-left:0.5rem;" wx:if="{{item.Tips!==0}}">{{item.Tips}}.0元</text>
+          <text style="padding-left:0.5rem;" wx:if="{{item.MoneyPerhour!==0}}">{{item.MoneyPerhour}}.0元</text>
+          </text>
+
+          <view class="btnBos">
+            <view class="isConfirmResult" wx:if="{{item.Complaint==2}}">投诉中</view>
+            <view class="isConfirmResult" wx:if="{{item.isConfirmResult==0}}">待填写比赛结果</view>
+            <view class="isConfirmResult" wx:if="{{item.isSignIn==0}}">场馆签到</view>
+          </view>
+        </view>
+      </view>
+      <view class="status">
+        <image wx:if="{{item.PublicStatus==2}}" src='/assets/dai.png'></image>
+        <image wx:if="{{item.PublicStatus==6}}" src='/assets/pinjia.png'></image>
+        <image wx:if="{{item.PublicStatus==3}}" src='/assets/huodong.png'></image>
+        <image wx:if="{{item.PublicStatus==1}}" src='/assets/pipei.png'></image>
+        <image wx:if="{{item.PublicStatus==7}}" src='/assets/tuichu.png'></image>
+        <image wx:if="{{item.PublicStatus==5}}" src='/assets/wancheng.png'></image>
+      </view>
+
+    </view>
+
+
+
+
+  </scroll-view>
+
+
+
+
+
+
+
+
+
+
+</view>

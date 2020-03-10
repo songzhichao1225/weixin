@@ -1,0 +1,202 @@
+
+
+
+<view class="goldDranking" wx:if="{{flag===1}}">
+  
+  <view class="header" style='background:#fff;padding-bottom:6rpx;'>
+    <scroll-view scroll-x style='white-space: nowrap; display: flex;padding-right:40rpx;'>
+      <view class="Son" bindtap='selectTwo' data-index="{{index}}" data-name="{{item.name}}" data-nameE="{{item.nameE}}" data-title="{{item.title}}" data-num="{{item.num}}" style="{{item.color==true?'color:#D85D27;border-bottom:4rpx solid #D85D27;':'color:#9b9b9b;'}}" wx:for="{{rankingType}}" wx:key="index">
+        <text>{{item.name}}</text>  
+      </view>
+    </scroll-view>
+  </view>
+  <view style="height:100%">
+  <scroll-view scroll-y style="height:100%;">
+  <view class="ccc"></view>
+  <view class="title">
+    <image src='/assets/PicTopPhb@2x.png'></image>
+
+    <text>{{title}}排行榜TOP10</text>
+  </view>
+
+
+  <view class="topThree">
+    <view class='topOne' wx:if="{{drankingList.topThree.length>=1}}" data-uuid="{{drankingList.topThree[0].PlayerUUID}}" bindtap="details">
+      <image class="img" src='/assets/Pic1Hg.png'></image>
+      <image class="imgTwo" src='/assets/Pic1Cd.png'></image>
+      <image class="imgThree" src='https://app.tiaozhanmeiyitian.com/{{drankingList.topThree[0].imgURL}}'></image>
+      <view class="text">
+        <text class="txt">{{drankingList.topThree[0].nickname}}</text>
+        <text class="type">{{name}}</text>
+        <text class="grade">{{drankingList.topThree[0].level}}</text>
+      </view>
+    </view>
+
+    <view class='topOne topTwo' wx:if="{{drankingList.topThree.length>=2}}" data-uuid="{{drankingList.topThree[1].PlayerUUID}}" bindtap="details">
+      <image class="img" src='/assets/Pic2Hg.png'></image>
+      <image class="imgTwot" src='/assets/Pic2Cd.png'></image>
+      <image class="imgThree" src='https://app.tiaozhanmeiyitian.com/{{drankingList.topThree[1].imgURL}}'></image>
+      <view class="text">
+        <text class="txt">{{drankingList.topThree[1].nickname}}</text>
+        <text class="type">{{name}}</text>
+        <text class="grade">{{drankingList.topThree[1].level}}</text>
+      </view>
+    </view>
+    <view class='topOne topthre' wx:if="{{drankingList.topThree.length>=3}}" data-uuid="{{drankingList.topThree[2].PlayerUUID}}" bindtap="details">
+      <image class="img" src='/assets/Pic3Hg.png'></image>
+      <image class="imgTwot" src='/assets/Pic3Cd.png'></image>
+      <image class="imgThree" src='https://app.tiaozhanmeiyitian.com/{{drankingList.topThree[2].imgURL}}'></image>
+      <view class="text">
+        <text class="txt">{{drankingList.topThree[2].nickname}}</text>
+        <text class="type">{{name}}</text>
+        <text class="grade">{{drankingList.topThree[2].level}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="DrankingList">
+    <view class="listSon" wx:for="{{drankingList.otherRankInfo}}" wx:key="index" data-uuid="{{item.PlayerUUID}}" bindtap="details">
+      <text class="number">{{item.rank}}</text>
+      <image class="avatar" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+      <text class="name">{{item.nickname}}</text>
+      <text class="type">{{name}}</text>
+      <text class="gradeTwo">{{item.level}}</text>
+      <text class="address">{{item.total}}</text>
+    </view>
+  </view>
+
+
+ <view class="DrankingList" style="margin-top:0;padding-bottom:6rem;" wx:if="{{drankingList.userRankInfo.rank>10}}">
+    <view class="listSon" data-uuid="{{drankingList.userRankInfo.PlayerUUID}}">
+      <view class="number" style="width:1.88rem;position:relative;">
+         <image style="width:1.88rem;height:2.75rem;position:absolute;" src="../../assets/icon_phb_xz@2x.png"></image>
+      
+      <text style="position:absolute;top:0.3rem,display:block;line-height:2rem;width:1.88rem;text-align:center;color:#D0021B;">{{drankingList.userRankInfo.rank}}</text>
+      </view>
+      <image class="avatar" style="margin-left:2rem" src='https://app.tiaozhanmeiyitian.com/{{drankingList.userRankInfo.imgURL}}'></image>
+      <text class="name" style="color:#D85D27;">{{drankingList.userRankInfo.nickname}}</text>
+      <text class="type">{{name}}</text>
+      <text class="gradeTwo">{{drankingList.userRankInfo.level}}</text>
+      <text class="address">{{drankingList.userRankInfo.total}}</text>
+    </view>
+  </view>
+
+  </scroll-view>
+</view>
+
+
+ 
+
+
+
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<view class="goldDranking" wx:if="{{flag===2}}">
+  <view class="header" style='background:#D85D27;padding:0rpx 0 6rpx 0;'>
+    <scroll-view scroll-x style='white-space: nowrap; display: flex;'>
+      <view class="headerSon" bindtap='select' data-name="{{item.name}}" data-num="{{item.num}}" style="{{item.color==true?'border-bottom:4rpx solid #FFF;color:#fff;':'color:#ececec;'}}" wx:for="{{headerList}}" wx:key="index">
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view> 
+  </view>
+
+  <view class="header" style='background:#fff;padding-bottom:6rpx;'>
+    <scroll-view scroll-x style='white-space: nowrap; display: flex;padding-right:40rpx;'>
+      <view class="Son" bindtap='selectTwo' data-index="{{index}}" data-name="{{item.name}}" data-nameE="{{item.nameE}}" data-title="{{item.title}}" data-num="{{item.num}}" style="{{item.color==true?'color:#D85D27;border-bottom:4rpx solid #D85D27;':'color:#9b9b9b;'}}" wx:for="{{rankingType}}" wx:key="index">
+        <text>{{item.name}}</text>  
+      </view>
+    </scroll-view>
+  </view>
+  <view style="height:100%">
+  <scroll-view scroll-y style="height:100%;">
+  <view class="ccc"></view>
+  <view class="title">
+    <image src='/assets/PicTopPhb@2x.png'></image>
+
+    <text>{{title}}排行榜TOP10</text>
+  </view>
+
+
+  <view class="topThree">
+    <view class='topOne' wx:if="{{drankingList.topThree.length>=1}}" data-uuid="{{drankingList.topThree[0].PlayerUUID}}" bindtap="details">
+      <image class="img" src='/assets/Pic1Hg.png'></image>
+      <image class="imgTwo" src='/assets/Pic1Cd.png'></image>
+      <image class="imgThree" src='https://app.tiaozhanmeiyitian.com/{{drankingList.topThree[0].imgURL}}'></image>
+      <view class="text">
+        <text class="txt">{{drankingList.topThree[0].nickname}}</text>
+        <text class="type">{{name}}</text>
+        <text class="grade">{{drankingList.topThree[0].level}}</text>
+      </view>
+    </view>
+
+    <view class='topOne topTwo' wx:if="{{drankingList.topThree.length>=2}}" data-uuid="{{drankingList.topThree[1].PlayerUUID}}" bindtap="details">
+      <image class="img" src='/assets/Pic2Hg.png'></image>
+      <image class="imgTwot" src='/assets/Pic2Cd.png'></image>
+      <image class="imgThree" src='https://app.tiaozhanmeiyitian.com/{{drankingList.topThree[1].imgURL}}'></image>
+      <view class="text">
+        <text class="txt">{{drankingList.topThree[1].nickname}}</text>
+        <text class="type">{{name}}</text>
+        <text class="grade">{{drankingList.topThree[1].level}}</text>
+      </view>
+    </view>
+    <view class='topOne topthre' wx:if="{{drankingList.topThree.length>=3}}" data-uuid="{{drankingList.topThree[2].PlayerUUID}}" bindtap="details">
+      <image class="img" src='/assets/Pic3Hg.png'></image>
+      <image class="imgTwot" src='/assets/Pic3Cd.png'></image>
+      <image class="imgThree" src='https://app.tiaozhanmeiyitian.com/{{drankingList.topThree[2].imgURL}}'></image>
+      <view class="text">
+        <text class="txt">{{drankingList.topThree[2].nickname}}</text>
+        <text class="type">{{name}}</text>
+        <text class="grade">{{drankingList.topThree[2].level}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="DrankingList">
+    <view class="listSon" wx:for="{{drankingList.otherRankInfo}}" wx:key="index" data-uuid="{{item.PlayerUUID}}" bindtap="details">
+      <text class="number">{{item.rank}}</text>
+      <image class="avatar" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+      <text class="name">{{item.nickname}}</text>
+      <text class="type">{{name}}</text>
+      <text class="gradeTwo">{{item.level}}</text>
+      <text class="address">{{item.total}}</text>
+    </view>
+  </view>
+
+
+ <view class="DrankingList" style="margin-top:0;padding-bottom:6rem;" wx:if="{{drankingList.userRankInfo.rank>10}}">
+    <view class="listSon" data-uuid="{{drankingList.userRankInfo.PlayerUUID}}">
+      <view class="number" style="width:1.88rem;position:relative;">
+         <image style="width:1.88rem;height:2.75rem;position:absolute;" src="../../assets/icon_phb_xz@2x.png"></image>
+      
+      <text style="position:absolute;top:0.3rem,display:block;line-height:2rem;width:1.88rem;text-align:center;color:#D0021B;">{{drankingList.userRankInfo.rank}}</text>
+      </view>
+      <image class="avatar" style="margin-left:2rem" src='https://app.tiaozhanmeiyitian.com/{{drankingList.userRankInfo.imgURL}}'></image>
+      <text class="name" style="color:#D85D27;">{{drankingList.userRankInfo.nickname}}</text>
+      <text class="type">{{name}}</text>
+      <text class="gradeTwo">{{drankingList.userRankInfo.level}}</text>
+      <text class="address">{{drankingList.userRankInfo.total}}</text>
+    </view>
+  </view>
+
+  </scroll-view>
+</view>
+
+
+ 
+
+
+
+</view>

@@ -27,7 +27,7 @@
     </view> -->
     <view bindtap="generaGold">
       <image src='/assets/HomeIconJinbi@2x.png'></image>
-      <text>赢通用金币</text>
+      <text>赢对手币</text>
     </view>
     <view bindtap='goldMall'>
       <image src='/assets/HomeIconShangcheng@2x.png'></image>
@@ -49,15 +49,15 @@
 
   <view class="projectNav">
     <view style='margin:0;' catchtap='itemSelection'>
-      <text>运动项目</text>
+      <text style="{{sportName!=='运动项目'?'color:#D85D27;':''}}">{{sportName}}</text>
       <image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
     </view>
     <view catchtap='sortHid'>
-      <text>智能排序</text>
+      <text style="{{sprtSeName!=='推荐排序'?'color:#D85D27;':''}}">{{sprtSeName}}</text>
       <image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
     </view>
     <view catchtap='statusHid'>
-      <text>状态</text>
+      <text style="{{rangeName!=='距离范围'?'color:#D85D27;':''}}">{{rangeName}}</text>
       <image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
     </view>
     <view bindtap='screen'>
@@ -120,25 +120,25 @@
 
     <view class="mask" wx:if="{{hidden}}">
       <view class="activity" wx:if="{{hiddenOne}}">
-        <view class="activitySon" catchtap='secondary' wx:for="{{activity}}" wx:key='index' data-num="{{item.id}}">
-          <text>{{item.name}}</text>
+        <view class="activitySon" catchtap='secondary'  wx:for="{{activity}}" wx:key='index' data-name="{{item.name}}" data-num="{{item.id}}">
+          <text style="{{numId===item.id?'color:#D85D27;':''}}">{{item.name}}</text>
           <image src='/assets/HomeIconJtRightNol@2x.png'></image>
         </view>
       </view>
       <view class="activityTwo" wx:if="{{hiddenTwo}}">
-        <view class="activityTwoSon" wx:for="{{activitySon}}" bindtap='activityTwoSon' wx:key='index' data-num="{{item.id}}">
+        <view class="activityTwoSon" wx:for="{{activitySon}}" bindtap='activityTwoSon' wx:key='index' data-name="{{item.name}}" data-num="{{item.id}}">
           <text>{{item.name}}</text>
         </view>
       </view>
 
       <view class="sort" wx:if="{{sortHid}}">
-        <view class="sortSon" wx:for="{{sort}}" bindtap='sortSe' data-num="{{item.num}}" wx:key='index'>
+        <view class="sortSon" wx:for="{{sort}}" bindtap='sortSe' data-name="{{item.name}}" data-num="{{item.num}}" wx:key='index'>
           <text>{{item.name}}</text>
         </view>
       </view>
 
       <view class="sort" style='left:50%;' wx:if="{{statusHid}}">
-        <view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key='index' data-num="{{item.num}}">
+        <view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key='index' data-name="{{item.name}}" data-num="{{item.num}}">
           <text>{{item.name}}</text>
         </view>
       </view>

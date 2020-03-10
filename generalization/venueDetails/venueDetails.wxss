@@ -1,0 +1,195 @@
+.venueDetails {
+  height: 100%;
+}
+
+.venueDetails .line {
+  height: 0.63rem;
+  background: #F5F4F5;
+}
+
+.box {
+  width: 95%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.titleName {
+  margin-top: 0.5rem;
+  border-bottom: 0.06rem solid #E9E9E9;
+  overflow: hidden;
+  padding-bottom: 0.75rem;
+}
+
+.titleName .name {
+  font-size: 1rem;
+}
+
+.xing {
+  margin-top: 0.4rem;
+}
+
+.xing>image {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.sheshi {
+  margin-top: 0.38rem;
+}
+
+.sheshi>text {
+  font-size: 0.88rem;
+  color: #9B9B9B;
+  display: block;
+  float: left;
+  margin-left: 0.5rem;
+}
+
+.sheshi .btn {
+  width: 3.13rem;
+  height: 1.38rem;
+  float: right;
+  background: rgba(216, 93, 39, 1);
+  border-radius: 0.19rem;
+  font-size: 0.75rem;
+  color: #fff;
+  text-align: center;
+  line-height: 1.38rem;
+}
+
+.address {
+  height: 2.81rem;
+  border-bottom: 0.06rem solid #E9E9E9;
+}
+
+.address .image {
+  width: 1.06rem;
+  height: 1.56rem;
+  padding-left: 2.5%;
+  margin-top: 0.6rem;
+  float: left;
+}
+
+.address>text {
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  float: left;
+  padding-left: 0.5rem;
+  width: 80%;
+  overflow: hidden;
+}
+
+.address .imageTwo {
+  width: 1.06rem;
+  height: 1.06rem;
+  float: left;
+  margin-top: 0.85rem;
+}
+
+.species {
+  padding-top: 0.81rem;
+  padding-bottom: 0.81rem;
+}
+
+.species .sportS {
+  overflow: hidden;
+}
+
+.species .sportS>text:first-child {
+  font-size: 0.88rem;
+  float: left;
+  line-height: 1.5rem;
+}
+
+.species .sportS .Son {
+  width: 80%;
+  float: left;
+
+}
+
+.species .sportS .Son text {
+  font-size: 0.75rem;
+  color: #9B9B9B;
+  padding-left: 0.4rem;
+}
+
+.species .fuwu {
+  font-size: 0.88rem;
+}
+
+.species .fuwu image {
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.5rem;
+}
+
+.coments {
+  height: 2.88rem;
+  border-bottom: 0.06rem solid #E9E9E9;
+}
+
+.coments text {
+  font-size: 1rem;
+  line-height: 2.88rem;
+  padding-left: 2.5%;
+  float: left;
+}
+
+.coments image {
+  float: right;
+  margin-right: 2.5%;
+  width: 0.44rem;
+  height: 0.69rem;
+  margin-top: 1.15rem;
+}
+
+.comentSon .boss {
+  width: 95%;
+  margin: 0.75rem auto;
+  overflow: hidden;
+  border-bottom: 0.06rem solid #E9E9E9;
+  padding-bottom: 0.75rem;
+}
+
+.comentSon .avatar {
+  width: 3.44rem;
+  height: 3.44rem;
+  float: left;
+}
+
+.comentSon .avatar image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.comentSon .content {
+  float: left;
+  margin-left: 0.5rem;
+  width: 79%;
+}
+
+.comentSon .content .head {
+  overflow: hidden;
+}
+
+.comentSon .content .head>text:first-child {
+  font-size: 1rem;
+  float: left;
+  display: block;
+}
+
+.comentSon .content .head>text:last-child {
+  font-size: 0.75rem;
+  float: right;
+  color: #9B9B9B;
+  display: block;
+}
+
+.comentSon .content .txt {
+  font-size: 0.75rem;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  line-height: 1rem;
+}

@@ -1,0 +1,20 @@
+.what{
+  border-top: 0.06rem solid #E9E9E9;
+  padding-bottom: 0.63rem;
+}
+.what .header{
+  height: 2.88rem;
+  line-height: 2.88rem;
+  border-bottom: 0.06rem solid #E9E9E9;
+  font-size: 1rem;
+  padding-left: 0.63rem;
+ 
+}
+.what text{
+  display: block;
+  width: 90%;
+  margin: 0.63rem auto 0;
+  font-size: 0.88rem;
+  color: #9B9B9B;
+  line-height: 1.5rem;
+}

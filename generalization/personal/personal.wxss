@@ -1,0 +1,295 @@
+page {
+  height: 100%;
+  padding-bottom: 3rem;
+}
+
+.personal {
+  overflow: hidden;
+}
+
+text {
+  display: block;
+  float: left;
+}
+
+.personal .tap {
+  width: 100%;
+  background-image: linear-gradient(0deg, #e77c26 0%, #d85d27 100%);
+  color: #fff;
+  padding-bottom: 1rem;
+  overflow: hidden;
+}
+
+.personal .tap .headContent {
+  width: 90%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.personal .tap .headContent .right {
+  float: right;
+  margin-top: 0.8rem;
+}
+
+.personal .tap .image {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  margin: 0.8rem auto 0;
+  display: block;
+  float: left;
+}
+
+.personal .tap .name {
+  font-size: 18px;
+  overflow: hidden;
+  display: flex;
+}
+
+.personal .tap .name .sex {
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-top: 0.2rem;
+  margin-left: 0.2rem;
+  display: block;
+  float: left;
+}
+
+.personal .tap .name .option {
+  width: 1.06rem;
+  height: 1.06rem;
+  display: block;
+  float: left;
+  margin-left: 0.2rem;
+}
+
+.personal .tap .name .mode {
+  padding: 0 0.1rem;
+  background: linear-gradient(270deg, rgba(252, 164, 0, 1) 0%, rgba(254, 224, 115, 1) 100%);
+  border-radius: 0.13rem;
+  font-size: 10px;
+  float: left;
+  margin-left: 0.3rem;
+  margin-top: 0.2rem;
+}
+
+.personal .tap .headContent .right .duishoubi {
+  font-size: 0.75rem;
+  margin-top: 0.31rem;
+  overflow: hidden;
+}
+
+.personal .tap .signature {
+  font-size: 12px;
+  text-align: center;
+  width: 100%;
+  margin-top: 0.6rem;
+}
+
+.personal .tap .button {
+  width: 40%;
+  margin: 0 auto;
+  overflow: hidden;
+  padding-top: 0.7rem;
+}
+
+.personal .tap .button view {
+  width: 3.1rem;
+  height: 1.5rem;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.5rem;
+  float: left;
+}
+
+.people {
+  width: 90%;
+  margin: 1.5rem auto 0;
+}
+
+.people .title {
+  font-size: 16px;
+  color: #4a4a4a;
+  display: block;
+  float: left;
+  margin-bottom: 1.5rem;
+}
+
+.right .praise .mark {
+  font-size: 0.75rem;
+  float: right;
+  margin-left: 0.44rem;
+}
+
+.right .praise {
+  float: left;
+  overflow: hidden;
+  margin-top: 0.31rem;
+}
+
+.right .praise text {
+  display: block;
+  float: left;
+  font-size: 0.75rem;
+}
+
+.right .praise image {
+  display: block;
+  width: 0.85rem;
+  height: 0.85rem;
+  float: left;
+  margin-left: 0.13rem;
+}
+
+.people .personalDetails {
+  clear: both;
+  overflow: hidden;
+  margin-top: 1.36rem;
+  border-top: 1px solid #ededed;
+}
+
+.people .personalDetails .txt {
+  width: 50%;
+  float: left;
+  font-size: 14px;
+  color: #9b9b9b;
+  margin-top: 0.5rem;
+}
+
+.people .personalDetails .text {
+  width: 100%;
+  float: left;
+  font-size: 14px;
+  color: #9b9b9b;
+  margin-top: 0.5rem;
+}
+
+.impression {
+  width: 90%;
+  margin: 1.5rem auto 0;
+}
+
+.impression .title {
+  font-size: 16px;
+  color: #4a4a4a;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.headContent .List {
+  overflow: hidden;
+  clear: both;
+  margin-top: 6.5rem;
+}
+
+.headContent .List text {
+  display: block;
+  width: 48%;
+  height: 1.31rem;
+  border-radius: 0.13rem;
+  border: 0.06rem solid rgba(255, 255, 255, 1);
+  font-size: 0.75rem;
+  text-align: center;
+  line-height: 1.31rem;
+  margin-top: 0.2rem;
+}
+.headContent .List text:nth-child(2n){
+  margin-left: 2%;
+}
+
+.grade {
+  width: 90%;
+  margin: 0.63rem auto 0;
+}
+
+.grade .title {
+  font-size: 16px;
+  color: #4a4a4a;
+  margin-bottom: 0.63rem;
+}
+
+.grade .badminton {
+  clear: both;
+  position: relative;
+}
+
+.grade .badminton text {
+  font-size: 14px;
+  color: #4a4a4a;
+}
+
+.grade .badminton .slider {
+  width: 4.2rem;
+  height: 0.3rem;
+  background: #ffe9c4;
+  border-radius: 6px;
+  float: left;
+  margin: 0.2rem 0 0 0.2rem;
+  position: relative;
+}
+
+.grade .badminton .slider text {
+  position: absolute;
+  top: -0.5rem;
+  font-size: 8px;
+  color: #8b572a;
+  left: 38%;
+}
+
+.grade .badminton .slider view {
+  width: 70%;
+  height: 0.3rem;
+  background: #f5a623;
+  border-radius: 6px;
+}
+
+.sexColor {
+  color: #333;
+  text-align: center;
+  width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sexColorT {
+  color: #333;
+  width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 2%;
+  text-align: left;
+}
+
+.sliderL {
+  width: 1.6rem;
+  height: 0.7rem;
+  background-image: linear-gradient(90deg, #FCA400 0%, #FEE073 100%);
+  border-radius: 2px;
+  color: #fff;
+  font-size: 10px;
+  text-align: center;
+}
+
+.boss {
+  border-top: 1px solid #EDEDED;
+  border-bottom: 1px solid #EDEDED;
+  overflow: hidden;
+  clear: both;
+  padding: 0.8rem 0;
+}
+
+.btn {
+  width: 80%;
+  height: 2.5rem;
+  background: #d85d27;
+  border-radius: 20px;
+  font-size: 18px;
+  color: #fff;
+  line-height: 2.5rem;
+  text-align: center;
+  margin: 0.8rem auto;
+}

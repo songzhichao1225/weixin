@@ -1,0 +1,79 @@
+<view class="venueDetails">
+	<swiper style="width:100%;" autoplay="{{true}}" interval="3000">
+		<swiper-item wx:for="{{venue.filesURL}}" wx:key="index">
+			<image style="display:block;width:100%;height:100%;" src="https://app.tiaozhanmeiyitian.com/{{item}}"></image>
+		</swiper-item>
+	</swiper>
+
+	<view class="line"></view>
+
+	<view class="titleName">
+		<view class="box">
+			<text class="name">{{venue.name}}</text>
+			<view class="xing">
+				<text style="font-size:0.88rem;padding-right:0.5rem;">总体</text>
+				<image src="/assets/{{venue.scores>1?'StarSel2@2x.png':'StarSelYb2@2x.png'||venue.scores==0?'StarNor2@2x.png':''}}"></image>
+				<image src="/assets/{{venue.scores>=2?'StarSel2@2x.png':'StarSelYb2@2x.png'||venue.scores==1?'StarNor2@2x.png':''}}"></image>
+				<image src="/assets/{{venue.scores>=3?'StarSel2@2x.png':'StarSelYb2@2x.png'||venue.scores==2?'StarNor2@2x.png':''}}"></image>
+				<image src="/assets/{{venue.scores>=4?'StarSel2@2x.png':'StarSelYb2@2x.png'||venue.scores==3?'StarNor2@2x.png':''}}"></image>
+				<image src="/assets/{{venue.scores==5?'StarSel2@2x.png':'StarSelYb2@2x.png'||venue.scores==4?'StarNor2@2x.png':''}}"></image>
+				<text style="color:#9B9B9B;font-size:0.75rem;padding-left:0.3rem;">{{venue.scores}}分</text>
+			</view>
+			<view class="sheshi"><text style="margin-left:0;">设施:{{venue.equscore}}</text><text>服务:{{venue.envscore}}</text><text>价格:{{venue.xjbScore}}</text>
+				<view class="btn">预定</view>
+			</view>
+		</view>
+	</view>
+	<view class="address">
+		<image class="image" src="/assets/position.png"></image>
+		<text>{{venue.address}}</text>
+		<image class="imageTwo" src="/assets/icon_tel@2x.png"></image>
+	</view>
+
+	<view class="species">
+		<view class="box">
+			<view class="sportS"><text>运动项目:</text>
+				<view class="Son"><text wx:for="{{venue.supportSportID}}" wx:key="index">{{item.name}}</text></view>
+			</view>
+			<view class="fuwu" wx:if="{{venue.siteInfoext.wifi===1||venue.siteInfoext.parking===1||venue.siteInfoext.shower===1}}"><text>服务设施:</text>
+				<image wx:if="{{venue.siteInfoext.wifi===1}}" style="width:1.06rem;height:0.8rem;" src="/assets/icon_wifi.png"></image>
+				<image wx:if="{{venue.siteInfoext.parking===1}}" src="/assets/icon_tcc.png"></image>
+				<image wx:if="{{venue.siteInfoext.shower===1}}" style="width:0.81rem;height:1rem;" src="/assets/icon_ly@2x.png"></image>
+			</view>
+		</view>
+	</view>
+	<view class="line"></view>
+	<view class="coments">
+		<text>网友点评（{{venue.commentsCount}}）</text>
+		<image src="/assets/right.png"></image>
+	</view>
+	<view class="comentSon">
+		<view class="boss" wx:for="{{venue.comments}}" wx:key="index">
+			<view class="avatar">
+				<image src="https://app.tiaozhanmeiyitian.com/{{item.imgURL}}"></image>
+			</view>
+			<view class="content">
+				<view class="head"><text>{{item.nickname}}</text><text>{{item.commentDate}}</text></view>
+				<view class="xing" style="margin-top:0;">
+					<text style="font-size:0.88rem;padding-right:0.5rem;">打分</text>
+					<image src="/assets/{{item.score>1.0?'StarSel2@2x.png':'StarSelYb2@2x.png'||item.score==0?'StarNor2@2x.png':''}}"></image>
+					<image src="/assets/{{item.score>=2.0?'StarSel2@2x.png':'StarSelYb2@2x.png'||item.score==1.0?'StarNor2@2x.png':''}}"></image>
+					<image src="/assets/{{item.score>=3.0?'StarSel2@2x.png':'StarSelYb2@2x.png'||item.score==2.0?'StarNor2@2x.png':''}}"></image>
+					<image src="/assets/{{item.score>=4.0?'StarSel2@2x.png':'StarSelYb2@2x.png'||item.score==3.0?'StarNor2@2x.png':''}}"></image>
+					<image src="/assets/{{item.score==5.0?'StarSel2@2x.png':'StarSelYb2@2x.png'||item.score==4.0?'StarNor2@2x.png':''}}"></image>
+					<text style="color:#9B9B9B;font-size:0.75rem;padding-left:0.3rem;">{{item.score}}分</text>
+				</view>
+        <view class="txt">{{item.content}}</view>
+        
+
+			</view>
+
+
+
+		</view>
+
+	</view>
+
+
+
+</view>

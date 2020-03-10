@@ -1,0 +1,7 @@
+<view class="sportsList">
+  <view class="list" wx:for="{{sportsList}}" wx:key="index">
+    <text class="head">{{item.name}}</text>
+    <text class="son" wx:for="{{item.sportType}}" bindtap="select" wx:for-item='list'  data-id="{{list.sportid}}" data-sportType="{{list.id}}" data-name="{{item.name}}" data-nameTwo="{{list.name}}"  wx:key="indexTwo" style="{{indexSport===list.id?'color:#fff;background:#D85D27;':''}}">{{list.name}}</text>
+  </view>
+
+</view>

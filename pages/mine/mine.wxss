@@ -123,8 +123,8 @@ text {
 }
 
 .application .son {
-  width: 33.33%;
-  margin-top: 100rpx;
+  width: 25%;
+  margin-top: 40rpx;
   float: left;
 }
 
