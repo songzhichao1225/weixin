@@ -7,13 +7,16 @@ Page({
   data: {
     sportsList:[],
     indexSport:0,
+    flag:0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+     this.setData({
+      flag:options.flag
+     })
     util.request("/api/getAllSportLst", {}, "get",
       (res) => {
        this.setData({
@@ -39,12 +42,22 @@ Page({
    })
     var pages = getCurrentPages(); // 获取页面栈
     var prevPage = pages[pages.length - 2]; // 上一个页面
-    prevPage.setData({
-      sportsList: e.currentTarget.dataset
-    })
-    wx.navigateBack({
-      delta: 1
-    })
+    if(this.data.flag==1){
+      prevPage.setData({
+        sportsList: e.currentTarget.dataset
+      })
+      wx.navigateBack({
+        delta: 1
+      })
+    }else if(this.data.flag==2){
+      prevPage.setData({
+        sportsListTwo: e.currentTarget.dataset
+      })
+      wx.navigateBack({
+        delta: 1
+      })
+    }
+   
 
 
   },

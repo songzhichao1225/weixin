@@ -55,6 +55,22 @@
     </view>
   </view>
 
+   <view class="boss">
+    <text>已参与人员平均年龄</text>
+    <view class="modeH">
+      <picker mode="selector" range="{{age}}"  bindchange="age">
+        <view class="picker">
+          {{ageNum==0?'不限':ageNum}}
+        </view>
+      </picker>
+      <picker mode="selector" range="{{ageTwo}}" bindchange="ageTwo">
+        <view class="picker" style="float:right;">
+          {{ageNumTwo==0?'不限':ageNumTwo}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
 
   <view class="boss">
     <text>已参与人员平均技术等级</text>

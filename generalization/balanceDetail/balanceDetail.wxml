@@ -1,0 +1,20 @@
+<view wx:if="{{flag==1}}">
+	<view class="head">
+
+		<view class="leftText">
+			入账金额
+		</view>
+		<view class="money" style="{{moneyInfo.InOrOut==1?'color:#D85D27;':''}}">
+			{{moneyInfo.Money}}
+		</view>
+	</view>
+	<view class="list">
+		<view><text class="leftOne">类</text><text class="leftOne" style="margin-left:1.76rem;">型</text><text class="right">{{moneyInfo.InOrOut==1?'收入':'支出'}}</text></view>
+		<view><text class="leftOne">时</text><text class="leftOne" style="margin-left:1.76rem;">间</text><text class="right">{{moneyInfo.RecordDate}}</text></view>
+		<view><text class="leftOne">剩余零钱</text><text class="right">{{moneyInfo.total}}</text></view>
+		<view><text class="leftOne">备</text><text class="leftOne" style="margin-left:1.76rem;">注</text><text class="right">{{moneyInfo.RecordReason}}</text></view>
+
+
+	</view>
+
+</view>

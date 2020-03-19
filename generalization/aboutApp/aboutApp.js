@@ -12,12 +12,17 @@ Page({
     wx.makePhoneCall({
       phoneNumber: '18567837551'
     })
-  },     
+  },   
+ privacy:function(){
+   wx.navigateTo({
+     url: '/generalization/privacy/privacy',
+   })
+ },
 
    
   about:function(){ 
     wx.navigateTo({
-      url: '/generalization/aboutMine/aboutMine'
+      url: '/generalization/paymentCode/paymentCode'
     })
   }, 
 }) 

@@ -15,8 +15,8 @@ Page({
       { img: 'IconWdQb@2x.png', name: '我的钱包', click: 'mineMoney'},
       { img: 'IconWdXzcg@2x.png', name: '新增场馆', click: 'minefriends' },
       { img: 'IconWdHy@2x.png', name: '我的好友', click: 'minefriends'},
-      { img: 'IconWdGz@2x.png', name: '我的关注', click: 'mineAbout' },
-      { img: 'IconWdGyyy@2x.png', name: '关于应用', click: 'mineAbout' },
+      // { img: 'IconWdGz@2x.png', name: '我的关注', click: 'mineAbout' },
+      { img: 'IconWdGyyy@2x.png', name: '关于小程序', click: 'aboutApp' },
       { img: 'IconWdSz@2x.png', name: '设置', click: 'mineAbout' },
       { img: 'caipanha.png', name: '成为裁判', click: 'mineHelp' },
       { img: 'IconWdBzzx@2x.png', name: '帮助中心', click: 'mineHelp' },
@@ -127,6 +127,11 @@ Page({
   mineOpinion:function(){
     wx.navigateTo({
       url: '/pages/mineOpinion/mineOpinion'
+    })
+  },
+  aboutApp:function(){
+    wx.navigateTo({
+      url: '/pages/aboutApp/aboutApp'
     })
   },
   personalData:function(){

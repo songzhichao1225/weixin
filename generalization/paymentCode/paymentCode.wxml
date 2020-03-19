@@ -1,0 +1,31 @@
+<view class="paymentCode">
+	<view class="head">
+		<text >请验证您的手机号 </text>
+	</view>
+	<view class="content">
+		<view class="top">
+			<text>{{telephone}}</text>
+			<view class="code" bindtap="code">{{text}}</view>
+			</view>
+			<view class="top">
+				<input type="number" placeholder="请输入验证码" maxlength="6" bindinput="codeNum" placeholder-style="font-size:0.88rme;" />
+			</view>
+
+      	<view class="top">
+				<input type="number" placeholder="请输入提现密码" maxlength="6" bindinput="passOne" placeholder-style="font-size:0.88rme;" />
+			</view>
+
+      	<view class="top">
+				<input type="number" placeholder="请再次输入提现密码" maxlength="6" bindinput="passTwo" placeholder-style="font-size:0.88rme;" />
+			</view>
+
+
+       
+
+
+
+		</view>
+  <view class="btn" bindtap="submit">提交</view>
+
+
+	</view>

@@ -1,0 +1,19 @@
+<view class="walleDetails">
+	<scroll-view scroll-y style="height:100%;" bindscrolltolower="lower">
+		<view class="listSon" wx:for="{{wallertList}}" wx:key="index" bindtap="moneyDetail" data-id="{{item.UUID}}">
+			<view class="contentLeft">
+				<text>{{item.sportName}}</text>
+				<text>{{item.RecordDate}}</text>
+			</view>
+			<view class="money">
+				<image src="/assets/right.png"></image>
+				<text style="{{item.InOrOut==1?'color:#D85D27;':''}}">{{item.InOrOut==1?'+':''}}{{item.Money}}</text>
+			</view>
+		</view>
+
+
+
+	</scroll-view>
+
+
+</view>

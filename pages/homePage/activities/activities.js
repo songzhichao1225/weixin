@@ -172,7 +172,12 @@ Page({
         )
       }
     }
-  }
+  },
+  onUnload: function () {
+    wx.reLaunch({
+      url: '/pages/homePage/content/content'
+    })
+  },
 
 
 })

@@ -89,8 +89,9 @@ Page({
     joinCondition: '',
     mingrade: 0,
     maxgrade: 0,
-    praise: 0
-
+    praise: 0,
+    Agemin:1,//最小年龄
+    Agemax:99,//最大年龄
   },
   map: function () {
     var that = this;
@@ -193,6 +194,8 @@ Page({
       mingrade,
       maxgrade,
       praise,
+      Agemin,
+      Agemax,
     } = this.data //获取活动列表的参数
     let jsonData = {}
     jsonData.sex = sex
@@ -213,12 +216,11 @@ Page({
     jsonData.mingrade = mingrade,
     jsonData.maxgrade = maxgrade,
     jsonData.praise = praise,
-
-      util.request("/api/getIndexAcitivitylist", jsonData, "GET",
+    jsonData.Agemin = Agemin,
+    jsonData.Agemax = Agemax,
+      util.Request("/api/getIndexAcitivitylist", jsonData, "get",
         (res) => {
-
           let projectDataNow = res.data.data.activeLst
-
           for (let i in projectDataNow) {
             if (projectDataNow[i].SportMode == '1') {
               projectDataNow[i].SportMode = '娱乐'
@@ -553,7 +555,7 @@ Page({
       url: '/pages/homePage/screen/screen'
     })
   },
-  //上拉加载
+  //上拉刷新
   onReachBottom: function () {
     this.setData({
       pages: this.data.pages + 1

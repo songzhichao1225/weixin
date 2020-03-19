@@ -1,0 +1,47 @@
+page{
+  height: 100%;
+}
+.walleDetails {
+  height: 100%;
+  border-top: 0.06rem solid #E9E9E9;
+}
+
+.listSon {
+  height: 4.13rem;
+  width: 95%;
+  margin: 0 auto;
+  border-bottom: 0.06rem solid #E9E9E9;
+  overflow: hidden;
+}
+
+.listSon .contentLeft {
+  float: left;
+}
+
+.listSon .contentLeft>text:first-child {
+  display: block;
+  font-size: 0.88rem;
+  margin-top: 0.81rem;
+}
+.listSon .contentLeft>text:last-child {
+  display: block;
+  font-size: 0.75rem;
+  color: #9B9B9B;
+  line-height: 1.5rem;
+}
+.listSon .money{
+  float: right;
+}
+.listSon .money>text{
+  display: block;
+  line-height: 4.13rem;
+  font-size: 0.88rem;
+  float: right;
+  margin-right: 0.3rem;
+}
+.listSon .money>image{
+  width: 0.4rem;
+  height: 0.69rem;
+  float: right;
+  margin-top: 1.7rem;
+}

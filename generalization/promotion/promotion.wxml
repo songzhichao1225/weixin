@@ -1,5 +1,5 @@
 <view class="generalization" wx:if="{{flag}}">
-  <view class="mineIs" wx:if="{{msg==4002}}">
+  <view class="mineIs">
     <view class="header">
       <image src="/assets/tuiguang.png"></image>
       <view class="title">
@@ -102,7 +102,7 @@
           <text class="name">{{item.name}}</text>
           <view class="praise">
             <image src="/assets/{{item.fraction>=1?'StarSel2@2x.png':''}}"></image>
-            <image src="/assets/{{item.fraction>=2?'StarSel2@2x.png':''||item.fraction>1&&item.fraction<2?'StarSelYb2@2x.png':''}}"></image>
+            <image src="/assets/{{item.fraction>=2?'St arSel 2@2x.png':''||item.fraction>1&&item.fraction<2?'StarSelYb2@2x.png':''}}"></image>
             <image src="/assets/{{item.fraction>=3?'StarSel2@2x.png':'StarNor2@2x.png'&&item.fraction>2&&item.fraction<3?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
             <image src="/assets/{{item.fraction>=4?'StarSel2@2x.png':'StarNor2@2x.png'&&item.fraction>3&&item.fraction<4?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
             <image src="/assets/{{item.fraction>=5?'StarSel2@2x.png':'StarNor2@2x.png'&&item.fraction>4&&item.fraction<5?'StarSelYb2@2x.png':'StarNor2@2x.png'}}"></image>
@@ -111,7 +111,7 @@
           <text class="type">{{item.type}}</text>
           <text class="distance">{{item.range}}</text>
         </view>
-      </view>
+      </view> 
 
     </view>
 

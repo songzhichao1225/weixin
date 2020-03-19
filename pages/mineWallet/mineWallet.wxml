@@ -1,4 +1,5 @@
 <view class="mineWallet" wx:if="{{flag}}">
+<view class="right">明细</view>
 <image class="img" src='/assets/HomeIconJinbi@3x.png'></image>
 <text class="text">我的钱包</text>
 <text class="money">{{total}}</text>

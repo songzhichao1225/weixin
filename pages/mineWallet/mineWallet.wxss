@@ -1,5 +1,6 @@
 page {
   height: 100%;
+  overflow: hidden;
 }
 
 .mineWallet .img {
@@ -31,5 +32,11 @@ page {
   margin: 106rpx auto 0;
   font-size: 36rpx;
   color: #fff;
-  
+}
+.right{
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  font-size: 0.88rem;
+  padding: 0.5rem;
 }

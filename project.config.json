@@ -203,6 +203,62 @@
 					"pathName": "generalization/Invitational/Invitational",
 					"query": "rankMax=10&rankMin=0&sex=2&sportid=5&team=1",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "支付",
+					"pathName": "generalization/payFor/payFor",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 22,
+					"name": "创建活动成功",
+					"pathName": "generalization/createSuccess/createSuccess",
+					"query": "Identification=1&inviteId= 8765fbf4-5d38-46b3-81ee-87a22bc05186&referee=''&status=1",
+					"scene": null
+				},
+				{
+					"id": 23,
+					"name": "设置支付 密码",
+					"pathName": "generalization/paymentCode/paymentCode",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "隐私设置",
+					"pathName": "generalization/privacy/privacy",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "黑名单",
+					"pathName": "generalization/blacklist/blacklist",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的钱包",
+					"pathName": "pages/mineWallet/mineWallet",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "钱包明细",
+					"pathName": "generalization/walletDetails/walletDetails",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 28,
+					"name": "每条明细详情",
+					"pathName": "generalization/balanceDetail/balanceDetail",
+					"query": "id= 0028904d-3e17-e783-d78f-971e64627246",
+					"scene": null
 				}
 			]
 		}

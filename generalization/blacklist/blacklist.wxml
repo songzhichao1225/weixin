@@ -1,0 +1,10 @@
+<view class="blackList">
+	<scroll-view scroll-y style="height:100%;" bindscrolltolower="bottom">
+		<view class="list" wx:for="{{list}}" wx:key="index">
+			<image src="https://app.tiaozhanmeiyitian.com/{{item.headerImg}}"></image>
+			<text>{{item.nickname}}</text>
+			<view class="btn" data-id="{{item.ShieldPlayerUUID}}" bindtap="getOut">移出</view>
+		</view>
+
+	</scroll-view>
+</view>

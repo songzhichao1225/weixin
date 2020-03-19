@@ -43,11 +43,11 @@ function Request(url, data, method, successFn, failFn, completeFn) {
           "token": wx.getStorageSync('token'),
         },
         method: method,
-        success: function(res) {
+        success: function (res) {
           wx.hideLoading()
           if (res.data.code == 2000) {
             successFn(res);
-           
+
           } else if (res.data.code == 40101) {
             wx.showToast({
               title: '身份验证失败',
@@ -55,9 +55,9 @@ function Request(url, data, method, successFn, failFn, completeFn) {
               duration: 1500,
               mask: true
             })
-          }  
+          }
         },
-        fail: function(res) {
+        fail: function (res) {
           wx.showToast({
             title: '加载失败',
             icon: 'none',
@@ -66,7 +66,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
           })
           failFn(res);
         },
-        complete: function() {
+        complete: function () {
           wx.stopPullDownRefresh(); //停止下拉刷新
           wx.hideNavigationBarLoading() //完成停止加载
           completeFn();
@@ -125,11 +125,11 @@ function Request(url, data, method, successFn, failFn, completeFn) {
         },
         data: data,
         method: method,
-        success: function(res) {
-         
-            successFn(res);
-            wx.hideLoading()
-            if (res.data.code == 40101) {
+        success: function (res) {
+
+          successFn(res);
+          wx.hideLoading()
+          if (res.data.code == 40101) {
 
             wx.showToast({
               title: '身份验证失败',
@@ -143,7 +143,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
             })
           }
         },
-        fail: function(res) {
+        fail: function (res) {
           wx.showToast({
             title: '加载失败',
             icon: 'none',
@@ -152,7 +152,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
           })
           failFn(res);
         },
-        complete: function() {
+        complete: function () {
           wx.stopPullDownRefresh(); //停止下拉刷新
           wx.hideNavigationBarLoading() //完成停止加载
           completeFn();
@@ -179,7 +179,7 @@ function request(url, data, method, successFn, failFn, completeFn) {
     header: {
       "enctype": "multipart/form-data"
     },
-    success: function(res) {
+    success: function (res) {
       if (res.data.code == 2000) {
         successFn(res);
 
@@ -203,7 +203,7 @@ function request(url, data, method, successFn, failFn, completeFn) {
 
       }
     },
-    fail: function(res) {
+    fail: function (res) {
       wx.showToast({
         title: '加载失败',
         icon: 'none',
@@ -212,7 +212,7 @@ function request(url, data, method, successFn, failFn, completeFn) {
       })
       failFn(res);
     },
-    complete: function(res) {
+    complete: function (res) {
       wx.hideNavigationBarLoading() //完成停止加载
       completeFn(res);
     }

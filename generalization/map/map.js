@@ -17,10 +17,14 @@ Page({
     length:100,
     triggered:true,
     page:1,
+    falg:0,
   },
 
   onLoad: function(option) {
     // 实例化API核心类
+    this.setData({
+      falg:option.falg
+    })
     qqmapsdk = new QQMapWX({
       key: 'GMCBZ-TDALO-6ZRWH-S6TPE-66PIZ-M4FIJ'
     });
@@ -348,12 +352,21 @@ getsuggest: function(e) {
       siteid:e.currentTarget.dataset.uid,
       name:e.currentTarget.dataset.name
     }
-    wx.setStorage({
-      data: obj,
-      key: 'siteid',
-    })
+    if(this.data.falg==1){
+      wx.setStorage({
+        data: obj,
+        key: 'siteid',
+      })
+    }else if(this.data.falg==2){
+      wx.setStorage({
+        data: obj,
+        key: 'siteidTwo',
+      })
+    }
+   
+    
     wx.navigateTo({
-      url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token'),
+      url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&falg='+this.data.falg,
     })
   }
 

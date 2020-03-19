@@ -9,7 +9,9 @@
   margin-top: 0
 }
 .screen .boss text{
-  font-size: 14px;
+  font-size:0.88rem;
+  font-weight: bold;
+
 }
 .boss .modeH{
   margin-top: 0.2rem;
@@ -18,13 +20,14 @@
 .boss .modeH text{
   width: 5.3rem;
   height: 1.5rem;
-  font-size: 12px;
+  font-size: 0.75rem;
   border: 1px solid #9B9B9B;
   border-radius: 6px;
   display: block;
   text-align: center;
   line-height: 1.5rem;
-  float: left
+  float: left;
+  font-weight: 500;
 }
 .boss .modeH .right{
   float: right;

@@ -35,7 +35,7 @@
 			<view class="right">
 				<view class="top">
 					<text>{{item.name}}</text>
-					<text catchtap="bookIn"data-uid="{{item.uid}}" data-name="{{item.name}}">预订</text>
+					<text catchtap="bookIn" data-uid="{{item.uid}}" data-name="{{item.name}}">预订</text>
 				</view>
 				<view class="bottom">
 					<view class="xing">

@@ -1,0 +1,24 @@
+.list {
+  height: 2.75rem;
+  border-bottom: 0.06rem solid #E9E9E9;
+}
+
+.list text {
+  font-size: 1rem;
+  line-height: 2.75rem;
+  padding-left: 2.5%;
+}
+
+.list switch {
+  float: right;
+  margin-right: 2.5%;
+  margin-top: 0.5rem;
+}
+
+.list image {
+  width: 0.44rem;
+  height: 0.69rem;
+  float: right;
+  margin-right: 4%;
+  margin-top: 1rem;
+}

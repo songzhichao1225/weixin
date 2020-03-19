@@ -24,7 +24,6 @@
         <text style="display:block;font-size:12px;position: absolute;bottom:0;right:0;">{{item.userRage}}</text>
       </view>
       </view>
-
 </view>
 
 

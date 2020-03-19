@@ -9,11 +9,15 @@ Page({
     date: '选择日期',
     time: '选择开始时间',
     timeTwo: '选择结束时间',
-    rangeArr: ['不限',1, 2, 3, 4, 5, 6, 7, 9, 10],
+    rangeArr: ['不限', 1, 2, 3, 4, 5, 6, 7, 9, 10],
     Grade: '最低等级',
     GradeTwo: '最高等级',
     praise: null,
     Activities: null,
+    age: [], //年龄
+    ageNum: 0,
+    ageTwo:[],//最大年龄
+    ageNumTwo:0,
   },
   onLoad: function () {
     if (wx.getStorageSync('dataIndex') != '' || wx.getStorageSync('siteIndex') != '' || wx.getStorageSync('sexIndex') != '' || wx.getStorageSync('date') != '' || wx.getStorageSync('time') != '' || wx.getStorageSync('timeTwo') != '' || wx.getStorageSync('Grade') != '' || wx.getStorageSync('GradeTwo') != '' || wx.getStorageSync('praise') != '' || wx.getStorageSync('Activities') != '') {
@@ -30,6 +34,13 @@ Page({
         Activities: wx.getStorageSync('Activities'),
       })
     }
+    let age = ['不限']
+    for (let i = 1; i < 100; i++) {
+      age.push(i)
+    }
+    this.setData({
+      age: age
+    })
 
     wx.hideLoading()
 
@@ -97,21 +108,20 @@ Page({
   },
   //最低等级
   Grade: function (e) {
-    console.log(e)
-      this.setData({
-        Grade:e.detail.value
-      })
-    
+    this.setData({
+      Grade: e.detail.value
+    })
+
 
   },
   //最高等级
   GradeTwo: function (e) {
     if (this.data.Grade !== '最低等级') {
-     
-        this.setData({
-          GradeTwo:e.detail.value 
-        })
-      
+
+      this.setData({
+        GradeTwo: e.detail.value
+      })
+
     } else {
       wx.showToast({
         title: '请选择最低等级',
@@ -122,6 +132,26 @@ Page({
     }
 
   },
+  //最低年龄
+  age: function (e) {
+    this.setData({
+      ageNum: e.detail.value
+    })
+    let ageTwo=['不限']
+    for(let i=1;i<Number(100-this.data.ageNum);i++){
+      ageTwo.push(Number(i)+Number(this.data.ageNum))
+    }
+    this.setData({
+      ageTwo:ageTwo
+    })
+  },
+  //最高年龄
+  ageTwo: function (e) {
+    this.setData({
+      ageNumTwo: Number(e.detail.value)+Number(this.data.ageNum)
+    })
+  },
+
   //好评
   praise: function (e) {
     this.setData({
@@ -162,6 +192,8 @@ Page({
       GradeTwo,
       praise,
       Activities,
+      ageNum,
+      ageNumTwo,
     } = this.data
     var pages = getCurrentPages(); // 获取页面栈
     var prevPage = pages[pages.length - 2]; // 上一个页面
@@ -176,7 +208,9 @@ Page({
         mingrade: Grade,
         maxgrade: GradeTwo,
         praise: praise,
-        joinCondition: Activities
+        joinCondition: Activities,
+        Agemin:ageNum,
+        Agemax:ageNumTwo
       }
     })
     wx.setStorageSync('dataIndex', dataIndex)
@@ -189,6 +223,8 @@ Page({
     wx.setStorageSync('GradeTwo', GradeTwo)
     wx.setStorageSync('praise', praise)
     wx.setStorageSync('Activities', Activities)
+    wx.setStorageSync('Agemin', ageNum)
+    wx.setStorageSync('Agemax', ageNumTwo)
     wx.navigateBack({
       delta: 1
     })

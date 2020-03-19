@@ -35,7 +35,7 @@
             <image wx:if="{{item.userInfo.sex==1}}" class='image' style="width:0.6rem;" src='/assets/sex1@2x.png'></image>
             <image src='/assets/{{item.hightName}}' class='imageTwo'></image>
             <text class="textTwo">{{item.hightLevel}}</text>
-            <image src='/assets/jia.png' data-uuid="{{item.uuid}}" catchtap="joinFriends" style="width:1.4rem;height:1.3rem;float:right"></image>
+            <image src='/assets/jia.png' data-uuid="{{item.uuid}}" catchtap="joinFriends" style="width:1.4rem;height:1.2rem;float:right"></image>
           </view>
           <view class="signs">
             <text style="margin:0;">年龄:{{item.userInfo.age}}岁</text>

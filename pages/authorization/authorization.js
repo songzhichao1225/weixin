@@ -49,7 +49,7 @@ Page({
     var errMsg = e.detail.errMsg
     if (iv == null || ency == null) {
       wx.showToast({
-        title: "授权失败,请重新授权！",
+        title: "授权失败,请重新授权",
         icon: 'none',
       })
       return false
@@ -65,8 +65,10 @@ Page({
     that.zhuce(); //调用手机号授权事件
   },
 
+
+
+
   getUserInfo: function(e) {
-    console.log(e)
     let {
       binding
     } = this.data
@@ -82,10 +84,12 @@ Page({
         'nickname': e.detail.userInfo.nickName
       }, "post",
       (res) => {
+        console.log(res)
         wx.setStorageSync('token', res.data.data.token); //存储token
         wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
         wx.setStorageSync('sex', res.data.data.sex); //存储用户性别
         wx.setStorageSync('imgURL', res.data.data.imgURL);//存储用户头像
+        wx.setStorageSync('telephone', res.data.data.telephone)//存储用户头像
         setTimeout(function() {
           wx.switchTab({
             url: '/pages/homePage/content/content'
@@ -125,27 +129,28 @@ Page({
                   'sessionKey': sessionKey
                 }, "post",
                 (res) => {
-                  console.log(res)
                   wx.setStorageSync('phone', res.data.data.phoneNumber)
                   util.request("/api/wechatLogin", {
                       'openId': openid,
-                    }, "post",
+                      'sex':'',
+                      'imgURL':'',
+                      'nickname':'',
+                    }, "post", 
                     (res) => {
-                      wx.setStorageSync('token', res.data.data.token); //存储token
-                      wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
+                  
                       wx.setStorageSync('sex', res.data.data.sex); //存储用户性别
+                      wx.setStorageSync('telephone', res.data.data.telephone)//存储用户头像
                       util.request("/api/getbindmobile", {
                         'mobile': wx.getStorageSync('phone'),
                         'wechatid': openid }, "post", 
                         (res) => {
-                          console.log(res)
+                          wx.setStorageSync('token', res.data.data.token); //存储token
+                          wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
                         },
                         () => { console.log("失败") },
                         () => {
                         }
                       )
-  
-
                       setTimeout(function() {
                         wx.switchTab({
                           url: '/pages/homePage/content/content'

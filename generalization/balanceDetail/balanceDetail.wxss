@@ -1,0 +1,44 @@
+.head{
+  height: 5.06rem;
+  border-top: 0.06rem solid #E9E9E9 ;
+  border-bottom: 0.06rem solid #E9E9E9 ;
+}
+.head .leftText{
+  font-size: 1rem;
+  color: #9B9B9B;
+  padding-left: 2.5%;
+  line-height: 5.06rem;
+  float: left;
+}
+.head .money{
+  float: right;
+  line-height: 5.06rem;
+  margin-right: 2.5%;
+  font-size: 1.5rem;
+}
+.list{
+  width: 95%;
+  margin: 1.56rem auto 0;
+  overflow: hidden;
+}
+.list text{
+  display: block;
+}
+.list .leftOne{
+  float: left;
+  font-size: 0.88rem;
+  color: #9B9B9B;
+}
+
+.list .right{
+  float: right;
+  font-size: 0.88rem;
+  color: #000000;
+  width: 80%;
+  text-align: right;
+}
+.list view{
+  overflow: hidden;
+  margin-top: 0.63rem;
+}
+  

@@ -1,0 +1,20 @@
+<view class="createSuccess">
+
+	<view class="banner">
+		<image class="image" src="/assets/PicBgZfcg.png"></image>
+		<image class="imageS" src="/assets/PicZfDg.png"></image>
+	</view>
+
+
+	<view class="text">
+		<text>创建成功</text>
+		<text class="comm">{{text}}</text>
+	</view>
+	<text class="title" bindtap="counterCoin">分享即可获得一个对手币<text>对手币?</text></text>
+
+	<view class="btn">
+		<view class="btnSonOne" bindtap="details" data-uuid="{{uuid}}">查看活动详情</view>
+		<view class="btnSonOne">立即分享</view>
+	</view>
+	<text style="font-size:0.88rem;color:#9B9B9B;text-align:center;display:block;margin-top:3rem;">报名时间:{{time}}</text>
+</view>

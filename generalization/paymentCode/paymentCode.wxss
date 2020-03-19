@@ -1,0 +1,68 @@
+page {
+  height: 100%;
+}
+
+.paymentCode {
+  height: 100%;
+  background: #F7F7F7;
+}
+
+.paymentCode .head {
+  height: 2.81rem;
+  border-top: 0.06rem solid #999999;
+}
+
+.head>text {
+  font-size: 0.94rem;
+  line-height: 2.81rem;
+  padding-left: 5%;
+}
+
+.content {
+  background: #fff;
+  padding-bottom: 0.5rem;
+}
+
+.top {
+  width: 80%;
+  margin: 0 auto;
+  height: 2.69rem;
+  border-bottom: 0.06rem solid #999;
+}
+
+.top>text {
+  font-size: 0.88rem;
+  line-height: 2.69rem;
+  float: left;
+}
+
+.top .code {
+  width: 5.56rem;
+  height: 1.5rem;
+  background: rgba(216, 93, 39, 1);
+  border-radius: 0.75rem;
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+  text-align: center;
+  float: right;
+  margin-top: 0.6rem;
+}
+
+.top>input {
+  height: 2.69rem;
+  line-height: 2.69rem;
+  font-size: 0.88rem;
+}
+
+.btn {
+  width: 80%;
+  height: 2.69rem;
+  background: rgba(216, 93, 39, 1);
+  border-radius: 1.34rem;
+  margin: 3rem auto 0;
+  color: #fff;
+  font-size: 1.06rem;
+  text-align: center;
+  line-height: 2.69rem;
+}

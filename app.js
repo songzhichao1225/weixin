@@ -1,5 +1,12 @@
 //app.js
 App({
+
+  data:{
+ 
+    globalData:[],
+    userReserveVenue:[]
+},
+
   onLaunch: function () {
     // 展示本地存储能力
     var util = require("utils/util.js");

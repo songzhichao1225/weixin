@@ -57,7 +57,14 @@
         "map/map",
         "venueDetails/venueDetails",
         "bookIn/bookIn",
-        "Invitational/Invitational"
+        "Invitational/Invitational",
+        "payFor/payFor",
+        "createSuccess/createSuccess",
+        "paymentCode/paymentCode",
+        "privacy/privacy",
+        "blacklist/blacklist",
+        "walletDetails/walletDetails",
+        "balanceDetail/balanceDetail"
       ]
     }
   ],

@@ -124,7 +124,7 @@ page {
 .topOne .text {
   display: block;
   position: absolute;
-  bottom: 30rpx;
+  bottom: 50rpx;
   width: 100%;
 }
 
