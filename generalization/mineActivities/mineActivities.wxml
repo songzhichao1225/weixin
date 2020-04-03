@@ -9,17 +9,20 @@
 			<view class="left">
 				<view class="one">
 					<view class="the" bindtap="navList" data-id="matching">
-						<image src="/assets/jooksd.png"></image>
+						<image wx:if="{{statusType!='matching'}}" src="/assets/lookd.png"></image>
+						<image wx:if="{{statusType=='matching'}}" src="/assets/lod(3).png"></image>
 						<text>匹配中</text>
 						<view class="rightTop" wx:if="{{activitiesNum.matching!=0}}">{{activitiesNum.matching}}</view>
 					</view>
 					<view class="the" bindtap="navList" data-id="watinggo">
-						<image src="/assets/jooksd.png"></image>
+						<image wx:if="{{statusType!='watinggo'}}" src="/assets/jooksd.png"></image>
+						<image wx:if="{{statusType=='watinggo'}}" src="/assets/lod.png"></image>
 						<text>待出发</text>
 						<view class="rightTop" wx:if="{{activitiesNum.waiting!=0}}">{{activitiesNum.waiting}}</view>
 					</view>
 					<view class="the" bindtap="navList" data-id="activitying">
-						<image src="/assets/koog.png"></image>
+						<image wx:if="{{statusType!='activitying'}}" src="/assets/koog.png"></image>
+						<image wx:if="{{statusType=='activitying'}}" src="/assets/lod(2).png"></image>
 						<text>活动中</text>
 						<view class="rightTop" wx:if="{{activitiesNum.activiting!=0}}">{{activitiesNum.activiting}}</view>
 					</view>
@@ -29,17 +32,20 @@
 
 				<view class="one">
 					<view class="the" bindtap="navList" data-id="confirm">
-						<image src="/assets/lookhi.png"></image>
+						<image wx:if="{{statusType!='confirm'}}" src="/assets/lookhi.png"></image>
+						<image wx:if="{{statusType=='confirm'}}" src="/assets/lod(8).png"></image>
 						<text>待填写结果</text>
 						<view class="rightTop" wx:if="{{activitiesNum.confirming!=0}}">{{activitiesNum.confirming}}</view>
 					</view>
 					<view class="the" bindtap="navList" data-id="comment">
-						<image src="/assets/akohj.png"></image>
+						<image wx:if="{{statusType!='comment'}}" src="/assets/akohj.png"></image>
+						<image wx:if="{{statusType=='comment'}}" src="/assets/lod(1).png"></image>
 						<text>待评价</text>
 						<view class="rightTop" wx:if="{{activitiesNum.assessing!=0}}">{{activitiesNum.assessing}}</view>
 					</view>
 					<view class="the" bindtap="navList" data-id="finishd">
-						<image src="/assets/jookg.png"></image>
+						<image wx:if="{{statusType!='finishd'}}" src="/assets/jookg.png"></image>
+						<image wx:if="{{statusType=='finishd'}}" src="/assets/lod(4).png"></image>
 						<text>已完成</text>
 						<view class="rightTop" wx:if="{{activitiesNum.finished!=0}}">{{activitiesNum.finished}}</view>
 					</view>
@@ -50,11 +56,13 @@
 			</view>
 			<view class="right">
 				<view class="Two" bindtap="all">
-					<image src="/assets/lppljh.png"></image>
+					<image wx:if="{{statusType!='all'}}" src="/assets/lppljh.png"></image>
+					<image wx:if="{{statusType=='all'}}" src="/assets/lod(5).png"></image>
 					<text>全部</text>
 				</view>
 				<view class="Two" style="margin-top:1.2rem;" bindtap="navList" data-id="Complaints">
-					<image src="/assets/loogjhf.png"></image>
+					<image wx:if="{{statusType!='Complaints'}}" src="/assets/loogjhf.png"></image>
+					<image wx:if="{{statusType=='Complaints'}}" src="/assets/lod(6).png"></image>
 					<text>投诉中</text>
 				</view>
 			</view>
@@ -63,7 +71,7 @@
 	</view>
 
 	<scroll-view scroll-y style="height:60%;margin-top:2rem;" bindscrolltolower="lower">
-		<view class="listBoss" wx:for="{{listSon}}" wx:key='index'>
+		<view class="listBoss" wx:for="{{listSon}}" bindtap="activities" data-uuid="{{item.uuid}}" wx:key='index'>
 			<view class="content">
 				<view class="leftLst">
 					<image class="image" src="https://app.tiaozhanmeiyitian.com/{{item.imgURL}}"></image>
@@ -96,20 +104,18 @@
 
 					<view class="btnBos">
 						<view class="isConfirmResult" wx:if="{{item.Complaint==2}}">投诉中</view>
-						<view class="isConfirmResult" wx:if="{{item.isConfirmResult==0}}">待填写比赛结果</view>
-						<view class="isConfirmResult" bindtap="cancels" data-uuid="{{item.uuid}}" wx:if="{{item.PublicStatus==1&&item.isSignIn==0}}">取消发布</view>
-						<view class="isConfirmResult" bindtap="isQuit" wx:if="{{item.PublicStatus==2&&item.isQuit==1}}">提前退出</view>
-            <view class="isConfirmResult" style="background:#E9E9E9" wx:if="{{item.PublicStatus==2&&item.isQuit==2}}">提前退出</view>
-						<view class="isConfirmResult" wx:if="{{item.PublicStatus==2&&item.SigninYes==0}}">场馆签到</view>
-						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.PublicStatus==2&&item.SigninYes==1}}">已签到</view>
-						<view class="isConfirmResult" wx:if="{{item.PublicStatus==3&&item.SigninYes==0}}">场馆签到</view>
-						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.PublicStatus==3&&item.SigninYes==1}}">已签到</view>
+						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" wx:if="{{item.PublicStatus==1&&item.isSignIn==0&&type!='join'}}">取消发布</view>
+						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" wx:if="{{item.PublicStatus==1&&item.isSignIn==0&&type=='join'}}">取消报名</view>
+						<view class="isConfirmResult" catchtap="isQuit" wx:if="{{item.PublicStatus==2&&item.isQuit==1}}">提前退出</view>
+						<view class="isConfirmResult" style="background:#E9E9E9" wx:if="{{item.PublicStatus==2&&item.isQuit==2}}">提前退出</view>
+						<view class="isConfirmResult" catchtap="signin" data-id="{{item.uuid}}" wx:if="{{item.SigninYes==1&&item.PublicStatus!=7&&item.isSignIn==0}}">场馆签到</view>
+						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.SigninYes==1&&item.isSignIn==1}}">已签到</view>
 						<view class="isConfirmResult" wx:if="{{item.PublicStatus==3&&item.isQuitInGame==1}}">中途退出</view>
-            <view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.PublicStatus==3&&item.isQuitInGame==2}}">中途退出</view>
-						<view class="isConfirmResult" wx:if="{{item.PublicStatus==4&&item.normal==0}}">填写结果</view>
-						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.PublicStatus==4&&item.normal!=0}}">填写结果</view>
-						<view class="isConfirmResult" wx:if="{{item.PublicStatus==5&&item.Comment==0}}">待评价</view>
-						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.PublicStatus==5&&item.Comment!=0}}">待评价</view>
+						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.PublicStatus==3&&item.isQuitInGame==2}}">中途退出</view>
+						<view class="isConfirmResult" bindtap="comResult" data-id="{{item.uuid}}" wx:if="{{item.PublicStatus==4&&item.end==2&&item.isConfirmResult==0}}">填写结果</view>
+						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.PublicStatus==4&&item.end==2&&item.isConfirmResult==1}}">填写结果</view>
+						<view class="isConfirmResult" catchtap="comment" data-id="{{item.uuid}}" wx:if="{{item.PublicStatus==6&&item.Comment==0}}">待评价</view>
+						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.PublicStatus==6&&item.PublicStatus!=7&&item.Comment!=0}}">待评价</view>
 					</view>
 				</view>
 			</view>
@@ -120,16 +126,17 @@
 				<image wx:if="{{item.PublicStatus==1}}" src='/assets/pipei.png'></image>
 				<image wx:if="{{item.PublicStatus==7}}" src='/assets/tuichu.png'></image>
 				<image wx:if="{{item.PublicStatus==5}}" src='/assets/wancheng.png'></image>
-				<image wx:if="{{item.PublicStatus==8}}" src='/assets/jieshu.png'></image>
+				<image wx:if="{{item.PublicStatus==4}}" src='/assets/jieguo.png'></image>
 				<image wx:if="{{item.PublicStatus==9}}" src='/assets/tousua.png'></image>
 			</view>
-
 		</view>
 
 
 
 
+
 	</scroll-view>
+
 
 
 

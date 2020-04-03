@@ -1,0 +1,26 @@
+<view class="xieHistory">
+	<view class="listSon" wx:for="{{listSon}}" wx:key="index">
+		<view class="head">
+			<image class="avatar" wx:if="{{item.type==0}}" src="https://app.tiaozhanmeiyitian.com/{{item.playerimgurl}}"></image>
+			<image class="avatar" wx:if="{{item.type==1}}" src="/assets/generalization.png"></image>
+			<image class="avatar" wx:if="{{item.type==2}}" src="/assets/kefutouxiang@2x.png"></image>
+			<view class="text">
+				<text>{{item.type==0?item.playerName:''||item.type==1?'推广专员':''||item.type==2?'平台系统':''}}</text>
+				<text>{{item.intime}}</text>
+			</view>
+		</view>
+		<view class="title" wx:if="{{item.title!=''}}">{{item.title}}</view>
+		<view class="detail"><text>详细说明：</text><text>{{item.comment}}</text></view>
+		<view class="yinpin" wx:if="{{item.baseURL!=''}}" bindtap="audioPlay" data-src="https://app.tiaozhanmeiyitian.com/{{item.baseURL}}{{item.filesURL}}">
+			<image src="/assets/icon_au.png"></image>
+		</view>
+
+
+
+
+	</view>
+
+
+
+
+</view>

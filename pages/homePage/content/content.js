@@ -144,9 +144,19 @@ Page({
 
       }
     )
+ 
 
-
-
+    wx.startLocationUpdate({
+      success(res) {
+       wx.onLocationChange(function(res) {
+        wx.setStorageSync('lat',res.latitude)
+        wx.setStorageSync('lng',res.longitude)
+       })
+       
+      }
+      
+     })
+    
 
 
     //获取项目分类

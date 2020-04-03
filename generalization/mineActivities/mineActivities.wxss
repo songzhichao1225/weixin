@@ -167,12 +167,12 @@ page {
 .listBoss .content .rightLst {
   margin-left: 1.06rem;
   float: left;
-  font-size: 0.88rem;
+  font-size: 0.75rem;
+  width: 73%;
 }
 
 .listBoss .content .rightLst>text {
   display: block;
-  line-height: 1.25rem;
 }
 
 .listBoss .content .rightLst .lstHead {
@@ -186,9 +186,7 @@ page {
   margin-top: 0.2rem;
 }
 
-.listBoss .content .rightLst .lstTwo {
-  line-height: 1.25rem;
-}
+
 
 .listBoss .content .btn {
   width: 5rem;
@@ -220,9 +218,10 @@ page {
 
 .btnBos {
   margin-top: 0.5rem;
+  overflow: hidden;
 }
 
-.btnBos>view:last-child {
+.btnBos>view:first-child {
   margin-right: 0;
 }
 
@@ -240,14 +239,14 @@ page {
 }
 
 .isConfirmResult {
-  width: 5rem;
-  height: 1.75rem;
+  width: 4rem;
+  height: 1.5rem;
   background: rgba(216, 93, 39, 1);
   border-radius: 0.38rem;
   color: #fff;
-  line-height: 1.75rem;
+  line-height: 1.5rem;
   text-align: center;
-  font-size: 0.75rem;
+  font-size: 0.6rem;
 }
 
 .the {

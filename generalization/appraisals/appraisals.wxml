@@ -1,0 +1,78 @@
+<view class="appraisals">
+	<view class="boss">
+		<text>活动整体评价</text>
+		<button class="btn" bindtap="oneKey" data-siteid="{{list.siteId}}" data-pubid="{{list.usersInfo[0].PublicUUID}}">一键好评</button>
+		<image src="/assets/hua.png"></image>
+	</view>
+	<view class="boss" style="border:none;">
+		<text>对运动伙伴评价</text>
+		<text style="font-size:0.75rem;color:#9B9B9B;line-height:2.88rem;float:right;">（匿名）</text>
+	</view>
+	<view class="line"></view>
+	<view class="list" wx:for="{{list.usersInfo}}" wx:key="index" wx:for-index="idx">
+		<view class="head">
+			<view class="avatar">
+				<image src="https://app.tiaozhanmeiyitian.com/{{item.imgURL}}"></image>
+			</view>
+			<view class="text"><text>{{item.Team}}</text><text>{{item.nickname}}</text></view>
+			<view class="right" wx:if="{{list.SportMode==2}}">填写的比赛结果:{{item.result}}</view>
+		</view>
+		<view class="center"><text>整体评分:</text>
+			<view class="xing">
+				<image wx:for="{{images}}" bindtap="xing" data-idx="{{idx}}" data-index="{{index}}" wx:key="index" src="{{item.src}}"></image>
+				<text style="font-size:0.75rem;color:#4A4A4A;margin-top:0.3rem;margin-left:0.2rem;">{{range}}分</text>
+			</view>
+		</view>
+		<view class="content">
+			<text>基于对ta的印象点击下方标签评价吧！</text>
+			<view class="listSon" wx:for="{{item.res}}" data-index="{{idx}}" style="{{user.background}}" bindtap="firHoom" data-id="{{user.id}}" wx:for-item="user" data-ben="{{idxTwo}}" wx:for-index="idxTwo" wx:key="index">{{user.labelName}}</view>
+		</view>
+		<view class="line" style="margin-top:0.94rem;"></view>
+	</view>
+
+	<view class="title">对场馆评价</view>
+
+	<view class="sheshi">
+		<text>设施</text>
+		<view class="xing">
+			<image wx:for="{{imagesTwo}}" bindtap="xingTwo" data-index="{{index}}" wx:key="index" src="{{item.src}}"></image>
+			<text style="font-size:0.88rem;color:#4A4A4A;line-height:1.25rem;margin-left:0.2rem;">{{rangeTwo==5?'超赞':''||rangeTwo==4?'满意':''||rangeTwo==3?'一般':''||rangeTwo==2?'较差':''||rangeTwo==1?'极差':''}}
+			</text>
+		</view>
+	</view>
+
+	<view class="sheshi">
+		<text>服务</text>
+		<view class="xing">
+			<image wx:for="{{imagesThree}}" bindtap="xingThree" data-index="{{index}}" wx:key="index" src="{{item.src}}"></image>
+			<text style="font-size:0.88rem;color:#4A4A4A;line-height:1.25rem;margin-left:0.2rem;">{{rangeThree==5?'超赞':''||rangeThree==4?'满意':''||rangeThree==3?'一般':''||rangeThree==2?'较差':''||rangeThree==1?'极差':''}}</text>
+		</view>
+	</view>
+
+	<view class="sheshi">
+		<text>价格</text>
+		<view class="xing">
+			<image wx:for="{{imagesFour}}" bindtap="xingFour" data-index="{{index}}" wx:key="index" src="{{item.src}}"></image>
+			<text style="font-size:0.88rem;color:#4A4A4A;line-height:1.25rem;margin-left:0.2rem;">{{rangeFour==5?'超赞':''||rangeFour==4?'满意':''||rangeFour==3?'一般':''||rangeFour==2?'较差':''||rangeFour==1?'极差':''}}</text>
+		</view>
+	</view>
+
+
+	<view class="comment">
+		<textarea maxlength="100" placeholder="说一说您对本场馆的评价吧！" bindinput="textarea" placeholder-style="font-size:0.75rem;">
+
+   </textarea>
+		<view class="putier" bindtap="chooseImg">
+    <image wx:if="{{imgURLT!=''}}" src="{{imgURLT}}"></image>
+			<image wx:if="{{imgURLT==''}}" src="/assets/Shangchuanzhaopian.png"></image>
+			
+		</view>
+
+
+	</view>
+
+	<button class="btnBoss" bindtap="submit" data-siteid="{{list.siteId}}" data-pubid="{{list.usersInfo[0].PublicUUID}}">提交评价</button>
+
+
+
+</view>

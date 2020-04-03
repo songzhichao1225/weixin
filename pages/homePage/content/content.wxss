@@ -239,10 +239,11 @@ page {
 }
 
 .content .projectList .projectSon .introduction .title text {
-  font-size: 14px;
+  font-size: 0.75rem;
   color: #333;
   display: block;
   float: left;
+  font-weight: bold;
 }
 
 .content .projectList .projectSon .introduction .title image {

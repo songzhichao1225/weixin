@@ -63,7 +63,8 @@ image {
   padding-top: 1rem;
 
 }
-.contnet .boss{
+
+.contnet .boss {
   width: 95%;
   margin: 0 auto;
 }
@@ -144,12 +145,12 @@ image {
 }
 
 .contnet .publisher .publisherTxt .one {
-  width: 48%;
+  width: 58%;
   float: left;
 }
 
 .contnet .publisher .publisherTxt .two {
-  width: 48%;
+  width: 38%;
   float: left;
 }
 
@@ -196,6 +197,7 @@ image {
 
 .contnet .publisher .publisherTxt .time {
   margin-left: 0.6rem;
+  
 }
 
 .participants {
@@ -230,7 +232,7 @@ image {
   overflow: hidden;
   padding-bottom: 1.56rem;
   border-bottom: 0.06rem solid #E9E9E9;
-} 
+}
 
 .participants .TeamB text {
   font-size: 17px;
@@ -240,9 +242,9 @@ image {
 }
 
 .participants .peopleList {
-  width: 538rpx;
+  width: 85%;
   float: left;
-  margin-left: 50rpx;
+  margin-left: 40rpx;
 }
 
 .participants .peopleList .son:nth-child(3N+1) {
@@ -250,17 +252,16 @@ image {
 }
 
 .participants .peopleList .son {
-  width: 157.8rpx;
-  height: 86rpx;
+  width: 5rem;
   float: left;
-  margin-left: 26rpx;
+  margin-left: 8rpx;
   position: relative;
   margin-top: 26rpx;
 }
 
 .participants .peopleList .son .logo {
-  width: 87.2rpx;
-  height: 87.2rpx;
+  width: 2.69rem;
+  height: 2.69rem;
   display: block;
   float: left;
   border-radius: 6rpx;
@@ -278,8 +279,8 @@ image {
 .participants .peopleList .son .grade {
   width: 52.6rpx;
   height: 22rpx;
-  background: #f5a623;
-  border-radius: 4rpx;
+  background: linear-gradient(270deg, rgba(252, 164, 0, 1) 0%, rgba(254, 224, 115, 1) 100%);
+  border-radius: 0.13rem;
   font-size: 20rpx;
   margin-top: 12.2rpx;
   text-align: center;
@@ -292,7 +293,8 @@ image {
 .participants .peopleList .son .TeamAson {
   width: 100%;
   height: 30rpx;
-  background: #D85D27;
+  background: linear-gradient(180deg, rgba(98, 98, 98, 0.6) 0%, rgba(51, 51, 51, 0.6) 100%);
+  border-radius: 0rem 0rem 0.19rem 0.19rem;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -303,7 +305,7 @@ image {
 }
 
 .participants .peopleList .son .TeamAsonTwo {
-  width: 87.2rpx;
+  width: 2.69rem;
   height: 30rpx;
   position: absolute;
   bottom: 0;
@@ -354,19 +356,93 @@ image {
 }
 
 .invite {
-  width: 87.2rpx;
-  height: 87.2rpx;
+  width: 2.69rem;
+  height: 2.69rem;
   font-size: 12px;
   line-height: 80rpx;
   text-align: center;
   position: relative;
-  color: #D85D27;
+  color: #9B9B9B;
   border-radius: 0.19rem;
-  border: 0.06rem solid rgba(216, 93, 39, 1);
 }
 
 .invite image {
   width: 100%;
   height: 100%;
   position: absolute;
+}
+
+.readyToGo {
+  width: 100%;
+  position: fixed;
+  z-index: 99;
+  bottom: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.readyToGo .btnTwo {
+  width: 49.5%;
+  height: 2.69rem;
+  float: left;
+}
+.bootomBtn{
+  overflow: hidden;
+  margin-top: 1rem;
+  width: 100%;
+}
+.bootomBtn text{
+  float: left;
+}
+.participants .peopleList .son .isSigin{
+  font-size: 0.6rem;
+  display: block;
+  position: absolute;
+  top: -0.5rem;
+  width: 2.69rem;
+  text-align: center;
+  color: #fff;
+}
+.complaintsCon{
+  height: 2.94rem;
+  padding-left: 2.5%;
+}
+ .complaintsCon text:first-child{
+  font-size: 1rem;
+  line-height: 2.94rem;
+  float: left;
+}
+.complaintsCon image{
+  width: 0.44rem;
+  height: 0.69rem;
+  float: right;
+  margin-top: 1.2rem;
+  margin-right: 2.5%;
+}
+.complaintsCon text:last-child{
+  font-size: 0.69rem;
+  color: #949494;
+  line-height: 2.94rem;
+  float: right;
+  margin-right: 0.3rem;
+}
+.lineTwo{
+  height: 0.63rem;
+  background: rgba(243, 243, 243, 1);
+
+}
+.complaintsResu{
+  padding-left: 2.5%;
+  padding-bottom: 1rem;
+  padding-right: 2.5%;
+}
+.complaintsResu text:first-child{
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 1rem;
+
+}
+.complaintsResu text:last-child{
+  font-size: 0.75rem;
+  color: #333333;
 }

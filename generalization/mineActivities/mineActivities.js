@@ -3,20 +3,22 @@ const util = require('../../utils/util.js')
 Page({
   data: {
     listSon: [],
-    page: 0,
-    statusType: '',
+    page: 1,
+    statusType: 'all',
     activitiesNum: [],
+    type:'publish',
   },
   onLoad: function (option) {
     let page = 0
-    let statusType = 'matching'
+    let statusType = 'all'
     let type = 'publish'
     this.setData({
-      statusType: 'matching',
+      statusType: 'all',
       type: 'publish'
     })
     this.activitiesNum(type)
     this.common(page, statusType, type)
+   
   },
 
   common: function (page, statusType, type) {
@@ -132,9 +134,8 @@ Page({
   all: function () {
     let page = 0
     let statusType = 'all'
-    let type = 'publish'
+    let type = this.data.type
     this.setData({
-      type: 'publish',
       statusType: 'all'
     })
     wx.showLoading({
@@ -148,9 +149,10 @@ Page({
     let page = 0
     let type = e.currentTarget.dataset.id
     this.setData({
-      type: e.currentTarget.dataset.id
+      type: e.currentTarget.dataset.id,
+      statusType:'all'
     })
-    let statusType = 'matching'
+    let statusType = this.data.statusType
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -175,8 +177,49 @@ Page({
     )
 
   },
+  signin:function(e){
+    util.Request("/api/userArrivalSignin", { 'publicUid':e.currentTarget.dataset.id,'lat':wx.getStorageSync('lat'),'lng':wx.getStorageSync('lng')}, "post", 
+    (res) => {
+      wx.showToast({
+        title: res.data.msg,
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+      let page = this.data.page
+      let statusType = this.data.statusType
+      let type = this.data.type
+      this.common(page, statusType, type)
+
+    },
+    () => { console.log("失败") },
+    () => {
+    }
+  )
+  },
+  //跳转详情
+  activities:function(e){
+    
+    wx.navigateTo({
+      url: '/pages/homePage/activities/activities?uuid='+e.currentTarget.dataset.uuid+'&type=1',
+    })
+  },
+  //跳转待评价
+  comment:function(e){
+    wx.navigateTo({
+      url: '/generalization/appraisals/appraisals?id='+e.currentTarget.dataset.id,
+    })
+  },
+  comResult:function(e){
+    wx.navigateTo({
+      url: '/generalization/yesResults/yesResults?publicuuid='+e.currentTarget.dataset.id,
+    })
+  },
   isQuit:function(){
     
   },
+  onShow:function(){
+    this.onLoad()
+  }
 
 })

@@ -64,10 +64,16 @@
         "privacy/privacy",
         "blacklist/blacklist",
         "walletDetails/walletDetails",
-        "balanceDetail/balanceDetail"
+        "balanceDetail/balanceDetail",
+        "appraisals/appraisals",
+        "yesResults/yesResults",
+        "complaintsCon/complaintsCon",
+        "xieHistory/xieHistory"
       ]
     }
   ],
+ 
+   
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

@@ -43,7 +43,7 @@ Page({
   },
   details:function(){
     wx.navigateTo({
-      url: '/pages/homePage/activities/activities?uuid='+this.data.uuid,
+      url: '/pages/homePage/activities/activities?uuid='+this.data.uuid+'&hoog=1',
     })
   },
 

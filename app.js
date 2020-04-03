@@ -10,7 +10,7 @@ App({
   onLaunch: function () {
     // 展示本地存储能力
     var util = require("utils/util.js");
-
+   
     wx.login({
       success: res => {
         if (res.code) {

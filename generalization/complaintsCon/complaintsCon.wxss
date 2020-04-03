@@ -1,0 +1,197 @@
+page {
+  height: 100%;
+}
+
+.Complaints {
+  height: 100%;
+}
+
+.Complaints .navSon {
+  height: 2.88rem;
+  border-top: 0.06rem solid #E9E9E9;
+  border-bottom: 0.06rem solid #E9E9E9;
+}
+
+.Complaints .navSon>view {
+  width: 50%;
+  float: left;
+  text-align: center;
+  line-height: 2.7rem;
+  font-size: 1rem;
+  color: #9B9B9B;
+}
+
+.Complaints .navSon>view>text {
+  display: block;
+  height: 0.15rem;
+  width: 1rem;
+  margin: 0 auto;
+  background: #333;
+}
+
+.listSon {
+  padding: 0 2.5% 1rem;
+  border-bottom: 0.06rem solid #E9E9E9;
+  position: relative;
+}
+
+.listSon .head {
+  height: 2.38rem;
+  overflow: hidden;
+  margin-top: 0.75rem;
+}
+
+.listSon .head .avatar {
+  width: 2.38rem;
+  height: 2.38rem;
+  float: left;
+}
+
+.listSon .head .avatar image {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+
+.listSon .head .rightText {
+  float: left;
+  margin-left: 0.5rem;
+}
+
+.listSon .head .rightText>text:first-child {
+  display: block;
+  font-size: 0.88rem;
+}
+
+.listSon .head .rightText>text:last-child {
+  display: block;
+  font-size: 0.75rem;
+  color: #9B9B9B;
+}
+
+.listSon .startQ {
+  margin-top: 0.75rem;
+  overflow: hidden;
+}
+
+.listSon .startQ>text {
+  font-size: 0.88rem;
+  display: block;
+}
+
+.listSon .startQ>text:first-child {
+  float: left;
+}
+
+.listSon .startQ>text:last-child {
+  float: left;
+  width: 83%;
+}
+
+.listSon .umpire {
+  overflow: hidden;
+  height: 2.69rem;
+  margin: 0.75rem 0 0 0;
+}
+
+.listSon .umpire>text {
+  font-size: 0.88rem;
+  float: left;
+  line-height: 2.69rem;
+}
+
+.listSon .umpire .caipanBos {
+  float: left;
+  width: 70%;
+}
+
+.listSon .umpire .caipan {
+  width: 2.69rem;
+  height: 2.69rem;
+  float: left;
+  border-radius: 0.19rem;
+  position: relative;
+  margin-left: 0.2rem;
+}
+
+.listSon .umpire .caipan>image {
+  width: 100%;
+  height: 100%;
+}
+
+.listSon .umpire .caipan .textSon {
+  width: 100%;
+  height: 1rem;
+  background: linear-gradient(180deg, rgba(98, 98, 98, 1) 0%, rgba(51, 51, 51, 0.6) 100%);
+  border-radius: 0rem 0rem 0.19rem 0.19rem;
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  font-size: 0.75rem;
+  text-align: center;
+  line-height: 1rem;
+}
+
+.listSon .detailFor {
+  margin-top: 0.75rem;
+  overflow: hidden;
+}
+
+.listSon .detailFor>text {
+  font-size: 0.88rem;
+  display: block;
+  float: left;
+}
+
+.listSon .detailFor>text:last-child {
+  width: 70%;
+}
+
+.listSon .yinpin {
+  width: 11rem;
+  height: 2.38rem;
+  background: rgba(243, 243, 243, 1);
+  border-radius: 0.38rem;
+  margin-top: 0.75rem;
+}
+
+.listSon .yinpin>image {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.4rem;
+  margin-left: 1rem;
+}
+
+.listSon .result {
+  font-size: 0.88rem;
+  margin-top: 0.75rem;
+}
+
+.listSon .btn {
+  margin-top: 0.75rem;
+}
+.btn{
+  overflow: hidden;
+}
+
+.btn>view {
+  width: 4rem;
+  height: 1.63rem;
+  border-radius: 0.13rem;
+  border: 0.06rem solid rgba(74, 74, 74, 1);
+  text-align: center;
+  line-height: 1.63rem;
+  float: right;
+  font-size: 0.75rem;
+  margin-right: 0.5rem;
+}
+.btn>view:first-child{
+  margin-right: 0;
+}
+.image{
+  position: absolute;
+  right: 0.5rem;
+  top: 0rem;
+  width: 2.56rem;
+  height: 2.56rem;
+}

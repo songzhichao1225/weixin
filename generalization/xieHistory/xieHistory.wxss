@@ -1,0 +1,68 @@
+.xieHistory {
+  height: 100%;
+}
+
+.xieHistory .listSon {
+  padding: 0 2.5% 1rem;
+
+  border-bottom: 0.06rem solid #E9E9E9;
+}
+
+.xieHistory .listSon:first-child {
+  border-top: 0.06rem solid #E9E9E9;
+}
+
+
+.listSon .head {
+  height: 2.38rem;
+  margin-top: 0.75rem;
+  overflow: hidden;
+}
+
+.listSon .head .avatar {
+  width: 2.38rem;
+  height: 2.38rem;
+  border-radius: 50%;
+  float: left;
+}
+
+.listSon .head .text {
+  float: left;
+  margin-left: 0.3rem;
+}
+
+.listSon .head .text>text:first-child {
+  font-size: 0.8rem;
+  display: block;
+}
+
+.listSon .head .text>text:last-child {
+  font-size: 0.75rem;
+  color: #9B9B9B;
+  display: block;
+}
+
+.listSon .title {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.listSon .detail {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.listSon .yinpin {
+  width: 11rem;
+  height: 2.38rem;
+  background: rgba(243, 243, 243, 1);
+  border-radius: 0.38rem;
+  margin-top: 0.75rem;
+}
+
+.listSon .yinpin>image {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.4rem;
+  margin-left: 1rem;
+}

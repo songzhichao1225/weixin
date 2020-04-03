@@ -110,7 +110,7 @@
 					"id": 7,
 					"name": "活动详情",
 					"pathName": "pages/homePage/activities/activities",
-					"query": "uuid=ec626134-13aa-f7fd-8f65-5f8eb9cda077",
+					"query": "uuid= 35c2abf5-a57a-af7b-3200-581f06d2043b&type=1",
 					"scene": null
 				},
 				{
@@ -258,6 +258,34 @@
 					"name": "每条明细详情",
 					"pathName": "generalization/balanceDetail/balanceDetail",
 					"query": "id= 0028904d-3e17-e783-d78f-971e64627246",
+					"scene": null
+				},
+				{
+					"id": 29,
+					"name": "运动伙伴评价",
+					"pathName": "generalization/appraisals/appraisals",
+					"query": "id=68662c1f-514e-5fe1-2611-684d54a6b0e5",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "确认结果",
+					"pathName": "generalization/yesResults/yesResults",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 31,
+					"name": "活动投诉",
+					"pathName": "generalization/complaintsCon/complaintsCon",
+					"query": "uuid= 35c2abf5-a57a-af7b-3200-581f06d2043b",
+					"scene": null
+				},
+				{
+					"id": 32,
+					"name": "协商历史",
+					"pathName": "generalization/xieHistory/xieHistory",
+					"query": "uuid= 35c2abf5-a57a-af7b-3200-581f06d2043b&type=1",
 					"scene": null
 				}
 			]
