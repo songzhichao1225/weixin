@@ -27,7 +27,6 @@ wx.showLoading({
 //有权限的请求
 function Request(url, data, method, successFn, failFn, completeFn) {
   if (wx.getStorageSync('token')) {
-
     if (url == '/api/uploadHeaderImg') {
       wx.showLoading({
         title: '正在上传',
@@ -171,7 +170,6 @@ function Request(url, data, method, successFn, failFn, completeFn) {
         data: data,
         method: method,
         success: function (res) {
-          
           if (res.data.code == 40101) {
 
             wx.showToast({
@@ -205,14 +203,11 @@ function Request(url, data, method, successFn, failFn, completeFn) {
         }
       })
     }
-
-
-
-
-
-
-
-  }
+  }else{ 
+    wx.redirectTo({
+    url: '/pages/authorization/authorization'
+  })
+}
 }
 
 //无权限的请求

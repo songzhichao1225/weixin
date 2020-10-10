@@ -6,13 +6,23 @@ Page({
    */
   data: {
     venue:[],
+    falg:0,
+    sportId:0,
+    sporttype:0,
+    siteuid:0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    util.Request("/api/getSiteInfo", {'uid': options.uid}, "get", (res) => { 
+    this.setData({
+      falg: options.falg,
+      sportId: options.sportid,
+      sporttype: options.sporttype,
+      siteuid: options.siteuid
+    })
+    util.Request("/api/getSiteInfo", { 'uid': options.siteuid}, "get", (res) => { 
       this.setData({
         venue:res.data.data
       })
@@ -28,6 +38,29 @@ Page({
 
 
    
+  },
+  //跳转H5选择场地
+  bookIn: function (e) {
+    let obj = {
+      siteid: e.currentTarget.dataset.uid,
+      name: e.currentTarget.dataset.name
+    }
+    if (this.data.falg == 1) {
+      wx.setStorage({
+        data: obj,
+        key: 'siteid',
+      })
+    } else if (this.data.falg == 2) {
+      wx.setStorage({
+        data: obj,
+        key: 'siteidTwo',
+      })
+    }
+
+
+    wx.navigateTo({
+      url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportId + '&sporttype=' + this.data.sporttype + '&siteuid=' + this.data.siteuid + '&token=' + wx.getStorageSync('token') + '&falg=' + this.data.falg,
+    })
   },
 
 

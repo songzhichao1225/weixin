@@ -1,0 +1,46 @@
+<view class="releasePreferences">
+	<view class="content">
+		<view class="list">
+			<view class="left"><text>运动项目</text>
+				<image src="/assets/right.png"></image><text class="leftOne"  bindtap="sportsList">{{sportName!==''?sportName+sporttypeName:'请选择'}}</text>
+			</view>
+			<view class="right">
+				<text>运动模式</text>
+				<image src="/assets/right.png"></image><text class="leftOne">请选择</text>
+			</view>
+		</view>
+
+		<view class="list">
+			<text>运动场馆</text>
+			<image src="/assets/right.png"></image><text class="leftOne">请选择</text>
+		</view>
+
+		<view class="list">
+			<view class="left"><text>性别要求</text>
+				<image src="/assets/right.png"></image><text class="leftOne">不限</text>
+			</view>
+			<view class="right">
+				<text>年龄要求</text>
+				<image src="/assets/right.png"></image><text class="leftOne">不限</text>
+			</view>
+		</view>
+
+		<view class="list">
+			<view class="left"><text>技术级别</text>
+				<image src="/assets/right.png"></image><text class="leftOne">不限</text>
+			</view>
+			<view class="right">
+				<text>承担方式</text>
+				<image src="/assets/right.png"></image><text class="leftOne">不限</text>
+			</view>
+		</view>
+
+    <view class="list">
+			<text>活动备注</text>
+				<textarea auto-height="true" class="textarea" bindinput="comment" maxlength="150" placeholder="请填写活动注意事项(选填150字)"></textarea>
+		</view>
+
+	</view>
+  <view class="border"></view>
+
+</view>

@@ -14,7 +14,7 @@
 		<view class="yinpin" wx:if="{{item.baseURL!=''}}" bindtap="audioPlay" data-src="https://app.tiaozhanmeiyitian.com/{{item.baseURL}}{{item.filesURL}}">
 			<image src="/assets/icon_au.png"></image>
 		</view>
-
+ 
 
 
 

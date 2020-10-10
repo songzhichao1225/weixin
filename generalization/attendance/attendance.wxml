@@ -1,0 +1,43 @@
+<view class="attendance">
+	<view class="line"></view>
+	<view class="oneBox">
+		<text class="title">到场情况</text>
+		<view class="listSon"><text class="one">提前退出：</text><text class="two">{{attendance.tqtc}}</text></view>
+		<view class="listSon"><text class="one"><text>未</text><text style="padding-left:0.35rem;">签</text><text style="padding-left:0.4rem;">到：</text></text><text class="two">{{attendance.wqd}}</text></view>
+		<view class="listSon"><text class="one">迟到早退：</text><text class="two">{{attendance.cdzt}}</text></view>
+		<view class="listSon"><text class="one">正常到场：</text><text class="two">{{attendance.zc}}</text></view>
+	</view>
+	<view class="line"></view>
+	<view class="content">
+		<view class="conList">
+			<text>技术分</text>
+			<text>平双方都不扣；一方输扣一方；双方都输扣双方；</text>
+		</view>
+		<view class="conList">
+			<text>对手币</text>
+			<text>除提前退出、未到场者外，其他都奖励5枚/人。</text>
+		</view>
+		<view class="conList">
+			<text>场地费</text>
+			<text>扣场地费顺序，提前退出方（扣2倍人均场费，由先到后）→迟到方（未签到方扣2倍人均场地费，迟到方扣罚金和1倍人均场费，不分先后）→早退方（扣罚金和1倍人均场费，由先到后）。够整个场地费就不再扣，多扣部分均分所有签到方。如不够，不够部分由正常签到方均摊。</text>
+		</view>
+		<view class="conList">
+			<text>打赏费</text>
+			<text>根据缺勤时间扣除一定比例打赏费退还至发布者。</text>
+		</view>
+    	<view class="conList">
+			<text>违约次数</text>
+			<text>只记未到场方违约，提前退出、迟到、早退均不记违约。</text>
+		</view>
+    <view class="conList">
+			<text>备注</text>
+			<text>{{attendance.getRemarks}}</text>
+		</view>
+
+
+
+	</view>
+
+
+
+</view>

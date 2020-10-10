@@ -3,7 +3,7 @@
 
 
 
-<web-view bindmessage="detal" src="https://www.venue.zhaoduishou.com/#/appOrder?siteuid={{option.siteuid}}&sportid={{option.sportid}}&token={{option.token}}&sporttype={{option.sporttype}}">
+<web-view bindmessage="detal" src="https://www.cg.zhaoduishou.com/#/appOrder?siteuid={{option.siteuid}}&sportid={{option.sportid}}&token={{option.token}}&sporttype={{option.sporttype}}">
 
 
 

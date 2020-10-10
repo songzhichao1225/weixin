@@ -38,7 +38,7 @@
   width: 95%;
   font-size: 0.8rem;
   margin: 1rem auto 0;
-  text-align: left;
+  text-align: center;
 }
 
 .title {

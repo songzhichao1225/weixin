@@ -7,6 +7,7 @@ Page({
   data: {
     text: '',
     uuid:'',
+    type:'1'
   },
 
   /**
@@ -15,7 +16,8 @@ Page({
   onLoad: function (options) {
     this.setData({
       uuid:options.inviteId,
-      time:options.time
+      time:options.time,
+      type:options.Identification
     })
     util.Request("/api/getwWord", {
         inviteId: options.inviteId,
@@ -43,7 +45,7 @@ Page({
   },
   details:function(){
     wx.navigateTo({
-      url: '/pages/homePage/activities/activities?uuid='+this.data.uuid+'&hoog=1',
+      url: '/pages/homePage/activities/activities?uuid='+this.data.uuid+'&hoog=1'+'&type=1',
     })
   },
 

@@ -47,6 +47,7 @@
 			<radio class="radio" color="#D85D27" checked="{{current==3?true:false}}"></radio>
 		</radio-group>
 	</view>
+  <view style="color:#ccc;font-size:0.75rem;text-align:center;margin-top:1rem;">如活动匹配失败，预付的所有费用将全额退还</view>
 	<view class="btn" bindtap="payTo">确定支付</view>
 
 
@@ -55,7 +56,7 @@
 		<view class='bg_layer'></view>
 		<view class='input_main'>
 			<view class='input_title'>
-				<view class='input_back' catchtap='hidePayLayer'><text></text></view>
+				<view class='input_back' catchtap='close'><text></text></view>
 				<text>请输入支付密码</text>
 			</view>
 			<view class='input_tip'><text>支付金额</text></view>

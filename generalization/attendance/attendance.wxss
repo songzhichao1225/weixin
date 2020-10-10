@@ -1,0 +1,46 @@
+.attendance{
+  height: 100%;
+}
+.line{
+  height: 0.63rem;
+  background: #F3F3F3;
+}
+.oneBox{
+  margin-top: 0.4rem;
+  padding: 0 2.5%;
+  margin-bottom: 0.75rem;
+}
+.oneBox .title{
+  font-size: 0.88rem;
+}
+.oneBox .listSon{
+  overflow: hidden;
+  font-size: 0.75rem;
+  color: #9B9B9B;
+}
+.oneBox .listSon .one{
+   float: left;
+   width: 4rem;
+}
+.oneBox .listSon .two{
+  width: 78%;
+  float: left;
+}
+.content{
+  width: 95%;
+  margin: 0.75rem auto;
+}
+.conList{
+  margin-top: 1rem;
+}
+.conList text{
+  display: block;
+}
+.conList text:first-child{
+  font-size: 0.88rem;
+}
+.conList text:last-child{
+  font-size: 0.75rem;
+  color: #9B9B9B;
+  margin-top: 0.4rem;
+}

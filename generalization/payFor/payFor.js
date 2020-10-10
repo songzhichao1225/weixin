@@ -15,6 +15,7 @@ Page({
     modeNum: '',
     Referee: '',
     look:0,
+    ko:0,
   },
 
   /**
@@ -22,7 +23,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      look:options.look 
+      look:options.look,
+      ko:options.ko
     })
 
     if (options.look == 1) {
@@ -30,6 +32,7 @@ Page({
         modeNum: app.globalData.SportMode,
         Referee: app.globalData.refereefee
       })
+
       let obj = {
         sportModes: app.globalData.SportMode,
         siteMoney: app.globalData.SiteMoney,
@@ -44,6 +47,10 @@ Page({
       }
       util.request("/api/getElplainInfo", obj, "get",
         (res) => {
+          let k = res.data.data.Total.toString()
+          if (k.indexOf('.')==-1){
+            res.data.data.Total = res.data.data.Total+'.00'
+          }
           this.setData({
             getElplainInfo: res.data.data
           })
@@ -98,6 +105,13 @@ Page({
   /**
    * 隐藏支付密码输入层
    */
+  close:function(){
+    this.setData({
+      showPayPwdInput: false,
+      payFocus: false,
+      pwdVal: ''
+    });
+  },
   hidePayLayer: function () {
 
     var val = this.data.pwdVal;
@@ -115,34 +129,36 @@ Page({
           pwdVal: ''
         });
 
-        let obj = {
-          sportid: app.globalData.sportid,
-          sportType: app.globalData.sportType,
-          SportMode: app.globalData.SportMode,
-          siteUid: app.globalData.siteUid,
-          StartTime: app.globalData.StartTime,
-          PlayTime: app.globalData.PlayTime,
-          SiteMoney: app.globalData.SiteMoney,
-          PaySiteMoneyType: app.globalData.PaySiteMoneyType,
-          teamSex: app.globalData.teamSex,
-          LevelMin: app.globalData.LevelMin,
-          LevelMax: app.globalData.LevelMax,
-          Tips: app.globalData.SportMode == 1 ? app.globalData.Tips : 0 || app.globalData.SportMode == 2 ? app.globalData.Tips : 0,
-          comments: app.globalData.comments,
-          member: JSON.stringify(app.globalData.member),
-          MoneyPerhour: app.globalData.SportMode == 3 ? app.globalData.Tips : 0 || app.globalData.SportMode == 4 ? app.globalData.Tips : 0,
-          payType: 'balance',
-          venueid: app.globalData.venueid.slice(0, app.globalData.venueid.length - 1),
-          refereefee: app.globalData.refereefee,
-          RefereeNumber: app.globalData.RefereeNumber,
-          Refereegrade: app.globalData.Refereegrade,
-          Agemin:app.globalData.Agemin,
-          Agemax:app.globalData.Agemax
-        }
-        util.Request("/api/userAddActivity", obj, "post",
+        
+        if(this.data.ko!=1){
+          let obj = {
+            sportid: app.globalData.sportid,
+            sportType: app.globalData.sportType,
+            SportMode: app.globalData.SportMode,
+            siteUid: app.globalData.siteUid,
+            StartTime: app.globalData.StartTime,
+            PlayTime: app.globalData.PlayTime,
+            SiteMoney: app.globalData.SiteMoney,
+            PaySiteMoneyType: app.globalData.PaySiteMoneyType,
+            teamSex: app.globalData.teamSex,
+            LevelMin: app.globalData.LevelMin,
+            LevelMax: app.globalData.LevelMax,
+            Tips: app.globalData.SportMode == 1 ? app.globalData.Tips : 0 || app.globalData.SportMode == 2 ? app.globalData.Tips : 0,
+            comments: app.globalData.comments,
+            member: JSON.stringify(app.globalData.member),
+            MoneyPerhour: app.globalData.SportMode == 3 ? app.globalData.Tips : 0 || app.globalData.SportMode == 4 ? app.globalData.Tips : 0,
+            payType: 'balance',
+            venueid: app.globalData.venueid.slice(0, app.globalData.venueid.length - 1),
+            refereefee: app.globalData.refereefee,
+            RefereeNumber: app.globalData.RefereeNumber,
+            Refereegrade: app.globalData.Refereegrade,
+            Agemin:app.globalData.Agemin,
+            Agemax:app.globalData.Agemax
+          }
+          util.Request("/api/userAddActivity", obj, "post",
           (res) => {
-            console.log(res)
             if (res.data.code == 2000) {
+              wx.removeStorage({ key: 'bookin' })
               wx.navigateTo({
                 url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&referee=' + res.data.data.referee + '&status=1' + '&time=' + res.data.data.CreateTime,
               })
@@ -153,8 +169,6 @@ Page({
                 duration: 1500,
                 mask: true
               })
-
-
             }
           },
           () => {
@@ -162,6 +176,47 @@ Page({
           },
           () => {}
         )
+        }else if(this.data.ko==1){
+          util.Request("/api/userSignUp", {
+            inviteId: app.globalData.inviteId,
+            team: app.globalData.team,
+            SecondSportId: app.globalData.SecondSportId,
+            startTime:app.globalData.startTime,
+            playTime:app.globalData.playTime,
+            FirstSportId:app.globalData.sportid,
+            payType: 'balance',
+          }, "post",
+          (res) => {
+            if(res.data.code==2000){
+              wx.showToast({
+                title: res.data.mag,
+                icon: 'none',
+                duration: 1500,
+                mask: true
+              })
+              wx.removeStorage({ key: 'bookinTwo' })
+
+              wx.navigateTo({
+                url: '/generalization/createSuccess/createSuccess?inviteId=' + app.globalData.inviteId + '&Identification=2' + '&referee=' + app.globalData.refereefee + '&status=1' + '&time=' +app.globalData.CreateTime,
+              })
+            }else{
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'none',
+                duration: 1500,
+                mask: true
+              })
+
+            }
+            
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
+    
+        }
 
 
 

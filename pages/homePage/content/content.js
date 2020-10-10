@@ -233,17 +233,17 @@ Page({
           let projectDataNow = res.data.data.activeLst
           for (let i in projectDataNow) {
             if (projectDataNow[i].SportMode == '1') {
-              projectDataNow[i].SportMode = '娱乐'
+              projectDataNow[i].SportMode = '娱乐模式'
             } else if (projectDataNow[i].SportMode == '2') {
-              projectDataNow[i].SportMode = '竞技 '
+              projectDataNow[i].SportMode = '竞技模式'
             } else if (projectDataNow[i].SportMode == '3') {
-              projectDataNow[i].SportMode = '陪练 '
+              projectDataNow[i].SportMode = '我是陪练'
             } else if (projectDataNow[i].SportMode == '4') {
-              projectDataNow[i].SportMode = '找陪练 '
+              projectDataNow[i].SportMode = '我找陪练'
             } else if (projectDataNow[i].PaySiteMoneyType == 1) {
               projectDataNow[i].PaySiteMoneyType = 'AA'
             } else if (projectDataNow[i].PaySiteMoneyType == 0) {
-              projectDataNow[i].PaySiteMoneyType = '输者买单'
+              projectDataNow[i].PaySiteMoneyType = '输方买单'
             }
 
           }
@@ -565,7 +565,7 @@ Page({
       url: '/pages/homePage/screen/screen'
     })
   },
-  //上拉刷新
+  //上拉加载
   onReachBottom: function () {
     this.setData({
       pages: this.data.pages + 1
@@ -573,7 +573,7 @@ Page({
     let show = true
     this.goleloand(show)
   },
-  //下拉加载 
+  //下拉刷新 
   onPullDownRefresh() {
     wx.showNavigationBarLoading() //显示动画
     this.goleloand()

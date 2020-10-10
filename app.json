@@ -68,7 +68,11 @@
         "appraisals/appraisals",
         "yesResults/yesResults",
         "complaintsCon/complaintsCon",
-        "xieHistory/xieHistory"
+        "xieHistory/xieHistory",
+        "attendance/attendance",
+        "complaintsOperation/complaintsOperation",
+        "preferences/preferences",
+        "releasePreferences/releasePreferences"
       ]
     }
   ],

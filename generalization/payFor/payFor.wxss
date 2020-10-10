@@ -113,7 +113,7 @@ page{
   text-align: center;
   line-height: 2.69rem;
   color: #fff;
-  margin: 2rem auto 0;
+  margin: 1rem auto 0;
 }
 
 .btn_pay{

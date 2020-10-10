@@ -101,16 +101,16 @@
 					<text style="padding-left:0.5rem;" wx:if="{{item.Tips!==0}}">{{item.Tips}}.0元</text>
 					<text style="padding-left:0.5rem;" wx:if="{{item.MoneyPerhour!==0}}">{{item.MoneyPerhour}}.0元</text>
 					</text>
-
-					<view class="btnBos">
+           <view  class="btnBos" wx:if="{{item.reserve==1&&item.PublicStatus!=7}}">	<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="1">取消预订</view></view>
+					<view class="btnBos" wx:if="{{item.reserve!=1}}">
 						<view class="isConfirmResult" wx:if="{{item.Complaint==2}}">投诉中</view>
-						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" wx:if="{{item.PublicStatus==1&&item.isSignIn==0&&type!='join'}}">取消发布</view>
-						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" wx:if="{{item.PublicStatus==1&&item.isSignIn==0&&type=='join'}}">取消报名</view>
-						<view class="isConfirmResult" catchtap="isQuit" wx:if="{{item.PublicStatus==2&&item.isQuit==1}}">提前退出</view>
+						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="1" wx:if="{{item.PublicStatus==1&&item.isSignIn==0&&type!='join'}}">取消发布</view>
+						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="2" wx:if="{{item.PublicStatus==1&&item.isSignIn==0&&type=='join'}}">取消报名</view>
+						<view class="isConfirmResult" catchtap="isQuit" data-uuid="{{item.uuid}}" wx:if="{{item.PublicStatus==2&&item.isQuit==1}}">提前退出</view>
 						<view class="isConfirmResult" style="background:#E9E9E9" wx:if="{{item.PublicStatus==2&&item.isQuit==2}}">提前退出</view>
 						<view class="isConfirmResult" catchtap="signin" data-id="{{item.uuid}}" wx:if="{{item.SigninYes==1&&item.PublicStatus!=7&&item.isSignIn==0}}">场馆签到</view>
 						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.SigninYes==1&&item.isSignIn==1}}">已签到</view>
-						<view class="isConfirmResult" wx:if="{{item.PublicStatus==3&&item.isQuitInGame==1}}">中途退出</view>
+						<view class="isConfirmResult" catchtap="SignOut" data-uuid="{{item.uuid}}" wx:if="{{item.PublicStatus==3&&item.isQuitInGame==1}}">中途退出</view>
 						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.PublicStatus==3&&item.isQuitInGame==2}}">中途退出</view>
 						<view class="isConfirmResult" bindtap="comResult" data-id="{{item.uuid}}" wx:if="{{item.PublicStatus==4&&item.end==2&&item.isConfirmResult==0}}">填写结果</view>
 						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.PublicStatus==4&&item.end==2&&item.isConfirmResult==1}}">填写结果</view>

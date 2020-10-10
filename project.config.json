@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -17,11 +17,15 @@
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"useIsolateContext": true,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.5",
@@ -110,7 +114,7 @@
 					"id": 7,
 					"name": "活动详情",
 					"pathName": "pages/homePage/activities/activities",
-					"query": "uuid= 35c2abf5-a57a-af7b-3200-581f06d2043b&type=1",
+					"query": "uuid= 1d233496-ed71-1132-ccd9-a00191e9a6c2&type=1",
 					"scene": null
 				},
 				{
@@ -286,6 +290,34 @@
 					"name": "协商历史",
 					"pathName": "generalization/xieHistory/xieHistory",
 					"query": "uuid= 35c2abf5-a57a-af7b-3200-581f06d2043b&type=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "到场情况及规则",
+					"pathName": "generalization/attendance/attendance",
+					"query": "uuid= 35c2abf5-a57a-af7b-3200-581f06d2043b",
+					"scene": null
+				},
+				{
+					"id": 34,
+					"name": "投诉操作",
+					"pathName": "generalization/complaintsOperation/complaintsOperation",
+					"query": "uuid= c6792af4-66f6-ccb7-1760-e84e048f0c53&type=1&referee=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布偏好",
+					"pathName": "generalization/preferences/preferences",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 36,
+					"name": "添加发布偏好",
+					"pathName": "generalization/releasePreferences/releasePreferences",
+					"query": "",
 					"scene": null
 				}
 			]

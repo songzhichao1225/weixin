@@ -1,0 +1,42 @@
+page {
+  height: 100%;
+}
+
+.complationOperation {
+  border-top: 0.06rem solid #F5F5F5;
+}
+
+.boss {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.boss .title {
+  font-size: 1rem;
+  margin-top: 0.75rem;
+}
+
+.boss .title text:last-child {
+  font-size: 0.75rem;
+  color: #9B9B9B;
+}
+
+.boss .btnHead {
+  overflow: hidden;
+  margin-top: 0.8rem;
+}
+
+.boss .btnHead>view {
+  width: 48%;
+  height: 2.38rem;
+  border-radius: 0.13rem;
+  border: 0.06rem solid rgba(233, 233, 233, 1);
+  float: left;
+  text-align: center;
+  line-height: 2.38rem;
+  color: #9B9B9B;
+  font-size: 0.88rem;
+}
+.boss .btnHead>view:last-child{
+  margin-left: 2%;
+}

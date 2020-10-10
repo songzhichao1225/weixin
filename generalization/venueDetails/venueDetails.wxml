@@ -20,7 +20,7 @@
 				<text style="color:#9B9B9B;font-size:0.75rem;padding-left:0.3rem;">{{venue.scores}}分</text>
 			</view>
 			<view class="sheshi"><text style="margin-left:0;">设施:{{venue.equscore}}</text><text>服务:{{venue.envscore}}</text><text>价格:{{venue.xjbScore}}</text>
-				<view class="btn">预定</view>
+				<view class="btn" catchtap="bookIn" data-uid="{{venue.uid}}" data-name="{{venue.name}}">预定</view>
 			</view>
 		</view>
 	</view>

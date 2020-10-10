@@ -72,7 +72,7 @@
 
 .address>text {
   font-size: 0.75rem;
-  margin-top: 0.5rem;
+  line-height: 2.81rem;
   float: left;
   padding-left: 0.5rem;
   width: 80%;

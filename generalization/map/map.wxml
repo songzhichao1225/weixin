@@ -27,10 +27,10 @@
 
 <scroll-view scroll-y bindscrolltolower="tolower" refresher-enabled="{{true}}" refresher-threshold="{{100}}" refresher-default-style="white" refresher-background="#ccc" refresher-triggered="{{triggered}}"  bindrefresherrefresh="onRefresh" style="height:50%;">
 
-	<view class="venuesLst" wx:for="{{venuesLst}}" wx:key="index" bindtap="venueDetails" data-uid="{{item.uid}}">
+	<view class="venuesLst" wx:for="{{venuesLst}}" wx:key="index" bindtap="venueDetails" data-uid="{{item.uid}}"  data-name="{{item.name}}">
 		<view class="boss">
 			<view class="left">
-				<image src="/assets/orgen1@2x.png"></image>
+				<image src="https://app.tiaozhanmeiyitian.com/{{item.siteimg}}"></image>
 			</view>
 			<view class="right">
 				<view class="top">

@@ -1,7 +1,9 @@
 <view class="sportsList">
   <view class="list" wx:for="{{sportsList}}" wx:key="index">
-    <text class="head">{{item.name}}</text>
-    <text class="son" wx:for="{{item.sportType}}" bindtap="select" wx:for-item='list'  data-id="{{list.sportid}}" data-sportType="{{list.id}}" data-name="{{item.name}}" data-nameTwo="{{list.name}}"  wx:key="indexTwo" style="{{indexSport===list.id?'color:#fff;background:#D85D27;':''}}">{{list.name}}</text>
+    <text class="head" style="{{item.id==3?'padding-top:1.9rem;':'padding-top:0.6rem;'&&item.id==5?'padding-top:1.9rem;':'padding-top:0.6rem;'}}">{{item.name}}</text>
+    <view class="boss">
+      <text class="son" wx:for="{{item.sportType}}" bindtap="select" wx:for-item='list' data-id="{{list.sportid}}" data-sportType="{{list.id}}" data-name="{{item.name}}" data-nameTwo="{{list.name}}" wx:key="indexTwo" style="{{indexSport===list.id?'color:#fff;background:#D85D27;':''}}">{{list.name}}</text>
+    </view>
   </view>
 
 </view>

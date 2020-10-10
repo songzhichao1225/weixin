@@ -3,7 +3,7 @@ const util = require('../../utils/util.js')
 Page({
   data: {
     listSon: [],
-    page: 1,
+    page: 0,
     statusType: 'all',
     activitiesNum: [],
     type:'publish',
@@ -57,7 +57,6 @@ Page({
             listSon: [...this.data.listSon, ...projectDataNow]
           })
         } else {
-
           this.setData({
             listSon: projectDataNow
           })
@@ -85,32 +84,81 @@ Page({
     this.common(page, statusType, type)
   },
   cancels: function (e) {
-    console.log(e.currentTarget.dataset.uuid)
-    util.Request("/api/userCancelActivity", {
-        'publishcId': e.currentTarget.dataset.uuid
-      }, "post",
-      (res) => {
-        wx.showToast({
-          title: res.data.msg,
-          icon: 'none',
-          duration: 1500,
-          mask: true
-        })
-        if (res.data.code == 2000) {
-          let {
-            page,
-            statusType,
-            type
-          } = this.data
-          this.common(page, statusType, type)
-          this.activitiesNum(type)
+    if(e.currentTarget.dataset.type==1){
+      let that=this
+      wx.showModal({
+        title: '提示',
+        content: '你确定取消本次活动发布么?',
+        success (res) {
+          if (res.confirm) {
+            util.Request("/api/userCancelActivity", {
+              'publishcId': e.currentTarget.dataset.uuid
+            }, "post",
+            (res) => {
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'none',
+                duration: 1500,
+                mask: true
+              })
+              if (res.data.code == 2000) {
+                let {
+                  page,
+                  statusType,
+                  type
+                } = that.data
+                that.common(page, statusType, type)
+                that.activitiesNum(type)
+              }
+            },
+            () => {
+              console.log("失败")
+            },
+            () => {}
+          )
+          } else if (res.cancel) {
+          }
         }
-      },
-      () => {
-        console.log("失败")
-      },
-      () => {}
-    )
+      })
+    }else if(e.currentTarget.dataset.type==2){
+      let that=this
+      wx.showModal({
+        title: '提示',
+        content: '你确定取消本次活动报名么?',
+        success (res) {
+          if (res.confirm) {
+            util.Request("/api/userCancelActivity", {
+              'publishcId': e.currentTarget.dataset.uuid
+            }, "post",
+            (res) => {
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'none',
+                duration: 1500,
+                mask: true
+              })
+              if (res.data.code == 2000) {
+                let {
+                  page,
+                  statusType,
+                  type
+                } = that.data
+                that.common(page, statusType, type)
+                that.activitiesNum(type)
+              }
+            },
+            () => {
+              console.log("失败")
+            },
+            () => {}
+          )
+          } else if (res.cancel) {
+            
+          }
+        }
+      })
+    }
+   
 
   },
 
@@ -215,8 +263,53 @@ Page({
       url: '/generalization/yesResults/yesResults?publicuuid='+e.currentTarget.dataset.id,
     })
   },
-  isQuit:function(){
-    
+  isQuit:function(e){
+    let that=this
+    wx.showModal({
+      title: '提示',
+      content: '您确定提前退出本次活动么?',
+      success (res) {
+        if (res.confirm) {
+          util.Request("/api/getmessage", { 'uuid':e.currentTarget.dataset.uuid,type:3}, "post", 
+          (res) => {
+            let page = this.data.page
+            let statusType = this.data.statusType
+            let type = this.data.type
+            that.common(page, statusType, type)
+          },
+          () => { console.log("失败") },
+          () => {
+          }
+        )
+        } else if (res.cancel) {
+        }
+      }
+    })
+   
+  },
+  SignOut:function(e){
+    let that=this
+    wx.showModal({
+      title: '提示',
+      content: '您确定退出本次活动么?',
+      success (res) {
+        if (res.confirm) {
+          util.Request("/api/userMidwaySignOut", { 'uuid':e.currentTarget.dataset.uuid}, "post", 
+          (res) => {
+            let page = this.data.page
+            let statusType = this.data.statusType
+            let type = this.data.type
+            that.common(page, statusType, type)
+          },
+          () => { console.log("失败") },
+          () => {
+          }
+        )
+        } else if (res.cancel) {
+        }
+      }
+    })
+   
   },
   onShow:function(){
     this.onLoad()

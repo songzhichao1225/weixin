@@ -1,0 +1,9 @@
+<view class="complationOperation">
+	<view class="boss">
+		<view class="title"><text>投诉类型</text><text>(可多选)</text></view>
+    <view class="btnHead">
+     <view>场馆未预留场地</view>
+     <view>裁判未到场</view>
+    </view>
+	</view>
+</view>

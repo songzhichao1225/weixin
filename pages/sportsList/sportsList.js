@@ -19,8 +19,12 @@ Page({
      })
     util.request("/api/getAllSportLst", {}, "get",
       (res) => {
+        let obj=res.data.data
+        if(options.flag==1){
+          obj[7].sportType=obj[7].sportType.slice(0,2)
+        }
        this.setData({
-         sportsList:res.data.data
+         sportsList:obj
        })
 
         wx.hideLoading()
@@ -52,6 +56,13 @@ Page({
     }else if(this.data.flag==2){
       prevPage.setData({
         sportsListTwo: e.currentTarget.dataset
+      })
+      wx.navigateBack({
+        delta: 1
+      })
+    }else if(this.data.flag==3){
+      prevPage.setData({
+        sportsListThree: e.currentTarget.dataset
       })
       wx.navigateBack({
         delta: 1

@@ -1,6 +1,6 @@
 //logs.js
 const util = require('../../../utils/util.js')
-
+var app = getApp();
 Page({
   data: {
     activitiesData: [],
@@ -16,40 +16,72 @@ Page({
     deservedType: 1,
     type: 0,
     Publisher: 0, //是否是发布者 0不  1是
+    AwinBuserInfoOne: [],
+    AloseBuserInfoTwo: [],
+    AdrawBuserInfoThree: [],
+    getwaiverInfoFour: [],
+    getRefereeResult: [],
+    uuid: '',
   },
 
   onLoad: function (option) {
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    })
-    if (option.hoog != undefined) {
+
+    if (option != undefined) {
+      if (option.hoog != undefined) {
+        this.setData({
+          hoog: option.hoog
+        })
+      } else if (option.hoog == undefined) {
+        this.setData({
+          hoog: 0
+        })
+      }
+      if (option.type != undefined) {
+        this.setData({
+          type: option.type
+        })
+      }
       this.setData({
-        hoog: option.hoog
-      })
-    } else if (option.type != undefined) {
-      this.setData({
-        type: option.type
+        uuid: option.uuid
       })
     }
 
+
+
+
+    this.koopdf()
+
+
+
+
+  },
+
+  //接口函数
+  koopdf: function () {
     util.Request("/api/getActivityInfo", {
-        'uuid': option.uuid
+        'uuid': this.data.uuid
       }, "get",
       (res) => {
         let projectNow = res.data.data
         if (projectNow.SportMode == '1') {
           projectNow.SportMode = '娱乐'
         } else if (projectNow.SportMode == '2') {
-          projectNow.SportMode = '竞技 '
+          projectNow.SportMode = '竞技'
         } else if (projectNow.SportMode == '3') {
-          projectNow.SportMode = '陪练 '
+          projectNow.SportMode = '陪练'
         } else if (projectNow.SportMode == '4') {
-          projectNow.SportMode = '找陪练 '
+          projectNow.SportMode = '找陪练'
         }
-      this.tagStatus(projectNow)
-      this.tagStatusTwo(projectNow)
-      this.tagStatusThree(projectNow)
+        console.log(projectNow)
+        this.setData({
+          AwinBuserInfoOne: projectNow.AwinBuserInfo.slice(0, 4),
+          AloseBuserInfoTwo: projectNow.AloseBuserInfo.slice(0, 4),
+          AdrawBuserInfoThree: projectNow.AdrawBuserInfo.slice(0, 4),
+          getwaiverInfoFour: projectNow.getwaiverInfo.slice(0, 4)
+        })
+        this.tagStatus(projectNow)
+        this.tagStatusTwo(projectNow)
+        this.tagStatusThree(projectNow)
         let object = {
           name: "报名",
           hid: false,
@@ -64,7 +96,7 @@ Page({
         for (let i = 0; i = projectNow.RefereeNumber - projectNow.teamC.length; i++) {
           projectNow.teamC.push(object)
         }
-        if (projectNow.uuid != wx.getStorageSync('uuid')) {
+        if (projectNow.teamA[0].uuid != wx.getStorageSync('uuid')) {
           this.setData({
             Publisher: 0
           })
@@ -73,6 +105,24 @@ Page({
             Publisher: 1
           })
         }
+        let koarr = [...projectNow.teamA, ...projectNow.teamB]
+        let hoArr = []
+        for (let i in koarr) {
+          hoArr.push(koarr[i].uuid)
+        }
+        if (hoArr.indexOf(wx.getStorageSync('uuid')) == -1) {
+          this.setData({
+            typeTwo: 0
+          })
+        } else {
+          this.setData({
+            typeTwo: 1
+          })
+        }
+
+
+
+
         this.countdown(projectNow.StartTime)
         let sportName = projectNow.sportName
         this.judgmentBall(sportName, projectNow)
@@ -82,6 +132,21 @@ Page({
           tipsType: projectNow.Tips.toString().indexOf('.'),
           deservedType: projectNow.deserved.toString().indexOf('.'),
           flag: true
+        })
+        wx.hideLoading()
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
+
+    util.Request("/api/getRefereeResult", {
+        'publicuuid': this.data.uuid
+      }, "post",
+      (res) => {
+        this.setData({
+          getRefereeResult: res.data.data
         })
         wx.hideLoading()
       },
@@ -121,7 +186,7 @@ Page({
   },
 
 
- 
+
   //倒计时
 
   countdown: function (StartTime) {
@@ -170,9 +235,43 @@ Page({
   //跳转用户详情
   getUserDetailInfo: function (e) {
     if (wx.getStorageSync('token')) {
-      wx.navigateTo({
-        url: '/pages/personal/personal?uuid=' + e.currentTarget.dataset.uid
-      })
+      if (e.currentTarget.dataset.uid == wx.getStorageSync('uuid')) {
+        let p = ''
+        if (this.data.Publisher == 1) {
+          p = '发布'
+        } else {
+          p = '报名'
+        }
+        let that = this
+        wx.showModal({
+          title: '提示',
+          content: '你确定取消本次活动'+p+'么?',
+          success(res) {
+            if (res.confirm) {
+              util.Request("/api/userCancelActivity", {
+                  'publishcId': that.data.activitiesData.uuid
+                }, "post",
+                (res) => {
+                  that.koopdf()
+                },
+                () => {
+                  console.log("失败")
+                },
+                () => {}
+              )
+            } else if (res.cancel) {}
+          }
+        })
+
+
+
+
+      } else {
+        wx.navigateTo({
+          url: '/pages/personal/personal?uuid=' + e.currentTarget.dataset.uid
+        })
+      }
+
     } else {
       wx.navigateTo({
         url: '/pages/authorization/authorization'
@@ -214,7 +313,7 @@ Page({
 
   },
 
-  tagStatus:function(projectNow){
+  tagStatus: function (projectNow) {
     for (let i in projectNow.teamA) {
       if (projectNow.teamA[i].isSignIns != 4) {
         if (projectNow.teamA[i].isSignIns == 1) {
@@ -248,7 +347,7 @@ Page({
     }
   },
 
-  tagStatusTwo:function(projectNow){
+  tagStatusTwo: function (projectNow) {
     for (let i in projectNow.teamB) {
       if (projectNow.teamB[i].isSignIns != 4) {
         if (projectNow.teamB[i].isSignIns == 1) {
@@ -281,7 +380,7 @@ Page({
       }
     }
   },
-  tagStatusThree:function(projectNow){
+  tagStatusThree: function (projectNow) {
     for (let i in projectNow.teamC) {
       if (projectNow.teamC[i].isSignIns != 4) {
         if (projectNow.teamC[i].isSignIns == 1) {
@@ -315,13 +414,242 @@ Page({
     }
   },
   //活动投诉
-  complaintsCon:function(e){
-    console.log(e.currentTarget.dataset.uuid)
+  complaintsCon: function (e) {
     wx.navigateTo({
-      url: '/generalization/complaintsCon/complaintsCon?uuid='+e.currentTarget.dataset.uuid,
+      url: '/generalization/complaintsCon/complaintsCon?uuid=' + e.currentTarget.dataset.uuid,
     })
 
   },
+  //活动到场情况及规则
+  attendance: function (e) {
+    wx.navigateTo({
+      url: '/generalization/attendance/attendance?uuid=' + e.currentTarget.dataset.uuid,
+    })
+  },
+  //取消发布/取消报名
+  cancels: function (e) {
+    if (e.currentTarget.dataset.type == 1) {
+      let that = this
+      wx.showModal({
+        title: '提示',
+        content: '你确定取消本次活动发布么?',
+        success(res) {
+          if (res.confirm) {
+            util.Request("/api/userCancelActivity", {
+                'publishcId': e.currentTarget.dataset.uuid
+              }, "post",
+              (res) => {
+                wx.showToast({
+                  title: res.data.msg,
+                  icon: 'none',
+                  duration: 1500,
+                  mask: true
+                })
+                that.koopdf()
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
+          } else if (res.cancel) {}
+        }
+      })
+    } else if (e.currentTarget.dataset.type == 2) {
+      let that = this
+      wx.showModal({
+        title: '提示',
+        content: '你确定取消本次活动报名么?',
+        success(res) {
+          if (res.confirm) {
+            util.Request("/api/userCancelActivity", {
+                'publishcId': e.currentTarget.dataset.uuid
+              }, "post",
+              (res) => {
+                wx.showToast({
+                  title: res.data.msg,
+                  icon: 'none',
+                  duration: 1500,
+                  mask: true
+                })
+                that.koopdf()
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
+          } else if (res.cancel) {
+
+          }
+        }
+      })
+    }
+
+
+  },
+  //场馆签到
+  signin: function (e) {
+    util.Request("/api/userArrivalSignin", {
+        'publicUid': e.currentTarget.dataset.id,
+        'lat': wx.getStorageSync('lat'),
+        'lng': wx.getStorageSync('lng')
+      }, "post",
+      (res) => {
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none',
+          duration: 1500,
+          mask: true
+        })
+        this.koopdf()
+
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
+  },
+  //提前退出
+  isQuit: function (e) {
+    let that = this
+    wx.showModal({
+      title: '提示',
+      content: '您确定提前退出本次活动么?',
+      success(res) {
+        if (res.confirm) {
+          util.Request("/api/getmessage", {
+              'uuid': e.currentTarget.dataset.uuid,
+              type: 3
+            }, "post",
+            (res) => {
+              that.koopdf()
+            },
+            () => {
+              console.log("失败")
+            },
+            () => {}
+          )
+        } else if (res.cancel) {}
+      }
+    })
+
+  },
+  //中途退赛
+  SignOut: function (e) {
+    let that = this
+    wx.showModal({
+      title: '提示',
+      content: '您确定退出本次活动么?',
+      success(res) {
+        if (res.confirm) {
+          util.Request("/api/userMidwaySignOut", {
+              'uuid': e.currentTarget.dataset.uuid
+            }, "post",
+            (res) => {
+              that.koopdf()
+            },
+            () => {
+              console.log("失败")
+            },
+            () => {}
+          )
+        } else if (res.cancel) {}
+      }
+    })
+
+  },
+  //填写比赛结果F
+  comResult: function (e) {
+    wx.navigateTo({
+      url: '/generalization/yesResults/yesResults?publicuuid=' + e.currentTarget.dataset.id,
+    })
+  },
+  //跳转待评价
+  comment: function (e) {
+    console.log(e.currentTarget.dataset.id)
+    wx.navigateTo({
+      url: '/generalization/appraisals/appraisals?id=' + e.currentTarget.dataset.id,
+    })
+  },
+  //用户报名
+  userSignUp: function (e) {
+    let that = this
+    if (e.currentTarget.dataset.team == 1) {
+      var teamText = 'A'
+    } else {
+      var teamText = 'B'
+    }
+
+    if (this.data.typeTwo == 0) {
+      wx.showModal({
+        title: '提示',
+        content: '您确定加入' + teamText + '队么?',
+        success(res) {
+          if (res.confirm) {
+            let obj = {
+              inviteId: that.data.activitiesData.uuid,
+              team: e.currentTarget.dataset.team,
+              SecondSportId: that.data.activitiesData.SportType,
+              sportid: that.data.activitiesData.SportId,
+              startTime: that.data.activitiesData.StartTime,
+              playTime: that.data.activitiesData.PlayTime,
+              SportMode: that.data.activitiesData.SportMode,
+              SiteMoney: that.data.activitiesData.SiteMoney,
+              number: that.data.activitiesData.needNumber,
+              PaySiteMoneyType: that.data.activitiesData.PaySiteMoneyType,
+              isPublisher: 0,
+              isCooper: 1,
+              Accompany: that.data.activitiesData.MoneyPerhour,
+              Reward: that.data.activitiesData.Tips,
+              refereefee: that.data.activitiesData.refereeFee,
+              CreateTime:that.data.activitiesData.CreateTime
+            }
+
+            app.globalData = obj
+            wx.navigateTo({
+              url: '/generalization/payFor/payFor?look=1' + '&ko=1',
+            })
+          } else if (res.cancel) {}
+        }
+      })
+
+    }
+  },
+  onShow: function () {
+    this.koopdf()
+  },
+  addReferees:function(){
+    let that=this
+    wx.showModal({
+      title: '提示',
+      content: '您确定报名裁判么?',
+      success(res) {
+        if (res.confirm) {
+          util.Request("/api/addReferees", {
+              'inviteId':that.data.uuid,
+              FirstSportId:that.data.activitiesData.SportId
+            }, "post",
+            (res) => {
+               wx.navigateTo({
+                url: '/generalization/createSuccess/createSuccess?inviteId=' +that.data.uuid + '&Identification=3' + '&referee=' + that.data.activitiesData.refereeFee + '&status=1' + '&time=' +that.data.activitiesData.CreateTime,
+              })
+            },
+            () => {
+              console.log("失败")
+            },
+            () => {}
+          )
+        } else if (res.cancel) {}
+      }
+    })
+
+  },
+
+
+
+
 
 
 })

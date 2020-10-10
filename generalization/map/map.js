@@ -51,6 +51,9 @@ Page({
           success: function(res) {
             let city = res.result.address_component.city
             let area = res.result.address_component.district
+            _this.setData({
+              city:city
+            })
             //页面首次进入获取场馆列表
             let obj = {
               mylat: latitude,
@@ -343,7 +346,7 @@ getsuggest: function(e) {
 
   venueDetails:function(e){
     wx.navigateTo({
-      url: '/generalization/venueDetails/venueDetails?uid='+e.currentTarget.dataset.uid,
+      url: '/generalization/venueDetails/venueDetails?sportid=' + this.data.sportId + '&sporttype=' + this.data.sporttype + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&falg=' + this.data.falg,
     })
   },
   //跳转H5选择场地
