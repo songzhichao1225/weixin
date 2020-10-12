@@ -2,7 +2,7 @@
 
 
 
-	<view class="comtentSon" wx:for="{{preferencesData}}" wx:key='index'>
+	<view class="comtentSon" wx:for="{{preferencesData}}" bindtap="checked" data-uuid="{{item.uuid}}" wx:key='index'>
 		<view class="left">
 			<image wx:if="{{item.sportid==1}}" src="/assets/jbsc_ymq.png"></image>
 			<image wx:if="{{item.sportid==2}}" src="/assets/jbsc_ppq.png"></image>
@@ -16,11 +16,11 @@
 		<view class="right">
 			<text>{{item.sportname}} {{item.sporttypename}} {{item.sportmode}}</text>
 			<text>{{item.sitename}}</text>
-			<view class="type"><text>场地费:{{item.bearmode}}</text><text wx:if="{{item.refereenumber!==0}}">裁判人数:{{item.refereenumber}}人</text><text wx:if="{{item.refereegrade!==''}}">裁判等级:{{item.refereegrade}}级</text></view>
+			<view class="type"><text>场地费:{{item.bearmode}}</text><text wx:if="{{item.refereenumber!==0}}">裁判人数:{{item.refereenumber}}人</text><text wx:if="{{item.refereegrade!==''}}">裁判等级:{{item.refereegrade}}</text></view>
 			<view class="type"><text>性别:{{item.sex}}</text><text>年龄:{{item.avg}}</text><text>等级:{{item.grade}}</text></view>
 			<text>活动备注:{{item.remarks}}</text>
 		</view>
-		<view class="delet" bindtap="delet" data-id="{{item.uuid}}"><image src="/assets/delect.png"></image></view>
+		<view class="delet" catchtap="delet" data-id="{{item.uuid}}"><image src="/assets/delect.png"></image></view>
 	</view> 
 
 

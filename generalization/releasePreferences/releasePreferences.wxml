@@ -6,41 +6,88 @@
 			</view>
 			<view class="right">
 				<text>运动模式</text>
-				<image src="/assets/right.png"></image><text class="leftOne">请选择</text>
+				<image src="/assets/right.png"></image>
+					<picker range="{{cf==false?arrayLan:array}}" bindchange="picker" disabled="{{disabled}}" bindtap="pickerTap" range-key="name" style="float:right;">
+						<view class="textTwo" style="text-align:right;font-size:0.75rem;color:#9b9b9b;">
+							{{mode}}
+						</view>
+					</picker>
 			</view>
 		</view>
 
-		<view class="list">
+			<view class="list" wx:if="{{mode=='竞技模式'}}">
+			<view class="left"><text>裁判人数</text>
+				<image src="/assets/right.png"></image>
+					<picker range="{{TrialArray}}" bindchange="TrialPicker" range-key="name" style="float:right;">
+						<view style="text-align:right;color:#9B9B9B;font-size:0.75rem">
+							{{TrialNum}}人
+						</view>
+					</picker>
+			</view>
+			<view class="right">
+				<text>裁判等级</text>
+				<image src="/assets/right.png"></image>
+					<picker range="{{sportName=='高尔夫'?TrialRaderArrTwo:TrialRaderArr}}" bindchange="TrialRader" range-key="name" style="float:right;">
+						<view style="color:#9B9B9B;text-align:right;font-size:0.75rem">
+							{{TrialRader}}
+						</view>
+					</picker>
+			</view>
+		</view>
+	
+
+		<view class="list" bindtap="venues">
 			<text>运动场馆</text>
-			<image src="/assets/right.png"></image><text class="leftOne">请选择</text>
+			<image src="/assets/right.png"></image><text class="leftOne">{{siteThreeName}}</text>
 		</view>
 
 		<view class="list">
 			<view class="left"><text>性别要求</text>
-				<image src="/assets/right.png"></image><text class="leftOne">不限</text>
+				<image src="/assets/right.png"></image>
+				<picker bindchange="bindPickerSex" style="float:right;" range="{{sexArr}}" range-key="name">
+						<view class="textTwo" style="text-align:left;float:left;margin-left:0.3rem;font-size:0.75rem;color:#9b9b9b">
+							{{sex}}
+						</view>
+					</picker>
 			</view>
 			<view class="right">
 				<text>年龄要求</text>
-				<image src="/assets/right.png"></image><text class="leftOne">不限</text>
+				<image src="/assets/right.png"></image>
+				<picker bindchange="bindPickerAge" style="float:right;" range="{{ageArr}}" mode="multiSelector">
+						<view class="textTwo" style="text-align:right;font-size:0.75rem;color:#9b9b9b">
+							{{age}}
+						</view>
+					</picker>
 			</view>
 		</view>
 
 		<view class="list">
 			<view class="left"><text>技术级别</text>
-				<image src="/assets/right.png"></image><text class="leftOne">不限</text>
+				<image src="/assets/right.png"></image>
+					<picker mode="multiSelector" bindchange="bindPickerRank" range="{{rankArr}}" style="float:right;">
+						<view class="textTwo" style="text-align:right;margin-left:0.3rem;font-size:0.75rem;color:#9b9b9b">
+							{{rank}}
+						</view>
+					</picker>
 			</view>
 			<view class="right">
 				<text>承担方式</text>
-				<image src="/assets/right.png"></image><text class="leftOne">不限</text>
+				<image src="/assets/right.png"></image>
+					<picker bindchange="bindPickerShouldered" range="{{shoulderedArr}}" disabled="{{mode=='竞技模式'?false:true}}" range-key="name" style="float:right;">
+						<view class="textTwo" style="text-align:right;font-size:0.75rem;color:#9b9b9b">
+							{{shouldered}}
+						</view>
+					</picker>
 			</view>
 		</view>
 
-    <view class="list">
-			<text>活动备注</text>
-				<textarea auto-height="true" class="textarea" bindinput="comment" maxlength="150" placeholder="请填写活动注意事项(选填150字)"></textarea>
+    <view class="list kop">
+			<text style="float:left;">活动备注</text>
+				<textarea auto-height="true" class="textarea" bindinput="comment" value="{{comments}}" maxlength="150" placeholder="请填写活动注意事项(选填150字)"></textarea>
 		</view>
-
 	</view>
   <view class="border"></view>
+
+	<button class="btncomfire" bindtap="comfire">确定</button>
 
 </view>

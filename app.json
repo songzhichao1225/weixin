@@ -72,7 +72,9 @@
         "attendance/attendance",
         "complaintsOperation/complaintsOperation",
         "preferences/preferences",
-        "releasePreferences/releasePreferences"
+        "releasePreferences/releasePreferences",
+        "signUp/signUp",
+        "signUpJoin/signUpJoin"
       ]
     }
   ],

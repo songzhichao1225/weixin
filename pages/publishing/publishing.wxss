@@ -233,8 +233,10 @@ opacity:0.5;
 .textarea{
   width: 75%;
   float: right;
-  line-height: 1.3rem;
-  padding-top: 0.8rem;
+  line-height: 1rem;
+  margin-top: 0.9rem;
+  font-size: 0.75rem;
+  color: #9b9b9b;
 }
 .zhezhao{
   width: 100%;

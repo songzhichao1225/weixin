@@ -1,0 +1,190 @@
+<view class="signUpJoin">
+	<view class="list">
+		<text>有满足该偏好的活动时发送通知</text>
+		<switch checked="{{switch1Checked}}" color="#D85D27" class="switch" bindchange="switch1Change" />
+	</view>
+	<view class="list">
+		<text>偏好名称</text>
+		<input class="input" maxlength="11" bindchange="titleChange" value="{{title}}"  placeholder="请填写(可修改)"></input>
+	</view>
+
+	<view class="list">
+		<text>运动项目</text>
+		<image src="/assets/right.png"></image>
+		<picker mode="multiSelector" bindchange="PickerChange" range-key="name" bindcolumnchange="ColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+			<view class="picker" wx:if="{{multiIndex.length!=0}}">
+				{{multiArray[0][multiIndex[0]].name}} {{multiArray[1][multiIndex[1]].name}}
+			</view>
+			<view class="picker" wx:if="{{multiIndex.length==0}}">
+				请选择
+			</view>
+		</picker>
+	</view>
+
+	<view class="list" bindtap="signUpMap">
+		<text>我的位置</text>
+		<image src="/assets/right.png"></image>
+		<text class="map">{{address}}</text>
+		<image class="mapDing" src="/assets/mapDing.png"></image>
+	</view>
+
+	<view class="list">
+		<text>距离范围</text>
+		<image src="/assets/right.png"></image>
+		<picker bindchange="distance" value="{{index}}" range="{{distanceArray}}" range-key="name">
+			<view class="picker">
+				{{distanceArray[index].name}}
+			</view>
+		</picker>
+	</view>
+
+	<view class="list">
+		<text>推荐排序</text>
+		<image src="/assets/right.png"></image>
+		<picker bindchange="Recommended" value="{{indexTwo}}" range="{{recommendedArray}}" range-key="name">
+			<view class="picker">
+				{{recommendedArray[indexTwo].name}}
+			</view>
+		</picker>
+	</view>
+
+	<view class="list">
+		<text>运动模式</text>
+		<image src="/assets/right.png"></image>
+		<picker bindchange="patterns" value="{{indexThree}}" range="{{patternsArray}}" range-key="name">
+			<view class="picker">
+				{{patternsArray[indexThree].name}}
+			</view>
+		</picker>
+	</view>
+
+	<view class="list">
+		<text>场地费承担方式</text>
+		<image src="/assets/right.png"></image>
+		<picker bindchange="shouldered" value="{{indexFour}}" range="{{shoulderedArray}}" range-key="name">
+			<view class="picker">
+				{{shoulderedArray[indexFour].name}}
+			</view>
+		</picker>
+	</view>
+	<view class="list">
+		<text>发布者性别</text>
+		<image src="/assets/right.png"></image>
+		<picker bindchange="publisher" value="{{indexFive}}" range="{{publisherArray}}" range-key="name">
+			<view class="picker">
+				{{publisherArray[indexFive].name}}
+			</view>
+		</picker>
+	</view>
+
+	<view class="list">
+		<text>活动开始日期</text>
+		<image src="/assets/right.png"></image>
+		<picker mode="date" value="{{date}}" bindchange="dateChange">
+			<view class="picker">
+				{{date}}
+			</view>
+		</picker>
+	</view>
+
+	<view class="list">
+		<text>活动开始时间</text>
+		<image src="/assets/right.png"></image>
+		<picker mode="time" value="{{startTime}}" bindchange="startTimeChange">
+			<view class="picker">
+				{{startTime}}
+			</view>
+		</picker>
+	</view>
+
+	<view class="list">
+		<text>活动结束时间</text>
+		<image src="/assets/right.png"></image>
+		<picker mode="time" value="{{endTime}}" bindchange="endTimeChange">
+			<view class="picker">
+				{{endTime}}
+			</view>
+		</picker>
+	</view>
+
+	<view class="list">
+		<text>设置重复星期</text>
+		<image src="/assets/right.png"></image>
+		<view class="picker" bindtap="powerDrawer" data-statu="open">
+			{{weekTwo}}
+		</view>
+	</view>
+
+
+
+	<view class="list">
+		<text>已参与人员平均年龄</text>
+		<image src="/assets/right.png"></image>
+		<picker bindchange="bindPickerAge" range="{{ageArr}}" mode="multiSelector">
+			<view class="picker">
+				{{age}}
+			</view>
+		</picker>
+	</view>
+
+	<view class="list">
+		<text>已参与人员平均等级</text>
+		<image src="/assets/right.png"></image>
+		<picker mode="multiSelector" bindchange="bindPickerRank" range="{{rankArr}}" >
+			<view class="picker">
+				{{rank}}
+			</view>
+		</picker>
+	</view>
+
+	<view class="list">
+		<text>已参与人员平均评分数</text>
+		<image src="/assets/right.png"></image>
+		<picker  bindchange="scoringChange" range="{{scoringArr}}"  range-key="name">
+			<view class="picker">
+				{{scoringArr[scoring].name}}
+			</view>
+		</picker>
+	</view>
+
+	<view class="list">
+		<text>是否有裁判</text>
+		<image src="/assets/right.png"></image>
+		<picker  bindchange="umpireChange" range="{{umpireArr}}"  range-key="name">
+			<view class="picker">
+				{{umpireArr[umpire].name}}
+			</view>
+		</picker>
+	</view>
+
+		<view class="list">
+		<text>活动类型</text>
+		<image src="/assets/right.png"></image>
+		<picker  bindchange="activitiesChange" range="{{activitiesArr}}"  range-key="name">
+			<view class="picker">
+				{{activitiesArr[activities].name}}
+			</view>
+		</picker>
+	</view>
+
+	<button class="btnBotm" bindtap="comfireBtn">保存</button>
+
+
+
+
+	<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+	<view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
+		<view class="head"> <text bindtap="cacel">取消</text> <text bindtap="comfire">确定</text></view>
+		<view class="drawer_content">
+			<checkbox-group bindchange="checkboxChange">
+				<label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="value">
+					<view class="weui-cell__hd">
+						<checkbox value="{{item.value}}" checked="{{item.checked}}" />
+					</view>
+					<view class="weui-cell__bd">{{item.name}}</view>
+				</label>
+			</checkbox-group>
+		</view>
+	</view>
+
+</view>

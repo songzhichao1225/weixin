@@ -1,0 +1,86 @@
+.signUp {
+  height: 100%;
+  border-top: 0.06rem solid #E9E9E9;
+  padding-bottom: 2.5rem;
+}
+
+.contentSon {
+  padding: 0.75rem 2.5%;
+  border-bottom: 0.06rem solid #E9E9E9;
+  overflow: hidden;
+  position: relative;
+}
+
+.contentSon .left {
+  width: 2.69rem;
+  height: 2.69rem;
+  float: left;
+}
+
+.contentSon .left image {
+  width: 100%;
+  height: 100%;
+}
+
+.contentSon .right {
+  float: left;
+  margin-left: 0.5rem;
+  width: 80%;
+}
+
+.contentSon .right>text {
+  font-size: 0.75rem;
+  display: block;
+  line-height: 1.1rem;
+}
+
+.contentSon .right .head {
+  font-size: 0.88rem;
+  font-weight: bold;
+}
+
+.contentSon .search {
+  width: 5rem;
+  height: 1.75rem;
+  border-radius: 1rem;
+  border: 0.06rem solid #D85D27;
+  font-size: 0.63rem;
+  background: #fff;
+  color: #D85D27;
+  float: right;
+}
+.contentSon .delet{
+  width: 0.94rem;
+  height: 1.06rem;
+  position: absolute;
+  right: 2.5%;
+}
+
+.contentSon .delet image{
+  width: 100%;
+  height: 100%;
+}
+.btn{
+  position: fixed;
+  bottom: 0;
+  background: #D85D27;
+  color: #fff;
+  width: 100%;
+}
+
+.signUp .noContent {
+  padding-top: 30%;
+  width: 14.12rem;
+  margin: 0 auto;
+}
+
+.signUp .noContent>image {
+  width: 100%;
+  height: 10.5rem;
+}
+
+.signUp .noContent>text {
+  font-size: 0.75rem;
+  display: block;
+  text-align: center;
+}

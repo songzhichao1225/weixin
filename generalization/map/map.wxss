@@ -75,7 +75,7 @@ page{
   width: 70%;
 }
 
-.venuesLst .boss  .right .top>text:last-child{
+.venuesLst .boss  .right .top .lpokp{
   font-size: 0.75rem;
   float: right;
   padding: 0.1rem 0.8rem;

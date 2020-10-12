@@ -319,6 +319,20 @@
 					"pathName": "generalization/releasePreferences/releasePreferences",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "报名偏好",
+					"pathName": "generalization/signUp/signUp",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加报名偏好",
+					"pathName": "generalization/signUpJoin/signUpJoin",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

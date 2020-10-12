@@ -161,7 +161,8 @@ Page({
     sportLeve:'',//发布者等级运动项目
     textKOp:'',
     titleKOp:'',
-    closeKOp:false
+    closeKOp:false,
+    disabled:true
   },
 
   /**
@@ -201,6 +202,42 @@ Page({
   
   },
   onLoad: function(options) {
+   
+    if (wx.getStorageSync('mode') !== '') {
+      this.setData({
+        mode: wx.getStorageSync('mode'),
+        modeNum: wx.getStorageSync('modeNum')
+      })
+    }
+    if (wx.getStorageSync('TrialPickerF') == '') {
+      wx.setStorage({key: 'TrialPickerF',data:0,})
+    }
+    if( wx.getStorageSync('TrialRaderF')==''){
+     this.setData({refereegrade:'',TrialRader:''})
+    }
+    this.onKO()
+    this.setData({
+      sportId: wx.getStorageSync('sportIdF'),
+      sportType: wx.getStorageSync('sportTypeF'),
+      sportName: wx.getStorageSync('sportNameF'),
+      sportypeName: wx.getStorageSync('sportypeNameF'),
+      sportIdTwo: wx.getStorageSync('sportIdFTwo'),
+      sportTypeTwo: wx.getStorageSync('sportTypeFTwo'),
+      sportNameTwo: wx.getStorageSync('sportNameFTwo'),
+      sportypeNameTwo: wx.getStorageSync('sportypeNameFTwo'),
+      sex: wx.getStorageSync('sexF'),
+      age: wx.getStorageSync('ageF'),
+      rank: wx.getStorageSync('rankF'),
+      TrialNum: this.data.TrialArray[wx.getStorageSync('TrialPickerF')].name,
+      Trial: wx.getStorageSync('TrialPickerF'),
+      refereegrade: wx.getStorageSync('TrialPickerF'),
+      TrialRader: wx.getStorageSync('TrialRaderF'),
+      shouldered:wx.getStorageSync('shoulderedF'),
+      comments:wx.getStorageSync('commentsF')
+    })
+    if(wx.getStorageSync('shoulderedF')==''){
+      this.setData({shouldered:'AA'})
+    }
     if (wx.getStorageSync('sexF') == '') {
       wx.setStorage({
         key: 'sexF',
@@ -220,26 +257,6 @@ Page({
       })
     }
 
-    if (wx.getStorageSync('mode') !== '') {
-      this.setData({
-        mode: wx.getStorageSync('mode'),
-        modeNum: wx.getStorageSync('modeNum')
-      })
-    }
-    this.onKO()
-    this.setData({
-      sportId: wx.getStorageSync('sportIdF'),
-      sportType: wx.getStorageSync('sportTypeF'),
-      sportName: wx.getStorageSync('sportNameF'),
-      sportypeName: wx.getStorageSync('sportypeNameF'),
-      sportIdTwo: wx.getStorageSync('sportIdFTwo'),
-      sportTypeTwo: wx.getStorageSync('sportTypeFTwo'),
-      sportNameTwo: wx.getStorageSync('sportNameFTwo'),
-      sportypeNameTwo: wx.getStorageSync('sportypeNameFTwo'),
-      sex: wx.getStorageSync('sexF'),
-      age: wx.getStorageSync('ageF'),
-      rank: wx.getStorageSync('rankF')
-    })
     wx.hideLoading()
 
   },
@@ -266,6 +283,16 @@ Page({
     })
   },
   pickerTap: function() {
+    if(this.data.sportypeName==''){
+      wx.showToast({
+        title: '请选择运动项目',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    }else{
+      this.setData({disabled:false})
+    }
   },
 
   preferences:function(){
@@ -555,7 +582,7 @@ Page({
    */
   onShow: function() {
 
-
+     this.onLoad()
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];
 
@@ -653,6 +680,7 @@ Page({
         mode: '请选择',
         modeNum: 0
       })
+      this.setData({disabled:false})
       wx.setStorage({
         key: 'mode',
         data: '',
@@ -1097,6 +1125,13 @@ Page({
     } else if (siteid == '') {
       wx.showToast({
         title: '请选择运动场馆',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    }else if(startTime==''){
+      wx.showToast({
+        title: '请选择开始时间',
         icon: 'none',
         duration: 1500,
         mask: true

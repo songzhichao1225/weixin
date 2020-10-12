@@ -41,10 +41,10 @@
 			<image src='/assets/cooperate.png'></image>
 			<text>成为合作场馆</text>
 		</view>
-		<!-- <view>
-      <image src='/assets/HomeIconWenzhang@2x.png'></image>
-      <text>精选文章</text>
-    </view> -->
+		<view bindtap="signUp">
+      <image src='/assets/run.png'></image>
+      <text>报名偏好</text>
+    </view>
 	</view>
 
 	<view class="projectNav">

@@ -27,7 +27,7 @@
 
 <scroll-view scroll-y bindscrolltolower="tolower" refresher-enabled="{{true}}" refresher-threshold="{{100}}" refresher-default-style="white" refresher-background="#ccc" refresher-triggered="{{triggered}}"  bindrefresherrefresh="onRefresh" style="height:50%;">
 
-	<view class="venuesLst" wx:for="{{venuesLst}}" wx:key="index" bindtap="venueDetails" data-uid="{{item.uid}}"  data-name="{{item.name}}">
+	<view class="venuesLst" wx:for="{{venuesLst}}" wx:key="index" bindtap="venueDetails" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-uid="{{item.uid}}" data-city="{{item.city}}"  data-name="{{item.name}}">
 		<view class="boss">
 			<view class="left">
 				<image src="https://app.tiaozhanmeiyitian.com/{{item.siteimg}}"></image>
@@ -35,7 +35,7 @@
 			<view class="right">
 				<view class="top">
 					<text>{{item.name}}</text>
-					<text catchtap="bookIn" data-uid="{{item.uid}}" data-name="{{item.name}}">预订</text>
+					<text wx:if="{{falg!=3}}" class="lpokp" catchtap="bookIn" data-uid="{{item.uid}}" data-name="{{item.name}}">预订</text>
 				</view>
 				<view class="bottom">
 					<view class="xing">

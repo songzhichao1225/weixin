@@ -119,6 +119,7 @@ Page({
       wx.setStorageSync("cityInfo", data.originalData.result.addressComponent.city)
       wx.setStorageSync("lat", data.originalData.result.location.lat)
       wx.setStorageSync("lng", data.originalData.result.location.lng)
+      wx.setStorageSync('address', wxMarkerData[0].address)
     }
 
     BMap.regeocoding({
@@ -582,6 +583,13 @@ Page({
   goldMall: function () {
     wx.navigateTo({
       url: '/pages/homePage/goldMall/goldMall'
+    })
+  },
+
+  //跳转报名偏好
+  signUp: function () {
+    wx.navigateTo({
+      url: '/generalization/signUp/signUp'
     })
   },
   activites: function (e) {

@@ -29,12 +29,12 @@
 
 				<view class="list">
 					<text style="padding-left:0.5rem;float:left;">运动项目</text>
-					<view style="float:left;color:#9B9B9B;padding-left:0.1rem;" bindtap="sportsList">{{sportName==''?'请选择':sportName}}
+					<view style="float:left;text-align:right;color:#9B9B9B;padding-left:0.1rem;font-size:0.75rem" bindtap="sportsList">{{sportName==''?'请选择':sportName}}
 						<text wx:if="{{sportypeName!==''}}">{{sportypeName}}</text>
 					</view>
 					<image class="image" src="/assets/right.png"></image>
-					<picker range="{{cf==false?arrayLan:array}}" bindchange="picker" bindtap="pickerTap" range-key="name" style="float:right;">
-						<view class="textTwo" style="width:5rem;text-align:right;">
+					<picker range="{{cf==false?arrayLan:array}}" bindchange="picker" disabled="{{disabled}}" bindtap="pickerTap" range-key="name" style="float:right;">
+						<view class="textTwo" style="width:5rem;text-align:right;font-size:0.75rem;">
 							{{mode}}
 						</view>
 					</picker>
@@ -48,13 +48,13 @@
 				<view class="list" wx:if="{{mode=='竞技模式'}}">
 					<text style="padding-left:0.5rem;float:left;">裁判人数</text>
 					<picker range="{{TrialArray}}" bindchange="TrialPicker" range-key="name" style="float:left;">
-						<view style="width:4rem;float:left;color:#9B9B9B;padding-left:0.3rem;">
+						<view style="width:4rem;float:left;color:#9B9B9B;padding-left:0.3rem;font-size:0.75rem;">
 							{{TrialNum}}
 						</view>
 					</picker>
 					<image class="image" src="/assets/right.png"></image>
 					<picker range="{{sportName=='高尔夫'?TrialRaderArrTwo:TrialRaderArr}}" bindchange="TrialRader" range-key="name" style="float:right;">
-						<view style="width:5rem;float:left;color:#9B9B9B;padding-right:0.3rem;text-align:right;">
+						<view style="width:5rem;float:left;color:#9B9B9B;padding-right:0.3rem;text-align:right;font-size:0.75rem">
 							{{TrialRader}}
 						</view>
 					</picker>
@@ -66,14 +66,14 @@
 					<text style="padding-left:0.5rem;">运动场馆</text>
 					<image class="image" src="/assets/right.png"></image>
 					<!-- <image style="width:1rem;height:1.3rem;float:right;" src="/assets/IconHdxqDw@2x.png"></image> -->
-					<text class="textTwo" style="width:60%;text-align:right">{{siteName}}</text>
+					<text class="textTwo" style="width:60%;text-align:right;font-size:0.75rem;">{{siteName}}</text>
 				</view>
 
 				<view class="list">
 					<text style="padding-left:0.5rem;float:left;">开始时间</text>
-					<view style="float:left;color:#9B9B9B;padding-left:0.3rem;" data-uid="{{siteid}}" data-name="{{siteName}}" bindtap="startDateTime">{{startTimerof}}{{timer}}</view>
+					<view style="float:left;color:#9B9B9B;padding-left:0.3rem;font-size:0.75rem;" data-uid="{{siteid}}" data-name="{{siteName}}" bindtap="startDateTime">{{startTimerof}}{{timer}}</view>
 					<image class="image" src="/assets/right.png"></image>
-					<text class="textTwo" style="width:5rem;text-align:right;" data-uid="{{siteid}}" bindtap="startDateTime" data-name="{{siteName}}">{{timeLen}}</text>
+					<text class="textTwo" style="width:5rem;text-align:right;font-size:0.75rem;" data-uid="{{siteid}}" bindtap="startDateTime" data-name="{{siteName}}">{{timeLen}}</text>
 					<view style="float:right;">活动时长</view>
 				</view>
 
@@ -83,12 +83,12 @@
 						<text style="display:block;line-height:1.3rem;">裁判费用</text>
 					</view>
 					<text style="padding-left:0.5rem;float:left;" wx:if="{{mode!=='竞技模式'}}">场地费用</text>
-					<text class="textTwo" style="{{refereeFee!==''?'float:left;color:#9B9B9B;text-align:left;':'float:left;color:#9B9B9B;text-align:left;'}}" wx:if="{{mode!=='竞技模式'}}">￥{{placeMoney}}</text>
-					<text class="textTwo" style="{{refereeFee===''?'float:left;color:#9B9B9B;margin-top:0.75rem;text-align:left;':'float:left;color:#9B9B9B;text-align:left;'}}" wx:if="{{mode=='竞技模式'}}"><text style="display:block;line-height:1.4rem;">￥{{placeMoney}}</text>
-					<text style="display:block;line-height:1.4rem;text-align:left;" wx:if="{{refereeFee!==''}}">￥{{refereeFee}}</text></text>
+					<text class="textTwo" style="{{refereeFee!==''?'float:left;color:#9B9B9B;text-align:left;':'float:left;color:#9B9B9B;text-align:left;font-size:0.75rem;'}}" wx:if="{{mode!=='竞技模式'}}">￥{{placeMoney}}</text>
+					<text class="textTwo" style="{{refereeFee===''?'float:left;color:#9B9B9B;margin-top:0.75rem;text-align:left;':'float:left;color:#9B9B9B;text-align:left;font-size:0.75rem;'}}" wx:if="{{mode=='竞技模式'}}"><text style="display:block;line-height:1.4rem;">￥{{placeMoney}}</text>
+					<text style="display:block;line-height:1.4rem;text-align:left;font-size:0.75rem;" wx:if="{{refereeFee!==''}}">￥{{refereeFee}}</text></text>
 					<image class="image" src="/assets/right.png"></image>
 					<picker bindchange="bindPickerShouldered" range="{{shoulderedArr}}" disabled="{{mode=='竞技模式'?false:true}}" range-key="name" style="float:right;">
-						<view class="textTwo" style="width:5rem;text-align:right;">
+						<view class="textTwo" style="width:5rem;text-align:right;font-size:0.75rem;">
 							{{shouldered}}
 						</view>
 					</picker>
@@ -99,14 +99,14 @@
 					<text style="padding-left:0.5rem;float:left;" bindtap="sexQiu" data-type='1'>性别要求</text>
 					<image class="image" src="/assets/right.png"></image>
 					<picker bindchange="bindPickerAge" range="{{ageArr}}" mode="multiSelector">
-						<view class="textTwo" style="width:5rem;text-align:right;float:right;margin-left:0;">
+						<view class="textTwo" style="width:5rem;text-align:right;float:right;margin-left:0;font-size:0.75rem;">
 							{{age}}
 						</view>
 					</picker>
 					<view style="float:right;" bindtap="sexQiu" data-type='2'>年龄要求</view>
 					<image class="image" src="/assets/right.png"></image>
 					<picker bindchange="bindPickerSex" range="{{sexArr}}" range-key="name">
-						<view class="textTwo" style="width:3rem;text-align:left;float:left;margin-left:0.3rem;">
+						<view class="textTwo" style="width:3rem;text-align:left;float:left;margin-left:0.3rem;font-size:0.75rem;">
 							{{sex}}
 						</view>
 					</picker>
@@ -117,12 +117,12 @@
 				<view class="list">
 					<text style="padding-left:0.5rem;float:left;" bindtap="sexQiu" data-type='3'>技术级别</text>
 					<picker mode="multiSelector" bindchange="bindPickerRank" range="{{rankArr}}" style="float:left;">
-						<view class="textTwo" style="width:4rem;text-align:left;float:left;margin-left:0.3rem;">
+						<view class="textTwo" style="width:4rem;text-align:left;float:left;margin-left:0.3rem;font-size:0.75rem;">
 							{{rank}}
 						</view>
 					</picker>
 					<image class="image" src="/assets/right.png"></image>
-					<input style="float:right;height:2.75rem;width:3.5rem;color:#9B9B9B;" maxlength="5" bindinput="tips" type="number" placeholder="(选填)" placeholder-style="text-align:right;" />
+					<input style="float:right;height:2.75rem;width:3.5rem;color:#9B9B9B;font-size:0.75rem;" maxlength="5" bindinput="tips" type="number" placeholder="(选填)" placeholder-style="text-align:right;" />
 					<text style="float:right;" bindtap="sexQiu" data-type='4' data-mode="{{mode=='娱乐模式'?'打赏费用':'陪练费用'&&mode=='竞技模式'?'打赏费用':'陪练费用'}}">{{mode=='娱乐模式'?'打赏费用':'陪练费用'&&mode=='竞技模式'?'打赏费用':'陪练费用'}}<text style="padding-left:1rem;color:#9B9B9B;">￥</text></text>
 					<image class="image" src="/assets/right.png"></image>
 				</view>
@@ -131,7 +131,7 @@
 
 				<view class="list">
 					<text style="padding-left:0.5rem;">活动备注</text>
-					<textarea auto-height="true" class="textarea" bindinput="comment" maxlength="150" placeholder="请填写活动注意事项(选填150字)">
+					<textarea auto-height="true" class="textarea" bindinput="comment" value="{{comments}}" maxlength="150" placeholder="请填写活动注意事项(选填150字)">
           </textarea>
 				</view>
 				<view class="line"></view>

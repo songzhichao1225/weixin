@@ -24,6 +24,7 @@ page {
 .list .left>text:last-child {
   float: right;
   color: #9B9B9B;
+  font-size: 0.75rem;
 }
 
 image {
@@ -47,21 +48,39 @@ image {
 .list .right>text:last-child {
   float: right;
   color: #9B9B9B;
+  font-size: 0.75rem;
 }
 
 .list>text:last-child {
   float: right;
   color: #9B9B9B;
+  font-size: 0.75rem;
 }
 
 .textarea {
   width: 75%;
   float: right;
-  line-height: 1.3rem;
-  padding-top: 0.8rem;
+  line-height: 1rem;
+  font-size: 0.75rem;
+  margin-top: 0.9rem;
 }
 
 .border {
   height: 0.62rem;
   background: #F3F3F3;
+}
+
+.kop {
+  height: auto;
+  overflow: hidden;
+}
+
+.btncomfire {
+  width: 85%;
+  height: 2.5rem;
+  margin: 1.5rem auto 0;
+  color: #fff;
+  background: #D85D27;
+  border-radius: 1.34rem;
+
 }

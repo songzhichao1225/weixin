@@ -25,11 +25,13 @@ Page({
     this.setData({
       falg:option.falg
     })
+    console.log(option.falg)
     qqmapsdk = new QQMapWX({
       key: 'GMCBZ-TDALO-6ZRWH-S6TPE-66PIZ-M4FIJ'
     });
     this.setData({
       sportId: option.sportid,
+      
       sporttype: option.sporttype,
     })
     let _this = this
@@ -345,9 +347,21 @@ getsuggest: function(e) {
   },
 
   venueDetails:function(e){
-    wx.navigateTo({
-      url: '/generalization/venueDetails/venueDetails?sportid=' + this.data.sportId + '&sporttype=' + this.data.sporttype + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&falg=' + this.data.falg,
-    })
+    var pages = getCurrentPages(); // 获取页面栈
+    var prevPage = pages[pages.length - 2]; // 上一个页面
+    if(this.data.falg!=3){
+      wx.navigateTo({
+        url: '/generalization/venueDetails/venueDetails?sportid=' + this.data.sportId + '&sporttype=' + this.data.sporttype + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&falg=' + this.data.falg,
+      })
+    }else{
+      prevPage.setData({
+        siteThree: e.currentTarget.dataset
+      })
+      wx.navigateBack({
+        delta: 1
+      })
+    }
+    
   },
   //跳转H5选择场地
   bookIn:function(e){
