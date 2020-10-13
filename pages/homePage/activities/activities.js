@@ -58,10 +58,9 @@ Page({
 
   //接口函数
   koopdf: function () {
-    util.Request("/api/getActivityInfo", {
-        'uuid': this.data.uuid
-      }, "get",
+    util.Request("/api/getActivityInfo", {'uuid': this.data.uuid}, "get",
       (res) => {
+        
         let projectNow = res.data.data
         if (projectNow.SportMode == '1') {
           projectNow.SportMode = '娱乐'
@@ -72,7 +71,6 @@ Page({
         } else if (projectNow.SportMode == '4') {
           projectNow.SportMode = '找陪练'
         }
-        console.log(projectNow)
         this.setData({
           AwinBuserInfoOne: projectNow.AwinBuserInfo.slice(0, 4),
           AloseBuserInfoTwo: projectNow.AloseBuserInfo.slice(0, 4),
@@ -119,8 +117,6 @@ Page({
             typeTwo: 1
           })
         }
-
-
 
 
         this.countdown(projectNow.StartTime)
@@ -221,7 +217,7 @@ Page({
         countDownHour: hrStr,
         countDownMinute: minStr,
         countDownSecond: secStr,
-      });
+      });  
       totalSecond--;
       if (totalSecond < 0) {
         clearInterval(interval);
@@ -617,9 +613,7 @@ Page({
 
     }
   },
-  onShow: function () {
-    this.koopdf()
-  },
+ 
   addReferees:function(){
     let that=this
     wx.showModal({

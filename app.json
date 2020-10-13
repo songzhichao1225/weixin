@@ -74,7 +74,9 @@
         "preferences/preferences",
         "releasePreferences/releasePreferences",
         "signUp/signUp",
-        "signUpJoin/signUpJoin"
+        "signUpJoin/signUpJoin",
+        "searchResults/searchResults",
+        "screen/screen"
       ]
     }
   ],

@@ -1,0 +1,118 @@
+<!--logs.wxml-->
+<view class="screen">
+  <view class="boss">
+    <text>运动模式</text>
+    <view class="modeH">
+      <text bindtap='modeTap' data-num="1" style="{{dataIndex==1?'background:#D85D27;color: #fff;':''}}">娱乐模式</text>
+      <text class="right" bindtap='modeTap' data-num="2" style="{{dataIndex==2?'background:#D85D27;color: #fff;':''}}">竞技模式</text>
+    </view>
+  </view>
+
+  <view class="boss">
+    <text>场地承担方式</text>
+    <view class="modeH">
+      <text bindtap='siteTap' data-num="1" style="{{siteIndex==1?'background:#D85D27;color: #fff;':''}}">AA</text>
+      <text bindtap='siteTap' class="right" data-num="2" style="{{siteIndex==2?'background:#D85D27;color: #fff;':''}}">输者买单</text>
+    </view>
+  </view>
+
+    <view class="boss">
+    <text>是否有裁判</text>
+    <view class="modeH">
+      <text bindtap='caiTap' data-num="2" style="{{caiTap==2?'background:#D85D27;color: #fff;':''}}">无裁判</text>
+      <text bindtap='caiTap' class="right" data-num="1" style="{{caiTap==1?'background:#D85D27;color: #fff;':''}}">有裁判</text>
+    </view>
+  </view>
+
+  <view class="boss">
+    <text>发布者性别</text>
+    <view class="modeH">
+      <text bindtap='sexTap' data-num="0" style="{{sexIndex==0?'background:#D85D27;color: #fff;':''}}">男</text>
+      <text bindtap='sexTap' class="right" data-num="1" style="{{sexIndex==1?'background:#D85D27;color: #fff;':''}}">女</text>
+    </view>
+  </view>
+  <view class="boss">
+    <text>活动开始日期</text>
+    <view class="modeH">
+      <picker mode="date" value="{{date}}" start="2015-09-01" bindchange="bindDateChange">
+        <view class="picker" style="{{date!=='选择日期'?'background:#D85D27;color: #fff;':''}}">
+          {{date}}
+        </view>
+      </picker>
+
+    </view>
+  </view>
+
+  <view class="boss">
+    <text>活动开始结束时间</text>
+    <view class="modeH">
+      <picker mode="time" value="{{time}}" bindchange="bindTimeChange">
+        <view class="picker" style="{{time!=='选择开始时间'?'background:#D85D27;color: #fff;':''}}">
+          {{time}}
+        </view>
+      </picker>
+      <picker mode="time" value="{{timeTwo}}" start="{{time}}" bindchange="bindTimeTwoChange">
+        <view class="picker" style="{{timeTwo!=='选择结束时间'?'background:#D85D27;color: #fff;float:right;':'float:right;'}}">
+          {{timeTwo}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+   <view class="boss">
+    <text>已参与人员平均年龄</text>
+    <view class="modeH">
+      <picker mode="selector" range="{{age}}"  bindchange="age">
+        <view class="picker" style="{{ageNum!=0?'background:#D85D27;color: #fff;':''}}">
+          {{ageNum==0?'不限':ageNum}}
+        </view>
+      </picker>
+      <picker mode="selector" range="{{ageTwo}}" bindchange="ageTwo">
+        <view class="picker"style="{{ageNumTwo!=0?'background:#D85D27;color: #fff;float:right;':'float:right;'}}">
+          {{ageNumTwo==0?'不限':ageNumTwo}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+
+  <view class="boss">
+    <text>已参与人员平均技术等级</text>
+    <view class="modeH">
+      <picker mode="selector" range="{{rangeArr}}" value="{{Grade}}" bindchange="Grade">
+        <view class="picker" style="{{Grade!=='最低等级'?'background:#D85D27;color: #fff;':''}}">
+          {{Grade}}
+        </view>
+      </picker>
+      <picker mode="selector" range="{{rangeArr}}" value="{{GradeTwo}}" bindchange="GradeTwo">
+        <view class="picker" style="{{GradeTwo!=='最高等级'?'background:#D85D27;color: #fff;float:right;':'float:right;'}}">
+          {{GradeTwo}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class="boss">
+    <text>已参与人员平均好评分数</text>
+    <view class="modeH">
+      <text bindtap='praise' data-num="1" style="{{praise==1?'background:#D85D27;color: #fff;':''}}">3分及以上</text>
+      <text bindtap='praise' class="right" data-num="2" style="{{praise==2?'background:#D85D27;color: #fff;':''}}">3.5分及以上</text>
+      <text bindtap='praise' data-num="3" style="{{praise==3?'background:#D85D27;color: #fff;margin-top:0.5rem;':'margin-top:0.5rem;'}}">4分及以上</text>
+      <text bindtap='praise' class="right" data-num="4" style="{{praise==4?'background:#D85D27;color: #fff;margin-top:0.5rem;':'margin-top:0.5rem;'}}">4.5分及以上</text>
+    </view>
+  </view>
+  <view class="boss">
+    <text>活动类型</text>
+    <view class="modeH">
+      <text bindtap='activities' data-num="1" style="{{Activities=='1'?'background:#D85D27;color: #fff;':''}}">可报名活动</text>
+       <text bindtap='activities' data-num="2" style="{{Activities=='2'?'background:#D85D27;color: #fff;float:right':'float:right'}}">有裁判活动</text>
+      <text bindtap='activities' class="right" data-num="0" style="{{Activities==0?'background:#D85D27;color: #fff;float:left;margin-top:0.5rem;':'float:left;margin-top:0.5rem;'}}">全部活动</text>
+    </view>
+  </view>
+
+ <view class="boss" style="border-top:0.06rem solid #ddd;padding-top:1rem;">
+    <view class="modeH">
+      <text bindtap='reset'>重置</text>
+      <text bindtap='confirm' class="right" style="background: #D85D27;border:none;color:#fff;">确认</text>
+    </view>
+  </view>
+</view>

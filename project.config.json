@@ -333,6 +333,19 @@
 					"pathName": "generalization/signUpJoin/signUpJoin",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜索结果",
+					"pathName": "generalization/searchResults/searchResults",
+					"query": "uuid=12454009-2ef8-cd71-27a3-bf8ab4e6e1d1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "偏好筛选",
+					"pathName": "generalization/screen/screen",
+					"scene": null
 				}
 			]
 		}

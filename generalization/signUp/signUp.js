@@ -64,6 +64,12 @@ Page({
       url: '/generalization/signUpJoin/signUpJoin'
     })
   },
+
+  searchResults:function(e){
+    wx.navigateTo({
+      url: '/generalization/searchResults/searchResults?uuid='+e.currentTarget.dataset.uuid+''
+    })
+  },
   onShow:function(){
     this.setData({page:1})
     this.jod()
