@@ -101,7 +101,7 @@
       },
       {
         "pagePath": "pages/nearby/nearby",
-        "text": "附近的伙伴",
+        "text": "附近对手",
         "iconPath": "assets/icon-footer-hb-nor@2x.png",
         "selectedIconPath": "assets/icon-footer-hb-sel@2x.png"
       },

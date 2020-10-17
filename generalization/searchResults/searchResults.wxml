@@ -46,7 +46,7 @@
 
 	<view class="projectSon" wx:if="{{projectData.length>0}}" bindtap="activites" data-uuid="{{item.uuid}}" wx:for="{{projectData}}" wx:key='index'>
 		<view class="avatar">
-			<image class="avatarP" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+			<image class="avatarP" src='{{img}}/{{item.imgURL}}'></image>
 			<image wx:if="{{item.SportName=='网球'}}" class="aIcon" src='/assets/icon_dj_wq.png'></image>
 			<image wx:if="{{item.SportName=='高尔夫'}}" class="aIcon" src='/assets/icon_dj_gef.png'></image>
 			<image wx:if="{{item.SportName=='篮球'}}" class="aIcon" src='/assets/icon_dj_lq.png'></image>

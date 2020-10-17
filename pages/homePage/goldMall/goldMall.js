@@ -19,7 +19,8 @@ Page({
     falg:false,
     category:'',
     pages:1,
-    banerLst:[]
+    banerLst:[],
+    img:'',
   },
   onLoad: function () {
     wx.showLoading({
@@ -27,7 +28,8 @@ Page({
       mask: true
     })
     this.setData({
-      category:'全部'
+      category:'全部',
+        img:util.API
     })
     this.categoryFn()
     util.request("/api/getGoodsBanner", {}, "get",

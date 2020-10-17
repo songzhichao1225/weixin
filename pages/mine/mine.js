@@ -23,10 +23,14 @@ Page({
       { img: 'IconWdYjfk@2x.png', name: '意见反馈', click: 'mineOpinion' },
     ],
     mineDetail:'',
-    imgURL: ''
+    imgURL: '',
+    img:''
   },
 
   onLoad: function() {
+    this.setData({
+      img:util.API
+    })
     if (wx.getStorageSync('token')){
       wx.showLoading({
         title: '加载中',
@@ -42,7 +46,7 @@ Page({
         () => {
         }
       )
-      util.Request("/api/getUserDetailInfo", { 'uuid': wx.getStorageSync('uuid') }, "get", 
+      util.request("/api/getUserDetailInfo", { 'uuid': wx.getStorageSync('uuid') }, "get", 
         (res) => {
           this.setData({ mineDetail: res.data.data, imgURL: wx.getStorageSync('imgURL')})
         },
@@ -74,7 +78,7 @@ Page({
     wx.hideLoading()
   },
   onShow:function(){
-    util.Request("/api/getUserDetailInfo", { 'uuid': wx.getStorageSync('uuid') }, "get",
+    util.request("/api/getUserDetailInfo", { 'uuid': wx.getStorageSync('uuid') }, "get",
       (res) => {
         this.setData({ mineDetail: res.data.data })
       },

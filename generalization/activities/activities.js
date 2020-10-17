@@ -10,13 +10,16 @@ Page({
     countDownMinute: 0,
     countDownSecond: 0,
     end:true,
-  
+    img:'',
   },
 
   onLoad: function (option) {
     wx.showLoading({
       title: '加载中',
       mask: true
+    })
+    this.setData({
+      img:util.API
     })
     util.Request("/api/getActivityInfo", {
       'uuid': option.uuid

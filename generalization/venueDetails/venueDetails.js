@@ -10,6 +10,7 @@ Page({
     sportId:0,
     sporttype:0,
     siteuid:0,
+    img:'',
   },
 
   /**
@@ -20,7 +21,8 @@ Page({
       falg: options.falg,
       sportId: options.sportid,
       sporttype: options.sporttype,
-      siteuid: options.siteuid
+      siteuid: options.siteuid,
+      img:util.API
     })
     util.Request("/api/getSiteInfo", { 'uid': options.siteuid}, "get", (res) => { 
       this.setData({
@@ -50,17 +52,21 @@ Page({
         data: obj,
         key: 'siteid',
       })
+      wx.navigateTo({
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportId + '&sporttype=' + this.data.sporttype + '&siteuid=' + this.data.siteuid + '&token=' + wx.getStorageSync('token') + '&falg=' + this.data.falg,
+      })
     } else if (this.data.falg == 2) {
       wx.setStorage({
         data: obj,
         key: 'siteidTwo',
       })
+      wx.navigateTo({
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportId + '&sporttype=' + this.data.sporttype + '&siteuid=' + this.data.siteuid + '&token=' + wx.getStorageSync('token') + '&falg=' + this.data.falg,
+      })
     }
 
 
-    wx.navigateTo({
-      url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportId + '&sporttype=' + this.data.sporttype + '&siteuid=' + this.data.siteuid + '&token=' + wx.getStorageSync('token') + '&falg=' + this.data.falg,
-    })
+    
   },
 
 

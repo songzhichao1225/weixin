@@ -27,7 +27,7 @@
 
     <scroll-view scroll-y style="height: 100%" bindscrolltolower="lower" wx:if="{{nearbyData.length>0}}">
       <view class="characterList" wx:for="{{nearbyData}}"wx:key="index" data-uid="{{item.uuid}}" bindtap='getUserDetailInfo'>
-        <image class="img" src='https://app.tiaozhanmeiyitian.com/{{item.userInfo.imgURL}}'></image>
+        <image class="img" src='{{img}}/{{item.userInfo.imgURL}}'></image>
         <view class="content">
           <view class="header">
             <text class="text">{{item.userInfo.nickname}}</text>

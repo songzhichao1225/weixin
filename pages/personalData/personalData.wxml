@@ -3,7 +3,7 @@
     <view class="avatar" bindtap="chooseImg">
       <text class="txt">头像</text>
       <image class="arrow" src="/assets/right.png"></image>
-      <image class="avatarImg" wx:if="{{imgURL!=''}}" src="https://app.tiaozhanmeiyitian.com/{{imgURL}}"></image>
+      <image class="avatarImg" wx:if="{{imgURL!=''}}" src="{{img}}/{{imgURL}}"></image>
       <image class="avatarImg" wx:if="{{imgURL==''}}" src="{{imgURLT}}"></image>
     </view>
   </view>

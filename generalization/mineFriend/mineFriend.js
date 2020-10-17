@@ -50,10 +50,14 @@ Page({
       }
     ],
     nearbyData:'',
+    img:'',
   },
   onLoad: function() {
     let type='all'
     this.nearbyData(type)
+    this.setData({
+      img:util.API
+    })
   },
   select:function(e){
     let type=e.currentTarget.dataset.name

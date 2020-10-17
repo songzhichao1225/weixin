@@ -92,6 +92,7 @@ Page({
     praise: 0,
     Agemin:1,//最小年龄
     Agemax:99,//最大年龄
+    img:'',
   },
   map: function () {
     var that = this;
@@ -131,7 +132,9 @@ Page({
 
   onLoad: function () {
     this.map()
-
+   this.setData({
+     img:util.API
+   })
 
     //  获取banner图
     util.request("/api/getIndexBanner", {}, "get",
@@ -229,6 +232,7 @@ Page({
     jsonData.praise = praise,
     jsonData.Agemin = Agemin,
     jsonData.Agemax = Agemax,
+    jsonData.istherereferee=0
       util.Request("/api/getIndexAcitivitylist", jsonData, "get",
         (res) => {
           let projectDataNow = res.data.data.activeLst
@@ -407,10 +411,6 @@ Page({
         })
       }
 
-    } else {
-      wx.redirectTo({
-        url: '/pages/authorization/authorization'
-      })
     }
   },
   //关闭签到弹窗

@@ -1,7 +1,7 @@
 <view class="signUp">
 
 
-	<view class="contentSon" wx:for="{{signUpList}}" wx:key="index">
+	<view class="contentSon" wx:for="{{signUpList}}" bindtap="details" data-uuid="{{item.uuid}}"  wx:key="index">
 		<view class="left">
 			<image wx:if="{{item.sportid==1}}" src="/assets/jbsc_ymq.png"></image>
 			<image wx:if="{{item.sportid==2}}" src="/assets/jbsc_ppq.png"></image>
@@ -18,7 +18,7 @@
 			<text class="bottom">{{item.positon}}</text>
 		</view>
 		<button class="search" bindtap="searchResults" data-uuid="{{item.uuid}}">立即搜索</button>
-		<view class="delet" bindtap="delet" data-uuid="{{item.uuid}}">
+		<view class="delet" catchtap="delet" data-uuid="{{item.uuid}}">
 			<image src="/assets/delect.png"></image>
 		</view>
 	</view>

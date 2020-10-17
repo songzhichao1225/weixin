@@ -6,11 +6,15 @@ Page({
     dataIndex:0,
     dataList:'',
     detail:'',
+    img:'',
     nav: [{ name: '场馆活动', index: 0 }, { name:'场馆信息', index: 1 }]
   },
   onLoad: function (option) {
     wx.setNavigationBarTitle({
       title: option.name,
+    })
+    this.setData({
+      img:util.API
     })
     util.Request("/api/getPromoterComplainthdlist", { 'siteUid': option.siteUid, 'isHandle': 0, 'page':1}, "post", 
       (res) => {

@@ -23,7 +23,8 @@ Page({
   onLoad: function(option) {
     // 实例化API核心类
     this.setData({
-      falg:option.falg
+      falg:option.falg,
+      img:util.API
     })
     console.log(option.falg)
     qqmapsdk = new QQMapWX({
@@ -112,6 +113,7 @@ Page({
     console.log(e.dateil)
   },
   bindRegionChange: function(e) {
+    this.setData({backfill:''})
     let _this=this
     qqmapsdk.geocoder({
       address: e.detail.value[0] + e.detail.value[1] + e.detail.value[2], 
@@ -191,6 +193,7 @@ Page({
       this.setData({
         latitude:addressLst.latitude,
         longitude:addressLst.longitude,
+        city:addressLst.city
       })
       util.request("/api/getSiteLst", obj, "get",
         (res) => {
@@ -207,7 +210,7 @@ Page({
             }
             objArr.push(obj)
           }
-          console.log(res.data.data.sitelst)
+          console.log(res.data.data)
           this.setData({
             venuesLst: res.data.data.sitelst,
             markers: objArr,
@@ -347,20 +350,14 @@ getsuggest: function(e) {
   },
 
   venueDetails:function(e){
-    var pages = getCurrentPages(); // 获取页面栈
-    var prevPage = pages[pages.length - 2]; // 上一个页面
-    if(this.data.falg!=3){
+   
+    
       wx.navigateTo({
         url: '/generalization/venueDetails/venueDetails?sportid=' + this.data.sportId + '&sporttype=' + this.data.sporttype + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&falg=' + this.data.falg,
       })
-    }else{
-      prevPage.setData({
-        siteThree: e.currentTarget.dataset
-      })
-      wx.navigateBack({
-        delta: 1
-      })
-    }
+    
+     
+    
     
   },
   //跳转H5选择场地
@@ -374,17 +371,30 @@ getsuggest: function(e) {
         data: obj,
         key: 'siteid',
       })
+      wx.navigateTo({
+        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&falg='+this.data.falg,
+      })
     }else if(this.data.falg==2){
       wx.setStorage({
         data: obj,
         key: 'siteidTwo',
       })
+      wx.navigateTo({
+        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&falg='+this.data.falg,
+      })
+    }else{
+      var pages = getCurrentPages(); // 获取页面栈
+      var prevPage = pages[pages.length - 2]; // 上一个页面
+      prevPage.setData({
+        siteThree: e.currentTarget.dataset
+      })
+      wx.navigateBack({
+        delta: 1
+      })
     }
    
     
-    wx.navigateTo({
-      url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&falg='+this.data.falg,
-    })
+    
   }
 
 

@@ -1,7 +1,7 @@
 <view class="venueDetails">
 	<swiper style="width:100%;" autoplay="{{true}}" interval="3000">
 		<swiper-item wx:for="{{venue.filesURL}}" wx:key="index">
-			<image style="display:block;width:100%;height:100%;" src="https://app.tiaozhanmeiyitian.com/{{item}}"></image>
+			<image style="display:block;width:100%;height:100%;" src="{{img}}/{{item}}"></image>
 		</swiper-item>
 	</swiper>
 
@@ -20,7 +20,7 @@
 				<text style="color:#9B9B9B;font-size:0.75rem;padding-left:0.3rem;">{{venue.scores}}分</text>
 			</view>
 			<view class="sheshi"><text style="margin-left:0;">设施:{{venue.equscore}}</text><text>服务:{{venue.envscore}}</text><text>价格:{{venue.xjbScore}}</text>
-				<view class="btn" catchtap="bookIn" data-uid="{{venue.uid}}" data-name="{{venue.name}}">预定</view>
+				<view class="btn" wx:if="{{falg!=3}}" catchtap="bookIn" data-uid="{{venue.uid}}" data-name="{{venue.name}}">预定</view>
 			</view>
 		</view>
 	</view>
@@ -50,7 +50,7 @@
 	<view class="comentSon">
 		<view class="boss" wx:for="{{venue.comments}}" wx:key="index">
 			<view class="avatar">
-				<image src="https://app.tiaozhanmeiyitian.com/{{item.imgURL}}"></image>
+				<image src="{{img}}/{{item.imgURL}}"></image>
 			</view>
 			<view class="content">
 				<view class="head"><text>{{item.nickname}}</text><text>{{item.commentDate}}</text></view>

@@ -30,12 +30,12 @@
 	<view class="venuesLst" wx:for="{{venuesLst}}" wx:key="index" bindtap="venueDetails" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-uid="{{item.uid}}" data-city="{{item.city}}"  data-name="{{item.name}}">
 		<view class="boss">
 			<view class="left">
-				<image src="https://app.tiaozhanmeiyitian.com/{{item.siteimg}}"></image>
+				<image src="{{img}}/{{item.siteimg}}"></image>
 			</view>
 			<view class="right">
 				<view class="top">
 					<text>{{item.name}}</text>
-					<text wx:if="{{falg!=3}}" class="lpokp" catchtap="bookIn" data-uid="{{item.uid}}" data-name="{{item.name}}">预订</text>
+					<text class="lpokp" catchtap="bookIn" data-uid="{{item.uid}}" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-city="{{item.city}}" data-name="{{item.name}}">预订</text>
 				</view>
 				<view class="bottom">
 					<view class="xing">

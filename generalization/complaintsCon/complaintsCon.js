@@ -10,6 +10,7 @@ Page({
     current: 0,
     listSon: [],
     type: 1,
+    img:''
   },
 
   /**
@@ -17,8 +18,10 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      publicuuid: options.uuid
+      publicuuid: options.uuid,
+      img:util.API
     })
+   
     let type = 1
     this.apiRequest(type)
   },

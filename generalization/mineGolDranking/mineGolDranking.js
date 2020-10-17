@@ -90,10 +90,14 @@ Page({
     typeTitle:'1',
     nameE:'myFriends',
     name:'羽毛球',
-    flag:2
+    flag:2,
+    img:''
   },
   onLoad: function () {
     this.drankingList()
+    this.setData({
+      img:util.API
+    })
   },
 
   tap:function(e){

@@ -17,14 +17,19 @@ Page({
     weight: '',
     sporId: '',
     comment: '',
+    img:'',
   },
   onLoad: function() {
+    this.setData({
+      img:util.API
+    })
+
     wx.showLoading({
       title: '加载中',
       mask: true
     })
 
-    util.Request("/api/getUserDetailInfo", {
+    util.request("/api/getUserDetailInfo", {
         'uuid': wx.getStorageSync('uuid')
       }, "get",
 

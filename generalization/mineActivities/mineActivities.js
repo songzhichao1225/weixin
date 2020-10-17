@@ -7,6 +7,7 @@ Page({
     statusType: 'all',
     activitiesNum: [],
     type:'publish',
+    img:'',
   },
   onLoad: function (option) {
     let page = 0
@@ -14,7 +15,8 @@ Page({
     let type = 'publish'
     this.setData({
       statusType: 'all',
-      type: 'publish'
+      type: 'publish',
+      img:util.API
     })
     this.activitiesNum(type)
     this.common(page, statusType, type)

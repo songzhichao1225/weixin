@@ -92,6 +92,7 @@ Page({
     praise: 0,
     Agemin:1,//最小年龄
     Agemax:99,//最大年龄
+    img:'',
   },
 
   /**
@@ -120,7 +121,10 @@ Page({
     })
   },
   onLoad: function (options) {
-
+    this.setData({
+      img:util.API
+    })
+  
    util.Request("/api/getPreferenceFirst", {'prefeuuid':options.uuid}, "post",
    (res) => {
     wx.setNavigationBarTitle({
@@ -167,11 +171,9 @@ Page({
     this.setData({
       activity: res.data.data
     })
-
   },
-  () => { },
+  () => {},
   () => {
-
   }
 )
    wx.hideLoading()
@@ -424,7 +426,6 @@ Page({
     if(currPage.data.screenDataTwo!=undefined){
       
       let ko=currPage.data.screenDataTwo
-      console.log(ko)
       this.setData({
         sex:ko.sex,
         payType:ko.payType,
@@ -440,7 +441,6 @@ Page({
       })
       this.goleloand()
     }
-    
   }
   
 })

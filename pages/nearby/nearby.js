@@ -130,6 +130,7 @@
      nearbyData: [],
      page: 1,
      flag: false,
+     img:'',
    },
 
    onLoad: function() {
@@ -139,6 +140,9 @@
        mask: true
      })
      this.nearbyData()
+     this.setData({
+      img:util.API
+    })
    },
   
    nearbyData: function(show) {

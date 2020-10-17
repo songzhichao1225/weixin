@@ -16,14 +16,19 @@ Page({
     personalData:[],
     flag:false,
     download:false,
+    img:'',
   },
   onLoad: function (option) {
+
+    this.setData({
+      img:util.API
+    })
     wx.showLoading({
       title: '加载中',
       mask: true
     })
 
-    util.Request("/api/getUserDetailInfo", { 'uuid': option.uuid }, "get", 
+    util.request("/api/getUserDetailInfo", { 'uuid': option.uuid }, "get", 
       (res) => {
         this.setData({
            personalData:res.data.data,

@@ -90,13 +90,15 @@ Page({
     typeTitle:'1',
     nameE:'myFriends',
     name:'羽毛球',
-    flag:1
+    flag:1,
+    img:''
   },
   onLoad: function (option) {
     this.drankingList()
 
     this.setData({
-      flag: Number(option.flag)
+      flag: Number(option.flag),
+      img:util.API
     })
   },
 

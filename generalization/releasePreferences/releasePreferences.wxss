@@ -12,7 +12,7 @@ page {
 }
 
 .list .left {
-  width: 48%;
+  width: 51%;
   float: left;
 
 }
@@ -82,5 +82,5 @@ image {
   color: #fff;
   background: #D85D27;
   border-radius: 1.34rem;
-
+  line-height: 2.5rem;
 }

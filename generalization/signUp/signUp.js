@@ -47,10 +47,15 @@ Page({
   },
 
   delet:function(e){
-
-    util.Request("/api/DelPlayerPreference", {'prefeuuid':e.currentTarget.dataset.uuid}, "post",
+    let that=this
+    wx.showModal({
+      title: '温馨提示',
+      content: '您确定要删除此发布偏好么?',
+      success (res) {
+        if (res.confirm) {
+          util.Request("/api/DelPlayerPreference", {'prefeuuid':e.currentTarget.dataset.uuid}, "post",
     (res) => {
-      this.jod()
+      that.jod()
     },
     () => {
       console.log("失败")
@@ -58,6 +63,14 @@ Page({
     () => {
     }
   )
+        }
+      }
+    })
+    return false
+   
+
+
+  
   },
   btn:function(){
     wx.navigateTo({
@@ -73,6 +86,13 @@ Page({
   onShow:function(){
     this.setData({page:1})
     this.jod()
+  },
+  details:function(e){
+    console.log(e.currentTarget.dataset.uuid)
+    wx.navigateTo({
+      url: '/generalization/signUpJoin/signUpJoin?uuid='+e.currentTarget.dataset.uuid+''
+    })
+   
   }
   
  

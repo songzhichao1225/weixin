@@ -3,7 +3,7 @@ const util = require('../../utils/util.js')
 
 Page({
   data: {
-    sportid:0,//运动项目id
+    sportid:'',//运动项目id
     sportName:'',//运动项目名称
     sporttype:'',//运动项目二级id
     sporttypeName:'',//运动项目二级名称
@@ -30,13 +30,17 @@ Page({
       id: 2,
       name: '竞技模式'
     }],
+    arrayLanTwo: [{
+      id: 1,
+      name: '娱乐模式'
+    }],
     disabled:true,
     sportLeve:'',//发布者等级运动项目
     siteThree:'',//场馆id名称
     siteThreeName:'请选择',//场馆名称
     ageArr: [
-      ['不限', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99],
-      ['不限', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99],
+      ['不限', 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99],
+      ['不限', 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99],
     ],
     age: '不限',
     sex:'不限',
@@ -115,6 +119,11 @@ Page({
     wx.navigateTo({
       url: "/pages/sportsList/sportsList?flag=3"
     })
+    this.setData({  
+      mode: '请选择', 
+    modeNum: 0,
+    siteThree:'',
+    siteThreeName:'请选择'})
   },
   pickerTap: function() {
     if(this.data.sportName==''){
@@ -183,47 +192,22 @@ Page({
   },
 
   bindPickerAge: function(e) {
-    if (e.detail.value[0] > e.detail.value[1] && e.detail.value[1] != 0) {
+    if ((e.detail.value[0]+9) > (e.detail.value[1]+9) && (e.detail.value[1]+9) != 0) {
       wx.showToast({
         title: '最小年龄不能高于最大年龄',
         icon: 'none',
         duration: 1500,
         mask: true
       })
-    } else if (e.detail.value[0] == 0 && e.detail.value[1] == 0) {
-      this.setData({
-        age: '不限'
-      })
-      wx.setStorage({
-        key: 'ageF',
-        data: '不限',
-      })
-    } else if (e.detail.value[0] == 0 && e.detail.value[1] !== 0) {
-      this.setData({
-        age: 1 + '-' + e.detail.value[1] + '岁'
-      })
-      wx.setStorage({
-        key: 'ageF',
-        data: 1 + '-' + e.detail.value[1] + '岁',
-      })
-    } else if (e.detail.value[0] !== 0 && e.detail.value[1] == 0) {
-      this.setData({
-        age: e.detail.value[0] + '-' + 99 + '岁'
-      })
-      wx.setStorage({
-        key: 'ageF',
-        data: e.detail.value[0] + '-' + 99 + '岁',
-      })
     } else {
       this.setData({
-        age: e.detail.value[0] + '-' + e.detail.value[1] + '岁'
+        age: (e.detail.value[0]+9) + '-' + (e.detail.value[1]+9) + '岁'
       })
       wx.setStorage({
         key: 'ageF',
-        data: e.detail.value[0] + '-' + e.detail.value[1] + '岁',
+        data: (e.detail.value[0]+9) + '-' + (e.detail.value[1]+9) + '岁',
       })
     }
-
   },
 
   bindPickerSex: function(e) {
@@ -354,7 +338,7 @@ Page({
       prefeuuid:'',
       sporttype:sporttype,
       sportmode:modeNum,
-      refereenumber:TrialNum,
+      refereenumber:TrialNum.slice(0,1),
       refereegrade:refereegrade,
       siteuuid:siteThree.uid,
       sitename:siteThreeName,
@@ -370,20 +354,54 @@ Page({
       remarks:comments,
       sitecity:siteThree.city
     }
-    console.log(data)
-    util.Request("/api/SavePlayerReleasePreference", data, "post",
-    (res) => {
-      wx.redirectTo({
-        url: '/generalization/preferences/preferences'
+    console.log(sportid)
+    if(sportid==''){
+      wx.showToast({
+        title: '请选择运动项目',
+        icon: 'none',
+        duration: 1500,
+        mask: true
       })
-     
-
-    },
-    () => {
-      console.log("失败")
-    },
-    () => {}
-  )
+    }else if(modeNum==0){
+      wx.showToast({
+        title: '请选择运动模式',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    }else if(siteThree.uid==undefined){
+      wx.showToast({
+        title: '请选择运动场馆',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    }else{
+      util.Request("/api/SavePlayerReleasePreference", data, "post",
+      (res) => {
+        if(res.data.code==2000){
+          wx.redirectTo({
+            url: '/generalization/preferences/preferences'
+          })
+        }else{
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 1500,
+            mask: true
+          })
+        }
+       
+       
+  
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
+    }
+  
   },
 
 
@@ -400,7 +418,7 @@ Page({
         sportid:currPage.data.sportsListThree.id,
         sportName:currPage.data.sportsListThree.name,
         sporttype:currPage.data.sportsListThree.sporttype,
-        sporttypeName:currPage.data.sportsListThree.nametwo
+        sporttypeName:currPage.data.sportsListThree.nametwo,
       })
       let idgo=currPage.data.sportsListThree.id
       console.log(idgo)
@@ -412,6 +430,8 @@ Page({
         this.setData({comments:'发布者带足球'})
       }else if(idgo==6){
         this.setData({comments:'发布者带排球'})
+      }else{
+        this.setData({comments:''})
       }
       if (currPage.data.sportsListThree.sporttype == 5) {
         this.setData({
@@ -456,6 +476,14 @@ Page({
       } else if (currPage.data.sportsListThree.sporttype == 12) {
         this.setData({
           cf: false
+        })
+      }else if (currPage.data.sportsListThree.sporttype == 20) {
+        this.setData({
+          cf: 'no'
+        })
+      }else if (currPage.data.sportsListThree.sporttype == 21) {
+        this.setData({
+          cf: 'no'
         })
       }else{
         this.setData({

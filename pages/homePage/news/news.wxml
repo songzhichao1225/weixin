@@ -16,7 +16,7 @@
         <text class="title">{{item.title}}</text>
         <text class="time">{{item.addTime}}</text>
         <view class="request">
-          <image src="https://app.tiaozhanmeiyitian.com/{{item.authorimgURL}}"></image>
+          <image src="{{img}}/{{item.authorimgURL}}"></image>
           <text>{{item.content}}
           </text>
         </view>

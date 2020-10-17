@@ -27,7 +27,12 @@
 
 .picker {
   color: #9b9b9b;
+  width: 40%;
   float: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
 }
 
 .list>image {

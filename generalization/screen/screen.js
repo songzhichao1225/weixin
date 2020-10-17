@@ -3,7 +3,7 @@ const util = require('../../utils/util.js')
 
 Page({
   data: {
-    dataIndex: null,
+    dataIndex: 0,
     siteIndex: 0,
     sexIndex: 2,
     date: '选择日期',
@@ -12,7 +12,7 @@ Page({
     rangeArr: ['不限', 1, 2, 3, 4, 5, 6, 7, 9, 10],
     Grade: '最低等级',
     GradeTwo: '最高等级',
-    praise: null,
+    praise: 0,
     Activities: null,
     age: [], //年龄
     ageNum: 10,
@@ -52,33 +52,60 @@ Page({
   //选中运动模式
   modeTap: function (e) {
     let dataIndex = e.currentTarget.dataset.num
+    if(dataIndex==this.data.dataIndex){
+      this.setData({
+        dataIndex: 0
+      })
+    }else{
     this.setData({
       dataIndex: dataIndex
     })
+  }
+    
   },
   //选中场地方式
   siteTap: function (e) {
     let siteIndex = e.currentTarget.dataset.num
-    this.setData({
-      siteIndex: siteIndex
-    })
+    if(siteIndex==this.data.siteIndex){
+      this.setData({
+        siteIndex: 0
+      })
+    }else{
+      this.setData({
+        siteIndex: siteIndex
+      })
+    }
+    
 
   },
 
   //是否有裁判
   caiTap: function (e) {
     let caiTap = e.currentTarget.dataset.num
-    this.setData({
-      caiTap: caiTap
-    })
+    if(caiTap==this.data.caiTap){
+      this.setData({
+        caiTap: 0
+      })
+    }else{
+      this.setData({
+        caiTap: caiTap
+      })
+    }
+    
 
   },
   //选中性别
   sexTap: function (e) {
     let sexIndex = e.currentTarget.dataset.num
+    if(sexIndex==this.data.sexIndex){
+      this.setData({
+        sexIndex: 2
+      })
+    }else{
     this.setData({
       sexIndex: sexIndex
     })
+  }
 
   },
   //选择日期
@@ -167,15 +194,29 @@ Page({
 
   //好评
   praise: function (e) {
-    this.setData({
-      praise: e.currentTarget.dataset.num
-    })
+    if(e.currentTarget.dataset.num==this.data.praise){
+      this.setData({
+        praise: 0
+      })
+    }else{
+      this.setData({
+        praise: e.currentTarget.dataset.num
+      })
+    }
+    
   },
   //活动
   activities: function (e) {
-    this.setData({
-      Activities: e.currentTarget.dataset.num
-    })
+    if(e.currentTarget.dataset.num==this.data.Activities){
+      this.setData({
+        Activities: 0
+      })
+    }else{
+      this.setData({
+        Activities: e.currentTarget.dataset.num
+      })
+    }
+    
   },
   //重置
   reset: function () {

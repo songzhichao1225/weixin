@@ -16,19 +16,19 @@ Page({
     query.exec(function(res) {
       console.log(res)
     })
-
+    
     if (option != undefined) {
       this.setData({
         uuid: option.uuid
       })
     }
-
-    util.request("/api/getbinding", {
+    let that=this
+    setTimeout(function() {
+      util.request("/api/getbinding", {
         'wechartID': wx.getStorageSync('openid')
       }, "post",
       (res) => {
-        console.log(res)
-        this.setData({
+        that.setData({
           binding: res.data.data
         })
       },
@@ -37,11 +37,16 @@ Page({
       },
       () => {}
     )
+   }, 500);
+
+    
+  
+    
+
 
   },
   onGotUserInfo: function(e) {
     //登录
-    console.log(e)
     var openid = wx.getStorageSync('openid')
     var that = this
     var ency = e.detail.encryptedData;

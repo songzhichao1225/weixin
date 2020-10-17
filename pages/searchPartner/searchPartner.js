@@ -7,9 +7,13 @@ Page({
     page:1,
     searchData:[],
     flag:false,
+    img:'',
   },
   onLoad: function () {
     wx.hideLoading()
+    this.setData({
+      img:util.API
+    })
   },
   inputBlur:function(e){
     let sData={}

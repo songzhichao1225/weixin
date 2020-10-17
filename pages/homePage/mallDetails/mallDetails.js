@@ -7,10 +7,10 @@ Page({
     name:'',
     imgUrl:[],
     uuid:'',
+    img:'',
   },
   onLoad: function (option) {
-   console.log(option)
-    this.setData({ cost: option.cost, name: option.name, uuid: option.uuid})
+    this.setData({ cost: option.cost, name: option.name, uuid: option.uuid,img:util.API})
     util.request("/api/getGoodsInfo", { 'uid': option.uuid }, "get", 
       (res) => {
         console.log(res)

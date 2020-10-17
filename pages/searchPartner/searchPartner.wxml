@@ -3,7 +3,7 @@
 <view style='background:#efefef;height:100%;padding-top:0.2rem;'>
 <view style="background:#fff;margin-top:0.5rem;"  wx:for="{{searchData}}" wx:key data-uid="{{item.uuid}}" bindtap='getUserDetailInfo'>
   <view class="characterList">
-        <image class="img" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+        <image class="img" src='{{img}}/{{item.imgURL}}'></image>
         <view class="content">
           <view class="header">
             <text class="text">{{item.nickname}}</text>

@@ -44,7 +44,7 @@
   <scroll-view scroll-y style="height: 55%;margin-top:1rem;padding-bottom:1rem;" >
     <view class="mallList">
       <view class="mallListSon" wx:for="{{goldMall}}" bindtap='details' wx:key='index' data-name="{{item.name}}" data-cost="{{item.cost}}" data-uuid="{{item.UUID}}">
-        <image src="https://app.tiaozhanmeiyitian.com/{{item.imgpath}}"></image>
+        <image src="{{img}}/{{item.imgpath}}"></image>
         <text>{{item.name}}</text>
         <text>{{item.cost}}对手币  <text style="float:right;margin-right:2rem;">{{item.price}}.0</text></text>
         <text style='color:#D0021B;' catchtap="cost" data-uuid="{{item.UUID}}" data-cost="{{item.cost}}">立即兑换</text>

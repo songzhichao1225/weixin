@@ -16,6 +16,7 @@ Page({
     index: 0,
     pageTwo:0,
     pageThree:0,
+    img:''
   },
 
   /**
@@ -28,7 +29,10 @@ Page({
       minlevel: options.rankMin,
       maxlevel: options.rankMax,
       team: options.team,
-      page: 0
+      page: 0, 
+      maxage:options.ageMax,
+      minage:options.ageMin,
+      img:util.API,
     })
 
     let obj = {
@@ -42,6 +46,8 @@ Page({
       minlevel: options.rankMin,
       maxlevel: options.rankMax,
       team: options.team,
+      maxage:options.ageMax,
+      minage:options.ageMin,
       page: this.data.page
     }
 
@@ -50,6 +56,7 @@ Page({
 
   //接口函数
   requ: function (obj) {
+    let {sportid}=this.data
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -59,24 +66,25 @@ Page({
       (res) => {
         let nData = res.data.data.Lst
         for (let i in nData) {
-          if (nData[i].userLevelNum == '8') {
+          if (sportid == '8') {
             nData[i].userLevelNum = 'icon_dj_gef.png';
-          } else if (nData[i].userLevelNum == '3') {
+          } else if (sportid == '3') {
             nData[i].userLevelNum = 'icon_dj_tq.png'
-          } else if (nData[i].userLevelNum == '1') {
+          } else if (sportid == '1') {
             nData[i].userLevelNum = 'icon_dj_ymq.png'
-          } else if (nData[i].userLevelNum == '2') {
+          } else if (sportid == '2') {
             nData[i].userLevelNum = 'icon_dj_ppq.png'
-          } else if (nData[i].userLevelNum == '4') {
+          } else if (sportid == '4') {
             nData[i].userLevelNum = 'icon_dj_lq.png'
-          } else if (nData[i].userLevelNum == '5') {
+          } else if (sportid == '5') {
             nData[i].userLevelNum = 'icon_dj_zq.png'
-          } else if (nData[i].userLevelNum == '6') {
+          } else if (sportid == '6') {
             nData[i].userLevelNum = 'icon_dj_pq.png'
-          } else if (nData[i].userLevelNum == '7') {
+          } else if (sportid == '7') {
             nData[i].userLevelNum = 'icon_dj_wq.png'
           }
         }
+        console.log(nData)
         this.setData({
           getInviteFriends: res.data.data.Lst
         })

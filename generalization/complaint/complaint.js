@@ -5,8 +5,12 @@ Page({
   data: {
     dataList:'',
     pages:1,
+    img:''
   },
   onLoad: function () {
+    this.setData({
+      img:util.API
+    })
     let page=1
     let orderId=0
     this.goLoad(orderId,page)

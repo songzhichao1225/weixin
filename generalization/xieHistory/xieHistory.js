@@ -8,13 +8,16 @@ Page({
    */
   data: {
     listSon: [],
+    img:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    this.setData({
+      img:util.API
+    })
     if (options.type == 1) {
       util.Request("/api/getConsultativeHistory", {
           'publicUUID': options.uuid

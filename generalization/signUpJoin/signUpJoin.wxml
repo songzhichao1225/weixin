@@ -5,13 +5,13 @@
 	</view>
 	<view class="list">
 		<text>偏好名称</text>
-		<input class="input" maxlength="11" bindchange="titleChange" value="{{title}}"  placeholder="请填写(可修改)"></input>
+		<input class="input" maxlength="11" bindchange="titleChange" value="{{title}}"  style="padding-right:0.43rem;" placeholder="请填写(可修改)"></input>
 	</view>
 
 	<view class="list">
 		<text>运动项目</text>
 		<image src="/assets/right.png"></image>
-		<picker mode="multiSelector" bindchange="PickerChange" range-key="name" bindcolumnchange="ColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+		<picker mode="multiSelector" bindchange="PickerChange"  range-key="name" bindcolumnchange="ColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
 			<view class="picker" wx:if="{{multiIndex.length!=0}}">
 				{{multiArray[0][multiIndex[0]].name}} {{multiArray[1][multiIndex[1]].name}}
 			</view>
@@ -51,19 +51,20 @@
 	<view class="list">
 		<text>运动模式</text>
 		<image src="/assets/right.png"></image>
-		<picker bindchange="patterns" value="{{indexThree}}" range="{{patternsArray}}" range-key="name">
+		<picker bindchange="patterns" value="{{indexThree}}"  range="{{cf==false?arrayLan:cf=='no'?arrayLanTwo:patternsArray}}" range-key="name">
 			<view class="picker">
-				{{patternsArray[indexThree].name}}
+				{{cf==false?arrayLan[indexThree].name:cf=='no'?arrayLanTwo[indexThree].name:patternsArray[indexThree].name}}
 			</view>
 		</picker>
 	</view>
 
 	<view class="list">
 		<text>场地费承担方式</text>
-		<image src="/assets/right.png"></image>
-		<picker bindchange="shouldered" value="{{indexFour}}" range="{{shoulderedArray}}" range-key="name">
+		<image src="/assets/right.png" wx:if="{{modeName!='娱乐模式'}}"></image>
+		<image src="" wx:if="{{modeName=='娱乐模式'}}"></image>
+		<picker bindchange="shouldered" value="{{indexFour}}" disabled="{{modeName=='娱乐模式'}}" range="{{shoulderedArray}}" range-key="name">
 			<view class="picker">
-				{{shoulderedArray[indexFour].name}}
+				{{modeName=='娱乐模式'?'AA':shoulderedArray[indexFour].name}}
 			</view>
 		</picker>
 	</view>
@@ -149,8 +150,9 @@
 
 	<view class="list">
 		<text>是否有裁判</text>
-		<image src="/assets/right.png"></image>
-		<picker  bindchange="umpireChange" range="{{umpireArr}}"  range-key="name">
+		<image src="/assets/right.png" wx:if="{{cf!='no'}}"></image>
+		<image src="" wx:if="{{cf=='no'}}"></image>
+		<picker  bindchange="umpireChange" range="{{umpireArr}}" disabled="{{cf=='no'?true:false}}"  range-key="name">
 			<view class="picker">
 				{{umpireArr[umpire].name}}
 			</view>
@@ -159,8 +161,9 @@
 
 		<view class="list">
 		<text>活动类型</text>
-		<image src="/assets/right.png"></image>
-		<picker  bindchange="activitiesChange" range="{{activitiesArr}}"  range-key="name">
+		<image src="/assets/right.png" wx:if="{{cf!='no'}}"></image>
+		<image src="" wx:if="{{cf=='no'}}"></image>
+		<picker  bindchange="activitiesChange" range="{{activitiesArr}}" disabled="{{cf=='no'?true:false}}"  range-key="name">
 			<view class="picker">
 				{{activitiesArr[activities].name}}
 			</view>

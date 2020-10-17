@@ -12,7 +12,7 @@
 				<view class="listSon" wx:for="{{listSon}}" wx:key="index">
 					<view class="head">
 						<view class="avatar">
-							<image wx:if="{{item.status!=2&&item.status!=3}}" src="https://app.tiaozhanmeiyitian.com/{{item.playerimgurl}}"></image>
+							<image wx:if="{{item.status!=2&&item.status!=3}}" src="{{img}}/{{item.playerimgurl}}"></image>
 							<image wx:if="{{item.status==3||item.status==2}}" src="/assets/generalization.png"></image>
 						</view>
 						<view class="rightText"><text>{{item.status==3||item.status==2?'推广员':item.nickname}}</text><text>{{item.addTime}}</text></view>
@@ -24,7 +24,7 @@
 					<view class="umpire" wx:if="{{item.refereeimg!=undefined}}"><text>未到场裁判：</text>
 						<view class="caipanBos">
 							<view class="caipan" wx:for="{{item.refereeimg}}" wx:for-index="idx" wx:key="idx" wx:for-item="k">
-								<image src="https://app.tiaozhanmeiyitian.com/{{k.refereeimgurl}}"></image>
+								<image src="{{img}}/{{k.refereeimgurl}}"></image>
 								<view class="textSon">{{k.C}}</view>
 							</view>
 						</view>
@@ -33,7 +33,7 @@
 						<text >详细说明： </text>
 						<text style="padding-left:0.3rem">{{item.comment}}</text>
 					</view>
-					<view class="yinpin" bindtap="audioPlay" data-src="https://app.tiaozhanmeiyitian.com/{{item.imgurl}}">
+					<view class="yinpin" bindtap="audioPlay" data-src="{{img}}/{{item.imgurl}}">
 						<image src="/assets/icon_au.png"></image>
 					</view>
 					<view class="result" wx:if="{{item.isHandle!=0}}"><text>结论：</text><text>{{item.conclu}}</text></view>
@@ -56,7 +56,7 @@
 				<view class="listSon" wx:for="{{listSon}}" wx:key="index">
 					<view class="head">
 						<view class="avatar">
-							<image wx:if="{{item.status!=2&&item.status!=3}}" src="https://app.tiaozhanmeiyitian.com/{{item.playerimgurl}}"></image>
+							<image wx:if="{{item.status!=2&&item.status!=3}}" src="{{img}}/{{item.playerimgurl}}"></image>
 							<image wx:if="{{item.status==3||item.status==2}}" src="/assets/generalization.png"></image>
 						</view>
 						<view class="rightText"><text>{{item.status==3||item.status==2?'推广员':item.nickname}}</text><text>{{item.addTime}}</text></view>
@@ -68,7 +68,7 @@
 					<view class="umpire" wx:if="{{item.refereeimg!=undefined}}"><text>未到场裁判：</text>
 						<view class="caipanBos">
 							<view class="caipan" wx:for="{{item.refereeimg}}" wx:for-index="idx" wx:key="idx" wx:for-item="k">
-								<image src="https://app.tiaozhanmeiyitian.com/{{k.refereeimgurl}}"></image>
+								<image src="{{img}}/{{k.refereeimgurl}}"></image>
 								<view class="textSon">{{k.C}}</view>
 							</view>
 						</view>
@@ -77,7 +77,7 @@
 						<text >详细说明： </text>
 						<text style="padding-left:0.3rem">{{item.comment}}</text>
 					</view>
-					<view class="yinpin" bindtap="audioPlay" data-src="https://app.tiaozhanmeiyitian.com/{{item.imgurl}}">
+					<view class="yinpin" bindtap="audioPlay" data-src="{img}/{{item.imgurl}}">
 						<image src="/assets/icon_au.png"></image>
 					</view>
 					<view class="result" wx:if="{{item.isHandle!=0}}"><text>结论：</text><text>{{item.conclu}}</text></view>

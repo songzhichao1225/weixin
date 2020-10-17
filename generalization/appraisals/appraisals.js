@@ -101,13 +101,16 @@ Page({
     userComment: '',
     value: '',
     imgBaseURL: '',
-
+    img:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      img:util.API
+    })
     util.Request("/api/getNeedCommentUsersLst", {
         'uuid': options.id
       }, "get",

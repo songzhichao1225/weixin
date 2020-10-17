@@ -22,10 +22,13 @@ Page({
     getwaiverInfoFour: [],
     getRefereeResult: [],
     uuid: '',
+    img:'',
   },
 
   onLoad: function (option) {
-
+    this.setData({
+      img:util.API
+    })
     if (option != undefined) {
       if (option.hoog != undefined) {
         this.setData({

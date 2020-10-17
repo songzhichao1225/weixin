@@ -3,10 +3,10 @@
 		<view class="fater">
 			<view class="son" bindtap="navSon" data-index="0" style="{{current==0?'color:#D85D27;':''}}">我的好友 <view wx:if="{{current==0}}" class="line"></view>
 			</view>
-			<view class="son" bindtap="navSon" data-index="1" style="{{current==1?'color:#D85D27;':''}}">附近球友 <view wx:if="{{current==1}}" class="line"></view>
+			<view class="son" bindtap="navSon" data-index="1" style="{{current==1?'color:#D85D27;':''}}">附近对手<view wx:if="{{current==1}}" class="line"></view>
 			</view>
-			<view class="son" bindtap="navSon" data-index="2" style="{{current==2?'color:#D85D27;':''}}">关注好友 <view wx:if="{{current==2}}" class="line"></view>
-			</view>
+			<!-- <view class="son" bindtap="navSon" data-index="2" style="{{current==2?'color:#D85D27;':''}}">关注好友 <view wx:if="{{current==2}}" class="line"></view>
+			</view> -->
 		</view>
 
 	</view>
@@ -15,11 +15,11 @@
 
 		<swiper-item>
 			<scroll-view scroll-y style="height: 100%" bindscrolltolower="lower" bindscrolltolower="ltolower">
-				<view class="characterList" wx:for="{{getInviteFriends}}" wx:key="index" data-uid="{{item.uuid}}" bindtap='getUserDetailInfo'>
-					<image class="img" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+				<view class="characterList" wx:for="{{getInviteFriends}}" wx:key="index" data-uid="{{item.FriendUUID}}" bindtap='getUserDetailInfo'>
+					<image class="img" src='{{img}}/{{item.userInfo.imgURL}}'></image>
 					<view class="content">
 						<view class="header">
-							<text class="text">{{item.nickname}}</text>
+							<text class="text">{{item.userInfo.nickname}}</text>
 							<image wx:if="{{item.sex==0}}" class='image' src='/assets/sex0@2x.png'></image>
 							<image wx:if="{{item.sex==1}}" class='image' style="width:0.6rem;" src='/assets/sex1@2x.png'></image>
 							<image src='/assets/{{item.userLevelNum}}' class='imageTwo'></image>
@@ -27,8 +27,8 @@
 						</view>
 						<view class="signs">
 							<text style="margin:0;">年龄:{{item.userInfo.age}}岁</text>
-							<text>体重:{{item.userInfo.tall}}Kg</text>
-							<text>身高:{{item.userInfo.weight}}cm</text>
+								<text>体重:{{item.userInfo.tall==0?'未填写':item.userInfo.tall+'kg'}}</text>
+							<text>身高:{{item.userInfo.weight==0?'未填写':item.userInfo.weight+'cm'}}</text>
 						</view>
 						<view class="interest">
 							<text style='float:left;display:block;'>喜爱运行项目:{{item.sportidNameStr}}</text>
@@ -41,19 +41,19 @@
 
 		<swiper-item>
 			<scroll-view scroll-y style="height: 100%" bindscrolltolower="lower" bindscrolltolower="ltolower">
-				<view class="characterList" wx:for="{{getInviteFriends}}" wx:key="index" data-uid="{{item.uuid}}" bindtap='getUserDetailInfo'>
-					<image class="img" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+				<view class="characterList" wx:for="{{getInviteFriends}}" wx:key="index" data-uid="{{item.FriendUUID}}" bindtap='getUserDetailInfo'>
+					<image class="img" src='{{img}}/{{item.userInfo.imgURL}}'></image>
 					<view class="content">
 						<view class="header">
-							<text class="text">{{item.nickname}}</text>
-							<image wx:if="{{item.sex==0}}" class='image' src='/assets/sex0@2x.png'></image>
-							<image wx:if="{{item.sex==1}}" class='image' style="width:0.6rem;" src='/assets/sex1@2x.png'></image>
+							<text class="text">{{item.userInfo.nickname}}</text>
+							<image wx:if="{{item.userInfo.sex==0}}" class='image' src='/assets/sex0@2x.png'></image>
+							<image wx:if="{{item.userInfo.sex==1}}" class='image' style="width:0.6rem;" src='/assets/sex1@2x.png'></image>
 							<image src='/assets/{{item.userLevelNum}}' class='imageTwo'></image>
 							<text class="textTwo">{{item.userLevel}}</text>
 						</view>
 						<view class="signs">
 							<text style="margin:0;">年龄:{{item.userInfo.age}}岁</text>
-							<text>体重:{{item.userInfo.tall}}Kg</text>
+								<text>体重:{{item.userInfo.tall==0?'未填写':item.userInfo.tall+'kg'}}</text>
 							<text>身高:{{item.userInfo.weight}}cm</text>
 						</view>
 						<view class="interest">
@@ -69,18 +69,18 @@
 		<swiper-item>
 			<scroll-view scroll-y style="height: 100%" bindscrolltolower="lower" bindscrolltolower="ltolower">
 				<view class="characterList" wx:for="{{getInviteFriends}}" wx:key="index" data-uid="{{item.uuid}}" bindtap='getUserDetailInfo'>
-					<image class="img" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+					<image class="img" src='{{img}}/{{item.imgURL}}'></image>
 					<view class="content">
 						<view class="header">
 							<text class="text">{{item.nickname}}</text>
-							<image wx:if="{{item.sex==0}}" class='image' src='/assets/sex0@2x.png'></image>
-							<image wx:if="{{item.sex==1}}" class='image' style="width:0.6rem;" src='/assets/sex1@2x.png'></image>
+							<image wx:if="{{item.userInfo.sex==0}}" class='image' src='/assets/sex0@2x.png'></image>
+							<image wx:if="{{item.userInfo.sex==1}}" class='image' style="width:0.6rem;" src='/assets/sex1@2x.png'></image>
 							<image src='/assets/{{item.userLevelNum}}' class='imageTwo'></image>
 							<text class="textTwo">{{item.userLevel}}</text>
 						</view>
 						<view class="signs">
 							<text style="margin:0;">年龄:{{item.userInfo.age}}岁</text>
-							<text>体重:{{item.userInfo.tall}}Kg</text>
+							<text>体重:{{item.userInfo.tall==0?'未填写':item.userInfo.tall+'kg'}}</text>
 							<text>身高:{{item.userInfo.weight}}cm</text>
 						</view>
 						<view class="interest">

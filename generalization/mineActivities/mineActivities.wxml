@@ -74,7 +74,7 @@
 		<view class="listBoss" wx:for="{{listSon}}" bindtap="activities" data-uuid="{{item.uuid}}" wx:key='index'>
 			<view class="content">
 				<view class="leftLst">
-					<image class="image" src="https://app.tiaozhanmeiyitian.com/{{item.imgURL}}"></image>
+					<image class="image" src="{{img}}/{{item.imgURL}}"></image>
 					<image wx:if="{{item.sportName=='网球'}}" class="imageTwo" src='/assets/icon_dj_wq.png'></image>
 					<image wx:if="{{item.sportName=='高尔夫'}}" class="imageTwo" src='/assets/icon_dj_gef.png'></image>
 					<image wx:if="{{item.sportName=='篮球'}}" class="imageTwo" src='/assets/icon_dj_lq.png'></image>

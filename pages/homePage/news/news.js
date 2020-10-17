@@ -5,9 +5,13 @@ Page({
   data: {
     systemMessage: [],
     page: 1,
+    img:'',
   },
 
   onLoad: function() {
+    this.setData({
+      img:util.API
+    })
     if (wx.getStorageSync('token')) {
       this.setData({
         page: 1

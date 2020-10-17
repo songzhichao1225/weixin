@@ -9,9 +9,13 @@ Page({
     imgURLT: '',
     mask: false,
     change: 0,
+    Img:'',
   },
   onLoad: function() {
     wx.hideLoading()
+    this.setData({
+      Img:util.API
+    })
   },
 
   positiveUp: function() {
@@ -37,7 +41,7 @@ Page({
             })
             let thso = that
             wx.uploadFile({
-              url: 'https://app.tiaozhanmeiyitian.com/api/positiveidcard',
+              url: ''+this.data.Img+'/api/positiveidcard',
               filePath: tempFilePaths,
               name: 'files',
               header: {
@@ -84,7 +88,7 @@ Page({
             })
             let thso = that
             wx.uploadFile({
-              url: 'https://app.tiaozhanmeiyitian.com/api/positiveidcard',
+              url: ''+this.data.Img+'/api/positiveidcard',
               filePath: tempFilePaths,
               name: 'files',
               header: {

@@ -6,8 +6,8 @@
 			</view>
 			<view class="right">
 				<text>运动模式</text>
-				<image src="/assets/right.png"></image>
-					<picker range="{{cf==false?arrayLan:array}}" bindchange="picker" disabled="{{disabled}}" bindtap="pickerTap" range-key="name" style="float:right;">
+				<image src="/assets/right.png" ></image>
+					<picker range="{{cf==false?arrayLan:cf=='no'?arrayLanTwo:array}}" bindchange="picker" disabled="{{disabled}}" bindtap="pickerTap" range-key="name" style="float:right;">
 						<view class="textTwo" style="text-align:right;font-size:0.75rem;color:#9b9b9b;">
 							{{mode}}
 						</view>
@@ -20,7 +20,7 @@
 				<image src="/assets/right.png"></image>
 					<picker range="{{TrialArray}}" bindchange="TrialPicker" range-key="name" style="float:right;">
 						<view style="text-align:right;color:#9B9B9B;font-size:0.75rem">
-							{{TrialNum}}人
+							{{TrialNum}}
 						</view>
 					</picker>
 			</view>
@@ -72,7 +72,8 @@
 			</view>
 			<view class="right">
 				<text>承担方式</text>
-				<image src="/assets/right.png"></image>
+				<image src="/assets/right.png" wx:if="{{mode=='竞技模式'}}"></image>
+					<image src="" wx:if="{{mode!='竞技模式'}}"></image>
 					<picker bindchange="bindPickerShouldered" range="{{shoulderedArr}}" disabled="{{mode=='竞技模式'?false:true}}" range-key="name" style="float:right;">
 						<view class="textTwo" style="text-align:right;font-size:0.75rem;color:#9b9b9b">
 							{{shouldered}}

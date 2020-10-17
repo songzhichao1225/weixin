@@ -5,10 +5,13 @@ Page({
   data: {
     goldNum: '',
     flag:false,
+    img:'',
   },
   onLoad: function(option) {
 
-
+    this.setData({
+      img:util.API
+    })
     wx.showLoading({
       title: '加载中',
       mask: true

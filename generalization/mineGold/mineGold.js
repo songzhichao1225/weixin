@@ -3,9 +3,13 @@ const util = require('../../utils/util.js')
 
 Page({
   data: {
-    goldMall:[]
+    goldMall:[],
+    img:''
   },
   onLoad: function () {
+    this.setData({
+      img:util.API
+    })
     util.Request("/api/getGoodsLst", { category:'全部',page:1}, "get",
       (res) => {
        this.setData({

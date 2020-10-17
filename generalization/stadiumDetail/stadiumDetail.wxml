@@ -17,7 +17,7 @@
       <view class="listSon" wx:for="{{dataList}}" wx:key='index'>
         <view class="image">
           <text class="type">待处理</text>
-          <image class="img" src="https://app.tiaozhanmeiyitian.com/{{item.imgURL}}"></image>
+          <image class="img" src="{{img}}/{{item.imgURL}}"></image>
           <image wx:if="{{item.SportId=='网球'}}" class="way" src='/assets/icon_dj_wq.png'></image>
           <image wx:if="{{item.SportId=='高尔夫'}}" class="way" src='/assets/icon_dj_gef.png'></image>
           <image wx:if="{{item.SportId=='篮球'}}" class="way" src='/assets/icon_dj_lq.png'></image>

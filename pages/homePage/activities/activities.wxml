@@ -32,7 +32,7 @@
 			<view class="publisher">
 				<view class="header">
 					<text>发布者</text>
-					<image bindtap="getUserDetailInfo" data-uid="{{activitiesData.teamA[0].uuid}}" src='https://app.tiaozhanmeiyitian.com/{{activitiesData.publishPlayerImg}}'></image>
+					<image bindtap="getUserDetailInfo" data-uid="{{activitiesData.teamA[0].uuid}}" src='{{img}}/{{activitiesData.publishPlayerImg}}'></image>
 					<text style='margin-left:0.3rem;font-weight:400;font-size:14px;'>{{activitiesData.publishPlayerName}}</text>
 				</view>
 				<view class="publisherTxt" style='margin-top:1rem;'>
@@ -132,7 +132,7 @@
 								{{typeTwo==1?'邀请':'报名'}}
 								<text class="TeamAson">A{{index+1}}</text>
 							</view>
-							<image class="logo" wx:if="{{item.name!='报名'}}" bindtap="getUserDetailInfo" data-uid="{{item.uuid}}" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+							<image class="logo" wx:if="{{item.name!='报名'}}" bindtap="getUserDetailInfo" data-uid="{{item.uuid}}" src='{{img}}/{{item.imgURL}}'></image>
 							<image wx:if="{{item.name!='报名'}}" class="project" src="/assets/{{activitiesData.ballImgSon}}"></image>
 							<text wx:if="{{item.name!='报名'}}" class="grade">{{item.heightLevel}}</text>
 							<text wx:if="{{item.name!='报名'&&item.isSignIns!=4}}" class="isSigin">{{item.nameStatus}}</text>
@@ -149,7 +149,7 @@
 								{{typeTwo==1?'邀请':'报名'}}
 								<text class="TeamAson">B{{index+1}}</text>
 							</view>
-							<image class="logo" wx:if="{{item.name!='报名'}}" bindtap="getUserDetailInfo" data-uid="{{item.uuid}}" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+							<image class="logo" wx:if="{{item.name!='报名'}}" bindtap="getUserDetailInfo" data-uid="{{item.uuid}}" src='{{img}}/{{item.imgURL}}'></image>
 							<image class="project" wx:if="{{item.name!='报名'}}" src="/assets/{{activitiesData.ballImgSon}}"></image>
 							<text wx:if="{{item.name!='报名'&&item.isSignIns!=4}}" class="isSigin">{{item.nameStatus}}</text>
 							<text wx:if="{{item.name!='报名'}}" class="grade">{{item.heightLevel}}</text>
@@ -168,7 +168,7 @@
 								{{type==1?'':'报名'}}
 								<text class="TeamAson">C{{index+1}}</text>
 							</view>
-							<image class="logo" wx:if="{{item.name!='报名'}}" bindtap="getUserDetailInfo" data-uid="{{item.uuid}}" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+							<image class="logo" wx:if="{{item.name!='报名'}}" bindtap="getUserDetailInfo" data-uid="{{item.uuid}}" src='{{img}}/{{item.imgURL}}'></image>
 							<image class="project" wx:if="{{item.name!='报名'}}" src="/assets/{{activitiesData.ballImgSon}}"></image>
 							<text wx:if="{{item.name!='报名'&&item.isSignIns!=4}}" class="isSigin">{{item.nameStatus}}</text>
 							<text wx:if="{{item.name!='报名'}}" class="grade">{{item.heightLevel}}</text>
@@ -201,7 +201,7 @@
 				<view class="one">
 					<text>A赢B:{{activitiesData.AwinBcount}}人</text>
 					<view class="avatarOne" wx:for="{{AwinBuserInfoOne}}" wx:key="index">
-						<image src="https://app.tiaozhanmeiyitian.com/{{item.imgURL}}"></image><text>{{item.team}}</text>
+						<image src="{{img}}/{{item.imgURL}}"></image><text>{{item.team}}</text>
 					</view>
 					<view class="avatarOne" wx:if="{{activitiesData.AwinBuserInfo.length>4}}" style="border-radius:50%;background:#F3F3F3;">
 						<view class="dian"></view>
@@ -212,7 +212,7 @@
 				<view class="one">
 					<text>A输B:{{activitiesData.AloseBcount}}人</text>
 					<view class="avatarOne" wx:for="{{AloseBuserInfoTwo}}" wx:key="index">
-						<image src="https://app.tiaozhanmeiyitian.com/{{item.imgURL}}"></image><text>{{item.team}}</text>
+						<image src="{{img}}/{{item.imgURL}}"></image><text>{{item.team}}</text>
 					</view>
 					<view class="avatarOne" wx:if="{{activitiesData.AloseBuserInfo.length>4}}" style="border-radius:50%;background:#F3F3F3;">
 						<view class="dian"></view>
@@ -223,7 +223,7 @@
 				<view class="one">
 					<text>A平B:{{activitiesData.AdrawBcount}}人</text>
 					<view class="avatarOne" wx:for="{{AdrawBuserInfoThree}}" wx:key="index">
-						<image src="https://app.tiaozhanmeiyitian.com/{{item.imgURL}}"></image><text>{{item.team}}</text>
+						<image src="{{img}}/{{item.imgURL}}"></image><text>{{item.team}}</text>
 					</view>
 					<view class="avatarOne" wx:if="{{activitiesData.AdrawBuserInfo.length>4}}" style="border-radius:50%;background:#F3F3F3;">
 						<view class="dian"></view>
@@ -234,7 +234,7 @@
 				<view class="one">
 					<text>弃权:{{activitiesData.getwaiver}}人</text>
 					<view class="avatarOne" wx:for="{{getwaiverInfoFour}}" wx:key="index">
-						<image src="https://app.tiaozhanmeiyitian.com/{{item.imgURL}}"></image><text>{{item.team}}</text>
+						<image src="{{img}}/{{item.imgURL}}"></image><text>{{item.team}}</text>
 					</view>
 					<view class="avatarOne" wx:if="{{activitiesData.getwaiverInfo.length>4}}" style="border-radius:50%;background:#F3F3F3;">
 						<view class="dian"></view>
@@ -247,7 +247,7 @@
 				<view class="one" style="overflow: hidden;height:4.63rem;">
 					<view class="boxx" wx:for="{{getRefereeResult}}" wx:key="index">
 						<view class="avatarTwo">
-							<image src="https://app.tiaozhanmeiyitian.com/{{item.playerimg}}"></image><text>{{item.referee}}</text>
+							<image src="{{img}}/{{item.playerimg}}"></image><text>{{item.referee}}</text>
 						</view>
 						<view class="result" style="{{item.result==1?'background:#D85D27;':''||item.result==2?'background:#53A0FE':''||item.result==3?'background:#4A4A4A':''}}">{{item.result==1?'A赢B':''||item.result==2?'A输B':''||item.result==3?'A平B':''}}</view>
 					</view>

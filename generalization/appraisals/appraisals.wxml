@@ -12,7 +12,7 @@
 	<view class="list" wx:for="{{list.usersInfo}}" wx:key="index" wx:for-index="idx">
 		<view class="head">
 			<view class="avatar">
-				<image src="https://app.tiaozhanmeiyitian.com/{{item.imgURL}}"></image>
+				<image src="{{img}}/{{item.imgURL}}"></image>
 			</view>
 			<view class="text"><text>{{item.Team}}</text><text>{{item.nickname}}</text></view>
 			<view class="right" wx:if="{{list.SportMode==2}}">填写的比赛结果:{{item.result}}</view>

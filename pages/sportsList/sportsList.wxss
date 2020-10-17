@@ -1,17 +1,17 @@
 .sportsList {
   height: 100%;
-  border-top: 0.06rem solid #9b9b9b;
+  border-top: 0.06rem solid #e9e9e9;
   overflow: hidden;
 }
 
 .sportsList .list {
-  border-bottom: 0.06rem solid #9b9b9b;
+  border-bottom: 0.06rem solid #e9e9e9;
   overflow: hidden;
   
 }
 .boss{
   overflow: hidden;
-  border-left: 0.06rem solid #9b9b9b;
+  border-left: 0.06rem solid #e9e9e9;
   padding-bottom: 0.5rem
 }
 

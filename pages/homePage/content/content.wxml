@@ -14,7 +14,7 @@
 		<swiper autoplay="{{true}}" class="banner" indicator-dots="true" indicator-color="#ddd" indicator-active-color="#fff">
 			<block wx:for="{{bannerArr}}" wx:key='index'>
 				<swiper-item>
-					<image src="https://app.tiaozhanmeiyitian.com/{{item.picurl}}" class="slide-image" />
+					<image src="{{img}}/{{item.picurl}}" class="slide-image" />
 				</swiper-item>
 			</block>
 		</swiper>
@@ -28,6 +28,7 @@
 		<view bindtap="generaGold">
 			<image src='/assets/HomeIconJinbi@2x.png'></image>
 			<text>赢对手币</text>
+			
 		</view>
 		<view bindtap='goldMall'>
 			<image src='/assets/HomeIconShangcheng@2x.png'></image>
@@ -39,7 +40,7 @@
 		</view>
 		<view bindtap='goldMall'>
 			<image src='/assets/cooperate.png'></image>
-			<text>成为合作场馆</text>
+			<text>场馆入驻</text>
 		</view>
 		<view bindtap="signUp">
       <image src='/assets/run.png'></image>
@@ -67,10 +68,17 @@
 	</view>
 
 	<view class="projectList">
-		<!-- <text wx:if="{{projectData.length==0}}" class="model" >没有找到相匹配的项目</text> -->
+
+	<view class="noContent" wx:if="{{projectData.length==0}}">
+   <image src="/assets/nottxt.png"></image>
+	  <text>抱歉，您可以放宽筛选条件试试!</text>
+		<text>或自己发布活动吧，报名条件您说了算!</text>
+		<text>还可多得5枚对手币!</text>
+	</view>
+
 		<view class="projectSon" wx:if="{{projectData.length>0}}" bindtap="activites" data-uuid="{{item.uuid}}" wx:for="{{projectData}}" wx:key='index'>
 			<view class="avatar">
-				<image class="avatarP" src='https://app.tiaozhanmeiyitian.com/{{item.imgURL}}'></image>
+				<image class="avatarP" src='{{img}}/{{item.imgURL}}'></image>
 				<image wx:if="{{item.SportName=='网球'}}" class="aIcon" src='/assets/icon_dj_wq.png'></image>
 				<image wx:if="{{item.SportName=='高尔夫'}}" class="aIcon" src='/assets/icon_dj_gef.png'></image>
 				<image wx:if="{{item.SportName=='篮球'}}" class="aIcon" src='/assets/icon_dj_lq.png'></image>
@@ -145,6 +153,7 @@
 			</view>
 		</view>
 	</view>
+	
 
 	<!-- <view class="flexd" bindtap="download">
     <image src="/assets/comeOn@2x.png"></image>
@@ -162,7 +171,6 @@
 	</view>
 
 	<download wx:if="{{download}}" bindtap="closeDowload"></download>
-
 
 
 

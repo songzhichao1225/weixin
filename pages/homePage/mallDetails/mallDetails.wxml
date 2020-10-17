@@ -1,7 +1,7 @@
 <view class="mallDetails">
   <swiper indicator-dots="true" indicator-color="#ccc" indicator-active-color="#3fc">
 
-    <swiper-item wx:for="{{imgUrl}}" wx:key='index'><image src='https://app.tiaozhanmeiyitian.com/{{item}}' mode="aspectFill"></image></swiper-item>
+    <swiper-item wx:for="{{imgUrl}}" wx:key='index'><image src='{{img}}/{{item}}' mode="aspectFill"></image></swiper-item>
 
   </swiper>
   <text class="txt">{{name}}</text>
@@ -10,7 +10,7 @@
   <text class="text">说明：尺码和大小请在下单时备注</text>
   <text class="text">服务：不支持退换货    此商品包运费</text>
   <text class='txt' style='text-align:center;'>更多详情</text> 
-   <image class="image" wx:for="{{imgUrl}}" mode='widthFix' wx:key='index' src='https://app.tiaozhanmeiyitian.com/{{item}}'></image>
+   <image class="image" wx:for="{{imgUrl}}" mode='widthFix' wx:key='index' src='{{img}}/{{item}}'></image>
    <button class="btn" bindtap="exchange" data-cost="{{cost}}">立即兑换</button> 
 </view> 
     

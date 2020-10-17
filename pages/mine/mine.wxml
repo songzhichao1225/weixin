@@ -3,7 +3,7 @@
   <image class="banner" src='/assets/WdBgBanner@2x.png'></image>
   <view class="headerTop">
  <view class="header" bindtap="personalData">
-    <image  class="avatar" wx:if="{{mineDetail.imgURL!=''}}" src='https://app.tiaozhanmeiyitian.com/{{mineDetail.imgURL}}'></image>
+    <image  class="avatar" wx:if="{{mineDetail.imgURL!=''}}" src='{{img}}/{{mineDetail.imgURL}}'></image>
       <open-data class="avatar" wx:elif="{{mineDetail.imgURL==''}}" type="userAvatarUrl"></open-data>
     <view class="name">
     <text class="nickName" wx:if="{{mineDetail.nickname!=''}}">{{mineDetail.nickname}}</text>

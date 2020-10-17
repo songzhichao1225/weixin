@@ -79,6 +79,19 @@ Page({
     let uuid=e.currentTarget.dataset.uuid
     util.Request("/api/getReleasePreferenceFirst", { 'prefeuuid':uuid }, "post", 
     (res) => {
+      wx.removeStorage({
+        key: 'bookin',
+        success (res) {
+          console.log(res)
+        }
+      })
+      wx.removeStorage({
+        key: 'siteid',
+        success (res) {
+          console.log(res)
+        }
+      })
+      
       let dat=res.data.data
       wx.setStorage({key: 'sportIdF',data: dat.sportid})
       wx.setStorage({key: 'sportTypeF',data: dat.sporttype})

@@ -28,6 +28,7 @@ Page({
     })
 
     if (options.look == 1) {
+      console.log(app.globalData)
       this.setData({
         modeNum: app.globalData.SportMode,
         Referee: app.globalData.refereefee
@@ -70,6 +71,7 @@ Page({
         sportid: app.userReserveVenue.sportid,
         StartTime: app.userReserveVenue.StartTime,
         PlayTime: app.userReserveVenue.PlayTime,
+        venueid:app.userReserveVenue.venueid,
       }
       util.request("/api/getOrders", obj, "get",
         (res) => {

@@ -16,14 +16,15 @@ const formatNumber = n => {
 
 
 
-let API = "https://app.tiaozhanmeiyitian.com";
+let API = "https://app.tiaozhanmeiyitian.com";  //正式
+// let API = "https://appstg.tiaozhanmeiyitian.com";  //测试
+
+
 
 wx.showLoading({
   title: '加载中',
   mask: true
 })
-
-
 //有权限的请求
 function Request(url, data, method, successFn, failFn, completeFn) {
   if (wx.getStorageSync('token')) {
@@ -266,5 +267,6 @@ function request(url, data, method, successFn, failFn, completeFn) {
 module.exports = {
   formatTime: formatTime,
   request: request,
-  Request: Request
+  Request: Request,
+  API:API,
 }
