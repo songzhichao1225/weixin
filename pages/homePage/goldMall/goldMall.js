@@ -24,7 +24,7 @@ Page({
   },
   onLoad: function () {
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
     this.setData({
@@ -37,7 +37,6 @@ Page({
         this.setData({
           banerLst:res.data.data
         })
-        console.log(res.data.data)
       },
       () => { console.log("失败") },
       () => {
@@ -59,7 +58,7 @@ Page({
   //点击切换类
   clickSe:function(e){
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
     this.setData({
@@ -94,7 +93,7 @@ Page({
 
   scrolltolower:function(){
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
 

@@ -15,14 +15,12 @@ Page({
   //获取验证码
 
   phoneNum: function(e) {
-    console.log(e)
     this.setData({
       mobile: e.detail.value  
     })
   },
   obtain: function () {
     let { mobile } = this.data
-    console.log(mobile)
     util.request("/api/toSendCode", {
       'mobile': mobile,
       'type': 'bindmobile'

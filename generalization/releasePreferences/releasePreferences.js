@@ -192,20 +192,28 @@ Page({
   },
 
   bindPickerAge: function(e) {
-    if ((e.detail.value[0]+9) > (e.detail.value[1]+9) && (e.detail.value[1]+9) != 0) {
+    if(e.detail.value[0]==0&&e.detail.value[1]==0){
+      this.setData({
+        age: 10+ '-' + 70 + '岁'
+      })
+    }else if((e.detail.value[0])==0){
+      this.setData({
+        age: 10+ '-' + (e.detail.value[1]+9) + '岁'
+      })
+    }else if((e.detail.value[1])==0){
+      this.setData({
+        age: (e.detail.value[0]+9)+ '-' + 70 + '岁'
+      })
+    }else if ((e.detail.value[0]+9) > (e.detail.value[1]+9) && (e.detail.value[1]+9) != 0) {
       wx.showToast({
         title: '最小年龄不能高于最大年龄',
         icon: 'none',
         duration: 1500,
         mask: true
       })
-    } else {
+    }else  {
       this.setData({
         age: (e.detail.value[0]+9) + '-' + (e.detail.value[1]+9) + '岁'
-      })
-      wx.setStorage({
-        key: 'ageF',
-        data: (e.detail.value[0]+9) + '-' + (e.detail.value[1]+9) + '岁',
       })
     }
   },
@@ -354,7 +362,6 @@ Page({
       remarks:comments,
       sitecity:siteThree.city
     }
-    console.log(sportid)
     if(sportid==''){
       wx.showToast({
         title: '请选择运动项目',
@@ -409,7 +416,6 @@ Page({
   onShow: function() {
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];
-    console.log(currPage.data.siteThree)
     if(currPage.data.sportsListThree!==undefined){
       this.setData({
         disabled:false
@@ -421,7 +427,6 @@ Page({
         sporttypeName:currPage.data.sportsListThree.nametwo,
       })
       let idgo=currPage.data.sportsListThree.id
-      console.log(idgo)
       if(idgo==1||idgo==2||idgo==7){
         this.setData({comments:'球，球拍各参与者均须自备'})
       }else if(idgo==4){
@@ -494,7 +499,6 @@ Page({
           'sportId': this.data.sportId
         }, "get",
         (res) => {
-          console.log(res)
          this.setData({
            sportLeve:res.data.data
          })

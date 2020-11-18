@@ -17,7 +17,7 @@ Page({
         page: 1
       })
       wx.showLoading({
-        title: '加载中',
+        title: '',
         mask: true
       })
 
@@ -96,7 +96,7 @@ Page({
       page: page + 1
     })
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
     this.newsLoand(down)

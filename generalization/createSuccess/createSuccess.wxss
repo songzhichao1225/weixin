@@ -36,9 +36,10 @@
 .text .comm {
   display: block;
   width: 95%;
-  font-size: 0.8rem;
+  font-size: 1rem;
   margin: 1rem auto 0;
   text-align: center;
+  color:red;
 }
 
 .title {
@@ -74,4 +75,16 @@
 
 .btn .btnSonOne:last-child {
   margin-left: 18.5%;
+}
+.rules{
+  font-size: 0.75rem;
+  
+}
+.ojbk{
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  bottom: 5%;
 }

@@ -250,7 +250,6 @@ Page({
                 wx.hideLoading()
               },
               () => {
-                console.log(res)
               },
               () => {}
             )
@@ -259,7 +258,6 @@ Page({
       },
       fail: function (res) {
         wx.hideNavigationBarLoading()
-        console.log(res.errMsg)
       }
     })
   },
@@ -340,7 +338,6 @@ Page({
     } = this.data
     let arrID = []
     for (let i in list.usersInfo) {
-      console.log(list.usersInfo[i].playerUUID)
       arrID.push(list.usersInfo[i].playerUUID)
     }
     let obj = {

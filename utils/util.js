@@ -16,13 +16,13 @@ const formatNumber = n => {
 
 
 
-let API = "https://app.tiaozhanmeiyitian.com";  //正式
-// let API = "https://appstg.tiaozhanmeiyitian.com";  //测试
+// let API = "https://app.tiaozhanmeiyitian.com";  //正式
+let API = "https://appstg.tiaozhanmeiyitian.com";  //测试
 
 
 
 wx.showLoading({
-  title: '加载中',
+  title: '',
   mask: true
 })
 //有权限的请求
@@ -135,8 +135,6 @@ function Request(url, data, method, successFn, failFn, completeFn) {
           wx.hideLoading()
           if (JSON.parse(res.data).code == 2000) {
             successFn(res);
-
-
           } else if (JSON.parse(res.data).code == 40101) {
             wx.showToast({
               title: '身份验证失败',
@@ -172,7 +170,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
         method: method,
         success: function (res) {
           if (res.data.code == 40101) {
-
+             console.log(res.data.code)
             wx.showToast({
               title: '身份验证失败',
               icon: 'none',
@@ -180,6 +178,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
               mask: true
             })
           } else if (res.data.code == 4001) {
+
             console.log('失败了')
             wx.redirectTo({
               url: '/pages/authorization/authorization'

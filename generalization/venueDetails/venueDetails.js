@@ -11,12 +11,17 @@ Page({
     sporttype:0,
     siteuid:0,
     img:'',
+    fileArr:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '',
+      mask: true
+    })
     this.setData({
       falg: options.falg,
       sportId: options.sportid,
@@ -28,10 +33,21 @@ Page({
       this.setData({
         venue:res.data.data
       })
+      let arrplo=[]
+      let venue=res.data.data.filesURL
+      for(let i in venue){
+        
+        if(venue[i].indexOf('VenueThumnail')!=-1){
+          console.log(venue[i])
+          arrplo.push(venue[i].replace('VenueThumnail','Venue'))
+        }
+      }
+      this.setData({fileArr:arrplo})
+     
       wx.hideLoading()
     }, 
-    () => { 
-       
+    () => {
+      
       console.log("失败")
     },
     () => {}
@@ -41,31 +57,71 @@ Page({
 
    
   },
+
+  telephone:function(){
+    wx.makePhoneCall({
+      phoneNumber: this.data.venue.telephone 
+    })
+  },
   //跳转H5选择场地
   bookIn: function (e) {
     let obj = {
       siteid: e.currentTarget.dataset.uid,
       name: e.currentTarget.dataset.name
     }
-    if (this.data.falg == 1) {
+    if (this.data.falg == 0) {
       wx.setStorage({
         data: obj,
         key: 'siteid',
       })
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportId + '&sporttype=' + this.data.sporttype + '&siteuid=' + this.data.siteuid + '&token=' + wx.getStorageSync('token') + '&falg=' + this.data.falg,
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportId + '&sporttype=' + this.data.sporttype + '&siteuid=' + this.data.siteuid + '&token=' + wx.getStorageSync('token') + '&flag=' + this.data.falg+ '&flagTwo=3' ,
       })
-    } else if (this.data.falg == 2) {
+    } else if (this.data.falg == 1) {
       wx.setStorage({
         data: obj,
         key: 'siteidTwo',
       })
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportId + '&sporttype=' + this.data.sporttype + '&siteuid=' + this.data.siteuid + '&token=' + wx.getStorageSync('token') + '&falg=' + this.data.falg,
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportId + '&sporttype=' + this.data.sporttype + '&siteuid=' + this.data.siteuid + '&token=' + wx.getStorageSync('token') + '&flag=' + this.data.falg+ '&flagTwo=3',
       })
     }
-
-
+  },
+  previewImage:function(e){
+    const current = e.target.dataset.src
+    let filesURL=[]
+    if(this.data.fileArr.length==0){
+       filesURL=this.data.venue.filesURL
+    }else{
+       filesURL=this.data.fileArr
+    }
+    
+    let arr=[]
+    for(let i in filesURL){
+      arr.push(this.data.img+'/'+filesURL[i])
+    }
+    wx.previewImage({
+      current,
+      urls: arr
+    })
+  },
+  previewImageTwo:function(e){
+    const current = e.target.dataset.src
+    let index = e.target.dataset.index
+    let filesURL=this.data.venue.comments[index].images
+    let arr=[]
+    for(let i in filesURL){
+      arr.push(this.data.img+'/'+filesURL[i])
+    }
+    wx.previewImage({
+      current,
+      urls: arr
+    })
+  },
+  commentary:function(e){
+    wx.navigateTo({
+      url: '/generalization/commentaryList/commentaryList?siteid='+e.currentTarget.dataset.uuid,
+    })
     
   },
 
@@ -99,52 +155,5 @@ Page({
 
 
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+ 
 })

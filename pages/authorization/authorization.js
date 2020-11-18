@@ -14,7 +14,6 @@ Page({
     query.select('#name').boundingClientRect()
     query.selectViewport().scrollOffset()
     query.exec(function(res) {
-      console.log(res)
     })
     
     if (option != undefined) {
@@ -37,7 +36,7 @@ Page({
       },
       () => {}
     )
-   }, 500);
+   }, 800);
 
     
   
@@ -89,7 +88,6 @@ Page({
         'nickname': e.detail.userInfo.nickName
       }, "post",
       (res) => {
-        console.log(res)
         wx.setStorageSync('token', res.data.data.token); //存储token
         wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
         wx.setStorageSync('sex', res.data.data.sex); //存储用户性别

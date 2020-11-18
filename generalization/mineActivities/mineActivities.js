@@ -80,7 +80,7 @@ Page({
     let statusType = e.currentTarget.dataset.id
     let type = this.data.type
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
     this.common(page, statusType, type)
@@ -173,7 +173,7 @@ Page({
     let statusType = this.data.statusType
     let type = this.data.type
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
 
@@ -189,7 +189,7 @@ Page({
       statusType: 'all'
     })
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
 
@@ -204,7 +204,7 @@ Page({
     })
     let statusType = this.data.statusType
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
     this.activitiesNum(type)

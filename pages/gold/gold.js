@@ -13,7 +13,7 @@ Page({
       img:util.API
     })
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
 

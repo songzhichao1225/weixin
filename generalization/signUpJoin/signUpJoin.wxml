@@ -60,11 +60,11 @@
 
 	<view class="list">
 		<text>场地费承担方式</text>
-		<image src="/assets/right.png" wx:if="{{modeName!='娱乐模式'}}"></image>
-		<image src="" wx:if="{{modeName=='娱乐模式'}}"></image>
-		<picker bindchange="shouldered" value="{{indexFour}}" disabled="{{modeName=='娱乐模式'}}" range="{{shoulderedArray}}" range-key="name">
+		<image src="/assets/right.png" wx:if="{{modeName!='娱乐模式'&&modeName!='发布者是陪练'&&modeName!='发布者找陪练'}}"></image>
+		<image src="" wx:if="{{modeName=='娱乐模式'||modeName=='发布者是陪练'||modeName=='发布者找陪练'}}"></image>
+		<picker bindchange="shouldered" value="{{indexFour}}" disabled="{{modeName=='娱乐模式'||modeName=='发布者是陪练'||modeName=='发布者找陪练'}}" range="{{shoulderedArray}}" range-key="name">
 			<view class="picker">
-				{{modeName=='娱乐模式'?'AA':shoulderedArray[indexFour].name}}
+				{{modeName=='娱乐模式'||modeName=='发布者是陪练'||modeName=='发布者找陪练'?'AA':shoulderedArray[indexFour].name}}
 			</view>
 		</picker>
 	</view>
@@ -150,20 +150,20 @@
 
 	<view class="list">
 		<text>是否有裁判</text>
-		<image src="/assets/right.png" wx:if="{{cf!='no'}}"></image>
-		<image src="" wx:if="{{cf=='no'}}"></image>
-		<picker  bindchange="umpireChange" range="{{umpireArr}}" disabled="{{cf=='no'?true:false}}"  range-key="name">
+		<image src="/assets/right.png" wx:if="{{cf!='no'&&modeName!='发布者找陪练'&&modeName!='发布者是陪练'}}"></image>
+		<image src="" wx:if="{{cf=='no'||modeName=='发布者找陪练'||modeName=='发布者是陪练'}}"></image>
+		<picker  bindchange="umpireChange" range="{{umpireArr}}" disabled="{{cf=='no'||modeName=='发布者找陪练'||modeName=='发布者是陪练'?true:false}}"  range-key="name">
 			<view class="picker">
-				{{umpireArr[umpire].name}}
+				{{modeName=='发布者找陪练'||modeName=='发布者是陪练'?'无裁判':umpireArr[umpire].name}}
 			</view>
 		</picker>
 	</view>
 
 		<view class="list">
 		<text>活动类型</text>
-		<image src="/assets/right.png" wx:if="{{cf!='no'}}"></image>
-		<image src="" wx:if="{{cf=='no'}}"></image>
-		<picker  bindchange="activitiesChange" range="{{activitiesArr}}" disabled="{{cf=='no'?true:false}}"  range-key="name">
+		<image src="/assets/right.png" wx:if="{{cf!='no'&&modeName!='发布者找陪练'&&modeName!='发布者是陪练'}}"></image>
+		<image src="" wx:if="{{cf=='no'||modeName=='发布者找陪练'||modeName=='发布者是陪练'}}"></image>
+		<picker  bindchange="activitiesChange" range="{{activitiesArr}}" disabled="{{cf=='no'||modeName=='发布者找陪练'||modeName=='发布者是陪练'?true:false}}"  range-key="name">
 			<view class="picker">
 				{{activitiesArr[activities].name}}
 			</view>

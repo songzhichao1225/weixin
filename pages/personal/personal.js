@@ -23,7 +23,7 @@ Page({
       img:util.API
     })
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
 
@@ -45,7 +45,6 @@ Page({
   addFriend:function(e){
     util.Request("/api/addFriends", { 'friendsId': e.currentTarget.dataset.uuid }, "post", 
       (res) => {
-        console.log(res)
         if(res.data.code==2000){
           wx.showToast({
             title: '请求成功，待对方确认',

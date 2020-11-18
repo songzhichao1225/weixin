@@ -82,13 +82,11 @@ Page({
       wx.removeStorage({
         key: 'bookin',
         success (res) {
-          console.log(res)
         }
       })
       wx.removeStorage({
         key: 'siteid',
         success (res) {
-          console.log(res)
         }
       })
       

@@ -58,7 +58,7 @@ Page({
       }
     }
     wx.showLoading({
-      title: '加载中',
+      title: '',
     })
     // 模拟服务器请求异步加载数据
     setTimeout(() => {

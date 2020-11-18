@@ -361,7 +361,6 @@ Page({
   signUpMap:function(){
     wx.chooseLocation({
       success:(res)=>{
-        console.log(res)
         this.setData({address:res.address,lat:res.latitude,lng:res.longitude})
       },
       complete: (res) => {},
@@ -383,6 +382,7 @@ Page({
     if(cf==false?arrayLan[e.detail.value].name:cf=='no'?arrayLanTwo[e.detail.value].name:patternsArray[e.detail.value].name=='娱乐模式'){
       this.setData({indexFour:1})
     }
+  
   },
   shouldered:function(e){
     this.setData({indexFour:e.detail.value})
@@ -495,7 +495,7 @@ Page({
   comfireBtn:function(){
     let {title,multiArray,multiIndex,lat,lng,address,distanceArray,index,recommendedArray,indexTwo,patternsArray,indexThree,
       shoulderedArray,indexFour,publisherArray,indexFive,startTime,endTime,week,date,age,rank,scoringArr,scoring,activitiesArr,activities,
-      umpireArr,umpire,send,city,prefeuuid
+      umpireArr,umpire,send,city,prefeuuid,modeName
     }=this.data
     let data={
       prefeuuid:prefeuuid,
@@ -523,7 +523,7 @@ Page({
       default:'',
       send:send,
       city:city,
-      istherereferee:umpireArr[umpire].id
+      istherereferee:modeName=='发布者找陪练'||modeName=='发布者是陪练'?2:umpireArr[umpire].id
     }
     util.Request("/api/PreferenceSave", data, "post",
     (res) => {

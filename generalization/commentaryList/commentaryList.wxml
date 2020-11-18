@@ -1,0 +1,30 @@
+<view class="commentaryList">
+	<view class="son" wx:for="{{commentaryList}}" wx:key="index">
+		<view class="left">
+			<image src="/assets/logo.png"></image>
+		</view>
+		<view class="right">
+			<view class="title"><text>{{item.nickname}}</text><text>{{item.commentDate}}</text></view>
+			<view class="xing" style="margin-top:0;">
+				<image src="/assets/{{item.score>1.0?'StarSel2@2x.png':'StarSelYb2@2x.png'||item.score==0?'StarNor2@2x.png':''}}"></image>
+				<image src="/assets/{{item.score>=2.0?'StarSel2@2x.png':'StarSelYb2@2x.png'||item.score==1.0?'StarNor2@2x.png':''}}"></image>
+				<image src="/assets/{{item.score>=3.0?'StarSel2@2x.png':'StarSelYb2@2x.png'||item.score==2.0?'StarNor2@2x.png':''}}"></image>
+				<image src="/assets/{{item.score>=4.0?'StarSel2@2x.png':'StarSelYb2@2x.png'||item.score==3.0?'StarNor2@2x.png':''}}"></image>
+				<image src="/assets/{{item.score==5.0?'StarSel2@2x.png':'StarSelYb2@2x.png'||item.score==4.0?'StarNor2@2x.png':''}}"></image>
+				<text style="color:#9B9B9B;font-size:0.75rem;padding-left:0.3rem;">{{item.score}}分</text>
+			</view>
+			<view class="content">{{item.content}}</view>
+			<view class="contentImg">
+				<image src="{{img}}/{{i}}" bindtap="previewImageTwo" data-index="{{index}}" data-src="{{img}}/{{i}}" wx:for="{{item.images}}"  wx:for-item="i" wx:key="idx" wx:for-index="idx"></image>
+			</view>
+      <view class="farter" wx:if="{{item.content_reply!=''}}">
+					<image src="/assets/kefu.png"></image><text>场馆回复:</text>
+					<view style="font-size:0.75rem;clear:both;">{{item.content_reply}}</view>
+				</view>
+
+
+		</view>
+
+	</view>
+
+</view>

@@ -22,17 +22,19 @@ Page({
 
   onLoad: function(option) {
     // 实例化API核心类
+    wx.showLoading({
+      title: '',
+      mask: true
+    })
     this.setData({
       falg:option.falg,
       img:util.API
     })
-    console.log(option.falg)
     qqmapsdk = new QQMapWX({
       key: 'GMCBZ-TDALO-6ZRWH-S6TPE-66PIZ-M4FIJ'
     });
     this.setData({
       sportId: option.sportid,
-      
       sporttype: option.sporttype,
     })
     let _this = this
@@ -44,7 +46,7 @@ Page({
         _this.setData({
           latitude: latitude,
           longitude: longitude
-        })
+        }) 
 
         qqmapsdk.reverseGeocoder({
           location: {
@@ -69,7 +71,6 @@ Page({
             }
             util.request("/api/getSiteLst", obj, "get",
               (res) => {
-
                 let sitelst = res.data.data.sitelst
                 let objArr = []
                 for (let i in sitelst) {
@@ -110,7 +111,80 @@ Page({
 
   },
   mark: function(e) {
-    console.log(e.dateil)
+  },
+  now:function(){
+    qqmapsdk = new QQMapWX({
+      key: 'GMCBZ-TDALO-6ZRWH-S6TPE-66PIZ-M4FIJ'
+    });
+  
+    let _this = this
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      success(res) {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        _this.setData({
+          latitude: latitude,
+          longitude: longitude
+        })
+
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: 39.984060,
+            longitude: 116.307520
+          },
+          success: function(res) {
+            let city = res.result.address_component.city
+            let area = res.result.address_component.district
+            _this.setData({
+              city:city
+            })
+            //页面首次进入获取场馆列表
+            let obj = {
+              mylat: latitude,
+              mylng: longitude,
+              city: city,
+              area: area,
+              sportId: _this.data.sportId,
+              sporttype: _this.data.sporttype,
+              page: 1
+            }
+            util.request("/api/getSiteLst", obj, "get",
+              (res) => {
+
+                let sitelst = res.data.data.sitelst
+                let objArr = []
+                for (let i in sitelst) {
+                  let obj = {
+                    iconPath: "/assets/tupiaochang.png",
+                    id: i,
+                    latitude: sitelst[i].lat,
+                    longitude: sitelst[i].lng,
+                    width: 30,
+                    height: 30
+                  }
+                  objArr.push(obj)
+                }
+                _this.setData({
+                  venuesLst: res.data.data.sitelst,
+                  markers: objArr,
+                  city: city,
+                  area: area
+                })
+                wx.hideLoading()
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
+
+          }
+        })
+
+      }
+    })
+
   },
   bindRegionChange: function(e) {
     this.setData({backfill:''})
@@ -210,7 +284,6 @@ Page({
             }
             objArr.push(obj)
           }
-          console.log(res.data.data)
           this.setData({
             venuesLst: res.data.data.sitelst,
             markers: objArr,
@@ -366,21 +439,21 @@ getsuggest: function(e) {
       siteid:e.currentTarget.dataset.uid,
       name:e.currentTarget.dataset.name
     }
-    if(this.data.falg==1){
+    if(this.data.falg==0){
       wx.setStorage({
         data: obj,
         key: 'siteid',
       })
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&falg='+this.data.falg,
+        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag='+this.data.falg+'&flagTwo=2',
       })
-    }else if(this.data.falg==2){
+    }else if(this.data.falg==1){
       wx.setStorage({
         data: obj,
         key: 'siteidTwo',
       })
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&falg='+this.data.falg,
+        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag='+this.data.falg+'&flagTwo=2',
       })
     }else{
       var pages = getCurrentPages(); // 获取页面栈

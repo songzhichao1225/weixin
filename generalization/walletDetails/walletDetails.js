@@ -31,12 +31,11 @@ Page({
 
   },
   lower:function(){
-    console.log(666)
     this.setData({
       page:this.data.page+1
     })
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
     util.Request("/api/getUserMoneyLst", {

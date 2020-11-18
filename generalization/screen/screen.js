@@ -23,7 +23,7 @@ Page({
   onLoad: function () {
       let obj=wx.getStorageSync('screenDataTwo')
       this.setData({
-        dataIndex:obj.sportMode ,
+        dataIndex:obj.sportMode,
         siteIndex:obj.payType,
         sexIndex: obj.sex,
         date: obj.dateNow,
@@ -37,7 +37,7 @@ Page({
         ageNumTwo:obj.Agemax,
         caiTap:obj.caiTap
       })
-    
+  
     let age = ['不限']
     for (let i = 1; i < 100; i++) {
       age.push(i)

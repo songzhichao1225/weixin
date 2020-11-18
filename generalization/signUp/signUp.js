@@ -50,7 +50,7 @@ Page({
     let that=this
     wx.showModal({
       title: '温馨提示',
-      content: '您确定要删除此发布偏好么?',
+      content: '您确定要删除此报名偏好么?',
       success (res) {
         if (res.confirm) {
           util.Request("/api/DelPlayerPreference", {'prefeuuid':e.currentTarget.dataset.uuid}, "post",
@@ -88,13 +88,10 @@ Page({
     this.jod()
   },
   details:function(e){
-    console.log(e.currentTarget.dataset.uuid)
     wx.navigateTo({
       url: '/generalization/signUpJoin/signUpJoin?uuid='+e.currentTarget.dataset.uuid+''
     })
-   
   }
   
- 
-
+  
 })

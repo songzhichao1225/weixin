@@ -76,7 +76,10 @@
         "signUp/signUp",
         "signUpJoin/signUpJoin",
         "searchResults/searchResults",
-        "screen/screen"
+        "screen/screen",
+        "commentaryList/commentaryList",
+        "minePreference/minePreference",
+        "bookInTwo/bookInTwo"
       ]
     }
   ],

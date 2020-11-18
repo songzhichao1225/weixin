@@ -13,6 +13,7 @@ Page({
       { img: 'dui.png',name:'我的对手币',click:'mineGold'},
       { img: 'ji.png', name: '我的技术分', click: 'mineFen' },
       { img: 'IconWdQb@2x.png', name: '我的钱包', click: 'mineMoney'},
+      { img: 'xianperios.png', name: '我的偏好', click: 'minePreference' },
       { img: 'IconWdXzcg@2x.png', name: '新增场馆', click: 'minefriends' },
       { img: 'IconWdHy@2x.png', name: '我的好友', click: 'minefriends'},
       // { img: 'IconWdGz@2x.png', name: '我的关注', click: 'mineAbout' },
@@ -33,7 +34,7 @@ Page({
     })
     if (wx.getStorageSync('token')){
       wx.showLoading({
-        title: '加载中',
+        title: '',
         mask: true
       })
       util.Request("/api/getCommonCoins", {}, "get",
@@ -147,5 +148,10 @@ Page({
     wx.navigateTo({
       url: '/generalization/assistant/assistant'
     })
-  }
+  },
+  minePreference:function(){
+    wx.navigateTo({
+      url: '/generalization/minePreference/minePreference'
+    })
+  },
 })

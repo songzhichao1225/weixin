@@ -11,7 +11,7 @@
 			<view wx:if="{{indexSw==0}}" class="lineText"></view>
 		</view>
 		<view bindtap="navTitle" data-index="1">
-			<text style="{{indexSw==1?'color:#D85D27':''}}">我有伙伴</text>
+			<text style="{{indexSw==1?'color:#D85D27':''}}">仅预订场馆</text>
 			<view wx:if="{{indexSw==1}}" class="lineText"></view>
 		</view>
 		<view style="width:20%;" bindtap="preferences">
@@ -23,7 +23,7 @@
 	</view>
 	<view class="lineTwo"></view>
 
-	<swiper class="content" bindchange="swiper" current="{{indexSw}}" style="height:65%;">
+	<swiper class="content" bindchange="swiper" current="{{indexSw}}" style="height:67%;">
 		<swiper-item>
 			<scroll-view style="height:100%;" scroll-y>
 
@@ -104,12 +104,12 @@
 						<text class="textTwo" style="{{TrialNum=='0人'?'float:right;color:#9B9B9B;margin-top:0.75rem;text-align:right;':'float:right;color:#9B9B9B;text-align:right;font-size:0.75rem;'}}" wx:if="{{mode=='竞技模式'}}">
 				   	<text style="display:block;line-height:1.4rem;">￥{{placeMoney}}</text>
 						<text style="display:block;line-height:1.4rem;text-align:right;" wx:if="{{TrialNum!=='0人'}}">￥{{refereeFee}}</text>
-
 						</text>
 					</view>
 
 					<view class="right">
-						<image class="image" src="/assets/right.png"></image>
+						<image class="image" src="/assets/right.png" wx:if="{{mode=='竞技模式'}}"></image>
+						<image class="image" src="" wx:if="{{mode!='竞技模式'}}"></image>
 						<picker bindchange="bindPickerShouldered" range="{{shoulderedArr}}" disabled="{{mode=='竞技模式'?false:true}}" range-key="name" style="float:right;">
 							<view class="textTwo" style="text-align:right;font-size:0.75rem;">
 								{{shouldered}}
@@ -132,7 +132,7 @@
 					<view class="right">
 						<view style="float:left;" bindtap="sexQiu" data-type='2'>年龄要求</view>
 						<image class="image" src="/assets/right.png"></image>
-							<picker bindchange="bindPickerAge" range="{{ageArr}}" mode="multiSelector">
+						<picker bindchange="bindPickerAge" range="{{ageArr}}" mode="multiSelector">
 							<view class="textTwo" style="text-align:right;float:right;margin-left:0;font-size:0.75rem;">
 								{{age}}
 							</view>
@@ -153,9 +153,9 @@
 						</picker>
 					</view>
 					<view class="right">
-						<text style="float:left;" bindtap="sexQiu" data-type='4' data-mode="{{mode=='娱乐模式'?'出场费用':'出场费用'&&mode=='竞技模式'?'出场费用':'出场费用'}}">{{mode=='娱乐模式'?'出场费用':'出场费用'&&mode=='竞技模式'?'出场费用':'出场费用'}}<text style="padding-left:0.5rem;color:#9B9B9B;">￥</text></text>
+						<text style="float:left;" bindtap="sexQiu" data-type='4' data-mode="{{mode=='娱乐模式'?'出场费用':'陪练费用'&&mode=='竞技模式'?'出场费用':'陪练费用'}}">{{mode=='娱乐模式'?'出场费用':'陪练费用'&&mode=='竞技模式'?'出场费用':'陪练费用'}}<text style="padding-left:0.5rem;color:#9B9B9B;">￥</text></text>
 						<image class="image" src="/assets/right.png"></image>
-						<input style="float:right;height:2.75rem;width:2.5rem;color:#9B9B9B;font-size:0.75rem;" maxlength="5" bindinput="tips" type="number" placeholder="(选填)" placeholder-style="text-align:right;" />
+						<input style="float:right;height:2.75rem;width:2.5rem;color:#9B9B9B;font-size:0.75rem;" maxlength="5" bindinput="tips" value="{{tips}}" type="number" placeholder="(选填)" placeholder-style="text-align:right;" />
 					</view>
 				</view>
 
@@ -247,6 +247,9 @@
 
 
 				</view>
+				<view class="botmComfire"><text>将此发布条件保存为发布偏好</text>
+					<checkbox checked="{{checked}}" bindtap="checkboxChange"></checkbox>
+				</view>
 				<view class="line"></view>
 
 				<view class="btnConfirm" bindtap="release">确认发布</view>
@@ -271,7 +274,7 @@
 				<text class="textTwo" style="width:70%;text-align:right;font-size:0.75rem;">{{siteNameTwo}}</text>
 			</view>
 
-			<view class="list">
+			<view class="list" wx:if="{{breakup==''}}">
 				<text style="padding-left:0.5rem;float:left;">开始时间</text>
 				<view style="float:left;color:#9B9B9B;padding-left:0.3rem;text-align:right;width:7rem;font-size:0.75rem;" data-uid="{{siteidTwo}}" data-name="{{siteNameTwo}}" bindtap="startDateTimeTwo">{{startTimeTwo}} {{timerTwo}}</view>
 				<image class="image" src="/assets/right.png"></image>
@@ -279,9 +282,14 @@
 				<view style="float:right;">时长</view>
 			</view>
 
+			<view class="list" wx:if="{{breakup!=''}}">
+				<text style="padding-left:0.5rem;float:left;">场地详情</text>
+				  <view wx:for="{{breakupTwo}}" wx:key='index' class="sanList">场地号<text>{{item.name}}</text>单价<text>{{item.money}}/次</text>次数<text>{{item.num}}</text></view>
+			</view>
+
 			<view class="list">
-				<text style="padding-left:0.5rem;">场馆费用</text>
-				<image class="image" src="/assets/right.png"></image>
+				<text style="padding-left:0.5rem;">场地费用</text>
+				<image class="image" src=""></image>
 				<text class="textTwo" style="color:#D85D27;">￥{{placeMoneyTwo}}</text>
 			</view>
 
@@ -293,9 +301,6 @@
 			<view class="line"></view>
 			<view class="btnConfirm" bindtap="releaseTwo">预订场馆</view>
 		</swiper-item>
-
-
-
 	</swiper>
 
 
@@ -310,6 +315,22 @@
 
 
 
+	</view>
+
+	<view class="masking" wx:if="{{masking}}">
+
+
+		<view class="content">
+		   <view class="title">运动模式说明</view>
+			 <view class="son"><text>娱乐模式</text><text>:无输赢，场地费所有人AA承担；</text></view>
+			 <view class="son"><text>竞技模式</text><text>:有输赢，场地费所有人AA承担或输方买单；有技术分输赢，可以聘请裁判。</text></view>
+			 <view class="son"><text>我是陪练</text><text>:无输赢，场地费双方AA承担，发布者是陪练，报名者是练习方。练习方支付陪练费给陪练方。技术级别4级及以上才可成为该运动项目的陪练。</text></view>
+			 <view class="son"><text>我找陪练</text><text>:无输赢，场地费双方AA承担，发布者是练习方，报名者是陪练。练习方支付陪练费给陪练方。技术级别4级及以上才可成为该运动项目的陪练。</text></view>
+		</view>
+		
+		<view class="close" bindtap="close">
+			<image src="/assets/BtnDown@2x.png"></image>
+		</view>
 	</view>
 
 

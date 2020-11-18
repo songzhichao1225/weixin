@@ -112,7 +112,7 @@
 				</view>
 				<view class="cost">
 					<text style='margin:0;'>场地费:AA</text>
-					<text>打赏费:{{item.Tips}}/人</text>
+					<text>入场费:{{item.Tips}}/人</text>
 					<text>{{item.range}}</text>
 				</view>
 			</view>

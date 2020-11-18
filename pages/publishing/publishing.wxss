@@ -159,7 +159,7 @@ page{
 
 .content .peopleList .son .project {
   width: 44.6rpx;
-  height: 39.8rpx;
+  height: 44.6rpx;
   display: block;
   float: left;
   margin-left: 16.2rpx;
@@ -191,8 +191,8 @@ page{
   line-height: 30rpx;
   font-size: 12px;
   background:rgba(74,74,74,1);
-border-radius:0rem 0rem 0.19rem 0.19rem;
-opacity:0.5;
+  border-radius:0rem 0rem 0.19rem 0.19rem;
+  opacity:0.5;
 }
 
 .content .peopleList .son .TeamAsonTwo {
@@ -205,9 +205,8 @@ opacity:0.5;
   text-align: center;
   line-height: 30rpx;
   font-size: 12px;
-  background:rgba(74,74,74,1);
   border-radius:0rem 0rem 0.19rem 0.19rem;
-  opacity:0.5;
+  background:rgba(74,74,74,0.5);
 }
 
 .btnConfirm {
@@ -254,8 +253,8 @@ opacity:0.5;
   top: 0;
 }
 .zhezhao .sonBox{
-  width: 68%;
-  margin: 8rem auto 1rem;
+  width: 80%;
+  margin: 40% auto 1rem;
   background: #fff;
   border-radius: 0.5rem;
   padding-bottom: 0.75rem;
@@ -274,11 +273,65 @@ opacity:0.5;
   text-align: center;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+  font-weight: bold;
 }
 .zhezhao .text{
   width: 90%;
   margin: 0 auto;
   font-size: 0.75rem;
   display: block;
-
+}
+.botmComfire{
+  font-size: 0.75rem;
+  text-align: right;
+  padding-right: 0.5rem;
+  border-top: 0.06rem solid #e9e9e9;
+  padding: 0.5rem 0;
+}
+.botmComfire text{
+  padding-right: 0.2rem;
+}
+.masking{
+  width: 100%;
+  height: 100%;
+  background:rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+}
+.masking .content{
+  width: 80%;
+  margin: 40% auto 0;
+  padding: 1rem 0;
+  background: #fff;
+  border-radius: 0.5rem;
+}
+.close{
+  width: 2rem;
+  height: 2rem;
+  margin: 5% auto 0;
+}
+.close image{
+  width: 100%;
+  height: 100%;
+}
+.masking .content .title{
+  font-size: 0.88rem;
+  font-weight: bold;
+  text-align: center;
+}
+.masking .content .son{
+  width: 90%;
+  margin: 0.3rem auto 0;
+  font-size: 0.75rem;
+}
+.masking .content .son>text:first-child{
+  font-weight: bold;
+}
+.sanList{
+  float: right;
+  color: #9b9b9b;
+}
+.sanList>text{
+  padding-right: 0.5rem;
+  color: #D85D27;
 }

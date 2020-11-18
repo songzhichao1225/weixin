@@ -1,7 +1,9 @@
-.signUp {
+  page{
   height: 100%;
+ }
+.signUp {
+  height: 93%;
   border-top: 0.06rem solid #E9E9E9;
-  padding-bottom: 2.5rem;
 }
 
 .contentSon {

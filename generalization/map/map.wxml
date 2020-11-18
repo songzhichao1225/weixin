@@ -11,7 +11,7 @@
 	<input class="weui-input" bindinput="getsuggest" value="{{backfill}}" placeholder="请输入地址" />
 </view>
 <view class="addressList" wx:if="{{suggestion.length>0}}">
-	<view wx:for="{{suggestion}}" bindtap="backfill" id="{{index}}" wx:key="index">
+	<view wx:for="{{suggestion}}" catchtap="backfill" id="{{index}}" wx:key="index">
 		<view>
 			<view style="text-align:left;font-size:0.75rem;padding-left:1rem;">{{item.title}}</view>
 			<view style="font-size:0.6rem;color:#666;text-align:left;padding-left:1rem;">{{item.addr}}</view>
@@ -21,11 +21,16 @@
 
 
 <map id="myMap" wx:if="{{city!==''}}" markers="{{markers}}" bindmarkertap="mark" style="width:100%;height:300px;margin-top:0.5rem;" longitude="{{longitude}}" latitude="{{latitude}}" scale='13' show-location="{{true}}">
+<button class="now" bindtap="now">当前位置</button>
 </map>
 
 
 
 <scroll-view scroll-y bindscrolltolower="tolower" refresher-enabled="{{true}}" refresher-threshold="{{100}}" refresher-default-style="white" refresher-background="#ccc" refresher-triggered="{{triggered}}"  bindrefresherrefresh="onRefresh" style="height:50%;">
+   <view class="noContent" wx:if="{{venuesLst.length==0}}">
+	    <image src="/assets/nottxt.png"></image>
+			<text>您好，暂无搜索结果，请再试试~</text>
+	 </view>
 
 	<view class="venuesLst" wx:for="{{venuesLst}}" wx:key="index" bindtap="venueDetails" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-uid="{{item.uid}}" data-city="{{item.city}}"  data-name="{{item.name}}">
 		<view class="boss">
@@ -45,8 +50,9 @@
 						<image src="/assets/{{item.scores>=4?'StarSel2@2x.png':'StarSelYb2@2x.png'||item.scores==3?'StarNor2@2x.png':''}}"></image>
 						<image src="/assets/{{item.scores==5?'StarSel2@2x.png':'StarSelYb2@2x.png'||item.scores==4?'StarNor2@2x.png':''}}"></image>
 						<text>{{item.scores}}分</text>
-						<text style="padding-left:1rem;">{{item.range}}</text>
+						
 					</view>
+					<view class="money"><text style="display:block;float:left">价格：￥{{item.minmoney}}/小时起</text> <text style="display:block;float:right;color: #9B9B9B;">{{item.range}}</text></view>
 				</view>
 			</view>
 		</view>

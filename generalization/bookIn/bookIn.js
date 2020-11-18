@@ -12,24 +12,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     this.setData({option:options})
   },
   detal:function(e){
-    console.log(this.data.option.falg)
-    if(this.data.option.falg==1){
-      console.log(666)
+    console.log(e)
+    if(this.data.option.flag=='0'){
       wx.setStorage({
         data:e.detail,
         key:'bookin',
       })
-    }else if(this.data.option.falg==2){
+    }else if(this.data.option.flag=='1'){
+      
       wx.setStorage({
         data:e.detail,
         key:'bookinTwo',
       })
     }
- 
+    if( Number(this.data.option.flagTwo)!==1){
+      wx.navigateBack({
+        delta: Number(this.data.option.flagTwo)
+      })
+   
+    }
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

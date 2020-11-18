@@ -51,7 +51,6 @@ Page({
               method: 'post',
               success: function (res) {
                 let jsonUrl = JSON.parse(res.data)
-                console.log(jsonUrl)
                 thso.setData({
                   imgURL: jsonUrl.data.baseURL + jsonUrl.data.filesURL
                 })
@@ -98,7 +97,6 @@ Page({
               method: 'post',
               success: function(res) {
                 let jsonUrl = JSON.parse(res.data)
-                console.log(jsonUrl)
                 thso.setData({
                   imgURLT: jsonUrl.data.baseURL + jsonUrl.data.filesURL
                 })
@@ -131,7 +129,6 @@ Page({
     })
   },
   submit: function(e) {
-    console.log(e)
     let json = e.detail.value
     let {
       imgURL,
@@ -174,7 +171,6 @@ Page({
           'BackUrl': imgURLT
         }, "post",
         (res) => {
-          console.log(res)
           wx.showToast({
             title: '提交成功,等待审核',
             icon: 'none',

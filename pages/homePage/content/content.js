@@ -118,6 +118,7 @@ Page({
         that.goleloand()
       }
       wx.setStorageSync("cityInfo", data.originalData.result.addressComponent.city)
+      wx.setStorageSync('area',  data.originalData.result.addressComponent.district)
       wx.setStorageSync("lat", data.originalData.result.location.lat)
       wx.setStorageSync("lng", data.originalData.result.location.lng)
       wx.setStorageSync('address', wxMarkerData[0].address)

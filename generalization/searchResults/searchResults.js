@@ -131,6 +131,27 @@ Page({
       title: res.data.data.title+'搜索结果'
     })
     let ko=res.data.data
+
+    let obj={
+      sportMode: ko.sportmode,
+      payType: ko.bearmode,
+      sex: ko.Publishersex,
+      dateNow: ko.public_date,
+      startTime: ko.public_start,
+      endTime: ko.public_end,
+      mingrade: ko.minAvgGrade,
+      maxgrade: ko.maxAvgGrade,
+      praise: ko.average,
+      joinCondition: ko.activity,
+      Agemin:ko.minAvgAge,
+      Agemax:ko.maxAvgAge,
+      caiTap:ko.istherereferee,
+    }
+    wx.setStorage({
+      data: obj,
+      key: 'screenDataTwo',
+    })
+    
     this.setData({
       acitvitysort:ko.sort,
       sportType:ko.sporttype,
@@ -206,7 +227,6 @@ Page({
   },
   //项目选择二级
   secondary: function (e) {
-    console.log(e.currentTarget.dataset.num)
     let id = e.currentTarget.dataset.num
     this.setData({
       sportId: e.currentTarget.dataset.num,

@@ -17,7 +17,7 @@
 			<text class="center">{{item.sportname}}{{item.sporttype}} {{item.distance}} {{item.sort}}</text>
 			<text class="bottom">{{item.positon}}</text>
 		</view>
-		<button class="search" bindtap="searchResults" data-uuid="{{item.uuid}}">立即搜索</button>
+		<button class="search" catchtap="searchResults" data-uuid="{{item.uuid}}">立即搜索</button>
 		<view class="delet" catchtap="delet" data-uuid="{{item.uuid}}">
 			<image src="/assets/delect.png"></image>
 		</view>
@@ -26,11 +26,6 @@
 	<view class="noContent" wx:if="{{signUpList.length==0}}">
 		<image src="/assets/nottxt.png"> </image><text>您好，目前报名偏好是空奥~</text>
 	</view>
-
 	<button class="btn" bindtap="btn">+添加报名偏好</button>
-
-
-
- 
 
 </view>

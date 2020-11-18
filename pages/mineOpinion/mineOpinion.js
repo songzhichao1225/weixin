@@ -33,7 +33,6 @@ Page({
     } else if (phone != 0 && TEL_REGEXP.test(phone)){
       util.Request("/api/addFeedBack", { 'comment': textValue, 'mobile': phone, 'email': email  }, "get", 
         (res) => {
-          console.log(res)
         },
         () => { console.log("失败") },
         () => {

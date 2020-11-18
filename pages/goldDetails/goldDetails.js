@@ -7,7 +7,7 @@ Page({
   },
   onLoad: function (option) {
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
     console.log(option)

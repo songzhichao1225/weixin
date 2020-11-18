@@ -3,10 +3,10 @@
 		<text class="title">活动需预付总费用</text><text class="money">￥{{getElplainInfo.Total}}</text>
 	</view>
 	<view class="Itemized">
-		<view class="one"><text>{{Referee!='0.00'?'场地费+裁判费':'场地费'}}</text><text style="float:right;">￥{{getElplainInfo.field}}</text></view>
+		<view class="one"><text>{{mode=='竞技模式'?'场地费+裁判费':'场地费'}}</text><text style="float:right;">￥{{getElplainInfo.field}}</text></view>
 		<view class="one" wx:if="{{getElplainInfo.Accompany!=0&&getElplainInfo.Accompany!=undefined||getElplainInfo.Reward!=0&&getElplainInfo.Reward!=undefined}}">
 			<text>{{modeNum==1?'打赏费':''||modeNum==2?'打赏费':''||modeNum==3?'陪练费':''||modeNum==4?'陪练费':''}}</text>
-			<text style="padding-left:2.5rem;">￥{{getElplainInfo.Accompany==0?getElplainInfo.Reward:getElplainInfo.Accompany}}</text></view>
+			<text style="float:right">￥{{getElplainInfo.Accompany==0?getElplainInfo.Reward:getElplainInfo.Accompany}}</text></view>
 	</view>
 	<view class="line"></view>
 	<view class="account ">费用说明</view>
@@ -15,15 +15,15 @@
 		<text class="jishi">{{getElplainInfo.siteMoneyInfo}} </text>
 	</view>
 
-	<!-- <view class="venueFee" wx:if="{{getElplainInfo.TipsMoney!=undefined}}">
-		<text>打赏费</text>
+	<view class="venueFee" wx:if="{{getElplainInfo.TipsMoney!=''}}">
+		<text>出场费</text>
 		<text class="jishi">{{getElplainInfo.TipsMoney}}</text>
 	</view>
 
-	<view class="venueFee" wx:if="{{getElplainInfo.MoneyPerhour!=undefined}}">
+	<view class="venueFee" wx:if="{{getElplainInfo.MoneyPerhour!=''}}">
 		<text>陪练费</text>
 		<text class="jishi">{{getElplainInfo.MoneyPerhour}}</text>
-	</view> -->
+	</view>
 
 	<view class="line"></view>
 	<view class="fanshi">
@@ -33,21 +33,21 @@
 			<radio class="radio" color="#D85D27" checked="{{current==1?true:false}}"></radio>
 		</radio-group>
 	</view>
-	<view class="fanshi">
+	<!-- <view class="fanshi">
 		<image src="/assets/IconZfZfb@2x.png"></image>
 		<text>支付宝支付</text>
 		<radio-group class="radio-group" data-index="2" bindchange="radioChange">
 			<radio class="radio" color="#D85D27" checked="{{current==2?true:false}}"></radio>
 		</radio-group>
-	</view>
+	</view> -->
 	<view class="fanshi">
 		<image src="/assets/IconZfQb@2x.png"></image>
-		<text>钱包支付</text>
+		<text>钱包支付  (余额:￥{{getElplainInfo.money}})</text>
 		<radio-group class="radio-group" data-index="3" bindchange="radioChange">
 			<radio class="radio" color="#D85D27" checked="{{current==3?true:false}}"></radio>
 		</radio-group>
 	</view>
-  <view style="color:#ccc;font-size:0.75rem;text-align:center;margin-top:1rem;">如活动匹配失败，预付的所有费用将全额退还</view>
+  <view style="color:#ccc;font-size:0.75rem;text-align:center;margin-top:1rem;"> </view>
 	<view class="btn" bindtap="payTo">确定支付</view>
 
 
@@ -60,13 +60,13 @@
 				<text>请输入支付密码</text>
 			</view>
 			<view class='input_tip'><text>支付金额</text></view>
-			<view class='input_tip'><text>￥{{getElplainInfo.Total}}</text></view>
+			<view class='input_tip'><text style="font-size:1rem">￥{{getElplainInfo.Total}}</text></view>
 			<view class='input_row' catchtap='getFocus'>
 				<view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
 					<text wx:if='{{pwdVal.length>i}}'></text>
 				</view>
 			</view>
-			<view class='forget_pwd' catchtap='hidePayLayer'>忘记密码支付密码？</view>
+			<view class='forget_pwd' catchtap="kop">忘记支付密码？</view>
 			<input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6' />
 		</view>
 	</view>

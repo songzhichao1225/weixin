@@ -1,15 +1,17 @@
-
-page{
+page {
   height: 100%;
 }
+
 .search {
   height: 2rem;
   font-size: 0.75rem;
 }
-.search .picker{
+
+.search .picker {
   float: left;
   margin-left: 0.5rem;
 }
+
 .search .left {
   width: 5rem;
   text-align: center;
@@ -38,15 +40,18 @@ page{
 }
 
 .venuesLst {
-  height: 5.81rem;
+  padding: 0.5rem 0;
   border-bottom: 0.06rem solid #e9e9e9;
 }
+
 .venuesLst .boss {
   width: 95%;
   margin: 0 auto;
   overflow: hidden;
   height: 5.81rem;
+  
 }
+
 .venuesLst .boss .left {
   width: 5.5rem;
   height: 4.25rem;
@@ -54,50 +59,58 @@ page{
   float: left;
   margin-top: 0.78rem;
 }
-.venuesLst .boss .left>image{
+
+.venuesLst .boss .left>image {
   width: 100%;
   height: 100%;
 }
-.venuesLst .boss  .right{
+
+.venuesLst .boss .right {
   float: left;
   height: 4.25rem;
   margin-top: 0.78rem;
   margin-left: 0.5rem;
   width: 68%;
 }
-.venuesLst .boss  .right .top{
+
+.venuesLst .boss .right .top {
   overflow: hidden;
 }
-.venuesLst .boss  .right .top>text:first-child{
+
+.venuesLst .boss .right .top>text:first-child {
   font-size: 0.88rem;
   font-weight: bold;
   float: left;
   width: 70%;
 }
 
-.venuesLst .boss  .right .top .lpokp{
+.venuesLst .boss .right .top .lpokp {
   font-size: 0.75rem;
   float: right;
   padding: 0.1rem 0.8rem;
   background: #D85D27;
-  border-radius:0.19rem;
+  border-radius: 0.19rem;
   color: #fff;
-  
+
 }
-.venuesLst .boss  .right .bottom{
+
+.venuesLst .boss .right .bottom {
   margin-top: .5rem;
 }
-.venuesLst .boss  .right .bottom .xing>image{
+
+.venuesLst .boss .right .bottom .xing>image {
   width: 0.75rem;
   height: 0.75rem;
- 
-   
+
+
 }
-.venuesLst .boss  .right .bottom .xing>text{
+
+.venuesLst .boss .right .bottom .xing>text {
   font-size: 0.75rem;
   color: #9B9B9B;
 }
-.addressList{
+
+.addressList {
   background: #fff;
   position: absolute;
   top: 40px;
@@ -105,4 +118,32 @@ page{
   width: 100%;
   box-shadow: 3px 3px 3px #9B9B9B;
   border-top: 0.06rem solid #9B9B9B;
+}
+
+.now {
+  width: 5rem;
+  font-size: 0.75rem;
+  float: right;
+}
+
+.noContent {
+  padding-top: 10%;
+  width: 14.12rem;
+  margin: 0 auto;
+}
+
+.noContent>image {
+  width: 100%;
+  height: 10.5rem;
+}
+
+.noContent>text {
+  font-size: 0.75rem;
+  display: block;
+  text-align: center;
+
+}
+.money{
+  font-size: 0.75rem;
+  color: #D85D27;
 }

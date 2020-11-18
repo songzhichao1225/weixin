@@ -47,7 +47,6 @@ Component({
     
     },
     onShow(){
-      console.log(wx.getStorageSync('selected'))
       if (wx.getStorageSync('selected')){
        
         this.setData({

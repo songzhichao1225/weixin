@@ -13,7 +13,6 @@ Page({
     uuid: '',
   },
   onLoad: function(option) {
-    console.log(option)
     this.setData({
       costOne: option.cost,
       cost: option.cost,

@@ -1,353 +1,359 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": false,
-		"es6": true,
-		"postcss": true,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useIsolateContext": true,
-		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.6.5",
-	"appid": "wx1b53af237e2e0d8e",
-	"projectname": "%E6%8C%91%E6%88%98PK",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": 0,
-					"name": "不属实",
-					"pathName": "generalization/notTrue/notTrue",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "绑定手机号",
-					"pathName": "generalization/binDing/binDing",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "场馆信息",
-					"pathName": "generalization/stadiumDetail/stadiumDetail",
-					"query": "siteUid=0d1a264bdc84ae539d82ea61",
-					"scene": null
-				},
-				{
-					"id": 3,
-					"name": "generalization/orderToday/orderToday",
-					"pathName": "generalization/orderToday/orderToday",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "个人中心",
-					"pathName": "pages/personal/personal",
-					"query": "uuid=13ae22f6-2515-f387-7534-e01837382116",
-					"scene": null
-				},
-				{
-					"id": 5,
-					"name": "排行榜",
-					"pathName": "pages/golDranking/golDranking",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 6,
-					"name": "属实或不属实",
-					"pathName": "generalization/notTrue/notTrue",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 7,
-					"name": "活动详情",
-					"pathName": "pages/homePage/activities/activities",
-					"query": "uuid= 1d233496-ed71-1132-ccd9-a00191e9a6c2&type=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "系统消息",
-					"pathName": "pages/homePage/news/news",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "筛选",
-					"pathName": "pages/homePage/screen/screen",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "筛选",
-					"pathName": "pages/homePage/screen/screen",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "对手币",
-					"pathName": "pages/mineGold/mineGold",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "添加地址",
-					"pathName": "generalization/exchange/exchange",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的技术分",
-					"pathName": "generalization/Technical/Technical",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的活动",
-					"pathName": "generalization/mineActivities/mineActivities",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "发布活动",
-					"pathName": "pages/publishing/publishing",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "选择运动项目（发布）",
-					"pathName": "pages/sportsList/sportsList",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 17,
-					"name": "选择场馆",
-					"pathName": "generalization/map/map",
-					"query": "sportid=8&sporttype=17",
-					"scene": null
-				},
-				{
-					"id": 18,
-					"name": "场馆信息",
-					"pathName": "generalization/venueDetails/venueDetails",
-					"query": "uid= a440b20c-fbb5-8095-f854-192947fcfd49",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "预订场地",
-					"pathName": "generalization/bookIn/bookIn",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 20,
-					"name": "邀请好友",
-					"pathName": "generalization/Invitational/Invitational",
-					"query": "rankMax=10&rankMin=0&sex=2&sportid=5&team=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "支付",
-					"pathName": "generalization/payFor/payFor",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 22,
-					"name": "创建活动成功",
-					"pathName": "generalization/createSuccess/createSuccess",
-					"query": "Identification=1&inviteId= 8765fbf4-5d38-46b3-81ee-87a22bc05186&referee=''&status=1",
-					"scene": null
-				},
-				{
-					"id": 23,
-					"name": "设置支付 密码",
-					"pathName": "generalization/paymentCode/paymentCode",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "隐私设置",
-					"pathName": "generalization/privacy/privacy",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "黑名单",
-					"pathName": "generalization/blacklist/blacklist",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的钱包",
-					"pathName": "pages/mineWallet/mineWallet",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "钱包明细",
-					"pathName": "generalization/walletDetails/walletDetails",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 28,
-					"name": "每条明细详情",
-					"pathName": "generalization/balanceDetail/balanceDetail",
-					"query": "id= 0028904d-3e17-e783-d78f-971e64627246",
-					"scene": null
-				},
-				{
-					"id": 29,
-					"name": "运动伙伴评价",
-					"pathName": "generalization/appraisals/appraisals",
-					"query": "id=68662c1f-514e-5fe1-2611-684d54a6b0e5",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "确认结果",
-					"pathName": "generalization/yesResults/yesResults",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 31,
-					"name": "活动投诉",
-					"pathName": "generalization/complaintsCon/complaintsCon",
-					"query": "uuid= 35c2abf5-a57a-af7b-3200-581f06d2043b",
-					"scene": null
-				},
-				{
-					"id": 32,
-					"name": "协商历史",
-					"pathName": "generalization/xieHistory/xieHistory",
-					"query": "uuid= 35c2abf5-a57a-af7b-3200-581f06d2043b&type=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "到场情况及规则",
-					"pathName": "generalization/attendance/attendance",
-					"query": "uuid= 35c2abf5-a57a-af7b-3200-581f06d2043b",
-					"scene": null
-				},
-				{
-					"id": 34,
-					"name": "投诉操作",
-					"pathName": "generalization/complaintsOperation/complaintsOperation",
-					"query": "uuid= c6792af4-66f6-ccb7-1760-e84e048f0c53&type=1&referee=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "发布偏好",
-					"pathName": "generalization/preferences/preferences",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 36,
-					"name": "添加发布偏好",
-					"pathName": "generalization/releasePreferences/releasePreferences",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "报名偏好",
-					"pathName": "generalization/signUp/signUp",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "添加报名偏好",
-					"pathName": "generalization/signUpJoin/signUpJoin",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "搜索结果",
-					"pathName": "generalization/searchResults/searchResults",
-					"query": "uuid=12454009-2ef8-cd71-27a3-bf8ab4e6e1d1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "偏好筛选",
-					"pathName": "generalization/screen/screen",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": false,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "bundle": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.12.2",
+  "appid": "wx1b53af237e2e0d8e",
+  "projectname": "%E6%8C%91%E6%88%98PK",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "不属实",
+          "pathName": "generalization/notTrue/notTrue",
+          "query": "uuid= e237abb1-8794-93df-77af-e27aafd4a972",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "绑定手机号",
+          "pathName": "generalization/binDing/binDing",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 3,
+          "name": "generalization/orderToday/orderToday",
+          "pathName": "generalization/orderToday/orderToday",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 4,
+          "name": "个人中心",
+          "pathName": "pages/personal/personal",
+          "query": "uuid=13ae22f6-2515-f387-7534-e01837382116",
+          "scene": null
+        },
+        {
+          "id": 5,
+          "name": "排行榜",
+          "pathName": "pages/golDranking/golDranking",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 6,
+          "name": "属实或不属实",
+          "pathName": "generalization/notTrue/notTrue",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "活动详情",
+          "pathName": "pages/homePage/activities/activities",
+          "query": "uuid= e237abb1-8794-93df-77af-e27aafd4a972&type=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "系统消息",
+          "pathName": "pages/homePage/news/news",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "筛选",
+          "pathName": "pages/homePage/screen/screen",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "筛选",
+          "pathName": "pages/homePage/screen/screen",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "对手币",
+          "pathName": "pages/mineGold/mineGold",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "添加地址",
+          "pathName": "generalization/exchange/exchange",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的技术分",
+          "pathName": "generalization/Technical/Technical",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的活动",
+          "pathName": "generalization/mineActivities/mineActivities",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "发布活动",
+          "pathName": "pages/publishing/publishing",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "选择运动项目（发布）",
+          "pathName": "pages/sportsList/sportsList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 16,
+          "name": "选择场馆",
+          "pathName": "generalization/map/map",
+          "query": "sportid=5&sporttype=14",
+          "scene": null
+        },
+        {
+          "id": 18,
+          "name": "场馆信息",
+          "pathName": "generalization/venueDetails/venueDetails",
+          "query": "uid= a440b20c-fbb5-8095-f854-192947fcfd49",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "预订场地",
+          "pathName": "generalization/bookIn/bookIn",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 20,
+          "name": "邀请好友",
+          "pathName": "generalization/Invitational/Invitational",
+          "query": "rankMax=10&rankMin=0&sex=2&sportid=5&team=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "支付",
+          "pathName": "generalization/payFor/payFor",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "创建活动成功",
+          "pathName": "generalization/createSuccess/createSuccess",
+          "query": "Identification=1&inviteId= 9312bbfb-2796-ce8f-59e6-3728d097b9e0&referee=0&status=1",
+          "scene": null
+        },
+        {
+          "id": 23,
+          "name": "设置支付 密码",
+          "pathName": "generalization/paymentCode/paymentCode",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "隐私设置",
+          "pathName": "generalization/privacy/privacy",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "黑名单",
+          "pathName": "generalization/blacklist/blacklist",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的钱包",
+          "pathName": "pages/mineWallet/mineWallet",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "钱包明细",
+          "pathName": "generalization/walletDetails/walletDetails",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 28,
+          "name": "每条明细详情",
+          "pathName": "generalization/balanceDetail/balanceDetail",
+          "query": "id= 0028904d-3e17-e783-d78f-971e64627246",
+          "scene": null
+        },
+        {
+          "id": 29,
+          "name": "运动伙伴评价",
+          "pathName": "generalization/appraisals/appraisals",
+          "query": "id=68662c1f-514e-5fe1-2611-684d54a6b0e5",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "确认结果",
+          "pathName": "generalization/yesResults/yesResults",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 31,
+          "name": "活动投诉",
+          "pathName": "generalization/complaintsCon/complaintsCon",
+          "query": "uuid= 35c2abf5-a57a-af7b-3200-581f06d2043b",
+          "scene": null
+        },
+        {
+          "id": 32,
+          "name": "协商历史",
+          "pathName": "generalization/xieHistory/xieHistory",
+          "query": "uuid= 35c2abf5-a57a-af7b-3200-581f06d2043b&type=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "到场情况及规则",
+          "pathName": "generalization/attendance/attendance",
+          "query": "uuid= 35c2abf5-a57a-af7b-3200-581f06d2043b",
+          "scene": null
+        },
+        {
+          "id": 34,
+          "name": "投诉操作",
+          "pathName": "generalization/complaintsOperation/complaintsOperation",
+          "query": "uuid= c6792af4-66f6-ccb7-1760-e84e048f0c53&type=1&referee=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "发布偏好",
+          "pathName": "generalization/preferences/preferences",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 36,
+          "name": "添加发布偏好",
+          "pathName": "generalization/releasePreferences/releasePreferences",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "报名偏好",
+          "pathName": "generalization/signUp/signUp",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "添加报名偏好",
+          "pathName": "generalization/signUpJoin/signUpJoin",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "搜索结果",
+          "pathName": "generalization/searchResults/searchResults",
+          "query": "uuid=12454009-2ef8-cd71-27a3-bf8ab4e6e1d1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "偏好筛选",
+          "pathName": "generalization/screen/screen",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 40,
+          "name": "网友点评",
+          "pathName": "generalization/commentaryList/commentaryList",
+          "query": "siteid=dc26db5d-b740-cdf1-91aa-d58125c92974",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的偏好",
+          "pathName": "generalization/minePreference/minePreference",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "场馆入驻",
+          "pathName": "generalization/bookInTwo/bookInTwo",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

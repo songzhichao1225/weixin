@@ -8,7 +8,7 @@ Page({
   },
   onLoad: function () {
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
     util.Request("/api/getUserMoneyCount", {  }, "get",

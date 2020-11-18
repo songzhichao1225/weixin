@@ -22,13 +22,12 @@ Page({
     sData.lng = wx.getStorageSync("lng")
     sData.page=this.data.page
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
     util.request("/api/searchUser", sData, "get",
       (res) => {
         let nData = res.data.data.Lst
-        console.log(nData)
         for (let i in nData) {
           if (nData[i].hightName == '高尔夫') {
             nData[i].hightName = 'icon_dj_gef@3x.png';
@@ -49,8 +48,7 @@ Page({
           }
         }
     
-          this.setData({ searchData: nData })
-        
+        this.setData({ searchData: nData })
         this.setData({ flag: true })
         wx.hideLoading()
         wx.stopPullDownRefresh()//停止下拉刷新

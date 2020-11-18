@@ -23,6 +23,7 @@ Page({
     getRefereeResult: [],
     uuid: '',
     img:'',
+    reverseInfo:0
   },
 
   onLoad: function (option) {
@@ -48,16 +49,35 @@ Page({
         uuid: option.uuid
       })
     }
-
-
-
-
     this.koopdf()
-
-
-
-
   },
+
+  showModel:function(e){
+    wx.showModal({
+      title: '场地号详情',
+      showCancel:false,
+      content: e.currentTarget.dataset.ven,
+      success (res) {
+        if (res.confirm) {
+
+        }
+      }
+    })
+    
+  },
+  showModelTwo:function(){
+    this.setData({reverseInfo:1})
+  },
+  close:function(){
+    this.setData({reverseInfo:0})
+  },
+
+
+  venueDetails:function(e){
+    wx.navigateTo({
+      url: '/generalization/venueDetails/venueDetails?sportid=' + this.data.activitiesData.sportId + '&sporttype=' + this.data.activitiesData.SportType + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&falg=3',
+    })
+},
 
   //接口函数
   koopdf: function () {
@@ -65,15 +85,19 @@ Page({
       (res) => {
         
         let projectNow = res.data.data
+        if(projectNow.reserve==1){
+          projectNow.SportMode = '仅预订场馆'
+        }else{
         if (projectNow.SportMode == '1') {
-          projectNow.SportMode = '娱乐'
+          projectNow.SportMode = '娱乐模式'
         } else if (projectNow.SportMode == '2') {
-          projectNow.SportMode = '竞技'
+          projectNow.SportMode = '竞技模式'
         } else if (projectNow.SportMode == '3') {
-          projectNow.SportMode = '陪练'
+          projectNow.SportMode = '我是陪练'
         } else if (projectNow.SportMode == '4') {
-          projectNow.SportMode = '找陪练'
+          projectNow.SportMode = '我找陪练'
         }
+      }
         this.setData({
           AwinBuserInfoOne: projectNow.AwinBuserInfo.slice(0, 4),
           AloseBuserInfoTwo: projectNow.AloseBuserInfo.slice(0, 4),
@@ -87,7 +111,9 @@ Page({
           name: "报名",
           hid: false,
         }
+        if(projectNow.needNumber>1){
         let needNum = projectNow.needNumber / 2
+        
         for (let i = 0; i = needNum - projectNow.teamA.length; i++) {
           projectNow.teamA.push(object)
         }
@@ -120,9 +146,9 @@ Page({
             typeTwo: 1
           })
         }
+      }
 
-
-        this.countdown(projectNow.StartTime)
+        this.countdown(projectNow.JoinEndTime)
         let sportName = projectNow.sportName
         this.judgmentBall(sportName, projectNow)
         this.setData({
@@ -222,7 +248,7 @@ Page({
         countDownSecond: secStr,
       });  
       totalSecond--;
-      if (totalSecond < 0) {
+      if (totalSecond < 0||this.data.activitiesData.reserve===1) {
         clearInterval(interval);
         this.setData({
           end: false
@@ -234,42 +260,11 @@ Page({
   //跳转用户详情
   getUserDetailInfo: function (e) {
     if (wx.getStorageSync('token')) {
-      if (e.currentTarget.dataset.uid == wx.getStorageSync('uuid')) {
-        let p = ''
-        if (this.data.Publisher == 1) {
-          p = '发布'
-        } else {
-          p = '报名'
-        }
-        let that = this
-        wx.showModal({
-          title: '提示',
-          content: '你确定取消本次活动'+p+'么?',
-          success(res) {
-            if (res.confirm) {
-              util.Request("/api/userCancelActivity", {
-                  'publishcId': that.data.activitiesData.uuid
-                }, "post",
-                (res) => {
-                  that.koopdf()
-                },
-                () => {
-                  console.log("失败")
-                },
-                () => {}
-              )
-            } else if (res.cancel) {}
-          }
-        })
-
-
-
-
-      } else {
+     
         wx.navigateTo({
           url: '/pages/personal/personal?uuid=' + e.currentTarget.dataset.uid
         })
-      }
+      
 
     } else {
       wx.navigateTo({
@@ -567,7 +562,6 @@ Page({
   },
   //跳转待评价
   comment: function (e) {
-    console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
       url: '/generalization/appraisals/appraisals?id=' + e.currentTarget.dataset.id,
     })

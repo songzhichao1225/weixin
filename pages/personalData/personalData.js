@@ -25,7 +25,7 @@ Page({
     })
 
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
 
@@ -34,7 +34,6 @@ Page({
       }, "get",
 
       (res) => {
-        console.log(res)
         if (res.data.data.sex == 1) {
           this.setData({
             sex: '女'
@@ -105,7 +104,6 @@ Page({
 
               },
               () => {
-                console.log(res)
               },
               () => {}
             )
@@ -114,7 +112,6 @@ Page({
       },
       fail: function(res) {
         wx.hideNavigationBarLoading()
-        console.log(res.errMsg)
       }
     })
   },
@@ -236,10 +233,8 @@ Page({
     infoNew.weight = weight
     infoNew.comment = comment
 
-    console.log(infoNew)
     util.Request("/api/PerfectInfo", infoNew, "post",
       (res) => {
-        console.log(res)
         wx.showToast({
           title: '修改成功',
           icon: 'none',

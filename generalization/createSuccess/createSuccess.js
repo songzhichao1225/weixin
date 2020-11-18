@@ -26,9 +26,8 @@ Page({
         status: options.status
       }, "post",
       (res) => {
-        console.log(res)
         this.setData({
-          text: res.data.data.comm
+          text: res.data.data
         })
         wx.hideLoading()
       },
@@ -48,55 +47,29 @@ Page({
       url: '/pages/homePage/activities/activities?uuid='+this.data.uuid+'&hoog=1'+'&type=1',
     })
   },
+  detailRules:function(){
+    wx.showModal({
+      title: '提示',
+      showCancel:false,
+      content: '活动总时长≥60分钟时，缺勤0-15分钟，扣20%人均场地费、应得出场费；15-30分钟，扣50%；30分钟以上，扣100%',
+      success (res) {
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+      }
+    })
+    
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
-  },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
+  
   onUnload: function () {
     wx.reLaunch({
       url: '/pages/homePage/content/content'
     })
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+ 
+  
 
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  
 })

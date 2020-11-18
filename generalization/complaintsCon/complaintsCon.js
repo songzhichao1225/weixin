@@ -27,7 +27,7 @@ Page({
   },
   apiRequest: function (type) {
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
     util.Request("/api/getMyComplaintList", {
@@ -105,9 +105,7 @@ Page({
               },
               () => {}
             )
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
+          } 
         }
       })
     } else if (e.currentTarget.dataset.type == 2) {
@@ -135,9 +133,7 @@ Page({
               },
               () => {}
             )
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
+          } 
         }
       })
     } else if (e.currentTarget.dataset.type == 3) {
@@ -164,8 +160,6 @@ Page({
               },
               () => {}
             )
-          } else if (res.cancel) {
-            console.log('用户点击取消')
           }
         }
       })
@@ -196,8 +190,6 @@ Page({
               },
               () => {}
             )
-          } else if (res.cancel) {
-            console.log('用户点击取消')
           }
         }
       })
@@ -226,8 +218,6 @@ Page({
               },
               () => {}
             )
-          } else if (res.cancel) {
-            console.log('用户点击取消')
           }
         }
       })
@@ -255,8 +245,6 @@ Page({
               },
               () => {}
             )
-          } else if (res.cancel) {
-            console.log('用户点击取消')
           }
         }
       })
@@ -287,8 +275,6 @@ Page({
               },
               () => {}
             )
-          } else if (res.cancel) {
-            console.log('用户点击取消')
           }
         }
       })
@@ -317,8 +303,6 @@ Page({
               },
               () => {}
             )
-          } else if (res.cancel) {
-            console.log('用户点击取消')
           }
         }
       })
@@ -346,8 +330,6 @@ Page({
               },
               () => {}
             )
-          } else if (res.cancel) {
-            console.log('用户点击取消')
           }
         }
       })

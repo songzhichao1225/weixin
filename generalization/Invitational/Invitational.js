@@ -11,10 +11,12 @@ Page({
     minlevel: '',
     maxlevel: '',
     team: '',
-    page: 0,
+    maxage:70,
+    minage:10,
+    page: 1,
     current: 0,
     index: 0,
-    pageTwo:0,
+    pageTwo:1,
     pageThree:0,
     img:''
   },
@@ -29,25 +31,25 @@ Page({
       minlevel: options.rankMin,
       maxlevel: options.rankMax,
       team: options.team,
-      page: 0, 
-      maxage:options.ageMax,
-      minage:options.ageMin,
+      page: 1, 
+      maxage:70,
+      minage:10,
       img:util.API,
     })
 
     let obj = {
       city: wx.getStorageSync('cityInfo'),
-      area: '',
+      area: wx.getStorageSync('area'),
       mylat: wx.getStorageSync('lat'),
       mylng: wx.getStorageSync('lng'),
       type: 'myfriend',
       sportid: options.sportid,
       teamSex: options.sex,
-      minlevel: options.rankMin,
-      maxlevel: options.rankMax,
+      minlevel:4,
+      maxlevel: 10,
       team: options.team,
-      maxage:options.ageMax,
-      minage:options.ageMin,
+      maxage:70,
+      minage:10,
       page: this.data.page
     }
 
@@ -58,9 +60,10 @@ Page({
   requ: function (obj) {
     let {sportid}=this.data
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
+    
 
     util.Request("/api/getInviteFriends", obj, "get",
       (res) => {
@@ -84,7 +87,6 @@ Page({
             nData[i].userLevelNum = 'icon_dj_wq.png'
           }
         }
-        console.log(nData)
         this.setData({
           getInviteFriends: res.data.data.Lst
         })
@@ -101,7 +103,7 @@ Page({
   //上拉加载
   kol:function(obj){
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
     
@@ -157,6 +159,8 @@ Page({
         minlevel: this.data.minlevel,
         maxlevel: this.data.maxlevel,
         team: this.data.team,
+        maxage:this.data.maxage,
+        minage:this.data.minage,
         page: this.data.page
       }
       this.kol(obj)
@@ -175,6 +179,8 @@ Page({
         minlevel: this.data.minlevel,
         maxlevel: this.data.maxlevel,
         team: this.data.team,
+        maxage:this.data.maxage,
+        minage:this.data.minage,
         page: this.data.pageTwo
       }
       this.kol(obj)
@@ -193,6 +199,8 @@ Page({
         minlevel: this.data.minlevel,
         maxlevel: this.data.maxlevel,
         team: this.data.team,
+        maxage:this.data.maxage,
+        minage:this.data.minage,
         page: this.data.pageThree
       }
       this.kol(obj)
@@ -218,6 +226,8 @@ Page({
         minlevel: this.data.minlevel,
         maxlevel: this.data.maxlevel,
         team: this.data.team,
+        maxage:this.data.maxage,
+        minage:this.data.minage,
         page: this.data.page
       }
       this.requ(obj)
@@ -234,6 +244,8 @@ Page({
         minlevel: this.data.minlevel,
         maxlevel: this.data.maxlevel,
         team: this.data.team,
+        maxage:this.data.maxage,
+        minage:this.data.minage,
         page: this.data.page
       }
       this.requ(obj)

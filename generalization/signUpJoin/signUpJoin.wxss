@@ -47,10 +47,8 @@
   float: right;
   color: #9B9B9B;
   max-width: 63%;
-  text-align: right;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap
+  text-align: left;
+  display: block;
 }
 
 .list .mapDing {

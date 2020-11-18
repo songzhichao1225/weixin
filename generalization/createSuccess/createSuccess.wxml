@@ -3,18 +3,21 @@
 	<view class="banner">
 		<image class="image" src="/assets/PicBgZfcg.png"></image>
 		<image class="imageS" src="/assets/PicZfDg.png"></image>
+		<text class="ojbk">{{type==1?'创建成功':'报名成功'}}</text>
 	</view>
 
 
 	<view class="text">
-		<text>{{type==1?'创建成功':'报名成功'}}</text>
-		<text class="comm">{{text}}</text>
+	  <text style="font-size:0.75rem;">活动匹配成功后，为保证所有人利益。</text>
+		<text class="comm">{{text.red}}</text>
+		<text style="font-size:0.75rem;padding-top:1rem">{{text.black}}</text>
+		<text bindtap="detailRules" style="font-size:0.75rem;color:blue;margin-top:1rem;padding:0.5rem 0;">规则?</text>
 	</view>
-	<text class="title" bindtap="counterCoin">分享即可获得5个对手币<text>对手币?</text></text>
+	<text class="title" bindtap="counterCoin">{{text.comms}}<text>对手币?</text></text>
 
 	<view class="btn">
 		<view class="btnSonOne" bindtap="details" data-uuid="{{uuid}}">查看活动详情</view>
 		<view class="btnSonOne">立即分享</view>
 	</view>
-	<text style="font-size:0.88rem;color:#9B9B9B;text-align:center;display:block;margin-top:3rem;">发布时间:{{time}}</text>
+	<text style="font-size:0.88rem;color:#9B9B9B;text-align:center;display:block;margin-top:3rem;">{{text.orderTime}}</text>
 </view>

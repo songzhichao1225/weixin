@@ -24,15 +24,15 @@ Page({
   onLoad: function (options) {
     this.setData({
       look:options.look,
-      ko:options.ko
+      ko:options.ko,
+      mode: wx.getStorageSync('mode')
     })
-
     if (options.look == 1) {
-      console.log(app.globalData)
       this.setData({
         modeNum: app.globalData.SportMode,
         Referee: app.globalData.refereefee
       })
+      console.log(app.globalData.refereefee)
 
       let obj = {
         sportModes: app.globalData.SportMode,
@@ -46,7 +46,7 @@ Page({
         Reward: app.globalData.SportMode == '1' ? app.globalData.Tips : 0 || app.globalData.SportMode == '2' ? app.globalData.Tips : 0,
         Referee: app.globalData.refereefee
       }
-      util.request("/api/getElplainInfo", obj, "get",
+      util.Request("/api/getElplainInfo", obj, "get",
         (res) => {
           let k = res.data.data.Total.toString()
           if (k.indexOf('.')==-1){
@@ -72,8 +72,9 @@ Page({
         StartTime: app.userReserveVenue.StartTime,
         PlayTime: app.userReserveVenue.PlayTime,
         venueid:app.userReserveVenue.venueid,
+        breakup:app.userReserveVenue.sportType==22?app.userReserveVenue.breakup:''
       }
-      util.request("/api/getOrders", obj, "get",
+      util.Request("/api/getOrders", obj, "get",
         (res) => {
           this.setData({
             getElplainInfo: res.data.data
@@ -114,6 +115,14 @@ Page({
       pwdVal: ''
     });
   },
+
+  kop:function(){
+    wx.navigateTo({
+      url: '/generalization/paymentCode/paymentCode'
+    })
+  },
+
+
   hidePayLayer: function () {
 
     var val = this.data.pwdVal;
@@ -123,7 +132,6 @@ Page({
       password: val
     }, "post",
     (res) => {
-      console.log(res)
       if (res.data.code == 2000) {
         this.setData({
           showPayPwdInput: false,
@@ -147,15 +155,16 @@ Page({
             LevelMax: app.globalData.LevelMax,
             Tips: app.globalData.SportMode == 1 ? app.globalData.Tips : 0 || app.globalData.SportMode == 2 ? app.globalData.Tips : 0,
             comments: app.globalData.comments,
-            member: JSON.stringify(app.globalData.member),
+            member:app.globalData.member.length===0?'':JSON.stringify(app.globalData.member),
             MoneyPerhour: app.globalData.SportMode == 3 ? app.globalData.Tips : 0 || app.globalData.SportMode == 4 ? app.globalData.Tips : 0,
             payType: 'balance',
-            venueid: app.globalData.venueid.slice(0, app.globalData.venueid.length - 1),
+            venueid: app.globalData.venueid,
             refereefee: app.globalData.refereefee,
             RefereeNumber: app.globalData.RefereeNumber,
             Refereegrade: app.globalData.Refereegrade,
             Agemin:app.globalData.Agemin,
-            Agemax:app.globalData.Agemax
+            Agemax:app.globalData.Agemax,
+            SiteSumMoney:app.globalData.SiteSumMoney
           }
           util.Request("/api/userAddActivity", obj, "post",
           (res) => {
@@ -245,7 +254,6 @@ Page({
       password: val
     }, "post",
     (res) => {
-      console.log(res)
       if (res.data.code == 2000) {
         this.setData({
           showPayPwdInput: false,
@@ -262,11 +270,12 @@ Page({
           SiteMoney: app.userReserveVenue.SiteMoney,
           comments: app.userReserveVenue.comments,
           payType: 'balance',
-          venueid: app.userReserveVenue.venueid.slice(0, app.userReserveVenue.venueid.length - 1),
+          venueid: app.userReserveVenue.venueid,
+          breakup:app.userReserveVenue.sportType==22?app.userReserveVenue.breakup:'',
+          SiteSumMoney:app.userReserveVenue.SiteSumMoney
         }
         util.Request("/api/userReserveVenue", obj, "post",
           (res) => {
-            console.log(res)
             if (res.data.code == 2000) {
               wx.navigateTo({
                 url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&referee=' + res.data.data.referee + '&status=2' + '&time=' + res.data.data.CreateTime,
@@ -338,7 +347,6 @@ Page({
   },
   //支付
   payTo: function () {
-    console.log(this.data.current)
     if (this.data.current == 3) {
       this.showInputLayer();
     }

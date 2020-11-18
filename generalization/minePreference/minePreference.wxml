@@ -1,0 +1,43 @@
+<view class="minePreference">
+	<view class="navTitle">
+		<view bindtap="oneleft" data-index="1" style="{{index==1?'color:#D85D27':'color:#000'}}">发布偏好<view style="{{index==1?'background:#D85D27':''}}"></view>
+		</view>
+		<view bindtap="oneleft" data-index="2" style="{{index==2?'color:#D85D27':'color:#000'}}">报名偏好<view style="{{index==2?'background:#D85D27':''}}"></view>
+		</view>
+	</view>
+
+	<view class="{{index==1?'release':'hidden'}}">
+		<view class="comtentSon" wx:for="{{preferencesData}}"  wx:key='index'>
+			<view class="left">
+				<image wx:if="{{item.sportid==1}}" src="/assets/jbsc_ymq.png"></image>
+				<image wx:if="{{item.sportid==2}}" src="/assets/jbsc_ppq.png"></image>
+				<image wx:if="{{item.sportid==3}}" src="/assets/jbsc_tq.png"></image>
+				<image wx:if="{{item.sportid==4}}" src="/assets/jbsc_lq.png"></image>
+				<image wx:if="{{item.sportid==5}}" src="/assets/jbsc_zq.png"></image>
+				<image wx:if="{{item.sportid==6}}" src="/assets/jbsc_pq.png"></image>
+				<image wx:if="{{item.sportid==7}}" src="/assets/jbsc_wq.png"></image>
+				<image wx:if="{{item.sportid==8}}" src="/assets/jbsc_gefq.png"></image>
+			</view>
+			<view class="right">
+				<text>{{item.sportname}} {{item.sporttypename}} {{item.sportmode}}</text>
+				<text>{{item.sitename}}</text>
+				<view class="type"><text>场地费:{{item.bearmode}}</text><text wx:if="{{item.refereenumber!==0}}">裁判人数:{{item.refereenumber}}人</text><text wx:if="{{item.refereegrade!==''}}">裁判等级:{{item.refereegrade}}</text></view>
+				<view class="type"><text>性别:{{item.sex}}</text><text>年龄:{{item.avg}}</text><text>等级:{{item.grade}}</text></view>
+				<text>活动备注:{{item.remarks}}</text>
+			</view>
+			<view class="delet" catchtap="delet" data-id="{{item.uuid}}">
+				<image src="/assets/delect.png"></image>
+			</view>
+		</view>
+		<button class="bottomBtn" bindtap="releasePreferences">+添加发布偏好</button>
+		<view class="noContent" wx:if="{{preferencesData.length==0}}">
+			<image src="/assets/nottxt.png"></image><text>您好，目前发布偏好是空奥~</text>
+		</view>
+
+
+
+	</view>
+
+
+
+</view>

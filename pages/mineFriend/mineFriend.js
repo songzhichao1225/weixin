@@ -76,7 +76,7 @@ Page({
      type='all'
     }
     wx.showLoading({
-      title: '加载中',
+      title: '',
       mask: true
     })
     util.Request("/api/getMyFriends", { "type": type, "term": 'myfriend' }, "get",

@@ -12,7 +12,6 @@ Page({
       ak: 'ElFBk4MF87qZXoiLbD0zofEmZIS6bHT2'
     });
     var fail = function (data) {
-      console.log(data)
     };
     var success = function (data) {
      
@@ -32,7 +31,6 @@ Page({
     });
   },
   onLoad:function(option){
-    console.log(option)
     this.setData({city:option.city})
     wx.hideLoading()
   },

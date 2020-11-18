@@ -8,7 +8,6 @@ Page({
     uuid:'',
   },
   onLoad: function(option) {
-    console.log(option)
     this.setData({
       status: option.status,
       uuid:option.uuid
@@ -46,7 +45,6 @@ Page({
             util.Request("/api/ComplainIstrueImgs", tempFilePaths, 'post',
               (res) => {},
               () => {
-                console.log(res)
               },
               () => {}
             )

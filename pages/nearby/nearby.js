@@ -136,7 +136,7 @@
    onLoad: function() {
 
      wx.showLoading({
-       title: '加载中',
+       title: '',
        mask: true
      })
      this.nearbyData()
@@ -252,7 +252,7 @@
        page: this.data.page + 1
      })
      wx.showLoading({
-       title: '加载中',
+       title: '',
        mask: true
      })
      let show = true
