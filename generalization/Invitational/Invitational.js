@@ -45,8 +45,8 @@ Page({
       type: 'myfriend',
       sportid: options.sportid,
       teamSex: options.sex,
-      minlevel:4,
-      maxlevel: 10,
+      minlevel: options.rankMin,
+      maxlevel: options.rankMax,
       team: options.team,
       maxage:70,
       minage:10,
@@ -63,8 +63,6 @@ Page({
       title: '',
       mask: true
     })
-    
-
     util.Request("/api/getInviteFriends", obj, "get",
       (res) => {
         let nData = res.data.data.Lst
@@ -274,6 +272,18 @@ Page({
     this.setData({
       index: e.currentTarget.dataset.index
     })
+  },
+  //跳转用户详情
+  getUserDetailInfoTwo: function (e) {
+    if (wx.getStorageSync('token')) {
+      wx.navigateTo({
+        url: '/pages/personal/personal?uuid=' + e.currentTarget.dataset.uid
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/authorization/authorization'
+      })
+    }
   },
 
   getUserDetailInfo:function(e){

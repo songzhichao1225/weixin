@@ -15,6 +15,7 @@ image {
   padding-bottom: 13rem;
   height: 100%;
   position: relative;
+  overflow-y: auto;
 }
 
 .prompt {

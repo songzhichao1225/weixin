@@ -3,7 +3,7 @@
 		<text class="title">活动需预付总费用</text><text class="money">￥{{getElplainInfo.Total}}</text>
 	</view>
 	<view class="Itemized">
-		<view class="one"><text>{{mode=='竞技模式'?'场地费+裁判费':'场地费'}}</text><text style="float:right;">￥{{getElplainInfo.field}}</text></view>
+		<view class="one"><text>{{look==2?'场地费':mode=='竞技模式'?'场地费+裁判费':'场地费'}}</text><text style="float:right;">￥{{getElplainInfo.field}}</text></view>
 		<view class="one" wx:if="{{getElplainInfo.Accompany!=0&&getElplainInfo.Accompany!=undefined||getElplainInfo.Reward!=0&&getElplainInfo.Reward!=undefined}}">
 			<text>{{modeNum==1?'打赏费':''||modeNum==2?'打赏费':''||modeNum==3?'陪练费':''||modeNum==4?'陪练费':''}}</text>
 			<text style="float:right">￥{{getElplainInfo.Accompany==0?getElplainInfo.Reward:getElplainInfo.Accompany}}</text></view>
@@ -11,16 +11,16 @@
 	<view class="line"></view>
 	<view class="account ">费用说明</view>
 	<view class="venueFee">
-		<text>场地费</text>
+		<text>场地费+履约保证金</text>
 		<text class="jishi">{{getElplainInfo.siteMoneyInfo}} </text>
 	</view>
 
-	<view class="venueFee" wx:if="{{getElplainInfo.TipsMoney!=''}}">
-		<text>出场费</text>
+	<view class="venueFee" wx:if="{{getElplainInfo.TipsMoney!=''&&getElplainInfo.TipsMoney!=undefined}}">
+		<text>入场费</text>
 		<text class="jishi">{{getElplainInfo.TipsMoney}}</text>
 	</view>
 
-	<view class="venueFee" wx:if="{{getElplainInfo.MoneyPerhour!=''}}">
+	<view class="venueFee" wx:if="{{getElplainInfo.MoneyPerhour!=''&&getElplainInfo.MoneyPerhour!=undefined}}">
 		<text>陪练费</text>
 		<text class="jishi">{{getElplainInfo.MoneyPerhour}}</text>
 	</view>

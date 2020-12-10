@@ -52,7 +52,10 @@
 						<text>{{item.scores}}分</text>
 						
 					</view>
-					<view class="money"><text style="display:block;float:left">价格：￥{{item.minmoney}}/小时起</text> <text style="display:block;float:right;color: #9B9B9B;">{{item.range}}</text></view>
+					<view class="money" wx:if="{{sporttype!='22'}}"><text style="display:block;float:left">价格：￥{{item.minmoney}}/小时起</text> <text style="display:block;float:right;color: #9B9B9B;">{{item.range}}</text></view>
+					<view class="money" wx:if="{{sporttype=='22'}}"><text style="display:block;float:left">价格：￥{{item.minmoney}}/次起</text> <text style="display:block;float:right;color: #9B9B9B;">{{item.range}}</text></view>
+				
+					
 				</view>
 			</view>
 		</view>

@@ -77,10 +77,9 @@
           "scene": null
         },
         {
-          "id": 4,
           "name": "个人中心",
           "pathName": "pages/personal/personal",
-          "query": "uuid=13ae22f6-2515-f387-7534-e01837382116",
+          "query": "uuid= 2915bcdd-6152-c3e4-c231-624f5c72bd70",
           "scene": null
         },
         {
@@ -174,10 +173,9 @@
           "scene": null
         },
         {
-          "id": 18,
           "name": "场馆信息",
           "pathName": "generalization/venueDetails/venueDetails",
-          "query": "uid= a440b20c-fbb5-8095-f854-192947fcfd49",
+          "query": "siteuid= f798e37b-644a-9846-fed9-72547a8ea90b",
           "scene": null
         },
         {

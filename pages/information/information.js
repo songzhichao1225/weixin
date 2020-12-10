@@ -186,7 +186,6 @@ Page({
           console.log("失败")
         },
         () => {
-          console.log("接口调用结束的回调函数")
         }
       )
     }

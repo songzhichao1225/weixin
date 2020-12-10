@@ -3,14 +3,14 @@ const util = require('../../utils/util.js')
 Page({
   data: {
     listSon: [],
-    page: 0,
+    page: 1,
     statusType: 'all',
     activitiesNum: [],
     type:'publish',
     img:'',
   },
-  onLoad: function (option) {
-    let page = 0
+  onLoad: function () {
+    let page = 1
     let statusType = 'all'
     let type = 'publish'
     this.setData({
@@ -20,7 +20,6 @@ Page({
     })
     this.activitiesNum(type)
     this.common(page, statusType, type)
-   
   },
 
   common: function (page, statusType, type) {
@@ -32,7 +31,9 @@ Page({
       (res) => {
         let projectDataNow = res.data.data.publicLst
         for (let i in projectDataNow) {
-          if (projectDataNow[i].SportMode == '1') {
+          if(projectDataNow[i].SportMode == '1'&&projectDataNow[i].reserve==1){
+            projectDataNow[i].SportMode = '仅预订场馆'
+          }else if (projectDataNow[i].SportMode == '1') {
             projectDataNow[i].SportMode = '娱乐模式'
           } else if (projectDataNow[i].SportMode == '2') {
             projectDataNow[i].SportMode = '竞技模式 '
@@ -46,7 +47,7 @@ Page({
             projectDataNow[i].PaySiteMoneyType = '输者买单'
           }
         }
-        if (page != 0) {
+        if (page != 1) {
           if (projectDataNow.length === 0) {
             wx.showToast({
               title: '没有更多了',
@@ -63,7 +64,6 @@ Page({
             listSon: projectDataNow
           })
         }
-
         wx.hideLoading()
       },
       () => {
@@ -76,7 +76,7 @@ Page({
     this.setData({
       statusType: e.currentTarget.dataset.id
     })
-    let page = 0
+    let page = 1
     let statusType = e.currentTarget.dataset.id
     let type = this.data.type
     wx.showLoading({
@@ -182,7 +182,7 @@ Page({
 
   },
   all: function () {
-    let page = 0
+    let page = 1
     let statusType = 'all'
     let type = this.data.type
     this.setData({
@@ -196,7 +196,7 @@ Page({
     this.common(page, statusType, type)
   },
   navYe: function (e) {
-    let page = 0
+    let page = 1
     let type = e.currentTarget.dataset.id
     this.setData({
       type: e.currentTarget.dataset.id,
@@ -232,8 +232,8 @@ Page({
     (res) => {
       wx.showToast({
         title: res.data.msg,
-        icon: 'none',
-        duration: 1500,
+        icon: 'success',
+        duration: 2000,
         mask: true
       })
       let page = this.data.page
@@ -313,8 +313,11 @@ Page({
     })
    
   },
-  onShow:function(){
-    this.onLoad()
-  }
+  navSub:function(){
+    wx.switchTab({
+      url: '/pages/publishing/publishing'
+    })
+  },
+  
 
 })

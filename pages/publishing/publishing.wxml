@@ -14,19 +14,16 @@
 			<text style="{{indexSw==1?'color:#D85D27':''}}">仅预订场馆</text>
 			<view wx:if="{{indexSw==1}}" class="lineText"></view>
 		</view>
-		<view style="width:20%;" bindtap="preferences">
+		<view style="width:20%;" wx:if="{{indexSw==0}}" bindtap="preferences">
 			<view>
 				<image style="width:1rem;height:1rem" src="/assets/pianhao.png"></image><text class="textPianhao">发布偏好</text>
 			</view>
 		</view>
-
 	</view>
 	<view class="lineTwo"></view>
-
 	<swiper class="content" bindchange="swiper" current="{{indexSw}}" style="height:67%;">
 		<swiper-item>
 			<scroll-view style="height:100%;" scroll-y>
-
 				<view class="list">
 					<view class="left">
 						<image class="image" style="margin-right:0;" src="/assets/right.png"></image>
@@ -145,8 +142,8 @@
 				<view class="list">
 					<view class="left">
 						<text style="float:left;padding-left:0.5rem;" bindtap="sexQiu" data-type='3'>技术级别</text>
-						<image class="image" style="margin-right:0;" src="/assets/right.png"></image>
-						<picker mode="multiSelector" bindchange="bindPickerRank" range="{{rankArr}}" style="float:right;">
+						<image class="image" style="margin-right:0;" wx:if="{{mode!='我找陪练'}}" src="/assets/right.png"></image>
+						<picker mode="multiSelector" disabled="{{mode=='我找陪练'?true:false}}" bindchange="bindPickerRank" range="{{rankArr}}" style="float:right;">
 							<view class="textTwo" style="text-align:right;float:right;margin-left:0.3rem;font-size:0.75rem;">
 								{{rank}}
 							</view>
@@ -259,7 +256,7 @@
 			</scroll-view>
 		</swiper-item>
 
-		<swiper-item>
+		<swiper-item style="overflow-y:auto">
 
 
 			<view class="list" bindtap="sportsListTwo">
@@ -282,7 +279,7 @@
 				<view style="float:right;">时长</view>
 			</view>
 
-			<view class="list" wx:if="{{breakup!=''}}">
+			<view class="list" wx:if="{{breakup!=''}}" data-uid="{{siteidTwo}}" data-name="{{siteNameTwo}}" bindtap="startDateTimeTwo">
 				<text style="padding-left:0.5rem;float:left;">场地详情</text>
 				  <view wx:for="{{breakupTwo}}" wx:key='index' class="sanList">场地号<text>{{item.name}}</text>单价<text>{{item.money}}/次</text>次数<text>{{item.num}}</text></view>
 			</view>

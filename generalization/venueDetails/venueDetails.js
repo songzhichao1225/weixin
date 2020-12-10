@@ -36,14 +36,11 @@ Page({
       let arrplo=[]
       let venue=res.data.data.filesURL
       for(let i in venue){
-        
         if(venue[i].indexOf('VenueThumnail')!=-1){
-          console.log(venue[i])
           arrplo.push(venue[i].replace('VenueThumnail','Venue'))
         }
       }
       this.setData({fileArr:arrplo})
-     
       wx.hideLoading()
     }, 
     () => {
@@ -56,6 +53,16 @@ Page({
 
 
    
+  },
+  addressGo: function (e) {
+    let data = e.currentTarget.dataset
+    wx.openLocation({
+      latitude: Number(data.lat), //维度
+      longitude: Number(data.lng), //经度
+      name: '我的位置', //目的地定位名称
+      scale: 15, //缩放比例
+      address: data.address //导航详细地址
+    })
   },
 
   telephone:function(){
@@ -92,6 +99,7 @@ Page({
     let filesURL=[]
     if(this.data.fileArr.length==0){
        filesURL=this.data.venue.filesURL
+
     }else{
        filesURL=this.data.fileArr
     }
@@ -124,7 +132,8 @@ Page({
     })
     
   },
-
+  
+ 
 
 
 

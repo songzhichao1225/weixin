@@ -11,8 +11,10 @@ App({
     // 展示本地存储能力
     var util = require("utils/util.js");
    
+   
     wx.login({
       success: res => {
+        console.log()
         if (res.code) {
           util.request("/api/getSmallOpenId", {
             'code': res.code

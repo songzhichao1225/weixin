@@ -28,7 +28,7 @@
 	</view>
 	<view class="address">
 		<image class="image" src="/assets/position.png"></image>
-		<view><text>{{venue.address}}</text></view>
+		<view><text bindtap="addressGo" data-lat="{{venue.lat}}" data-lng="{{venue.lng}}" data-address="{{venue.address}}">{{venue.address}}</text></view>
 		<image class="imageTwo" bindtap="telephone" src="/assets/icon_tel@2x.png"></image>
 	</view>
 

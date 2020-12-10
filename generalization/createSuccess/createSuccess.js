@@ -17,7 +17,8 @@ Page({
     this.setData({
       uuid:options.inviteId,
       time:options.time,
-      type:options.Identification
+      type:options.Identification,
+      typeInfo:options.typeInfo
     })
     util.Request("/api/getwWord", {
         inviteId: options.inviteId,

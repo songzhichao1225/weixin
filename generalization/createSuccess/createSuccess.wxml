@@ -3,15 +3,15 @@
 	<view class="banner">
 		<image class="image" src="/assets/PicBgZfcg.png"></image>
 		<image class="imageS" src="/assets/PicZfDg.png"></image>
-		<text class="ojbk">{{type==1?'创建成功':'报名成功'}}</text>
+		<text class="ojbk">{{typeInfo==1?'预订成功':type==1?'创建成功':'报名成功'}}</text>
 	</view>
 
 
 	<view class="text">
-	  <text style="font-size:0.75rem;">活动匹配成功后，为保证所有人利益。</text>
+	  <text style="font-size:0.75rem;" wx:if="{{typeInfo!=1}}">活动匹配成功后，为保证所有人利益。</text>
 		<text class="comm">{{text.red}}</text>
 		<text style="font-size:0.75rem;padding-top:1rem">{{text.black}}</text>
-		<text bindtap="detailRules" style="font-size:0.75rem;color:blue;margin-top:1rem;padding:0.5rem 0;">规则?</text>
+		<text bindtap="detailRules" wx:if="{{typeInfo!=1}}" style="font-size:0.75rem;color:blue;margin-top:1rem;padding:0.5rem 0;">规则?</text>
 	</view>
 	<text class="title" bindtap="counterCoin">{{text.comms}}<text>对手币?</text></text>
 

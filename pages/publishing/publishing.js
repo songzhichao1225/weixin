@@ -206,7 +206,7 @@ Page({
       this.setData({
         closeKOp: true,
         titleKOp: '出场费用说明',
-        textKOp: '发布者打赏给报名者的费用，报名者均分该费用。提高活动匹配成功率。'
+        textKOp: '报名者支付给发布者的费用，报名者均摊该费用。人气高、技术好的发布者可以酌情填写该费用。'
       })
     }
   },
@@ -826,7 +826,7 @@ Page({
       }
 
       util.request("/api/getcaipanf", {
-          'name': this.data.refereegrade,
+          'name':wx.getStorageSync('TrialRaderF'),
           'sportid': this.data.sportId,
           'number': Number(this.data.TrialNum.slice(0, 1)),
           'duration': parseFloat(wx.getStorageSync('bookin').data[0].placeTimeLen)
@@ -837,10 +837,12 @@ Page({
             this.setData({
               refereeFee: res.data.data + '.00'
             })
-          } else {
+            wx.setStorageSync('refereeFee', res.data.data + '.00')
+          } else { 
             this.setData({
               refereeFee: res.data.data
             })
+            wx.setStorageSync('refereeFee', res.data.data)
           }
         },
         () => {
@@ -1213,7 +1215,7 @@ Page({
         mask: true
       })
     } else {
-      let sex = this.data.sex == '男' ? '0' : '1' || this.data.sex == '不限' ? '2' : ''
+    
       let rankMax = 0
       let rankMin = 0
       let ageMax = 0
@@ -1237,6 +1239,8 @@ Page({
         team: e.currentTarget.dataset.team,
         indexTeam: e.currentTarget.dataset.index
       })
+      
+      let sex = wx.getStorageSync('sexF')== '男' ? '0' : '1' || wx.getStorageSync('sexF') == '不限' ? '2' : ''
       wx.navigateTo({
         url: '/generalization/Invitational/Invitational?sportid=' + this.data.sportId + '&sex=' + sex + '&rankMax=' + rankMax + '&rankMin=' + rankMin + '&team=' + e.currentTarget.dataset.team + '&ageMax=' + ageMax + '&ageMin=' + ageMin,
       })
@@ -1250,7 +1254,6 @@ Page({
         uuid: wx.getStorageSync('uuid')
       }, "get",
       (res) => {
-        let loopdnk = res.data.data
         let numAB = 0
         switch (wx.getStorageSync('sportypeNameF')) {
           case '单打':
@@ -1302,7 +1305,7 @@ Page({
             numAB = 1
             break;
           case '双打(3队)':
-            numAB = 3
+            numAB = 2
             break;
           case '3v3(3队)':
             numAB = 3
@@ -1325,7 +1328,7 @@ Page({
             this.judgmentBall(name, projectNow)
             let obj = {
               imgURL: wx.getStorageSync('imgURL'),
-              heightLevel: projectNow.level,
+              heightLevel: 'Lv'+projectNow.level,
               name: projectNow.nameSon
             }
             for (var i = 0; i < numAB; i++) {

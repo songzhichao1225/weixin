@@ -1,10 +1,11 @@
 page {
   height: 100%;
-  padding-bottom: 3rem;
 }
 
 .personal {
-  overflow: hidden;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
 }
 
 text {
@@ -31,25 +32,32 @@ text {
   margin-top: 0.8rem;
 }
 
+.personal .tap .leftImg {
+  float: left;
+  padding-bottom: 1rem;
+}
+
+
 .personal .tap .image {
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
   margin: 0.8rem auto 0;
   display: block;
-  float: left;
+
 }
 
 .personal .tap .name {
   font-size: 18px;
   overflow: hidden;
   display: flex;
+  margin-top: 0.3rem;
 }
 
 .personal .tap .name .sex {
   width: 0.7rem;
   height: 0.7rem;
-  margin-top: 0.2rem;
+  margin-top: 0.5rem;
   margin-left: 0.2rem;
   display: block;
   float: left;
@@ -61,6 +69,7 @@ text {
   display: block;
   float: left;
   margin-left: 0.2rem;
+  margin-top: 0.2rem;
 }
 
 .personal .tap .name .mode {
@@ -77,6 +86,7 @@ text {
   font-size: 0.75rem;
   margin-top: 0.31rem;
   overflow: hidden;
+  clear: both;
 }
 
 .personal .tap .signature {
@@ -106,7 +116,7 @@ text {
 
 .people {
   width: 90%;
-  margin: 1.5rem auto 0;
+  margin: 0 auto 0;
 }
 
 .people .title {
@@ -146,7 +156,6 @@ text {
 .people .personalDetails {
   clear: both;
   overflow: hidden;
-  margin-top: 1.36rem;
   border-top: 1px solid #ededed;
 }
 
@@ -195,7 +204,8 @@ text {
   line-height: 1.31rem;
   margin-top: 0.2rem;
 }
-.headContent .List text:nth-child(2n){
+
+.headContent .List text:nth-child(2n) {
   margin-left: 2%;
 }
 
@@ -213,6 +223,7 @@ text {
 .grade .badminton {
   clear: both;
   position: relative;
+  margin-top: 0.5rem;
 }
 
 .grade .badminton text {
@@ -279,7 +290,7 @@ text {
   border-bottom: 1px solid #EDEDED;
   overflow: hidden;
   clear: both;
-  padding: 0.8rem 0;
+  padding: 0 0 0.8rem 0;
 }
 
 .btn {
@@ -292,4 +303,193 @@ text {
   line-height: 2.5rem;
   text-align: center;
   margin: 0.8rem auto;
+}
+
+.maskingBoss {
+  width: 100%;
+  height: 100%;
+  background: rgba(000, 000, 000, 0.6);
+  position: absolute;
+  z-index: 999;
+  top: 0;
+}
+
+.masking {
+  width: 80%;
+  height: 8rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  position: absolute;
+  top: 50%;
+  margin-top: -8rem;
+  margin-left: 8%;
+  padding: 0.5rem;
+}
+
+.masking .title {
+  font-size: 1rem;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+.masking text {
+  display: block;
+  width: 100%;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.imageClose {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  z-index: 1001;
+  top: 54%;
+  left: 50%;
+  margin-left: -1rem;
+}
+
+.lopoij {
+  color: #000;
+}
+
+.headTitle {
+  border-bottom: 1px solid #ededed;
+  overflow: hidden;
+}
+
+.headTitle>view:first-child {
+  text-align: left;
+}
+
+.headTitle>view {
+  float: left;
+  width: 30%;
+  text-align: center;
+  line-height: 2.69rem;
+  font-size: 0.8rem;
+}
+
+.bossTitle {
+  overflow: hidden;
+  line-height: 2.69rem;
+}
+
+.bossTitle>view {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+
+.bossTitle>view>view {
+  width: 1.5rem;
+  height: 0.12rem;
+  background: #D85D27;
+  margin: 0 auto;
+}
+
+.dynamicState {
+  height: 60%;
+  overflow-y: auto;
+  padding: 0.75rem;
+  background-color: #f3f3f3;
+}
+
+.dynamicState .noContent {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.dynamicState .noContent image {
+  width: 100%;
+  height: 10rem;
+  margin-top: 1rem;
+}
+
+.dynamicState .noContent view {
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+.dynamicState .noContent button {
+  font-size: 0.8rem;
+  width: 70%;
+  background: #D85D27;
+  color: #fff;
+  margin-top: 1rem;
+}
+
+.dynamicState .content {
+  overflow: hidden;
+}
+
+.dynamicState .content .left {
+  width: 49%;
+  float: left;
+  border-radius: 0.38rem;
+  padding-bottom: 0.5rem;
+}
+.dynamicState .content .left>view{
+  overflow: hidden;
+  padding-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  background-color: #fff;
+}
+
+.dynamicState .content .right>view{
+  overflow: hidden;
+  padding-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  background-color: #fff;
+}
+
+.dynamicState .content .right {
+  width: 49%;
+  float: right;
+  border-radius: 0.38rem;
+  padding-bottom: 0.5rem;
+}
+
+
+.dynamicState .content image {
+  width: 100%;
+}
+
+.dynamicState .content .headImg {
+  border-radius: 0.38rem 0.38rem 0 0;
+}
+
+.dynamicState .content .title {
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.75rem;
+}
+.dynamicState .content .userDetails{
+  padding-bottom: 0.5rem;
+  width: 90%;
+  margin: 0.3rem auto 0;
+  overflow: hidden;
+}
+.dynamicState .content .userDetails>image{
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  float: left;
+}
+.dynamicState .content .userDetails>view{
+  width: 50%;
+  text-align: center;
+  float: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dynamicState .content .userDetails .fabulou{
+  width: 10%;
+  font-size: 0.75rem;
+  line-height: 1.4rem;
 }

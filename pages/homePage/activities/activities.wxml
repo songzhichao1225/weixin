@@ -42,12 +42,16 @@
 				<view class="publisherTxt">
 					<text style="color:#9B9B9B">场馆地点</text>
 					<image src='/assets/IconHdxqDw@2x.png'></image>
-					<text style="padding-left:0.3rem;display:block;width:75%">{{activitiesData.siteAddress}}</text>
+					<text style="padding-left:0.3rem;display:block;width:75%" bindtap="addressGo" data-lat="{{activitiesData.siteLat}}" data-lng="{{activitiesData.siteLng}}" data-address="{{activitiesData.siteAddress}}">{{activitiesData.siteAddress}}</text>
 				</view>
-				<view class="publisherTxt">
+				<view class="publisherTxt" wx:if="{{activitiesData.reserve!=1}}">
 					<text style="color:#9B9B9B">活动时间</text>
-					<text class="time" wx:if="{{activitiesData.reserve!=1}}">{{activitiesData.startDays}} {{activitiesData.startWeek}}{{activitiesData.startTimes}}-{{activitiesData.endTimes}}</text>
-					<text class="time" wx:if="{{activitiesData.reserve==1}}">{{activitiesData.FinishedTime}}</text>
+					<text class="time">{{activitiesData.startDays}} {{activitiesData.startWeek}}{{activitiesData.startTimes}}-{{activitiesData.endTimes}}</text>
+				</view>
+
+				<view class="publisherTxt" wx:if="{{activitiesData.reserve==1}}">
+					<text style="color:#9B9B9B">活动时间</text>
+					<text class="time">不限,有效期至{{activitiesData.startDays}}</text>
 				</view>
 
 
@@ -59,7 +63,7 @@
 					</view>
 
 					<view class="two" wx:if="{{activitiesData.reserve!=1}}">
-						<text>场 地 号</text>
+						<text bindtap="showModelTwo" data-type="10">场 地 号</text>
 						<view class="time ojbk" bindtap="showModel" data-ven="{{activitiesData.venueid}}">{{activitiesData.venueid}}
 						</view>
 					</view>
@@ -202,17 +206,16 @@
 
 			<view class="lineTwo"></view>
 			<view class="complaintsCon" data-uuid="{{activitiesData.uuid}}" bindtap="complaintsCon"
-				wx:if="{{type==1&&activitiesData.PublicStatus!=1&&activitiesData.Complaint!=4}}">
+				wx:if="{{activitiesData.Complaint==0||activitiesData.Complaint==1||activitiesData.Complaint==2}}">
 				<text>活动投诉过程</text>
 				<image src="/assets/right.png"></image><text>详情</text>
 			</view>
 			<view class="lineTwo" wx:if="{{type==1&&activitiesData.PublicStatus!=1&&activitiesData.Complaint!=4}}"></view>
-			<view class="complaintsResu" wx:if="{{type==1&&activitiesData.PublicStatus!=1&&activitiesData.Complaint!=4}}">
+			<view class="complaintsResu" wx:if="{{activitiesData.Complaint!=0&&activitiesData.Complaint!=4&&activitiesData.Complaint!=2}}">
 				<text>投诉审核结果</text>
 				<text>{{activitiesData.ComplaintsResult}}</text>
 			</view>
 			<view class="lineTwo" wx:if="{{type==1&&activitiesData.PublicStatus!=1&&activitiesData.Complaint!=4}}"></view>
-
 			<view class="Attendance" bindtap="attendance" data-uuid="{{activitiesData.uuid}}"
 				wx:if="{{type==1&&activitiesData.PublicStatus==4&&activitiesData.reserve!=1||activitiesData.PublicStatus==6&&activitiesData.reserve!=1||activitiesData.PublicStatus==5&&activitiesData.reserve!=1}}">
 				<text>到场情况及规则</text>
@@ -310,14 +313,15 @@
 				wx:if="{{type==1&&activitiesData.PublicStatus==6&&activitiesData.reserve!=1||activitiesData.PublicStatus==5&&activitiesData.reserve!=1||activitiesData.PublicStatus==7&&activitiesData.reserve!=1}}">
 				<view class="title">费用及金币获得</view>
 				<view class="acquireSon"><text>场地费</text><text>{{activitiesData.getlist}}</text></view>
-				<view class="acquireSon">
-					<text>打赏费</text><text>预付{{activitiesData.Tips}}{{tipsType==-1?'.00':'0'}}，实付{{activitiesData.Tips}}{{tipsType==-1?'.00':'0'}}，退还{{activitiesData.Tips}}{{tipsType==-1?'.00':'0'}}</text>
+				<view class="acquireSon" wx:if="{{activitiesData.isPublisher==0}}">
+					<text>入场费</text><text>预付{{activitiesData.Tips}}{{tipsType==-1?'.00':'0'}}，实付{{activitiesData.Tips}}{{tipsType==-1?'.00':'0'}}，退还{{activitiesData.Tips}}{{tipsType==-1?'.00':'0'}}</text>
+				</view>
+				<view class="acquireSon" wx:if="{{activitiesData.isPublisher==1}}">
+					<text>出场费</text><text>{{activitiesData.getTips}}</text>
 				</view>
 				<view class="acquireSon"><text>对手币</text><text>{{activitiesData.GetCommonCoins}}枚</text></view>
 				<view class="acquireSon"><text>技术分</text><text>{{activitiesData.GetCoins}}分</text></view>
 			</view>
-
-
 		</view>
 		<view wx:if="{{activitiesData.reserve!=1}}">
 			<view class="releaseTime">
@@ -354,7 +358,7 @@
 			</view>
 			<view class="releaseTime">
 				<text>活动开始时间</text>
-				<text>{{activitiesData.FinishedTime}}</text>
+				<text>{{activitiesData.StartTime}}</text>
 			</view>
 			<view class="releaseTime">
 				<text>活动结束时间</text>
@@ -364,27 +368,37 @@
 
 		</view>
 
-
-
 	</view>
+
 	<view class="complaints" bindtap="complaints"
-		wx:if="{{type==1&&activitiesData.reserve!=1&&activitiesData.PublicStatus==2||activitiesData.PublicStatus==3&&activitiesData.reserve!=1}}"
+		wx:if="{{type==1&&activitiesData.reserve!=1&&activitiesData.PublicStatus==2&&activitiesData.Complaint==4||activitiesData.PublicStatus==3&&activitiesData.reserve!=1&&activitiesData.Complaint==4}}"
 		data-uuid="{{activitiesData.uuid}}">投诉</view>
-	<text class="footerInfo" wx:if="{{activitiesData.reserve==1}}">{{activitiesData.siteMoneyInfo}}</text>
+	<text class="footerInfo" wx:if="{{activitiesData.reserve==1&&activitiesData.PublicStatus!=5&&activitiesData.PublicStatus!=7}}">{{activitiesData.siteMoneyInfo}}</text>
 	<button class="btn" open-type="share" style="display:none;">分享给好友</button>
 	<view class="bootomBtn" wx:if="{{activitiesData.PublicStatus==7}}"><text
 			style="margin-left:2.5%;color:#D85D27;font-size:0.88rem;">取消原因</text><text
 			style="margin-left:2.5%;color:#D85D27;font-size:0.88rem;">{{activitiesData.SuspendReason}}</text></view>
 	<view class="btnBoss" wx:if="{{type==1}}">
-		<button class="{{activitiesData.SigninYes==1?'btn':'btn'}}" wx:if="{{activitiesData.reserve==1}}" catchtap="cancels"
+		<button class="{{activitiesData.SigninYes==1?'btn':'btn'}}" wx:if="{{activitiesData.reserve==1&&activitiesData.PublicStatus!=5&&activitiesData.PublicStatus!=7}}" catchtap="cancels"
 			data-uuid="{{activitiesData.uuid}}" data-type="1">取消预订</button>
 		<view class="readyToGo" wx:if="{{activitiesData.PublicStatus==1&&activitiesData.reserve!=1}}">
 			<button class="{{activitiesData.SigninYes==1?'btnTwo':'btn'}}"
-				wx:if="{{activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&Publisher==1}}" catchtap="cancels"
+				wx:if="{{activitiesData.PublicStatus==1&&activitiesData.isSignIn==1&&Publisher==1&&activitiesData.reserve!=1}}" catchtap="cancels"
 				data-uuid="{{activitiesData.uuid}}" data-type="1">取消发布</button>
-			<button class="{{activitiesData.SigninYes==1?'btnTwo':'btn'}}"
+ 
+				<button class="{{activitiesData.SigninYes==1?'btnTwo':'btn'}}"
+				wx:if="{{activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&Publisher==1&&activitiesData.reserve!=1}}" catchtap="cancels"
+				data-uuid="{{activitiesData.uuid}}" data-type="1">取消发布</button>
+
+				<button class="{{activitiesData.SigninYes==1?'btnTwo':'btn'}}"
+				wx:if="{{activitiesData.PublicStatus==1&&activitiesData.isSignIn==1&&Publisher==0&&activitiesData.reserve!=1}}"
+				catchtap="cancels" data-uuid="{{activitiesData.uuid}}" data-type="2">取消报名</button>
+
+				<button class="{{activitiesData.SigninYes==1?'btnTwo':'btn'}}"
 				wx:if="{{activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&Publisher==0&&activitiesData.reserve!=1}}"
 				catchtap="cancels" data-uuid="{{activitiesData.uuid}}" data-type="2">取消报名</button>
+
+
 			<button class="btnTwo" catchtap="signin" data-id="{{activitiesData.uuid}}"
 				style="margin-left:1%;color:#fff;background:#D85D27;"
 				wx:if="{{activitiesData.SigninYes==1&&activitiesData.PublicStatus!=7&&activitiesData.isSignIn==0&&activitiesData.reserve!=1}}">场馆签到</button>
@@ -408,8 +422,8 @@
 			<button class="btn" catchtap="signin" data-id="{{activitiesData.uuid}}" style="color:#fff;background:#D85D27;"
 				wx:if="{{activitiesData.isSignIn==0}}">场馆签到</button>
 			<button class="btn" catchtap="SignOut" data-uuid="{{activitiesData.uuid}}" style="color:#fff;background:#D85D27;"
-				wx:if="{{activitiesData.isQuitInGame==1}}">中途退赛</button>
-			<button class="btn" wx:if="{{activitiesData.isQuitInGame==2}}">中途退赛</button>
+				wx:if="{{activitiesData.isQuitInGame==1}}">中途退出</button>
+			<button class="btn" wx:if="{{activitiesData.isQuitInGame==2}}">中途退出</button>
 		</view>
 
 		<view class="readyToGo" wx:if="{{activitiesData.PublicStatus==4&&activitiesData.reserve!=1}}">
@@ -429,9 +443,9 @@
 	</view>
 	<view class="modeBoss" wx:if="{{reverseInfo==1}}">
 		<view class="model">
-			<text class="title">场地详情</text>
-
-			<view class="content" wx:if="{{activitiesData.sportTypeName!='散场'}}">
+			<text class="title" wx:if="{{typeInfo!=10}}">场地详情</text>
+			<text class="title" wx:if="{{typeInfo==10}}">场地编号说明</text>
+			<view class="content" wx:if="{{activitiesData.sportTypeName!='散场'&&typeInfo!=10}}">
 				<view class="left">
 					<text>时间段</text>
 					<text class="contentSon" wx:for="{{activitiesData.venueid_details}}" wx:key="index">{{item.time}}</text>
@@ -443,7 +457,7 @@
 				</view>
 			</view>
 
-			<view class="content" wx:if="{{activitiesData.sportTypeName=='散场'}}">
+			<view class="content" wx:if="{{activitiesData.sportTypeName=='散场'&&typeInfo!=10}}">
 				<view class="leftTwo">
 					<text>场地号</text>
 					<text class="contentSon" wx:for="{{activitiesData.venueid_details}}" wx:key="index">{{item.venueid}}</text>
@@ -461,11 +475,11 @@
 					<text>剩余次数</text>
 					<text class="contentSon" wx:for="{{activitiesData.venueid_details}}" wx:key="index">{{item.frequency}}</text>
 				</view>
-
-
-
 			</view>
-
+		 <view wx:if="{{typeInfo==10}}">
+      每一个数字一次代表每半个小时对应的场地编号，如“场地编号<span style="color:#d85d27">3，4</span>”，表示第1个半小时再3号场地，第2个半小时再4号场地。
+		 </view>
+		 
 
 		</view>
 		<view class="colse" bindtap="close"><image src="/assets/BtnDown@2x.png" alt="icon" /></view>

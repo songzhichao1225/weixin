@@ -27,6 +27,7 @@ Page({
       ko:options.ko,
       mode: wx.getStorageSync('mode')
     })
+    
     if (options.look == 1) {
       this.setData({
         modeNum: app.globalData.SportMode,
@@ -171,7 +172,7 @@ Page({
             if (res.data.code == 2000) {
               wx.removeStorage({ key: 'bookin' })
               wx.navigateTo({
-                url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&referee=' + res.data.data.referee + '&status=1' + '&time=' + res.data.data.CreateTime,
+                url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1'+'&typeInfo=0'  + '&referee=' + res.data.data.referee + '&status=1' + '&time=' + res.data.data.CreateTime,
               })
             } else {
               wx.showToast({
@@ -208,7 +209,7 @@ Page({
               wx.removeStorage({ key: 'bookinTwo' })
 
               wx.navigateTo({
-                url: '/generalization/createSuccess/createSuccess?inviteId=' + app.globalData.inviteId + '&Identification=2' + '&referee=' + app.globalData.refereefee + '&status=1' + '&time=' +app.globalData.CreateTime,
+                url: '/generalization/createSuccess/createSuccess?inviteId=' + app.globalData.inviteId + '&Identification=2'+'&typeInfo=0'+ '&referee=' + app.globalData.refereefee + '&status=1' + '&time=' +app.globalData.CreateTime,
               })
             }else{
               wx.showToast({
@@ -278,7 +279,7 @@ Page({
           (res) => {
             if (res.data.code == 2000) {
               wx.navigateTo({
-                url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&referee=' + res.data.data.referee + '&status=2' + '&time=' + res.data.data.CreateTime,
+                url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1'+'&typeInfo=1' + '&referee=' + res.data.data.referee + '&status=2' + '&time=' + res.data.data.CreateTime,
               })
             } else {
               wx.showToast({

@@ -47,7 +47,7 @@
 						<image wx:if="{{statusType!='finishd'}}" src="/assets/jookg.png"></image>
 						<image wx:if="{{statusType=='finishd'}}" src="/assets/lod(4).png"></image>
 						<text>已完成</text>
-						<view class="rightTop" wx:if="{{activitiesNum.finished!=0}}">{{activitiesNum.finished}}</view>
+						<view class="rightTop" wx:if="{{activitiesNum.finished!=0&&activitiesNum.finished!=null}}">{{activitiesNum.finished}}</view>
 					</view>
 				</view>
 			</view>
@@ -64,13 +64,14 @@
 					<image wx:if="{{statusType!='Complaints'}}" src="/assets/loogjhf.png"></image>
 					<image wx:if="{{statusType=='Complaints'}}" src="/assets/lod(6).png"></image>
 					<text>投诉中</text>
+					<view class="rightTop" wx:if="{{activitiesNum.complain!=0}}">{{activitiesNum.complain}}</view>
 				</view>
 			</view>
 
 		</view>
 	</view>
 
-	<scroll-view scroll-y style="height:60%;margin-top:2rem;" bindscrolltolower="lower">
+	<scroll-view scroll-y style="height:62%;margin-top:2rem;" bindscrolltolower="lower">
 		<view class="listBoss" wx:for="{{listSon}}" bindtap="activities" data-uuid="{{item.uuid}}" wx:key='index'>
 			<view class="content">
 				<view class="leftLst">
@@ -89,23 +90,31 @@
 					<view class="lstHead">{{item.nickname}}
 						<image src="/assets/sex0@2x.png"></image>
 					</view>
-					<text class="lstTwo"> <text style="color:#D85D27;font-weight:500;">{{item.SportMode}}模式</text>
+					<text class="lstTwo"> <text style="color:#D85D27;font-weight:500;">{{item.SportMode}}</text>
 					<text style="padding-left:1rem;">{{item.sportName}}</text>
 					<text style="padding-left:1rem;">{{item.sportTypeName}}</text></text>
 					<text><text>{{item.startDays}}</text>
 					<text style="padding-left:0.5rem;">{{item.week}}</text>
 					<text style="padding-left:0.5rem;">{{item.startTimes}}-{{item.endTimes}}</text></text>
 					<text>{{item.sitesName}}</text>
-					<text>场地费:<text style="padding-left:0.5rem;">{{item.PaySiteMoneyType==1?'AA':'输者买单'}}</text>
-					<text style="padding-left:1rem;" wx:if="{{item.Tips!==0||item.MoneyPerhour!==0}}">{{item.SportMode=='1'?'打赏费':'陪练费'||item.SportMode=='2'?'打赏费:':'陪练费'}}</text>
-					<text style="padding-left:0.5rem;" wx:if="{{item.Tips!==0}}">{{item.Tips}}.0元</text>
-					<text style="padding-left:0.5rem;" wx:if="{{item.MoneyPerhour!==0}}">{{item.MoneyPerhour}}.0元</text>
+					<text wx:if="{{item.reserve==0}}">场地费:<text style="padding-left:0.5rem;">{{item.PaySiteMoneyType==1?'AA':'输者买单'}}</text>
+					<text style="padding-left:1rem;" wx:if="{{item.Tips!=0.00||item.MoneyPerhour!=0.00}}">{{item.SportMode=='1'?'入场费':'陪练费'||item.SportMode=='2'?'入场费:':'陪练费'}}</text>
+					<text style="padding-left:0.5rem;" wx:if="{{item.Tips!='0'&&item.Tips!='0.00'}}">{{item.Tips}}元</text>
+					<text style="padding-left:0.5rem;" wx:if="{{item.MoneyPerhour!='0'&&item.MoneyPerhour!='0.00'}}">{{item.MoneyPerhour}}元</text>
 					</text>
-           <view  class="btnBos" wx:if="{{item.reserve==1&&item.PublicStatus!=7}}">	<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="1">取消预订</view></view>
+					<text wx:if="{{item.reserve==1}}">场地费:<text style="padding-left:0.5rem;">发布者买单</text>
+					<text style="padding-left:1rem;" wx:if="{{item.Tips!=0.00||item.MoneyPerhour!=0.00}}">{{item.SportMode=='1'?'入场费':'陪练费'||item.SportMode=='2'?'入场费:':'陪练费'}}</text>
+					<text style="padding-left:0.5rem;" wx:if="{{item.Tips!='0'&&item.Tips!='0.00'}}">{{item.Tips}}元</text>
+					<text style="padding-left:0.5rem;" wx:if="{{item.MoneyPerhour!='0'&&item.MoneyPerhour!='0.00'}}">{{item.MoneyPerhour}}元</text>
+					</text>
+					
+          <view  class="btnBos" wx:if="{{item.reserve==1&&item.PublicStatus==2&&item.sportTypeName!='散场'}}">	<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="1">取消预订</view></view>
 					<view class="btnBos" wx:if="{{item.reserve!=1}}">
-						<view class="isConfirmResult" wx:if="{{item.Complaint==2}}">投诉中</view>
+						<view class="isConfirmResult" wx:if="{{item.isComplaint==1}}">投诉中</view>
 						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="1" wx:if="{{item.PublicStatus==1&&item.isSignIn==0&&type!='join'}}">取消发布</view>
 						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="2" wx:if="{{item.PublicStatus==1&&item.isSignIn==0&&type=='join'}}">取消报名</view>
+						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="1" wx:if="{{item.PublicStatus==1&&item.isSignIn==1&&type!='join'}}">取消发布</view>
+						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="2" wx:if="{{item.PublicStatus==1&&item.isSignIn==1&&type=='join'}}">取消报名</view>
 						<view class="isConfirmResult" catchtap="isQuit" data-uuid="{{item.uuid}}" wx:if="{{item.PublicStatus==2&&item.isQuit==1}}">提前退出</view>
 						<view class="isConfirmResult" style="background:#E9E9E9" wx:if="{{item.PublicStatus==2&&item.isQuit==2}}">提前退出</view>
 						<view class="isConfirmResult" catchtap="signin" data-id="{{item.uuid}}" wx:if="{{item.SigninYes==1&&item.PublicStatus!=7&&item.isSignIn==0}}">场馆签到</view>
@@ -130,12 +139,13 @@
 				<image wx:if="{{item.PublicStatus==9}}" src='/assets/tousua.png'></image>
 			</view>
 		</view>
+		<view class="contentNo" wx:if="{{listSon.length==0}}">
+		<image src="/assets/nottxtTwo.png"></image>
+	</view>
+ <view class="contetnTxt" wx:if="{{listSon.length==0}}"><text>您暂时还没有内容奥~</text><text style="color:#9b9b9b">可以去发布您喜爱的活动</text></view>
+  <button class="btnSub" bindtap="navSub" wx:if="{{listSon.length==0}}">去发布活动</button>
 
-
-
-
-
-	</scroll-view>
+</scroll-view>
 
 
 

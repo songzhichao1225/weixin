@@ -178,8 +178,6 @@ function Request(url, data, method, successFn, failFn, completeFn) {
               mask: true
             })
           } else if (res.data.code == 4001) {
-
-            console.log('失败了')
             wx.redirectTo({
               url: '/pages/authorization/authorization'
             })
@@ -221,7 +219,8 @@ function request(url, data, method, successFn, failFn, completeFn) {
       "enctype": "multipart/form-data"
     },
     success: function (res) {
-      if (res.data.code == 2000) {
+     
+      if (res.data.code == 2000||res.data.code==undefined) {
         successFn(res);
 
       } else {

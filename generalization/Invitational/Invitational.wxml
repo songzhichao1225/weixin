@@ -1,51 +1,52 @@
 <view class="Invitational">
 
 
-	<swiper style="height:36rem" bindchange="swiper" current="{{index}}">
+	<swiper style="height:100%" bindchange="swiper" wx:if="{{getInviteFriends.length!=0}}" current="{{index}}">
 
 		<swiper-item>
 			<scroll-view scroll-y style="height: 100%" bindscrolltolower="lower" bindscrolltolower="ltolower">
-				<view class="characterList" wx:for="{{getInviteFriends}}" wx:key="index" data-uid="{{item.FriendUUID}}" bindtap='getUserDetailInfo'>
-				<view style="float:left">
-					<image class="img" src='{{img}}/{{item.userInfo.imgURL}}'></image>
-					<view style="width:4.4rem">
-						<image wx:if="{{item.userInfo.sex==0}}" class='image' src='/assets/sex0@2x.png'></image>
-							<image wx:if="{{item.userInfo.sex==1}}" class='image' style="width:0.6rem;" src='/assets/sex1@2x.png'></image>
+				<view class="characterList" wx:for="{{getInviteFriends}}" wx:key="index" data-uid="{{item.FriendUUID}}"
+					bindtap='getUserDetailInfoTwo'>
+					<view style="float:left">
+						<image class="img" src='{{img}}/{{item.userInfo.imgURL}}'></image>
+						<view style="width:4.4rem">
+							<image wx:if="{{item.userInfo.sex==0}}" class='image' src='/assets/sex0@2x.png'></image>
+							<image wx:if="{{item.userInfo.sex==1}}" class='image' style="width:0.6rem;" src='/assets/sex1@2x.png'>
+							</image>
 							<image src='/assets/{{item.userLevelNum}}' class='imageTwo'></image>
 							<text class="textTwo">{{item.userLevel}}</text>
+						</view>
 					</view>
-				</view>
+					
 					<view class="content">
 						<view class="header">
 							<text class="text">{{item.userInfo.nickname}}</text>
-						
+							<text class="invitational" catchtap="getUserDetailInfo" data-uid="{{item.FriendUUID}}">邀请</text>
 						</view>
 						<view class="signs">
 							<text style="margin:0;">年龄:{{item.userInfo.age}}岁</text>
-								<text>体重:{{item.userInfo.tall==0?'未填写':item.userInfo.tall+'kg'}}</text>
+							<text>体重:{{item.userInfo.tall==0?'未填写':item.userInfo.tall+'kg'}}</text>
 							<text>身高:{{item.userInfo.weight==0?'未填写':item.userInfo.weight+'cm'}}</text>
 						</view>
 						<view class="interest">
 							<text style='float:left;display:block;'>喜爱运动项目:{{item.sportidNameStr}}</text>
 						</view>
 					</view>
+
+
+
 				</view>
 			</scroll-view>
 		</swiper-item>
 
 
-	
-
-
-
-
-
-
 	</swiper>
 
 
-
-
+	<view class="contentNo" wx:if="{{getInviteFriends.length==0}}">
+		<image src="/assets/nottxt.png"></image>
+	</view>
+ <view class="contetnTxt" wx:if="{{getInviteFriends.length==0}}">您还没有好友哟，快去添加吧~</view>
 
 
 </view>

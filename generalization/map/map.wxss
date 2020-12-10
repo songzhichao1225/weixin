@@ -94,15 +94,9 @@ page {
 
 }
 
-.venuesLst .boss .right .bottom {
-  margin-top: .5rem;
-}
-
 .venuesLst .boss .right .bottom .xing>image {
   width: 0.75rem;
   height: 0.75rem;
-
-
 }
 
 .venuesLst .boss .right .bottom .xing>text {

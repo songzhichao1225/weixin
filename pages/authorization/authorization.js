@@ -7,46 +7,159 @@ Page({
     phone: '',
     uuid: '',
     binding: '',
-
+    authorization:0
   },
-  onLoad: function(option) {
+  onLoad: function (option) {
     var query = wx.createSelectorQuery()
     query.select('#name').boundingClientRect()
     query.selectViewport().scrollOffset()
-    query.exec(function(res) {
-    })
-    
-    if (option != undefined) {
-      this.setData({
-        uuid: option.uuid
-      })
+    query.exec(function (res) {})
+  },
+  phone:function(e){
+    this.setData({phone:e.detail.value})
+  },
+  toCode:function(){
+    util.request("/api/toSendCodes", {
+      'mobile': this.data.phone,
+      'type': 'bindmobile',
+    }, "post",
+    (res) => {
+
+     
+    },
+    () => {
+      console.log("失败")
+    },
+    () => {
     }
-    let that=this
-    setTimeout(function() {
-      util.request("/api/getbinding", {
-        'wechartID': wx.getStorageSync('openid')
+  )
+
+  },
+
+
+  onGotUserInfo: function (e) {
+    //登录
+    var sessionKey = wx.getStorageSync('sessionKey')
+    var that = this
+    var ency = e.detail.encryptedData;
+    var iv = e.detail.iv;
+    var errMsg = e.detail.errMsg
+    if (iv == null || ency == null) {
+      wx.showToast({
+        title: "授权失败,请重新授权",
+        icon: 'none',
+      })
+      return false
+    }
+    //把获取手机号需要的参数取到，然后存到头部data里
+    that.setData({
+      ency: ency,
+      iv: iv,
+      errMsg: errMsg,
+    })
+    util.request("/api/getUnionID", {
+        'sessionKey': sessionKey,
+        'encryptedData': e.detail.encryptedData,
+        'iv': e.detail.iv
       }, "post",
       (res) => {
-        that.setData({
-          binding: res.data.data
+        let data=JSON.parse(res.data.data)
+        this.setData({
+          nickName: data.nickName,
+          avatarUrl: data.avatarUrl,
+          unionId: data.unionId
         })
+        that.zhuce(); //调用手机号授权事件
       },
       () => {
         console.log("失败")
       },
-      () => {}
+      () => {
+      }
     )
-   }, 800);
-
-    
-  
-    
-
 
   },
-  onGotUserInfo: function(e) {
+
+
+
+
+  zhuce: function (e) {
+    //判断登录状态
+    let that=this
+    wx.checkSession({
+      success: function () {
+        if (wx.getExtConfig) {
+          wx.getExtConfig({
+            success: function (res) {
+              util.request("/api/wechatLogin", {
+                  'openId': that.data.unionId,
+                  'sex': '男',
+                  'imgURL': that.data.avatarUrl,
+                  'nickname': that.data.nickName,
+                }, "post",
+                (res) => {
+                  if(res.data.data.telephone!=''){
+                    wx.setStorageSync('token', res.data.data.token); //存储token
+                    wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
+                    setTimeout(function () {
+                      wx.switchTab({
+                        url: '/pages/homePage/content/content'
+                      })
+                    })
+                  }else{
+                    that.setData({authorization:1})
+                  }
+
+                },
+                () => {
+                  console.log("失败")
+                },
+                () => {
+                }
+              )
+            }
+          })
+        }
+      },
+      fail: function () { //如果失败，就重新登录，并且重新获取手机号
+        //登录
+        wx.login({
+          fail: function (err) {},
+          complete: function (msg) {
+
+          },
+          success: function (loginInfo) {
+            if (wx.getExtConfig) {
+              wx.getExtConfig({
+                success: function (res) {
+                  var rescode = res.extConfig.code
+                  util.request("/api/getwxtel", {
+                      'encryptedData': e.detail.encryptedData,
+                      'iv': e.detail.iv,
+                      'sessionKey': sessionKey
+                    }, "post",
+                    (res) => {
+                      console.log(res)
+                    },
+                    () => {
+                      console.log("失败")
+                    },
+                    () => {
+                    }
+                  )
+
+                },
+
+              })
+            }
+          }
+        })
+      }
+    })
+  },
+
+  getPhoneNumber: function(e) {
     //登录
-    var openid = wx.getStorageSync('openid')
     var that = this
     var ency = e.detail.encryptedData;
     var iv = e.detail.iv;
@@ -66,56 +179,13 @@ Page({
     })
 
 
-    that.zhuce(); //调用手机号授权事件
+    that.zhuceTwo(); //调用手机号授权事件
   },
 
-
-
-
-  getUserInfo: function(e) {
-    let {
-      binding
-    } = this.data
-    let sex = 0
-    if (e.detail.userInfo.gender == 1) {
-      sex = 0
-    } else {
-      sex = 1
-    }
-    util.request("/api/wechatLogin", {
-        'openId': wx.getStorageSync('openid'),
-        'sex': sex,
-        'nickname': e.detail.userInfo.nickName
-      }, "post",
-      (res) => {
-        wx.setStorageSync('token', res.data.data.token); //存储token
-        wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
-        wx.setStorageSync('sex', res.data.data.sex); //存储用户性别
-        wx.setStorageSync('imgURL', res.data.data.imgURL);//存储用户头像
-        wx.setStorageSync('telephone', res.data.data.telephone)//存储用户头像
-        setTimeout(function() {
-          wx.switchTab({
-            url: '/pages/homePage/content/content'
-          })
-        })
-      },
-      () => {
-        console.log("失败")
-      },
-      () => {
-        console.log("接口调用结束的回调函数")
-      }
-    )
-  },
-
-
-
-  zhuce: function(e) {
+  zhuceTwo: function(e) {
     var that = this;
     var ency = that.data.ency;
     var iv = that.data.iv;
-    var errMsg = that.data.errMsg;
-    var loginInfo = app.globalData.loginInfo
 
     //判断登录状态
     wx.checkSession({
@@ -123,21 +193,19 @@ Page({
         if (wx.getExtConfig) {
           wx.getExtConfig({
             success: function(res) {
-              var rescode = res.extConfig.code
               var sessionKey = wx.getStorageSync("sessionKey")
-              var openid = wx.getStorageSync('openid')
               util.request("/api/getwxtel", {
-                  'encryptedData': ency,
+                  'encryptedData': ency, 
                   'iv': iv,
                   'sessionKey': sessionKey
                 }, "post",
                 (res) => {
                   wx.setStorageSync('phone', res.data.data.phoneNumber)
                   util.request("/api/wechatLogin", {
-                      'openId': openid,
-                      'sex':'',
-                      'imgURL':'',
-                      'nickname':'',
+                    'openId': that.data.unionId,
+                    'sex': '男',
+                    'imgURL': that.data.avatarUrl,
+                    'nickname': that.data.nickName,
                     }, "post", 
                     (res) => {
                   
@@ -145,7 +213,7 @@ Page({
                       wx.setStorageSync('telephone', res.data.data.telephone)//存储用户头像
                       util.request("/api/getbindmobile", {
                         'mobile': wx.getStorageSync('phone'),
-                        'wechatid': openid }, "post", 
+                        'wechatid': that.data.unionId }, "post", 
                         (res) => {
                           wx.setStorageSync('token', res.data.data.token); //存储token
                           wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
@@ -164,7 +232,6 @@ Page({
                       console.log("失败")
                     },
                     () => {
-                      console.log("接口调用结束的回调函数")
                     }
                   )
                 },
@@ -172,7 +239,6 @@ Page({
                   console.log("失败")
                 },
                 () => {
-                  console.log("接口调用结束的回调函数")
                 }
               )
             }
@@ -203,7 +269,6 @@ Page({
                       console.log("失败")
                     },
                     () => {
-                      console.log("接口调用结束的回调函数")
                     }
                   )
 

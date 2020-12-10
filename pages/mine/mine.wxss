@@ -65,7 +65,7 @@ text {
 
 .mine .headerTop .header .name .navl {
   padding: 3rpx 8rpx;
-  background: #f5a623;
+  background: linear-gradient(270deg, rgba(252, 164, 0, 1) 0%, rgba(254, 224, 115, 1) 100%);
   border-radius: 2px;
   font-size: 10px;
   color: #fff;
