@@ -154,4 +154,21 @@ Page({
       url: '/generalization/minePreference/minePreference'
     })
   },
+   //跳转用户详情
+   Personal: function (e) {
+    if (wx.getStorageSync('token')) {
+      wx.navigateTo({
+        url: '/pages/personal/personal?uuid=' + e.currentTarget.dataset.uuid
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/authorization/authorization'
+      })
+    }
+  },
+  releaseDynamics:function(){
+    wx.navigateTo({
+      url: '/generalization/releaseDynamics/releaseDynamics'
+    })
+  }
 })

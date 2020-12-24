@@ -114,6 +114,7 @@ Page({
         cityInfo: data.originalData.result.addressComponent,
         selectCity: data.originalData.result.addressComponent.city
       });
+      console.log(data.originalData.result.addressComponent.district)
       if (that.data.address != '') {
         that.goleloand()
       }
@@ -569,6 +570,7 @@ Page({
   },
   //上拉加载
   onReachBottom: function () {
+   
     this.setData({
       pages: this.data.pages + 1
     })

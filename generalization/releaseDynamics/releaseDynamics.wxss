@@ -1,0 +1,60 @@
+.releaseDynamics {
+  height: 100%;
+}
+.releaseDynamics .head{
+  height: 3rem;
+  background-color: #f3f3f3;
+
+}
+.releaseDynamics .head>text{
+  font-size: 0.75rem;
+  color: #D85D27;
+  line-height: 3rem;
+  padding-left: 0.5rem;
+  float: left;
+}
+.releaseDynamics .head>button{
+  width:3.5rem;
+  height: 1.88rem;
+  font-size: 0.8rem;
+  color: #fff;
+  background: #D85D27;
+  float: right;
+  margin-right: 1rem;
+  margin-top: 0.61rem;
+}
+.releaseDynamics .content{
+  width: 90%;
+  margin: 1rem auto 0;
+}
+.releaseDynamics .content textarea{
+  font-size: 0.88rem;
+  width: 100%;
+}
+.imgContent{
+  margin-top: 1rem;
+}
+.imgContent>view{
+  width: 30%;
+  height: 6.3rem;
+  margin-left: 3%;
+  float: left;
+  margin-top: 0.5rem;
+  position: relative;
+}
+.imgContent>view:nth-child(3n+1){
+  margin-left: 0;
+}
+.imgContent>view>image{
+  width: 100%;
+  height: 100%;
+}
+.delet{
+  color: #9b9b9b;
+  font-size: 2rem;
+  position: absolute;
+  top: 0.1rem;
+  right: 0.3rem;
+  line-height: 1.5rem;
+}
+

@@ -72,7 +72,51 @@ function Request(url, data, method, successFn, failFn, completeFn) {
           completeFn();
         }
       })
-    } else if (url == '/api/ComplainIstrueImgs') {
+    }else if (url =='/api/PersonalprofileImg') {
+      wx.showLoading({
+        title: '正在上传',
+        mask: true
+      })
+      wx.uploadFile({
+        url: API + url,
+        filePath: data,
+        name: 'files',
+        header: {
+          "Content-Type": "multipart/form-data",
+          "token": wx.getStorageSync('token'),
+        },
+        method: method,
+        success: function (res) {
+          wx.hideLoading()
+
+          if (JSON.parse(res.data).code == 2000||JSON.parse(res.data).code ==4003) {
+            successFn(res);
+
+          } else if (JSON.parse(res.data).code == 40101) {
+            wx.showToast({
+              title: '身份验证失败',
+              icon: 'none',
+              duration: 1500,
+              mask: true
+            })
+          }
+        },
+        fail: function (res) {
+          wx.showToast({
+            title: '加载失败',
+            icon: 'none',
+            duration: 1500,
+            mask: true
+          })
+          failFn(res);
+        },
+        complete: function () {
+          wx.stopPullDownRefresh(); //停止下拉刷新
+          wx.hideNavigationBarLoading() //完成停止加载
+          completeFn();
+        }
+      })
+    }else if (url == '/api/ComplainIstrueImgs') {
       wx.showLoading({
         title: '正在上传',
         mask: true

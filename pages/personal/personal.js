@@ -32,14 +32,17 @@ Page({
     img: '',
     closeFing: false,
     indexd: '1',
+    dynameicList:[],
     dynameicListLeft: [],
     dynameicListRight:[],
     uuid:'',
-    page:1
+    page:1,
+    myUUid:'',
   },
   onLoad: function (option) {
     this.setData({
-      img: util.API
+      img: util.API,
+      myUUid:option.uuid
     })
     wx.showLoading({
       title: '',
@@ -102,10 +105,7 @@ Page({
     })
   },
   bossTitle: function (e) {
-    wx.showLoading({
-      title: '',
-      mask: true
-    })
+   
     this.setData({
       indexd: e.currentTarget.dataset.index
     })
@@ -114,10 +114,9 @@ Page({
     }
   },
   list:function(){
-   
     util.Request("/api/getPlayerDynamicList", {
       'page': this.data.page,
-      playeruuid: wx.getStorageSync('uuid')
+      playeruuid: this.data.myUUid
     }, "post",
     (res) => {
       let data=res.data.data
@@ -133,7 +132,7 @@ Page({
             dynameicListRight.push(data[i])
           }
       }
-      this.setData({dynameicListLeft:dynameicListLeft,dynameicListRight:dynameicListRight})
+      this.setData({dynameicListLeft:dynameicListLeft,dynameicListRight:dynameicListRight,dynameicList:data})
       wx.hideLoading()
     },
     () => {
@@ -144,11 +143,34 @@ Page({
   )
   },
   thumbsUp:function(e){
+    
+    for(let i in this.data.dynameicList){
+     if( this.data.dynameicList[i].uuid==e.currentTarget.dataset.uuid){
+         if(this.data.dynameicList[i].isown==1){
+          this.data.dynameicList[i].isown=0
+          this.data.dynameicList[i].fabulou=this.data.dynameicList[i].fabulou-1
+         }else{
+          this.data.dynameicList[i].isown=1
+          this.data.dynameicList[i].fabulou=this.data.dynameicList[i].fabulou+1
+         }
+     }
+    }
+
+    let dynameicListLeft=[]
+    let dynameicListRight=[]
+    for(let i in this.data.dynameicList){
+        if(this.data.dynameicList[i].index%2==0){
+          dynameicListLeft.push(this.data.dynameicList[i])
+        }else{
+          dynameicListRight.push(this.data.dynameicList[i])
+        }
+    }
+    this.setData({dynameicListLeft:dynameicListLeft,dynameicListRight:dynameicListRight})
+
     util.Request("/api/PlayerDynamicGiveTheThumbsUp", {
       'dynamic_id': e.currentTarget.dataset.uuid
     }, "post",
     (res) => {
-       this.list()
     },
     () => {
       console.log("失败")
@@ -157,4 +179,21 @@ Page({
     }
   )
   },
+  dynamicDetails:function(e){
+    wx.navigateTo({
+      url: '/generalization/dynamicDetails/dynamicDetails?uuid='+e.currentTarget.dataset.uuid
+    })
+  },
+  onShow:function(){
+    this.list()
+  },
+  avataBoss:function(e){
+    wx.previewImage({
+      current: e.currentTarget.dataset.src,
+      urls: [e.currentTarget.dataset.src]
+    })
+  },
+
+ 
+
 })

@@ -2,7 +2,7 @@
 	<view class="tap">
 		<view class="headContent">
 			<view class="leftImg">
-				<image class="image" src='{{img}}/{{personalData.imgURL}}'></image>
+				<image class="image" bindtap="avataBoss" data-src="{{img}}/{{personalData.imgURL}}" src='{{img}}/{{personalData.imgURL}}'></image>
 				<view class="name">
 
 					<image class="sex" wx:if="{{personalData.sex==0}}" src='/assets/sex0@2x.png'></image>
@@ -29,7 +29,7 @@
 
 				<view class="duishoubi">
 					<text>对手币</text>
-					<text style="padding-left:1.56rem;">20个</text>
+					<text style="padding-left:1.56rem;">{{personalData.coinSum}}</text>
 					<text style="padding-left:0.6rem;color:#ddd" bindtap="counterCoin">对手币？</text>
 				</view>
 				<view class="praise">
@@ -62,7 +62,7 @@
 				</view>
 			</view>
 			<view class="List">
-				<text wx:for="{{personalData.userLabel}}" wx:key='index'>{{item.LabelName}}{{item.LabelCount}}</text>
+				<text wx:for="{{personalData.userLabel}}" wx:key='index'>{{item.LabelName}}（{{item.LabelCount}}）</text>
 			</view>
 		</view>
 
@@ -87,15 +87,15 @@
 				<text class="txt"><text>年龄:</text>
 					<text class="sexColor">{{personalData.age}}</text></text>
 				<text class="txt"><text>身高:</text>
-					<text class="sexColor">{{personalData.age}}cm</text></text>
+					<text class="sexColor">{{personalData.tall}}cm</text></text>
 				<text class="txt"><text>体重:</text>
 					<text class="sexColor">{{personalData.weight}}kg</text></text>
 				<text class="text"><text>常驻地:</text>
 					<text class="sexColorT">{{personalData.address}}</text></text>
 				<text class="text" style="color:#000" wx:if="{{personalData.faveriteSport!==''}}"><text
 						style="color:#9b9b9b">技术水平自我评定:</text> {{personalData.faveriteSport}}</text>
-				<text class="text" wx:if="{{personalData.comment!==''}}"><text>个人简介:</text>
-					<text class="sexColorT">{{personalData.comment}}</text></text>
+				<text class="text"><text>个人简介:</text>
+					<text class="sexColorT">{{personalData.comment==''?'无言以对':personalData.comment}}</text></text>
 			</view>
 		</view>
 		<view style="height:0.63rem;background:#F3F3F3;margin-top:0.63rem;"></view>
@@ -109,14 +109,14 @@
 				</view>
 				<view class="badminton" wx:for="{{personalData.userTechcoins}}" wx:key='index'>
 					<text>{{item.sport_name}}</text>
-					<text style='width:40%;text-align:center;position: absolute;left:50%;margin-left:-25%;'>{{item.total}}</text>
+					<text style='width:40%;text-align:center;position: absolute;left:50%;margin-left:-25%;'>{{item.total.indexOf('.')==-1||item.total==0?item.total+'.00':item.total+'0'}}</text>
 					<view style="float:right;">
 						<text class="sliderL" style='color:#fff;font-size:10px;'>{{item.nowlevel}}</text>
 						<view class="slider">
 							<view style='width:{{item.total/item.maxcoins*100}}%'></view>
-							<text>{{item.mincoins}}/{{item.maxcoins}}</text>
+							<text>{{item.total.indexOf('.')==-1||item.total==0?item.total+'.00':item.total+'0'}}/{{item.maxcoins}}</text>
 						</view>
-						<text class="sliderL" style="background: #E9E9E9;color:#fff;font-size:10px;">{{item.nextlevel}}</text>
+						<text class="sliderL" style="background: #E9E9E9;color:#fff;font-size:10px;margin-left:0.2rem">{{item.nextlevel}}</text>
 					</view>
 				</view>
 			</view>
@@ -124,18 +124,15 @@
 	</view>
 
 	<view class="dynamicState" wx:if="{{indexd=='2'}}">
-	
-
-
 		<view class='content'>
 			<view class='left'>
-				<view wx:for="{{dynameicListLeft}}"  wx:key="index">
-					<image class='headImg' style='height:10rem' src="{{img}}/{{item.firstImgURL}}"></image>
+				<view wx:for="{{dynameicListLeft}}"   wx:key="index" >
+					<image class='headImg'  mode="aspectFill" bindtap="dynamicDetails" data-uuid="{{item.uuid}}" src="{{img}}/{{item.firstImgURL}}"></image>
 					 <view class="title">{{item.title}}</view>
 					 <view class="userDetails">
              <image src="{{img}}/{{item.imgURL}}"></image>
 							<view>{{item.nickname}}</view>
-							<image bindtap="thumbsUp" data-uuid="{{item.uuid}}" src="{{item.isown==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
+							<image catchtap="thumbsUp" data-uuid="{{item.uuid}}" src="{{item.isown==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
 							<view class="fabulou" >{{item.fabulou}}</view>
 					 </view>
 					</view>
@@ -143,13 +140,13 @@
 
 			</view>
 			<view class='right'>
-				<view wx:for="{{dynameicListRight}}"  wx:key="index">
-					<image class='headImg' style='height:14rem' src="{{img}}/{{item.firstImgURL}}"></image>
+				<view wx:for="{{dynameicListRight}}" wx:key="index"  >
+					<image class='headImg' mode="aspectFill" bindtap="dynamicDetails" data-uuid="{{item.uuid}}" src="{{img}}/{{item.firstImgURL}}"></image>
 					<view class="title">{{item.title}}</view>
 					<view class="userDetails">
              <image src="{{img}}/{{item.imgURL}}"></image>
 						 <view>{{item.nickname}}</view>
-						 <image  bindtap="thumbsUp" data-uuid="{{item.uuid}}" src="{{item.isown==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
+						 <image  catchtap="thumbsUp" data-uuid="{{item.uuid}}" src="{{item.isown==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
 						 <view class="fabulou">{{item.fabulou}}</view>
 					 </view>
 				</view>

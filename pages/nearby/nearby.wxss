@@ -1,195 +1,66 @@
+page {
+  height: 100%;
+  background-color: #F3F3F3;
+}
 
-page{
+.nearby {
   height: 100%;
 }
-.nearby{
-  height: 100%;
+
+.headNav {
+  height: 2.88rem;
+  background: #D85D27;
+  color: #fff;
 }
-.joon{
-  font-size: 14px;
-  display: block;
+
+.headNav>view {
+  width: 18%;
   float: left;
-  line-height: 1.9rem;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  margin-top: 0.8rem;
+
 }
-.nearby .search{
-   width: 90%;
-   height:1.5rem;
-   margin: 0 auto 1rem;
-   border-radius: 200px;
-   background: #ccc;
+
+.headNav>view:first-child {
+  margin-left: 26%;
+  margin-right: 6%;
 }
-.nearby .search>image{
-  width: 0.8rem;
-  height: 0.8rem;
-  margin:0.35rem 0 0 0.9rem;
-  float: left;
+
+.headNav>view>view {
+  height: 0.12rem;
+  width: 1.13rem;
+  background: #fff;
+  margin: 0.28rem auto 0;
+  border-radius: 0.06rem;
 }
-.nearby .search input{
-  font-size: 14px;
-  float: left;
-  height: 1.5rem;
-  margin-left: 0.3rem;
+.player .top{
+  overflow: hidden;
+  height: 2.75rem;
+  background-color: #fff;
   
 }
-.nearby .projectNav{
-  width: 90%;
-  height: 1.3rem;
-  margin: 0 auto;
-  display: flex;
-  overflow: hidden;
-  border-bottom: 0.06rem solid #ccc;
-}
-.nearby .projectNav>view{
- flex: 1;
- margin-left: 3rem;
- position: relative;
- height: 2.5rem;
- padding-bottom:0.8rem;
-}
-.nearby .projectNav>view>text{
-  font-size: 14px;
-  display: block;
-  text-align: center;
-  line-height: 1.3rem;
-}
-.nearby .projectNav>view>image{
-  width: 0.4rem;
-  height: 0.3rem;
-  position: absolute;
-  right: 0;
-  top:0.6rem;
-}
-.nearby .nearbyList{
-  height: 90%;
-  position: relative;
-  overflow: hidden;
-}
-.mask{
-  width: 100%;
-  height: 100%;
-  background:rgba(0, 0, 0,0.7);
-  position: absolute;
-  top: 0;
-  z-index: 100
-}
-.mask .activity{
+.player .top .picker{
   width: 33.33%;
-  background-color: #fff
-}
-.mask .activity .activitySon{
-  width: 70%;
-  height: 2.3rem;
-  margin: 0 auto;
-}
-.mask .activity .activitySon text{
-  font-size: 12px;
-  color: #333333;
-  line-height: 2.3rem;
-}
-.mask .activity .activitySon image{
-  width: 0.3rem;
-  height: 0.4rem;
-  display: block;
-  float: right;
-  margin-top: 1rem;
-}
-.mask .activityTwo{
-   width: 25%;
-   position: absolute;
-   top: 0;
-   left:25%;
-   background-color: #fff
-}
-.mask .activityTwo .activityTwoSon text{
- font-size: 12px;
- color: #9B9B9B;
- display: block;
- text-align: center;
- height: 2rem;
- line-height: 2rem;
-}
-.mask .sort{
-   width: 33.33%;
-   position: absolute;
-   top: 0;
-   left:33.33%;
-   background-color: #fff
-}
-.mask .sort text{
-  font-size: 12px;
-  color: #9B9B9B;
-  display: block;
+  float: left;
+  line-height: 2.75rem;
   text-align: center;
-  height: 2rem;
-  line-height: 2rem;
+  font-size: 0.88rem;
+  display: flex;
+  justify-content: center;
+
 }
-.characterList{
-  width: 95%;
-  margin: 1rem  auto 0;
-  overflow: hidden;
-  position: relative;
-  border-bottom:2rpx solid #ccc;
-  padding-bottom: 0.5rem;
-}
-.characterList .img{
-  width: 4.4rem;
-  height:4.4rem;
+.player .top .picker>text{
+  float: left;
   display: block;
-  border-radius: 15rpx 15rpx;
-  float: left;
-
-}
-.characterList .content{
-  float: left;
-  width:69%;
-  margin-left: 0.8rem;
-}
-.characterList .content .header {
-  overflow: hidden;
-}
-.characterList .content .header .text{
-font-size: 16px;
-color: #333333;
-display: block;
-float: left;
-}
-.characterList .content .header .image{
-display: block;
-width: 0.8rem;
-height: 0.8rem;
-float: left;
-margin:0.2rem 0 0 0.3rem;
+  
 }
 
-.characterList .content .header .imageTwo{
-display: block;
-width: 1.06rem;
-height: 1.06rem;
-float: left;
-margin:0.1rem 0 0 0.3rem;
-}
-.characterList .content .header .textTwo{
-display: block;
-float: left;
-padding:0rem 0.2rem;
-margin:0.3rem 0 0 0.3rem;
-background:linear-gradient(270deg,rgba(252,164,0,1) 0%,rgba(254,224,115,1) 100%);
-border-radius:0.13rem;
-font-size: 0.5rem;
-color: #FFFFFF;
-}
-.characterList .content .signs{
-  font-size: 14px;
-  color: #4A4A4A;
-  overflow: hidden;
+.player .top .picker>image{
+  width: 0.38rem;
+  height: 0.25rem;
+  margin-left: 0.25rem;
+  display: block;
+  float: left;
+  margin-top: 1.3rem;
  
-}
-.characterList .content .signs text{
-  display: block;
-  float: left;
-  margin-left: 0.5rem;
-}
-.characterList .content .interest{
-  font-size: 14px;
-  color: #4A4A4A;
 }

@@ -350,6 +350,23 @@
           "pathName": "generalization/bookInTwo/bookInTwo",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "动态详情",
+          "pathName": "generalization/dynamicDetails/dynamicDetails",
+          "query": "uuid= 01b01dcd-2cfe-8c72-67f2-ad3eb0da5310",
+          "scene": null
+        },
+        {
+          "name": "发布动态",
+          "pathName": "generalization/releaseDynamics/releaseDynamics",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "附近对手",
+          "pathName": "pages/nearby/nearby",
+          "scene": null
         }
       ]
     }

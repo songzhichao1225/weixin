@@ -1,75 +1,37 @@
-<!--index.wxml-->
-<view class="nearby" bindtap='itemSelectionH'>
-  <view class="search">
-    <!-- <text class="joon">搜索伙伴</text> -->
-    <image class="image" src='/assets/SearchIcon@2x.png'></image>
-    <input type="search" disabled='true' bindtap='inputTap' confirm-type='搜索' placeholder='请输入手机号' maxlength='11' placeholder-style='font-size:14px;color: #9B9B9B;'></input>
-  </view>
-
-  <view class="projectNav">
-    <view style='margin:0;' catchtap='itemSelection'>
-      <text>{{sexT}}</text>
-      <image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
+<view class="nearby">
+  <view class="headNav">
+    <view>人气选手<view></view>
     </view>
-    <view catchtap='sortHid'>
-      <text>{{sportT}}</text>
-      <image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
-    </view>
-    <view catchtap='statusHid'>
-      <text>{{levelT}}</text>
-      <image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
+    <view>技术大咖<view></view>
     </view>
   </view>
 
-  <view class="nearbyList">
-
-    <text wx:if="{{nearbyData.length==0&&flag==true}}" style='display:block;text-align:center;margin-top:2rem;'>没有找到相应伙伴</text>
-
-    <scroll-view scroll-y style="height: 100%" bindscrolltolower="lower" wx:if="{{nearbyData.length>0}}">
-      <view class="characterList" wx:for="{{nearbyData}}"wx:key="index" data-uid="{{item.uuid}}" bindtap='getUserDetailInfo'>
-        <image class="img" src='{{img}}/{{item.userInfo.imgURL}}'></image>
-        <view class="content">
-          <view class="header">
-            <text class="text">{{item.userInfo.nickname}}</text>
-            <image wx:if="{{item.userInfo.sex==0}}" class='image' src='/assets/sex0@2x.png'></image>
-            <image wx:if="{{item.userInfo.sex==1}}" class='image' style="width:0.6rem;" src='/assets/sex1@2x.png'></image>
-            <image src='/assets/{{item.hightName}}' class='imageTwo'></image>
-            <text class="textTwo">{{item.hightLevel}}</text>
-            <image src='/assets/jia.png' data-uuid="{{item.uuid}}" catchtap="joinFriends" style="width:1.4rem;height:1.2rem;float:right"></image>
-          </view>
-          <view class="signs">
-            <text style="margin:0;">年龄:{{item.userInfo.age}}岁</text>
-            <text>体重:{{item.userInfo.tall}}Kg</text>
-            <text>身高:{{item.userInfo.weight}}cm</text>
-          </view>
-          <view class="interest">
-            <text style='float:left;display:block;'>喜爱运行项目:{{item.sportidNameStr}}</text>
-          </view>
+  <view class="player">
+    <view class="top">
+      <picker mode="selector"  range="{{arraySex}}" range-key="name" bindchange="bindSex">
+        <view class="picker">
+          <text>{{sex==''?'性别':arraySex[sex].name}}</text> <image src="../../assets/home_icon_jt_xia_nor@2x.png"></image>
         </view>
-        <text style="display:block;font-size:12px;position: absolute;bottom:0;right:0;">{{item.range}}</text>
-      </view>
-    </scroll-view>
+      </picker>
 
-
-
-    <view class="mask" wx:if="{{hidden}}">
-      <view class="activity" wx:if="{{hiddenOne}}">
-        <view class="activitySon" bindtap='secondary' wx:for="{{activity}}" wx:key='index' data-name="{{item.name}}" data-num="{{item.num}}">
-          <text style="display:block;text-align:center;">{{item.name}}</text>
+      <picker mode="selector" range="{{arraySport}}" range-key="name" bindchange="bindSport">
+        <view class="picker">
+          <text>{{Sport==''?'喜爱运动':arraySport[Sport].name}}</text><image src="../../assets/home_icon_jt_xia_nor@2x.png"></image>
         </view>
-      </view>
+      </picker>
 
-      <view class="sort" wx:if="{{sortHid}}">
-        <view class="sortSon" wx:for="{{sort}}" bindtap='sortSe' data-num="{{item.selectD}}" data-name="{{item.name}}" wx:key='index'>
-          <text style="display:block;text-align:center;">{{item.name}}</text>
+      <picker mode="selector" range="{{arrayDistance}}" range-key="name"  bindchange="bindDistance">
+        <view class="picker">
+         <text>{{Distance==''?'距离范围':arrayDistance[Distance].name}}</text><image src="../../assets/home_icon_jt_xia_nor@2x.png"></image>
         </view>
-      </view>
+      </picker>
+    </view>
 
-      <view class="sort" style='left:66.66%;' wx:if="{{statusHid}}">
-        <view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key='index' data-name="{{item.name}}" data-num="{{item.num}}">
-          <text>{{item.name}}</text>     
-        </view>
-      </view>
-    </view>   
+
+
+
   </view>
+
+
+
 </view>

@@ -141,3 +141,12 @@ text {
   text-align: center;
   margin-top: 16rpx;
 }
+.releaseDynamics{
+  width: 4.18rem;
+  height: 1.25rem;
+  font-size: 0.75rem;
+  background-color: #f3f3f3;
+  border-radius: 0.75rem;
+  float: left;
+  margin-top: 0.7rem;
+}

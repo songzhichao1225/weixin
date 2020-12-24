@@ -1,0 +1,21 @@
+<view class="releaseDynamics">
+	<view class="head">
+		<text>上传的第一张图片为动态展示时的封面图</text>
+		<button bindtap="submit">发表</button>
+	</view>
+	<view class="content">
+		<textarea auto-height bindinput="textInput" maxlength="200" placeholder="分享一个新动态吧..." />
+		<view class="imgContent">
+		<view wx:for="{{imgURLT}}" wx:key="index">
+			<image  src="{{img}}/{{item}}" mode="aspectFill"></image>
+			<view class="delet" bindtap="delet" data-src="{{item}}">×</view>
+		</view>
+		<view>
+			<image src="../../assets/uploadImg.png" wx:if="{{imgURLT.length<9}}" bindtap="chooseImg" mode="widthFix"></image>
+		</view>
+
+		
+	</view>
+</view>
+
+</view>

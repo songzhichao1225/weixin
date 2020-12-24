@@ -79,7 +79,9 @@
         "screen/screen",
         "commentaryList/commentaryList",
         "minePreference/minePreference",
-        "bookInTwo/bookInTwo"
+        "bookInTwo/bookInTwo",
+        "dynamicDetails/dynamicDetails",
+        "releaseDynamics/releaseDynamics"
       ]
     }
   ],
@@ -88,8 +90,9 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTextStyle": "black", 
-    "navigationBarTitleText": "找对手"
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "找对手",
+    "onReachBottomDistance":20
   },
   "tabBar": {
     "borderStyle": "black", 
