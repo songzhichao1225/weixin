@@ -35,7 +35,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.12.2",
+  "libVersion": "2.14.1",
   "appid": "wx1b53af237e2e0d8e",
   "projectname": "%E6%8C%91%E6%88%98PK",
   "debugOptions": {
@@ -202,7 +202,7 @@
         {
           "name": "创建活动成功",
           "pathName": "generalization/createSuccess/createSuccess",
-          "query": "Identification=1&inviteId= 9312bbfb-2796-ce8f-59e6-3728d097b9e0&referee=0&status=1",
+          "query": "Identification=2&inviteId=da182f78-b3aa-2dab-175f-d75326a47af2&referee=0&status=1",
           "scene": null
         },
         {
@@ -366,6 +366,25 @@
         {
           "name": "附近对手",
           "pathName": "pages/nearby/nearby",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "明细",
+          "pathName": "pages/goldDetails/goldDetails",
+          "query": "goldType=2",
+          "scene": null
+        },
+        {
+          "name": "我的好友",
+          "pathName": "generalization/mineFriend/mineFriend",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "选择抵用券",
+          "pathName": "generalization/deductibles/deductibles",
+          "query": "siteMoney=54.00&offsetquota=2",
           "scene": null
         }
       ]

@@ -1,8 +1,9 @@
 <view class="walleDetails">
-	<scroll-view scroll-y style="height:100%;" bindscrolltolower="lower">
+	<scroll-view scroll-y style="height:100%;" bindscrolltolower="lower" >
 		<view class="listSon" wx:for="{{wallertList}}" wx:key="index" bindtap="moneyDetail" data-id="{{item.UUID}}">
 			<view class="contentLeft">
 				<text>{{item.sportName}}</text>
+				<text>{{item.OrderID}}</text>
 				<text>{{item.RecordDate}}</text>
 			</view>
 			<view class="money">

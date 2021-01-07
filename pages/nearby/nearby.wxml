@@ -1,34 +1,146 @@
 <view class="nearby">
   <view class="headNav">
-    <view>人气选手<view></view>
+    <view bindtap="indexOne" style="{{type==1?'opacity:1':'opacity:0.6'}}" data-index="1">人气选手<view wx:if="{{type==1}}">
+      </view>
     </view>
-    <view>技术大咖<view></view>
+    <view bindtap="indexOne" style="{{type==2?'opacity:1':'opacity:0.6'}}" data-index="2">技术大咖<view wx:if="{{type==2}}">
+      </view>
     </view>
   </view>
 
-  <view class="player">
+  <view class="player" wx:if="{{type==1}}">
     <view class="top">
-      <picker mode="selector"  range="{{arraySex}}" range-key="name" bindchange="bindSex">
+      <picker mode="selector" range="{{arraySex}}" range-key="name" bindchange="bindSex">
         <view class="picker">
-          <text>{{sex==''?'性别':arraySex[sex].name}}</text> <image src="../../assets/home_icon_jt_xia_nor@2x.png"></image>
+          <text>{{sex==0?'性别':arraySex[sex].name}}</text>
+          <image src="../../assets/home_icon_jt_xia_nor@2x.png"></image>
         </view>
       </picker>
 
       <picker mode="selector" range="{{arraySport}}" range-key="name" bindchange="bindSport">
         <view class="picker">
-          <text>{{Sport==''?'喜爱运动':arraySport[Sport].name}}</text><image src="../../assets/home_icon_jt_xia_nor@2x.png"></image>
+          <text>{{Sport==''?'喜爱运动':arraySport[Sport].name}}</text>
+          <image src="../../assets/home_icon_jt_xia_nor@2x.png"></image>
         </view>
       </picker>
 
-      <picker mode="selector" range="{{arrayDistance}}" range-key="name"  bindchange="bindDistance">
+      <picker mode="selector" range="{{arrayDistance}}" range-key="name" bindchange="bindDistance">
         <view class="picker">
-         <text>{{Distance==''?'距离范围':arrayDistance[Distance].name}}</text><image src="../../assets/home_icon_jt_xia_nor@2x.png"></image>
+          <text>{{Distance==0?'距离范围':arrayDistance[Distance].name}}</text>
+          <image src="../../assets/home_icon_jt_xia_nor@2x.png"></image>
+        </view>
+      </picker>
+    </view>
+    <scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{enabled}}"
+      bindrefresherrefresh="refresh" bindscrolltolower="tolower" class="dynamicState">
+      <view class='left'>
+        <view wx:for="{{dynameicListLeft}}" bindtap="dynamicDetails" data-uuid="{{item.uuid}}" class="boss" wx:key="index">
+          <image class='headImg' mode="aspectFill"  
+            src="{{img}}/{{item.firstImgURL}}"></image>
+          <view class="title">{{item.title}}</view>
+          <view class="userDetails">
+            <image src="{{img}}/{{item.imgURL}}"></image>
+            <view class="view">{{item.nickname}}</view>
+            <!-- catchtap="thumbsUp" -->
+            <image     data-uuid="{{item.uuid}}"
+              src="{{item.isown==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
+            <view class="fabulou view">{{item.fabulou}}</view>
+            <view class="join"  catchtap="possible" data-num="{{item.publiccount}}" data-uuid="{{item.playeruuid}}">可参与活动({{item.publiccount}})</view>
+          </view>
+          <view class="distance">{{item.range}}</view>
+          <view class="fire">
+            <image src="../../assets/fire.png"></image><text>人气指数:{{item.popularity}}</text>
+          </view>
+        </view>
+
+
+      </view>
+      <view class='right'>
+        <view wx:for="{{dynameicListRight}}" class="boss" wx:key="index">
+          <image class='headImg' mode="aspectFill" bindtap="dynamicDetails" data-uuid="{{item.uuid}}"
+            src="{{img}}/{{item.firstImgURL}}"></image>
+          <view class="title">{{item.title}}</view>
+          <view class="userDetails">
+            <image src="{{img}}/{{item.imgURL}}"></image>
+            <view class="view">{{item.nickname}}</view>
+            <image catchtap="thumbsUp" data-uuid="{{item.uuid}}"
+              src="{{item.isown==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
+            <view class="fabulou view">{{item.fabulou}}</view>
+            <view class="join"  bindtap="possible" data-num="{{item.publiccount}}" data-uuid="{{item.playeruuid}}">可参与活动({{item.publiccount}})</view>
+          </view>
+          <view class="distance">{{item.range}}</view>
+          <view class="fire">
+            <image src="../../assets/fire.png"></image><text>人气指数:{{item.popularity}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="noContent" wx:if="{{type==1&&dynameicList.length===0}}">
+        <image src="../../assets/notextToko.png"></image>
+        <view>您好，您附近暂时没有伙伴~</view>
+      </view>
+
+    </scroll-view>
+  </view>
+
+  <view class="bigShot" wx:if="{{type==2}}">
+    <view class="top">
+      <picker mode="selector" range="{{arraySex}}" range-key="name" bindchange="bindSexTwo">
+        <view class="picker">
+          <text>{{sex==0?'性别':arraySex[sexTwo].name}}</text>
+          <image src="../../assets/home_icon_jt_xia_nor@2x.png"></image>
+        </view>
+      </picker>
+
+      <picker mode="selector" range="{{arraySport}}" range-key="name" bindchange="bindSportTwo">
+        <view class="picker">
+          <text>{{Sport==0?'运动项目':arraySport[SportTwo].name}}</text>
+          <image src="../../assets/home_icon_jt_xia_nor@2x.png"></image>
+        </view>
+      </picker>
+
+      <picker mode="selector" range="{{arrayDistance}}" range-key="name" bindchange="bindDistanceTwo">
+        <view class="picker">
+          <text>{{Distance==0?'距离范围':arrayDistance[DistanceTwo].name}}</text>
+          <image src="../../assets/home_icon_jt_xia_nor@2x.png"></image>
         </view>
       </picker>
     </view>
 
 
+    <scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{enabledTwo}}"
+      bindrefresherrefresh="refreshTwo" bindscrolltolower="tolowerTwo" class="bigShotList">
+      <view class="bigShotSon" wx:for="{{bigShotList}}" bindtap="peopleDetails" data-uuid="{{item.playeruuid}}" wx:key="index">
+        <view class='left'>
+          <image src="{{img}}/{{item.imgURL}}"></image>
+          <view class="prople">
+            <image wx:if="{{item.sex==0}}" src='/assets/sex0@2x.png'></image>
+            <image wx:if="{{item.sex==1}}" src='/assets/sex1@2x.png'></image>
+            <image wx:if="{{item.sportname=='网球'}}" class="aIcon" src='/assets/icon_dj_wq.png'></image>
+            <image wx:if="{{item.sportname=='高尔夫'}}" class="aIcon" src='/assets/icon_dj_gef.png'></image>
+            <image wx:if="{{item.sportname=='篮球'}}" class="aIcon" src='/assets/icon_dj_lq.png'></image>
+            <image wx:if="{{item.sportname=='乒乓球'}}" class="aIcon" src='/assets/icon_dj_ppq.png'></image>
+            <image wx:if="{{item.sportname=='排球'}}" class="aIcon" src='/assets/icon_dj_pq.png'></image>
+            <image wx:if="{{item.sportname=='台球'}}" class="aIcon" src='/assets/icon_dj_tq.png'></image>
+            <image wx:if="{{item.sportname=='羽毛球'}}" class="aIcon" src='/assets/icon_dj_ymq.png'></image>
+            <image wx:if="{{item.sportname=='足球'}}" class="aIcon" src='/assets/icon_dj_zq.png'></image>
+            <text>Lv{{item.grade}}</text>
+          </view>
+        </view>
+        <view class="right">
+          <view class="name">{{item.nickname}}</view>
+          <view class="range">
+            <text>年龄:{{item.age}}岁</text><text>体重:{{item.weight}}kg</text><text>身高:{{item.tall}}cm</text></view>
+          <view class="score">{{item.sportname}}/技术分{{item.sumtech}}</view>
+          <view class="activities" catchtap="possible" data-num="{{item.publiccount}}" data-uuid="{{item.playeruuid}}">可参与活动({{item.publiccount}})</view>
+          <view class="distanceTwo">{{item.range}}</view>
+        </view>
 
+      </view>
+
+
+
+    </scroll-view>
 
   </view>
 

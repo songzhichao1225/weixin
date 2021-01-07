@@ -1,0 +1,26 @@
+<view class="deductibles">
+  <view class="title">本次场地费{{siteMoney}}元，最多可使用场地费抵用券{{offsetquota}}元</view>
+  <scroll-view scroll-y="auto" class="scrollList" refresher-enabled="true" refresher-triggered="{{enabled}}"
+    bindrefresherrefresh="refresh" bindscrolltolower="tolower">
+    <view class="listSon" wx:for="{{list}}" wx:key="index">
+      <view class="left"><text>￥</text><text>{{item.reduce}}</text></view>
+      <view class="center">
+        <text>满{{item.full}}元可用</text>
+        <text>剩余{{item.number}}张</text>
+        <text>有效期至{{item.dateend}}</text>
+      </view>
+      <view class="operation">
+        <view class="onclick">
+          <image class="hao" bindtap="subtracts" data-index="{{index}}" data-moneysmall="{{item.reduce}}" src="../../assets/jian.png"></image>
+          <text>{{item.num}}</text>
+          <image class="hao" bindtap="joinMoney" data-money="{{item.full}}" data-num="{{item.num}}" data-number="{{item.number}}" data-index="{{index}}" data-moneysmall="{{item.reduce}}" src="../../assets/zeng.png"></image>
+        </view>
+        <view class="num" wx:if="{{item.num==0}}">选择数量</view>
+        <view class="num" wx:if="{{item.num==1}}" bindtap="clearOut" data-index="{{index}}" data-moneysmall="{{item.reduce}}">点击清空</view>
+      </view>
+
+    </view>
+  </scroll-view>
+  <view class="total"><text>合计:</text><text>已选择抵用券金额：{{moneyNum}}元</text></view>
+  <button class="submit" bindtap="submit">确定</button>
+</view>

@@ -14,6 +14,8 @@ Page({
     query.select('#name').boundingClientRect()
     query.selectViewport().scrollOffset()
     query.exec(function (res) {})
+    
+    
   },
   phone:function(e){
     this.setData({phone:e.detail.value})
@@ -91,6 +93,10 @@ Page({
         if (wx.getExtConfig) {
           wx.getExtConfig({
             success: function (res) {
+              wx.showLoading({
+                title: '登录中~',
+                mask: true
+              })
               util.request("/api/wechatLogin", {
                   'openId': that.data.unionId,
                   'sex': '男',
@@ -99,16 +105,21 @@ Page({
                 }, "post",
                 (res) => {
                   if(res.data.data.telephone!=''){
+                    
                     wx.setStorageSync('token', res.data.data.token); //存储token
                     wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
+                    wx.hideLoading()
                     setTimeout(function () {
-                      wx.switchTab({
-                        url: '/pages/homePage/content/content'
+                      wx.navigateBack({
+                        delta: 1
                       })
                     })
+                    
                   }else{
                     that.setData({authorization:1})
+                    wx.hideLoading()
                   }
+                  
 
                 },
                 () => {
@@ -215,18 +226,29 @@ Page({
                         'mobile': wx.getStorageSync('phone'),
                         'wechatid': that.data.unionId }, "post", 
                         (res) => {
-                          wx.setStorageSync('token', res.data.data.token); //存储token
-                          wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
+                          if(res.data.code==2000){
+                            wx.setStorageSync('token', res.data.data.token); //存储token
+                            wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
+                            setTimeout(function () {
+                              wx.navigateBack({
+                                delta: 1
+                              })
+                            })
+                          }else{
+                            wx.showToast({
+                              title: res.data.msg,
+                              icon: 'none',
+                            })
+                          }
+                          
+                           
+                          
                         },
                         () => { console.log("失败") },
                         () => {
                         }
                       )
-                      setTimeout(function() {
-                        wx.switchTab({
-                          url: '/pages/homePage/content/content'
-                        })
-                      })
+                    
                     },
                     () => {
                       console.log("失败")

@@ -1,7 +1,7 @@
 <view class="mineActivities">
 	<view class="head">
-		<view bindtap="navYe" data-id="publish" style="{{type=='publish'?'border-bottom:0.12rem solid #fff;':''}}">我发布的</view>
-		<view bindtap="navYe" data-id="join" style="{{type=='join'?'border-bottom:0.12rem solid #fff;':''}}">我报名的</view>
+		<!-- <view bindtap="navYe" data-id="publish" style="{{type=='publish'?'border-bottom:0.12rem solid #fff;':''}}">我发布的</view> -->
+		<!-- <view bindtap="navYe" data-id="join" style="{{type=='join'?'border-bottom:0.12rem solid #fff;':''}}">我报名的</view> -->
 	</view>
 	<view class="content">
 		<image src="/assets/WdBgBanner@2x.png"></image>

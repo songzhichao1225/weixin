@@ -6,7 +6,7 @@
 </view>
 
 
-<view class="about" bindtap="privacy">
+<!-- <view class="about" bindtap="privacy">
 	<text>隐私设置</text>
 	<image src='/assets/right.png'></image>
-</view>
+</view> -->

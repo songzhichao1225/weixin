@@ -6,16 +6,16 @@ Page({
     page: 1,
     statusType: 'all',
     activitiesNum: [],
-    type:'publish',
+    type:'join',
     img:'',
   },
   onLoad: function () {
     let page = 1
     let statusType = 'all'
-    let type = 'publish'
+    let type = 'join'
     this.setData({
       statusType: 'all',
-      type: 'publish',
+      type: 'join',
       img:util.API
     })
     this.activitiesNum(type)
@@ -80,7 +80,7 @@ Page({
     let statusType = e.currentTarget.dataset.id
     let type = this.data.type
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     this.common(page, statusType, type)
@@ -173,7 +173,7 @@ Page({
     let statusType = this.data.statusType
     let type = this.data.type
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
 
@@ -189,7 +189,7 @@ Page({
       statusType: 'all'
     })
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
 
@@ -204,7 +204,7 @@ Page({
     })
     let statusType = this.data.statusType
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     this.activitiesNum(type)

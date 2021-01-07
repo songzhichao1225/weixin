@@ -10,46 +10,46 @@ Page({
     mydata: {}, //选中城市返回 
     sportName: '运动项目',
     sort: [{
-      name: "距离由近到远",
-      num: 0
-    },
-    {
-      name: "时间由近到远",
-      num: 1
-    },
-    {
-      name: "级别由高到低",
-      num: 2
-    },
-    {
-      name: "级别由低到高",
-      num: 3
-    },
-    {
-      name: "好评优选",
-      num: 4
-    },
+        name: "距离由近到远",
+        num: 0
+      },
+      {
+        name: "时间由近到远",
+        num: 1
+      },
+      {
+        name: "级别由高到低",
+        num: 2
+      },
+      {
+        name: "级别由低到高",
+        num: 3
+      },
+      {
+        name: "好评优选",
+        num: 4
+      },
     ],
     statusH: [{
-      name: "全部",
-      num: 0
-    },
-    {
-      name: "1km",
-      num: 1
-    },
-    {
-      name: "2km",
-      num: 2
-    },
-    {
-      name: "4km",
-      num: 4
-    },
-    {
-      name: "10km",
-      num: 10
-    },
+        name: "全部",
+        num: 0
+      },
+      {
+        name: "1km",
+        num: 1
+      },
+      {
+        name: "2km",
+        num: 2
+      },
+      {
+        name: "4km",
+        num: 4
+      },
+      {
+        name: "10km",
+        num: 10
+      },
     ],
     bannerArr: [], //banner图
     hidden: false, //项目选项显隐
@@ -80,8 +80,8 @@ Page({
     flagIs: '', //是否签到成功
     download: false,
     shost: false, //是否完善信息
-    numId: 0,//项目筛选id
-    range: 0,//距离范围默认0
+    numId: 0, //项目筛选id
+    range: 0, //距离范围默认0
     rangeName: '距离范围',
     sprtSeName: '推荐排序',
     startTime: '',
@@ -90,9 +90,10 @@ Page({
     mingrade: 0,
     maxgrade: 0,
     praise: 0,
-    Agemin:1,//最小年龄
-    Agemax:99,//最大年龄
-    img:'',
+    Agemin: 1, //最小年龄
+    Agemax: 99, //最大年龄
+    img: '',
+    getSetting: 0
   },
   map: function () {
     var that = this;
@@ -101,10 +102,8 @@ Page({
     let BMap = new bmap.BMapWX({
       ak: that.data.ak
     });
-    let fail = function (data) { }
+    let fail = function (data) {}
     let success = function (data) {
-      //返回数据内，已经包含经纬度
-      //使用wxMarkerData获取数据
       let wxMarkerData = data.wxMarkerData;
       that.setData({
         markers: wxMarkerData,
@@ -114,14 +113,11 @@ Page({
         cityInfo: data.originalData.result.addressComponent,
         selectCity: data.originalData.result.addressComponent.city
       });
-      console.log(data.originalData.result.addressComponent.district)
-      if (that.data.address != '') {
-        that.goleloand()
-      }
+
+      that.goleloand()
+
       wx.setStorageSync("cityInfo", data.originalData.result.addressComponent.city)
-      wx.setStorageSync('area',  data.originalData.result.addressComponent.district)
-      wx.setStorageSync("lat", data.originalData.result.location.lat)
-      wx.setStorageSync("lng", data.originalData.result.location.lng)
+      wx.setStorageSync('area', data.originalData.result.addressComponent.district)
       wx.setStorageSync('address', wxMarkerData[0].address)
     }
 
@@ -131,12 +127,40 @@ Page({
     });
 
   },
+  openSetting() {
+    wx.openSetting()
+  },
 
   onLoad: function () {
+    let that = this
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userLocation'] || res.authSetting['scope.userLocation'] == false) {
+          that.setData({
+            getSetting: 1
+          })
+        } else {
+          that.setData({
+            getSetting: 0
+          })
+        }
+      }
+    })
+    wx.getLocation({
+      type: 'gcj02',
+      altitude:'true',
+      isHighAccuracy:'true',
+      success(res) {
+        wx.setStorageSync("lat", res.latitude)
+        wx.setStorageSync("lng", res.longitude)
+      }
+    })
+
+
     this.map()
-   this.setData({
-     img:util.API
-   })
+    this.setData({
+      img: util.API
+    })
 
     //  获取banner图
     util.request("/api/getIndexBanner", {}, "get",
@@ -144,25 +168,26 @@ Page({
         this.setData({
           bannerArr: res.data.data
         })
+        wx.hideLoading()
       },
-      () => { },
+      () => {},
       () => {
 
       }
     )
- 
+
 
     wx.startLocationUpdate({
       success(res) {
-       wx.onLocationChange(function(res) {
-        wx.setStorageSync('lat',res.latitude)
-        wx.setStorageSync('lng',res.longitude)
-       })
-       
+        wx.onLocationChange(function (res) {
+          wx.setStorageSync('lat', res.latitude)
+          wx.setStorageSync('lng', res.longitude)
+        })
+
       }
-      
-     })
-    
+
+    })
+
 
 
     //获取项目分类
@@ -179,14 +204,14 @@ Page({
         })
 
       },
-      () => { },
+      () => {},
       () => {
 
       }
     )
 
   },
- 
+
 
   //初始化获取活动列表函数
   goleloand: function (show) {
@@ -227,59 +252,59 @@ Page({
     jsonData.page = pages
     jsonData.range = range
     jsonData.startTime = startTime,
-    jsonData.endTime = endTime,
-    jsonData.joinCondition = joinCondition,
-    jsonData.mingrade = mingrade,
-    jsonData.maxgrade = maxgrade,
-    jsonData.praise = praise,
-    jsonData.Agemin = Agemin,
-    jsonData.Agemax = Agemax,
-    jsonData.istherereferee=0
-      util.Request("/api/getIndexAcitivitylist", jsonData, "get",
-        (res) => {
-          let projectDataNow = res.data.data.activeLst
-          for (let i in projectDataNow) {
-            if (projectDataNow[i].SportMode == '1') {
-              projectDataNow[i].SportMode = '娱乐模式'
-            } else if (projectDataNow[i].SportMode == '2') {
-              projectDataNow[i].SportMode = '竞技模式'
-            } else if (projectDataNow[i].SportMode == '3') {
-              projectDataNow[i].SportMode = '我是陪练'
-            } else if (projectDataNow[i].SportMode == '4') {
-              projectDataNow[i].SportMode = '我找陪练'
-            } else if (projectDataNow[i].PaySiteMoneyType == 1) {
-              projectDataNow[i].PaySiteMoneyType = 'AA'
-            } else if (projectDataNow[i].PaySiteMoneyType == 0) {
-              projectDataNow[i].PaySiteMoneyType = '输方买单'
-            }
-
+      jsonData.endTime = endTime,
+      jsonData.joinCondition = joinCondition,
+      jsonData.mingrade = mingrade,
+      jsonData.maxgrade = maxgrade,
+      jsonData.praise = praise,
+      jsonData.Agemin = Agemin,
+      jsonData.Agemax = Agemax,
+      jsonData.istherereferee = 0
+    util.Request("/api/getIndexAcitivitylist", jsonData, "get",
+      (res) => {
+        let projectDataNow = res.data.data.activeLst
+        for (let i in projectDataNow) {
+          if (projectDataNow[i].SportMode == '1') {
+            projectDataNow[i].SportMode = '娱乐模式'
+          } else if (projectDataNow[i].SportMode == '2') {
+            projectDataNow[i].SportMode = '竞技模式'
+          } else if (projectDataNow[i].SportMode == '3') {
+            projectDataNow[i].SportMode = '我是陪练'
+          } else if (projectDataNow[i].SportMode == '4') {
+            projectDataNow[i].SportMode = '我找陪练'
+          } else if (projectDataNow[i].PaySiteMoneyType == 1) {
+            projectDataNow[i].PaySiteMoneyType = 'AA'
+          } else if (projectDataNow[i].PaySiteMoneyType == 0) {
+            projectDataNow[i].PaySiteMoneyType = '输方买单'
           }
-
-          if (show == true) {
-            let mData = [...this.data.projectData, ...projectDataNow]
-            this.setData({
-              projectData: mData
-            })
-          } else {
-            this.setData({
-              projectData: projectDataNow
-            })
-          }
-
-          wx.hideLoading()
-          this.setData({
-            flag: true
-          })
-          wx.stopPullDownRefresh() //停止下拉刷新
-
-        },
-        () => {
-          wx.stopPullDownRefresh() //停止下拉刷新
-        },
-        () => {
 
         }
-      )
+
+        if (show == true) {
+          let mData = [...this.data.projectData, ...projectDataNow]
+          this.setData({
+            projectData: mData
+          })
+        } else {
+          this.setData({
+            projectData: projectDataNow
+          })
+        }
+
+        wx.hideLoading()
+        this.setData({
+          flag: true
+        })
+        wx.stopPullDownRefresh() //停止下拉刷新
+
+      },
+      () => {
+        wx.stopPullDownRefresh() //停止下拉刷新
+      },
+      () => {
+
+      }
+    )
 
   },
 
@@ -330,8 +355,8 @@ Page({
           isSign: res.data.data.isSign
         })
       },
-      () => { },
-      () => { }
+      () => {},
+      () => {}
     )
 
 
@@ -341,10 +366,12 @@ Page({
         (res) => {
           wx.setStorageSync('information', res.data.msg)
         },
-        () => { },
-        () => { }
+        () => {},
+        () => {}
       )
     }
+    this.onLoad()
+
   },
 
   //跳转选择地址
@@ -389,7 +416,7 @@ Page({
           () => {
             console.log("失败")
           },
-          () => { }
+          () => {}
         )
         util.Request("/api/getCommonCoins", {}, "get",
           (res) => {
@@ -468,21 +495,23 @@ Page({
     })
     this.goleloand()
     if (e.currentTarget.dataset.num === 0) {
-      this.setData({ hidden: false })
+      this.setData({
+        hidden: false
+      })
     }
 
     //获取项目分类下的详细分类
     if (id != 0) {
       util.request("/api/getDatialSport", {
-        "id": id
-      }, "get",
+          "id": id
+        }, "get",
         (res) => {
           this.setData({
             activitySon: res.data.data
           })
         },
-        () => { },
-        () => { }
+        () => {},
+        () => {}
       )
       this.setData({
         hiddenTwo: true
@@ -570,7 +599,7 @@ Page({
   },
   //上拉加载
   onReachBottom: function () {
-   
+
     this.setData({
       pages: this.data.pages + 1
     })
@@ -633,7 +662,7 @@ Page({
       })
     } else {
 
-      wx.redirectTo({
+      wx.navigateTo({
         url: '/pages/authorization/authorization'
       })
     }
@@ -644,7 +673,7 @@ Page({
         url: '/generalization/promotion/promotion'
       })
     } else {
-      wx.redirectTo({
+      wx.navigateTo({
         url: '/pages/authorization/authorization'
       })
     }

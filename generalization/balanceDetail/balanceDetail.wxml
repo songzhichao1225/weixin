@@ -5,7 +5,7 @@
 			入账金额
 		</view>
 		<view class="money" style="{{moneyInfo.InOrOut==1?'color:#D85D27;':''}}">
-			{{moneyInfo.Money}}
+			{{moneyInfo.InOrOut==1?'+'+moneyInfo.Money:moneyInfo.Money}}
 		</view>
 	</view>
 	<view class="list">

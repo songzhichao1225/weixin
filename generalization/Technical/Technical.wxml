@@ -29,14 +29,14 @@
     <view class="boss">
       <view class="badminton" wx:for="{{userTechcoins}}" wx:key='index'>
         <text>{{item.sport_name}}</text>
-        <text style='width:40%;text-align:center;position: absolute;left:50%;margin-left:-20%;'>{{item.total}}个</text>
-        <view style="float:right;">
+        <text style='width:40%;text-align:center;position: absolute;left:50%;margin-left:-20%;'>{{item.total}}</text>
+        <view style="float:right;margin-top:0.5rem">
           <text class="sliderL" style='color:#fff;font-size:10px;'>{{item.nowlevel}}</text>
           <view class="slider">
             <view style='width:{{item.total/item.maxcoins*100}}%'></view>
             <text>{{item.total}}/{{item.maxcoins}}</text>
           </view>
-          <text class="sliderL" style="background:#fff;color:#D85D27;font-size:10px;">{{item.nextlevel}}</text>
+          <text class="sliderL" style="background:#e9e9e9;color:#fff;font-size:10px;">{{item.nextlevel}}</text>
         </view>
       </view>
     </view>
@@ -45,18 +45,18 @@
 
   <view class="line" style="margin-top:50px;"></view>
   <view class="rule">
-    <text class="title">技术等级/技术分划分规则</text>
+    <text class="title">技术等级-技术分划分规则</text>
     <view wx:for="{{listTwo}}" wx:key='index'>
       <text class="dian"></text>
-      <text class="characters">Lv{{index+1}}:技术分({{listTwo[index-1]==null?0:listTwo[index-1]}}-{{item}})</text>
+      <text class="characters">Lv{{index+1}}:技术分数({{listTwo[index-1]==null?0:listTwo[index-1]}}-{{item}});</text>
     </view>
   </view>
   <view class="line"></view>
   <view class="rule">
-    <text class="title">技术分获得规则</text>
+    <text class="title">输赢技术分基本规则</text>
     <view wx:for="{{list}}" wx:key='index'>
       <text class="dian"></text>
-      <text class="characters">赢Lv{{index+1}}级选手一次得{{item}}技术分，输方扣掉相应技术分</text>
+      <text class="characters">赢{{index+1}}级(Lv{{index+1}})对手一次得{{item}}技术分，输方扣掉相应数量技术分;</text>
     </view>
   </view>
 

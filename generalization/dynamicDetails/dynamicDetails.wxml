@@ -1,17 +1,16 @@
 <view class="dynamicDetails">
 
-	<swiper style="height:24rem" indicator-dots="{{true}}" autoplay="{{false}}" bindchange="counting" interval="{{false}}" duration="{{500}}">
+	<swiper style="height:24rem" indicator-dots="{{false}}" autoplay="{{false}}" bindchange="counting" interval="{{false}}" duration="{{500}}">
 		<block wx:for="{{details.dynamic.ImgURL}}" wx:key="index">
 			<swiper-item>
 				<image class="swiper-item" bindtap="previewImage" data-src="{{img}}/{{item}}" mode="aspectFill"
 					style="height:24rem" src="{{img}}/{{item}}"></image>
-					
 			</swiper-item>
 		</block>
 	
 	</swiper>
 	<view class="counting">{{current}}/{{details.dynamic.ImgURL.length}}</view>
-	<view class="listDian" wx:if="{{details.dynamic.isown==1}}" data-id="{{details.dynamic.uuid}}" bindtap="listDian">···</view>
+	<!-- <view class="listDian" wx:if="{{details.dynamic.isown==1}}" data-id="{{details.dynamic.uuid}}" bindtap="listDian">···</view> -->
 	<view class="content">
 		<view class="headUser">
 			<view class="avatar">
@@ -22,7 +21,8 @@
 				<view class="time">{{details.dynamic.date}}</view>
 			</view>
 			<view class="likeIt">
-				<image bindtap="ThumbsUp" data-uuid="{{details.dynamic.uuid}}"
+				<!-- bindtap="ThumbsUp" -->
+				<image     data-uuid="{{details.dynamic.uuid}}"
 					src="{{details.dynamic.isfabulou==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
 				<text>{{details.dynamic.fabulou}}</text>
 			</view>
@@ -41,7 +41,8 @@
 			<view class="time">{{item.intime}}</view>
 			<view class="comment">{{item.comment}}</view>
 		</view>
-		<view class="rightTop"><image bindtap="theThumbsUp" data-uuid="{{item.uuid}}" src="{{item.isfabulou==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image><view>{{item.fabulou}}</view></view>
+		<!-- bindtap="theThumbsUp" -->
+		<view class="rightTop"><image      data-uuid="{{item.uuid}}" src="{{item.isfabulou==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image><view>{{item.fabulou}}</view></view>
 	</view> 
 
 
@@ -55,9 +56,9 @@
 
 
 
-	<view class="bottomTextarea">
+	<!-- <view class="bottomTextarea">
 		<textarea bindinput="textInput" value="{{textVal}}" auto-height bindconfirm="confirm" placeholder="评论一下，发表你的看法吧！" />
-		</view>
+		</view> -->
 	
 
 

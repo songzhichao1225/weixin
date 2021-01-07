@@ -17,7 +17,7 @@ Page({
         page: 1
       })
       wx.showLoading({
-        title: '',
+        title: '加载中~',
         mask: true
       })
 
@@ -39,7 +39,7 @@ Page({
         }
       })
     } else {
-      wx.redirectTo({
+      wx.navigateTo({
         url: '/pages/authorization/authorization'
       })
     }
@@ -96,7 +96,7 @@ Page({
       page: page + 1
     })
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     this.newsLoand(down)

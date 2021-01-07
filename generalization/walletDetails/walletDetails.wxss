@@ -27,7 +27,13 @@ page{
   display: block;
   font-size: 0.75rem;
   color: #9B9B9B;
-  line-height: 1.5rem;
+  line-height: 1rem;
+}
+.listSon .contentLeft>text:nth-child(2) {
+  display: block;
+  font-size: 0.75rem;
+  color: #9B9B9B;
+  line-height: 1rem;
 }
 .listSon .money{
   float: right;

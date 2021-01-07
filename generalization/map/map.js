@@ -23,7 +23,7 @@ Page({
   onLoad: function(option) {
     // 实例化API核心类
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     this.setData({

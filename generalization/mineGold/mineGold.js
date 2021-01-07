@@ -38,7 +38,7 @@ Page({
   },
   goldDetail:function(){
     wx.navigateTo({
-      url: '/pages/goldDetails/goldDetails'
+      url: '/pages/goldDetails/goldDetails?goldType=1'
     })
 
   },

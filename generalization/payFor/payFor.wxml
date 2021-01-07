@@ -1,17 +1,24 @@
 <view class="payFor">
 	<view class="head">
-		<text class="title">活动需预付总费用</text><text class="money">￥{{getElplainInfo.Total}}</text>
+		<text class="title">本次活动您需要预付总费用</text><text class="money">￥{{getElplainInfo.Total}}</text>
 	</view>
 	<view class="Itemized">
-		<view class="one"><text>{{look==2?'场地费':mode=='竞技模式'?'场地费+裁判费':'场地费'}}</text><text style="float:right;">￥{{getElplainInfo.field}}</text></view>
-		<view class="one" wx:if="{{getElplainInfo.Accompany!=0&&getElplainInfo.Accompany!=undefined||getElplainInfo.Reward!=0&&getElplainInfo.Reward!=undefined}}">
+		<view class="one"><text>{{look==2?'场地费':mode=='竞技模式'?'场地费+裁判费':'场地费'}}</text><text
+				style="float:right;">￥{{getElplainInfo.field}}</text></view>
+		<view class="one"
+			wx:if="{{getElplainInfo.Accompany!=0&&getElplainInfo.Accompany!=undefined||getElplainInfo.Reward!=0&&getElplainInfo.Reward!=undefined}}">
 			<text>{{modeNum==1?'打赏费':''||modeNum==2?'打赏费':''||modeNum==3?'陪练费':''||modeNum==4?'陪练费':''}}</text>
-			<text style="float:right">￥{{getElplainInfo.Accompany==0?getElplainInfo.Reward:getElplainInfo.Accompany}}</text></view>
+			<text style="float:right">￥{{getElplainInfo.Accompany==0?getElplainInfo.Reward:getElplainInfo.Accompany}}</text>
+		</view>
+		<view class="one" style="border-top:0.06rem solid #e9e9e9"><text>履约保证金</text><text style="float:right;">￥{{getElplainInfo.deposit}}</text></view>
+		<view class="one" wx:if="{{getElplainInfo.TipsMoney!=''&&getElplainInfo.TipsMoney!=undefined}}" style="border-top:0.06rem solid #e9e9e9"><text>入场费</text><text style="float:right;">￥{{getElplainInfo.TipsMoney}}</text></view>
+	
+	
 	</view>
 	<view class="line"></view>
 	<view class="account ">费用说明</view>
 	<view class="venueFee">
-		<text>场地费+履约保证金</text>
+		<text>{{look==2?'场地费':mode=='竞技模式'?'场地费+裁判费':'场地费'}}+履约保证金</text>
 		<text class="jishi">{{getElplainInfo.siteMoneyInfo}} </text>
 	</view>
 
@@ -27,7 +34,7 @@
 
 	<view class="line"></view>
 	<view class="fanshi">
-		<image src="/assets/IconZfWx@2x.png"></image>
+		<image class="img" src="/assets/IconZfWx@2x.png"></image>
 		<text>微信支付</text>
 		<radio-group class="radio-group" data-index="1" bindchange="radioChange">
 			<radio class="radio" color="#D85D27" checked="{{current==1?true:false}}"></radio>
@@ -41,13 +48,21 @@
 		</radio-group>
 	</view> -->
 	<view class="fanshi">
-		<image src="/assets/IconZfQb@2x.png"></image>
-		<text>钱包支付  (余额:￥{{getElplainInfo.money}})</text>
+		<image class="img" src="/assets/IconZfQb@2x.png"></image>
+		<text>钱包支付 (余额:￥{{getElplainInfo.money}})</text>
 		<radio-group class="radio-group" data-index="3" bindchange="radioChange">
 			<radio class="radio" color="#D85D27" checked="{{current==3?true:false}}"></radio>
 		</radio-group>
 	</view>
-  <view style="color:#ccc;font-size:0.75rem;text-align:center;margin-top:1rem;"> </view>
+	<view class="fanshi">
+		<image class="img" src="/assets/kaQuan.png"></image>
+		<text>场地费抵用券 </text>
+		<image class="image" src="../../assets/right.png"></image>
+		 <text wx:if="{{getElplainInfo.isoffset==0}}" style="float:right;color:#D85D27">无可用的抵用券</text>
+		 <text wx:if="{{getElplainInfo.isoffset==1}}" style="float:right;color:#D85D27" bindtap="deductibles">{{volumeMoney!=0?'-'+volumeMoney+'元':'有可用的抵用券'}}</text>
+	</view>
+	<view class="moneyAll"><text style="color:#D85D27;padding-right:0.5rem">减免￥{{volumeMoney}}</text>合计：<text style="color:#D85D27;font-size:1.5rem">￥{{getElplainInfo.Total-volumeMoney}}</text></view>
+	<view style="color:#ccc;font-size:0.75rem;text-align:center;margin-top:1rem;"> </view>
 	<view class="btn" bindtap="payTo">确定支付</view>
 
 

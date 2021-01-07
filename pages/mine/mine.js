@@ -13,13 +13,13 @@ Page({
       { img: 'dui.png',name:'我的对手币',click:'mineGold'},
       { img: 'ji.png', name: '我的技术分', click: 'mineFen' },
       { img: 'IconWdQb@2x.png', name: '我的钱包', click: 'mineMoney'},
-      { img: 'xianperios.png', name: '我的偏好', click: 'minePreference' },
-      { img: 'IconWdXzcg@2x.png', name: '新增场馆', click: 'minefriends' },
+      // { img: 'xianperios.png', name: '我的偏好', click: 'minePreference' },
+      // { img: 'IconWdXzcg@2x.png', name: '新增场馆', click: 'minefriends' },
       { img: 'IconWdHy@2x.png', name: '我的好友', click: 'minefriends'},
       // { img: 'IconWdGz@2x.png', name: '我的关注', click: 'mineAbout' },
       { img: 'IconWdGyyy@2x.png', name: '关于小程序', click: 'aboutApp' },
       { img: 'IconWdSz@2x.png', name: '设置', click: 'mineAbout' },
-      { img: 'caipanha.png', name: '成为裁判', click: 'mineHelp' },
+      // { img: 'caipanha.png', name: '成为裁判', click: 'mineHelp' },
       { img: 'IconWdBzzx@2x.png', name: '帮助中心', click: 'mineHelp' },
       { img: 'IconWdYjfk@2x.png', name: '意见反馈', click: 'mineOpinion' },
     ],
@@ -34,7 +34,7 @@ Page({
     })
     if (wx.getStorageSync('token')){
       wx.showLoading({
-        title: '',
+        title: '加载中~',
         mask: true
       })
       util.Request("/api/getCommonCoins", {}, "get",
@@ -47,7 +47,8 @@ Page({
         () => {
         }
       )
-      util.request("/api/getUserDetailInfo", { 'uuid': wx.getStorageSync('uuid') }, "get", 
+      if(wx.getStorageSync('uuid')!=''||wx.getStorageSync('uuid')!=undefined){
+        util.request("/api/getUserDetailInfo", { 'uuid': wx.getStorageSync('uuid') }, "get", 
         (res) => {
           this.setData({ mineDetail: res.data.data, imgURL: wx.getStorageSync('imgURL')})
         },
@@ -55,6 +56,8 @@ Page({
         () => {
         }
       )
+      }
+      
     } else if (wx.getStorageSync('token') && wx.getStorageSync('information') != '信息完善') {
       wx.showModal({
         content: '完善个人信息',
@@ -72,21 +75,14 @@ Page({
         }
       })
     } else {
-      wx.redirectTo({
+      wx.navigateTo({
         url: '/pages/authorization/authorization'
       })
     }
     wx.hideLoading()
   },
   onShow:function(){
-    util.request("/api/getUserDetailInfo", { 'uuid': wx.getStorageSync('uuid') }, "get",
-      (res) => {
-        this.setData({ mineDetail: res.data.data })
-      },
-      () => { console.log("失败") },
-      () => {
-      }
-    )
+    this.onLoad()
   },
   activities:function(){
     wx.navigateTo({
@@ -104,7 +100,7 @@ Page({
     })
   }, 
   mineAbout:function(){
-    wx.navigateTo({
+    wx.navigateTo({ 
       url: '/generalization/aboutApp/aboutApp'
     })
   },

@@ -11,7 +11,7 @@ Page({
   },
   onLoad: function () {
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     util.Request("/api/getTechCoins", { }, "get", 

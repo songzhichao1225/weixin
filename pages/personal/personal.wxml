@@ -2,7 +2,8 @@
 	<view class="tap">
 		<view class="headContent">
 			<view class="leftImg">
-				<image class="image" bindtap="avataBoss" data-src="{{img}}/{{personalData.imgURL}}" src='{{img}}/{{personalData.imgURL}}'></image>
+				<image class="image" bindtap="avataBoss" data-src="{{img}}/{{personalData.imgURL}}"
+					src='{{img}}/{{personalData.imgURL}}'></image>
 				<view class="name">
 
 					<image class="sex" wx:if="{{personalData.sex==0}}" src='/assets/sex0@2x.png'></image>
@@ -74,9 +75,9 @@
 		<view bindtap="bossTitle" data-index="2" style="{{indexd=='2'?'color:#D85D27':'color:#000'}}">动态<view
 				wx:if="{{indexd=='2'}}"></view>
 		</view>
-		<!-- <view bindtap="bossTitle" data-index="3" style="{{indexd=='3'?'color:#D85D27':'color:#000'}}">参与的活动<view
+		<view bindtap="bossTitle" data-index="3" style="{{indexd=='3'?'color:#D85D27':'color:#000'}}">参与的活动<view
 				wx:if="{{indexd=='3'}}"></view>
-		</view> -->
+		</view>
 	</view>
 
 	<view class="one" wx:if="{{indexd=='1'}}">
@@ -87,9 +88,9 @@
 				<text class="txt"><text>年龄:</text>
 					<text class="sexColor">{{personalData.age}}</text></text>
 				<text class="txt"><text>身高:</text>
-					<text class="sexColor">{{personalData.tall}}cm</text></text>
+					<text class="sexColor">{{personalData.tall==null?'未填写':personalData.tall+'cm'}}</text></text>
 				<text class="txt"><text>体重:</text>
-					<text class="sexColor">{{personalData.weight}}kg</text></text>
+					<text class="sexColor">{{personalData.weight==null?'未填写':personalData.weight+'kg'}}</text></text>
 				<text class="text"><text>常驻地:</text>
 					<text class="sexColorT">{{personalData.address}}</text></text>
 				<text class="text" style="color:#000" wx:if="{{personalData.faveriteSport!==''}}"><text
@@ -109,46 +110,53 @@
 				</view>
 				<view class="badminton" wx:for="{{personalData.userTechcoins}}" wx:key='index'>
 					<text>{{item.sport_name}}</text>
-					<text style='width:40%;text-align:center;position: absolute;left:50%;margin-left:-25%;'>{{item.total.indexOf('.')==-1||item.total==0?item.total+'.00':item.total+'0'}}</text>
-					<view style="float:right;">
+					<text
+						style='width:40%;text-align:center;position: absolute;left:50%;margin-left:-25%;'>{{item.total.indexOf('.')==-1||item.total==0?item.total+'.00':item.total+'0'}}</text>
+					<view style="float:right">
 						<text class="sliderL" style='color:#fff;font-size:10px;'>{{item.nowlevel}}</text>
 						<view class="slider">
 							<view style='width:{{item.total/item.maxcoins*100}}%'></view>
 							<text>{{item.total.indexOf('.')==-1||item.total==0?item.total+'.00':item.total+'0'}}/{{item.maxcoins}}</text>
 						</view>
-						<text class="sliderL" style="background: #E9E9E9;color:#fff;font-size:10px;margin-left:0.2rem">{{item.nextlevel}}</text>
+						<text class="sliderL"
+							style="background: #E9E9E9;color:#fff;font-size:10px;margin-left:0.2rem">{{item.nextlevel}}</text>
 					</view>
 				</view>
 			</view>
 		</view>
 	</view>
 
-	<view class="dynamicState" wx:if="{{indexd=='2'}}">
+	<scroll-view scroll-y="auto" class="dynamicState" wx:if="{{indexd=='2'}}" refresher-enabled="true" refresher-triggered="{{enabled}}"
+      bindrefresherrefresh="refresh" bindscrolltolower="tolower">
 		<view class='content'>
 			<view class='left'>
-				<view wx:for="{{dynameicListLeft}}"   wx:key="index" >
-					<image class='headImg'  mode="aspectFill" bindtap="dynamicDetails" data-uuid="{{item.uuid}}" src="{{img}}/{{item.firstImgURL}}"></image>
-					 <view class="title">{{item.title}}</view>
-					 <view class="userDetails">
-             <image src="{{img}}/{{item.imgURL}}"></image>
-							<view>{{item.nickname}}</view>
-							<image catchtap="thumbsUp" data-uuid="{{item.uuid}}" src="{{item.isown==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
-							<view class="fabulou" >{{item.fabulou}}</view>
-					 </view>
+				<view wx:for="{{dynameicListLeft}}" wx:key="index">
+					<image class='headImg' mode="aspectFill" bindtap="dynamicDetails" data-uuid="{{item.uuid}}"
+						src="{{img}}/{{item.firstImgURL}}"></image>
+					<view class="title">{{item.title}}</view>
+					<view class="userDetails">
+						<image src="{{img}}/{{item.imgURL}}"></image>
+						<view>{{item.nickname}}</view>
+						<image catchtap="thumbsUp" data-uuid="{{item.uuid}}"
+							src="{{item.isown==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
+						<view class="fabulou">{{item.fabulou}}</view>
 					</view>
+				</view>
 
 
 			</view>
 			<view class='right'>
-				<view wx:for="{{dynameicListRight}}" wx:key="index"  >
-					<image class='headImg' mode="aspectFill" bindtap="dynamicDetails" data-uuid="{{item.uuid}}" src="{{img}}/{{item.firstImgURL}}"></image>
+				<view wx:for="{{dynameicListRight}}" wx:key="index">
+					<image class='headImg' mode="aspectFill" bindtap="dynamicDetails" data-uuid="{{item.uuid}}"
+						src="{{img}}/{{item.firstImgURL}}"></image>
 					<view class="title">{{item.title}}</view>
 					<view class="userDetails">
-             <image src="{{img}}/{{item.imgURL}}"></image>
-						 <view>{{item.nickname}}</view>
-						 <image  catchtap="thumbsUp" data-uuid="{{item.uuid}}" src="{{item.isown==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
-						 <view class="fabulou">{{item.fabulou}}</view>
-					 </view>
+						<image src="{{img}}/{{item.imgURL}}"></image>
+						<view>{{item.nickname}}</view>
+						<image catchtap="thumbsUp" data-uuid="{{item.uuid}}"
+							src="{{item.isown==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
+						<view class="fabulou">{{item.fabulou}}</view>
+					</view>
 				</view>
 
 
@@ -157,14 +165,82 @@
 
 
 
-
-
-		<view class="noContent" wx:if="{{dynameicList.lengtn==0}}">
+		<view class="noContent" wx:if="{{dynameicList.length==0}}">
 			<image src="../../assets/nottxt.png"></image>
 			<view>暂时还没有发布过动态奥~</view>
-			<button>去发布动态</button>
+			<!-- <button bindtap="joinDong" wx:if="{{personalData.uuid==haUuid}}">去发布动态</button> -->
 		</view>
-	</view>
+	</scroll-view>
+
+
+	<scroll-view scroll-y="auto" class="participative" wx:if="{{indexd=='3'}}"  refresher-enabled="true" refresher-triggered="{{enabledTwo}}"
+      bindrefresherrefresh="refreshTwo" bindscrolltolower="tolowerTwo">
+		<view class="sonList" wx:for="{{publicLst}}" wx:key="index" data-uuid="{{item.uuid}}" bindtap="activities">
+			<view class="left">
+				<image src="{{img}}/{{item.imgURL}}"></image>
+				<view class="leftBottom">
+					<image wx:if="{{item.sportName=='网球'}}" class="imageTwo" src='/assets/icon_dj_wq.png'></image>
+					<image wx:if="{{item.sportName=='高尔夫'}}" class="imageTwo" src='/assets/icon_dj_gef.png'></image>
+					<image wx:if="{{item.sportName=='篮球'}}" class="imageTwo" src='/assets/icon_dj_lq.png'></image>
+					<image wx:if="{{item.sportName=='乒乓球'}}" class="imageTwo" src='/assets/icon_dj_ppq.png'></image>
+					<image wx:if="{{item.sportName=='排球'}}" class="imageTwo" src='/assets/icon_dj_pq.png'></image>
+					<image wx:if="{{item.sportName=='台球'}}" class="imageTwo" src='/assets/icon_dj_tq.png'></image>
+					<image wx:if="{{item.sportName=='羽毛球'}}" class="imageTwo" src='/assets/icon_dj_ymq.png'></image>
+					<image wx:if="{{item.sportName=='足球'}}" class="imageTwo" src='/assets/icon_dj_zq.png'></image>
+					<view class="veleve">{{item.userLevel}}</view>
+				</view>
+			</view>
+			<view class="right">
+				<view class="name">
+					<text>{{item.nickname}}</text>
+					<image wx:if="{{item.sex==1}}" src="../../assets/sex0@2x.png"></image>
+					<image wx:if="{{item.sex==0}}" src="../../assets/sex0@2x.png"></image>
+				</view>
+				<view class="patterns">
+					<text>{{item.SportMode}}</text>
+					<text>{{item.sportName}}</text>
+					<text>{{item.sportTypeName}}</text>
+					<text>缺{{item.needPlayerNumber}}人</text>
+				</view>
+				<view class="patterns">
+					<text style="color:#000">{{item.startDays}}</text>
+					<text>{{item.week}}</text>
+					<text>{{item.startTimes}}-{{item.endTimes}}</text>
+				</view>
+				<view class="patterns">
+					<text style="color:#000">{{item.sitesName}}</text>
+				</view>
+				<view class="patterns">
+					<text style="color:#000"  wx:if="{{item.reserve==0}}">场地费:{{item.PaySiteMoneyType==1?'AA':'输者买单'}}</text>
+					<text style="color:#000"  wx:if="{{item.reserve==1}}">场地费:发布者买单</text>
+					<text >{{item.SportMode=='1'?'入场费':'陪练费'||item.SportMode=='2'?'入场费:':'陪练费'}}:￥{{item.Tips}}/人</text>
+					<text style="float:right">2km</text>
+				</view>
+			</view>
+			<view class="rightImg">
+				<image wx:if="{{item.PublicStatus==2}}" src='/assets/dai.png'></image>
+				<image wx:if="{{item.PublicStatus==6}}" src='/assets/pinjia.png'></image>
+				<image wx:if="{{item.PublicStatus==3}}" src='/assets/huodong.png'></image>
+				<image wx:if="{{item.PublicStatus==1}}" src='/assets/pipei.png'></image>
+				<image wx:if="{{item.PublicStatus==7}}" src='/assets/tuichu.png'></image>
+				<image wx:if="{{item.PublicStatus==5}}" src='/assets/wancheng.png'></image>
+				<image wx:if="{{item.PublicStatus==4}}" src='/assets/jieguo.png'></image>
+				<image wx:if="{{item.PublicStatus==9}}" src='/assets/tousua.png'></image>
+			</view>
+		</view>
+
+		<view class="noContent" wx:if="{{publicLst.length==0}}">
+			<image src="../../assets/nottxtTwo.png"></image>
+			<view>暂时还没有正在参与的活动奥~</view>
+			<!-- <button bindtap="joinDong" wx:if="{{personalData.uuid==haUuid}}">去发布动态</button> -->
+		</view>
+
+	</scroll-view>
+
+
+
+
+
 
 
 	<view class="maskingBoss" wx:if="{{closeFing}}">

@@ -35,14 +35,16 @@
 					<text style='margin-left:0.3rem;font-weight:400;font-size:14px;'>{{activitiesData.publishPlayerName}}</text>
 				</view>
 				<view class="publisherTxt" style='margin-top:1rem;'>
-					<text style="color:#9B9B9B">场馆名称</text>
-					<text class="time" bindtap="venueDetails" data-uid="{{activitiesData.siteUid}}">{{activitiesData.siteName}}</text>
+					<text style="color:#9B9B9B">场馆名称</text>  
+					<text class="time"    data-uid="{{activitiesData.siteUid}}">{{activitiesData.siteName}}</text>
+					<!-- bindtap="venueDetails" -->
 					<text wx:if="{{activitiesData.isCooper==1}}" class="cooperate">(合作场馆)</text>
 				</view>
 				<view class="publisherTxt">
 					<text style="color:#9B9B9B">场馆地点</text>
 					<image src='/assets/IconHdxqDw@2x.png'></image>
-					<text style="padding-left:0.3rem;display:block;width:75%" bindtap="addressGo" data-lat="{{activitiesData.siteLat}}" data-lng="{{activitiesData.siteLng}}" data-address="{{activitiesData.siteAddress}}">{{activitiesData.siteAddress}}</text>
+					<!-- bindtap="addressGo" -->
+					<text style="padding-left:0.3rem;display:block;width:75%"    data-lat="{{activitiesData.siteLat}}" data-lng="{{activitiesData.siteLng}}" data-address="{{activitiesData.siteAddress}}">{{activitiesData.siteAddress}}</text>
 				</view>
 				<view class="publisherTxt" wx:if="{{activitiesData.reserve!=1}}">
 					<text style="color:#9B9B9B">活动时间</text>
@@ -144,12 +146,12 @@
 			<view class="participants" wx:if="{{activitiesData.reserve!=1}}">
 				<text class="people">参与人员</text>
 				<view class="TeamA">
-					<text>A队</text>
+					<text class="titleBDui">A队</text>
 					<view class="peopleList">
 						<view class="son" wx:for="{{activitiesData.teamA}}" wx:key='index'>
-							<view class="invite" wx:if="{{item.playerUUID=='empty'}}" bindtap="userSignUp" data-team="1">
-								<image src="/assets/peologo.png"></image>
-								{{activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'邀请':'报名':''}}
+							
+							<view class="invite" wx:if="{{item.playerUUID=='empty'}}" bindtap="userSignUp" data-index="{{index}}"  data-team="1">
+								<text class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'邀请':'报名':''}}</text>
 								<text class="TeamAson">A{{index+1}}</text>
 							</view>
 							<image class="logo" wx:if="{{item.playerUUID!='empty'}}" bindtap="getUserDetailInfo"
@@ -163,12 +165,13 @@
 					</view>
 				</view>
 				<view class="TeamB">
-					<text>B队</text>
+					<text class="titleBDui">B队</text>
 					<view class="peopleList">
 						<view class="son" wx:for="{{activitiesData.teamB}}" wx:key='index'>
-							<view class="invite" wx:if="{{item.playerUUID=='empty'}}" bindtap="userSignUp" data-team="2">
-								<image src="/assets/peologo.png"></image>
-								{{activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'邀请':'报名':''}}
+							
+							<view class="invite" wx:if="{{item.playerUUID=='empty'}}"  bindtap="userSignUp" data-index="{{index}}"  data-team="2">
+								<!-- 邀请 -->
+								<text class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'邀请':'报名':''}}</text>
 								<text class="TeamAson">B{{index+1}}</text>
 							</view>
 							<image class="logo" wx:if="{{item.playerUUID!='empty'}}" bindtap="getUserDetailInfo"
@@ -184,12 +187,12 @@
 
 
 				<view class="TeamB" style="border:none;" wx:if="{{activitiesData.teamC.length!=0}}">
-					<text>裁判</text>
+					<text class="titleBDui">{{activitiesData.SportType==21||activitiesData.SportType==20?'C队':'裁判'}}</text>
 					<view class="peopleList" style="margin-left:19px;">
 						<view class="son" wx:for="{{activitiesData.teamC}}" wx:key='index'>
-							<view class="invite" wx:if="{{item.playerUUID=='empty'}}" bindtap="addReferees">
-								<image src="/assets/peologo.png"></image>
-								{{activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'':'报名':''}}
+							
+							<view class="invite" wx:if="{{item.playerUUID=='empty'}}"  bindtap="{{activitiesData.SportType==21||activitiesData.SportType==20?'userSignUp':'addReferees'}}" data-index="{{index}}" data-team="3"  >
+								<text class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'邀请':'报名':''}}</text>
 								<text class="TeamAson">C{{index+1}}</text>
 							</view>
 							<image class="logo" wx:if="{{item.playerUUID!='empty'}}" bindtap="getUserDetailInfo"
@@ -370,7 +373,7 @@
 
 	</view>
 
-	<view class="complaints" bindtap="complaints"
+	<!-- <view class="complaints" bindtap="complaints"
 		wx:if="{{type==1&&activitiesData.reserve!=1&&activitiesData.PublicStatus==2&&activitiesData.Complaint==4||activitiesData.PublicStatus==3&&activitiesData.reserve!=1&&activitiesData.Complaint==4}}"
 		data-uuid="{{activitiesData.uuid}}">投诉</view>
 	<text class="footerInfo" wx:if="{{activitiesData.reserve==1&&activitiesData.PublicStatus!=5&&activitiesData.PublicStatus!=7}}">{{activitiesData.siteMoneyInfo}}</text>
@@ -440,7 +443,7 @@
 
 
 
-	</view>
+	</view> -->
 	<view class="modeBoss" wx:if="{{reverseInfo==1}}">
 		<view class="model">
 			<text class="title" wx:if="{{typeInfo!=10}}">场地详情</text>
@@ -479,7 +482,7 @@
 		 <view wx:if="{{typeInfo==10}}">
       每一个数字一次代表每半个小时对应的场地编号，如“场地编号<span style="color:#d85d27">3，4</span>”，表示第1个半小时再3号场地，第2个半小时再4号场地。
 		 </view>
-		 
+		
 
 		</view>
 		<view class="colse" bindtap="close"><image src="/assets/BtnDown@2x.png" alt="icon" /></view>

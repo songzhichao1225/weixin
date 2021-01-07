@@ -8,16 +8,26 @@
 
 
 	<view class="text">
-	  <text style="font-size:0.75rem;" wx:if="{{typeInfo!=1}}">活动匹配成功后，为保证所有人利益。</text>
-		<text class="comm">{{text.red}}</text>
-		<text style="font-size:0.75rem;padding-top:1rem">{{text.black}}</text>
-		<text bindtap="detailRules" wx:if="{{typeInfo!=1}}" style="font-size:0.75rem;color:blue;margin-top:1rem;padding:0.5rem 0;">规则?</text>
+		<view class="headTop">
+			<text style="font-size:0.75rem;" wx:if="{{typeInfo!=1}}">活动匹配成功后，为保证所有人利益。</text>
+			<text class="comm">{{text.red}}</text>
+		</view>
+		<view class="center">
+			<text>温馨提示:</text>
+			<text style="font-size:0.75rem;padding-top:1rem">{{text.black}}</text>
+			<text style="font-size:0.75rem;padding-top:1rem">2、每有一个新用户参与并完成活动，邀请人或分享人可获得<text style="color:#D85D27">200</text>个对手币，<text style="color:#D85D27">立即分享吧!</text></text>
+		</view>
+		
+		<text bindtap="detailRules" wx:if="{{typeInfo!=1}}"
+			style="font-size:0.75rem;color:blue;margin-top:1rem;padding:0.5rem 0 0 2.5%;">规则?</text>
 	</view>
-	<text class="title" bindtap="counterCoin">{{text.comms}}<text>对手币?</text></text>
+
 
 	<view class="btn">
-		<view class="btnSonOne" bindtap="details" data-uuid="{{uuid}}">查看活动详情</view>
-		<view class="btnSonOne">立即分享</view>
+		<button class="btnSonOne">立即分享</button>
+		<button class="btnSonOne" bindtap="details" data-uuid="{{uuid}}">查看活动详情</button>
+	
 	</view>
-	<text style="font-size:0.88rem;color:#9B9B9B;text-align:center;display:block;margin-top:3rem;">{{text.orderTime}}</text>
+	<text
+		style="font-size:0.88rem;color:#9B9B9B;text-align:center;display:block;margin-top:3rem;">{{text.orderTime}}</text>
 </view>

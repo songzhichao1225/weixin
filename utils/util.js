@@ -22,7 +22,7 @@ let API = "https://appstg.tiaozhanmeiyitian.com";  //测试
 
 
 wx.showLoading({
-  title: '',
+  title: '加载中~',
   mask: true
 })
 //有权限的请求
@@ -222,7 +222,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
               mask: true
             })
           } else if (res.data.code == 4001) {
-            wx.redirectTo({
+            wx.navigateTo({
               url: '/pages/authorization/authorization'
             })
           }else{
@@ -245,11 +245,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
         }
       })
     }
-  }else{ 
-    wx.redirectTo({
-    url: '/pages/authorization/authorization'
-  })
-}
+  }
 }
 
 //无权限的请求

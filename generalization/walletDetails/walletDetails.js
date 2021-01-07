@@ -6,16 +6,19 @@ Page({
    */
   data: {
     wallertList: [],
-    page:0
+    page:1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.showLoading({
+      title: '加载中~',
+      mask: true
+    })
     util.Request("/api/getUserMoneyLst", {
-        'page': 0
+        'page': this.data.page
       }, "get",
       (res) => {
         this.setData({
@@ -29,13 +32,30 @@ Page({
       () => {}
     )
 
+    setTimeout(()=>(
+      util.Request("/api/getUserMoneyLst", {
+        'page': 2
+      }, "get",
+      (res) => {
+        this.setData({
+          wallertList: [...this.data.wallertList,...res.data.data]
+        })
+        wx.hideLoading()
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
+    ),500)
+
   },
   lower:function(){
     this.setData({
       page:this.data.page+1
     })
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     util.Request("/api/getUserMoneyLst", {

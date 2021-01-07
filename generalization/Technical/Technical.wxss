@@ -102,10 +102,10 @@ text {
 
 .grade .badminton .slider text {
   position: absolute;
-  top: -0.5rem;
+  top: -1.3rem;
   font-size: 8px;
   color: #8b572a;
-  left: 38%;
+  left: 20%;
 }
 
 .grade .badminton .slider view {
@@ -169,6 +169,7 @@ text {
   display: block;
   float: left;
   margin-left: 20rpx;
+  width: 95%;
 }
 .mineGold .line{
    height: 0.63rem;
@@ -194,4 +195,5 @@ text {
 }
 .boss{
   margin-top: 0.88rem;
+  line-height: 1.8rem;
 }

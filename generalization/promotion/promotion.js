@@ -66,7 +66,7 @@ Page({
   },
   onLoad: function() {
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     util.Request("/api/getIdCardinformation", {}, "post", 
@@ -74,7 +74,7 @@ Page({
        if(res.data.data.length!=0){
          if (res.data.data.status == 0) {
            wx.showLoading({
-             title: '',
+             title: '加载中~',
              mask: true
            })
            wx.redirectTo({
@@ -83,7 +83,7 @@ Page({
            })
          } else if (res.data.data.status == 2) {
            wx.showLoading({
-             title: '',
+             title: '加载中~',
              mask: true
            })
            wx.redirectTo({

@@ -60,7 +60,7 @@ Page({
   requ: function (obj) {
     let {sportid}=this.data
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     util.Request("/api/getInviteFriends", obj, "get",
@@ -101,7 +101,7 @@ Page({
   //上拉加载
   kol:function(obj){
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     

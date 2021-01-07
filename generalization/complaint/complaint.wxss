@@ -113,8 +113,8 @@ page {
 }
 
 .listSon .content .name image {
-  width: 30rpx;
-  height: 30rpx;
+  width: 0.94rem;
+  height: 0.94rem;
   float: left;
   margin-left: 6rpx;
   margin-top: 4rpx;

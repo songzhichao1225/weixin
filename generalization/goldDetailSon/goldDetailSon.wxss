@@ -1,0 +1,36 @@
+.goldDetailSon {
+  height: 100%;
+}
+.headTop{
+  height: 5.06rem;
+  padding: 0 2.5%;
+  border-top: 0.06rem solid #e9e9e9;
+  border-bottom: 0.06rem solid #e9e9e9;
+}
+.headTop>text{
+  display: block;
+  line-height: 5.06rem;
+}
+.headTop>text:first-child{
+  float: left;
+}
+.headTop>text:last-child{
+  float: right;
+}
+.son{
+  padding: 0.75rem 2.5% ;
+  overflow: hidden;
+}
+.son text:first-child{
+  font-size: 0.88rem;
+  color: #9b9b9b;
+  display: block;
+  float: left;
+}
+.son text:last-child{
+  font-size: 0.88rem;
+  display: block;
+  float: right;
+}
+  
+

@@ -8,7 +8,7 @@ Page({
   },
   onLoad: function () {
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     util.Request("/api/getUserMoneyCount", {  }, "get",
@@ -23,5 +23,10 @@ Page({
     )
 
  
-  }
+  },
+  details(){
+    wx.navigateTo({
+      url: '/generalization/walletDetails/walletDetails'
+    })
+  },
 })

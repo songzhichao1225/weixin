@@ -1,21 +1,18 @@
-
 <view class="about">
 
-<text bindtap='phoneCall'>客服电话（01058461455）</text>
-<image src='/assets/right.png'></image>
+  <text bindtap='phoneCall'>客服电话（010-895077）</text>
+  <image src='/assets/right.png'></image>
 
 </view>
 
 <view class="about" bindtap='about'>
-
-<text>关于我们</text>
-<image src='/assets/right.png'></image>
-
+  <text>关于我们</text>
+  <image src='/assets/right.png'></image>
 </view>
 
 <view class="about">
 
-<text>声明</text>
-<image src='/assets/right.png'></image>
+  <text>声明</text>
+  <image src='/assets/right.png'></image>
 
 </view>

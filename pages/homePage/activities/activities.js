@@ -130,16 +130,27 @@ Page({
           name: "报名",
           hid: false,
         }
+        
         if (projectNow.needNumber > 1) {
-          let needNum = projectNow.needNumber / 2
+          let needNum =0
+          if(projectNow.SportType==21||projectNow.SportType==20){
+             needNum = projectNow.needNumber / 3
+             for (let i = 0; i = needNum- projectNow.teamC.length; i++) {
+              projectNow.teamC.push(object)
+            }
+           
+          }else{
+            needNum = projectNow.needNumber / 2
+            for (let i = 0; i = projectNow.RefereeNumber - projectNow.teamC.length; i++) {
+              projectNow.teamC.push(object)
+            }
+          }
+          
           for (let i = 0; i = needNum - projectNow.teamA.length; i++) {
             projectNow.teamA.push(object)
           }
           for (let i = 0; i = needNum - projectNow.teamB.length; i++) {
             projectNow.teamB.push(object)
-          }
-          for (let i = 0; i = projectNow.RefereeNumber - projectNow.teamC.length; i++) {
-            projectNow.teamC.push(object)
           }
           if (projectNow.teamA[0].uuid != wx.getStorageSync('uuid')) {
             this.setData({
@@ -586,9 +597,13 @@ Page({
     let that = this
     if (e.currentTarget.dataset.team == 1) {
       var teamText = 'A'
-    } else {
+    } else if(e.currentTarget.dataset.team == 2) {
       var teamText = 'B'
+    }else{
+      var teamText = 'C'
     }
+    let index=e.currentTarget.dataset.index
+   
 
     if (this.data.typeTwo == 0) {
       wx.showModal({
@@ -612,7 +627,8 @@ Page({
               Accompany: that.data.activitiesData.MoneyPerhour,
               Reward: that.data.activitiesData.Tips,
               refereefee: that.data.activitiesData.refereeFee,
-              CreateTime: that.data.activitiesData.CreateTime
+              CreateTime: that.data.activitiesData.CreateTime,
+              pos:index.toString()
             }
             app.globalData = obj
             wx.navigateTo({

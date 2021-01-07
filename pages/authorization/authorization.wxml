@@ -3,7 +3,7 @@
     <image class="logo" src="/assets/tiaozhan.png"></image>
 
     <button class="btn" wx:if="{{authorization==0}}" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">微信授权用户信息</button>
-    <button class="btn" wx:if="{{authorization==1}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信登录</button>
+    <button class="btn" wx:if="{{authorization==1}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信授权注册</button>
     
 
 </view>

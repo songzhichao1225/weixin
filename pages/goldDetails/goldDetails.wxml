@@ -1,11 +1,45 @@
 <view class="goldDetail">
-  <view class="son" wx:for="{{goldList}}" wx:key='index'>
-  <view class="sonList">
-  <view style='margin-top:30rpx;float:left;'>
-   <text style='font-size:32rpx;'>{{item.Reason}}</text>
-   <text style='font-size: 12px;color: #9B9B9B;'>{{item.CoinsDate}}</text>
-   </view>
-   <text style='font-size: 32rpx;color: #D85D27;float:right;margin-top:50rpx;'> {{item.GetCoins}}</text>
-  </view>
+  <scroll-view scroll-y="auto" wx:if="{{flag!='techCoins'}}" class="bossScroll" refresher-enabled="true" refresher-triggered="{{enabled}}"
+      bindrefresherrefresh="refresh" bindscrolltolower="tolower">
+    <view class="son" wx:for="{{goldList}}" bindtap="goldDetailSon" data-uuid="{{item.UUID}}" wx:key='index'>
+      <view class="sonList">
+        <view style='margin-top:15rpx;float:left;'>
+          <text style='font-size:0.88rem;'>{{item.Reason}}</text>
+          <text style='font-size: 0.75rem;color: #9B9B9B;'>{{item.OrderID}}</text>
+          <text style='font-size: 0.75rem;color: #9B9B9B;'>{{item.CoinsDate}}</text>
+        </view>
+        <image class="imgRight" src="../../assets/right.png"></image>
+        <text wx:if="{{item.color==1}}" style='font-size: 32rpx;color: #D85D27;float:right;margin-top:50rpx;'> {{item.GetCoins}}</text>
+        <text wx:if="{{item.color==0}}" style='font-size: 32rpx;float:right;margin-top:50rpx;'> {{item.GetCoins}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+
+
+  <view wx:if="{{flag=='techCoins'}}" style="height:100%">
+    <scroll-view scroll-x="auto" class="headTop">
+      <view style="width:28rem">
+        <view class="sonList" wx:for="{{sport}}" bindtap="sonList" data-index="{{item.num}}" wx:key="index">{{item.name}}<view class="line" wx:if="{{index==indexed}}"></view>
+        </view>
+      </view>
+    </scroll-view>
+    <scroll-view scroll-y="auto" class="rivals"  refresher-enabled="true" refresher-triggered="{{enabled}}"
+      bindrefresherrefresh="refresh" bindscrolltolower="tolower">
+      <view class="son" wx:for="{{goldList}}" bindtap="goldDetailSon" data-uuid="{{item.UUID}}" wx:key='index'>
+      <view class="sonList">
+        <view style='margin-top:15rpx;float:left;'>
+          <text style='font-size:0.88rem;'>{{item.Reason}}</text>
+          <text style='font-size: 0.75rem;color: #9B9B9B;'>{{item.OrderID}}</text>
+          <text style='font-size:0.75rem;color: #9B9B9B;'>{{item.CoinsDate}}</text>
+        </view>
+        <image class="imgRight" src="../../assets/right.png"></image>
+        <text wx:if="{{item.color==1}}" style='font-size: 32rpx;color: #D85D27;float:right;margin-top:50rpx;'> {{item.GetCoins}}</text>
+        <text wx:if="{{item.color==0}}" style='font-size: 32rpx;float:right;margin-top:50rpx;'> {{item.GetCoins}}</text>
+      </view>
+    </view>
+
+
+    </scroll-view>
   </view>
 </view>

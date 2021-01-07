@@ -133,7 +133,7 @@ Page({
   drankingList: function (){
     let { typeTitle, nameE}=this.data
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     util.Request("/api/getRanking", { 'sportid': typeTitle, 'type': nameE }, "get",

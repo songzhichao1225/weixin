@@ -8,11 +8,9 @@
  </view> -->
 
   <swiper indicator-dots="true" indicator-color="#ccc" indicator-active-color="#3fc" class="swiper">
-
     <swiper-item wx:for="{{banerLst}}" wx:key="index">
     <image style="width:100%;height:100%;" src="{{img}}/{{item.picurl}}"></image>
     </swiper-item>
-
   </swiper>
 
   <view class="navTor">

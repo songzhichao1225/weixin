@@ -38,6 +38,11 @@ Page({
     uuid:'',
     page:1,
     myUUid:'',
+    haUuid:wx.getStorageSync('uuid'),
+    pageTwo:1,
+    publicLst:[],
+    enabled:false,
+    enabledTwo:false,
   },
   onLoad: function (option) {
     this.setData({
@@ -45,7 +50,7 @@ Page({
       myUUid:option.uuid
     })
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
 
@@ -111,28 +116,42 @@ Page({
     })
     if (e.currentTarget.dataset.index == '2') {
       this.list()
+    }else if(e.currentTarget.dataset.index == '3'){
+      this.ActiveLst()
     }
   },
-  list:function(){
+  list:function(show){
     util.Request("/api/getPlayerDynamicList", {
       'page': this.data.page,
       playeruuid: this.data.myUUid
     }, "post",
     (res) => {
-      let data=res.data.data
-      for(let i in data){
-        data[i].index=Number(i)
+      let projectDataNow=res.data.data
+      if (show== true) {
+        var dataSon = [...this.data.dynameicList, ...projectDataNow]
+        if (projectDataNow.length == 0) {
+          wx.showToast({
+            title: '没有更多了~',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      } else {
+        var dataSon = projectDataNow
+      }
+      for(let i in dataSon){
+        dataSon[i].index=Number(i)
       }
       let dynameicListLeft=[]
       let dynameicListRight=[]
-      for(let i in data){
-          if(data[i].index%2==0){
-            dynameicListLeft.push(data[i])
+      for(let i in dataSon){
+          if(dataSon[i].index%2==0){
+            dynameicListLeft.push(dataSon[i])
           }else{
-            dynameicListRight.push(data[i])
+            dynameicListRight.push(dataSon[i])
           }
       }
-      this.setData({dynameicListLeft:dynameicListLeft,dynameicListRight:dynameicListRight,dynameicList:data})
+      this.setData({dynameicListLeft:dynameicListLeft,dynameicListRight:dynameicListRight,dynameicList:dataSon,enabled:false})
       wx.hideLoading()
     },
     () => {
@@ -194,6 +213,99 @@ Page({
     })
   },
 
+  joinDong(){
+    wx.navigateTo({
+      url: '/generalization/releaseDynamics/releaseDynamics'
+    })
+  },
+  ActiveLst:function(showTwo){
+    util.Request("/api/getMyActiveLst", {
+      'page': this.data.pageTwo,
+      "statusType":'matching',
+      "type":'publish'
+    }, "get",
+    (res) => {
+
+      let projectDataNow = res.data.data.publicLst
+      for (let i in projectDataNow) {
+        if(projectDataNow[i].SportMode == '1'&&projectDataNow[i].reserve==1){
+          projectDataNow[i].SportMode = '仅预订场馆'
+        }else if (projectDataNow[i].SportMode == '1') {
+          projectDataNow[i].SportMode = '娱乐模式'
+        } else if (projectDataNow[i].SportMode == '2') {
+          projectDataNow[i].SportMode = '竞技模式 '
+        } else if (projectDataNow[i].SportMode == '3') {
+          projectDataNow[i].SportMode = '我是陪练 '
+        } else if (projectDataNow[i].SportMode == '4') {
+          projectDataNow[i].SportMode = '我找陪练 '
+        } else if (projectDataNow[i].PaySiteMoneyType == 1) {
+          projectDataNow[i].PaySiteMoneyType = 'AA'
+        } else if (projectDataNow[i].PaySiteMoneyType == 0) {
+          projectDataNow[i].PaySiteMoneyType = '输者买单'
+        }
+      }
+      if (showTwo == true) {
+        var data = [...this.data.publicLst, ...projectDataNow]
+        if (projectDataNow.length == 0) {
+          wx.showToast({
+            title: '没有更多了~',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      } else {
+        var data = projectDataNow
+      }
+
+      this.setData({publicLst:data,enabledTwo:false})
+      wx.hideLoading()
+    },
+    () => {
+      console.log("失败")
+    },
+    () => {
+    }
+  )
+  },
+
+  refresh() {
+    this.setData({
+      enabled: true,
+      page: 1
+    })
+    this.list()
+  },
+  //上拉加载
+  tolower: function () {
+    this.setData({
+      page: this.data.page + 1
+    })
+    let show= true
+    this.list(show)
+  },
+
+  refreshTwo() {
+    this.setData({
+      enabledTwo: true,
+      pageTwo: 1
+    })
+    this.ActiveLst()
+  },
+  //上拉加载
+  tolowerTwo: function () {
+    this.setData({
+      pageTwo: this.data.pageTwo + 1
+    })
+    let showTwo = true
+    this.ActiveLst(showTwo)
+  },
+
+  //跳转详情
+  activities:function(e){
+    wx.navigateTo({
+      url: '/pages/homePage/activities/activities?uuid='+e.currentTarget.dataset.uuid,
+    })
+  },
  
 
 })

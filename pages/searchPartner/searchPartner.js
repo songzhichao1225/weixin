@@ -22,7 +22,7 @@ Page({
     sData.lng = wx.getStorageSync("lng")
     sData.page=this.data.page
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     util.request("/api/searchUser", sData, "get",

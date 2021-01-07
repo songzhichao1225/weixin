@@ -97,7 +97,7 @@ Page({
       (res) => {
         if(res.data.code===2000){
           wx.navigateBack({
-            delta: 2
+            delta: 1
           })
         }else{
           wx.showToast({

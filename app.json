@@ -81,7 +81,10 @@
         "minePreference/minePreference",
         "bookInTwo/bookInTwo",
         "dynamicDetails/dynamicDetails",
-        "releaseDynamics/releaseDynamics"
+        "releaseDynamics/releaseDynamics",
+        "possible/possible",
+        "goldDetailSon/goldDetailSon",
+        "deductibles/deductibles"
       ]
     }
   ],
@@ -136,7 +139,7 @@
   "sitemapLocation": "sitemap50.json",
   "permission": {
     "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+      "desc": "你的位置信息将用于活动列表的效果展示"
     }
   }
 }

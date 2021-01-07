@@ -47,8 +47,8 @@ text {
 }
 
 .personal .tap .name .sex {
-  width: 0.7rem;
-  height: 0.7rem;
+  width: 0.94rem;
+  height: 0.94rem;
   margin-top: 0.2rem;
   margin-left: 0.2rem;
   display: block;

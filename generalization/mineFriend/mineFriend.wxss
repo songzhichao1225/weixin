@@ -4,7 +4,6 @@
 
 .mineFriend .header {
   width: 100%;
-  height: 68rpx;
 }
 
 .mineFriend .header .headerSon {
@@ -15,84 +14,127 @@
   line-height: 70rpx;
   width: 120rpx;
   text-align: center;
+  border-top: 0.06rem solid #e1e0e1;
 }
 
 
 
-.characterList{
+.characterList {
   width: 95%;
-  margin: 1rem  auto 0;
+  margin: 1rem auto 0;
   overflow: hidden;
   position: relative;
-  border-bottom:2rpx solid #ccc;
+  border-bottom: 2rpx solid #ccc;
   padding-bottom: 0.5rem;
+  position: relative;
 }
-.characterList .img{
+
+.characterList .img {
   width: 4.4rem;
-  height:4.4rem;
+  height: 4.4rem;
   display: block;
   border-radius: 15rpx 15rpx;
   float: left;
 
 }
-.characterList .content{
+
+.characterList .content {
   float: left;
-  width:69%;
+  width: 69%;
   margin-left: 0.8rem;
 }
+
 .characterList .content .header {
   overflow: hidden;
 }
-.characterList .content .header .text{
-font-size: 16px;
-color: #333333;
-display: block;
-float: left;
-}
-.characterList .content .header .image{
-display: block;
-width: 0.8rem;
-height: 0.8rem;
-float: left;
-margin:0.4rem 0 0 0.3rem;
+
+.characterList .content .header .text {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333333;
+  display: block;
+  float: left;
 }
 
-.characterList .content .header .imageTwo{
-display: block;
-width: 1.4rem;
-height: 1.4rem;
-float: left;
-margin:0.1rem 0 0 0.3rem;
+.characterList .image {
+  display: block;
+  width: 0.94rem;
+  height: 0.94rem;
+  float: left;
+  margin: 0.4rem 0 0 0.3rem;
 }
-.characterList .content .header .textTwo{
-display: block;
-float: left;
-padding:0.1rem 0.2rem;
-margin:0.3rem 0 0 0.3rem;
-background: #F5A623;
-border-radius: 2px;
-font-size: 10px;
-color: #FFFFFF;
+
+.characterList .imageTwo {
+  display: block;
+  width: 0.99rem;
+  height: 0.99rem;
+  float: left;
+  margin: 0.3rem 0 0 0.3rem;
 }
-.characterList .content .signs{
-  font-size: 14px;
+
+.characterList .textTwo {
+  width: 42.6rpx;
+  height: 22rpx;
+  background: linear-gradient(270deg, rgba(252, 164, 0, 1) 0%, rgba(254, 224, 115, 1) 100%);
+  border-radius: 0.13rem;
+  font-size: 18rpx;
+  line-height: 24rpx;
+  color: #fff;
+  display: block;
+  float: left;
+  text-align: center;
+  margin-top: 0.4rem;
+  margin-left: 0.3rem;
+}
+
+.characterList .content .signs {
+  font-size: 0.88rem;
   color: #4A4A4A;
   overflow: hidden;
- 
+  margin-top: 0.2rem;
 }
-.characterList .content .signs text{
+
+.characterList .content .signs text {
   display: block;
   float: left;
   margin-left: 0.5rem;
 }
-.characterList .content .interest{
-  font-size: 14px;
+
+.characterList .content .interest {
+  font-size: 0.88rem;
   color: #4A4A4A;
+  margin-top: 0.2rem;
 }
 
-::-webkit-scrollbar{
-width: 0;
-height: 0;
-color: transparent;
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
 }
 
+.left {
+  float: left;
+  width: 4.4rem;
+}
+.inputPhone{
+  width: 90%;
+  height: 1.91rem;
+  text-align: center;
+  line-height: 1.91rem;
+  font-size: 0.88rem;
+  border-radius: 0.96rem;
+  background-color: #f3f3f3;
+  margin: 0.5rem auto 0;
+}
+.deletBtn{
+  width: 3.13rem;
+  height: 1.5rem;
+  background-color: #e9e9e9;
+  border-radius: 0.75rem;
+  text-align: center;
+  line-height: 1.5rem;
+  font-size: 0.75rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

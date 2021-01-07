@@ -23,68 +23,72 @@
   margin-left: -1.94rem;
 }
 
-.text {
-  margin-top: 2rem;
-}
-
-.text text {
-  display: block;
-  font-size: 1rem;
-  text-align: center;
-}
-
-.text .comm {
-  display: block;
-  width: 95%;
-  font-size: 1rem;
-  margin: 1rem auto 0;
-  text-align: center;
-  color:red;
-}
-
-.title {
-  font-size: 0.88rem;
-  display: block;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-.title text {
-  padding-left: 0.8rem;
-  font-size: 0.75rem;
-  color: #9B9B9B;
-}
-
-.btn {
-  overflow: hidden;
-  width: 80%;
-  margin: 3rem auto 0;
-}
-
-.btn .btnSonOne {
-  width: 40%;
-  height: 2.13rem;
-  border-radius: 0.38rem;
-  border: 0.06rem solid rgba(216, 93, 39, 1);
-  float: left;
-  text-align: center;
-  line-height: 2.13rem;
-  color: #D85D27;
-  font-size: 0.75rem;
-}
-
-.btn .btnSonOne:last-child {
-  margin-left: 18.5%;
-}
-.rules{
-  font-size: 0.75rem;
-  
-}
-.ojbk{
+.ojbk {
   display: block;
   width: 100%;
   text-align: center;
   color: #fff;
   position: absolute;
-  bottom: 5%;
+  bottom: 15%;
+}
+
+.text {
+  position: relative;
+}
+
+.headTop {
+  width: 80%;
+  background: #FFFFFF;
+  box-shadow: 0.13rem 0.19rem 0.69rem 0rem rgba(225, 225, 225, 0.5);
+  border-radius: 0.5rem;
+  margin-left: 7%;
+  margin-top: -1rem;
+  padding: 1rem 0.63rem;
+}
+
+.headTop>text {
+  display: block;
+  text-align: center;
+}
+
+.headTop>.comm {
+  font-size: 0.88rem;
+  color: #D0021B;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.center {
+  width: 95%;
+  margin: 1.88rem auto 0;
+}
+
+.center>text {
+  display: block;
+}
+
+.center>text:first-child {
+  font-size: 0.75rem;
+  color: #D85D27;
+}
+.btn{
+  margin-top: 1.31rem;
+}
+
+.btn>button:first-child {
+  width: 95%;
+  height: 2.69rem;
+  background: #D85D27;
+  border-radius: 1.34rem;
+  color: #fff;
+}
+
+.btn>button:last-child {
+  width: 95%;
+  height: 2.69rem;
+  border: 0.06rem solid #D85D27;
+  border-radius: 1.34rem;
+  color: #D85D27;
+  background: #fff;
+  margin-top: 1rem;
 }

@@ -30,7 +30,7 @@ Page({
 
   goLond:function(page,start,end,mooe){
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     util.Request("/api/getPromoterOrder", {'page':page,'start':start,'end':end}, "post",

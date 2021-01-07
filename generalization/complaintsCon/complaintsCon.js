@@ -27,7 +27,7 @@ Page({
   },
   apiRequest: function (type) {
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     util.Request("/api/getMyComplaintList", {

@@ -137,7 +137,7 @@ page{
   float: left;
 }
 .counting{
-  position: fixed;
+  position: absolute;
   top: 22rem;
   right: 1rem;
   width: 2.19rem;

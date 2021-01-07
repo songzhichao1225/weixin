@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="content" bindtap='itemSelectionH' wx:if="{{flag}}">
+<view class="content" bindtap='itemSelectionH'>
 	<view class="headerCity">
 		<text bindtap='cityList'>{{selectCity}}</text>
 		<image class="image" src='/assets/HomeIconJt@2x.png'></image>
@@ -7,7 +7,7 @@
 			<image style='display:block;width:0.8rem;height:0.8rem;margin:0.5rem 0 0 0.45rem;float:left;' src='/assets/SearchIcon@2x.png'></image>
 			<input type='text' disabled='true' placeholder='请输入地址' value="{{addressN}}" placeholder-style="font-size:14px;" confirm-type="search"></input>
 		</view>
-		<image class="news" bindtap="news" src="../../../assets/news.png"></image>
+		<!-- <image class="news" bindtap="news" src="../../../assets/news.png"></image> -->
 	</view>
 	<view class="bannerBack">
 		<image class="back" src="../../../assets/bannerback@2x.png"></image>
@@ -25,26 +25,30 @@
       <image wx:if="{{isSign==1}}" src='/assets/home-icon-qiandao-hui@2x.png'></image>
       <text>{{isSign==0?'签到':'已签到'}}</text>
     </view> -->
-		<view bindtap="generaGold">
+		<view >
 			<image src='/assets/HomeIconJinbi@2x.png'></image>
 			<text>赢对手币</text>
-			
+			<!-- bindtap="generaGold" -->
 		</view>
-		<view bindtap='goldMall'>
+		<view >
 			<image src='/assets/HomeIconShangcheng@2x.png'></image>
 			<text>兑换商城</text>
+			<!-- bindtap='goldMall' -->
 		</view>
-		<view bindtap='generalization'>
+		<view >
 			<image src='/assets/generalization.png'></image>
 			<text>我是推广员</text>
+			<!-- bindtap='generalization' -->
 		</view>
-		<view bindtap='goldMall'>
+		<view >
 			<image src='/assets/cooperate.png'></image>
 			<text>场馆入驻</text>
+			<!-- bindtap='goldMall' -->
 		</view>
-		<view bindtap="signUp">
+		<view >
       <image src='/assets/run.png'></image>
-      <text>报名偏好</text>
+			<text>报名偏好</text>
+			<!-- bindtap="signUp" -->
     </view>
 	</view>
 
@@ -136,7 +140,7 @@
 			</view>
 			<view class="activityTwo" wx:if="{{hiddenTwo}}">
 				<view class="activityTwoSon" wx:for="{{activitySon}}" bindtap='activityTwoSon' wx:key='index' data-name="{{item.name}}" data-num="{{item.id}}">
-					<text>{{item.name}}</text>
+					<text wx:if="{{item.name!='按次收费'&&item.name!='散场'}}">{{item.name}}</text>
 				</view>
 			</view>
 
@@ -146,7 +150,7 @@
 				</view>
 			</view>
 
-			<view class="sort" style='left:50%;' wx:if="{{statusHid}}">
+			<view class="sort" style='left:57.5%;' wx:if="{{statusHid}}">
 				<view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key='index' data-name="{{item.name}}" data-num="{{item.num}}">
 					<text>{{item.name}}</text>
 				</view>
@@ -172,7 +176,16 @@
 
 	<download wx:if="{{download}}" bindtap="closeDowload"></download>
 
+   <view class="bossZhe" wx:if="{{getSetting==1}}">
+		  <view class="shoModel">
+				<text>检测到您未打开地理位置权限，是否前往开启</text>
+        <view class="footerBtn">
+					<view class="left">手动定位</view>
+					<view class="right">前往开启<button bindtap="openSetting" style="opacity: 0;">5858</button></view>
+				</view>
+			</view>
 
+	 </view>
 
 
 

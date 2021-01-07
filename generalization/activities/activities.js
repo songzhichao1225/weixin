@@ -15,7 +15,7 @@ Page({
 
   onLoad: function (option) {
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     this.setData({

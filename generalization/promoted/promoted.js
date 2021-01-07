@@ -12,7 +12,7 @@ Page({
   },
   goleloand:function(page,type){
     wx.showLoading({
-      title: '',
+      title: '加载中~',
       mask: true
     })
     util.request("/api/getNearbyvenues", { 'page': page, 'limit': 10, 'mylat': wx.getStorageSync('lat'), 'mylng': wx.getStorageSync('lng') }, "post",
