@@ -10,8 +10,9 @@
 	</view>
 	<view class="list">
 		<view><text class="leftOne">类</text><text class="leftOne" style="margin-left:1.76rem;">型</text><text class="right">{{moneyInfo.InOrOut==1?'收入':'支出'}}</text></view>
+		<view><text class="leftOne">活动编号</text><text class="right" style="color:blue">{{moneyInfo.orderId}}</text></view>
 		<view><text class="leftOne">时</text><text class="leftOne" style="margin-left:1.76rem;">间</text><text class="right">{{moneyInfo.RecordDate}}</text></view>
-		<view><text class="leftOne">剩余零钱</text><text class="right">{{moneyInfo.total}}</text></view>
+		<view><text class="leftOne">钱包余额</text><text class="right">{{moneyInfo.total}}</text></view>
 		<view><text class="leftOne">备</text><text class="leftOne" style="margin-left:1.76rem;">注</text><text class="right">{{moneyInfo.RecordReason}}</text></view>
 
 

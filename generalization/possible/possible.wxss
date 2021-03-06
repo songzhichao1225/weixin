@@ -51,7 +51,7 @@ page{
   float: left;
   margin-left: 1rem;
   line-height: 1.3rem;
-  width: 72.5%;
+  width: 68.5%;
 }
 .participative .sonList .right .name{
   font-size: 1rem;

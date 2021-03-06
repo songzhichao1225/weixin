@@ -29,7 +29,7 @@ Page({
       mask: true
     })
 
-    util.request("/api/getUserDetailInfo", {
+    util.Request("/api/getUserDetailInfo", {
         'uuid': wx.getStorageSync('uuid')
       }, "get",
 

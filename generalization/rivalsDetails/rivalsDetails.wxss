@@ -1,0 +1,126 @@
+.yesResults {
+  height: 100%;
+}
+
+.yesResults .banner {
+  width: 100%;
+  position: relative;
+}
+
+.yesResults .banner image {
+  width: 100%;
+}
+
+.yesResults .banner .content {
+  width: 80%;
+  position: absolute;
+  top: 20%;
+  left: 10%;
+}
+
+.yesResults .banner .content .left {
+  float: left;
+  width: 5.13rem;
+}
+
+.yesResults .banner .content .left image {
+  width: 5.13rem;
+  height: 4.94rem;
+}
+
+.yesResults .banner .content .left text {
+  font-size: 1.25rem;
+  color: #fff;
+  text-align: center;
+  display: block;
+}
+
+.yesResults .banner .content .center {
+  float: left;
+  color: #fff;
+  font-size: 1.88rem;
+  line-height: 4.94rem;
+  margin-left: 1.8rem;
+}
+
+.yesResults .banner .content .right {
+  float: right;
+  width: 5.13rem;
+}
+
+.yesResults .banner .content .right image {
+  width: 5.13rem;
+  height: 4.94rem;
+}
+
+.yesResults .banner .content .right text {
+  font-size: 1.25rem;
+  color: #fff;
+  text-align: center;
+  display: block;
+}
+
+.text {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.text text:first-child {
+  width: 0.75rem;
+  height: 0.75rem;
+  background: #EB2B2B;
+  border-radius: 50%;
+  font-size: 0.5rem;
+  color: #fff;
+  display: block;
+  text-align: center;
+  line-height: 0.75rem;
+  float: left;
+}
+
+.text text:last-child {
+  font-size: 0.75rem;
+  float: right;
+  width: 95%;
+  line-height: 0.75rem;
+}
+
+.operation {
+  width: 90%;
+  margin: 1.63rem auto 0;
+  overflow: hidden;
+}
+
+.operation .left {
+  line-height: 11rem;
+  float: left;
+  font-size: 1.25rem;
+}
+
+.operation .bossBtn {
+  float: left;
+  margin-left: 1.4rem;
+}
+
+.operation .bossBtn>button {
+  width: 10.81rem;
+  height: 2.2rem;
+  background: #F3F3F3;
+  border-radius: 0.19rem;
+  margin-top: 1rem;
+  border: none;
+}
+
+.operation .right {
+  line-height: 11rem;
+  float: right;
+  font-size: 1.25rem;
+}
+
+.btn {
+  width: 90%;
+  height: 2.5rem;
+  background: rgba(216, 93, 39, 1);
+  border-radius: 1.34rem;
+  color: #fff;
+}

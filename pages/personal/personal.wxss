@@ -521,7 +521,6 @@ text {
   height: 60%;
   margin: 0 auto;
   overflow: hidden;
-  
 }
 
 .participative .sonList {
@@ -564,7 +563,7 @@ text {
   float: left;
   margin-left: 1rem;
   line-height: 1.3rem;
-  width: 72.5%;
+  width: 65.5%;
 }
 .participative .sonList .right .name{
   font-size: 1rem;

@@ -59,7 +59,7 @@
         {
           "name": "不属实",
           "pathName": "generalization/notTrue/notTrue",
-          "query": "uuid= e237abb1-8794-93df-77af-e27aafd4a972",
+          "query": "uuid= 37f92997-eec4-8e4c-3fd3-6fc015a3740a",
           "scene": null
         },
         {
@@ -99,7 +99,7 @@
         {
           "name": "活动详情",
           "pathName": "pages/homePage/activities/activities",
-          "query": "uuid= e237abb1-8794-93df-77af-e27aafd4a972&type=1",
+          "query": "uuid= 37f92997-eec4-8e4c-3fd3-6fc015a3740a&type=1",
           "scene": null
         },
         {
@@ -125,7 +125,7 @@
         },
         {
           "id": -1,
-          "name": "对手币",
+          "name": "对手果",
           "pathName": "pages/mineGold/mineGold",
           "query": "",
           "scene": null
@@ -385,6 +385,24 @@
           "name": "选择抵用券",
           "pathName": "generalization/deductibles/deductibles",
           "query": "siteMoney=54.00&offsetquota=2",
+          "scene": null
+        },
+        {
+          "name": "帮助中心",
+          "pathName": "generalization/assistant/assistant",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "关于我们",
+          "pathName": "pages/aboutMine/aboutMine",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "我的抵用券",
+          "pathName": "generalization/voucher/voucher",
+          "query": "",
           "scene": null
         }
       ]

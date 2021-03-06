@@ -36,8 +36,8 @@
 				</view>
 				<view class="publisherTxt" style='margin-top:1rem;'>
 					<text style="color:#9B9B9B">场馆名称</text>  
-					<text class="time"    data-uid="{{activitiesData.siteUid}}">{{activitiesData.siteName}}</text>
-					<!-- bindtap="venueDetails" -->
+					<text class="time" 	bindtap="venueDetails"  data-uid="{{activitiesData.siteUid}}">{{activitiesData.siteName}}</text>
+				
 					<text wx:if="{{activitiesData.isCooper==1}}" class="cooperate">(合作场馆)</text>
 				</view>
 				<view class="publisherTxt">
@@ -188,7 +188,7 @@
 
 				<view class="TeamB" style="border:none;" wx:if="{{activitiesData.teamC.length!=0}}">
 					<text class="titleBDui">{{activitiesData.SportType==21||activitiesData.SportType==20?'C队':'裁判'}}</text>
-					<view class="peopleList" style="margin-left:19px;">
+					<view class="peopleList" style="margin-left:4%;">
 						<view class="son" wx:for="{{activitiesData.teamC}}" wx:key='index'>
 							
 							<view class="invite" wx:if="{{item.playerUUID=='empty'}}"  bindtap="{{activitiesData.SportType==21||activitiesData.SportType==20?'userSignUp':'addReferees'}}" data-index="{{index}}" data-team="3"  >
@@ -206,7 +206,8 @@
 					</view>
 				</view>
 			</view>
-
+			<view class="Insurance" wx:if="{{activitiesData.identification==1}}" bindtap="insuranceDe">保单详情<image src="../../../assets/right.png"></image><span>查看</span></view>
+			
 			<view class="lineTwo"></view>
 			<view class="complaintsCon" data-uuid="{{activitiesData.uuid}}" bindtap="complaintsCon"
 				wx:if="{{activitiesData.Complaint==0||activitiesData.Complaint==1||activitiesData.Complaint==2}}">
@@ -322,7 +323,7 @@
 				<view class="acquireSon" wx:if="{{activitiesData.isPublisher==1}}">
 					<text>出场费</text><text>{{activitiesData.getTips}}</text>
 				</view>
-				<view class="acquireSon"><text>对手币</text><text>{{activitiesData.GetCommonCoins}}枚</text></view>
+				<view class="acquireSon"><text>对手果</text><text>{{activitiesData.GetCommonCoins}}枚</text></view>
 				<view class="acquireSon"><text>技术分</text><text>{{activitiesData.GetCoins}}分</text></view>
 			</view>
 		</view>
@@ -336,12 +337,12 @@
 				<text>{{activitiesData.JoinEndTime}}</text>
 			</view>
 			<view class="releaseTime"
-				wx:if="{{activitiesData.PublicStatus!=1&&activitiesData.PublicStatus!=2&&activitiesData.reserve==1}}">
+				wx:if="{{activitiesData.PublicStatus!=1&&activitiesData.PublicStatus!=2&&activitiesData.reserve==0}}">
 				<text>活动开始时间</text>
 				<text>{{activitiesData.StartTime}}</text>
 			</view>
 			<view class="releaseTime"
-				wx:if="{{activitiesData.PublicStatus!=1&&activitiesData.PublicStatus!=2&&activitiesData.reserve==1}}">
+				wx:if="{{activitiesData.PublicStatus!=1&&activitiesData.PublicStatus!=2&&activitiesData.reserve==0}}">
 				<text>活动结束时间</text>
 				<text>{{activitiesData.FinishedTime}}</text>
 			</view>

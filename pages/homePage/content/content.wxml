@@ -25,27 +25,27 @@
       <image wx:if="{{isSign==1}}" src='/assets/home-icon-qiandao-hui@2x.png'></image>
       <text>{{isSign==0?'签到':'已签到'}}</text>
     </view> -->
-		<view >
+		<view bindtap="forbade">
 			<image src='/assets/HomeIconJinbi@2x.png'></image>
-			<text>赢对手币</text>
+			<text>赢对手果</text>
 			<!-- bindtap="generaGold" -->
 		</view>
-		<view >
+		<view bindtap="forbade">
 			<image src='/assets/HomeIconShangcheng@2x.png'></image>
 			<text>兑换商城</text>
 			<!-- bindtap='goldMall' -->
 		</view>
-		<view >
+		<view bindtap="forbade">
 			<image src='/assets/generalization.png'></image>
 			<text>我是推广员</text>
 			<!-- bindtap='generalization' -->
 		</view>
-		<view >
+		<view bindtap="forbade">
 			<image src='/assets/cooperate.png'></image>
 			<text>场馆入驻</text>
 			<!-- bindtap='goldMall' -->
 		</view>
-		<view >
+		<view bindtap="forbade">
       <image src='/assets/run.png'></image>
 			<text>报名偏好</text>
 			<!-- bindtap="signUp" -->
@@ -55,19 +55,20 @@
 	<view class="projectNav">
 		<view style='margin:0;' catchtap='itemSelection'>
 			<text style="{{sportName!=='运动项目'?'color:#D85D27;':''}}">{{sportName}}</text>
-			<image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
+			<image class="imgRight" src='/assets/home_icon_jt_xia_nor@2x.png'></image>
 		</view>
 		<view catchtap='sortHid'>
 			<text style="{{sprtSeName!=='推荐排序'?'color:#D85D27;':''}}">{{sprtSeName}}</text>
-			<image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
+			<image class="imgRight" src='/assets/home_icon_jt_xia_nor@2x.png'></image>
 		</view>
 		<view catchtap='statusHid'>
 			<text style="{{rangeName!=='距离范围'?'color:#D85D27;':''}}">{{rangeName}}</text>
-			<image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
+			<image class="imgRight" src='/assets/home_icon_jt_xia_nor@2x.png'></image>
 		</view>
-		<view bindtap='screen'>
+		<view  bindtap="forbade">
+			<!-- bindtap='screen' -->
 			<text>筛选</text>
-			<image src='/assets/home_icon_jt_xia_nor@2x.png'></image>
+			<image class="imgRight" src='/assets/home_icon_jt_xia_nor@2x.png'></image>
 		</view>
 	</view>
 
@@ -77,7 +78,7 @@
    <image src="/assets/nottxt.png"></image>
 	  <text>抱歉，您可以放宽筛选条件试试!</text>
 		<text>或自己发布活动吧，报名条件您说了算!</text>
-		<text>还可多得5枚对手币!</text>
+		<text>还可多得5枚对手果!</text>
 	</view>
 
 		<view class="projectSon" wx:if="{{projectData.length>0}}" bindtap="activites" data-uuid="{{item.uuid}}" wx:for="{{projectData}}" wx:key='index'>
@@ -150,7 +151,7 @@
 				</view>
 			</view>
 
-			<view class="sort" style='left:57.5%;' wx:if="{{statusHid}}">
+			<view class="sort" style='left:50%;' wx:if="{{statusHid}}">
 				<view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key='index' data-name="{{item.name}}" data-num="{{item.num}}">
 					<text>{{item.name}}</text>
 				</view>
@@ -176,7 +177,7 @@
 
 	<download wx:if="{{download}}" bindtap="closeDowload"></download>
 
-   <view class="bossZhe" wx:if="{{getSetting==1}}">
+   <!-- <view class="bossZhe" wx:if="{{getSetting==1}}">
 		  <view class="shoModel">
 				<text>检测到您未打开地理位置权限，是否前往开启</text>
         <view class="footerBtn">
@@ -184,7 +185,14 @@
 					<view class="right">前往开启<button bindtap="openSetting" style="opacity: 0;">5858</button></view>
 				</view>
 			</view>
-
+	 </view> -->
+	 <view class="forbade" wx:if="{{forbade}}">
+	  <view class="contentbade">
+		   <text>下载APP更多精彩体验</text>
+			 <image bindlongtap="saveImg" data-src="/assets/twoCode.png" class="twoCode" src="../../../assets/twoCode.png"></image>
+			 <text>保存二维码识别下载</text>
+			 <image class="closeTwo" bindtap="closeTwo" src="../../../assets/closeTwo.png"></image>
+		</view>
 	 </view>
 
 

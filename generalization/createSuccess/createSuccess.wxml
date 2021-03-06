@@ -15,19 +15,29 @@
 		<view class="center">
 			<text>温馨提示:</text>
 			<text style="font-size:0.75rem;padding-top:1rem">{{text.black}}</text>
-			<text style="font-size:0.75rem;padding-top:1rem">2、每有一个新用户参与并完成活动，邀请人或分享人可获得<text style="color:#D85D27">200</text>个对手币，<text style="color:#D85D27">立即分享吧!</text></text>
+			<text style="color:#D0021B;font-size:0.75rem;padding-top:1rem">2、您好，请务必下载APP，场馆签到、评价等均须在APP端操作完成，谢谢!</text>
 		</view>
-		
+
 		<text bindtap="detailRules" wx:if="{{typeInfo!=1}}"
 			style="font-size:0.75rem;color:blue;margin-top:1rem;padding:0.5rem 0 0 2.5%;">规则?</text>
 	</view>
 
 
 	<view class="btn">
-		<button class="btnSonOne">立即分享</button>
+		<button class="btnSonOne" bindtap="forbade">保存识别二维码下载APP</button>
 		<button class="btnSonOne" bindtap="details" data-uuid="{{uuid}}">查看活动详情</button>
-	
+
 	</view>
 	<text
 		style="font-size:0.88rem;color:#9B9B9B;text-align:center;display:block;margin-top:3rem;">{{text.orderTime}}</text>
 </view>
+
+
+<view class="forbade" wx:if="{{forbade}}">
+	  <view class="contentbade">
+		   <text>下载APP更多精彩体验</text>
+			 <image bindlongtap="saveImg" data-src="/assets/twoCode.png" class="twoCode" src="../../assets/twoCode.png"></image>
+			 <text>保存二维码识别下载</text>
+			 <image class="closeTwo" bindtap="closeTwo" src="../../assets/closeTwo.png"></image>
+		</view>
+	 </view>

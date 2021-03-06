@@ -30,6 +30,6 @@
 
     </view>
   </scroll-view>
-  <view class="getCommonCoins">当前对手币<text style="font-size:1.13rem;padding:0 0.5rem;">{{coins}}枚</text>快去兑换商品吧</view>
+  <view class="getCommonCoins">当前对手果<text style="font-size:1.13rem;padding:0 0.5rem;">{{coins}}枚</text>快去兑换商品吧</view>
 
 </view>

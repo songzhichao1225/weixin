@@ -125,7 +125,7 @@ Page({
   //跳转用户详情
   getUserDetailInfo: function (e) {
     wx.navigateTo({
-      url: '/generalization/personal/personal?uuid=' + e.currentTarget.dataset.uid
+      url: '/pages/personal/personal?uuid=' + e.currentTarget.dataset.uid
     })
   },
   inputPhone(e) {

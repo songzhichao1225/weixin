@@ -38,7 +38,7 @@
 				</view>
 				<view class="patterns">
 					<text style="color:#000">场地费:{{item.PaySiteMoneyType==1?'AA':'输者买单'}}</text>
-					<text >{{item.SportMode=='1'?'入场费':'陪练费'||item.SportMode=='2'?'入场费:':'陪练费'}}:￥{{item.Tips}}/人</text>
+					<text >{{item.SportMode=='1'?'入场费':'陪练费'||item.SportMode=='2'?'入场费:':'陪练费'}}￥{{item.Tips}}/人</text>
 					<text style="float:right">{{item.range}}</text>
 				</view>
 			</view>

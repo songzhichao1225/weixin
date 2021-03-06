@@ -155,11 +155,11 @@ page {
 
 .listBoss .content .leftLst .GradeTxt {
   width: 52.6rpx;
-  height: 22rpx;
+  height: 28rpx;
   background: linear-gradient(270deg, rgba(252, 164, 0, 1) 0%, rgba(254, 224, 115, 1) 100%);
   border-radius: 0.13rem;
   font-size: 20rpx;
-  line-height: 24rpx;
+  line-height: 26rpx;
   color: #fff;
   display: block;
   float: left;

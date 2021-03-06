@@ -84,8 +84,11 @@
         "releaseDynamics/releaseDynamics",
         "possible/possible",
         "goldDetailSon/goldDetailSon",
-        "deductibles/deductibles"
-      ]
+        "deductibles/deductibles",
+        "assistantTwo/assistantTwo",
+        "voucher/voucher",
+        "insuranceDe/insuranceDe"
+      ] 
     }
   ],
  
@@ -120,6 +123,7 @@
         "iconPath": "assets/btTtab.png",
         "selectedIconPath": "assets/btTtab.png"
       },
+     
       {
         "pagePath": "pages/golDranking/golDranking",
         "text": "排行榜",
@@ -132,6 +136,8 @@
         "iconPath": "assets/icon-footer-wd-nor@2x.png",
         "selectedIconPath": "assets/icon-footer-wd-sel@2x.png"
       }
+
+     
     ]
   },
 

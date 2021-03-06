@@ -57,14 +57,14 @@ Page({
       name: '区排名',
       num: '4',
       color: false,
-      title:'区',
+      title:wx.getStorageSync('area'),
       nameE:'area'
     },
     {
       name: '市排名',
       num: '3',
       color: false,
-      title: '市',
+      title: wx.getStorageSync('cityInfo'),
       nameE:'city'
     },
     {
@@ -150,7 +150,7 @@ Page({
   details:function(e){
    let uuid=e.currentTarget.dataset.uuid
     wx.navigateTo({
-      url: '/generalization/personal/personal?uuid=' + uuid
+      url: '/pages/personal/personal?uuid=' + uuid
     })
   }
 

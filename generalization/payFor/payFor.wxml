@@ -10,10 +10,16 @@
 			<text>{{modeNum==1?'打赏费':''||modeNum==2?'打赏费':''||modeNum==3?'陪练费':''||modeNum==4?'陪练费':''}}</text>
 			<text style="float:right">￥{{getElplainInfo.Accompany==0?getElplainInfo.Reward:getElplainInfo.Accompany}}</text>
 		</view>
-		<view class="one" style="border-top:0.06rem solid #e9e9e9"><text>履约保证金</text><text style="float:right;">￥{{getElplainInfo.deposit}}</text></view>
-		<view class="one" wx:if="{{getElplainInfo.TipsMoney!=''&&getElplainInfo.TipsMoney!=undefined}}" style="border-top:0.06rem solid #e9e9e9"><text>入场费</text><text style="float:right;">￥{{getElplainInfo.TipsMoney}}</text></view>
-	
-	
+		<view class="one" style="border-top:0.06rem solid #e9e9e9;border-bottom:0.06rem solid #e9e9e9"><text style="float:left">履约保证金</text><image bindtap="masking" class="wenhao" src="../../assets/wenhao.png"></image><text
+				style="float:right;">￥{{getElplainInfo.deposit}}</text></view>
+		<view class="one" wx:if="{{getElplainInfo.TipsMoney!=''&&getElplainInfo.TipsMoney!=undefined}}"
+			style="border-top:0.06rem solid #e9e9e9"><text>入场费</text><text
+				style="float:right;">￥{{getElplainInfo.TipsMoney}}</text></view>
+      <view class="insurance" wx:if="{{getElplainInfo.identification==1}}">
+				<radio  color="#D85D27" style="margin-top:0.5rem" bindtap="checkedFlag" checked="{{checkedFlag}}">意外保险费</radio>
+				<text>￥{{getElplainInfo.Insurance}}</text>
+			</view>
+
 	</view>
 	<view class="line"></view>
 	<view class="account ">费用说明</view>
@@ -33,6 +39,12 @@
 	</view>
 
 	<view class="line"></view>
+	<view class="venueFee" wx:if="{{getElplainInfo.identification==1}}">
+		<text>保险费</text>
+		<view class="jishi">{{getElplainInfo.InsuranceMoney}}<text style="color:blue" bindtap="previewImage" data-src="{{img}}/uploads/file/baodan/baodan.png">保单详情</text>。</view>
+	</view>
+
+
 	<view class="fanshi">
 		<image class="img" src="/assets/IconZfWx@2x.png"></image>
 		<text>微信支付</text>
@@ -58,10 +70,12 @@
 		<image class="img" src="/assets/kaQuan.png"></image>
 		<text>场地费抵用券 </text>
 		<image class="image" src="../../assets/right.png"></image>
-		 <text wx:if="{{getElplainInfo.isoffset==0}}" style="float:right;color:#D85D27">无可用的抵用券</text>
-		 <text wx:if="{{getElplainInfo.isoffset==1}}" style="float:right;color:#D85D27" bindtap="deductibles">{{volumeMoney!=0?'-'+volumeMoney+'元':'有可用的抵用券'}}</text>
+		<text wx:if="{{getElplainInfo.isoffset==0}}" style="float:right;color:#D85D27">无可用的抵用券</text>
+		<text wx:if="{{getElplainInfo.isoffset==1}}" style="float:right;color:#D85D27"
+			bindtap="deductibles">{{volumeMoney!=0?'-'+volumeMoney+'元':'有可用的抵用券'}}</text>
 	</view>
-	<view class="moneyAll"><text style="color:#D85D27;padding-right:0.5rem">减免￥{{volumeMoney}}</text>合计：<text style="color:#D85D27;font-size:1.5rem">￥{{getElplainInfo.Total-volumeMoney}}</text></view>
+	<view class="moneyAll"><text style="color:#D85D27;padding-right:0.5rem">减免￥{{volumeMoney}}</text>合计：<text
+			style="color:#D85D27;font-size:1.5rem">￥{{getElplainInfo.Total-volumeMoney}}</text></view>
 	<view style="color:#ccc;font-size:0.75rem;text-align:center;margin-top:1rem;"> </view>
 	<view class="btn" bindtap="payTo">确定支付</view>
 
@@ -75,7 +89,7 @@
 				<text>请输入支付密码</text>
 			</view>
 			<view class='input_tip'><text>支付金额</text></view>
-			<view class='input_tip'><text style="font-size:1rem">￥{{getElplainInfo.Total}}</text></view>
+			<view class='input_tip'><text style="font-size:1rem">￥{{getElplainInfo.Total-volumeMoney}}</text></view>
 			<view class='input_row' catchtap='getFocus'>
 				<view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
 					<text wx:if='{{pwdVal.length>i}}'></text>
@@ -86,4 +100,20 @@
 		</view>
 	</view>
 
+	<view class="masking" wx:if="{{maskingOne}}">
+		<view class="content">
+			<view class="title">履约保证金说明</view>
+			<view class="son"><text>为保证所有活动者的运动体验，请您在活动</text></view>
+			<view class="son"><text>开始时间5分钟之前到达场地并打开找对手</text></view>
+			<view class="son"><text>进行场地签到，谢谢。</text></view>
+			<view class="son"><text>缺勤0-15分钟，扣除20%的履约保证金；</text></view>
+			<view class="son"><text>缺勤15-30分钟，扣除50%的履约保证金；</text></view>
+			<view class="son"><text>缺勤30分钟以上，扣除100%的履约保证金；</text></view>
+
+		</view>
+
+		<view class="close" bindtap="closeTwo">
+			<image src="/assets/BtnDown@2x.png"></image>
+		</view>
+	</view>
 </view>

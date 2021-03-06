@@ -2,14 +2,15 @@
   width: 96%;
   font-size: 14px;
   color: #333;
-  margin: 0 auto 48rpx;
+  margin: 0 auto;
   display: block;
 }
 
 .footer {
   display: block;
   width: 96%;
-  margin: 0 auto;
+  margin: 1rem auto 0;
   font-size: 14px;
   color: #333;
+  text-indent:28px;
 }

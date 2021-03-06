@@ -39,7 +39,7 @@
   </view>
   <view class="line"></view>
   <view class="picker" style="border:none;width:95%;margin:0 auto;font-size:0.88rem;">
-  <text>商品合计:</text><text style="float:right;color:#D85D27;">对手币{{cost}}个</text>
+  <text>商品合计:</text><text style="float:right;color:#D85D27;">对手果{{cost}}个</text>
   </view>
 
   <view class="btn" bindtap="exchange">兑换</view>

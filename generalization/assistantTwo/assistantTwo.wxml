@@ -1,0 +1,2 @@
+<web-view bindmessage="detal" src="https://appstg.tiaozhanmeiyitian.com/api/allProtocol?type={{type}}">
+</web-view>

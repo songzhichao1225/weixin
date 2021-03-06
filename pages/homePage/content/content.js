@@ -5,6 +5,7 @@ var bmap = require("../../../utils/bmap-wx.min.js");
 var util = require("../../../utils/util.js");
 Page({
   data: {
+    forbade: false,
     activity: [], //获取项目分类
     activitySon: [], //获取项目详细分类
     mydata: {}, //选中城市返回 
@@ -107,8 +108,8 @@ Page({
       let wxMarkerData = data.wxMarkerData;
       that.setData({
         markers: wxMarkerData,
-        latitude: wxMarkerData[0].latitude,
-        longitude: wxMarkerData[0].longitude,
+        latitude: data.originalData.result.location.lat,
+        longitude: data.originalData.result.location.lng,
         address: data.originalData.result.addressComponent.district,
         cityInfo: data.originalData.result.addressComponent,
         selectCity: data.originalData.result.addressComponent.city
@@ -119,6 +120,8 @@ Page({
       wx.setStorageSync("cityInfo", data.originalData.result.addressComponent.city)
       wx.setStorageSync('area', data.originalData.result.addressComponent.district)
       wx.setStorageSync('address', wxMarkerData[0].address)
+      wx.setStorageSync('lat', data.originalData.result.location.lat)
+      wx.setStorageSync('lng',data.originalData.result.location.lng)
     }
 
     BMap.regeocoding({
@@ -132,31 +135,6 @@ Page({
   },
 
   onLoad: function () {
-    let that = this
-    wx.getSetting({
-      success(res) {
-        if (!res.authSetting['scope.userLocation'] || res.authSetting['scope.userLocation'] == false) {
-          that.setData({
-            getSetting: 1
-          })
-        } else {
-          that.setData({
-            getSetting: 0
-          })
-        }
-      }
-    })
-    wx.getLocation({
-      type: 'gcj02',
-      altitude:'true',
-      isHighAccuracy:'true',
-      success(res) {
-        wx.setStorageSync("lat", res.latitude)
-        wx.setStorageSync("lng", res.longitude)
-      }
-    })
-
-
     this.map()
     this.setData({
       img: util.API
@@ -370,7 +348,6 @@ Page({
         () => {}
       )
     }
-    this.onLoad()
 
   },
 
@@ -506,9 +483,20 @@ Page({
           "id": id
         }, "get",
         (res) => {
-          this.setData({
-            activitySon: res.data.data
-          })
+          let arr = []
+          arr.push(...res.data.data.slice(0, 3))
+          arr.push(...res.data.data.slice(4, 5))
+          arr.push(...res.data.data.slice(3, 4))
+          if (id == 5) {
+            this.setData({
+              activitySon: arr
+            })
+          } else {
+            this.setData({
+              activitySon: res.data.data
+            })
+          }
+
         },
         () => {},
         () => {}
@@ -677,5 +665,59 @@ Page({
         url: '/pages/authorization/authorization'
       })
     }
+  },
+  forbade() {
+    this.setData({
+      forbade: true
+    })
+  },
+  closeTwo() {
+    this.setData({
+      forbade: false
+    })
+  },
+  saveImg(e) {
+    console.log()
+    wx.saveImageToPhotosAlbum({
+      filePath: e.currentTarget.dataset.src,
+      success: function (data) {
+        console.log(data);
+      },fail: function (err) {
+        console.log(err);
+        if (err.errMsg ==="saveImageToPhotosAlbum:fail auth deny") {console.log("用户一开始拒绝了，我们想再次发起授权")
+          console.log(
+            '打开设置窗口'
+          )
+
+          wx.openSetting({
+            success(settingdata) {
+              console.log(settingdata)
+
+              if (settingdata.authSetting[
+                  'scope.writePhotosAlbum'
+                ]) {
+
+                console.log(
+                  '获取权限成功，给出再次点击图片保存到相册的提示。'
+                )
+
+              } else {
+
+                console.log(
+                  '获取权限失败，给出不给权限就无法正常使用的提示'
+                )
+
+              }
+
+            }
+
+          })
+
+        }
+
+      }
+
+    })
+   
   }
 })

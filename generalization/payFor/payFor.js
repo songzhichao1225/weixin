@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    current: 1,
+    current: 3,
     showPayPwdInput: false, //是否展示密码输入层
     pwdVal: '', //输入的密码
     payFocus: true, //文本框焦点
@@ -17,17 +17,66 @@ Page({
     look:0,
     ko:0,
     volumeMoney:0,
-    volumedetail:''
+    volumedetail:'',
+    maskingOne:false,
+    img:'',
+    checkedFlag:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+  checkedFlag(){
+    if(this.data.checkedFlag==false){
+       this.setData({checkedFlag:true})
+       this.kokopl()
+    }else{
+      this.setData({checkedFlag:false})
+      this.kokopl()
+    }
+  },
+
+  kokopl(){
+    let obj = {
+      sportModes: app.globalData.SportMode,
+      siteMoney: app.globalData.SiteMoney,
+      number: app.globalData.number,
+      PayMoneyType: app.globalData.PaySiteMoneyType,
+      isPublisher: app.globalData.isPublisher,
+      isCooper: 1,
+      sportid: app.globalData.sportid,
+      Accompany: app.globalData.SportMode == '3' ? app.globalData.Tips : 0 || app.globalData.SportMode == '4' ? app.globalData.Tips : 0,
+      Reward: app.globalData.SportMode == '1' ? app.globalData.Tips : 0 || app.globalData.SportMode == '2' ? app.globalData.Tips : 0,
+      Referee: app.globalData.refereefee,
+      Insurance:this.data.checkedFlag==true?'1':'0'
+    }
+    util.Request("/api/getElplainInfo", obj, "get",
+      (res) => {
+        let k = res.data.data.Total.toString()
+        if (k.indexOf('.')==-1){
+          res.data.data.Total = res.data.data.Total+'.00'
+        }
+        res.data.data.InsuranceMoney=res.data.data.InsuranceMoney.slice(0,res.data.data.InsuranceMoney.length-5)
+        this.setData({
+          getElplainInfo: res.data.data
+        })
+
+        wx.hideLoading()
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
+  },
   onLoad: function (options) {
+   
     this.setData({
       look:options.look,
       ko:options.ko,
-      mode: wx.getStorageSync('mode')
+      mode: wx.getStorageSync('mode'),
+      img: util.API,
+      chekedMoney:0
     })
     
     if (options.look == 1) {
@@ -37,35 +86,7 @@ Page({
       })
       
 
-      let obj = {
-        sportModes: app.globalData.SportMode,
-        siteMoney: app.globalData.SiteMoney,
-        number: app.globalData.number,
-        PayMoneyType: app.globalData.PaySiteMoneyType,
-        isPublisher: app.globalData.isPublisher,
-        isCooper: 1,
-        sportid: app.globalData.sportid,
-        Accompany: app.globalData.SportMode == '3' ? app.globalData.Tips : 0 || app.globalData.SportMode == '4' ? app.globalData.Tips : 0,
-        Reward: app.globalData.SportMode == '1' ? app.globalData.Tips : 0 || app.globalData.SportMode == '2' ? app.globalData.Tips : 0,
-        Referee: app.globalData.refereefee
-      }
-      util.Request("/api/getElplainInfo", obj, "get",
-        (res) => {
-          let k = res.data.data.Total.toString()
-          if (k.indexOf('.')==-1){
-            res.data.data.Total = res.data.data.Total+'.00'
-          }
-          this.setData({
-            getElplainInfo: res.data.data
-          })
-
-          wx.hideLoading()
-        },
-        () => {
-          console.log("失败")
-        },
-        () => {}
-      )
+      this.kokopl()
     } else if (options.look == 2) {
       let obj = {
         sportType: app.userReserveVenue.sportType,
@@ -159,7 +180,8 @@ Page({
           Agemax:app.globalData.Agemax,
           SiteSumMoney:app.globalData.SiteSumMoney,
           volumeMoney:this.data.volumeMoney,
-          volumedetail:this.data.volumedetail
+          volumedetail:this.data.volumedetail,
+          Insurance:this.data.checkedFlag==true?'1':'0'
         }
         
         util.Request("/api/userAddActivity", obj, "post",
@@ -195,7 +217,8 @@ Page({
           pos:app.globalData.pos,
           payType: this.data.current==3?'balance':'wechatpay',
           small:1,
-          openID:wx.getStorageSync('openid')
+          openID:wx.getStorageSync('openid'),
+          Insurance:this.data.checkedFlag==true?'1':'0'
         }, "post",
         (res) => {
              var wxPay=res.data.data.sign_data.sign_data
@@ -306,7 +329,8 @@ Page({
               pos:app.globalData.pos,
               payType: this.data.current==3?'balance':'wechatpay',
               small:1,
-              openID:wx.getStorageSync('openid')
+              openID:wx.getStorageSync('openid'),
+              Insurance:this.data.checkedFlag==true?'1':0
             }, "post",
             (res) => {
               
@@ -507,15 +531,17 @@ Page({
     }else{
       this.showInputLayer();
     }
-    
-      
-    
   },
   deductibles(){
     wx.navigateTo({
       url: '/generalization/deductibles/deductibles?siteMoney='+this.data.getElplainInfo.siteMoney+'&offsetquota='+this.data.getElplainInfo.offsetquota,
     })
-    
+  },
+  previewImage: function (e) {
+    wx.previewImage({
+      current: e.currentTarget.dataset.src,
+      urls:[e.currentTarget.dataset.src]
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -534,6 +560,12 @@ Page({
       this.setData({volumedetail:'',volumeMoney:0})
     }
     app.deductibles=[]
+  },
+  masking(){
+    this.setData({maskingOne:true})
+  },
+  closeTwo(){
+   this.setData({maskingOne:false})
   },
 
   /**

@@ -309,9 +309,6 @@
 		<view class="close" bindtap="closeZhe">
 			<image src="/assets/BtnDown@2x.png"></image>
 		</view>
-
-
-
 	</view>
 
 	<view class="masking" wx:if="{{masking}}">
@@ -330,6 +327,15 @@
 		</view>
 	</view>
 
+
+	<view class="forbade" wx:if="{{forbade}}">
+	  <view class="contentbade">
+		   <text>下载APP更多精彩体验</text>
+			 <image bindlongtap="saveImg" data-src="/assets/twoCode.png" class="twoCode" src="../../assets/twoCode.png"></image>
+			 <text>保存二维码识别下载</text>
+		
+		</view>
+	 </view>
 
 
 

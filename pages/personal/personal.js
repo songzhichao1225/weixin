@@ -32,29 +32,29 @@ Page({
     img: '',
     closeFing: false,
     indexd: '1',
-    dynameicList:[],
+    dynameicList: [],
     dynameicListLeft: [],
-    dynameicListRight:[],
-    uuid:'',
-    page:1,
-    myUUid:'',
-    haUuid:wx.getStorageSync('uuid'),
-    pageTwo:1,
-    publicLst:[],
-    enabled:false,
-    enabledTwo:false,
+    dynameicListRight: [],
+    uuid: '',
+    page: 1,
+    myUUid: '',
+    haUuid: wx.getStorageSync('uuid'),
+    pageTwo: 1,
+    publicLst: [],
+    enabled: false,
+    enabledTwo: false,
   },
   onLoad: function (option) {
     this.setData({
       img: util.API,
-      myUUid:option.uuid
+      myUUid: option.uuid
     })
     wx.showLoading({
       title: '加载中~',
       mask: true
     })
 
-    util.request("/api/getUserDetailInfo", {
+    util.Request("/api/getUserDetailInfo", {
         'uuid': option.uuid
       }, "get",
       (res) => {
@@ -67,8 +67,7 @@ Page({
       () => {
         console.log("失败")
       },
-      () => {
-      }
+      () => {}
     )
   },
   //添加好友
@@ -89,11 +88,10 @@ Page({
       () => {
         console.log("失败")
       },
-      () => {
-      }
+      () => {}
     )
   },
-  //对手币
+  //对手果
   counterCoin: function () {
     wx.navigateTo({
       url: '/pages/counterCoin/counterCoin'
@@ -110,162 +108,170 @@ Page({
     })
   },
   bossTitle: function (e) {
-   
+
     this.setData({
       indexd: e.currentTarget.dataset.index
     })
     if (e.currentTarget.dataset.index == '2') {
       this.list()
-    }else if(e.currentTarget.dataset.index == '3'){
+    } else if (e.currentTarget.dataset.index == '3') {
       this.ActiveLst()
     }
   },
-  list:function(show){
+  list: function (show) {
     util.Request("/api/getPlayerDynamicList", {
-      'page': this.data.page,
-      playeruuid: this.data.myUUid
-    }, "post",
-    (res) => {
-      let projectDataNow=res.data.data
-      if (show== true) {
-        var dataSon = [...this.data.dynameicList, ...projectDataNow]
-        if (projectDataNow.length == 0) {
-          wx.showToast({
-            title: '没有更多了~',
-            icon: 'none',
-            duration: 2000
-          })
+        'page': this.data.page,
+        playeruuid: this.data.myUUid
+      }, "post",
+      (res) => {
+        let projectDataNow = res.data.data
+        if (show == true) {
+          var dataSon = [...this.data.dynameicList, ...projectDataNow]
+          if (projectDataNow.length == 0) {
+            wx.showToast({
+              title: '没有更多了~',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        } else {
+          var dataSon = projectDataNow
         }
-      } else {
-        var dataSon = projectDataNow
-      }
-      for(let i in dataSon){
-        dataSon[i].index=Number(i)
-      }
-      let dynameicListLeft=[]
-      let dynameicListRight=[]
-      for(let i in dataSon){
-          if(dataSon[i].index%2==0){
+        for (let i in dataSon) {
+          dataSon[i].index = Number(i)
+        }
+        let dynameicListLeft = []
+        let dynameicListRight = []
+        for (let i in dataSon) {
+          if (dataSon[i].index % 2 == 0) {
             dynameicListLeft.push(dataSon[i])
-          }else{
+          } else {
             dynameicListRight.push(dataSon[i])
           }
-      }
-      this.setData({dynameicListLeft:dynameicListLeft,dynameicListRight:dynameicListRight,dynameicList:dataSon,enabled:false})
-      wx.hideLoading()
-    },
-    () => {
-      console.log("失败")
-    },
-    () => {
-    }
-  )
+        }
+        this.setData({
+          dynameicListLeft: dynameicListLeft,
+          dynameicListRight: dynameicListRight,
+          dynameicList: dataSon,
+          enabled: false
+        })
+        wx.hideLoading()
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
   },
-  thumbsUp:function(e){
-    
-    for(let i in this.data.dynameicList){
-     if( this.data.dynameicList[i].uuid==e.currentTarget.dataset.uuid){
-         if(this.data.dynameicList[i].isown==1){
-          this.data.dynameicList[i].isown=0
-          this.data.dynameicList[i].fabulou=this.data.dynameicList[i].fabulou-1
-         }else{
-          this.data.dynameicList[i].isown=1
-          this.data.dynameicList[i].fabulou=this.data.dynameicList[i].fabulou+1
-         }
-     }
+  thumbsUp: function (e) {
+
+    for (let i in this.data.dynameicList) {
+      if (this.data.dynameicList[i].uuid == e.currentTarget.dataset.uuid) {
+        if (this.data.dynameicList[i].isown == 1) {
+          this.data.dynameicList[i].isown = 0
+          this.data.dynameicList[i].fabulou = this.data.dynameicList[i].fabulou - 1
+        } else {
+          this.data.dynameicList[i].isown = 1
+          this.data.dynameicList[i].fabulou = this.data.dynameicList[i].fabulou + 1
+        }
+      }
     }
 
-    let dynameicListLeft=[]
-    let dynameicListRight=[]
-    for(let i in this.data.dynameicList){
-        if(this.data.dynameicList[i].index%2==0){
-          dynameicListLeft.push(this.data.dynameicList[i])
-        }else{
-          dynameicListRight.push(this.data.dynameicList[i])
-        }
+    let dynameicListLeft = []
+    let dynameicListRight = []
+    for (let i in this.data.dynameicList) {
+      if (this.data.dynameicList[i].index % 2 == 0) {
+        dynameicListLeft.push(this.data.dynameicList[i])
+      } else {
+        dynameicListRight.push(this.data.dynameicList[i])
+      }
     }
-    this.setData({dynameicListLeft:dynameicListLeft,dynameicListRight:dynameicListRight})
+    this.setData({
+      dynameicListLeft: dynameicListLeft,
+      dynameicListRight: dynameicListRight
+    })
 
     util.Request("/api/PlayerDynamicGiveTheThumbsUp", {
-      'dynamic_id': e.currentTarget.dataset.uuid
-    }, "post",
-    (res) => {
-    },
-    () => {
-      console.log("失败")
-    },
-    () => {
-    }
-  )
+        'dynamic_id': e.currentTarget.dataset.uuid
+      }, "post",
+      (res) => {},
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
   },
-  dynamicDetails:function(e){
+  dynamicDetails: function (e) {
     wx.navigateTo({
-      url: '/generalization/dynamicDetails/dynamicDetails?uuid='+e.currentTarget.dataset.uuid
+      url: '/generalization/dynamicDetails/dynamicDetails?uuid=' + e.currentTarget.dataset.uuid
     })
   },
-  onShow:function(){
+  onShow: function () {
     this.list()
   },
-  avataBoss:function(e){
+  avataBoss: function (e) {
     wx.previewImage({
       current: e.currentTarget.dataset.src,
       urls: [e.currentTarget.dataset.src]
     })
   },
 
-  joinDong(){
+  joinDong() {
     wx.navigateTo({
       url: '/generalization/releaseDynamics/releaseDynamics'
     })
   },
-  ActiveLst:function(showTwo){
-    util.Request("/api/getMyActiveLst", {
-      'page': this.data.pageTwo,
-      "statusType":'matching',
-      "type":'publish'
-    }, "get",
-    (res) => {
+  ActiveLst: function (showTwo) {
+    util.Request("/api/getPlayerPublicList", {
+        'page': this.data.pageTwo,
+        mylat: wx.getStorageSync('lat'),
+        mylng: wx.getStorageSync('lng'),
+        playeruuid: this.data.myUUid
+      }, "post",
+      (res) => {
 
-      let projectDataNow = res.data.data.publicLst
-      for (let i in projectDataNow) {
-        if(projectDataNow[i].SportMode == '1'&&projectDataNow[i].reserve==1){
-          projectDataNow[i].SportMode = '仅预订场馆'
-        }else if (projectDataNow[i].SportMode == '1') {
-          projectDataNow[i].SportMode = '娱乐模式'
-        } else if (projectDataNow[i].SportMode == '2') {
-          projectDataNow[i].SportMode = '竞技模式 '
-        } else if (projectDataNow[i].SportMode == '3') {
-          projectDataNow[i].SportMode = '我是陪练 '
-        } else if (projectDataNow[i].SportMode == '4') {
-          projectDataNow[i].SportMode = '我找陪练 '
-        } else if (projectDataNow[i].PaySiteMoneyType == 1) {
-          projectDataNow[i].PaySiteMoneyType = 'AA'
-        } else if (projectDataNow[i].PaySiteMoneyType == 0) {
-          projectDataNow[i].PaySiteMoneyType = '输者买单'
+        let projectDataNow = res.data.data
+        for (let i in projectDataNow) {
+          if (projectDataNow[i].SportMode == '1' && projectDataNow[i].reserve == 1) {
+            projectDataNow[i].SportMode = '仅预订场馆'
+          } else if (projectDataNow[i].SportMode == '1') {
+            projectDataNow[i].SportMode = '娱乐模式'
+          } else if (projectDataNow[i].SportMode == '2') {
+            projectDataNow[i].SportMode = '竞技模式 '
+          } else if (projectDataNow[i].SportMode == '3') {
+            projectDataNow[i].SportMode = '我是陪练 '
+          } else if (projectDataNow[i].SportMode == '4') {
+            projectDataNow[i].SportMode = '我找陪练 '
+          } else if (projectDataNow[i].PaySiteMoneyType == 1) {
+            projectDataNow[i].PaySiteMoneyType = 'AA'
+          } else if (projectDataNow[i].PaySiteMoneyType == 0) {
+            projectDataNow[i].PaySiteMoneyType = '输者买单'
+          }
         }
-      }
-      if (showTwo == true) {
-        var data = [...this.data.publicLst, ...projectDataNow]
-        if (projectDataNow.length == 0) {
-          wx.showToast({
-            title: '没有更多了~',
-            icon: 'none',
-            duration: 2000
-          })
+        if (showTwo == true) {
+          var data = [...this.data.publicLst, ...projectDataNow]
+          if (projectDataNow.length == 0) {
+            wx.showToast({
+              title: '没有更多了~',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        } else {
+          var data = projectDataNow
         }
-      } else {
-        var data = projectDataNow
-      }
 
-      this.setData({publicLst:data,enabledTwo:false})
-      wx.hideLoading()
-    },
-    () => {
-      console.log("失败")
-    },
-    () => {
-    }
-  )
+        this.setData({
+          publicLst: data,
+          enabledTwo: false
+        })
+        wx.hideLoading()
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
   },
 
   refresh() {
@@ -280,7 +286,7 @@ Page({
     this.setData({
       page: this.data.page + 1
     })
-    let show= true
+    let show = true
     this.list(show)
   },
 
@@ -301,11 +307,11 @@ Page({
   },
 
   //跳转详情
-  activities:function(e){
+  activities: function (e) {
     wx.navigateTo({
-      url: '/pages/homePage/activities/activities?uuid='+e.currentTarget.dataset.uuid,
+      url: '/pages/homePage/activities/activities?uuid=' + e.currentTarget.dataset.uuid,
     })
   },
- 
+
 
 })

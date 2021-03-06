@@ -18,9 +18,9 @@
 					<text class="mode">{{personalData.userHightLevel.level}}</text>
 				</view>
 				<view class="duishoubi">
-					<text>对手币</text>
+					<text>对手果</text>
 					<text style="padding-left:1.56rem;">20个</text>
-					<text style="padding-left:0.6rem;color:#ddd" bindtap="counterCoin">对手币？</text>
+					<text style="padding-left:0.6rem;color:#ddd" bindtap="counterCoin">对手果？</text>
 				</view>
 				<view class="praise">
 					<text>好评率</text>

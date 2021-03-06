@@ -1,7 +1,7 @@
 <view class="goldDetailSon">
 	<view class="headTop">
 		<text wx:if="{{options.flag!='1'}}">{{list.color==1?'输掉技术分':'奖励技术分'}}</text>
-		<text wx:if="{{options.flag=='1'}}">{{list.color==1?'支出对手币':'获得对手币'}}</text>
+		<text wx:if="{{options.flag=='1'}}">{{list.color==1?'支出对手果':'获得对手果'}}</text>
 		<text wx:if="{{options.flag=='1'&&list.color==1}}">{{list.GetCommonCoins}}</text>
 		<text wx:if="{{options.flag=='1'&&list.color==0}}" style="color:#D85D27">{{list.GetCommonCoins}}</text>
 		<text wx:if="{{options.flag!='1'&&list.color==1}}">{{list.GetCoins}}</text>
@@ -13,7 +13,7 @@
 	<view class="son" wx:if="{{options.flag!='1'}}"><text>原来等级</text><text>{{list.oldLevel}}</text></view>
 	<view class="son" wx:if="{{options.flag!='1'}}"><text>当前技术分</text><text>{{list.nowTotalCoins}}</text></view>
 	<view class="son" wx:if="{{options.flag!='1'}}"><text>当前等级</text><text>{{list.nowLevel}}</text></view>
-	<view class="son" wx:if="{{options.flag=='1'}}"><text>当前对手币</text><text>{{list.totalCoins}}</text></view>
+	<view class="son" wx:if="{{options.flag=='1'}}"><text>当前对手果</text><text>{{list.totalCoins}}</text></view>
 	<view class="son" wx:if="{{options.flag=='1'}}"><text>备注</text><text>{{list.Reason}}</text></view>
 
 </view>

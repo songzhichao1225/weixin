@@ -1,6 +1,10 @@
 
 page{
   position: relative;
+  height: 100%;
+}
+.payFor{
+  height: 100%;
 }
 .payFor .head {
   height: 3.5rem;
@@ -53,12 +57,11 @@ page{
   height: 2.88rem;
   font-size: 1rem;
   line-height: 2.88rem;
-  border-bottom: 0.06rem solid #E9E9E9;
   padding-left: 2.5%;
 }
 
 .payFor .venueFee {
-  border-bottom: 0.06rem solid #E9E9E9;
+  border-top: 0.06rem solid #E9E9E9;
   padding: 0.75rem 0;
   padding-left: 2.5%;
   overflow: hidden;
@@ -190,4 +193,52 @@ page{
   font-size: 0.88rem;
   padding-right: 2.5%;
   margin-top: 0.63rem;
+}
+
+.masking{
+  width: 100%;
+  height: 100%;
+  background:rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+}
+.masking .content{
+  width: 80%;
+  margin: 40% auto 0;
+  padding: 1rem 0;
+  background: #fff;
+  border-radius: 0.5rem;
+}
+.close{
+  width: 2rem;
+  height: 2rem;
+  margin: 5% auto 0;
+}
+.close image{
+  width: 100%;
+  height: 100%;
+}
+.masking .content .title{
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+.masking .content .son{
+  width: 90%;
+  margin: 0.3rem auto 0;
+  font-size: 0.88rem;
+}
+.wenhao{
+  width: 1.5rem;
+  height: 1.5rem;
+  float: left;
+  margin-top: 0.6rem;
+}
+.insurance{
+  font-size: 0.75rem;
+  padding:0 2.5%;
+}
+.insurance>text{
+  float: right;
+  line-height: 2.63rem;
 }

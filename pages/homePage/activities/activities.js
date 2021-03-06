@@ -54,6 +54,10 @@ Page({
     this.koopdf()
   },
 
+  onShow(){
+    this.onLoad()
+  },
+
   showModel: function (e) {
     wx.showModal({
       title: '场地号详情',
@@ -249,33 +253,30 @@ Page({
       let second = totalSecond;
       // 天数
       let day = Math.floor(second / 3600 / 24);
-      let dayStr = day.toString();
+      let dayStr = day;
       if (dayStr.length == 1) dayStr = dayStr;
 
       // 小时
       let hr = Math.floor((second - day * 3600 * 24) / 3600);
-      let hrStr = hr.toString();
+      let hrStr = hr;
       if (hrStr.length == 1) hrStr = hrStr;
       //分                   
       let min = Math.floor((second - day * 3600 * 24 - hr * 3600) / 60);
-      let minStr = min.toString();
+      let minStr = min;
       if (minStr.length == 1) minStr = minStr;
 
 
       // 秒
       let sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
-      let secStr = sec.toString();
-
-
+      let secStr = sec;
       if (secStr.length == 1) secStr = secStr;
 
-
       this.setData({
-        countDownDay: dayStr,
-        countDownHour: hrStr,
-        countDownMinute: minStr,
-        countDownSecond: secStr,
-      });
+        countDownDay:Number(dayStr) ,
+        countDownHour:Number(hrStr) ,
+        countDownMinute: Number(hrStr),
+        countDownSecond: Number(secStr),
+      })
       totalSecond--;
       if (totalSecond < 0 || this.data.activitiesData.reserve === 1 || this.data.activitiesData.PublicStatus === 7) {
         clearInterval(interval);
@@ -639,9 +640,15 @@ Page({
       })
     }
   },
+  insuranceDe(){
+    wx.navigateTo({
+      url: '/generalization/insuranceDe/insuranceDe',
+    })
+  },
 
   addReferees: function () {
     let that = this
+     return false
     wx.showModal({
       title: '提示',
       content: '您确定报名裁判么?',

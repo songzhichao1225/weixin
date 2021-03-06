@@ -28,7 +28,7 @@ Page({
       mask: true
     })
 
-    util.request("/api/getUserDetailInfo", { 'uuid': option.uuid }, "get", 
+    util.Request("/api/getUserDetailInfo", { 'uuid': option.uuid }, "get", 
       (res) => {
         this.setData({
            personalData:res.data.data,
@@ -59,7 +59,7 @@ Page({
       }
     )
   },
-  //对手币
+  //对手果
   counterCoin:function(){
     wx.navigateTo({
       url: '/generalization/counterCoin/counterCoin'

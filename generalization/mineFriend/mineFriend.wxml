@@ -36,7 +36,7 @@
           </view>
         </view>
         <text style="display:block;font-size:12px;position: absolute;bottom:0;right:0;">{{item.range}}</text>
-        <view class="deletBtn" catchtap="delet" data-uuid="{{item.uuid}}">删除</view>
+        <!-- <view class="deletBtn" catchtap="delet" data-uuid="{{item.uuid}}">删除</view> -->
       </view>
     </scroll-view>
 

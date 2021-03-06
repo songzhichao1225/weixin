@@ -5,7 +5,7 @@
       <image src="/assets/PicJinbi.png"></image>
       <text>{{coins}}</text>
     </view>
-    <text class="footer">对手币{{coins}}个</text>
+    <text class="footer">对手果{{coins}}个</text>
   </view>
   <view class="content">
     <image src="/assets/HomeBgRwlb.png"></image>
@@ -15,7 +15,7 @@
         <view class="yuan"></view>
           <view class="liSon">
             <text>签到<text style="font-size:0.75rem;color:#333333;">（每天一次)</text></text>
-            <text style="display:block;font-size:0.75rem;color:#D85D27;">+2.5个对手币/次</text>
+            <text style="display:block;font-size:0.75rem;color:#D85D27;">+2.5个对手果/次</text>
           </view>
           <view class="btnRight" bindtap="Sign" wx:if="{{isSign===0}}">签到</view>
            <view class="btnRight" style="background:#D5D5D5;"  wx:if="{{isSign===1}}">已签到</view>
@@ -24,7 +24,7 @@
          <view class="yuan"></view>
           <view class="liSon">
             <text>发布活动<text style="font-size:0.75rem;color:#333333;"></text></text>
-            <text style="display:block;font-size:0.75rem;color:#D85D27;">+5个对手币/次（匹配成功后）</text>
+            <text style="display:block;font-size:0.75rem;color:#D85D27;">+5个对手果/次（匹配成功后）</text>
             <text style="display:block;font-size:0.75rem;color:#D85D27;">分享活动后，还有可能<text style="color:#D0021B;font-weight:bold;">0元免费玩</text></text>
           </view>
           <view class="btnRight">去发布</view>
@@ -34,8 +34,8 @@
          <view class="yuan"></view>
           <view class="liSon" style="max-width:70%;">
             <text>分享小程序<text style="font-size:0.75rem;color:#333333;"></text></text>
-            <text style="display:block;font-size:0.75rem;color:#D85D27;">+50个对手币/新注册用户</text>
-            <text style="display:block;font-size:0.75rem;color:#D85D27;">例:有20个新用户注册，您将获得<text style="color:#D0021B;font-weight:bold;">1000个对手币</text></text>
+            <text style="display:block;font-size:0.75rem;color:#D85D27;">+50个对手果/新注册用户</text>
+            <text style="display:block;font-size:0.75rem;color:#D85D27;">例:有20个新用户注册，您将获得<text style="color:#D0021B;font-weight:bold;">1000个对手果</text></text>
           </view>
           <view class="btnRight">去分享</view>
         </view>
@@ -44,7 +44,7 @@
          <view class="yuan"></view>
           <view class="liSon">
             <text>新增场馆<text style="font-size:0.75rem;color:#333333;"></text></text>
-            <text style="display:block;font-size:0.75rem;color:#D85D27;">+50个对手币/次（审核通过后）</text>
+            <text style="display:block;font-size:0.75rem;color:#D85D27;">+50个对手果/次（审核通过后）</text>
           </view>
           <view class="btnRight">去新增</view>
         </view>
@@ -53,7 +53,7 @@
           <view class="yuan"></view>
           <view class="liSon">
             <text>更正场馆信息<text style="font-size:0.75rem;color:#333333;"></text></text>
-            <text style="display:block;font-size:0.75rem;color:#D85D27;">+20个对手币/次（审核通过后）</text>
+            <text style="display:block;font-size:0.75rem;color:#D85D27;">+20个对手果/次（审核通过后）</text>
           </view>
           <view class="btnRight">去更正</view>
         </view>
@@ -63,7 +63,7 @@
           <view class="yuan"></view>
           <view class="liSon">
             <text>意见反馈<text style="font-size:0.75rem;color:#333333;"></text></text>
-            <text style="display:block;font-size:0.75rem;color:#D85D27;">+20个对手币/条(被认为是建设性意见)</text>
+            <text style="display:block;font-size:0.75rem;color:#D85D27;">+20个对手果/条(被认为是建设性意见)</text>
           </view>
           <view class="btnRight">去反馈</view>
         </view>

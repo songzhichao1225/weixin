@@ -2,7 +2,7 @@
 
   <image class="banner" src='/assets/WdBgBanner@2x.png'></image>
   <view class="headerTop">
-    <view class="header">
+    <view class="header" bindtap="forbade">
       <!-- bindtap="personalData" -->
       <image class="avatar" catchtap="Personal" data-uuid="{{mineDetail.uuid}}" wx:if="{{mineDetail.imgURL!=''}}"
         src='{{img}}/{{mineDetail.imgURL}}'></image>
@@ -31,11 +31,11 @@
     <view class="gold">
       <view bindtap='gold' style="border-right:2rpx solid #ccc;">
         <image class="rankingList" src='/assets/zuanshi.png'></image>
-        <text class="txt">对手币排行榜</text>
+        <text class="txt">对手果排行榜</text>
       </view>
       <view bindtap='golDranking'>
         <image class="rankingList" src='/assets/PicWdPhb@2x.png'></image>
-        <text class="txt">专用金币排行榜</text>
+        <text class="txt">技术分排行榜</text>
       </view>
     </view>
 
@@ -50,6 +50,15 @@
       <text>{{item.name}}</text>
     </view>
   </view>
+
+  <view class="forbade" wx:if="{{forbade}}">
+	  <view class="contentbade">
+		   <text>下载APP更多精彩体验</text>
+			 <image class="twoCode" bindlongtap="saveImg" data-src="/assets/twoCode.png" src="../../assets/twoCode.png"></image>
+			 <text>保存二维码识别下载</text>
+			 <image class="closeTwo" bindtap="closeTwo" src="../../assets/closeTwo.png"></image>
+		</view>
+	 </view>
 
 
 

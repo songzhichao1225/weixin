@@ -1,0 +1,49 @@
+<view class="voucher">
+	<view class="header">
+		<view bindtap="header" style="{{headIdx==1?'color:#D85D27':''}}" data-index="1">可用抵用券 <view wx:if="{{headIdx==1}}" class="line"></view></view>
+		<view bindtap="header" style="{{headIdx==2?'color:#D85D27':''}}" data-index="2">历史抵用券  <view wx:if="{{headIdx==2}}" class="line"></view></view>
+	</view>
+
+	<scroll-view scroll-y  refresher-enabled="true" refresher-triggered="{{endfirom}}"  bindrefresherrefresh="refresh" class="scrollView" >
+    <view class="content" wx:for="{{rollList}}" style="{{headIdx==2?'background:#F3F3F3;color:#9B9B9B;':''}}" wx:key="index">
+			<view class="left"><span>￥</span><span>{{item.reduce}}</span></view>
+			<view class="right">
+				<text>满{{item.full}}元可用</text>
+				<text wx:if="{{headIdx==1}}">剩余{{item.number}}张</text>
+				<text wx:if="{{headIdx==2}}" style="color:#9b9b9b;">{{item.number}}张</text>
+        <text>有效期至{{item.dateend}}</text>
+				<image wx:if="{{item.type!=undefined&&item.type==1}}" class="imageFie" src="../../assets/yiguoqi.png"></image>
+				<image wx:if="{{item.type!=undefined&&item.type==2}}" class="imageFie" src="../../assets/yishiyong.png"></image>
+				<image wx:if="{{item.type!=undefined&&item.type==3}}"class="imageFie" src="../../assets/yituihuan.png"></image>
+			</view>
+
+
+
+
+
+		</view>
+
+
+
+	</scroll-view>
+
+
+
+
+
+
+
+
+
+
+
+
+	<view class="contentNull" wx:if="{{rollList.length==0}}">
+		<image src="../../assets/asdgfdsf.png"></image>
+		<text wx:if="{{headIdx==2}}">您好,您的已用/已退还/已过期抵用券是空奥~</text>
+		<text wx:if="{{headIdx==1}}">您好,您的可用抵用券是空奥</text>
+
+	</view>
+	
+
+</view>

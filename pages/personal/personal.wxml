@@ -29,9 +29,9 @@
 				</view>
 
 				<view class="duishoubi">
-					<text>对手币</text>
+					<text>对手果</text>
 					<text style="padding-left:1.56rem;">{{personalData.coinSum}}</text>
-					<text style="padding-left:0.6rem;color:#ddd" bindtap="counterCoin">对手币？</text>
+					<text style="padding-left:0.6rem;color:#ddd" bindtap="counterCoin">对手果？</text>
 				</view>
 				<view class="praise">
 					<text>好评率</text>
@@ -179,28 +179,28 @@
 			<view class="left">
 				<image src="{{img}}/{{item.imgURL}}"></image>
 				<view class="leftBottom">
-					<image wx:if="{{item.sportName=='网球'}}" class="imageTwo" src='/assets/icon_dj_wq.png'></image>
-					<image wx:if="{{item.sportName=='高尔夫'}}" class="imageTwo" src='/assets/icon_dj_gef.png'></image>
-					<image wx:if="{{item.sportName=='篮球'}}" class="imageTwo" src='/assets/icon_dj_lq.png'></image>
-					<image wx:if="{{item.sportName=='乒乓球'}}" class="imageTwo" src='/assets/icon_dj_ppq.png'></image>
-					<image wx:if="{{item.sportName=='排球'}}" class="imageTwo" src='/assets/icon_dj_pq.png'></image>
-					<image wx:if="{{item.sportName=='台球'}}" class="imageTwo" src='/assets/icon_dj_tq.png'></image>
-					<image wx:if="{{item.sportName=='羽毛球'}}" class="imageTwo" src='/assets/icon_dj_ymq.png'></image>
-					<image wx:if="{{item.sportName=='足球'}}" class="imageTwo" src='/assets/icon_dj_zq.png'></image>
-					<view class="veleve">{{item.userLevel}}</view>
+					<image wx:if="{{item.SportName=='网球'}}" class="imageTwo" src='/assets/icon_dj_wq.png'></image>
+					<image wx:if="{{item.SportName=='高尔夫'}}" class="imageTwo" src='/assets/icon_dj_gef.png'></image>
+					<image wx:if="{{item.SportName=='篮球'}}" class="imageTwo" src='/assets/icon_dj_lq.png'></image>
+					<image wx:if="{{item.SportName=='乒乓球'}}" class="imageTwo" src='/assets/icon_dj_ppq.png'></image>
+					<image wx:if="{{item.SportName=='排球'}}" class="imageTwo" src='/assets/icon_dj_pq.png'></image>
+					<image wx:if="{{item.SportName=='台球'}}" class="imageTwo" src='/assets/icon_dj_tq.png'></image>
+					<image wx:if="{{item.SportName=='羽毛球'}}" class="imageTwo" src='/assets/icon_dj_ymq.png'></image>
+					<image wx:if="{{item.SportName=='足球'}}" class="imageTwo" src='/assets/icon_dj_zq.png'></image>
+					<view class="veleve">{{item.nowLevel}}</view>
 				</view>
 			</view>
 			<view class="right">
 				<view class="name">
 					<text>{{item.nickname}}</text>
-					<image wx:if="{{item.sex==1}}" src="../../assets/sex0@2x.png"></image>
+					<image wx:if="{{item.sex==1}}" src="../../assets/sex1@2x.png"></image>
 					<image wx:if="{{item.sex==0}}" src="../../assets/sex0@2x.png"></image>
 				</view>
 				<view class="patterns">
 					<text>{{item.SportMode}}</text>
-					<text>{{item.sportName}}</text>
-					<text>{{item.sportTypeName}}</text>
-					<text>缺{{item.needPlayerNumber}}人</text>
+					<text>{{item.SportName}}</text>
+					<text>{{item.SportType}}</text>
+					<text>缺{{item.lockNumber}}人</text>
 				</view>
 				<view class="patterns">
 					<text style="color:#000">{{item.startDays}}</text>
@@ -211,10 +211,9 @@
 					<text style="color:#000">{{item.sitesName}}</text>
 				</view>
 				<view class="patterns">
-					<text style="color:#000"  wx:if="{{item.reserve==0}}">场地费:{{item.PaySiteMoneyType==1?'AA':'输者买单'}}</text>
-					<text style="color:#000"  wx:if="{{item.reserve==1}}">场地费:发布者买单</text>
-					<text >{{item.SportMode=='1'?'入场费':'陪练费'||item.SportMode=='2'?'入场费:':'陪练费'}}:￥{{item.Tips}}/人</text>
-					<text style="float:right">2km</text>
+					<text style="color:#000" >场地费:{{item.PaySiteMoneyType==1?'AA':'输者买单'}}</text>
+					<text >{{item.SportMode=='1'?'入场费':'陪练费'||item.SportMode=='2'?'入场费':'陪练费'}}:￥{{item.Tips}}/人</text>
+					<text style="float:right">{{item.range}}</text>
 				</view>
 			</view>
 			<view class="rightImg">

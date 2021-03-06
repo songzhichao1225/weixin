@@ -12,7 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   util.request("/api/userAttendance", { 'uuid': options.uuid}, "get", 
+   util.Request("/api/userAttendance", { 'uuid': options.uuid}, "get", 
    (res) => {
      this.setData({
       attendance:res.data.data

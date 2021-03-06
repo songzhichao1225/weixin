@@ -9,10 +9,3 @@
   <text>关于我们</text>
   <image src='/assets/right.png'></image>
 </view>
-
-<view class="about">
-
-  <text>声明</text>
-  <image src='/assets/right.png'></image>
-
-</view>

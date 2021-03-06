@@ -1,5 +1,5 @@
 <view class="tap">
-<view bindtap="tap" style="{{flag===1?'opacity:1':'opacity:0.8'}}" data-num='1'><text>对手币排行</text><view wx:if="{{flag===1}}" style="width:1rem;height:0.12rem;background:#fff;margin:0 auto;"></view></view>
+<view bindtap="tap" style="{{flag===1?'opacity:1':'opacity:0.8'}}" data-num='1'><text>对手果排行</text><view wx:if="{{flag===1}}" style="width:1rem;height:0.12rem;background:#fff;margin:0 auto;"></view></view>
 <view bindtap="tap" style="{{flag===2?'opacity:1':'opacity:0.8'}}"  data-num='2'><text>技术分排行</text><view wx:if="{{flag===2}}" style="width:1rem;height:0.12rem;background:#fff;margin:0 auto;"></view></view>
 </view>
 

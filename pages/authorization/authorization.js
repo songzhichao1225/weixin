@@ -104,10 +104,10 @@ Page({
                   'nickname': that.data.nickName,
                 }, "post",
                 (res) => {
-                  if(res.data.data.telephone!=''){
-                    
+                  if(res.data.data.telephone!=''&&res.data.data.telephone!=undefined){
                     wx.setStorageSync('token', res.data.data.token); //存储token
                     wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
+                    wx.setStorageSync('telephone', res.data.data.telephone); //存储用户电话
                     wx.hideLoading()
                     setTimeout(function () {
                       wx.navigateBack({
@@ -220,8 +220,6 @@ Page({
                     }, "post", 
                     (res) => {
                   
-                      wx.setStorageSync('sex', res.data.data.sex); //存储用户性别
-                      wx.setStorageSync('telephone', res.data.data.telephone)//存储用户头像
                       util.request("/api/getbindmobile", {
                         'mobile': wx.getStorageSync('phone'),
                         'wechatid': that.data.unionId }, "post", 
@@ -229,6 +227,7 @@ Page({
                           if(res.data.code==2000){
                             wx.setStorageSync('token', res.data.data.token); //存储token
                             wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
+                            wx.setStorageSync('telephone', res.data.data.telephone); //存储用户电话
                             setTimeout(function () {
                               wx.navigateBack({
                                 delta: 1

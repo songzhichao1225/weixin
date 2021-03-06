@@ -4,15 +4,15 @@
       <image src="/assets/paihang.png"></image>
       <view class="text">
         <text>排行榜</text>
-        <text>对手币排行榜</text>
+        <text>对手果排行榜</text>
       </view>
     </view>
 
     <view class="pai" bindtap="generalGold" style="margin-left:2%;">
       <image src="/assets/ying.png"></image>
       <view class="text">
-        <text>赢对手币</text>
-        <text>完成任务赢对手币</text>
+        <text>赢对手果</text>
+        <text>完成任务赢对手果</text>
       </view>
     </view>
 
@@ -20,7 +20,7 @@
       <image src="/assets/jinbiShopping.png"></image>
       <view class="text">
         <text>兑换商城</text>
-        <text>对手币换好物</text>
+        <text>对手果换好物</text>
       </view>
     </view>
     <!-- bindtap="goldMall" -->
@@ -29,7 +29,7 @@
       <image src="/assets/zhuanyong.png"></image>
       <view class="text">
         <text>明细</text>
-        <text>对手币获得明细</text>
+        <text>对手果获得明细</text>
       </view>
     </view>
   </view>
@@ -47,7 +47,7 @@
       <view class="mallListSon" wx:for="{{goldMall}}" bindtap='details' wx:key='index' data-name="{{item.name}}" data-cost="{{item.cost}}" data-uuid="{{item.UUID}}">
         <image src="{{img}}/{{item.imgpath}}"></image>
         <text>{{item.name}}</text>
-        <text>{{item.cost}}对手币  <text style="float:right;margin-right:2rem;">{{item.price}}.0</text></text>
+        <text>{{item.cost}}对手果  <text style="float:right;margin-right:2rem;">{{item.price}}.0</text></text>
         <text style='color:#D0021B;' catchtap="cost" data-uuid="{{item.UUID}}" data-cost="{{item.cost}}">立即兑换</text>
       </view>
     </view>
@@ -58,7 +58,7 @@
       <view class="mallListSon" wx:for="{{goldMall}}"  wx:key='index' data-name="{{item.name}}" data-cost="{{item.cost}}" data-uuid="{{item.UUID}}">
         <image mode="aspectFit" src="{{img}}/{{item.imgpath}}"></image>
         <text>{{item.name}}</text>
-        <text>{{item.cost}}对手币  <text style="float:right;margin-right:2rem;">{{item.price}}.0</text></text>
+        <text>{{item.cost}}对手果  <text style="float:right;margin-right:2rem;">{{item.price}}.0</text></text>
         <!-- <text style='color:#D0021B;' catchtap="cost" data-uuid="{{item.UUID}}" data-cost="{{item.cost}}">立即兑换</text> -->
       </view>
     </view>

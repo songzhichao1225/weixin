@@ -16,6 +16,9 @@
        id: 1
      }],
      arraySport: [{
+      name: '全部',
+      id: 0
+    },{
        name: '羽毛球',
        id: 1
      }, {
@@ -252,16 +255,19 @@
      this.setData({
        sexTwo: e.detail.value
      })
+     this.bigShotList()
    },
    bindSportTwo: function (e) {
      this.setData({
        SportTwo: e.detail.value
      })
+     this.bigShotList()
    },
    bindDistanceTwo: function (e) {
      this.setData({
        DistanceTwo: e.detail.value
      })
+     this.bigShotList()
    },
 
    bigShotList(showTwo) {

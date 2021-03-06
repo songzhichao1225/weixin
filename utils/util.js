@@ -17,7 +17,7 @@ const formatNumber = n => {
 
 
 // let API = "https://app.tiaozhanmeiyitian.com";  //正式
-let API = "https://appstg.tiaozhanmeiyitian.com";  //测试
+let API = "https://appstg.tiaozhanmeiyitian.com"; //测试
 
 
 
@@ -27,7 +27,6 @@ wx.showLoading({
 })
 //有权限的请求
 function Request(url, data, method, successFn, failFn, completeFn) {
-  if (wx.getStorageSync('token')) {
     if (url == '/api/uploadHeaderImg') {
       wx.showLoading({
         title: '正在上传',
@@ -72,7 +71,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
           completeFn();
         }
       })
-    }else if (url =='/api/PersonalprofileImg') {
+    } else if (url == '/api/PersonalprofileImg') {
       wx.showLoading({
         title: '正在上传',
         mask: true
@@ -89,7 +88,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
         success: function (res) {
           wx.hideLoading()
 
-          if (JSON.parse(res.data).code == 2000||JSON.parse(res.data).code ==4003) {
+          if (JSON.parse(res.data).code == 2000 || JSON.parse(res.data).code == 4003) {
             successFn(res);
 
           } else if (JSON.parse(res.data).code == 40101) {
@@ -116,7 +115,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
           completeFn();
         }
       })
-    }else if (url == '/api/ComplainIstrueImgs') {
+    } else if (url == '/api/ComplainIstrueImgs') {
       wx.showLoading({
         title: '正在上传',
         mask: true
@@ -214,7 +213,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
         method: method,
         success: function (res) {
           if (res.data.code == 40101) {
-             console.log(res.data.code)
+            console.log(res.data.code)
             wx.showToast({
               title: '身份验证失败',
               icon: 'none',
@@ -222,10 +221,17 @@ function Request(url, data, method, successFn, failFn, completeFn) {
               mask: true
             })
           } else if (res.data.code == 4001) {
+            wx.showToast({
+              title: '登录超时',
+              icon: 'none',
+              duration: 1500,
+              mask: true
+            })
+          console.log(66696)
             wx.navigateTo({
               url: '/pages/authorization/authorization'
             })
-          }else{
+          } else {
             successFn(res);
           }
         },
@@ -245,7 +251,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
         }
       })
     }
-  }
+  
 }
 
 //无权限的请求
@@ -259,8 +265,8 @@ function request(url, data, method, successFn, failFn, completeFn) {
       "enctype": "multipart/form-data"
     },
     success: function (res) {
-     
-      if (res.data.code == 2000||res.data.code==undefined) {
+
+      if (res.data.code == 2000 || res.data.code == undefined) {
         successFn(res);
 
       } else {
@@ -306,5 +312,5 @@ module.exports = {
   formatTime: formatTime,
   request: request,
   Request: Request,
-  API:API,
+  API: API,
 }

@@ -1,0 +1,33 @@
+<view class="yesResults">
+	<view class="banner">
+		<image src="/assets/bsjg_bj@2x.png"></image>
+		<view class="content">
+			<view class="left">
+				<image src="/assets/db_a@2x.png"></image>
+				<text>A队</text>
+			</view>
+			<view class="center">VS</view>
+			<view class="right">
+				<image src="/assets/db_b@2x.png"></image>
+				<text>B队</text>
+			</view>
+		</view>
+	</view>
+	<view class="text"><text>!</text><text>请您客观填写两队比赛结果，如果平台发现您填写的结果与活动结果不符，将会影响您以后参与资格。</text></view>
+	<view class="operation">
+		<view class="left">A队</view>
+		<view class="bossBtn">
+			<button bindtap="result" data-id="1" style="{{result==1?'background:#D85D27;color:#fff;':''}}">赢</button>
+			<button bindtap="result" data-id="2" style="{{result==2?'background:#D85D27;color:#fff;':''}}">输</button>
+			<button bindtap="result" data-id="3" style="{{result==3?'background:#D85D27;color:#fff;':''}}">平</button>
+		</view>
+		<view class="right">B队</view>
+
+	</view>
+
+  <button class="btn" bindtap="comfirm">确定</button>
+
+
+
+
+</view>

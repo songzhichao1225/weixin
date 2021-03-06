@@ -409,7 +409,7 @@ image {
   font-size: 0.6rem;
   display: block;
   position: absolute;
-  top: -0.5rem;
+  top: 0.5rem;
   width: 2.69rem;
   text-align: center;
   color: #fff;
@@ -804,4 +804,26 @@ image {
   display: block;
   width: 100%;
   text-align: center;
+}
+
+.Insurance {
+  height: 2.75rem;
+  border-top: 0.06rem solid #e9e9e9;
+  border-bottom: 0.06rem solid #e9e9e9;
+  line-height: 2.75rem;
+  padding: 0 0.69rem;
+  font-size: 1rem;
+}
+
+.Insurance>span {
+  float: right;
+  color: #9B9B9B;
+  padding-right: 0.38rem;
+}
+
+.Insurance>image {
+  width: 0.44rem;
+  height: 0.69rem;
+  float: right;
+  margin-top: 1.1rem;
 }

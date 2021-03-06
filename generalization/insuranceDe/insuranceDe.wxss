@@ -1,0 +1,34 @@
+.insuranceDe {
+  height: 100%;
+}
+.one{
+  height: 3.31rem;
+  border-top: 0.06rem solid #e9e9e9;
+  padding: 0 2.5%;
+  line-height: 3.31rem;
+  font-size: 0.88rem;
+}
+.one>span{
+  float: right;
+  color: #9b9b9b;
+}
+.two{
+  height: 3.31rem;
+  border-top: 0.06rem solid #e9e9e9;
+  padding: 0 2.5%;
+  line-height: 3.31rem;
+  font-size: 0.88rem;
+  border-bottom: 0.06rem solid #e9e9e9;
+}
+.two>image{
+  width: 0.44rem;
+  height: 0.69rem;
+  float: right;
+  margin-top: 1.5rem;
+}
+.two>image:last-child{
+  width: 1.88rem;
+  height: 2.16rem;
+  margin-top: 0.9rem;
+  margin-right: 0.5rem;
+}
