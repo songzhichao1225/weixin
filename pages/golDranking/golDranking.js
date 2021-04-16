@@ -49,14 +49,14 @@ Page({
     rankingType: [{
       name: '好友排名',
       num: '0',
-      color: true,
+      color: false,
       title:'好友',
       nameE:'myFriends'
     },
     {
       name: '区排名',
       num: '4',
-      color: false,
+      color: true,
       title:wx.getStorageSync('area'),
       nameE:'area'
     },
@@ -71,7 +71,7 @@ Page({
       name: '省排名',
       num: '2',
       color: false,
-      title: '省',
+      title: wx.getStorageSync('province'),
       nameE:'province'
     },
     {
@@ -85,16 +85,16 @@ Page({
     
     
     ],
-    title:'好友',
+    title:'通州区',
     drankingList:[],
     typeTitle:'1',
-    nameE:'myFriends',
+    nameE:'area',
     name:'羽毛球',
     flag:1,
     img:'',
   },
   onLoad: function () {
-    this.drankingList()
+    this.drankingListTwo()
     this.setData({
       img:util.API
     })
@@ -103,7 +103,13 @@ Page({
 
   tap:function(e){
     this.setData({flag:parseInt(e.currentTarget.dataset.num)})
+    if(parseInt(e.currentTarget.dataset.num)==1){
+      this.drankingListTwo()
+    }else{
+      this.drankingList()
+    }
   },
+
   select: function (e) {
     let type = e.currentTarget.dataset.name
     let num = e.currentTarget.dataset.num
@@ -114,7 +120,11 @@ Page({
       this.setData({ [headerColorT]: false })
     }
     this.setData({ [headerColor]: true, typeTitle: num,name:type })
-    this.drankingList()
+    if(this.data.flag==1){
+      this.drankingListTwo()
+    }else{
+      this.drankingList()
+    }
   },
   selectTwo:function(e){
     let type = e.currentTarget.dataset.name
@@ -128,7 +138,28 @@ Page({
       this.setData({ [headerColorT]: false })
     }
     this.setData({ [headerColor]: true, title: title, nameE:nameE })
-    this.drankingList()
+    if(this.data.flag==1){
+      this.drankingListTwo()
+    }else{
+      this.drankingList()
+    }
+  },
+
+  drankingListTwo: function (){
+    let {nameE}=this.data
+    wx.showLoading({
+      title: '加载中~',
+      mask: true
+    })
+    util.Request("/api/getRivalCurrencyRanking", { 'type': nameE }, "get",
+      (res) => {
+        this.setData({ drankingList:res.data.data})
+        wx.hideLoading()
+      },
+      () => { console.log("失败") },
+      () => {
+      }
+    )
   },
 
   drankingList: function (){

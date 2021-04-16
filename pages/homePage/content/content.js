@@ -116,12 +116,14 @@ Page({
       });
 
       that.goleloand()
-
+      console.log(data)
+      wx.setStorageSync('province',data.originalData.result.addressComponent.province)
       wx.setStorageSync("cityInfo", data.originalData.result.addressComponent.city)
       wx.setStorageSync('area', data.originalData.result.addressComponent.district)
-      wx.setStorageSync('address', wxMarkerData[0].address)
+      wx.setStorageSync('address', wxMarkerData[0].address) 
       wx.setStorageSync('lat', data.originalData.result.location.lat)
       wx.setStorageSync('lng',data.originalData.result.location.lng)
+      
     }
 
     BMap.regeocoding({
@@ -178,7 +180,7 @@ Page({
         }
         activityNow.unshift(aa)
         this.setData({
-          activity: res.data.data
+          activity: res.data.data.slice(0, res.data.data.length-1)
         })
 
       },

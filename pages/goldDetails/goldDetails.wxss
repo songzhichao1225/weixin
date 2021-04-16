@@ -10,7 +10,6 @@ text{
 }
 .goldDetail .son{
   width: 100%;
-  height: 126rpx;
   border-bottom: 0.06rem solid #e9e9e9;
   overflow: hidden;
 }

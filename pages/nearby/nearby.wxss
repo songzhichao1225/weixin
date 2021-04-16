@@ -167,13 +167,14 @@ page {
 
 .dynamicState .userDetails>.view {
   width: 50%;
-  text-align: center;
+  text-align: left;
   float: left;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 0.9rem;
   margin-top: 0.2rem;
+  padding-left: 0.3rem;
 }
 
 .dynamicState .userDetails .fabulou {
