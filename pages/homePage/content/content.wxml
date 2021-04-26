@@ -1,17 +1,21 @@
 <!--index.wxml-->
 <view class="content" bindtap='itemSelectionH'>
-	<view class="headerCity">
-		<text bindtap='cityList'>{{selectCity}}</text>
+	<view class="headerCity" style="padding-top:{{statusBarHeight}}px">
+		<!-- bindtap='cityList' -->
+		<text>{{selectCity}}</text>
 		<image class="image" src='/assets/HomeIconJt@2x.png'></image>
 		<view class="inputBox" bindtap='inputS'>
-			<image style='display:block;width:0.8rem;height:0.8rem;margin:0.5rem 0 0 0.45rem;float:left;' src='/assets/SearchIcon@2x.png'></image>
-			<input type='text' disabled='true' placeholder='请输入地址' value="{{addressN}}" placeholder-style="font-size:14px;" confirm-type="search"></input>
+			<image style='display:block;width:0.8rem;height:0.8rem;margin:0.5rem 0 0 0.45rem;float:left;'
+				src='/assets/SearchIcon@2x.png'></image>
+			<input type='text' disabled='true' placeholder='请输入地址' value="{{addressN}}" placeholder-style="font-size:14px;"
+				confirm-type="search"></input>
 		</view>
 		<!-- <image class="news" bindtap="news" src="../../../assets/news.png"></image> -->
 	</view>
 	<view class="bannerBack">
 		<image class="back" src="../../../assets/bannerback@2x.png"></image>
-		<swiper autoplay="{{true}}" class="banner" indicator-dots="true" indicator-color="#ddd" indicator-active-color="#fff">
+		<swiper autoplay="{{true}}" class="banner" indicator-dots="true" indicator-color="#ddd"
+			indicator-active-color="#fff">
 			<block wx:for="{{bannerArr}}" wx:key='index'>
 				<swiper-item>
 					<image src="{{img}}/{{item.picurl}}" class="slide-image" />
@@ -46,10 +50,10 @@
 			<!-- bindtap='goldMall' -->
 		</view>
 		<view bindtap="forbade">
-      <image src='/assets/run.png'></image>
+			<image src='/assets/run.png'></image>
 			<text>报名偏好</text>
 			<!-- bindtap="signUp" -->
-    </view>
+		</view>
 	</view>
 
 	<view class="projectNav">
@@ -65,7 +69,7 @@
 			<text style="{{rangeName!=='距离范围'?'color:#D85D27;':''}}">{{rangeName}}</text>
 			<image class="imgRight" src='/assets/home_icon_jt_xia_nor@2x.png'></image>
 		</view>
-		<view  bindtap="forbade">
+		<view bindtap="forbade">
 			<!-- bindtap='screen' -->
 			<text>筛选</text>
 			<image class="imgRight" src='/assets/home_icon_jt_xia_nor@2x.png'></image>
@@ -74,14 +78,15 @@
 
 	<view class="projectList">
 
-	<view class="noContent" wx:if="{{projectData.length==0}}">
-   <image src="/assets/nottxt.png"></image>
-	  <text>抱歉，您可以放宽筛选条件试试!</text>
-		<text>或自己发布活动吧，报名条件您说了算!</text>
-		<text>还可多得5枚对手果!</text>
-	</view>
+		<view class="noContent" wx:if="{{projectData.length==0}}">
+			<image src="/assets/nottxt.png"></image>
+			<text>抱歉，您可以放宽筛选条件试试!</text>
+			<text>或自己发布活动吧，报名条件您说了算!</text>
+			<text>还可多得5枚对手果!</text>
+		</view>
 
-		<view class="projectSon" wx:if="{{projectData.length>0}}" bindtap="activites" data-uuid="{{item.uuid}}" wx:for="{{projectData}}" wx:key='index'>
+		<view class="projectSon" wx:if="{{projectData.length>0}}" bindtap="activites" data-uuid="{{item.uuid}}"
+			wx:for="{{projectData}}" wx:key='index'>
 			<view class="avatar">
 				<image class="avatarP" src='{{img}}/{{item.imgURL}}'></image>
 				<image wx:if="{{item.SportName=='网球'}}" class="aIcon" src='/assets/icon_dj_wq.png'></image>
@@ -102,7 +107,7 @@
 				</view>
 				<view class="mode">
 					<text style='margin:0;color:#D85D27;'>{{item.SportMode}}</text>
-          <text>{{item.SportName}}</text>
+					<text>{{item.SportName}}</text>
 					<text>{{item.HighestLevelName}}</text>
 					<text>{{item.SportTypeName}}</text>
 					<text>缺{{item.lockNumber}}人</text>
@@ -117,7 +122,8 @@
 				</view>
 				<view class="cost">
 					<text style='margin:0;'>场地费:AA</text>
-					<text>入场费:{{item.Tips}}/人</text>
+					<text wx:if="{{item.SportMode=='我找陪练'||item.SportMode=='我是陪练'}}">陪练费:{{item.MoneyPerhour}}/人</text>
+					<text wx:if="{{item.SportMode!='我找陪练'&&item.SportMode!='我是陪练'}}">入场费:{{item.Tips}}/人</text>
 					<text>{{item.range}}</text>
 				</view>
 			</view>
@@ -134,31 +140,34 @@
 
 		<view class="mask" wx:if="{{hidden}}">
 			<view class="activity" wx:if="{{hiddenOne}}">
-				<view class="activitySon" catchtap='secondary' wx:for="{{activity}}" wx:key='index' data-name="{{item.name}}" data-num="{{item.id}}">
+				<view class="activitySon" catchtap='secondary' wx:for="{{activity}}" wx:key='index' data-name="{{item.name}}"
+					data-num="{{item.id}}">
 					<text style="{{numId===item.id?'color:#D85D27;':''}}">{{item.name}}</text>
 					<image src='/assets/HomeIconJtRightNol@2x.png'></image>
 				</view>
 			</view>
 			<view class="activityTwo" wx:if="{{hiddenTwo}}">
-				<view class="activityTwoSon" wx:for="{{activitySon}}" bindtap='activityTwoSon' wx:key='index' data-name="{{item.name}}" data-num="{{item.id}}">
+				<view class="activityTwoSon" wx:for="{{activitySon}}" bindtap='activityTwoSon' wx:key='index'
+					data-name="{{item.name}}" data-num="{{item.id}}">
 					<text wx:if="{{item.name!='按次收费'&&item.name!='散场'}}">{{item.name}}</text>
 				</view>
 			</view>
 
 			<view class="sort" wx:if="{{sortHid}}">
-				<view class="sortSon" wx:for="{{sort}}" bindtap='sortSe' data-name="{{item.name}}" data-num="{{item.num}}" wx:key='index'>
+				<view class="sortSon" wx:for="{{sort}}" bindtap='sortSe' data-name="{{item.name}}" data-num="{{item.num}}"
+					wx:key='index'>
 					<text>{{item.name}}</text>
 				</view>
 			</view>
 
 			<view class="sort" style='left:50%;' wx:if="{{statusHid}}">
-				<view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key='index' data-name="{{item.name}}" data-num="{{item.num}}">
+				<view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key='index' data-name="{{item.name}}"
+					data-num="{{item.num}}">
 					<text>{{item.name}}</text>
 				</view>
 			</view>
 		</view>
 	</view>
-	
 
 	<!-- <view class="flexd" bindtap="download">
     <image src="/assets/comeOn@2x.png"></image>
@@ -168,7 +177,7 @@
 		<view class="isSignbox">
 			<image class="img" src='/assets/PicQiandao.png'></image>
 			<text class="txt">恭喜+1枚通用金币
- 目前通用金币{{goldNum}}个</text>
+				目前通用金币{{goldNum}}个</text>
 		</view>
 		<view class="close" bindtap='close'>
 			<image src='/assets/BtnDown@2x.png'></image>
@@ -177,7 +186,7 @@
 
 	<download wx:if="{{download}}" bindtap="closeDowload"></download>
 
-   <!-- <view class="bossZhe" wx:if="{{getSetting==1}}">
+	<!-- <view class="bossZhe" wx:if="{{getSetting==1}}">
 		  <view class="shoModel">
 				<text>检测到您未打开地理位置权限，是否前往开启</text>
         <view class="footerBtn">
@@ -186,14 +195,15 @@
 				</view>
 			</view>
 	 </view> -->
-	 <view class="forbade" wx:if="{{forbade}}">
-	  <view class="contentbade">
-		   <text>下载APP更多精彩体验</text>
-			 <image bindlongtap="saveImg" data-src="/assets/twoCode.png" class="twoCode" src="../../../assets/twoCode.png"></image>
-			 <text>保存二维码识别下载</text>
-			 <image class="closeTwo" bindtap="closeTwo" src="../../../assets/closeTwo.png"></image>
+	<view class="forbade" wx:if="{{forbade}}">
+		<view class="contentbade">
+			<text>下载APP更多精彩体验</text>
+			<image bindlongtap="saveImg" data-src="/assets/twoCode.png" class="twoCode" src="../../../assets/twoCode.png">
+			</image>
+			<text>保存二维码识别下载</text>
+			<image class="closeTwo" bindtap="closeTwo" src="../../../assets/closeTwo.png"></image>
 		</view>
-	 </view>
+	</view>
 
 
 

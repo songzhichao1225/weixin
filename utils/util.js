@@ -227,7 +227,6 @@ function Request(url, data, method, successFn, failFn, completeFn) {
               duration: 1500,
               mask: true
             })
-          console.log(66696)
             wx.navigateTo({
               url: '/pages/authorization/authorization'
             })

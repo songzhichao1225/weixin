@@ -1,6 +1,7 @@
 {
  
-  "navigationBarTitleText": "附近对手"
+  "navigationBarTitleText": "附近对手",
+  "navigationStyle":"custom"
   
  
 }

@@ -153,11 +153,7 @@ Page({
       wx.navigateTo({
         url: '/pages/personal/personal?uuid=' + e.currentTarget.dataset.id
       })
-    } else {
-      wx.navigateTo({
-        url: '/pages/authorization/authorization'
-      })
-    }
+    } 
   },
   deleteComments:function(e){
     console.log(e.currentTarget.dataset.id)

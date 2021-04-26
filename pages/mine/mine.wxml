@@ -1,16 +1,14 @@
 <view class="mine" wx:if="{{flag}}">
 
   <image class="banner" src='/assets/WdBgBanner@2x.png'></image>
-  <view class="headerTop">
+  <view class="headerTop" style="top:{{statusBarHeight+20}}px">
     <view class="header" bindtap="forbade">
-      <!-- bindtap="personalData" -->
       <image class="avatar" catchtap="Personal" data-uuid="{{mineDetail.uuid}}" wx:if="{{mineDetail.imgURL!=''}}"
         src='{{img}}/{{mineDetail.imgURL}}'></image>
       <open-data class="avatar" wx:elif="{{mineDetail.imgURL==''}}" type="userAvatarUrl"></open-data>
       <view class="name">
         <text class="nickName" wx:if="{{mineDetail.nickname!=''}}">{{mineDetail.nickname}}</text>
         <open-data class="nickName" wx:elif="{{mineDetail.nickname==''}}" type="userNickName"></open-data>
-  
         <view style="clear:both;"></view>
         <image wx:if="{{mineDetail.userHightLevel.name=='网球'}}" class="aIcon" src='/assets/icon_dj_wq.png'></image>
         <image wx:if="{{mineDetail.userHightLevel.name=='高尔夫'}}" class="aIcon" src='/assets/icon_dj_gef.png'></image>

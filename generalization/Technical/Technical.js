@@ -23,9 +23,6 @@ Page({
       () => {
       }
     )
-
-
-
   },
   mall: function () {
     wx.navigateTo({
@@ -40,7 +37,7 @@ Page({
   },
   golDranking: function () {
     wx.navigateTo({
-      url: '/generalization/duiGolDranking/duiGolDranking?flag=2'
+      url: '/generalization/mineGolDranking/mineGolDranking?flag=2'
     })
   },
   generaGold: function () {

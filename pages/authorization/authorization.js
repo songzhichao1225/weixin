@@ -59,6 +59,7 @@ Page({
       iv: iv,
       errMsg: errMsg,
     })
+    
     util.request("/api/getUnionID", {
         'sessionKey': sessionKey,
         'encryptedData': e.detail.encryptedData,
@@ -109,9 +110,9 @@ Page({
                     wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
                     wx.setStorageSync('telephone', res.data.data.telephone); //存储用户电话
                     wx.hideLoading()
-                    setTimeout(function () {
-                      wx.navigateBack({
-                        delta: 1
+                    setTimeout(function (){
+                      wx.switchTab({
+                        url: '/pages/mine/mine',
                       })
                     })
                     
@@ -229,8 +230,8 @@ Page({
                             wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
                             wx.setStorageSync('telephone', res.data.data.telephone); //存储用户电话
                             setTimeout(function () {
-                              wx.navigateBack({
-                                delta: 1
+                              wx.switchTab({
+                                url: '/pages/mine/mine',
                               })
                             })
                           }else{
@@ -239,9 +240,6 @@ Page({
                               icon: 'none',
                             })
                           }
-                          
-                           
-                          
                         },
                         () => { console.log("失败") },
                         () => {

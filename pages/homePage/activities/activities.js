@@ -5,10 +5,10 @@ Page({
   data: {
     activitiesData: [],
     flag: false,
-    countDownDay: 0,
-    countDownHour: 0,
-    countDownMinute: 0,
-    countDownSecond: 0,
+    countDownDay: '',
+    countDownHour: '',
+    countDownMinute: '',
+    countDownSecond: '',
     end: true,
     hoog: 0,
     moneyType: 1,
@@ -134,7 +134,6 @@ Page({
           name: "报名",
           hid: false,
         }
-        
         if (projectNow.needNumber > 1) {
           let needNum =0
           if(projectNow.SportType==21||projectNow.SportType==20){
@@ -142,14 +141,12 @@ Page({
              for (let i = 0; i = needNum- projectNow.teamC.length; i++) {
               projectNow.teamC.push(object)
             }
-           
           }else{
             needNum = projectNow.needNumber / 2
             for (let i = 0; i = projectNow.RefereeNumber - projectNow.teamC.length; i++) {
               projectNow.teamC.push(object)
             }
           }
-          
           for (let i = 0; i = needNum - projectNow.teamA.length; i++) {
             projectNow.teamA.push(object)
           }
@@ -270,13 +267,14 @@ Page({
       let sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
       let secStr = sec;
       if (secStr.length == 1) secStr = secStr;
-
+      
       this.setData({
-        countDownDay:Number(dayStr) ,
-        countDownHour:Number(hrStr) ,
-        countDownMinute: Number(hrStr),
-        countDownSecond: Number(secStr),
+        countDownDay:dayStr,
+        countDownHour:hrStr,
+        countDownMinute:hrStr,
+        countDownSecond: secStr,
       })
+
       totalSecond--;
       if (totalSecond < 0 || this.data.activitiesData.reserve === 1 || this.data.activitiesData.PublicStatus === 7) {
         clearInterval(interval);
@@ -292,10 +290,6 @@ Page({
     if (wx.getStorageSync('token')) {
       wx.navigateTo({
         url: '/pages/personal/personal?uuid=' + e.currentTarget.dataset.uid
-      })
-    } else {
-      wx.navigateTo({
-        url: '/pages/authorization/authorization'
       })
     }
   },

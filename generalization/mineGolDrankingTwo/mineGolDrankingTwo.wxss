@@ -124,7 +124,7 @@ page {
 .topOne .text {
   display: block;
   position: absolute;
-  bottom: 30rpx;
+  bottom: 50rpx;
   width: 100%;
 }
 
@@ -211,7 +211,7 @@ page {
 }
 
 .DrankingList .listSon .name {
-  width: 132rpx;
+  width: 321rpx;
   font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;

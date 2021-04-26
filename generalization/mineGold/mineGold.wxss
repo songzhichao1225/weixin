@@ -6,7 +6,7 @@ page{
 }
 .rivalCoins .header{
    width: 90%;
-   margin:  auto;
+   margin: 1rem  auto 0;
    overflow: hidden;
 }
 .rivalCoins .header .pai{
@@ -96,4 +96,8 @@ page{
   text-align: center;
   line-height: 2rem;
   color: #9B9B9B;
+}
+.headerBac{
+  height: 5rem;
+  background: linear-gradient(90deg, #FF8522 0%, #F8350D 100%);
 }

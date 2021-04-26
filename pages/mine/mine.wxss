@@ -23,7 +23,7 @@ text {
   position: absolute;
   left: 24rpx;
   z-index: 10;
-  top: 160rpx;
+  top: 170rpx;
   border-radius: 15rpx 15rpx;
   box-shadow: 0 0 6rpx 0 #ccc;
 }
@@ -167,7 +167,7 @@ text {
   border-radius: 0.79rem;
   background: #fff;
   position: absolute;
-  top: 10%;
+  top: 20%;
   left: 7.5%;
   padding: 1.56rem 0;
 }

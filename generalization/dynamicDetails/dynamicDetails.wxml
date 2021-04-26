@@ -1,19 +1,27 @@
 <view class="dynamicDetails">
 
-	<swiper style="height:24rem" indicator-dots="{{false}}" autoplay="{{false}}" bindchange="counting" interval="{{false}}" duration="{{500}}">
+	<swiper wx:if="{{details.dynamic.contentType==1}}" style="height:24rem" indicator-dots="{{false}}"
+		autoplay="{{false}}" bindchange="counting" interval="{{false}}" duration="{{500}}">
 		<block wx:for="{{details.dynamic.ImgURL}}" wx:key="index">
 			<swiper-item>
 				<image class="swiper-item" bindtap="previewImage" data-src="{{img}}/{{item}}" mode="aspectFill"
 					style="height:24rem" src="{{img}}/{{item}}"></image>
 			</swiper-item>
 		</block>
-	
 	</swiper>
-	<view class="counting">{{current}}/{{details.dynamic.ImgURL.length}}</view>
+
+	<video  wx:if="{{details.dynamic.contentType==2}}" id="myVideo"
+		src="{{img}}/{{details.dynamic.ImgURL[0]}}"
+		binderror="videoErrorCallback" show-center-play-btn='{{false}}' show-play-btn="{{true}}" controls
+		bindenterpictureinpicture='bindVideoEnterPictureInPicture'
+		bindleavepictureinpicture='bindVideoLeavePictureInPicture'></video>
+
+
+	<view class="counting" wx:if="{{details.dynamic.contentType==1}}">{{current}}/{{details.dynamic.ImgURL.length}}</view>
 	<!-- <view class="listDian" wx:if="{{details.dynamic.isown==1}}" data-id="{{details.dynamic.uuid}}" bindtap="listDian">···</view> -->
 	<view class="content">
 		<view class="headUser">
-			<view class="avatar">
+			<view class="avatar" data-id="{{details.dynamic.playeruuid}}" bindtap="getIndividuals">
 				<image src="{{img}}/{{details.dynamic.playerimgurl}}"></image>
 			</view>
 			<view class="title">
@@ -22,7 +30,7 @@
 			</view>
 			<view class="likeIt">
 				<!-- bindtap="ThumbsUp" -->
-				<image     data-uuid="{{details.dynamic.uuid}}"
+				<image data-uuid="{{details.dynamic.uuid}}"
 					src="{{details.dynamic.isfabulou==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
 				<text>{{details.dynamic.fabulou}}</text>
 			</view>
@@ -32,9 +40,10 @@
 	<view class="line"></view>
 
 	<view class="titleCenter">评论 ({{details.dy_review_count}})</view>
-	<view class="commentsList" bindlongtap="deleteComments" data-isown="{{item.isown}}" data-id="{{item.uuid}}" wx:for="{{detailsTwo}}" wx:key="index">
+	<view class="commentsList" bindlongtap="deleteComments" data-isown="{{item.isown}}" data-id="{{item.uuid}}"
+		wx:for="{{detailsTwo}}" wx:key="index">
 		<view class="left">
-			<image data-id="{{item.playeruuid}}" bindtap="getIndividuals"  src="{{img}}/{{item.playerimgurl}}"></image>
+			<image data-id="{{item.playeruuid}}" bindtap="getIndividuals" src="{{img}}/{{item.playerimgurl}}"></image>
 		</view>
 		<view class="right">
 			<view class="name">{{item.nickname}}</view>
@@ -42,8 +51,13 @@
 			<view class="comment">{{item.comment}}</view>
 		</view>
 		<!-- bindtap="theThumbsUp" -->
-		<view class="rightTop"><image      data-uuid="{{item.uuid}}" src="{{item.isfabulou==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image><view>{{item.fabulou}}</view></view>
-	</view> 
+		<view class="rightTop">
+			<image data-uuid="{{item.uuid}}" src="{{item.isfabulou==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}">
+			</image>
+			<view>{{item.fabulou}}</view>
+		</view>
+
+	</view>
 
 
 
@@ -59,7 +73,7 @@
 	<!-- <view class="bottomTextarea">
 		<textarea bindinput="textInput" value="{{textVal}}" auto-height bindconfirm="confirm" placeholder="评论一下，发表你的看法吧！" />
 		</view> -->
-	
+
 
 
 </view>

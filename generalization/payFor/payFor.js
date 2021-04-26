@@ -45,8 +45,8 @@ Page({
       isPublisher: app.globalData.isPublisher,
       isCooper: 1,
       sportid: app.globalData.sportid,
-      Accompany: app.globalData.SportMode == '3' ? app.globalData.Tips : 0 || app.globalData.SportMode == '4' ? app.globalData.Tips : 0,
-      Reward: app.globalData.SportMode == '1' ? app.globalData.Tips : 0 || app.globalData.SportMode == '2' ? app.globalData.Tips : 0,
+      Accompany: app.globalData.Accompany,
+      Reward: app.globalData.Reward,
       Referee: app.globalData.refereefee,
       Insurance:this.data.checkedFlag==true?'1':'0'
     }

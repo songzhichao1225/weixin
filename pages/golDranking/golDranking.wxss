@@ -108,6 +108,7 @@ page {
   position: absolute;
   bottom: 118rpx;
   z-index: 6;
+  left: 24rpx;
 }
 
 .topOne .imgThree {
@@ -209,7 +210,7 @@ page {
 }
 
 .DrankingList .listSon .name {
-  width: 132rpx;
+  width: 200rpx;
   font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -243,4 +244,8 @@ page {
   letter-spacing: -0.34px;
   float: right;
   line-height: 86rpx;
+}
+.customizing{
+  height: 3.3rem;
+  background: #D85D27;
 }

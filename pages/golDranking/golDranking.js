@@ -1,8 +1,9 @@
 
 const util = require('../../utils/util.js')
-
+const app = getApp()
 Page({
   data: {
+    statusBarHeight: app.globalData.statusBarHeight+8,
     headerList: [
       {
         name: '羽毛球',
@@ -151,7 +152,7 @@ Page({
       title: '加载中~',
       mask: true
     })
-    util.Request("/api/getRivalCurrencyRanking", { 'type': nameE }, "get",
+    util.Request("/api/getRivalCurrencyRanking", { 'type': nameE,address:wx.getStorageSync('province')+','+wx.getStorageSync('cityInfo')+','+wx.getStorageSync('area') }, "get",
       (res) => {
         this.setData({ drankingList:res.data.data})
         wx.hideLoading()
@@ -168,7 +169,7 @@ Page({
       title: '加载中~',
       mask: true
     })
-    util.Request("/api/getRanking", { 'sportid': typeTitle, 'type': nameE }, "get",
+    util.Request("/api/getRanking", { 'sportid': typeTitle, 'type': nameE,address:wx.getStorageSync('province')+','+wx.getStorageSync('cityInfo')+','+wx.getStorageSync('area') }, "get",
       (res) => {
         this.setData({ drankingList:res.data.data})
         wx.hideLoading()

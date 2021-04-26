@@ -4,6 +4,7 @@ const app = getApp()
 const util = require('../../utils/util.js')
 Page({
   data: {
+    statusBarHeight: app.globalData.statusBarHeight+45,
     forbade:false,
     avatar: '',
     name: '',
@@ -76,8 +77,8 @@ Page({
           }
         }
       })
-    } else {
-      wx.navigateTo({
+    } else{
+      wx.navigateTo({ 
         url: '/pages/authorization/authorization'
       })
     }
@@ -164,11 +165,7 @@ Page({
       wx.navigateTo({
         url: '/pages/personal/personal?uuid=' + e.currentTarget.dataset.uuid
       })
-    } else {
-      wx.navigateTo({
-        url: '/pages/authorization/authorization'
-      })
-    }
+    } 
   },
   releaseDynamics:function(){
     wx.navigateTo({

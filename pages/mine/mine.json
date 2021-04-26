@@ -2,6 +2,7 @@
   "usingComponents": {
     
   },
+  "navigationStyle":"custom",
   "navigationBarTitleText": "我的"
  
 }

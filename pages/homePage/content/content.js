@@ -5,6 +5,7 @@ var bmap = require("../../../utils/bmap-wx.min.js");
 var util = require("../../../utils/util.js");
 Page({
   data: {
+    statusBarHeight: app.globalData.statusBarHeight+5,
     forbade: false,
     activity: [], //获取项目分类
     activitySon: [], //获取项目详细分类
@@ -113,10 +114,9 @@ Page({
         address: data.originalData.result.addressComponent.district,
         cityInfo: data.originalData.result.addressComponent,
         selectCity: data.originalData.result.addressComponent.city
-      });
+      })
 
       that.goleloand()
-      console.log(data)
       wx.setStorageSync('province',data.originalData.result.addressComponent.province)
       wx.setStorageSync("cityInfo", data.originalData.result.addressComponent.city)
       wx.setStorageSync('area', data.originalData.result.addressComponent.district)
@@ -157,16 +157,6 @@ Page({
     )
 
 
-    wx.startLocationUpdate({
-      success(res) {
-        wx.onLocationChange(function (res) {
-          wx.setStorageSync('lat', res.latitude)
-          wx.setStorageSync('lng', res.longitude)
-        })
-
-      }
-
-    })
 
 
 
@@ -257,8 +247,11 @@ Page({
           } else if (projectDataNow[i].PaySiteMoneyType == 0) {
             projectDataNow[i].PaySiteMoneyType = '输方买单'
           }
-
+          if(projectDataNow[i].MoneyPerhour.toString().indexOf('.')==-1){
+            projectDataNow[i].MoneyPerhour=projectDataNow[i].MoneyPerhour+'.00'
+          }
         }
+       
 
         if (show == true) {
           let mData = [...this.data.projectData, ...projectDataNow]
@@ -650,11 +643,6 @@ Page({
       wx.navigateTo({
         url: '/pages/homePage/generalGold/generalGold'
       })
-    } else {
-
-      wx.navigateTo({
-        url: '/pages/authorization/authorization'
-      })
     }
   },
   generalization: function () {
@@ -662,16 +650,13 @@ Page({
       wx.navigateTo({
         url: '/generalization/promotion/promotion'
       })
-    } else {
-      wx.navigateTo({
-        url: '/pages/authorization/authorization'
-      })
     }
   },
   forbade() {
-    this.setData({
-      forbade: true
+    wx.navigateTo({
+      url: '/generalization/assistantThree/assistantThree'
     })
+  
   },
   closeTwo() {
     this.setData({

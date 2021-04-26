@@ -4,7 +4,7 @@
     <view class="son" wx:for="{{goldList}}" bindtap="goldDetailSon" data-uuid="{{item.UUID}}" wx:key='index'>
       <view class="sonList">
         <view style='margin-top:15rpx;float:left;width:70%'>
-          <text style='font-size:0.88rem;'>{{item.Reason}}岁的法国的人上的功夫是的肤色是个地方和三哥的现场v成本</text>
+          <text style='font-size:0.88rem;'>{{item.Reason}}</text>
           <text style='font-size: 0.75rem;color: #9B9B9B;'>{{item.OrderID}}</text>
           <text style='font-size: 0.75rem;color: #9B9B9B;'>{{item.CoinsDate}}</text>
         </view>

@@ -1,5 +1,5 @@
 <view class="nearby">
-  <view class="headNav">
+  <view class="headNav" style="padding-top:{{statusBarHeight}}px">
     <view bindtap="indexOne" style="{{type==1?'opacity:1':'opacity:0.6'}}" data-index="1">人气选手<view wx:if="{{type==1}}">
       </view>
     </view>
@@ -36,18 +36,14 @@
       <view class='left'>
         <view wx:for="{{dynameicListLeft}}" bindtap="dynamicDetails" data-uuid="{{item.uuid}}" class="boss"
           wx:key="index">
-
           <view class="kokglokg">
-
             <image class='headImg' mode="aspectFill" src="{{img}}/{{item.firstImgURL}}"></image>
             <view class="distance">{{item.range}}</view>
-          <view class="fire">
-            <image src="../../assets/fire.png"></image><text>人气指数:{{item.popularity}}</text>
+            <view class="fire">
+              <image src="../../assets/fire.png"></image><text>人气指数:{{item.popularity}}</text>
+            </view>
+            <view class="playerdsfg" wx:if="{{item.contentType==2}}"></view>
           </view>
-          </view>
-
-
-
           <view class="title">{{item.title}}</view>
           <view class="userDetails">
             <image src="{{img}}/{{item.imgURL}}"></image>
@@ -59,6 +55,7 @@
             <view class="join" catchtap="possible" data-num="{{item.publiccount}}" data-uuid="{{item.playeruuid}}">
               可参与活动({{item.publiccount}})</view>
           </view>
+          
         </view>
 
 
@@ -73,6 +70,7 @@
             <view class="fire">
               <image src="../../assets/fire.png"></image><text>人气指数:{{item.popularity}}</text>
             </view>
+            <view class="playerdsfg" wx:if="{{item.contentType==2}}"></view>
           </view>
 
 

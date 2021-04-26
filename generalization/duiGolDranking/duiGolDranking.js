@@ -138,7 +138,7 @@ Page({
       title: '加载中~',
       mask: true
     })
-    util.Request("/api/getRanking", { 'sportid': typeTitle, 'type': nameE }, "get",
+    util.Request("/api/getRanking", { 'sportid': typeTitle, 'type': nameE,address:wx.getStorageSync('province')+','+wx.getStorageSync('cityInfo')+','+wx.getStorageSync('area') }, "get",
       (res) => {
         this.setData({ drankingList:res.data.data})
         wx.hideLoading()

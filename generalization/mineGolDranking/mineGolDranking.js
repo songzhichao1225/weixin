@@ -49,29 +49,29 @@ Page({
     rankingType: [{
       name: '好友排名',
       num: '0',
-      color: true,
+      color: false,
       title:'好友',
       nameE:'myFriends'
     },
     {
       name: '区排名',
       num: '4',
-      color: false,
-      title:'区',
+      color: true,
+      title:wx.getStorageSync('area'),
       nameE:'area'
     },
     {
       name: '市排名',
       num: '3',
       color: false,
-      title: '市',
+      title: wx.getStorageSync('cityInfo'),
       nameE:'city'
     },
     {
       name: '省排名',
       num: '2',
       color: false,
-      title: '省',
+      title: wx.getStorageSync('province'),
       nameE:'province'
     },
     {
@@ -85,10 +85,10 @@ Page({
     
     
     ],
-    title:'好友',
+    title:wx.getStorageSync('area'),
     drankingList:[],
     typeTitle:'1',
-    nameE:'myFriends',
+    nameE:'area',
     name:'羽毛球',
     flag:2,
     img:''
@@ -136,7 +136,7 @@ Page({
       title: '加载中~',
       mask: true
     })
-    util.Request("/api/getRanking", { 'sportid': typeTitle, 'type': nameE }, "get",
+    util.Request("/api/getRanking", { 'sportid': typeTitle, 'type': nameE,address:wx.getStorageSync('province')+','+wx.getStorageSync('cityInfo')+','+wx.getStorageSync('area') }, "get",
       (res) => {
         this.setData({ drankingList:res.data.data})
         wx.hideLoading()

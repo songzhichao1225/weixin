@@ -5,6 +5,7 @@
 
  Page({
    data: {
+    statusBarHeight: app.globalData.statusBarHeight-3,
      arraySex: [{
        name: '全部',
        id: 2
@@ -328,10 +329,6 @@
      if (wx.getStorageSync('token')) {
        wx.navigateTo({
          url: '/pages/personal/personal?uuid=' + e.currentTarget.dataset.uuid
-       })
-     } else {
-       wx.navigateTo({
-         url: '/pages/authorization/authorization'
        })
      }
    },

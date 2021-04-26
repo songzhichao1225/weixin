@@ -30,12 +30,12 @@
 			<view class="publisher">
 				<view class="header">
 					<text>发布者</text>
-					<image bindtap="getUserDetailInfo" data-uid="{{activitiesData.teamA[0].uuid}}"
+					<image bindtap="getUserDetailInfo" data-uid="{{activitiesData.publishPlayerID}}"
 						src='{{img}}/{{activitiesData.publishPlayerImg}}'></image>
 					<text style='margin-left:0.3rem;font-weight:400;font-size:14px;'>{{activitiesData.publishPlayerName}}</text>
 				</view>
 				<view class="publisherTxt" style='margin-top:1rem;'>
-					<text style="color:#9B9B9B">场馆名称</text>  
+					<text style="color:#9B9B9B">场馆名称</text>
 					<text class="time" 	bindtap="venueDetails"  data-uid="{{activitiesData.siteUid}}">{{activitiesData.siteName}}</text>
 				
 					<text wx:if="{{activitiesData.isCooper==1}}" class="cooperate">(合作场馆)</text>
@@ -119,10 +119,16 @@
 						<text>技术级别</text>
 						<text class="time">{{activitiesData.Leveexplain}}</text>
 					</view>
-					<view class="two">
-						<text class="way">入场费用</text>
+					<view class="two" wx:if="{{activitiesData.SportMode!='我找陪练'&&activitiesData.SportMode!='我是陪练'}}">
+						<text class="way" >入场费用</text>
 						<text>￥{{activitiesData.Tips}}{{tipsType==-1?'.00':'0'}}/人</text>
 					</view>
+
+					<view class="two" wx:if="{{activitiesData.SportMode=='我找陪练'||activitiesData.SportMode=='我是陪练'}}">
+						<text class="way">陪练费用</text>
+						<text>￥{{activitiesData.MoneyPerhour}}{{tipsType==-1?'.00':'0'}}/人</text>
+					</view>
+
 				</view>
 
 				<view class="publisherTxt" wx:if="{{activitiesData.referee!==0&&activitiesData.reserve!=1}}">

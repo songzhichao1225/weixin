@@ -86,7 +86,7 @@ page {
 }
 
 .topOne {
-  width: 204rpx;
+  width: 254rpx;
   height: 296rpx;
   position: absolute;
   left: 50%;
@@ -108,6 +108,7 @@ page {
   position: absolute;
   bottom: 118rpx;
   z-index: 6;
+  left: 24rpx;
 }
 
 .topOne .imgThree {
@@ -133,6 +134,7 @@ page {
   text-align: center;
   font-size: 13px;
   color: #fdce0a;
+  font-weight: bold;
 }
 
 .topOne .text .type {
@@ -158,6 +160,12 @@ page {
   left: 5%;
   margin-left: 0;
   top: 30rpx;
+}
+.topTwo .text .txt{
+  color: #99C3EB;
+}
+.topthre .text .txt{
+  color: #F6976E;
 }
 
 .imgTwot {

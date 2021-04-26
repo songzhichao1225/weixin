@@ -38,10 +38,6 @@ Page({
           }
         }
       })
-    } else {
-      wx.navigateTo({
-        url: '/pages/authorization/authorization'
-      })
     }
 
   },

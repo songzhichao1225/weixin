@@ -73,7 +73,7 @@ page {
 }
 
 .dynamicState {
-  height: 90.8%;
+  height: 93%;
   overflow-y: auto;
   background-color: #f3f3f3;
 }
@@ -345,13 +345,33 @@ page {
   text-align: center;
   line-height: 1.25rem;
 }
-.bigShotSon .right .distanceTwo{
+
+.bigShotSon .right .distanceTwo {
   position: absolute;
   bottom: 0;
   right: 0;
   font-size: 0.75rem;
   color: #9b9b9b;
 }
-.kokglokg{
+
+.kokglokg {
   position: relative;
+}
+
+.playerdsfg {
+  width: 0px;
+  height: 0px;
+  border-top: 20px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 30px solid #fff;
+  position: absolute;
+  top: 50%;
+  margin-top: -20px;
+  left: 50%;
+  margin-left: -15px;
+}
+.customizing{
+  height: 2.6rem;
+  background: #D85D27;
 }

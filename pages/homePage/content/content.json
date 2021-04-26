@@ -2,6 +2,7 @@
  
   "navigationBarTitleText": "首页",
   "enablePullDownRefresh": true,
+  "navigationStyle":"custom",
   "usingComponents": {
     "download": "/pages/component/download/download"
   }

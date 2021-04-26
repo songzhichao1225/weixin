@@ -1,6 +1,8 @@
 page {
   height: 100%;
   font-family: PingFangSC-Semibold;
+  margin: 0;
+  padding: 0;
 }
 
 text {

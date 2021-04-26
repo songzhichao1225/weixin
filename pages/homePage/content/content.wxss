@@ -65,7 +65,7 @@ page {
 }
 
 .inputBox {
-  width: 65%;
+  width: 52%;
   margin-left: 0.7rem;
   height: 1.8rem;
   float: left;
@@ -549,4 +549,12 @@ page {
   position: absolute;
   top: 0;
   right: 0;
+}
+.customizing{
+  height: 3rem;
+  background:#F5520B ;
+}
+.scroll{
+  height: 100%;
+  overflow-y: auto;
 }

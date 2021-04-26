@@ -139,11 +139,7 @@ Page({
       wx.navigateTo({
         url: '/pages/personal/personal?uuid=' + e.currentTarget.dataset.uid
       })
-    } else {
-      wx.navigateTo({
-        url: '/pages/authorization/authorization'
-      })
-    }
+    } 
   },
   onShareAppMessage: function (res) {
     let {
