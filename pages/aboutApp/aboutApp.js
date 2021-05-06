@@ -10,7 +10,7 @@ Page({
   },
   phoneCall:function(){
     wx.makePhoneCall({
-      phoneNumber: '010-895077'
+      phoneNumber: '010-80895077'
     })
   },     
 

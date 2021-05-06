@@ -6,6 +6,7 @@ page {
   width: 95%;
   height: 290rpx;
   margin: 0 auto;
+  border-bottom: 0.06rem solid #e9e9e9;
 }
 
 .textarea textarea {
@@ -63,4 +64,33 @@ page {
   color: #fff;
   line-height: 80rpx;
   margin-top: 132rpx;
+}
+
+.imgContent{
+  margin-top: 1rem;
+  overflow: hidden;
+  margin-left: 2.5%;
+}
+.imgContent>view{
+  width: 30%;
+  height: 6.3rem;
+  margin-left: 3%;
+  float: left;
+  margin-top: 0.5rem;
+  position: relative;
+}
+.imgContent>view:nth-child(3n+1){
+  margin-left: 0;
+}
+.imgContent>view>image{
+  width: 100%;
+  height: 100%;
+}
+.delet{
+  color: #9b9b9b;
+  font-size: 2rem;
+  position: absolute;
+  top: 0.1rem;
+  right: 0.3rem;
+  line-height: 1.5rem;
 }

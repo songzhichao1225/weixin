@@ -82,7 +82,7 @@ page {
 .topThree {
   position: relative;
   margin-top: 1rem;
-  height: 7.63rem;
+  height: 8.63rem;
 }
 
 .topOne {

@@ -3,7 +3,7 @@
 	<view class="headerCity" style="padding-top:{{statusBarHeight}}px">
 		<!-- bindtap='cityList' -->
 		<text>{{selectCity}}</text>
-		<image class="image" src='/assets/HomeIconJt@2x.png'></image>
+		<!-- <image class="image" src='/assets/HomeIconJt@2x.png'></image> -->
 		<view class="inputBox" bindtap='inputS'>
 			<image style='display:block;width:0.8rem;height:0.8rem;margin:0.5rem 0 0 0.45rem;float:left;'
 				src='/assets/SearchIcon@2x.png'></image>
@@ -24,36 +24,28 @@
 		</swiper>
 	</view>
 	<view class="homeSelect">
-		<!-- <view bindtap='isSign' data-status="{{isSign}}">
-      <image wx:if="{{isSign==0}}" src='/assets/HomeIconQiandao@2x.png'></image>
-      <image wx:if="{{isSign==1}}" src='/assets/home-icon-qiandao-hui@2x.png'></image>
-      <text>{{isSign==0?'签到':'已签到'}}</text>
-    </view> -->
-		<view bindtap="forbade">
+	
+		<!-- <view bindtap="forbade">
 			<image src='/assets/HomeIconJinbi@2x.png'></image>
 			<text>赢对手果</text>
-			<!-- bindtap="generaGold" -->
+			bindtap="generaGold"
 		</view>
-		<view bindtap="forbade">
-			<image src='/assets/HomeIconShangcheng@2x.png'></image>
-			<text>兑换商城</text>
-			<!-- bindtap='goldMall' -->
-		</view>
+		
 		<view bindtap="forbade">
 			<image src='/assets/generalization.png'></image>
 			<text>我是推广员</text>
-			<!-- bindtap='generalization' -->
+			bindtap='generalization'
 		</view>
 		<view bindtap="forbade">
 			<image src='/assets/cooperate.png'></image>
 			<text>场馆入驻</text>
-			<!-- bindtap='goldMall' -->
+			bindtap='goldMall'
 		</view>
 		<view bindtap="forbade">
 			<image src='/assets/run.png'></image>
 			<text>报名偏好</text>
-			<!-- bindtap="signUp" -->
-		</view>
+			bindtap="signUp"
+		</view> -->
 	</view>
 
 	<view class="projectNav">
@@ -122,8 +114,9 @@
 				</view>
 				<view class="cost">
 					<text style='margin:0;'>场地费:AA</text>
-					<text wx:if="{{item.SportMode=='我找陪练'||item.SportMode=='我是陪练'}}">陪练费:{{item.MoneyPerhour}}/人</text>
-					<text wx:if="{{item.SportMode!='我找陪练'&&item.SportMode!='我是陪练'}}">入场费:{{item.Tips}}/人</text>
+					<text wx:if="{{item.MoneyPerhour!=0}}">陪练费:{{item.MoneyPerhour}}/人</text>
+					<text wx:if="{{item.Tips!=0.00||item.Tips!=0}}">入场费:{{item.Tips}}/人</text>
+					<text wx:if="{{item.organizations!=0}}">组织费:￥{{item.organizations}}</text>
 					<text>{{item.range}}</text>
 				</view>
 			</view>
@@ -200,7 +193,7 @@
 			<text>下载APP更多精彩体验</text>
 			<image bindlongtap="saveImg" data-src="/assets/twoCode.png" class="twoCode" src="../../../assets/twoCode.png">
 			</image>
-			<text>保存二维码识别下载</text>
+			<text>长按保存二维码识别下载</text>
 			<image class="closeTwo" bindtap="closeTwo" src="../../../assets/closeTwo.png"></image>
 		</view>
 	</view>

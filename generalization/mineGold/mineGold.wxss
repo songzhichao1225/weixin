@@ -6,7 +6,7 @@ page{
 }
 .rivalCoins .header{
    width: 90%;
-   margin: 1rem  auto 0;
+   margin:0 auto;
    overflow: hidden;
 }
 .rivalCoins .header .pai{
@@ -100,4 +100,38 @@ page{
 .headerBac{
   height: 5rem;
   background: linear-gradient(90deg, #FF8522 0%, #F8350D 100%);
+}
+
+.bossScroll{
+  height: 80%;
+  border-top: 0.06rem solid #e9e9e9;
+}
+
+.son{
+  width: 100%;
+  border-bottom: 0.06rem solid #e9e9e9;
+  overflow: hidden;
+}
+.son .sonList{
+  width: 95%;
+  margin: 0 auto;
+  overflow: hidden;
+  padding-bottom: 0.5rem;
+}
+.imgRight{
+  width: 0.44rem;
+  height: 0.69rem;
+  float: right;
+  margin-top: 1.95rem;
+  margin-left: 0.5rem;
+}
+text{
+  display: block;
+}
+.titleTop{
+  height: 2.5rem;
+  line-height: 2.5rem;
+  text-align: center;
+  font-size: 0.88rem;
+  font-weight: bold;
 }

@@ -9,7 +9,7 @@
     <view class="contentbade">
       <text>下载APP更多精彩体验</text>
       <image class="twoCode" bindlongtap="saveImg" data-src="/assets/twoCode.png" src="../../assets/twoCode.png"></image>
-      <text>保存二维码识别下载</text>
+      <text>长按保存二维码识别下载</text>
       <image class="closeTwo" bindtap="closeTwo" src="../../assets/closeTwo.png"></image>
     </view>
   </view>

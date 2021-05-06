@@ -238,11 +238,6 @@ Page({
 
             })
           
-
-
-
-          
-          
         },
         () => {
           console.log("失败")
@@ -481,8 +476,6 @@ Page({
             duration: 1500,
             mask: true
           })
-  
-  
         }
       },
       () => {
@@ -490,19 +483,8 @@ Page({
       },
       () => {}
     )
-  
-
     }
-
-   
-
    }
-
-   
-
-
-
-
   },
   /**
    * 获取焦点
@@ -529,7 +511,17 @@ Page({
     if(this.data.current==1){
      this.hidePayLayer()
     }else{
-      this.showInputLayer();
+      if(Number(this.data.getElplainInfo.money)<Number(this.data.getElplainInfo.Total)){
+        wx.showToast({
+          title: '钱包余额不足',
+          icon: 'none',
+          duration: 1500,
+          mask: true
+        })
+      }else{
+        this.showInputLayer();
+      }
+      
     }
   },
   deductibles(){

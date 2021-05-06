@@ -478,10 +478,15 @@ Page({
           "id": id
         }, "get",
         (res) => {
+          let obj={
+            id: '',
+            name: "全部"
+          }
+          res.data.data.unshift(obj)
           let arr = []
-          arr.push(...res.data.data.slice(0, 3))
+          arr.push(...res.data.data.slice(0, 4))
+          arr.push(...res.data.data.slice(5, 6))
           arr.push(...res.data.data.slice(4, 5))
-          arr.push(...res.data.data.slice(3, 4))
           if (id == 5) {
             this.setData({
               activitySon: arr
@@ -609,7 +614,7 @@ Page({
   },
   activites: function (e) {
     wx.navigateTo({
-      url: '/pages/homePage/activities/activities?uuid=' + e.currentTarget.dataset.uuid
+      url: '/pages/homePage/activities/activities?uuid=' + e.currentTarget.dataset.uuid+'&hoog=0'
     })
   },
   download: function () {

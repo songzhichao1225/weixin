@@ -98,7 +98,7 @@ page {
   height: 168rpx;
   position: absolute;
   left: 50%;
-  margin-left: -66rpx;
+  margin-left: -86rpx;
   z-index: 4;
 }
 
@@ -108,7 +108,7 @@ page {
   position: absolute;
   bottom: 118rpx;
   z-index: 6;
-  left: 24rpx;
+  left: 4rpx;
 }
 
 .topOne .imgThree {
@@ -116,7 +116,7 @@ page {
   height: 124rpx;
   position: absolute;
   left: 50%;
-  margin-left: -62rpx;
+  margin-left: -82rpx;
   bottom: 128rpx;
   border-radius: 50%;
   z-index: 5;
@@ -175,7 +175,7 @@ page {
   bottom: 119rpx;
   z-index: 6;
   left: 50%;
-  margin-left: -57rpx;
+  margin-left: -77rpx;
 }
 
 .topthre {

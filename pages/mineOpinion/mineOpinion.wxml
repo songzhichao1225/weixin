@@ -1,14 +1,21 @@
 <view class="textarea">
-<textarea bindinput="textarea" maxlength="400" placeholder="请输入您的意见或建议，被采纳的意见将会有金币奖励给您奥~" placeholder-style="font-size: 15px;color: #9B9B9B;"></textarea>
+<textarea bindinput="textarea" maxlength="400" placeholder="请输入您发现的问题或其他建议，如是客观存在的问题或被采纳的建议，将奖励您1000枚对手果（折合20元人民币）。" placeholder-style="font-size: 15px;color: #9B9B9B;"></textarea>
 
 <text class="num">{{number}}/400</text>
 
 </view>
 
-<view class="input"><text class="text">电话</text><text class="txt">(必填)</text><input bindinput="iphone" type="number" maxlength="11" placeholder="便于我们与您联系!" placeholder-style="font-size: 15px;color: #9B9B9B;"></input></view>
+<view class="imgContent">
+		<view wx:for="{{imgURLT}}" wx:key="index">
+			<image  src="{{img}}/{{item}}" mode="aspectFill"></image>
+			<view class="delet" bindtap="delet" data-src="{{item}}">×</view>
+		</view>
+		<view>
+			<image src="../../assets/uploadImg.png" wx:if="{{imgURLT.length<2}}" bindtap="chooseImg" mode="widthFix"></image>
+		</view>
 
-
-<view class="input"><text class="text">邮箱</text><text class="txt">(选填)</text><input  placeholder="便于我们与您联系!" placeholder-style="font-size: 15px;color: #9B9B9B;"></input></view>
+		
+	</view>
 
 
 <button class="btn" bindtap="btn">提交</button>

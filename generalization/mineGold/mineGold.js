@@ -4,68 +4,103 @@ const util = require('../../utils/util.js')
 Page({
   data: {
     goldMall:[],
-    img:''
+    img:'',
+    goldList:[],
+    page:1,
+    coins:0
   },
   onLoad: function () {
     this.setData({
       img:util.API
     })
-    util.Request("/api/getGoodsLst", { category:'全部',page:1}, "get",
+    util.Request("/api/getCommonCoins", {}, "get",
       (res) => {
        this.setData({
-         goldMall: res.data.data.Lst
+         coins:res.data.data.coins.toFixed(2)
        })
       },
-      () => { console.log("失败") },
+      () => {
+        console.log("失败")
+      },
       () => {
       }
     )
-      
-
+    this.list()
     wx.hideLoading()
   },
   golDranking:function(){
 
     wx.navigateTo({
-      url: '/generalization/duiGolDranking/duiGolDranking?flag=1'
+      url: '/generalization/mineGolDrankingTwo/mineGolDrankingTwo'
     })
   },
-  goldMall:function(){
-    wx.navigateTo({
-      url: '/pages/homePage/goldMall/goldMall'
-    })
-    
-  },
-  goldDetail:function(){
-    wx.navigateTo({
-      url: '/pages/goldDetails/goldDetails?goldType=1'
-    })
-
-  },
-   //跳转商品详情
-  details: function (e) {
-    let uuid = e.currentTarget.dataset.uuid
-    let name = e.currentTarget.dataset.name
-    let cost = e.currentTarget.dataset.cost
-    wx.navigateTo({
-      url: '/pages/homePage/mallDetails/mallDetails?uuid=' + uuid + '&name=' + name + '&cost=' + cost
-    })
-
-
-  },
-  //跳转任务列表
-  generalGold:function(){
-    wx.navigateTo({
-      url: '/pages/homePage/generalGold/generalGold'
-    })
-
-  },
-  cost:function(e){
-    wx.navigateTo({
-      url: '/generalization/exchange/exchange?cost=' + e.currentTarget.dataset.cost + '&uuid=' + e.currentTarget.dataset.uuid
-    })
-  }
- 
   
+ 
+
+ 
+ 
+  list(show){
+    util.Request("/api/getUserGoldLst", {
+      'goldType': 'commonCoins',
+      sportType: '',
+      page: this.data.page
+    }, "get",
+    (res) => {
+      let data = res.data.data.goldLst
+      if (show == true) {
+        if (data.length == 0) {
+          wx.showToast({
+            title: '没有更多了~',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+        data = [...this.data.goldList, ...data]
+
+      } else {
+        data = data
+      }
+      for (let i in data) {
+        if (data[i].GetCoins.indexOf('-') != -1) {
+          data[i].color = 0
+        } else {
+          data[i].color = 1
+        }
+      }
+      this.setData({
+        goldList: data,
+        enabled: false
+      })
+      wx.hideLoading()
+    },
+    () => {
+      console.log("失败")
+    },
+    () => {}
+  )
+
+  },
+  //上拉加载
+  tolower: function () {
+    this.setData({
+      page: this.data.page + 1
+    })
+    let show = true
+    this.list(show)
+  },
+  refresh() {
+    this.setData({
+      enabled: true,
+      page: 1
+    })
+    this.list()
+  },
+ 
+  goldDetailSon(e) {
+    wx.navigateTo({
+      url: '/generalization/goldDetailSon/goldDetailSon?uuid=' + e.currentTarget.dataset.uuid + '&flag=' + this.data.goldType+'&sport='+this.data.sport[this.data.indexed].name,
+    })
+
+  },
  
 })

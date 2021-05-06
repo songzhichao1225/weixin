@@ -5,10 +5,10 @@ Page({
   data: {
     activitiesData: [],
     flag: false,
-    countDownDay: '',
-    countDownHour: '',
-    countDownMinute: '',
-    countDownSecond: '',
+    countDownDay: 0,
+    countDownHour: 0,
+    countDownMinute: 0,
+    countDownSecond: 0,
     end: true,
     hoog: 0,
     moneyType: 1,
@@ -25,7 +25,6 @@ Page({
     img: '',
     reverseInfo: 0,
     typeInfo: ''
-
   },
 
   onLoad: function (option) {
@@ -50,6 +49,9 @@ Page({
       this.setData({
         uuid: option.uuid
       })
+      wx.setStorageSync('activitiesId',option.uuid )
+      wx.setStorageSync('activitieshoog', option.hoog)
+      wx.setStorageSync('activitiestype', '1')
     }
     this.koopdf()
   },
@@ -245,7 +247,7 @@ Page({
   //倒计时
 
   countdown: function (StartTime) {
-    let totalSecond = (Date.parse(StartTime) - Date.parse(new Date())) / 1000;
+    let totalSecond = (Date.parse(StartTime.replace(/-/g, "/")) - Date.parse(new Date())) / 1000;
     let interval = setInterval(function () {
       let second = totalSecond;
       // 天数
@@ -267,20 +269,24 @@ Page({
       let sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
       let secStr = sec;
       if (secStr.length == 1) secStr = secStr;
-      
       this.setData({
         countDownDay:dayStr,
         countDownHour:hrStr,
         countDownMinute:hrStr,
         countDownSecond: secStr,
       })
+     
 
       totalSecond--;
       if (totalSecond < 0 || this.data.activitiesData.reserve === 1 || this.data.activitiesData.PublicStatus === 7) {
         clearInterval(interval);
         this.setData({
-          end: false
-        })
+          end: false,
+          countDownDay: '00',
+          countDownHour: '00',
+          countDownMinute: '00',
+          countDownSecond: '00',
+        }) 
       }
     }.bind(this), 1000);
   },
@@ -320,11 +326,11 @@ Page({
     }
   },
   onUnload: function () {
-    if (this.data.hoog == 1) {
-      wx.reLaunch({
-        url: '/pages/homePage/content/content'
-      })
-    }
+    // if (this.data.hoog == 1) {
+    //   wx.reLaunch({
+    //     url: '/pages/homePage/content/content'
+    //   })
+    // }
 
   },
 
@@ -597,8 +603,8 @@ Page({
     }else{
       var teamText = 'C'
     }
-    let index=e.currentTarget.dataset.index
    
+    let index=e.currentTarget.dataset.index
 
     if (this.data.typeTwo == 0) {
       wx.showModal({

@@ -1,2 +1,307 @@
-<web-view bindmessage="detal" src="https://appstg.tiaozhanmeiyitian.com/api/allProtocol?type={{type}}">
-</web-view>
+<view class="type2" wx:if="{{type==2}}">
+  <view class="son">
+    <text class="top">1、对手果是什么？</text>
+    <text class="contentList">答：对手果是“找对手”平台为用户设计的一种虚拟币，主要奖励用户的每日打卡、发布活动、分享活动、邀请新人、分享APP、意见反馈等对平台有贡献的行为，也可以说是贡献币。</text>
+  </view>
+
+  <view class="son">
+    <text class="top">2、怎么获取对手果？</text>
+    <text class="contentList">答：用户注册后就可获得10枚对手果，后期获取主要有如下五种方式：</text>
+    <text class="contentList">1）每日打卡：+2.5枚对手果/次；</text>
+    <text class="contentList">2）发布活动：+50枚对手果/次（匹配成功后）；</text>
+    <text class="contentList">3）邀请新人：发布或报名活动后，每邀请一个新用户参与并完成活动，奖励邀请人500枚对手果（合减免场地费10元）。</text>
+    <text class="contentList">4）分享APP：分享后，您将获得50枚对手果/一级用户；10枚对手果/二级用户；2枚对手果/三级用户。</text>
+    <text class="contentList">5）输入您发现的问题或其他建议，如果客观存在的问题或被采纳建议，将奖励您1000枚对手果（折合20元人民币）。</text>
+  </view>
+
+  <view class="son">
+    <text class="top">1、对手果有什么做用？</text>
+    <text class="contentList">答：主要有如下4种做用：</text>
+    <text class="contentList">1）可按50:1比例兑换现金；</text>
+    <text class="contentList">2）可按10:1比例兑换为场地费抵用券；</text>
+    <text class="contentList">3）当某项运动技术分&lt;5时，系统自动将10枚对手果转换为10技术分。</text>
+    <text class="contentList">4）当对手果排名靠前时，我们会有额外的奖励。</text>
+  </view>
+</view>
+
+<view class="type2" wx:if="{{type==3}}">
+  <view class="son">
+    <text class="top">1、技术分是什么？</text>
+    <text class="contentList">答：技术分是表征用户某运动项目技术水平的一个量化参数，分数越高代表技术水平越高。</text>
+  </view>
+
+  <view class="son">
+    <text class="top">2、怎么获得技术分？</text>
+    <text class="contentList">答：用户注册后每个运动项目就可获得10技术分，后期获取主要通过竞技模式下，赢取比赛后获取技术分。</text>
+  </view>
+
+  <view class="son">
+    <text class="top">3、技术分与技术等级什么关系？</text>
+    <text class="contentList">1级：技术分（0-20）；</text>
+    <text class="contentList">2级：技术分（20-40）；</text>
+    <text class="contentList">3级：技术分（40-80）；</text>
+    <text class="contentList">4级：技术分（80-160）；</text>
+    <text class="contentList">5级：技术分（160-320）；</text>
+    <text class="contentList">6级：技术分（320-640）；</text>
+    <text class="contentList">7级：技术分（640-1280）；</text>
+    <text class="contentList">8级：技术分（1280-2560）；</text>
+    <text class="contentList">9级：技术分（2560-5120）；</text>
+    <text class="contentList">10级：技术分（5120-10240）；</text>
+    <text class="contentList">11级：技术分（10240-20480）；</text>
+    <text class="contentList">12级：技术分（20480-40960）；</text>
+    <text class="contentList">13级：技术分（40960-81920）；</text>
+    <text class="contentList">14级：技术分（81920-163840）；</text>
+    <text class="contentList">15级：技术分（163840-无穷）；</text>
+  </view>
+
+  <view class="son">
+    <text class="top">4、技术分输赢的规则是什么？</text>
+    <text class="contentList">技术分的输赢规则主要包含输方输技术分数量、赢方如何分配（多人时）两个问题：</text>
+    <text class="contentList">1）输方输技术分数量：以输方的技术等级决定输技术分的多少，规则如下：</text>
+    <text class="contentList">1级选手输，一次输2.5技术分；</text>
+    <text class="contentList">2级选手输，一次输5技术分；</text>
+    <text class="contentList">3级选手输，一次输10技术分；</text>
+    <text class="contentList">4级选手输，一次输20技术分；</text>
+    <text class="contentList">5级选手输，一次输40技术分；</text>
+    <text class="contentList">6级选手输，一次输80技术分；</text>
+    <text class="contentList">7级选手输，一次输160技术分；</text>
+    <text class="contentList">8级选手输，一次输320技术分；</text>
+    <text class="contentList">9级选手输，一次输640技术分；</text>
+    <text class="contentList">10级选手输，一次输1280技术分；</text>
+    <text class="contentList">11级选手输，一次输2560技术分；</text>
+    <text class="contentList">12级选手输，一次输5120技术分；</text>
+    <text class="contentList">13级选手输，一次输10240技术分；</text>
+    <text class="contentList">14级选手输，一次输20480技术分；</text>
+    <text class="contentList">15级选手输，一次输40960技术分；</text>
+
+  </view>
+  <view class="tabel">
+    <view class="left">单打技术分规则</view>
+    <view class="right">
+      <view class="sonLeft">
+        <view>A队</view>
+        <view>A1(2级)</view>
+        <view>输</view>
+      </view>
+      <view class="sonRight">
+        <view>B队</view>
+        <view>B1(3级)</view>
+        <view>赢</view>
+      </view>
+      <view style="line-height:2rem;text-align:center">则A1输5技术分，B1赢5技术分</view>
+    </view>
+  </view>
+
+
+  <view class="tabelTwo">
+    <view class="leftTwo">多人输赢技术分规则</view>
+    <view class="rightTwo">
+      <view class="sonLeftTwo">
+        <view>A队</view>
+        <view>A1(2级)</view>
+        <view>A2(2级)</view>
+        <view>A3(2级)</view>
+        <view>A4(2级)</view>
+        <view>A5(2级)</view>
+        <view>A队输</view>
+      </view>
+      <view class="sonRightTwo">
+        <view>B队</view>
+        <view>B1(3级)</view>
+        <view>B2(3级)</view>
+        <view>B3(3级)</view>
+        <view>B4(3级)</view>
+        <view>B5(3级)</view>
+        <view>B队赢</view>
+      </view>
+      <view style="font-size:0.6rem"> <text>则A队:A1输掉5技术分，A2输掉20技术分，A3输掉10技术分，A4输掉40技术分，A5输掉20技术分。</text> <text>总共输掉5+20+10+40+20=95技术分。</text><text>则B队总共赢95技术分，怎么分配呢？因为如果是B队输了，B1应该输10技术分，B2应该输20，B3应该输20，B4应该输40，B5应该输40，那么现在赢了，也要按照这个比例，所以：</text>
+      <text>B1应该赢95*10/(10+20+20+40+40)=95*10/130技术分</text>
+      <text>B2应该赢95*20/(10+20+20+40+40)=95*20/130技术分</text>
+      <text>B3应该赢95*20/(10+20+20+40+40)=95*20/130技术分</text>
+      <text>B4应该赢95*40/(10+20+20+40+40)=95*40/130技术分</text>
+      <text>B5应该赢95*40/(10+20+20+40+40)=95*40/130技术分</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="type2"  wx:if="{{type==4}}">
+  <view class="son">
+    <text class="top">1、什么是人气指数？</text>
+    <text class="contentList">答：人气指数是表征某用户在“找对手平台”平台线上以及通过平台匹配成线下活动的活跃度、受欢迎程度后的一个量化参数。</text>
+    <text class="contentList">人气指数=线下人气指数+线上人气指数</text>
+    <text class="contentList">线下人气指数=（好评分-4.5）*活动次数，小于0，按照0算</text>
+    <text class="contentList">线上人气指数=动态里总的点赞数。一条动态一个用户只能点赞一次。</text>
+  </view>
+
+  <view class="son">
+    <text class="top">2、怎么提高自己的人气指数？</text>
+    <text class="contentList">1）多发布或报名活动，并把你最好的一面展示给运动的小伙伴。</text>
+    <text class="contentList">2）多发动态，让更多的小伙伴为你点赞。</text>
+  </view>
+
+  <view class="son">
+    <text class="top">3、人气指数高有什么好处？</text>
+    <text class="contentList">答：在某用户打开“附近对手”时，同样的距离范围内，我们优先将“人气指数”高的人气选手放在最前面在展示在用户面前。让更多的用户认识他，参加他发布的活动，该人气选手发布活动时可以收取一定得出场费。也就是人气指数越高！曝光度越高！出场费越高！</text>
+  </view>
+</view>
+
+<view class="type2" wx:if="{{type==5}}">
+  <view class="son">
+    <text class="top">1、目前平台有几种运动？</text>
+    <text class="contentList">答：目前平台有娱乐模式、竞技模式、我找陪练、我是陪练4种运动模式。</text>
+  </view>
+
+  <view class="son">
+    <text class="top">2、四种运动模式的具体规则和区别是什么？</text>
+    <text class="contentList">答：具体规则和区分如下：</text>
+    <view class="tableSport">
+      <view class="left1">
+        <view>运动模式</view>
+        <view>适用的</view>
+        <view class="left1Son">
+          <view class="sonLeft">规则</view>
+          <view class="sonRight">
+            <view>场地费承担方式</view>
+            <view>裁判费</view>
+            <view>出场费</view>
+            <view>陪练费</view>
+            <view>技术分</view>
+            <view>对手果</view>
+          </view>
+        </view>
+      </view>
+      <view class="left2">
+        <view>娱乐模式</view>
+        <view>所有活动</view>
+        <view>AA</view>
+        <view></view>
+        <view>√</view>
+        <view></view>
+        <view></view>
+        <view>发布者得50对手果</view>
+      </view>
+
+      <view class="left2">
+        <view>竞技模式</view>
+        <view>所有活动</view>
+        <view>AA/输方买单</view>
+        <view>AA/输方买单</view>
+        <view>√</view>
+        <view></view>
+        <view>√</view>
+        <view>发布者得50对手果</view>
+      </view>
+      <view class="left2">
+        <view>我找陪练</view>
+        <view>2人活动</view>
+        <view>AA</view>
+        <view></view>
+        <view></view>
+        <view>√</view>
+        <view></view>
+        <view>发布者得50对手果</view>
+      </view>
+      <view class="left2">
+        <view>我是陪练</view>
+        <view>2人活动</view>
+        <view>AA</view>
+        <view></view>
+        <view></view>
+        <view>√</view>
+        <view></view>
+        <view>发布者得50对手果</view>
+      </view>
+    
+    </view>
+  </view>
+
+ 
+</view>
+
+
+<view class="type2" wx:if="{{type==6}}">
+  <view class="son">
+    <text class="top">1、偏好是什么？</text>
+    <text class="contentList">答：偏好分为发布偏好和报名偏好。</text>
+    <text class="contentList">1）发布偏好：用户可以把经常发布活动的运动项目、运动模式、场馆、时间、性别要求、年龄要求、技术级别等设置为常用偏好。发布活动时可以选取发布偏好，再选取一下活动时间即可。</text>
+    <text class="contentList">2）报名偏好：用户可以经常报名活动时一些常用的筛选条件，如运动项目、运动模式、有无裁判、以哪个地点为中心、时间、性别要求、年龄要求、技术级别等设置为常用报名偏好。报名活动时可以选取报名偏好，即一键筛选自己想要的活动，快速报名。</text>
+  </view>
+
+  <view class="son">
+    <text class="top">2、报名偏好里的“有满足该偏好的活动时发送通知”是什么意思？</text>
+    <text class="contentList">答：当您选择报名偏好后可能枚筛选到合适的活动，如打开了“有满足该偏好的活动时发送通知”后，在您关闭“找对手”后，其他用户发布了该报名偏好的活动时，会及时通知您。</text>
+  </view>
+</view>
+
+<view class="type2" wx:if="{{type==7}}">
+  <view class="son">
+    <text class="top">1、怎么成为“找对手”平台裁判？</text>
+    <text class="contentList">答：首页→成为裁判→添加裁判项目等级→填写等级、编号、证书照片→提交后→等待审核→审核通过后→报名活动里的裁判</text>
+  </view>
+
+  <view class="son">
+    <text class="top">2、裁判费一般怎么收取，标准是什么？</text>
+    <text class="contentList">答：收费标准如下：</text>
+    <text class="contentList">国家级：800元/小时</text>
+    <text class="contentList">一级：400元/小时</text>
+    <text class="contentList">二级：200元/小时</text>
+    <text class="contentList">三级：100元/小时</text>
+  </view>
+
+</view>
+
+<view class="type2" wx:if="{{type==8}}">
+  <view class="son">
+    <text class="top">1、什么是“截止报名时间”？</text>
+    <text class="contentList">答：一个活动的“截止报名时间”就是到该时间，无论这个活动是否匹配成功，不能再报名了。也是在这个时间，我们会将该活动是否匹配成功的消息通知给场馆方、发布者、已报名的用户。若：</text>
+    <text class="contentList">1）匹配成功：匹配成功后，则用户不能再无责取消报名或发布了，提前退出或不参加活动的用户将会被扣除场地费外，还会被扣除一定的履约保证金。</text>
+    <text class="contentList">2）匹配失败：活动取消，发布者、报名者支付的所有费用将退还至钱包。</text>
+  </view>
+
+  <view class="son">
+    <text class="top">2、“截止报名时间”是由什么决定的？</text>
+    <text class="contentList">答：“截止报名时间”由“活动开始时间”和“最短提前预订场地时间”决定的。如活动开始时间：2020/12/20/10:00，最短提前预订时间：1小时。则活动的截止报名时间:2020/12/20 09:00。</text>
+  </view>
+  <view class="son">
+    <text class="top">3、“最短提前预订场地时间”由什么决定？</text>
+    <text class="contentList">答：“最短提前预订场地时间”是场馆方根据某个时间段场地的稀缺程度设置的，如白天场地比较空闲时，最短提前预订场地时间可能设置为0小时；晚上场地比较稀缺紧张，最短提前预订场地可能设置6小时甚至24小时。</text>
+  </view>
+
+</view>
+
+<view class="type2" wx:if="{{type==9}}">
+  <view class="son">
+    <text class="top">1、什么是续时？</text>
+    <text class="contentList">答：到活动结束时间后，您希望继续运动，在经场馆方确认场地没有其他用户使用并同意您续时侯，您可以进行“续时”操作。</text>
+   
+  </view>
+
+  <view class="son">
+    <text class="top">2、“续时”可操作多少次？</text>
+    <text class="contentList">答：只要经场馆方同意，“续时”操作次数不限、此时不限。</text>
+  </view>
+  <view class="son">
+    <text class="top">3、“续时”后的费用，运动伙伴直接怎么承担？</text>
+    <text class="contentList">答：您“续时”后，根据在“找对手”平台支付的费用，与运动伙伴协商承担方式（AA、输方买单或其他承担方式）。</text>
+  </view>
+
+</view>
+
+<view class="type2" wx:if="{{type==10}}">
+  <view class="son">
+    <text class="top">1、哪些项目可以组建球队？</text>
+    <text class="contentList">答：羽毛球、乒乓球、足球、篮球、排球、网球均可以组件球队。</text>
+  </view>
+
+  <view class="son">
+    <text class="top">2、球队里有哪些规则？</text>
+    <text class="contentList">答：发起组建球队的人为队长，当发起者退出后，队长为第二最早加入球队的队员，以此类推。每位队员都可以邀请好友加入球队，但人数受球队人数上限限制；仅队长可踢人。</text>
+  </view>
+  
+</view>
+
+
+
+
+

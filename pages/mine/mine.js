@@ -13,7 +13,7 @@ Page({
     applicationList: [
       { img: 'IconWdHd@2x.png', name: '我的活动', click: 'activities' },
       { img: 'lokoksd.png', name: '我的抵用券', click: 'voucher' },
-      { img: 'dui.png',name:'我的对手果',click:'mineGold'},
+      { img: 'dui.png',name:'我的对手果',click: 'mineGold'},
       { img: 'ji.png', name: '我的技术分', click: 'mineFen' },
       { img: 'IconWdQb@2x.png', name: '我的钱包', click: 'mineMoney'},
       // { img: 'xianperios.png', name: '我的偏好', click: 'minePreference' },
@@ -78,7 +78,7 @@ Page({
         }
       })
     } else{
-      wx.navigateTo({ 
+      wx.reLaunch({ 
         url: '/pages/authorization/authorization'
       })
     }

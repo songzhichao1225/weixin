@@ -120,7 +120,7 @@
       },
       {
         "pagePath": "pages/publishing/publishing",
-        "text": "发布活动",
+        "text": "",
         "iconPath": "assets/btTtab.png",
         "selectedIconPath": "assets/btTtab.png"
       },

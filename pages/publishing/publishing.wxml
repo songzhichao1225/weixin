@@ -332,7 +332,7 @@
 	  <view class="contentbade">
 		   <text>下载APP更多精彩体验</text>
 			 <image bindlongtap="saveImg" data-src="/assets/twoCode.png" class="twoCode" src="../../assets/twoCode.png"></image>
-			 <text>保存二维码识别下载</text>
+			 <text>长按保存二维码识别下载</text>
 		
 		</view>
 	 </view>

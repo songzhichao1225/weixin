@@ -3,7 +3,7 @@
 		<text class="title">本次活动您需要预付总费用</text><text class="money">￥{{getElplainInfo.Total}}</text>
 	</view>
 	<view class="Itemized">
-		<view class="one"><text>{{look==2?'场地费':mode=='竞技模式'?'场地费+裁判费':'场地费'}}</text><text
+		<view class="one"><text>{{app.globalData.refereefee!=''?'场地费+裁判费':'场地费'}}</text><text
 				style="float:right;">￥{{getElplainInfo.field}}</text></view>
 	
 		<view class="one" style="border-top:0.06rem solid #e9e9e9;border-bottom:0.06rem solid #e9e9e9"><text style="float:left">履约保证金</text><image bindtap="masking" class="wenhao" src="../../assets/wenhao.png"></image><text

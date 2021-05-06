@@ -10,26 +10,32 @@
 
   
 
-    <view class="pai" bindtap="goldDetail" style="margin-left:2%;">
+    <view class="pai"  style="margin-left:2%;">
       <image src="/assets/zhuanyong.png"></image>
-      <view class="text">
-        <text>明细</text>
-        <text>对手果获得明细</text>
+      <view class="text" style="top:0.9rem">
+        <text style="font-size:1.2rem">{{coins}}</text>
+        <text>当前对手果</text>
       </view>
     </view>
   </view>
+  <view class="line"></view>
 
-
-  <!-- <scroll-view scroll-y style="height: 55%;margin-top:1rem;padding-bottom:1rem;" >
-    <view class="mallList">
-      <view class="mallListSon" wx:for="{{goldMall}}" bindtap='details' wx:key='index' data-name="{{item.name}}" data-cost="{{item.cost}}" data-uuid="{{item.UUID}}">
-        <image src="{{img}}/{{item.imgpath}}"></image>
-        <text>{{item.name}}</text>
-        <text>{{item.cost}}对手果  <text style="float:right;margin-right:2rem;">{{item.price}}.0</text></text>
-        <text style='color:#D0021B;' catchtap="cost" data-uuid="{{item.UUID}}" data-cost="{{item.cost}}">立即兑换</text>
+<view class="titleTop">对手果明细</view>
+  <scroll-view scroll-y="auto" class="bossScroll" refresher-enabled="true" refresher-triggered="{{enabled}}"
+      bindrefresherrefresh="refresh" bindscrolltolower="tolower">
+    <view class="son" wx:for="{{goldList}}" bindtap="goldDetailSon" data-uuid="{{item.UUID}}" wx:key='index'>
+      <view class="sonList">
+        <view style='margin-top:15rpx;float:left;width:70%'>
+          <text style='font-size:0.88rem;'>{{item.Reason}}</text>
+          <text style='font-size: 0.75rem;color: #9B9B9B;'>{{item.OrderID}}</text>
+          <text style='font-size: 0.75rem;color: #9B9B9B;'>{{item.CoinsDate}}</text>
+        </view>
+        <image class="imgRight" src="../../assets/right.png"></image>
+        <text wx:if="{{item.color==1}}" style='font-size: 32rpx;color: #D85D27;float:right;margin-top:50rpx;'> {{item.GetCoins}}</text>
+        <text wx:if="{{item.color==0}}" style='font-size: 32rpx;float:right;margin-top:50rpx;'> {{item.GetCoins}}</text>
       </view>
     </view>
-  </scroll-view> -->
+  </scroll-view>
 
  
 

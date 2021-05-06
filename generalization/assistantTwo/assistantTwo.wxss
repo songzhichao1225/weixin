@@ -1,20 +1,173 @@
-.assistant {
+page {
   height: 100%;
+  font-size: 0.75rem;
+}
+text{
+  display: block;
+  line-height: 1.2rem;
+}
+.type2{
+  width: 95%;
+  margin: 0 auto;
+}
+.type2 .son{
+   margin-top: 1rem;
 }
 
-.assistant .list{
-  height: 2.75rem;
-  border-top: 0.06rem solid #e9e9e9;
-  font-size: 0.88rem;
-  padding:0 0.75rem;
-  line-height: 2.75rem;
+.type2 .son .top{
+   font-size: 0.88rem;
+   font-weight: bold;
 }
-.assistant .list:last-child{
-  border-bottom: 0.06rem solid #e9e9e9;
+.type2 .son .one{
+  font-weight: bold;
+  float: left;
 }
-.assistant .list>image{
-  width: 0.74rem;
-  height: 1rem;
-  float: right;
-  margin-top: 0.75rem;
+.type2 .son .contentList{
+  text-indent:1.76rem;
+}
+.tabel{
+  border: 0.06rem solid #000;
+  overflow: hidden;
+}
+.tabel .left{
+  width: 30%;
+  height: 8rem;
+  border-right: 0.06rem solid #000;
+  line-height: 8rem;
+  text-align: center;
+  float: left;
+}
+.tabel .right{
+  float: left;
+  width: 69%;
+  overflow: hidden;
+}
+.tabel .right .sonLeft{
+  border-right: 0.06rem solid #000;
+  float: left;
+  width: 50%;
+}
+.tabel .right .sonLeft>view{
+  height: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  border-bottom: 0.06rem solid #000;
+}
+.tabel .right .sonRight{
+  float: left;
+  width: 49.45%;
+}
+.tabel .right .sonRight>view{
+  height: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  border-bottom: 0.06rem solid #000;
+}
+
+.tabelTwo{
+  border: 0.06rem solid #000;
+  overflow: hidden;
+  margin-top: 2rem;
+}
+.tabelTwo .leftTwo{
+  width: 30%;
+  height: 22rem;
+  border-right: 0.06rem solid #000;
+  line-height: 22rem;
+  text-align: center;
+  float: left;
+}
+.tabelTwo .rightTwo{
+  float: left;
+  width: 69%;
+  overflow: hidden;
+}
+.tabelTwo .rightTwo .sonLeftTwo{
+  border-right: 0.06rem solid #000;
+  float: left;
+  width: 50%;
+}
+.tabelTwo .rightTwo .sonLeftTwo>view{
+  height: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  border-bottom: 0.06rem solid #000;
+}
+.tabelTwo .rightTwo .sonRightTwo{
+  float: left;
+  width: 49.45%;
+}
+.tabelTwo .rightTwo .sonRightTwo>view{
+  height: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  border-bottom: 0.06rem solid #000;
+}
+.tableSport{
+  width: 95%;
+  border:0.06rem solid #000;
+  margin: 1rem auto 0;
+  overflow: hidden;
+  font-size: 0.75rem;
+}
+.tableSport .left1{
+  width: 19.5%;
+  border-right: 0.06rem solid #000;
+  float: left;
+  font-weight: bold;
+}
+.tableSport .left1>view:first-child,.tableSport .left1>view:nth-child(2){
+  text-align: center;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  border-bottom: 0.06rem solid #000;
+}
+.tableSport .left1 .left1Son{
+  overflow: hidden;
+}
+.tableSport .left1 .left1Son>.sonLeft{
+   width: 25%;
+   float: left;
+   height: 21.5rem;
+   border-right: 0.06rem solid #000;
+   display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tableSport .left1 .left1Son> .sonRight{
+  width: 73%;
+  float: left;
+  
+}
+.tableSport .left1 .left1Son> .sonRight>view{
+  height: 3.5rem;
+  text-align: center;
+  border-bottom: 0.06rem solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tableSport .left1 .left1Son> .sonRight>view:last-child{
+  border: none;
+}
+
+.tableSport .left2{
+  width: 19.78%;
+  border-right: 0.06rem solid #000;
+  float: left;
+}
+.tableSport .left2>view{
+  height: 3.56rem;
+  border-bottom: 0.06rem solid #000;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tableSport .left2>view:last-child{
+  border: none;
+}
+.tableSport .left2:last-child{
+  border-right: none;
 }

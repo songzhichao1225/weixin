@@ -110,11 +110,19 @@ Page({
                     wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
                     wx.setStorageSync('telephone', res.data.data.telephone); //存储用户电话
                     wx.hideLoading()
-                    setTimeout(function (){
-                      wx.switchTab({
-                        url: '/pages/mine/mine',
+                    if(wx.getStorageSync('activitieshoog')=='1'){
+                        
+                      wx.reLaunch({
+                        url: "/pages/homePage/activities/activities?uuid="+wx.getStorageSync('activitiesId')
                       })
-                    })
+                    }else{
+                      setTimeout(function (){
+                        wx.switchTab({
+                          url: '/pages/mine/mine',
+                        })
+                      })
+                    }
+                    
                     
                   }else{
                     that.setData({authorization:1})
@@ -141,6 +149,7 @@ Page({
 
           },
           success: function (loginInfo) {
+
             if (wx.getExtConfig) {
               wx.getExtConfig({
                 success: function (res) {
@@ -229,11 +238,17 @@ Page({
                             wx.setStorageSync('token', res.data.data.token); //存储token
                             wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
                             wx.setStorageSync('telephone', res.data.data.telephone); //存储用户电话
-                            setTimeout(function () {
-                              wx.switchTab({
-                                url: '/pages/mine/mine',
+                            if(wx.getStorageSync('activitieshoog')=='1'){
+                              wx.reLaunch({
+                                url: "/pages/homePage/activities/activities?uuid="+wx.getStorageSync('activitiesId')
                               })
-                            })
+                            }else{
+                              setTimeout(function (){
+                                wx.switchTab({
+                                  url: '/pages/mine/mine',
+                                })
+                              })
+                            }
                           }else{
                             wx.showToast({
                               title: res.data.msg,
@@ -300,6 +315,7 @@ Page({
       }
     })
   },
+
 
 
 })

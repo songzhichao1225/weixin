@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      telephone: wx.getStorageSync('telephone').slice(0, 3) + '****' + wx.getStorageSync('telephone').slice(7, 11)
+      telephone: wx.getStorageSync('phone').slice(0, 3) + '****' + wx.getStorageSync('phone').slice(7, 11)
     })
     wx.hideLoading()
   },
@@ -35,7 +35,7 @@ Page({
 
     } else {
       util.request("/api/toSendCode", {
-          'mobile': wx.getStorageSync('telephone'),
+          'mobile': wx.getStorageSync('phone'),
           'type': 'putMoney'
         }, "post",
         (res) => {
@@ -91,7 +91,7 @@ Page({
   },
   submit: function () {
     util.request("/api/checkCodeIsTrue", {
-        'mobile': wx.getStorageSync('telephone'),
+        'mobile': wx.getStorageSync('phone'),
         'code': this.data.codeNum,
         'type': 'putMoney'
       }, "post",

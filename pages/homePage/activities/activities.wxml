@@ -119,14 +119,18 @@
 						<text>技术级别</text>
 						<text class="time">{{activitiesData.Leveexplain}}</text>
 					</view>
-					<view class="two" wx:if="{{activitiesData.SportMode!='我找陪练'&&activitiesData.SportMode!='我是陪练'}}">
+					<view class="two" wx:if="{{activitiesData.Tips!=0}}">
 						<text class="way" >入场费用</text>
 						<text>￥{{activitiesData.Tips}}{{tipsType==-1?'.00':'0'}}/人</text>
 					</view>
 
-					<view class="two" wx:if="{{activitiesData.SportMode=='我找陪练'||activitiesData.SportMode=='我是陪练'}}">
+					<view class="two" wx:if="{{activitiesData.MoneyPerhour!=0}}">
 						<text class="way">陪练费用</text>
 						<text>￥{{activitiesData.MoneyPerhour}}{{tipsType==-1?'.00':'0'}}/人</text>
+					</view>
+					<view class="two" wx:if="{{activitiesData.organizations!=0}}">
+						<text class="way">组织费用</text>
+						<text>￥{{activitiesData.MoneyPerhour}}</text>
 					</view>
 
 				</view>

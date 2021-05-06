@@ -12,7 +12,6 @@
 
 
 <view class="goldDranking" wx:if="{{flag===1}}">
-
   <view class="header" style='background:#fff;padding-bottom:6rpx;'>
     <scroll-view scroll-x style='white-space: nowrap; display: flex;padding-right:40rpx;'>
       <view class="Son" bindtap='selectTwo' data-index="{{index}}" data-name="{{item.name}}" data-nameE="{{item.nameE}}"
@@ -79,7 +78,7 @@
       </view>
 
 
-      <view class="DrankingList" style="margin-top:0;padding-bottom:6rem;"
+      <view class="DrankingList" style="margin-top:0;padding-bottom:8rem;"
         wx:if="{{drankingList.userRankInfo.rank>10}}">
         <view class="listSon" data-uuid="{{drankingList.userRankInfo.PlayerUUID}}">
           <view class="number" style="width:1.88rem;position:relative;">

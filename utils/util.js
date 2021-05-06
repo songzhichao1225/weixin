@@ -16,8 +16,12 @@ const formatNumber = n => {
 
 
 
-// let API = "https://app.tiaozhanmeiyitian.com";  //正式
-let API = "https://appstg.tiaozhanmeiyitian.com"; //测试
+// let API = "https://zhaoduishou.oss-cn-beijing.aliyuncs.com";  //正式
+let API = "https://zhaoduishoustg.oss-cn-beijing.aliyuncs.com"; //测试
+
+
+// let apiS = "https://app.tiaozhanmeiyitian.com";  //正式
+let apiS = "https://appstg.tiaozhanmeiyitian.com"; //测试
 
 
 
@@ -34,7 +38,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
       })
 
       wx.uploadFile({
-        url: API + url,
+        url: apiS + url,
         filePath: data,
         name: 'img',
         header: {
@@ -77,7 +81,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
         mask: true
       })
       wx.uploadFile({
-        url: API + url,
+        url: apiS + url,
         filePath: data,
         name: 'files',
         header: {
@@ -122,7 +126,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
       })
 
       wx.uploadFile({
-        url: API + url,
+        url: apiS + url,
         filePath: data,
         name: 'files',
         header: {
@@ -166,7 +170,50 @@ function Request(url, data, method, successFn, failFn, completeFn) {
       })
 
       wx.uploadFile({
-        url: API + url,
+        url: apiS + url,
+        filePath: data,
+        name: 'files',
+        header: {
+          "Content-Type": "multipart/form-data",
+          "token": wx.getStorageSync('token'),
+        },
+        method: method,
+        success: function (res) {
+          wx.hideLoading()
+          if (JSON.parse(res.data).code == 2000) {
+            successFn(res);
+          } else if (JSON.parse(res.data).code == 40101) {
+            wx.showToast({
+              title: '身份验证失败',
+              icon: 'none',
+              duration: 1500,
+              mask: true
+            })
+          }
+        },
+        fail: function (res) {
+          wx.showToast({
+            title: '加载失败',
+            icon: 'none',
+            duration: 1500,
+            mask: true
+          })
+          failFn(res);
+        },
+        complete: function () {
+          wx.stopPullDownRefresh(); //停止下拉刷新
+          wx.hideNavigationBarLoading() //完成停止加载
+          completeFn();
+        }
+      })
+    } else if (url == '/api/feedBackImgs') {
+      wx.showLoading({
+        title: '正在上传',
+        mask: true
+      })
+
+      wx.uploadFile({
+        url: apiS + url,
         filePath: data,
         name: 'files',
         header: {
@@ -204,7 +251,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
       })
     } else {
       wx.request({
-        url: API + url,
+        url: apiS + url,
         header: {
           "enctype": "multipart/form-data",
           "token": wx.getStorageSync('token'),
@@ -227,7 +274,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
               duration: 1500,
               mask: true
             })
-            wx.navigateTo({
+            wx.reLaunch({
               url: '/pages/authorization/authorization'
             })
           } else {
@@ -257,7 +304,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
 
 function request(url, data, method, successFn, failFn, completeFn) {
   wx.request({
-    url: API + url,
+    url: apiS + url,
     data: data,
     method: method,
     header: {
@@ -311,5 +358,6 @@ module.exports = {
   formatTime: formatTime,
   request: request,
   Request: Request,
+  apiS:apiS,
   API: API,
 }

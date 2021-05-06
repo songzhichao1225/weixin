@@ -45,6 +45,5 @@ Page({
     }
     
     this.setData({type:option.type})
-    console.log(option)
   }
 })
