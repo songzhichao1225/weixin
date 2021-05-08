@@ -94,7 +94,7 @@ Page({
   //对手果
   counterCoin: function () {
     wx.navigateTo({
-      url: '/pages/counterCoin/counterCoin'
+      url: '/generalization/assistantTwo/assistantTwo?type=2',
     })
   },
   closeFing: function () {

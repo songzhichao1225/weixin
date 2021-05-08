@@ -19,12 +19,19 @@
         <image wx:if="{{mineDetail.userHightLevel.name=='羽毛球'}}" class="aIcon" src='/assets/icon_dj_ymq.png'></image>
         <image wx:if="{{mineDetail.userHightLevel.name=='足球'}}" class="aIcon" src='/assets/icon_dj_zq.png'></image>
         <text class="navl">{{mineDetail.userHightLevel.level}}</text>
+        <view class="Invitation">邀请码:{{Invitation}} <text class="textCopy" data-text="{{Invitation}}"
+            catchtap="copyText">复制</text></view>
       </view>
       <!-- <text class="releaseDynamics" catchtap="releaseDynamics">+发布动态</text> -->
       <!-- <open-data class="avatar" wx:if="{{avatar==''}}" type="userAvatarUrl" id="name"></open-data>
     <open-data class="name" wx:if="{{name==''}}" type="userNickName" class='userName'></open-data> -->
+
       <image class="arrow" src='/assets/right.png'></image>
+     
+        <image class="topRight" catchtap="twoCode" src="../../assets/smallcode.png"></image>
+      
     </view>
+
 
     <view class="gold">
       <view bindtap='gold' style="border-right:2rpx solid #ccc;">
@@ -50,13 +57,23 @@
   </view>
 
   <view class="forbade" wx:if="{{forbade}}">
-	  <view class="contentbade">
-		   <text>下载APP更多精彩体验</text>
-			 <image class="twoCode" bindlongtap="saveImg" data-src="/assets/twoCode.png" src="../../assets/twoCode.png"></image>
-			 <text>长按保存二维码识别下载</text>
-			 <image class="closeTwo" bindtap="closeTwo" src="../../assets/closeTwo.png"></image>
-		</view>
-	 </view>
+    <view class="contentbade">
+      <text>下载APP更多精彩体验</text>
+      <image class="twoCode" bindlongtap="saveImg" data-src="/assets/twoCode.png" src="../../assets/twoCode.png">
+      </image>
+      <text>长按保存二维码识别下载</text>
+      <image class="closeTwo" bindtap="closeTwo" src="../../assets/closeTwo.png"></image>
+    </view>
+  </view>
+
+  <view class="information" bindtap="information" wx:if="{{flagTwo==1}}">
+    <view class="informationSon">
+      <text>扫描我加入找对手，再获100元场地费</text>
+      <image src="{{baseSixFour}}"></image>
+      <view catchtap="saveImg" data-src="{{baseSixFour}}">保存小程序码</view>
+    </view>
+
+  </view>
 
 
 

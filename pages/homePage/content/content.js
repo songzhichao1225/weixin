@@ -343,6 +343,14 @@ Page({
         () => {}
       )
     }
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0 //这里写相应页面的序号
+      })
+    }
+
+
 
   },
 
@@ -658,10 +666,9 @@ Page({
     }
   },
   forbade() {
-    wx.navigateTo({
-      url: '/generalization/assistantThree/assistantThree'
+    this.setData({
+      forbade: true
     })
-  
   },
   closeTwo() {
     this.setData({

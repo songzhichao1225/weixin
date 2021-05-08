@@ -345,6 +345,14 @@
        })
      }
 
+   },
+   onShow(){
+    if (typeof this.getTabBar === 'function' &&
+    this.getTabBar()) {
+    this.getTabBar().setData({
+      selected: 1 //这里写相应页面的序号
+    })
+  }
    }
 
  })

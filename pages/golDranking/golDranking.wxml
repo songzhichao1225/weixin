@@ -23,15 +23,12 @@
     </scroll-view>
   </view>
   <view style="height:100%">
-    <scroll-view scroll-y style="height:100%;">
+    <scroll-view scroll-y style="height:94%;">
       <view class="ccc"></view>
       <view class="title">
         <image src='/assets/PicTopPhb@2x.png'></image>
-
         <text>{{title}}排行榜TOP10</text>
       </view>
-
-
       <view class="topThree">
         <view class='topOne' wx:if="{{drankingList.topThree.length>=1}}"
           data-uuid="{{drankingList.topThree[0].PlayerUUID}}" bindtap="details">
@@ -140,7 +137,7 @@
     </scroll-view>
   </view>
   <view style="height:100%">
-    <scroll-view scroll-y style="height:100%;">
+    <scroll-view scroll-y style="height:94%;">
       <view class="ccc"></view>
       <view class="title">
         <image src='/assets/PicTopPhb@2x.png'></image>

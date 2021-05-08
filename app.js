@@ -40,5 +40,7 @@ App({
   globalData: {
     userInfo: null,
     statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
+    selected:0,
+    Invite_code:''
   }
 })

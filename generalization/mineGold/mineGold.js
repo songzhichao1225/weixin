@@ -7,7 +7,8 @@ Page({
     img:'',
     goldList:[],
     page:1,
-    coins:0
+    coins:0,
+    goldType: '1',
   },
   onLoad: function () {
     this.setData({
@@ -98,9 +99,8 @@ Page({
  
   goldDetailSon(e) {
     wx.navigateTo({
-      url: '/generalization/goldDetailSon/goldDetailSon?uuid=' + e.currentTarget.dataset.uuid + '&flag=' + this.data.goldType+'&sport='+this.data.sport[this.data.indexed].name,
+      url: '/generalization/goldDetailSon/goldDetailSon?uuid=' + e.currentTarget.dataset.uuid + '&flag=' + this.data.goldType+'&sport=羽毛球',
     })
-
   },
  
 })

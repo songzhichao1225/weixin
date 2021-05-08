@@ -3,7 +3,7 @@ const util = require('../../utils/util.js')
 var app = getApp();
 Page({
   data: {
-    forbade:true,
+    forbade: true,
     masking: false,
     contentSon: 0,
     indexSw: 0,
@@ -271,14 +271,13 @@ Page({
       sex: wx.getStorageSync('sexF'),
       age: wx.getStorageSync('ageF'),
       rank: wx.getStorageSync('rankF'),
-      TrialNum: this.data.TrialArray[wx.getStorageSync('TrialPickerF')].name,
+      TrialNum: this.data.TrialArray[wx.getStorageSync('TrialPickerF')].name==undefined?'':this.data.TrialArray[wx.getStorageSync('TrialPickerF')].name,
       Trial: wx.getStorageSync('TrialPickerF'),
       refereegrade: wx.getStorageSync('TrialRaderF'),
       TrialRader: wx.getStorageSync('TrialRaderF') == '' ? '请选择' : wx.getStorageSync('TrialRaderF'),
       shouldered: wx.getStorageSync('shoulderedF'),
       comments: wx.getStorageSync('commentsF')
     })
-
     this.onKO()
 
     if (wx.getStorageSync('sportTypeF') == 5) {
@@ -485,7 +484,7 @@ Page({
           umpire: []
         })
       }
-      
+
       wx.setStorage({
         key: 'mode',
         data: this.data.array[e.detail.value].name,
@@ -497,7 +496,7 @@ Page({
       })
     }
     if (this.data.array[e.detail.value].name === '我找陪练' || this.data.array[e.detail.value].name === '我是陪练') {
-      util.request("/api/getAccmoney",{
+      util.request("/api/getAccmoney", {
           'grade': '4',
           'CityName': wx.getStorageSync('cityInfo'),
           'SportId': this.data.sportId,
@@ -769,28 +768,28 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   
+
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];
     if (wx.getStorageSync('bookin') != '' && wx.getStorageSync('bookin').data[0].placeDate != undefined) {
-      if(wx.getStorageSync('mode')!='娱乐模式'&&wx.getStorageSync('mode')!='竞技模式'){
+      if (wx.getStorageSync('mode') != '娱乐模式' && wx.getStorageSync('mode') != '竞技模式') {
         util.request("/api/getAccmoney", {
-          'grade': '4',
-          'CityName': wx.getStorageSync('cityInfo'),
-          'SportId': this.data.sportId,
-          'PlayTime': parseFloat(wx.getStorageSync('bookin').data[0].placeTimeLen),
-          'SiteMoney': wx.getStorageSync('bookin').data[0].placeMoney
-        }, "post",
-        (res) => {
-          this.setData({
-            tips: res.data.data
-          })
-        },
-        () => {
-          console.log("失败")
-        },
-        () => {}
-      )
+            'grade': '4',
+            'CityName': wx.getStorageSync('cityInfo'),
+            'SportId': this.data.sportId,
+            'PlayTime': parseFloat(wx.getStorageSync('bookin').data[0].placeTimeLen),
+            'SiteMoney': wx.getStorageSync('bookin').data[0].placeMoney
+          }, "post",
+          (res) => {
+            this.setData({
+              tips: res.data.data
+            })
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
       }
       let kood = wx.getStorageSync('bookin').data[0].placeDate.slice(5, wx.getStorageSync('bookin').data[0].placeDate.lenght)
       let pmoney = wx.getStorageSync('bookin').data[0].placeMoney.toString()
@@ -827,7 +826,7 @@ Page({
       }
 
       util.request("/api/getcaipanf", {
-          'name':wx.getStorageSync('TrialRaderF'),
+          'name': wx.getStorageSync('TrialRaderF'),
           'sportid': this.data.sportId,
           'number': Number(this.data.TrialNum.slice(0, 1)),
           'duration': parseFloat(wx.getStorageSync('bookin').data[0].placeTimeLen)
@@ -839,7 +838,7 @@ Page({
               refereeFee: res.data.data + '.00'
             })
             wx.setStorageSync('refereeFee', res.data.data + '.00')
-          } else { 
+          } else {
             this.setData({
               refereeFee: res.data.data
             })
@@ -1147,9 +1146,9 @@ Page({
         commentsTwo: wx.getStorageSync('commentsFTwo')
       })
     }
-    if(currPage.data.sportsList!=undefined){
-       this.onKO()
-       currPage.data.sportsList=undefined
+    if (currPage.data.sportsList != undefined) {
+      this.onKO()
+      currPage.data.sportsList = undefined
     }
 
     this.setData({
@@ -1172,6 +1171,12 @@ Page({
     })
 
 
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 2 //这里写相应页面的序号
+      })
+    }
 
 
 
@@ -1216,7 +1221,7 @@ Page({
         mask: true
       })
     } else {
-    
+
       let rankMax = 0
       let rankMin = 0
       let ageMax = 0
@@ -1240,8 +1245,8 @@ Page({
         team: e.currentTarget.dataset.team,
         indexTeam: e.currentTarget.dataset.index
       })
-      
-      let sex = wx.getStorageSync('sexF')== '男' ? '0' : '1' || wx.getStorageSync('sexF') == '不限' ? '2' : ''
+
+      let sex = wx.getStorageSync('sexF') == '男' ? '0' : '1' || wx.getStorageSync('sexF') == '不限' ? '2' : ''
       wx.navigateTo({
         url: '/generalization/Invitational/Invitational?sportid=' + this.data.sportId + '&sex=' + sex + '&rankMax=' + rankMax + '&rankMin=' + rankMin + '&team=' + e.currentTarget.dataset.team + '&ageMax=' + ageMax + '&ageMin=' + ageMin,
       })
@@ -1325,11 +1330,11 @@ Page({
               sportLeve: res.data.data
             })
             let projectNow = res.data.data
-              let name = res.data.data.name
+            let name = res.data.data.name
             this.judgmentBall(name, projectNow)
             let obj = {
               imgURL: wx.getStorageSync('imgURL'),
-              heightLevel: 'Lv'+projectNow.level,
+              heightLevel: 'Lv' + projectNow.level,
               name: projectNow.nameSon
             }
             for (var i = 0; i < numAB; i++) {
@@ -1629,11 +1634,15 @@ Page({
       masking: false
     })
   },
-  forbade(){
-    this.setData({forbade:true})
+  forbade() {
+    this.setData({
+      forbade: true
+    })
   },
-  closeTwo(){
-    this.setData({forbade:false})
+  closeTwo() {
+    this.setData({
+      forbade: false
+    })
   },
   saveImg(e) {
     console.log()
@@ -1641,9 +1650,11 @@ Page({
       filePath: e.currentTarget.dataset.src,
       success: function (data) {
         console.log(data);
-      },fail: function (err) {
+      },
+      fail: function (err) {
         console.log(err);
-        if (err.errMsg ==="saveImageToPhotosAlbum:fail auth deny") {console.log("用户一开始拒绝了，我们想再次发起授权")
+        if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
+          console.log("用户一开始拒绝了，我们想再次发起授权")
           console.log(
             '打开设置窗口'
           )
@@ -1677,7 +1688,7 @@ Page({
       }
 
     })
-   
+
   }
 
 })

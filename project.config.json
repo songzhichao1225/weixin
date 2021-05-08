@@ -410,6 +410,12 @@
           "pathName": "generalization/mineGold/mineGold",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "我的",
+          "pathName": "pages/mine/mine",
+          "query": "Invite_code=88888888",
+          "scene": null
         }
       ]
     }

@@ -4,7 +4,6 @@ page {
 
 .paymentCode {
   height: 100%;
-  background: #F7F7F7;
 }
 
 .paymentCode .head {

@@ -7,14 +7,15 @@ Page({
     phone: '',
     uuid: '',
     binding: '',
-    authorization:0
+    authorization:0,
+    Invite_code:''
   },
   onLoad: function (option) {
     var query = wx.createSelectorQuery()
     query.select('#name').boundingClientRect()
     query.selectViewport().scrollOffset()
     query.exec(function (res) {})
-    
+    this.setData({Invite_code:app.globalData.Invite_code})
     
   },
   phone:function(e){
@@ -35,7 +36,6 @@ Page({
     () => {
     }
   )
-
   },
 
 
@@ -232,7 +232,8 @@ Page({
                   
                       util.request("/api/getbindmobile", {
                         'mobile': wx.getStorageSync('phone'),
-                        'wechatid': that.data.unionId }, "post", 
+                        'wechatid': that.data.unionId,
+                        'Invitation':that.data.Invite_code }, "post",
                         (res) => {
                           if(res.data.code==2000){
                             wx.setStorageSync('token', res.data.data.token); //存储token

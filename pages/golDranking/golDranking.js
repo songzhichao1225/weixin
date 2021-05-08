@@ -184,6 +184,14 @@ Page({
     wx.navigateTo({
       url: '/pages/personal/personal?uuid=' + uuid
     })
+  },
+  onShow(){
+    if (typeof this.getTabBar === 'function' &&
+    this.getTabBar()) {
+    this.getTabBar().setData({
+      selected: 3
+    })
+  }
   }
 
 })
