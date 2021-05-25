@@ -3,7 +3,7 @@ const util = require('../../utils/util.js')
 var app = getApp();
 Page({
   data: {
-    forbade: true,
+    forbade: false,
     masking: false,
     contentSon: 0,
     indexSw: 0,
@@ -213,7 +213,7 @@ Page({
   },
   onLoad: function (options) {
     this.setData({
-      img: util.API
+      img: util.API,
     })
     if (wx.getStorageSync('mode') !== '') {
       this.setData({
@@ -768,7 +768,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({ forbade:false})
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];
     if (wx.getStorageSync('bookin') != '' && wx.getStorageSync('bookin').data[0].placeDate != undefined) {

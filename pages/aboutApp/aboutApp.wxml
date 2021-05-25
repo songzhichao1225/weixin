@@ -1,8 +1,6 @@
 <view class="about">
-
-  <text bindtap='phoneCall'>客服电话（010-895077）</text>
+  <text bindtap='phoneCall'>客服电话（010-80895077）</text>
   <image src='/assets/right.png'></image>
-
 </view>
 
 <view class="about" bindtap='about'>

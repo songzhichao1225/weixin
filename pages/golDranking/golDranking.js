@@ -39,11 +39,6 @@ Page({
       name: '网球',
       num: '7',
       color: false,
-    },
-    {
-      name: '高尔夫',
-      num: '8',
-      color: false,
     }
     ],
 
@@ -152,7 +147,7 @@ Page({
       title: '加载中~',
       mask: true
     })
-    util.Request("/api/getRivalCurrencyRanking", { 'type': nameE,address:wx.getStorageSync('province')+','+wx.getStorageSync('cityInfo')+','+wx.getStorageSync('area') }, "get",
+    util.Request("/api/getRivalCurrencyRanking", { 'type': nameE }, "get",
       (res) => {
         this.setData({ drankingList:res.data.data})
         wx.hideLoading()

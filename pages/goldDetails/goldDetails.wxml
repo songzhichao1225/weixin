@@ -26,7 +26,7 @@
     </scroll-view>
     <scroll-view scroll-y="auto" class="rivals"  refresher-enabled="true" refresher-triggered="{{enabled}}"
       bindrefresherrefresh="refresh" bindscrolltolower="tolower">
-      <view class="son" wx:for="{{goldList}}" bindtap="goldDetailSon" data-uuid="{{item.UUID}}" wx:key='index'>
+      <view class="son" wx:for="{{goldList}}" catchtap="goldDetailSon" data-uuid="{{item.UUID}}" wx:key='index'>
       <view class="sonList">
         <view style='margin-top:15rpx;float:left;width:70%'>
           <text style='font-size:0.88rem;'>{{item.Reason}}</text>

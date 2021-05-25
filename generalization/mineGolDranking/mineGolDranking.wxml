@@ -136,8 +136,7 @@
     <scroll-view scroll-y style="height:100%;">
       <view class="ccc"></view>
       <view class="title">
-        <image src='/assets/PicTopPhb@2x.png'></image>
-
+        <image src='/assets/PicWdPhb@2x.png'></image>
         <text>{{title}}排行榜TOP10</text>
       </view>
 
@@ -147,7 +146,8 @@
           data-uuid="{{drankingList.topThree[0].PlayerUUID}}" bindtap="details">
           <image class="img" src='/assets/Pic1Hg.png'></image>
           <image class="imgTwo" src='/assets/Pic1Cd.png'></image>
-          <image class="imgThree" src='{{img}}/{{drankingList.topThree[0].imgURL}}'></image>
+          <image wx:if="{{drankingList.topThree[0].imgURL!=''}}" class="imgThree" src='{{img}}/{{drankingList.topThree[0].imgURL}}'></image>
+          <image wx:if="{{drankingList.topThree[0].imgURL==''}}" class="imgThree" src='../../assets/tiaozhan.png'></image>
           <view class="text">
             <text class="txt">{{drankingList.topThree[0].nickname}}</text>
             <text class="type">{{name}}</text>
@@ -159,7 +159,8 @@
           data-uuid="{{drankingList.topThree[1].PlayerUUID}}" bindtap="details">
           <image class="img" src='/assets/Pic2Hg.png'></image>
           <image class="imgTwot" src='/assets/Pic2Cd.png'></image>
-          <image class="imgThree" src='{{img}}/{{drankingList.topThree[1].imgURL}}'></image>
+          <image wx:if="{{drankingList.topThree[1].imgURL!=''}}" class="imgThree" src='{{img}}/{{drankingList.topThree[1].imgURL}}'></image>
+          <image wx:if="{{drankingList.topThree[1].imgURL==''}}" class="imgThree" src='../../assets/tiaozhan.png'></image>
           <view class="text">
             <text class="txt">{{drankingList.topThree[1].nickname}}</text>
             <text class="type">{{name}}</text>
@@ -170,7 +171,8 @@
           data-uuid="{{drankingList.topThree[2].PlayerUUID}}" bindtap="details">
           <image class="img" src='/assets/Pic3Hg.png'></image>
           <image class="imgTwot" src='/assets/Pic3Cd.png'></image>
-          <image class="imgThree" src='{{img}}/{{drankingList.topThree[2].imgURL}}'></image>
+          <image wx:if="{{drankingList.topThree[2].imgURL!=''}}" class="imgThree" src='{{img}}/{{drankingList.topThree[2].imgURL}}'></image>
+          <image wx:if="{{drankingList.topThree[2].imgURL==''}}" class="imgThree" src='../../assets/tiaozhan.png'></image>
           <view class="text">
             <text class="txt">{{drankingList.topThree[2].nickname}}</text>
             <text class="type">{{name}}</text>

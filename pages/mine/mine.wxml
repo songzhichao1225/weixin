@@ -27,9 +27,7 @@
     <open-data class="name" wx:if="{{name==''}}" type="userNickName" class='userName'></open-data> -->
 
       <image class="arrow" src='/assets/right.png'></image>
-     
         <image class="topRight" catchtap="twoCode" src="../../assets/smallcode.png"></image>
-      
     </view>
 
 

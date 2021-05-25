@@ -85,7 +85,7 @@ page {
 }
 
 .operation {
-  width: 3.5rem;
+  width: 4.5rem;
   position: absolute;
   right: 0.5rem;
   top: 2rem;

@@ -1,11 +1,13 @@
-
-page{
+page {
   position: relative;
   height: 100%;
 }
-.payFor{
+
+.payFor {
   height: 100%;
+  
 }
+
 .payFor .head {
   height: 3.5rem;
   border-top: 0.06rem solid #E9E9E9;
@@ -29,7 +31,7 @@ page{
 }
 
 .payFor .Itemized {
-  
+
   overflow: hidden;
 }
 
@@ -38,7 +40,8 @@ page{
   overflow: hidden;
   height: 2.63rem;
   line-height: 2.63rem;
-  padding:0 2.5%;
+  padding: 0 2.5%;
+  border-bottom: 1px solid #e9e9e9;
 }
 
 .payFor .Itemized .one .son {
@@ -62,7 +65,7 @@ page{
 
 .payFor .venueFee {
   border-top: 0.06rem solid #E9E9E9;
-  padding: 0.75rem 0;
+  padding: 0;
   padding-left: 2.5%;
   overflow: hidden;
 }
@@ -76,7 +79,7 @@ page{
 .payFor .venueFee .jishi {
   padding-top: 1rem;
   color: #9B9B9B;
-  
+
   display: block;
   font-size: 0.75rem;
   margin-right: 2.5%;
@@ -111,39 +114,73 @@ page{
 }
 
 .payFor .btn {
-  width: 80%;
+  width: 6.5rem;
   height: 2.69rem;
-  background: rgba(216, 93, 39, 1);
+  background: linear-gradient(90deg, #FF8522 0%, #F8350D 100%);
   border-radius: 1.34rem;
   font-size: 1.06rem;
   text-align: center;
   line-height: 2.69rem;
   color: #fff;
-  margin: 1rem auto 0;
+  float: right;
+  margin-top: 0.63rem;
+  margin-right: 2.5%;
 }
 
-.btn_pay{
-  margin: 100rpx auto; width: 600rpx; height: 100rpx; line-height: 100rpx; border-radius: 100rpx;
-  background-color: #d3a95a; color: #fff; font-size: 36rpx; text-align: center; 
+.btn_pay {
+  margin: 100rpx auto;
+  width: 600rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-radius: 100rpx;
+  background-color: #d3a95a;
+  color: #fff;
+  font-size: 36rpx;
+  text-align: center;
 }
+
 /* 支付密码css start */
-.bg_layer{
-  position: fixed; left: 0; top: 0; bottom: 0; right: 0;
-  background-color: rgba(0, 0, 0, 0.6); z-index: 9998;
+.bg_layer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9998;
 }
-.input_main{
-    position: fixed; left: 10%; top: 200rpx; width: 80%; height: 15.5rem;
-    background-color: #fff; z-index: 9999;
+
+.input_main {
+  position: fixed;
+  left: 10%;
+  top: 200rpx;
+  width: 80%;
+  height: 15.5rem;
+  background-color: #fff;
+  z-index: 9999;
 }
-.input_title{
-    width: 100%; height: 90rpx; line-height: 90rpx; text-align: center; 
-    font-size: 32rpx; border-bottom: 1rpx solid #e2e2e2;
+
+.input_title {
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  font-size: 32rpx;
+  border-bottom: 1rpx solid #e2e2e2;
 }
-.input_back{
-    position: absolute; left: 0; top: 0;
-    width: 80rpx; height: 90rpx; display: flex; justify-content: center; align-items: center;
+
+.input_back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 80rpx;
+  height: 90rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.input_back text{
+
+.input_back text {
   width: 20rpx;
   height: 20rpx;
   background-color: white;
@@ -152,35 +189,68 @@ page{
   transform: rotate(-45deg);
 }
 
-.input_tip{  margin: 30rpx; font-size: 0.88rem; color: #333;text-align: center; }
+.input_tip {
+  margin: 30rpx;
+  font-size: 0.88rem;
+  color: #333;
+  text-align: center;
+}
 
 /* 密码掩码模拟 */
-.input_row{
-  width: 90%; margin: 0 auto; height: 98rpx; position: relative;
-  display: flex; align-items: center; border: 1rpx solid #e2e2e2; border-radius: 20rpx;
+.input_row {
+  width: 90%;
+  margin: 0 auto;
+  height: 98rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1rpx solid #e2e2e2;
+  border-radius: 20rpx;
 }
-.input_row .pwd_item{
-  flex: 1; display: flex; align-items: center; justify-content: center; 
-  height: 100%; border-right: 1rpx solid #e2e2e2; position: relative;
+
+.input_row .pwd_item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border-right: 1rpx solid #e2e2e2;
+  position: relative;
 }
-.pwd_item:nth-last-of-type(1) { border-right: 0; } 
-.pwd_item text { 
-  width: 30rpx; height: 30rpx; border-radius: 30rpx; background-color: #555;
+
+.pwd_item:nth-last-of-type(1) {
+  border-right: 0;
+}
+
+.pwd_item text {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 30rpx;
+  background-color: #555;
 }
 
 
-.forget_pwd{ 
-  float: left; margin: 30rpx;  text-align: right; font-size: 24rpx; color: #9B9B9B;
+.forget_pwd {
+  float: left;
+  margin: 30rpx;
+  text-align: right;
+  font-size: 24rpx;
+  color: #9B9B9B;
 }
 
 /* 文本输入框位置: 设置到左边隐藏 */
-.input_control { 
-  position: relative; left: -1200rpx; bottom: 0; width: 100rpx; height: 100rpx;
-  
+.input_control {
+  position: relative;
+  left: -1200rpx;
+  bottom: 0;
+  width: 100rpx;
+  height: 100rpx;
+
 }
-.fanshi .image{
+
+.fanshi .image {
   width: 0.68rem;
-  height:1.06rem;
+  height: 1.06rem;
   display: block;
   float: right;
   margin-left: 1rem;
@@ -188,57 +258,154 @@ page{
   margin-right: 0.5rem;
   margin-right: 1rem;
 }
-.moneyAll{
-  text-align: right;
+
+.moneyAll {
+  text-align: left;
   font-size: 0.88rem;
-  padding-right: 2.5%;
+  padding-left: 2.5%;
   margin-top: 0.63rem;
+  width: 60%;
+  float: left;
+}
+.moneyAll>text{
+  display: block;
+  font-size: 0.75rem;
+}
+.moneyAll>text:first-child{
+  color:#9B9B9B;
+  text-decoration:line-through;
+  float: left;
 }
 
-.masking{
+.moneyAll>text:nth-child(2){
+  color:#D85D27;
+  padding-right:0.5rem;
+  float: left;
+  margin-left: 0.5rem;
+}
+.moneyAll>text:last-child{
+  font-size:1rem;
+  font-weight:bold;
+  clear: both;
+}
+
+.masking {
   width: 100%;
   height: 100%;
-  background:rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   position: absolute;
   top: 0;
 }
-.masking .content{
+
+.masking .content {
   width: 80%;
   margin: 40% auto 0;
   padding: 1rem 0;
   background: #fff;
   border-radius: 0.5rem;
 }
-.close{
+
+.close {
   width: 2rem;
   height: 2rem;
   margin: 5% auto 0;
 }
-.close image{
+
+.close image {
   width: 100%;
   height: 100%;
 }
-.masking .content .title{
+
+.masking .content .title {
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
 }
-.masking .content .son{
+
+.masking .content .son {
   width: 90%;
   margin: 0.3rem auto 0;
   font-size: 0.88rem;
 }
-.wenhao{
+
+.wenhao {
   width: 1.5rem;
   height: 1.5rem;
   float: left;
   margin-top: 0.6rem;
 }
-.insurance{
+
+.insurance {
   font-size: 0.75rem;
-  padding:0 2.5%;
+  padding: 0 2.5%;
 }
-.insurance>text{
+
+.insurance>text {
   float: right;
   line-height: 2.63rem;
+}
+
+.realNameBoss {
+  height: 100%;
+  width: 100%;
+  background: rgba(000, 000, 000, 0.7);
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: 0;
+}
+
+.realName {
+  width: 80%;
+  height: 20rem;
+  padding: 0 5%;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  border-radius: 0.75rem;
+  margin-top: -10rem;
+}
+
+.realName .title {
+  font-size: 1.06rem;
+  color: #D85D27;
+  text-align: center;
+  padding-top: 1rem;
+  text-align: center;
+  display: block;
+  text-align: center;
+}
+
+.realName .contenter {
+  font-size: 0.8rem;
+}
+
+.realName .tishi {
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  display: block;
+}
+
+.realName .name {
+  height: 2.5rem;
+  background: #F3F3F3;
+  border-radius: 0.19rem;
+  margin-top: 0.87rem;
+  padding-left: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.realName .btnss {
+  height: 2.5rem;
+  background: #D85D27;
+  border-radius: 0.19rem;
+  font-size:1rem;
+  margin-top: 0.8rem;
+  color: #fff;
+}
+.realName .close{
+  position: absolute;
+  top: -1rem;
+  right: 0;
 }

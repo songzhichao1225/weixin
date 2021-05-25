@@ -416,6 +416,12 @@
           "pathName": "pages/mine/mine",
           "query": "Invite_code=88888888",
           "scene": null
+        },
+        {
+          "name": "红包",
+          "pathName": "generalization/redEnvelope/redEnvelope",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -50,14 +50,26 @@ Page({
     })
   },
   detailRules:function(){
-    wx.showModal({
-      title: '提示',
-      showCancel:false,
-      content: '活动总时长≥60分钟时，缺勤0-15分钟，扣20%人均场地费、应得出场费；15-30分钟，扣50%；30分钟以上，扣100%',
-      success (res) {
 
-      }
-    })
+    util.Request("/api/getDepositRule", {}, "get",
+    (res) => {
+      wx.showModal({
+        title: '提示',
+        showCancel:false,
+        content:  res.data.data.rule,
+        success (res) {
+  
+        }
+      })
+    },
+    () => {
+      console.log("失败")
+    },
+    () => {}
+  )
+
+
+    
     
   },
 

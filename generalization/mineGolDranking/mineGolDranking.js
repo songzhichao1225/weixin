@@ -38,12 +38,8 @@ Page({
       name: '网球',
       num: '7',
       color: false,
-    },
-    {
-      name: '高尔夫',
-      num: '8',
-      color: false,
     }
+    
     ],
 
     rankingType: [{

@@ -88,9 +88,9 @@
 				<text class="txt"><text>年龄:</text>
 					<text class="sexColor">{{personalData.age}}</text></text>
 				<text class="txt"><text>身高:</text>
-					<text class="sexColor">{{personalData.tall==null?'未填写':personalData.tall+'cm'}}</text></text>
+					<text class="sexColor">{{personalData.tall==null||personalData.tall==0?'未填写':personalData.tall+'cm'}}</text></text>
 				<text class="txt"><text>体重:</text>
-					<text class="sexColor">{{personalData.weight==null?'未填写':personalData.weight+'kg'}}</text></text>
+					<text class="sexColor">{{personalData.weight==null||personalData.weight==0?'未填写':personalData.weight+'kg'}}</text></text>
 				<text class="text"><text>常驻地:</text>
 					<text class="sexColorT">{{personalData.address}}</text></text>
 				<text class="text" style="color:#000" wx:if="{{personalData.faveriteSport!==''}}"><text
@@ -111,12 +111,12 @@
 				<view class="badminton" wx:for="{{personalData.userTechcoins}}" wx:key='index'>
 					<text>{{item.sport_name}}</text>
 					<text
-						style='width:40%;text-align:center;position: absolute;left:50%;margin-left:-25%;'>{{item.total.indexOf('.')==-1||item.total==0?item.total+'.00':item.total+'0'}}</text>
+						style='width:40%;text-align:center;position: absolute;left:50%;margin-left:-25%;'>{{item.total.indexOf('.')==-1||item.total==0?item.total+'.00':item.total+''}}</text>
 					<view style="float:right">
 						<text class="sliderL" style='color:#fff;font-size:10px;'>{{item.nowlevel}}</text>
 						<view class="slider">
 							<view style='width:{{item.total/item.maxcoins*100}}%'></view>
-							<text>{{item.total.indexOf('.')==-1||item.total==0?item.total+'.00':item.total+'0'}}/{{item.maxcoins}}</text>
+							<text>{{item.total.indexOf('.')==-1||item.total==0?item.total+'.00':item.total+''}}/{{item.maxcoins}}</text>
 						</view>
 						<text class="sliderL"
 							style="background: #E9E9E9;color:#fff;font-size:10px;margin-left:0.2rem">{{item.nextlevel}}</text>
@@ -137,7 +137,9 @@
 					<view class="userDetails">
 						<image src="{{img}}/{{item.imgURL}}"></image>
 						<view>{{item.nickname}}</view>
-						<image catchtap="thumbsUp" data-uuid="{{item.uuid}}"
+
+						<!-- catchtap="thumbsUp" -->
+						<image  data-uuid="{{item.uuid}}" 
 							src="{{item.isown==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
 						<view class="fabulou">{{item.fabulou}}</view>
 					</view>

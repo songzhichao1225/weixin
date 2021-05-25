@@ -444,7 +444,7 @@ page {
 }
 .noContent{
   width: 80%;
-  margin:0 auto;
+  margin:5rem auto 0;
 }
 .noContent image{
   width: 9rem;

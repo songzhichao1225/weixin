@@ -502,7 +502,8 @@ text {
 
 .dynamicState .content .userDetails>view {
   width: 50%;
-  text-align: center;
+  text-align: left;
+  padding-left: 0.3rem;
   float: left;
   overflow: hidden;
   text-overflow: ellipsis;

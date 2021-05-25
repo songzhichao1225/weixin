@@ -1,0 +1,28 @@
+<view class="redEnvelope">
+	<scroll-view class="scroll-view_H" refresher-enabled="true" refresher-triggered="{{pull}}" bindrefresherrefresh="pullDown" scroll-x="true" bindscroll="scroll" style="width: 100%">
+
+		<view class="redSon" wx:for="{{redList}}" wx:key='index'>
+			<view class="left">
+				<image src="../../assets/titleLeft.png"></image>
+				<view>￥<text style="font-size:2.13rem">{{item.money}}</text></view>
+			</view>
+			<view class="right">
+				<text>{{item.explain}}</text>
+				<text>{{item.number}}张</text>
+				<text>永久</text>
+			</view>
+			<image class="rightTop" src="../../assets/threshold.png"></image>
+			<radio class="radio" data-index="{{index}}" bindtap="checked" color="#D85D27" checked="{{item.checked}}" />
+		</view>
+
+	</scroll-view>
+	<view class="footer">
+		<view>
+			<text>合计</text>
+			<text>已选红包  可减￥{{selectLink.money==undefined?0:selectLink.money}}</text>
+		</view>
+    <button class="btn" bindtap="comfir">确定</button>
+
+	</view>
+
+</view>

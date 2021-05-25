@@ -75,7 +75,7 @@ Page({
     sex: 2, //性别
     acitvitysort: 0, //排序
     pages: 1, //页码
-    projectData: [], //项目数据列表
+    projectData: '', //项目数据列表
     addressN: '', //选择地址后返回数据
     isSign: 0, //用户是是否签到
     goldNum: '', //签到后金币数量
@@ -120,10 +120,9 @@ Page({
       wx.setStorageSync('province',data.originalData.result.addressComponent.province)
       wx.setStorageSync("cityInfo", data.originalData.result.addressComponent.city)
       wx.setStorageSync('area', data.originalData.result.addressComponent.district)
-      wx.setStorageSync('address', wxMarkerData[0].address) 
+      wx.setStorageSync('address', wxMarkerData[0].address)
       wx.setStorageSync('lat', data.originalData.result.location.lat)
       wx.setStorageSync('lng',data.originalData.result.location.lng)
-      
     }
 
     BMap.regeocoding({
@@ -252,9 +251,9 @@ Page({
           }
         }
        
-
         if (show == true) {
           let mData = [...this.data.projectData, ...projectDataNow]
+          console.log(mData)
           this.setData({
             projectData: mData
           })
@@ -321,28 +320,28 @@ Page({
       this.goleloand()
     }
 
-    util.Request("/api/getUserIsSign", {}, "get",
-      (res) => {
+    // util.Request("/api/getUserIsSign", {}, "get",
+    //   (res) => {
 
-        this.setData({
-          isSign: res.data.data.isSign
-        })
-      },
-      () => {},
-      () => {}
-    )
+    //     this.setData({
+    //       isSign: res.data.data.isSign
+    //     })
+    //   },
+    //   () => {},
+    //   () => {}
+    // )
 
 
-    if (wx.getStorageSync('token')) {
-      // 检测用户信息是否完善
-      util.Request("/api/checkUserPerfectInfo", {}, "get",
-        (res) => {
-          wx.setStorageSync('information', res.data.msg)
-        },
-        () => {},
-        () => {}
-      )
-    }
+    // if (wx.getStorageSync('token')) {
+    //   // 检测用户信息是否完善
+    //   util.Request("/api/checkUserPerfectInfo", {}, "get",
+    //     (res) => {
+    //       wx.setStorageSync('information', res.data.msg)
+    //     },
+    //     () => {},
+    //     () => {}
+    //   )
+    // }
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({

@@ -18,10 +18,10 @@ const formatNumber = n => {
 
 // let API = "https://zhaoduishou.oss-cn-beijing.aliyuncs.com";  //正式
 let API = "https://zhaoduishoustg.oss-cn-beijing.aliyuncs.com"; //测试
+ 
 
-
-// let apiS = "https://app.tiaozhanmeiyitian.com";  //正式
-let apiS = "https://appstg.tiaozhanmeiyitian.com"; //测试
+// let apiS = "https://app.tiaozhanmeiyitian.com";  //正式 
+let apiS = "https://appstg.tiaozhanmeiyitian.com"; //测试 
 
 
 
@@ -31,273 +31,273 @@ wx.showLoading({
 })
 //有权限的请求
 function Request(url, data, method, successFn, failFn, completeFn) {
-    if (url == '/api/uploadHeaderImg') {
-      wx.showLoading({
-        title: '正在上传',
-        mask: true
-      })
+  if (url == '/api/uploadHeaderImg') {
+    wx.showLoading({
+      title: '正在上传',
+      mask: true
+    })
 
-      wx.uploadFile({
-        url: apiS + url,
-        filePath: data,
-        name: 'img',
-        header: {
-          "Content-Type": "multipart/form-data",
-          "token": wx.getStorageSync('token'),
-        },
-        method: method,
-        success: function (res) {
-          wx.hideLoading()
-          if (res.data.code == 2000) {
-            successFn(res);
+    wx.uploadFile({
+      url: apiS + url,
+      filePath: data,
+      name: 'img',
+      header: {
+        "Content-Type": "multipart/form-data",
+        "token": wx.getStorageSync('token'),
+      },
+      method: method,
+      success: function (res) {
+        wx.hideLoading()
+        if (res.data.code == 2000) {
+          successFn(res);
 
-          } else if (res.data.code == 40101) {
-            wx.showToast({
-              title: '身份验证失败',
-              icon: 'none',
-              duration: 1500,
-              mask: true
-            })
-          }
-        },
-        fail: function (res) {
+        } else if (res.data.code == 40101) {
           wx.showToast({
-            title: '加载失败',
+            title: '身份验证失败',
             icon: 'none',
             duration: 1500,
             mask: true
           })
-          failFn(res);
-        },
-        complete: function () {
-          wx.stopPullDownRefresh(); //停止下拉刷新
-          wx.hideNavigationBarLoading() //完成停止加载
-          completeFn();
         }
-      })
-    } else if (url == '/api/PersonalprofileImg') {
-      wx.showLoading({
-        title: '正在上传',
-        mask: true
-      })
-      wx.uploadFile({
-        url: apiS + url,
-        filePath: data,
-        name: 'files',
-        header: {
-          "Content-Type": "multipart/form-data",
-          "token": wx.getStorageSync('token'),
-        },
-        method: method,
-        success: function (res) {
-          wx.hideLoading()
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '加载失败',
+          icon: 'none',
+          duration: 1500,
+          mask: true
+        })
+        failFn(res);
+      },
+      complete: function () {
+        wx.stopPullDownRefresh(); //停止下拉刷新
+        wx.hideNavigationBarLoading() //完成停止加载
+        completeFn();
+      }
+    })
+  } else if (url == '/api/PersonalprofileImg') {
+    wx.showLoading({
+      title: '正在上传',
+      mask: true
+    })
+    wx.uploadFile({
+      url: apiS + url,
+      filePath: data,
+      name: 'files',
+      header: {
+        "Content-Type": "multipart/form-data",
+        "token": wx.getStorageSync('token'),
+      },
+      method: method,
+      success: function (res) {
+        wx.hideLoading()
 
-          if (JSON.parse(res.data).code == 2000 || JSON.parse(res.data).code == 4003) {
-            successFn(res);
+        if (JSON.parse(res.data).code == 2000 || JSON.parse(res.data).code == 4003) {
+          successFn(res);
 
-          } else if (JSON.parse(res.data).code == 40101) {
-            wx.showToast({
-              title: '身份验证失败',
-              icon: 'none',
-              duration: 1500,
-              mask: true
-            })
-          }
-        },
-        fail: function (res) {
+        } else if (JSON.parse(res.data).code == 40101) {
           wx.showToast({
-            title: '加载失败',
+            title: '身份验证失败',
             icon: 'none',
             duration: 1500,
             mask: true
           })
-          failFn(res);
-        },
-        complete: function () {
-          wx.stopPullDownRefresh(); //停止下拉刷新
-          wx.hideNavigationBarLoading() //完成停止加载
-          completeFn();
         }
-      })
-    } else if (url == '/api/ComplainIstrueImgs') {
-      wx.showLoading({
-        title: '正在上传',
-        mask: true
-      })
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '加载失败',
+          icon: 'none',
+          duration: 1500,
+          mask: true
+        })
+        failFn(res);
+      },
+      complete: function () {
+        wx.stopPullDownRefresh(); //停止下拉刷新
+        wx.hideNavigationBarLoading() //完成停止加载
+        completeFn();
+      }
+    })
+  } else if (url == '/api/ComplainIstrueImgs') {
+    wx.showLoading({
+      title: '正在上传',
+      mask: true
+    })
 
-      wx.uploadFile({
-        url: apiS + url,
-        filePath: data,
-        name: 'files',
-        header: {
-          "Content-Type": "multipart/form-data",
-          "token": wx.getStorageSync('token'),
-        },
-        method: method,
-        success: function (res) {
-          wx.hideLoading()
-          if (res.data.code == 2000) {
-            successFn(res);
+    wx.uploadFile({
+      url: apiS + url,
+      filePath: data,
+      name: 'files',
+      header: {
+        "Content-Type": "multipart/form-data",
+        "token": wx.getStorageSync('token'),
+      },
+      method: method,
+      success: function (res) {
+        wx.hideLoading()
+        if (res.data.code == 2000) {
+          successFn(res);
 
-          } else if (res.data.code == 40101) {
-            wx.showToast({
-              title: '身份验证失败',
-              icon: 'none',
-              duration: 1500,
-              mask: true
-            })
-          }
-        },
-        fail: function (res) {
+        } else if (res.data.code == 40101) {
           wx.showToast({
-            title: '加载失败',
+            title: '身份验证失败',
             icon: 'none',
             duration: 1500,
             mask: true
           })
-          failFn(res);
-        },
-        complete: function () {
-          wx.stopPullDownRefresh(); //停止下拉刷新
-          wx.hideNavigationBarLoading() //完成停止加载
-          completeFn();
         }
-      })
-    } else if (url == '/api/uploadSiteImg') {
-      wx.showLoading({
-        title: '正在上传',
-        mask: true
-      })
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '加载失败',
+          icon: 'none',
+          duration: 1500,
+          mask: true
+        })
+        failFn(res);
+      },
+      complete: function () {
+        wx.stopPullDownRefresh(); //停止下拉刷新
+        wx.hideNavigationBarLoading() //完成停止加载
+        completeFn();
+      }
+    })
+  } else if (url == '/api/uploadSiteImg') {
+    wx.showLoading({
+      title: '正在上传',
+      mask: true
+    })
 
-      wx.uploadFile({
-        url: apiS + url,
-        filePath: data,
-        name: 'files',
-        header: {
-          "Content-Type": "multipart/form-data",
-          "token": wx.getStorageSync('token'),
-        },
-        method: method,
-        success: function (res) {
-          wx.hideLoading()
-          if (JSON.parse(res.data).code == 2000) {
-            successFn(res);
-          } else if (JSON.parse(res.data).code == 40101) {
-            wx.showToast({
-              title: '身份验证失败',
-              icon: 'none',
-              duration: 1500,
-              mask: true
-            })
-          }
-        },
-        fail: function (res) {
+    wx.uploadFile({
+      url: apiS + url,
+      filePath: data,
+      name: 'files',
+      header: {
+        "Content-Type": "multipart/form-data",
+        "token": wx.getStorageSync('token'),
+      },
+      method: method,
+      success: function (res) {
+        wx.hideLoading()
+        if (JSON.parse(res.data).code == 2000) {
+          successFn(res);
+        } else if (JSON.parse(res.data).code == 40101) {
           wx.showToast({
-            title: '加载失败',
+            title: '身份验证失败',
             icon: 'none',
             duration: 1500,
             mask: true
           })
-          failFn(res);
-        },
-        complete: function () {
-          wx.stopPullDownRefresh(); //停止下拉刷新
-          wx.hideNavigationBarLoading() //完成停止加载
-          completeFn();
         }
-      })
-    } else if (url == '/api/feedBackImgs') {
-      wx.showLoading({
-        title: '正在上传',
-        mask: true
-      })
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '加载失败',
+          icon: 'none',
+          duration: 1500,
+          mask: true
+        })
+        failFn(res);
+      },
+      complete: function () {
+        wx.stopPullDownRefresh(); //停止下拉刷新
+        wx.hideNavigationBarLoading() //完成停止加载
+        completeFn();
+      }
+    })
+  } else if (url == '/api/feedBackImgs') {
+    wx.showLoading({
+      title: '正在上传',
+      mask: true
+    })
 
-      wx.uploadFile({
-        url: apiS + url,
-        filePath: data,
-        name: 'files',
-        header: {
-          "Content-Type": "multipart/form-data",
-          "token": wx.getStorageSync('token'),
-        },
-        method: method,
-        success: function (res) {
-          wx.hideLoading()
-          if (JSON.parse(res.data).code == 2000) {
-            successFn(res);
-          } else if (JSON.parse(res.data).code == 40101) {
-            wx.showToast({
-              title: '身份验证失败',
-              icon: 'none',
-              duration: 1500,
-              mask: true
-            })
-          }
-        },
-        fail: function (res) {
+    wx.uploadFile({
+      url: apiS + url,
+      filePath: data,
+      name: 'files',
+      header: {
+        "Content-Type": "multipart/form-data",
+        "token": wx.getStorageSync('token'),
+      },
+      method: method,
+      success: function (res) {
+        wx.hideLoading()
+        if (JSON.parse(res.data).code == 2000) {
+          successFn(res);
+        } else if (JSON.parse(res.data).code == 40101) {
           wx.showToast({
-            title: '加载失败',
+            title: '身份验证失败',
             icon: 'none',
             duration: 1500,
             mask: true
           })
-          failFn(res);
-        },
-        complete: function () {
-          wx.stopPullDownRefresh(); //停止下拉刷新
-          wx.hideNavigationBarLoading() //完成停止加载
-          completeFn();
         }
-      })
-    } else {
-      wx.request({
-        url: apiS + url,
-        header: {
-          "enctype": "multipart/form-data",
-          "token": wx.getStorageSync('token'),
-        },
-        data: data,
-        method: method,
-        success: function (res) {
-          if (res.data.code == 40101) {
-            console.log(res.data.code)
-            wx.showToast({
-              title: '身份验证失败',
-              icon: 'none',
-              duration: 1500,
-              mask: true
-            })
-          } else if (res.data.code == 4001) {
-            wx.showToast({
-              title: '登录超时',
-              icon: 'none',
-              duration: 1500,
-              mask: true
-            })
-            wx.reLaunch({
-              url: '/pages/authorization/authorization'
-            })
-          } else {
-            successFn(res);
-          }
-        },
-        fail: function (res) {
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '加载失败',
+          icon: 'none',
+          duration: 1500,
+          mask: true
+        })
+        failFn(res);
+      },
+      complete: function () {
+        wx.stopPullDownRefresh(); //停止下拉刷新
+        wx.hideNavigationBarLoading() //完成停止加载
+        completeFn();
+      }
+    })
+  } else {
+    wx.request({
+      url: apiS + url,
+      header: {
+        "enctype": "multipart/form-data",
+        "token": wx.getStorageSync('token'),
+      },
+      data: data,
+      method: method,
+      success: function (res) {
+        if (res.data.code == 40101) {
+          console.log(res.data.code)
           wx.showToast({
-            title: '加载失败',
+            title: '身份验证失败',
             icon: 'none',
             duration: 1500,
             mask: true
           })
-          failFn(res);
-        },
-        complete: function () {
-          wx.stopPullDownRefresh(); //停止下拉刷新
-          wx.hideNavigationBarLoading() //完成停止加载
-          completeFn();
+        } else if (res.data.code == 4001) {
+          wx.showToast({
+            title: '登录超时',
+            icon: 'none',
+            duration: 1500,
+            mask: true
+          })
+          wx.reLaunch({
+            url: '/pages/authorization/authorization'
+          })
+        } else {
+          successFn(res);
         }
-      })
-    }
-  
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '加载失败',
+          icon: 'none',
+          duration: 1500,
+          mask: true
+        })
+        failFn(res);
+      },
+      complete: function () {
+        wx.stopPullDownRefresh(); //停止下拉刷新
+        wx.hideNavigationBarLoading() //完成停止加载
+        completeFn();
+      }
+    })
+  }
+
 }
 
 //无权限的请求
@@ -358,6 +358,6 @@ module.exports = {
   formatTime: formatTime,
   request: request,
   Request: Request,
-  apiS:apiS,
+  apiS: apiS,
   API: API,
 }

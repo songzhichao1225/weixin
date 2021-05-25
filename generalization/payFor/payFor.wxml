@@ -3,27 +3,24 @@
 		<text class="title">本次活动您需要预付总费用</text><text class="money">￥{{getElplainInfo.Total}}</text>
 	</view>
 	<view class="Itemized">
-		<view class="one"><text>{{app.globalData.refereefee!=''?'场地费+裁判费':'场地费'}}</text><text
+		<view class="one"><text>{{Referee!=''||Referee!=0?'场地费+裁判费':'场地费'}}</text><text
 				style="float:right;">￥{{getElplainInfo.field}}</text></view>
-	
-		<view class="one" style="border-top:0.06rem solid #e9e9e9;border-bottom:0.06rem solid #e9e9e9"><text style="float:left">履约保证金</text><image bindtap="masking" class="wenhao" src="../../assets/wenhao.png"></image><text
-				style="float:right;">￥{{getElplainInfo.deposit}}</text></view>
 		<view class="one" wx:if="{{getElplainInfo.TipsMoney!=''&&getElplainInfo.TipsMoney!=undefined}}"
 			style="border-top:0.06rem solid #e9e9e9"><text>入场费</text><text
 				style="float:right;">￥{{getElplainInfo.TipsMoney}}</text></view>
-				<view class="one" wx:if="{{getElplainInfo.Accompany!=0&&getElplainInfo.Accompany!=undefined}}"
+		<view class="one" wx:if="{{getElplainInfo.Accompany!=0&&getElplainInfo.Accompany!=undefined}}"
 			style="border-top:0.06rem solid #e9e9e9"><text>陪练费</text><text
 				style="float:right;">￥{{getElplainInfo.Accompany}}</text></view>
-      <view class="insurance" wx:if="{{getElplainInfo.identification==1}}">
-				<radio  color="#D85D27" style="margin-top:0.5rem" bindtap="checkedFlag" checked="{{checkedFlag}}">意外保险费</radio>
-				<text>￥{{getElplainInfo.Insurance}}</text>
-			</view>
+		<view class="insurance" wx:if="{{getElplainInfo.identification==1}}">
+			<radio color="#D85D27" style="margin-top:0.5rem" bindtap="checkedFlag" checked="{{checkedFlag}}">意外保险费</radio>
+			<text>￥{{getElplainInfo.Insurance}}</text>
+		</view>
 
 	</view>
 	<view class="line"></view>
 	<view class="account ">费用说明</view>
-	<view class="venueFee">
-		<text>{{look==2?'场地费':mode=='竞技模式'?'场地费+裁判费':'场地费'}}+履约保证金</text>
+	<!-- <view class="venueFee">
+		<text>{{look==2?'场地费':mode=='竞技模式'?'场地费+裁判费':'场地费'}}</text>
 		<text class="jishi">{{getElplainInfo.siteMoneyInfo}} </text>
 	</view>
 
@@ -35,15 +32,25 @@
 	<view class="venueFee" wx:if="{{getElplainInfo.MoneyPerhour!=''&&getElplainInfo.MoneyPerhour!=undefined}}">
 		<text>陪练费</text>
 		<text class="jishi">{{getElplainInfo.MoneyPerhour}}</text>
+	</view> -->
+
+
+	<view class="venueFee">
+		<view>
+			<radio color="#D85D27" style="margin-top:0.5rem" bindtap="compensates" checked="{{compensates}}">补偿金</radio>
+		</view>
+		<view class="jishi">{{getElplainInfo.Compensation}},<text style="color:blue" bindtap="rulesTxt">规则说明</text></view>
 	</view>
 
 	<view class="line"></view>
-	<view class="venueFee" wx:if="{{getElplainInfo.identification==1}}">
+
+	<view class="venueFee" wx:if="{{getElplainInfo.identification==1}}" style="padding:0.5rem ;border-bottom:0.06rem solid #e9e9e9">
 		<text>保险费</text>
-		<view class="jishi">{{getElplainInfo.InsuranceMoney}}<text style="color:blue" bindtap="previewImage" data-src="{{img}}/uploads/file/baodan/baodan.png">保单详情</text>。</view>
+		<view class="jishi">{{getElplainInfo.InsuranceMoney}}<text style="color:blue" bindtap="previewImage"
+				data-src="{{img}}/uploads/file/baodan/baodan.png">保单详情</text>。</view>
 	</view>
 
-
+	<view class="fanshi" style="color:#000;font-size:1rem;line-height:3.06rem;font-weight:600;padding-left:2.5%">支付方式</view>
 	<view class="fanshi">
 		<image class="img" src="/assets/IconZfWx@2x.png"></image>
 		<text>微信支付</text>
@@ -65,6 +72,15 @@
 			<radio class="radio" color="#D85D27" checked="{{current==3?true:false}}"></radio>
 		</radio-group>
 	</view>
+	<view class="fanshi" style="color:#000;font-size:1rem;line-height:3.06rem;font-weight:600;padding-left:2.5%">红包/抵用券</view>
+
+	<view class="fanshi" wx:if="{{getElplainInfo.moner==1}}" bindtap="redEnvelope">
+		<image class="img" src="/assets/hongbao.png"></image>
+		<text>新人红包 </text>
+		<image class="image" src="../../assets/right.png"></image>
+		<text style="float:right;color:#D85D27">{{hbMoney!=0?'-'+hbMoney+'元':'有可用的红包'}}</text>
+	</view>
+
 	<view class="fanshi">
 		<image class="img" src="/assets/kaQuan.png"></image>
 		<text>场地费抵用券 </text>
@@ -73,11 +89,21 @@
 		<text wx:if="{{getElplainInfo.isoffset==1}}" style="float:right;color:#D85D27"
 			bindtap="deductibles">{{volumeMoney!=0?'-'+volumeMoney+'元':'有可用的抵用券'}}</text>
 	</view>
-	<view class="moneyAll"><text style="color:#D85D27;padding-right:0.5rem">减免￥{{volumeMoney}}</text>合计：<text
-			style="color:#D85D27;font-size:1.5rem">￥{{getElplainInfo.Total-volumeMoney}}</text></view>
-	<view style="color:#ccc;font-size:0.75rem;text-align:center;margin-top:1rem;"> </view>
-	<view class="btn" bindtap="payTo">确定支付</view>
 
+	<view style="color:#ccc;font-size:0.75rem;text-align:center;margin-top:0.63rem">如活动匹配失败或截止报名前取消，预付的所有费用将全额退还。</view>
+
+	<view class="moneyAll">
+		<text>原￥{{getElplainInfo.Total}}</text>
+		<text>减免￥{{exemption}}</text>
+		<text>合计：￥{{Moneytotal=='0.00'?getElplainInfo.Total:Moneytotal}}</text>
+	</view>
+
+
+
+
+	<button class="btn" bindtap="payTo">确定支付</button>
+
+	<view style="height:8rem"></view>
 
 
 	<view wx:if='{{showPayPwdInput}}'>
@@ -88,31 +114,41 @@
 				<text>请输入支付密码</text>
 			</view>
 			<view class='input_tip'><text>支付金额</text></view>
-			<view class='input_tip'><text style="font-size:1rem">￥{{getElplainInfo.Total-volumeMoney}}</text></view>
+			<view class='input_tip'><text style="font-size:1rem">￥{{Moneytotal=='0.00'?getElplainInfo.Total:Moneytotal}}</text></view>
 			<view class='input_row' catchtap='getFocus'>
 				<view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
 					<text wx:if='{{pwdVal.length>i}}'></text>
 				</view>
 			</view>
 			<view class='forget_pwd' catchtap="kop">忘记支付密码？</view>
-			<input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6' />
+			<input class='input_control' value="{{pwdVal}}" password type='number' focus='{{payFocus}}' bindinput='inputPwd'
+				maxlength='6' />
 		</view>
 	</view>
 
 	<view class="masking" wx:if="{{maskingOne}}">
 		<view class="content">
-			<view class="title">履约保证金说明</view>
-			<view class="son"><text>为保证所有活动者的运动体验，请您在活动</text></view>
-			<view class="son"><text>开始时间5分钟之前到达场地并打开找对手</text></view>
-			<view class="son"><text>进行场地签到，谢谢。</text></view>
-			<view class="son"><text>缺勤0-15分钟，扣除20%的履约保证金；</text></view>
-			<view class="son"><text>缺勤15-30分钟，扣除50%的履约保证金；</text></view>
-			<view class="son"><text>缺勤30分钟以上，扣除100%的履约保证金；</text></view>
-
+			<view class="title">提示</view>
+			<view class="son"><text>{{depositRule}}</text></view>
 		</view>
 
 		<view class="close" bindtap="closeTwo">
 			<image src="/assets/BtnDown@2x.png"></image>
 		</view>
 	</view>
+	<view class="realNameBoss" wx:if="{{realName}}">
+		<view class="realName">
+			<text class="title">找对手 实名认证</text>
+			<text class="contenter">按平安保险公司要求，为确定被保险人，购买保险前需要进行实名认证，请先进行实名认证后再选择购买保险
+			</text>
+			<text class="tishi">实名认证后不可修改，请客观正确填写</text>
+			<input class="name" type="text" placeholder="真实姓名" bindinput="nameBlur" />
+			<input class="name" type="text" placeholder="身份证号码" bindinput="numBlur" />
+			<button class="btnss" bindtap="sunmit">提交认证</button>
+			<view class="close" bindtap="realNameClose"><image src="../../assets/closeTwo.png"></image> </view>
+		</view>
+	</view>
+
+
+
 </view>

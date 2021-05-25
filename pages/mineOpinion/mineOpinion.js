@@ -30,7 +30,7 @@ Page({
   chooseImg: function () {
     var that = this
     wx.showActionSheet({
-      itemList: ['相册', '拍照'],
+      itemList: ['拍照', '相册'],
       success: function (res) {
         wx.showNavigationBarLoading()
         let imgArr = null;

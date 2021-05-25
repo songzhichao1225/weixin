@@ -5,7 +5,8 @@ App({
  
     globalData:[],
     userReserveVenue:[],
-    deductibles:[]
+    deductibles:[],
+    envelope:[]
 },
 
   onLaunch: function () {

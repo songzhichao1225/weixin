@@ -80,11 +80,10 @@
 				<view class="publisherTxt">
 					<view class="one">
 						<text>场地费用</text>
-						<text class="money">￥{{activitiesData.SiteMoney}}{{moneyType==-1?'.00':'0'}}</text>
-
+						<text class="money">￥{{activitiesData.SiteMoneys}}/人</text>
 						<view class="one" style="width:100%" wx:if="{{activitiesData.refereeFee!=0}}">
 							<text>裁判费用</text>
-							<text class="money">￥{{activitiesData.refereeFee}}{{moneyType==-1?'.00':'0'}}</text>
+							<text class="money">￥{{activitiesData.refereeFees}}/人</text>
 						</view>
 					</view>
 
@@ -161,7 +160,7 @@
 						<view class="son" wx:for="{{activitiesData.teamA}}" wx:key='index'>
 							
 							<view class="invite" wx:if="{{item.playerUUID=='empty'}}" bindtap="userSignUp" data-index="{{index}}"  data-team="1">
-								<text class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'邀请':'报名':''}}</text>
+								<text class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'邀请':'报名':'已结束'}}</text>
 								<text class="TeamAson">A{{index+1}}</text>
 							</view>
 							<image class="logo" wx:if="{{item.playerUUID!='empty'}}" bindtap="getUserDetailInfo"
@@ -181,7 +180,7 @@
 							
 							<view class="invite" wx:if="{{item.playerUUID=='empty'}}"  bindtap="userSignUp" data-index="{{index}}"  data-team="2">
 								<!-- 邀请 -->
-								<text class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'邀请':'报名':''}}</text>
+								<text class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'邀请':'报名':'已结束'}}</text>
 								<text class="TeamAson">B{{index+1}}</text>
 							</view>
 							<image class="logo" wx:if="{{item.playerUUID!='empty'}}" bindtap="getUserDetailInfo"
@@ -202,7 +201,7 @@
 						<view class="son" wx:for="{{activitiesData.teamC}}" wx:key='index'>
 							
 							<view class="invite" wx:if="{{item.playerUUID=='empty'}}"  bindtap="{{activitiesData.SportType==21||activitiesData.SportType==20?'userSignUp':'addReferees'}}" data-index="{{index}}" data-team="3"  >
-								<text class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'邀请':'报名':''}}</text>
+								<text class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'':'报名':'已结束'}}</text>
 								<text class="TeamAson">C{{index+1}}</text>
 							</view>
 							<image class="logo" wx:if="{{item.playerUUID!='empty'}}" bindtap="getUserDetailInfo"
@@ -360,7 +359,14 @@
 				<text>活动取消时间</text>
 				<text>{{activitiesData.cancelTime}}</text>
 			</view>
+			<view class="releaseTime" style="color:#d85d27" wx:if="{{activitiesData.PublicStatus==7}}">
+				<text style="color:#d85d27">活动取消原因</text>
+				<text style="color:#d85d27">{{activitiesData.SuspendReason}}</text>
+			</view>
+
 		</view>
+	
+
 		<view wx:if="{{activitiesData.reserve==1}}">
 			<view class="releaseTime">
 				<text>预订场馆时间</text>
@@ -378,11 +384,11 @@
 				<text>活动结束时间</text>
 				<text>{{activitiesData.FinishedTime}}</text>
 			</view>
-
-
 		</view>
-
 	</view>
+
+
+	<button open-type="share" wx:if="{{activitiesData.stay==1}}" class="btn">邀请微信好友减免场地费</button>
 
 	<!-- <view class="complaints" bindtap="complaints"
 		wx:if="{{type==1&&activitiesData.reserve!=1&&activitiesData.PublicStatus==2&&activitiesData.Complaint==4||activitiesData.PublicStatus==3&&activitiesData.reserve!=1&&activitiesData.Complaint==4}}"
@@ -501,7 +507,10 @@
 	</view>
 
 
-
+ <view class="displayTxt" wx:if="{{activitiesData.lackNumbers!=0&&activitiesData.stay!=1}}">
+	<view>{{displayTxt.sentence}}</view>
+	<view>实付：￥{{displayTxt.total}}</view>
+ </view>
 
 
 

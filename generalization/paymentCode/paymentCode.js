@@ -18,8 +18,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(wx.getStorageSync('phone'))
     this.setData({
-      telephone: wx.getStorageSync('phone').slice(0, 3) + '****' + wx.getStorageSync('phone').slice(7, 11)
+      telephone:wx.getStorageSync('phone')==''?wx.getStorageSync('telephone').slice(0, 3) + '****' + wx.getStorageSync('phone').slice(7, 11) :wx.getStorageSync('phone').slice(0, 3) + '****' + wx.getStorageSync('phone').slice(7, 11),
+      
     })
     wx.hideLoading()
   },
@@ -35,7 +37,7 @@ Page({
 
     } else {
       util.request("/api/toSendCode", {
-          'mobile': wx.getStorageSync('phone'),
+          'mobile': wx.getStorageSync('phone')==''?wx.getStorageSync('telephone'):wx.getStorageSync('phone'),
           'type': 'putMoney'
         }, "post",
         (res) => {
@@ -55,7 +57,6 @@ Page({
                 })
               }
             }, 1000)
-
           } else {
             wx.showToast({
               title: res.data.msg,
@@ -63,7 +64,6 @@ Page({
               duration: 1500,
               mask: true
             })
-
           }
         },
         () => {

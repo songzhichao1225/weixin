@@ -84,3 +84,13 @@ page{
   color: #fff;
   border-radius: 2.69rem;
 }
+.close{
+  font-size: 0.88rem;
+  position: absolute;
+  bottom: 3rem;
+  color: #D85D27;
+  text-align: center;
+  width: 8rem;
+  left: 50%;
+  margin-left: -4rem;
+}

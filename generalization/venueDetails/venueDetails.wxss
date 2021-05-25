@@ -63,8 +63,8 @@
 }
 
 .address .image {
-  width: 1.06rem;
-  height: 1.56rem;
+  width: 0.9rem;
+  height: 1.4rem;
   padding-left: 2.5%;
   margin-top: 0.6rem;
   float: left;
@@ -216,6 +216,7 @@
   width: 78%;
   float: left;
   padding-left: 0.3rem;
+  padding-top: 0.2rem;
 }
 .modeSrc{
   width: 8.5rem;

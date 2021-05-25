@@ -10,7 +10,7 @@ Page({
     statusBarHeight: app.globalData.statusBarHeight + 45,
     forbade: false,
     avatar: '',
-    name: '',
+    name:'',
     goldNum: '',
     flag: false,
     flagTwo: 0,
@@ -18,11 +18,6 @@ Page({
         img: 'IconWdHd@2x.png',
         name: '我的活动',
         click: 'activities'
-      },
-      {
-        img: 'lokoksd.png',
-        name: '我的抵用券',
-        click: 'voucher'
       },
       {
         img: 'dui.png',
@@ -33,6 +28,11 @@ Page({
         img: 'ji.png',
         name: '我的技术分',
         click: 'mineFen'
+      },
+      {
+        img: 'lokoksd.png',
+        name: '我的抵用券',
+        click: 'voucher'
       },
       {
         img: 'IconWdQb@2x.png',

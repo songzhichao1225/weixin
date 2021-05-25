@@ -354,7 +354,7 @@ image {
   height: 80rpx;
   background: #d85d27;
   border-radius: 40rpx;
-  margin: 28rpx auto;
+  margin: 28rpx auto 0;
   font-size: 36rpx;
   color: #fff;
   line-height: 80rpx;
@@ -828,4 +828,29 @@ image {
   height: 0.69rem;
   float: right;
   margin-top: 1.1rem;
+}
+
+.displayTxt {
+  width: 95%;
+  background: #FFDFA6;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  left: 1.5%;
+  position: fixed;
+  bottom: 0;
+  padding: 1%;
+}
+.displayTxt>view:first-child{
+   width: 60%;
+   float: left;
+   color: #E83030;
+   font-size: 0.75rem;
+}
+.displayTxt>view:last-child{
+  width: 40%;
+  float: left;
+  text-align: center;
+  color: #E83030;
+  font-size: 0.94rem;
+  font-weight: 550;
 }
