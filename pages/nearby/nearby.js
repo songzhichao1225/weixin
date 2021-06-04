@@ -99,13 +99,13 @@
 
          if (show == true) {
            var data = [...this.data.dynameicList, ...res.data.data]
-           if (res.data.data.length == 0) {
-             wx.showToast({
-               title: '没有更多了~',
-               icon: 'none',
-               duration: 2000
-             })
-           }
+          //  if (res.data.data.length == 0) {
+          //    wx.showToast({
+          //      title: '没有更多了~',
+          //      icon: 'none',
+          //      duration: 2000
+          //    })
+          //  }
 
          } else {
            var data = res.data.data
@@ -144,11 +144,11 @@
 
    onLoad: function () {
      this.setData({
-       img: util.API
+       img: util.API,
      })
-     this.list()
 
    },
+   
    bindSex: function (e) {
      this.setData({
        sex: e.detail.value
@@ -347,6 +347,8 @@
 
    },
    onShow(){
+     this.setData({page:1})
+     this.list()
     if (typeof this.getTabBar === 'function' &&
     this.getTabBar()) {
     this.getTabBar().setData({

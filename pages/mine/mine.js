@@ -77,6 +77,7 @@ Page({
   },
 
   onLoad: function (option) {
+    
     if (option.Invite_code == undefined) {
       app.globalData.Invite_code = '';
     } else {
@@ -85,85 +86,103 @@ Page({
     this.setData({
       img: util.API
     })
-    if (wx.getStorageSync('token')) {
-      wx.showLoading({
-        title: '加载中~',
-        mask: true
-      })
-      util.Request("/api/getCommonCoins", {}, "get",
-        (res) => {
-          this.setData({
-            goldNum: res.data.data.coins,
-            flag: true
-          })
-          wx.setStorageSync('coins', res.data.data.coins)
-          wx.hideLoading()
-        },
-        () => {
-          console.log("失败")
-        },
-        () => {}
-      )
-      if (wx.getStorageSync('uuid') != '' || wx.getStorageSync('uuid') != undefined) {
-        util.Request("/api/getUserDetailInfo", {
-            'uuid': wx.getStorageSync('uuid')
-          }, "get",
-          (res) => {
-            this.setData({
-              mineDetail: res.data.data,
-              imgURL: wx.getStorageSync('imgURL')
-            })
-          },
-          () => {
-            console.log("失败")
-          },
-          () => {}
-        )
-      }
+    // if (wx.getStorageSync('token')) {
+    //   wx.showLoading({
+    //     title: '加载中~',
+    //     mask: true
+    //   })
+    //   util.Request("/api/getCommonCoins", {}, "get",
+    //     (res) => {
+    //       this.setData({
+    //         goldNum: res.data.data.coins,
+    //         flag: true
+    //       })
+    //       wx.setStorageSync('coins', res.data.data.coins)
+    //       wx.hideLoading()
+    //     },
+    //     () => {
+    //       console.log("失败")
+    //     },
+    //     () => {}
+    //   )
+    //   if (wx.getStorageSync('uuid') != '' || wx.getStorageSync('uuid') != undefined) {
+    //     util.Request("/api/getUserDetailInfo", {
+    //         'uuid': wx.getStorageSync('uuid')
+    //       }, "get",
+    //       (res) => {
+    //         this.setData({
+    //           mineDetail: res.data.data,
+    //           imgURL: wx.getStorageSync('imgURL')
+    //         })
+    //       },
+    //       () => {
+    //         console.log("失败")
+    //       },
+    //       () => {}
+    //     )
+    //   }
 
-    } else if (wx.getStorageSync('token') && wx.getStorageSync('information') != '信息完善') {
-      wx.showModal({
-        content: '完善个人信息',
-        cancelText: '再看看',
-        confirmText: '去完善',
-        confirmColor: '#000',
-        success(res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '/pages/personalData/personalData'
-            })
-          } else if (res.cancel) {
+    // } else if (wx.getStorageSync('token') && wx.getStorageSync('information') != '信息完善') {
+    //   wx.showModal({
+    //     content: '完善个人信息',
+    //     cancelText: '再看看',
+    //     confirmText: '去完善',
+    //     confirmColor: '#000',
+    //     success(res) {
+    //       if (res.confirm) {
+    //         wx.navigateTo({
+    //           url: '/pages/personalData/personalData'
+    //         })
+    //       } else if (res.cancel) {
 
-          }
-        }
-      })
-    } else {
-      wx.reLaunch({
-        url: '/pages/authorization/authorization'
-      })
-    }
+    //       }
+    //     }
+    //   })
+    // } else {
+      
+    // }
 
-    util.Request("/api/getHighestLevel", {}, "get",
-      (res) => {
-        this.setData({
-          Invitation: res.data.data.Invitation
-        })
-
-      },
-      () => {
-        console.log("失败")
-      },
-      () => {}
-    )
+  
     wx.hideLoading()
   },
   onShow: function () {
+    let option=''
+    this.onLoad(option)
+
+    util.Request("/api/getHighestLevel", {}, "get",
+    (res) => {
+      this.setData({
+        Invitation: res.data.data.Invitation,
+        flag: true
+      })
+      util.Request("/api/getUserDetailInfo", {
+                'uuid': wx.getStorageSync('uuid')
+              }, "get",
+              (res) => {
+                this.setData({
+                  mineDetail: res.data.data,
+                  imgURL: wx.getStorageSync('imgURL')
+                })
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
+
+    },
+    () => {
+      console.log("失败")
+    },
+    () => {}
+  )
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
         selected: 4
       })
     }
+
   },
   activities: function () {
     wx.navigateTo({

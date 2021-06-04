@@ -1,5 +1,6 @@
 .createSuccess {
   width: 100%;
+  font-size: 0.88rem;
 }
 
 .banner {
@@ -68,7 +69,6 @@
 }
 
 .center>text:first-child {
-  font-size: 0.75rem;
   color: #D85D27;
 }
 .btn{

@@ -69,7 +69,7 @@ Page({
               sporttype: option.sporttype,
               page: 1
             }
-            util.request("/api/getSiteLst", obj, "get",
+            util.Request("/api/getSiteLst", obj, "get",
               (res) => {
                 let sitelst = res.data.data.sitelst
                 let objArr = []
@@ -149,7 +149,7 @@ Page({
               sporttype: _this.data.sporttype,
               page: 1
             }
-            util.request("/api/getSiteLst", obj, "get",
+            util.Request("/api/getSiteLst", obj, "get",
               (res) => {
 
                 let sitelst = res.data.data.sitelst
@@ -206,7 +206,7 @@ Page({
           sporttype: _this.data.sporttype,
           page: 1
         }
-        util.request("/api/getSiteLst", obj, "get",
+        util.Request("/api/getSiteLst", obj, "get",
           (res) => {
             let sitelst = res.data.data.sitelst
             let objArr = []
@@ -269,7 +269,7 @@ Page({
         longitude:addressLst.longitude,
         city:addressLst.city
       })
-      util.request("/api/getSiteLst", obj, "get",
+      util.Request("/api/getSiteLst", obj, "get",
         (res) => {
           let sitelst = res.data.data.sitelst
           let objArr = []
@@ -350,7 +350,7 @@ getsuggest: function(e) {
       sporttype: this.data.sporttype,
       page: 1
     }
-    util.request("/api/getSiteLst", obj, "get",
+    util.Request("/api/getSiteLst", obj, "get",
       (res) => {
         let sitelst = res.data.data.sitelst
         let objArr = []
@@ -390,7 +390,7 @@ getsuggest: function(e) {
       sporttype: this.data.sporttype,
       page: Number(this.data.page+1)
     }
-    util.request("/api/getSiteLst", obj, "get",
+    util.Request("/api/getSiteLst", obj, "get",
       (res) => {
         let sitelst = res.data.data.sitelst
         let objArr = []

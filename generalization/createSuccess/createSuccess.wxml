@@ -9,17 +9,17 @@
 
 	<view class="text">
 		<view class="headTop">
-			<text style="font-size:0.75rem;" wx:if="{{typeInfo!=1}}">活动匹配成功后，为保证所有人利益。</text>
+			<text wx:if="{{typeInfo!=1}}">活动匹配成功后，为保证所有人利益。</text>
 			<text class="comm">{{text.red}}</text>
 		</view>
 		<view class="center">
 			<text>温馨提示:</text>
-			<text style="font-size:0.75rem;padding-top:1rem">{{text.black}}</text>
-			<text style="color:#D0021B;font-size:0.75rem;padding-top:1rem">2、您好，请务必下载APP，场馆签到、评价等均须在APP端操作完成，谢谢!</text>
+			<text style="padding-top:1rem">{{text.black}}</text>
+			<text style="color:#D0021B;padding-top:1rem">2、您好，请务必下载APP，场馆签到、评价等均须在APP端操作完成，谢谢!</text>
 		</view>
 
 		<text bindtap="detailRules" wx:if="{{typeInfo!=1}}"
-			style="font-size:0.75rem;color:blue;margin-top:1rem;padding:0.5rem 0 0 2.5%;">规则?</text>
+			style="color:blue;margin-top:1rem;padding:0.5rem 0 0 2.5%;">规则?</text>
 	</view>
 
 

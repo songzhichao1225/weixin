@@ -33,7 +33,7 @@
 
     <view class="gold">
       <view bindtap='gold' style="border-right:2rpx solid #ccc;">
-        <image class="rankingList" src='/assets/zuanshi.png'></image>
+        <image class="rankingList" style="width:44rpx;height:42rpx" src='/assets/zuanshi.png'></image>
         <text class="txt">对手果排行榜</text>
       </view>
       <view bindtap='golDranking'>

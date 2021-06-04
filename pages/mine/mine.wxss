@@ -130,14 +130,14 @@ text {
 }
 
 .application .son image {
-  width: 54rpx;
-  height: 54rpx;
+  width: 50rpx;
+  height: 48rpx;
   display: block;
   margin: 0 auto;
 }
 
 .application .son text {
-  font-size: 13px;
+  font-size: 0.75rem;
   color: #333;
   text-align: center;
   margin-top: 16rpx;

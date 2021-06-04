@@ -27,7 +27,7 @@ Page({
     nameBlur: '',
     numBlur: '',
     Moneytotal: 0.00,
-    exemption:0.00
+    exemption: 0.00
 
   },
 
@@ -108,6 +108,7 @@ Page({
 
 
   kokopl() {
+
     let obj = {
       sportModes: app.globalData.SportMode,
       siteMoney: app.globalData.SiteMoney,
@@ -284,7 +285,7 @@ Page({
 
 
   hidePayLayer: function () {
-
+   console.log(this.data.current)
     var val = this.data.pwdVal;
 
     if (this.data.look == 1) {
@@ -319,26 +320,40 @@ Page({
             volumedetail: this.data.volumedetail,
             hbmedetail: this.data.hbmedetail,
             hbMoney: this.data.hbMoney,
-            Insurance: this.data.checkedFlag == true ? '1' : '0'
+            Insurance: this.data.checkedFlag == true ? '1' : '0',
+            small:'1',
+            openID: wx.getStorageSync('openid'),
           }
+          console.log(obj)
 
           util.Request("/api/userAddActivity", obj, "post",
             (res) => {
+              wx.hideLoading()
+              if (res.data.code == 2000) {
+                var wxPay = res.data.data.sign_data.sign_data
+                console.log(wxPay)
+                wx.requestPayment({
+                  'timeStamp': wxPay.timeStamp.toString(),
+                  'nonceStr': wxPay.nonceStr,
+                  'package': wxPay.package,
+                  'signType': 'MD5',
+                  'paySign': wxPay.sign,
+                  'success': function (res) {
+                    wx.navigateTo({
+                      url: '/generalization/createSuccess/createSuccess?inviteId=' + app.globalData.inviteId + '&Identification=2' + '&typeInfo=0' + '&referee=' + app.globalData.refereefee + '&status=1' + '&time=' + app.globalData.CreateTime,
+                    })
+                  },
+                  'fail': function (res) {},
 
-              let wxPay = res.data.data.sign_data.sign_data
-              wx.requestPayment({
-                'timeStamp': wxPay.timeStamp.toString(),
-                'nonceStr': wxPay.nonceStr,
-                'package': wxPay.package,
-                'signType': 'MD5',
-                'paySign': wxPay.sign,
-                'success': function (res) {
-                  console.log(res)
-                },
-                'fail': function (res) {
-                  console.log(res)
-                },
-              })
+                })
+              } else {
+                wx.showToast({
+                  title: res.data.msg,
+                  icon: 'none',
+                  duration: 1500,
+                  mask: true
+                })
+              }
 
             },
             () => {
@@ -370,6 +385,7 @@ Page({
               wx.hideLoading()
               if (res.data.code == 2000) {
                 var wxPay = res.data.data.sign_data.sign_data
+                console.log(wxPay)
                 wx.requestPayment({
                   'timeStamp': wxPay.timeStamp.toString(),
                   'nonceStr': wxPay.nonceStr,
@@ -445,6 +461,7 @@ Page({
                   volumedetail: this.data.volumedetail,
                   hbmedetail: this.data.hbmedetail,
                   hbMoney: this.data.hbMoney,
+                  small:'1'
                 }
 
                 util.Request("/api/userAddActivity", obj, "post",
@@ -684,37 +701,37 @@ Page({
   //支付
   payTo: function () {
 
-   if(this.data.compensates!=false){
-    if (this.data.current == 1) {
-      wx.showLoading({
-        title: '获取中~',
-        mask: true
-      });
-      this.hidePayLayer()
-    } else {
-      if (Number(this.data.getElplainInfo.money) < Number(this.data.getElplainInfo.Total)) {
-        wx.showToast({
-          title: '钱包余额不足',
-          icon: 'none',
-          duration: 1500,
+    if (this.data.compensates != false) {
+      if (this.data.current == 1) {
+        wx.showLoading({
+          title: '获取中~',
           mask: true
-        })
+        });
+        this.hidePayLayer()
       } else {
-        this.showInputLayer();
+        if (Number(this.data.getElplainInfo.money) < Number(this.data.getElplainInfo.Total)) {
+          wx.showToast({
+            title: '钱包余额不足',
+            icon: 'none',
+            duration: 1500,
+            mask: true
+          })
+        } else {
+          this.showInputLayer();
+        }
+
       }
+    } else {
+      wx.showToast({
+        title: '请仔细阅读费用说明并勾选补偿金选项',
+        icon: 'none',
+        duration: 2000,
+        mask: true
+      })
 
     }
-   }else{
-    wx.showToast({
-      title: '请仔细阅读费用说明并勾选补偿金选项',
-      icon: 'none',
-      duration: 2000,
-      mask: true
-    })
 
-   }
 
-    
   },
   deductibles() {
     wx.navigateTo({
@@ -742,31 +759,31 @@ Page({
       this.setData({
         volumedetail: app.deductibles.volumedetail,
         volumeMoney: app.deductibles.moneyNum.toFixed(2),
-        exemption:(app.deductibles.moneyNum+Number(this.data.hbMoney)).toFixed(2),
-        Moneytotal: (this.data.getElplainInfo.Total - app.deductibles.moneyNum)<0?'0.01':(this.data.getElplainInfo.Total - app.deductibles.moneyNum).toFixed(2)
+        exemption: (app.deductibles.moneyNum + Number(this.data.hbMoney)).toFixed(2),
+        Moneytotal: (this.data.getElplainInfo.Total - app.deductibles.moneyNum) < 0 ? '0.01' : (this.data.getElplainInfo.Total - app.deductibles.moneyNum).toFixed(2)
       })
     } else {
       this.setData({
         volumedetail: '',
         volumeMoney: 0.00,
-        exemption:0.00
+        exemption: Number(this.data.hbMoney).toFixed(2)
       })
     }
     if (app.envelope != undefined && app.envelope.length != 0) {
       this.setData({
         hbmedetail: app.envelope.uuid,
         hbMoney: app.envelope.money.toFixed(2),
-        exemption:(app.envelope.money+Number(this.data.volumeMoney)).toFixed(2),
-        Moneytotal: (this.data.getElplainInfo.Total - this.data.volumeMoney - app.envelope.money)<0?'0.01':(this.data.getElplainInfo.Total - this.data.volumeMoney - app.envelope.money).toFixed(2)
+        exemption: (app.envelope.money + Number(this.data.volumeMoney)).toFixed(2),
+        Moneytotal: (this.data.getElplainInfo.Total - this.data.volumeMoney - app.envelope.money) < 0 ? '0.01' : (this.data.getElplainInfo.Total - this.data.volumeMoney - app.envelope.money).toFixed(2)
       })
     } else {
       this.setData({
         hbmedetail: '',
         hbMoney: 0.00,
-        exemption:0.00
+        exemption: Number(this.data.volumeMoney).toFixed(2)
       })
     }
-    
+
   },
 
   closeTwo() {

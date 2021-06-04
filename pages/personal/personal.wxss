@@ -225,12 +225,12 @@ text {
   clear: both;
   position: relative;
   margin-top: 0.8rem;
-  height: 2rem;
+  height: 1.2rem;
   clear: both;
 }
 
 .grade .badminton text {
-  font-size: 14px;
+  font-size: 0.75rem;
   color: #4a4a4a;
 }
 

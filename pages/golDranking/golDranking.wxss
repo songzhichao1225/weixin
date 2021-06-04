@@ -89,7 +89,7 @@ page {
   width: 254rpx;
   height: 296rpx;
   position: absolute;
-  left: 50%;
+  left: 48%;
   margin-left: -102rpx;
 }
 
@@ -154,7 +154,7 @@ page {
 }
 
 .topTwo {
-  left: 5%;
+  left: 3%;
   margin-left: 0;
   top: 30rpx;
 }
@@ -170,7 +170,7 @@ page {
 }
 
 .topthre {
-  left: 80%;
+  left: 77%;
   margin-left: -102rpx;
   top: 30rpx;
 }

@@ -5,7 +5,6 @@ const formatTime = date => {
   const hour = date.getHours()
   const minute = date.getMinutes()
   const second = date.getSeconds()
-
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
@@ -274,7 +273,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
             duration: 1500,
             mask: true
           })
-          wx.reLaunch({
+          wx.navigateTo({
             url: '/pages/authorization/authorization'
           })
         } else {

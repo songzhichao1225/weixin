@@ -99,7 +99,7 @@
         {
           "name": "活动详情",
           "pathName": "pages/homePage/activities/activities",
-          "query": "uuid= 37f92997-eec4-8e4c-3fd3-6fc015a3740a&type=1&hoog=1",
+          "query": "uuid= 9d62d760-0319-fcd3-9ff7-1e474390d517&type=1&hoog=1&Invite_code=85857858",
           "scene": null
         },
         {

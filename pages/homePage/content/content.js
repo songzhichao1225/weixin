@@ -253,7 +253,6 @@ Page({
        
         if (show == true) {
           let mData = [...this.data.projectData, ...projectDataNow]
-          console.log(mData)
           this.setData({
             projectData: mData
           })
@@ -604,6 +603,9 @@ Page({
   //下拉刷新 
   onPullDownRefresh() {
     wx.showNavigationBarLoading() //显示动画
+    this.setData({
+      pages: 1
+    })
     this.goleloand()
   },
   //跳转兑换商城

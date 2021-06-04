@@ -90,7 +90,6 @@ Page({
     img:'',
   },
   onLoad: function () {
-    this.drankingListTwo()
     this.setData({
       img:util.API
     })
@@ -181,6 +180,7 @@ Page({
     })
   },
   onShow(){
+    this.drankingListTwo()
     if (typeof this.getTabBar === 'function' &&
     this.getTabBar()) {
     this.getTabBar().setData({

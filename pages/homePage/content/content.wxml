@@ -51,7 +51,7 @@
 	<view class="projectNav">
 		<view style='margin:0;' catchtap='itemSelection'>
 			<text style="{{sportName!=='运动项目'?'color:#D85D27;':''}}">{{sportName}}</text>
-			<image class="imgRight" src='/assets/home_icon_jt_xia_nor@2x.png'></image>
+			<image class="imgRight"  src='/assets/home_icon_jt_xia_nor@2x.png'></image>
 		</view>
 		<view catchtap='sortHid'>
 			<text style="{{sprtSeName!=='推荐排序'?'color:#D85D27;':''}}">{{sprtSeName}}</text>
@@ -80,7 +80,7 @@
 		<view class="projectSon" wx:if="{{projectData.length>0}}" bindtap="activites" data-uuid="{{item.uuid}}"
 			wx:for="{{projectData}}" wx:key='index'>
 			<view class="avatar">
-				<image class="avatarP" src='{{img}}/{{item.imgURL}}'></image>
+				<image class="avatarP" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 				<image wx:if="{{item.SportName=='网球'}}" class="aIcon" src='/assets/icon_dj_wq.png'></image>
 				<image wx:if="{{item.SportName=='高尔夫'}}" class="aIcon" src='/assets/icon_dj_gef.png'></image>
 				<image wx:if="{{item.SportName=='篮球'}}" class="aIcon" src='/assets/icon_dj_lq.png'></image>
@@ -116,7 +116,7 @@
 					<text style='margin:0;'>场地费:AA</text>
 					<text wx:if="{{item.MoneyPerhour!=0}}">陪练费:{{item.MoneyPerhour}}/人</text>
 					<text wx:if="{{item.Tips!=0.00||item.Tips!=0}}">入场费:{{item.Tips}}/人</text>
-					<text wx:if="{{item.organizations!=0}}">组织费:￥{{item.organizations}}</text>
+					<!-- <text wx:if="{{item.organizations!=0}}">组织费:￥{{item.organizations}}</text> -->
 					<text>{{item.range}}</text>
 				</view>
 			</view>

@@ -1,6 +1,7 @@
-page{
-  height: 100%;
+page {
+  height: 95%;
 }
+
 .publishing {
   height: 100%;
   position: relative
@@ -13,9 +14,10 @@ page{
 
 .navTitle {
   overflow: hidden;
-  
+
 }
-.textPianhao{
+
+.textPianhao {
   font-size: 0.65rem;
   display: block;
   line-height: 0rem;
@@ -23,20 +25,19 @@ page{
 }
 
 .navTitle>view {
-  width: 40%;
-  height: 2.81rem;
+  width: 5.91rem;
+  height: 1.81rem;
   text-align: center;
   float: left;
   color: #333;
   font-size: 1rem;
-  line-height: 2.5rem;
+  line-height: 1.81rem;
+  margin: 0.5rem 0;
+  background: #F3F3F3;
+  border-radius: 0.91rem;
+  margin-left: 2rem;
 }
-.navTitle>view .lineText{
-  width: 1rem;
-  height: 0.18rem;
-  background: #D85D27;
-  margin:0 auto;
-}
+
 
 .publishing .lineTwo {
   height: 0.31rem;
@@ -50,11 +51,13 @@ page{
   border-bottom: 0.06rem solid #e9e9e9;
   overflow: hidden;
 }
-.content .list .left{
+
+.content .list .left {
   width: 52%;
   float: left;
 }
-.content .list .right{
+
+.content .list .right {
   width: 44%;
   float: right;
 }
@@ -190,9 +193,9 @@ page{
   text-align: center;
   line-height: 30rpx;
   font-size: 12px;
-  background:rgba(74,74,74,1);
-  border-radius:0rem 0rem 0.19rem 0.19rem;
-  opacity:0.5;
+  background: rgba(74, 74, 74, 1);
+  border-radius: 0rem 0rem 0.19rem 0.19rem;
+  opacity: 0.5;
 }
 
 .content .peopleList .son .TeamAsonTwo {
@@ -205,21 +208,8 @@ page{
   text-align: center;
   line-height: 30rpx;
   font-size: 12px;
-  border-radius:0rem 0rem 0.19rem 0.19rem;
-  background:rgba(74,74,74,0.5);
-}
-
-.btnConfirm {
-  width: 80%;
-  height: 2.5rem;
-  background: rgba(216, 93, 39, 1);
-  border-radius: 1.34rem;
-  font-size: 1.06rem;
-  font-family: PingFangSC-Semibold, PingFang SC;
-  color: rgba(255, 255, 255, 1);
-  line-height: 2.5rem;
-  text-align: center;
-  margin: 2rem auto 0;
+  border-radius: 0rem 0rem 0.19rem 0.19rem;
+  background: rgba(74, 74, 74, 0.5);
 }
 
 .invite {
@@ -236,7 +226,8 @@ page{
   height: 100%;
   position: absolute;
 }
-.textarea{
+
+.textarea {
   width: 75%;
   float: right;
   line-height: 1rem;
@@ -244,107 +235,125 @@ page{
   font-size: 0.75rem;
   color: #9b9b9b;
 }
-.zhezhao{
+
+.zhezhao {
   width: 100%;
   height: 100%;
-  background: rgba(000, 000, 000,.5);
+  background: rgba(000, 000, 000, .5);
   position: absolute;
   z-index: 999;
   top: 0;
 }
-.zhezhao .sonBox{
+
+.zhezhao .sonBox {
   width: 80%;
   margin: 40% auto 1rem;
   background: #fff;
   border-radius: 0.5rem;
   padding-bottom: 0.75rem;
 }
-.zhezhao .close{
+
+.zhezhao .close {
   width: 2.31rem;
   height: 2.31rem;
   margin: 0 auto;
 }
-.zhezhao .close>image{
+
+.zhezhao .close>image {
   width: 100%;
   height: 100%
 }
-.zhezhao  .title{
+
+.zhezhao .title {
   font-size: 0.88rem;
   text-align: center;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   font-weight: bold;
 }
-.zhezhao .text{
+
+.zhezhao .text {
   width: 90%;
   margin: 0 auto;
   font-size: 0.75rem;
   display: block;
 }
-.botmComfire{
+
+.botmComfire {
   font-size: 0.75rem;
   text-align: right;
   padding-right: 0.5rem;
   border-top: 0.06rem solid #e9e9e9;
   padding: 0.5rem 0;
 }
-.botmComfire text{
+
+.botmComfire text {
   padding-right: 0.2rem;
 }
-.masking{
+
+.masking {
   width: 100%;
   height: 100%;
-  background:rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   position: absolute;
   top: 0;
 }
-.masking .content{
+
+.masking .content {
   width: 80%;
   margin: 40% auto 0;
   padding: 1rem 0;
   background: #fff;
   border-radius: 0.5rem;
 }
-.close{
+
+.close {
   width: 2rem;
   height: 2rem;
   margin: 5% auto 0;
 }
-.close image{
+
+.close image {
   width: 100%;
   height: 100%;
 }
-.masking .content .title{
+
+.masking .content .title {
   font-size: 0.88rem;
   font-weight: bold;
   text-align: center;
 }
-.masking .content .son{
+
+.masking .content .son {
   width: 90%;
   margin: 0.3rem auto 0;
   font-size: 0.75rem;
 }
-.masking .content .son>text:first-child{
+
+.masking .content .son>text:first-child {
   font-weight: bold;
 }
-.sanList{
+
+.sanList {
   float: right;
   color: #9b9b9b;
 }
-.sanList>text{
+
+.sanList>text {
   padding-right: 0.5rem;
   color: #D85D27;
 }
 
-.forbade{
+.forbade {
   width: 100%;
-  height: 100%; 
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1001;
 }
-.forbade .contentbade{
+
+.forbade .contentbade {
   width: 85%;
   min-height: 2rem;
   border-radius: 0.79rem;
@@ -354,28 +363,82 @@ page{
   left: 7.5%;
   padding: 1.56rem 0;
 }
-.forbade .contentbade>text:first-child{
+
+.forbade .contentbade>text:first-child {
   display: block;
   text-align: center;
   font-size: 1rem;
 }
-.forbade .contentbade .twoCode{
+
+.forbade .contentbade .twoCode {
   width: 13.38rem;
   height: 13.88rem;
   display: block;
   margin: 0 auto;
 }
-.forbade .contentbade>text:nth-child(3){
+
+.forbade .contentbade>text:nth-child(3) {
   font-size: 1rem;
   display: block;
   text-align: center;
   color: #D85D27;
 }
-.closeTwo{
+
+.closeTwo {
   display: block;
   width: 1.5rem;
   height: 1.5rem;
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.swiperItem {
+  position: relative;
+}
+
+.bannerTxt {
+  font-size: 0.8rem;
+  color: #fff;
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+.footer .btnConfirm {
+  width: 6.5rem;
+  height: 2.31rem;
+  background: linear-gradient(90deg, #FF8522 0%, #F8350D 100%);
+  border-radius: 1.34rem;
+  font-size: 1rem;
+  color: #fff;
+  float: right;
+  margin-right: 0.5rem;
+}
+
+.footer {
+  height: 5rem;
+  overflow: hidden;
+  padding-top: 1rem;
+}
+
+.footer>.nowTxt {
+  float: left;
+  padding-left: 0.5rem;
+  width: 65%;
+
+}
+
+.footer .nowTxt>text {
+  display: block;
+}
+
+.footer .nowTxt .firstTxt {
+  font-size: 0.75rem;
+  color: #D85D27;
+}
+
+.footer .nowTxt .lastTxt {
+  font-size: 1rem;
+  font-weight: blod;
 }

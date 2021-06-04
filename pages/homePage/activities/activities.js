@@ -25,15 +25,20 @@ Page({
     img: '',
     reverseInfo: 0,
     typeInfo: '',
-    displayTxt: []
+    displayTxt: [],
+    Invitation:'',
   },
 
   onLoad: function (option) {
     this.setData({
       img: util.API
     })
-    app.deductibles = []
-    app.envelope = []
+    if (option.Invite_code == undefined) {
+      app.globalData.Invite_code = '';
+    } else {
+      app.globalData.Invite_code = option.Invite_code
+    }
+    
     if (option != undefined) {
       if (option.hoog != undefined) {
         this.setData({
@@ -56,16 +61,13 @@ Page({
       wx.setStorageSync('activitieshoog', option.hoog)
       wx.setStorageSync('activitiestype', '1')
     }
-    this.koopdf()
-
-
-
-
-
+    
   },
 
   onShow() {
-    this.onLoad()
+    this.koopdf()
+    app.deductibles = []
+    app.envelope = []
   },
 
   showModel: function (e) {
@@ -122,13 +124,13 @@ Page({
           projectNow.SportMode = '仅预订场馆'
         } else {
           if (projectNow.SportMode == '1') {
-            projectNow.SportMode = '娱乐模式'
+            projectNow.SportModeTwo = '娱乐模式'
           } else if (projectNow.SportMode == '2') {
-            projectNow.SportMode = '竞技模式'
+            projectNow.SportModeTwo = '竞技模式'
           } else if (projectNow.SportMode == '3') {
-            projectNow.SportMode = '我是陪练'
+            projectNow.SportModeTwo = '我是陪练'
           } else if (projectNow.SportMode == '4') {
-            projectNow.SportMode = '我找陪练'
+            projectNow.SportModeTwo = '我找陪练'
           }
         }
 
@@ -219,22 +221,24 @@ Page({
           },
           () => {}
         )
+        util.Request("/api/getRefereeResult", {
+          'publicuuid': this.data.uuid
+        }, "post",
+        (res) => {
+          this.setData({
+            getRefereeResult: res.data.data
+          })
+          wx.hideLoading()
+        },
+        () => {
+          console.log("失败")
+        },
+        () => {}
+      )
 
-        wx.hideLoading()
-      },
-      () => {
-        console.log("失败")
-      },
-      () => {}
-    )
-
-    util.Request("/api/getRefereeResult", {
-        'publicuuid': this.data.uuid
-      }, "post",
+      util.Request("/api/getHighestLevel", {}, "get",
       (res) => {
-        this.setData({
-          getRefereeResult: res.data.data
-        })
+        this.setData({Invitation:res.data.data.Invitation})
         wx.hideLoading()
       },
       () => {
@@ -242,6 +246,20 @@ Page({
       },
       () => {}
     )
+
+        wx.hideLoading()
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
+  
+
+    
+
+
+  
   },
   //判断球类
   judgmentBall: function (sportName, projectNow) {
@@ -330,10 +348,10 @@ Page({
     }
   },
   onShareAppMessage: function (res) {
-
     return {
       title: '找对手',
-      path: '/pages/homePage/activities/activities?uuid=' + this.data.uuid + '&hoog=1' + '&type=1',
+      path: '/pages/homePage/activities/activities?uuid=' + this.data.uuid + '&hoog=1' + '&type=1'+'&Invite_code='+this.data.Invitation,
+      imageUrl:'../../../assets/fengxiang.jpg',
       success: function () {
         util.Request("/api/userShare", {
             'type': 'activity'
@@ -354,16 +372,21 @@ Page({
                 mask: true
               })
             }
-
+  
           },
           () => {
             console.log("失败")
           },
           () => {}
         )
-
+  
       }
     }
+
+ 
+
+
+    
   },
   onUnload: function () {
     // if (this.data.hoog == 1) {

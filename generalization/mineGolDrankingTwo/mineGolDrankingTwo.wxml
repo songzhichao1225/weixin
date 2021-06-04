@@ -5,14 +5,14 @@
 <view class="goldDranking" wx:if="{{flag===1}}">
   
   <view class="header" style='background:#fff;padding-bottom:6rpx;'>
-    <scroll-view scroll-x style='white-space: nowrap; display: flex;padding-right:40rpx;'>
+    <scroll-view enable-flex="true" scroll-x style='white-space: nowrap; display: flex;padding-right:40rpx;'>
       <view class="Son" bindtap='selectTwo' data-index="{{index}}" data-name="{{item.name}}" data-nameE="{{item.nameE}}" data-title="{{item.title}}" data-num="{{item.num}}" style="{{item.color==true?'color:#D85D27;border-bottom:4rpx solid #D85D27;':'color:#9b9b9b;'}}" wx:for="{{rankingType}}" wx:key="index">
         <text>{{item.name}}</text>  
       </view>
     </scroll-view>
   </view>
   <view style="height:100%">
-  <scroll-view scroll-y style="height:100%;">
+  <scroll-view enable-flex="true" scroll-y style="height:100%;">
   <view class="ccc"></view>
   <view class="title">
     <image src='/assets/PicTopPhb@2x.png'></image>
@@ -74,24 +74,9 @@
       <text class="address">{{drankingList.userRankInfo.total}}</text>
     </view>
   </view>
-
   </scroll-view>
 </view>
-
-
- 
-
-
-
 </view>
-
-
-
-
-
-
-
-
 
 
 
@@ -100,7 +85,7 @@
 
 <view class="goldDranking" wx:if="{{flag===2}}">
   <view class="header" style='background:#D85D27;padding:0rpx 0 6rpx 0;'>
-    <scroll-view scroll-x style='white-space: nowrap; display: flex;'>
+    <scroll-view enable-flex="true" scroll-x style='white-space: nowrap; display: flex;'>
       <view class="headerSon" bindtap='select' data-name="{{item.name}}" data-num="{{item.num}}" style="{{item.color==true?'border-bottom:4rpx solid #FFF;color:#fff;':'color:#ececec;'}}" wx:for="{{headerList}}" wx:key="index">
         <text>{{item.name}}</text>
       </view>
@@ -108,14 +93,14 @@
   </view>
 
   <view class="header" style='background:#fff;padding-bottom:6rpx;'>
-    <scroll-view scroll-x style='white-space: nowrap; display: flex;padding-right:40rpx;'>
+    <scroll-view enable-flex="true" scroll-x style='white-space: nowrap; display: flex;padding-right:40rpx;'>
       <view class="Son" bindtap='selectTwo' data-index="{{index}}" data-name="{{item.name}}" data-nameE="{{item.nameE}}" data-title="{{item.title}}" data-num="{{item.num}}" style="{{item.color==true?'color:#D85D27;border-bottom:4rpx solid #D85D27;':'color:#9b9b9b;'}}" wx:for="{{rankingType}}" wx:key="index">
         <text>{{item.name}}</text>  
       </view>
     </scroll-view>
   </view>
   <view style="height:100%">
-  <scroll-view scroll-y style="height:100%;">
+  <scroll-view enable-flex="true" scroll-y style="height:100%;">
   <view class="ccc"></view>
   <view class="title">
     <image src='/assets/PicTopPhb@2x.png'></image>

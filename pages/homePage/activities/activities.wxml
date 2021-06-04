@@ -6,6 +6,8 @@
 	<view class="countdown" wx:if="{{end}}">截至报名倒计时:
 		{{countDownDay}}天{{countDownHour}}小时{{countDownMinute}}分{{countDownSecond}}秒</view>
 
+
+<scroll-view scroll-y="true" class="scrollContent">
 	<view style="border-bottom:2rpx solid #E9E9E9;padding-bottom:24rpx;position: relative;">
 		<view class="status">
 			<image wx:if="{{activitiesData.PublicStatus==2}}" src='/assets/dai.png'></image>
@@ -23,7 +25,7 @@
 				<view class="contentText">
 					<text>ID {{activitiesData.orderId}}</text>
 					<text>{{activitiesData.sportName}} {{activitiesData.sportTypeName}}</text>
-					<text>{{activitiesData.SportMode}}</text>
+					<text>{{activitiesData.SportModeTwo}}</text>
 				</view>
 			</view>
 			<view class="line"></view>
@@ -127,10 +129,10 @@
 						<text class="way">陪练费用</text>
 						<text>￥{{activitiesData.MoneyPerhour}}{{tipsType==-1?'.00':'0'}}/人</text>
 					</view>
-					<view class="two" wx:if="{{activitiesData.organizations!=0}}">
+					<!-- <view class="two" wx:if="{{activitiesData.organizations!=0}}">
 						<text class="way">组织费用</text>
-						<text>￥{{activitiesData.MoneyPerhour}}</text>
-					</view>
+						<text>￥{{activitiesData.organizations}}</text>
+					</view> -->
 
 				</view>
 
@@ -160,7 +162,7 @@
 						<view class="son" wx:for="{{activitiesData.teamA}}" wx:key='index'>
 							
 							<view class="invite" wx:if="{{item.playerUUID=='empty'}}" bindtap="userSignUp" data-index="{{index}}"  data-team="1">
-								<text class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'邀请':'报名':'已结束'}}</text>
+								<text class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'':'报名':'已结束'}}</text>
 								<text class="TeamAson">A{{index+1}}</text>
 							</view>
 							<image class="logo" wx:if="{{item.playerUUID!='empty'}}" bindtap="getUserDetailInfo"
@@ -180,7 +182,7 @@
 							
 							<view class="invite" wx:if="{{item.playerUUID=='empty'}}"  bindtap="userSignUp" data-index="{{index}}"  data-team="2">
 								<!-- 邀请 -->
-								<text class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'邀请':'报名':'已结束'}}</text>
+								<text class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'':'报名':'已结束'}}</text>
 								<text class="TeamAson">B{{index+1}}</text>
 							</view>
 							<image class="logo" wx:if="{{item.playerUUID!='empty'}}" bindtap="getUserDetailInfo"
@@ -237,7 +239,7 @@
 			<view class="lineTwo"
 				wx:if="{{type==1&&activitiesData.PublicStatus==4||activitiesData.PublicStatus==6||activitiesData.PublicStatus==5}}">
 			</view>
-			<view class="competitionRu" wx:if="{{type==1&&activitiesData.PublicStatus==6&&activitiesData.SportMode=='竞技'}}">
+			<view class="competitionRu" wx:if="{{type==1&&activitiesData.PublicStatus==6&&activitiesData.SportModeTwo=='竞技'}}">
 				<view class="title">比赛结果填写</view>
 				<view class="title" style="font-size:0.88rem;">运动者比赛结果填写</view>
 				<view class="one">
@@ -387,8 +389,13 @@
 		</view>
 	</view>
 
+</scroll-view>
 
-	<button open-type="share" wx:if="{{activitiesData.stay==1}}" class="btn">邀请微信好友减免场地费</button>
+ <view class="bottomTow">
+    <image src="../../../assets/hongbaoTwo.png"></image><text>每邀请1位新用户注册并使用，奖励您10元。</text>
+		<button open-type="share" >去邀请</button>
+ </view>
+	
 
 	<!-- <view class="complaints" bindtap="complaints"
 		wx:if="{{type==1&&activitiesData.reserve!=1&&activitiesData.PublicStatus==2&&activitiesData.Complaint==4||activitiesData.PublicStatus==3&&activitiesData.reserve!=1&&activitiesData.Complaint==4}}"

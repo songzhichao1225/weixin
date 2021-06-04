@@ -36,7 +36,7 @@ page {
 }
 
 .player {
-  height: 92.5%;
+  height: 85.5%;
 }
 
 .top {
@@ -240,7 +240,7 @@ page {
 }
 
 .bigShot {
-  height: 86%;
+  height: 85%;
 }
 
 .bigShot .top {

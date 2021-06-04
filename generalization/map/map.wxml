@@ -20,13 +20,13 @@
 </view>
 
 
-<map id="myMap" wx:if="{{city!==''}}" markers="{{markers}}" bindmarkertap="mark" style="width:100%;height:300px;margin-top:0.5rem;" longitude="{{longitude}}" latitude="{{latitude}}" scale='13' show-location="{{true}}">
+<map id="myMap" wx:if="{{city!==''}}" markers="{{markers}}" bindmarkertap="mark" style="width:100%;height:30%;margin-top:0.5rem;" longitude="{{longitude}}" latitude="{{latitude}}" scale='13' show-location="{{true}}">
 <button class="now" bindtap="now">当前位置</button>
 </map>
 
 
 
-<scroll-view scroll-y bindscrolltolower="tolower" refresher-enabled="{{true}}" refresher-threshold="{{100}}" refresher-default-style="white" refresher-background="#ccc" refresher-triggered="{{triggered}}"  bindrefresherrefresh="onRefresh" style="height:50%;">
+<scroll-view scroll-y bindscrolltolower="tolower" refresher-enabled="{{true}}" refresher-threshold="{{100}}" refresher-default-style="white" refresher-background="#ccc" refresher-triggered="{{triggered}}"  bindrefresherrefresh="onRefresh" style="height:64%;">
    <view class="noContent" wx:if="{{venuesLst.length==0}}">
 	    <image src="/assets/nottxt.png"></image>
 			<text>您好，暂无搜索结果，请再试试~</text>

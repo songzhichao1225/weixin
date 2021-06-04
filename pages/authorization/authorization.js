@@ -9,7 +9,7 @@ Page({
     binding: '',
     authorization: 0,
     Invite_code: '',
-    wxImage:''
+    wxImage: ''
   },
   onLoad: function (option) {
     var query = wx.createSelectorQuery()
@@ -20,9 +20,10 @@ Page({
       Invite_code: app.globalData.Invite_code
     })
 
+
   },
 
- 
+
 
   phone: function (e) {
     this.setData({
@@ -48,55 +49,52 @@ Page({
 
   onGotUserInfo: function (e) {
     //登录
-
-    var sessionKey = wx.getStorageSync('sessionKey')
-    var that = this
-    var ency = e.detail.encryptedData;
-    var iv = e.detail.iv;
-    var errMsg = e.detail.errMsg
-    if (iv == null || ency == null) {
-      wx.showToast({
-        title: "授权失败,请重新授权",
-        icon: 'none',
-      })
-      return false
-    }
-    //把获取手机号需要的参数取到，然后存到头部data里
-    that.setData({
-      ency: ency,
-      iv: iv,
-      errMsg: errMsg,
-    })
-
-    util.request("/api/getUnionID", {
-        'sessionKey': sessionKey,
-        'encryptedData': e.detail.encryptedData,
-        'iv': e.detail.iv
-      }, "post",
-      (res) => {
-        let data = JSON.parse(res.data.data)
-        this.setData({
-          nickName: data.nickName,
-          avatarUrl: data.avatarUrl,
-          unionId: data.unionId
+    if (wx.getStorageSync('unionId') =='') {
+      var sessionKey = wx.getStorageSync('sessionKey')
+      var that = this
+      var ency = e.detail.encryptedData;
+      var iv = e.detail.iv;
+      var errMsg = e.detail.errMsg
+      if (iv == null || ency == null) {
+        wx.showToast({
+          title: "授权失败,请重新授权",
+          icon: 'none',
         })
+        return false
+      }
+      //把获取手机号需要的参数取到，然后存到头部data里
+      that.setData({
+        ency: ency,
+        iv: iv,
+        errMsg: errMsg,
+      })
+      util.request("/api/getUnionID", {
+          'sessionKey': sessionKey,
+          'encryptedData': e.detail.encryptedData,
+          'iv': e.detail.iv
+        }, "post",
+        (res) => {
+          let data = JSON.parse(res.data.data)
+          this.setData({
+            nickName: data.nickName,
+            avatarUrl: data.avatarUrl,
+            unionId: data.unionId
+          })
+          wx.setStorageSync('unionId', data.unionId)
+          that.zhuce(); //调用手机号授权事件
+        },
+        () => {
+          console.log("失败")
+        },
+        () => {}
+      )
+  
+    }else{
+      this.setData({unionId:wx.getStorageSync('unionId')})
+      this.zhuce();
+    }
 
-     
-
-    that.zhuce(); //调用手机号授权事件
-
-
-
-
-
-        
-      },
-      () => {
-        console.log("失败")
-      },
-      () => {}
-    )
-
+    
   },
 
 
@@ -114,28 +112,29 @@ Page({
                 title: '登录中~',
                 mask: true
               })
+
               util.request("/api/wechatLogin", {
                   'uid': that.data.unionId,
                   'sex': '男',
                   'imgURL': that.data.avatarUrl,
                   'nickname': that.data.nickName,
-                  'openId':''
+                  'openId': ''
                 }, "post",
                 (res) => {
                   if (res.data.data.telephone != '' && res.data.data.telephone != undefined) {
                     wx.setStorageSync('token', res.data.data.token); //存储token
                     wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
                     wx.setStorageSync('telephone', res.data.data.telephone); //存储用户电话
+                    wx.setStorageSync('imgURL', res.data.data.imgURL); //存储用户电话
                     wx.hideLoading()
                     if (wx.getStorageSync('activitieshoog') == '1') {
-
                       wx.reLaunch({
                         url: "/pages/homePage/activities/activities?uuid=" + wx.getStorageSync('activitiesId')
                       })
                     } else {
                       setTimeout(function () {
-                        wx.switchTab({
-                          url: '/pages/mine/mine',
+                        wx.navigateBack({
+                          delta: 1
                         })
                       })
                     }
@@ -242,47 +241,48 @@ Page({
                       'sex': '男',
                       'imgURL': that.data.avatarUrl,
                       'nickname': that.data.nickName,
-                      'openId':''
+                      'openId': ''
                     }, "post",
                     (res) => {
                       util.request("/api/getbindmobile", {
-                        'mobile': wx.getStorageSync('phone'),
-                        'wechatid': that.data.unionId,
-                        'Invitation': that.data.Invite_code,
-                        'wxImage':'',
-                        'nickname':'',
-                        'residence':wx.getStorageSync('province')+','+wx.getStorageSync('cityInfo')+','+wx.getStorageSync('area')
-                      }, "post",
-                      (res) => {
-                        if (res.data.code == 2000) {
-                          wx.setStorageSync('token', res.data.data.token); //存储token
-                          wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
-                          wx.setStorageSync('telephone', res.data.data.telephone); //存储用户电话
-                          if (wx.getStorageSync('activitieshoog') == '1') {
-                            wx.reLaunch({
-                              url: "/pages/homePage/activities/activities?uuid=" + wx.getStorageSync('activitiesId')
-                            })
-                          } else {
-                            setTimeout(function () {
-                              wx.switchTab({
-                                url: '/pages/mine/mine',
+                          'mobile': wx.getStorageSync('phone'),
+                          'wechatid': that.data.unionId,
+                          'Invitation': that.data.Invite_code,
+                          'wxImage': '',
+                          'nickname': that.data.nickName,
+                          'residence': wx.getStorageSync('province') + ',' + wx.getStorageSync('cityInfo') + ',' + wx.getStorageSync('area')
+                        }, "post",
+                        (res) => {
+                          if (res.data.code == 2000) {
+                            wx.setStorageSync('token', res.data.data.token); //存储token
+                            wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
+                            wx.setStorageSync('telephone', res.data.data.telephone); //存储用户电话
+                            wx.setStorageSync('imgURL', res.data.data.imgURL); //存储用户电话
+                            if (wx.getStorageSync('activitieshoog') == '1') {
+                              wx.reLaunch({
+                                url: "/pages/homePage/activities/activities?uuid=" + wx.getStorageSync('activitiesId')
                               })
+                            } else {
+                              setTimeout(function () {
+                                wx.navigateBack({
+                                  delta: 1
+                                })
+                              })
+                            }
+                          } else {
+                            wx.showToast({
+                              title: res.data.msg,
+                              icon: 'none',
                             })
                           }
-                        } else {
-                          wx.showToast({
-                            title: res.data.msg,
-                            icon: 'none',
-                          })
-                        }
-                      },
-                      () => {
-                        console.log("失败")
-                      },
-                      () => {}
-                    )
+                        },
+                        () => {
+                          console.log("失败")
+                        },
+                        () => {}
+                      )
 
-                    
+
                     },
                     () => {
                       console.log("失败")
@@ -317,7 +317,6 @@ Page({
                       'sessionKey': sessionKey
                     }, "post",
                     (res) => {
-                      console.log(res)
                     },
                     () => {
                       console.log("失败")

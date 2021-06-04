@@ -31,7 +31,7 @@
         </view>
       </picker>
     </view>
-    <scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{enabled}}"
+    <scroll-view scroll-y="true" enhanced="true" lower-threshold="5000"  refresher-enabled="true" refresher-triggered="{{enabled}}"
       bindrefresherrefresh="refresh" bindscrolltolower="tolower" class="dynamicState">
       <view class='left'>
         <view wx:for="{{dynameicListLeft}}" bindtap="dynamicDetails" data-uuid="{{item.uuid}}" class="boss"

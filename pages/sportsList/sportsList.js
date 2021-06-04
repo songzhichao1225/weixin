@@ -110,9 +110,25 @@ Page({
         delta: 1
       })
     } else if (this.data.flag == 3) {
-      prevPage.setData({
-        sportsListThree: e.currentTarget.dataset
+      wx.setStorage({
+        key: 'sportIdFThree',
+        data: data.id,
       })
+      wx.setStorage({
+        key: 'sportTypeFThree',
+        data:data.sporttype,
+      })
+      wx.setStorage({
+        key: 'sportNameFThree',
+        data: data.name,
+      })
+      wx.setStorage({
+        key: 'sportypeNameFThree',
+        data: data.nametwo,
+      })
+      wx.removeStorage({key: 'bookinThree'})
+      wx.removeStorage({key: 'siteidThree'})
+
       wx.navigateBack({
         delta: 1
       })

@@ -77,9 +77,8 @@ page {
 }
 
 .payFor .venueFee .jishi {
-  padding-top: 1rem;
+  padding-top: 0.3rem;
   color: #9B9B9B;
-
   display: block;
   font-size: 0.75rem;
   margin-right: 2.5%;
@@ -408,4 +407,10 @@ page {
   position: absolute;
   top: -1rem;
   right: 0;
+}
+ .wx-radio-input {
+  
+}
+.kosdfhgh{
+    transform:scale(0.8);
 }
