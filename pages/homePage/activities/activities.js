@@ -190,7 +190,7 @@ Page({
             })
           }
         }
-
+        projectNow.PipeMainMoney= projectNow.PipeMainMoney.slice(0, projectNow.PipeMainMoney.length-1)
         this.countdown(projectNow.JoinEndTime)
         let sportName = projectNow.sportName
         this.judgmentBall(sportName, projectNow)
@@ -349,7 +349,7 @@ Page({
   },
   onShareAppMessage: function (res) {
     return {
-      title: '找对手',
+      title: '我邀请您参加'+this.data.activitiesData.wxShare+'在'+this.data.activitiesData.siteName+'的'+this.data.activitiesData.sportName+this.data.activitiesData.sportTypeName+'活动',
       path: '/pages/homePage/activities/activities?uuid=' + this.data.uuid + '&hoog=1' + '&type=1'+'&Invite_code='+this.data.Invitation,
       imageUrl:'../../../assets/fengxiang.jpg',
       success: function () {
@@ -675,7 +675,7 @@ Page({
 
       util.Request("/api/usercread", {}, "post",
         (res) => {
-          if (res.data.data.type == 1) {
+          if (res.data.data.type== 1) {
             wx.showModal({
               title: '温馨提示',
               showCancel:false,

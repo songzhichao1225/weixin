@@ -3,7 +3,7 @@
   <image class="banner" src='/assets/WdBgBanner@2x.png'></image>
   <view class="headerTop" style="top:{{statusBarHeight+20}}px">
     <view class="header" bindtap="forbade">
-      <image class="avatar" catchtap="Personal" data-uuid="{{mineDetail.uuid}}" wx:if="{{mineDetail.imgURL!=''}}"
+      <image class="avatar" catchtap="Personal" mode="aspectFill" data-uuid="{{mineDetail.uuid}}" wx:if="{{mineDetail.imgURL!=''}}"
         src='{{img}}/{{mineDetail.imgURL}}'></image>
       <open-data class="avatar" wx:elif="{{mineDetail.imgURL==''}}" type="userAvatarUrl"></open-data>
       <view class="name">

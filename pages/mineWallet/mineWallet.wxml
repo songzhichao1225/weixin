@@ -2,7 +2,7 @@
   <view class="right" bindtap="details">明细</view>
   <image class="img" src='/assets/HomeIconJinbi@3x.png'></image>
   <text class="text">我的钱包</text>
-  <text class="money">{{total}}</text>
+  <text class="money">￥{{total}}</text>
   <button class="withdrawal" bindtap="forbade">提现</button>
 
   <view class="forbade" wx:if="{{forbade}}">

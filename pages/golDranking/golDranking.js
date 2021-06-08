@@ -93,7 +93,7 @@ Page({
     this.setData({
       img:util.API
     })
- 
+    this.drankingListTwo()
   },
 
   tap:function(e){
@@ -180,7 +180,7 @@ Page({
     })
   },
   onShow(){
-    this.drankingListTwo()
+    
     if (typeof this.getTabBar === 'function' &&
     this.getTabBar()) {
     this.getTabBar().setData({

@@ -13,19 +13,39 @@ Page({
    */
   onLoad: function (options) {
     this.setData({option:options})
+    
   },
   detal:function(e){
-    console.log(e)
-    if(this.data.option.flag=='0'){
+    console.log(e.detail)
+    if(this.data.option.flag=='0'&&this.data.option.hood==undefined){
       wx.setStorage({
         data:e.detail,
         key:'bookin',
       })
     }else if(this.data.option.flag=='1'){
-      
       wx.setStorage({
         data:e.detail,
         key:'bookinTwo',
+      })
+    }else if(this.data.option.hood=='3'){
+      wx.setStorage({
+        data:e.detail,
+        key:'bookinThree',
+      })
+    }else if(this.data.option.hood=='4'){
+      wx.setStorage({
+        data:e.detail,
+        key:'bookinFour',
+      })
+    }else if(this.data.option.hood=='5'){
+      wx.setStorage({
+        data:e.detail,
+        key:'bookinFive',
+      })
+    }else if(this.data.option.hood=='6'){
+      wx.setStorage({
+        data:e.detail,
+        key:'bookinSix',
       })
     }
     if( Number(this.data.option.flagTwo)!==1){

@@ -1,0 +1,287 @@
+page{
+  height: 100%;
+}
+.contentTxt {
+  height: 100%;
+}
+
+.contentTxt .projectNav {
+  width: 100%;
+  height: 1.3rem;
+  margin: 0 auto;
+  display: flex;
+  padding-top: 0.5rem;
+  border-top: 0.06rem solid #e9e9e9;
+}
+
+.contentTxt .projectNav>view {
+  flex: 1.3;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contentTxt .projectNav>view:nth-child(2){
+  flex: 1.3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}  
+.contentTxt .projectNav>view:first-child{
+  flex: 1.3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contentTxt .projectNav>view:last-child{
+  flex: 1.1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentTxt .projectNav>view>text {
+  font-size: 14px;
+  display: block;
+  text-align: center;
+  line-height: 1.3rem;
+  float: left;
+}
+.contentTxt .imgRight{
+  width: 0.4rem;
+  height: 0.3rem;
+   float: left;
+   margin-top: 0.2rem;
+}
+
+.mask {
+  width: 100%;
+  height: 95.6%;
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  bottom: 0;
+  z-index: 100;
+}
+
+.mask .activity {
+  width: 26%;
+  height: 17.1rem;
+  background-color: #fff;
+}
+
+.mask .activity .activitySon {
+  width: 70%;
+  height: 2.3rem;
+  margin: 0 auto;
+}
+
+.mask .activity .activitySon text {
+  font-size: 12px;
+  color: #333;
+  line-height: 2.3rem;
+}
+
+.mask .activity .activitySon image {
+  width: 0.3rem;
+  height: 0.4rem;
+  display: block;
+  float: right;
+  margin-top: 1rem;
+}
+
+.mask .activityTwo {
+  width: 32.5%;
+  position: absolute;
+  top: 0;
+  left: 25%;
+  background-color: #fff;
+}
+
+.mask .activityTwo .activityTwoSon text {
+  font-size: 12px;
+  color: #9b9b9b;
+  display: block;
+  text-align: center;
+  height: 2rem;
+  line-height: 2rem;
+}
+
+.mask .sort {
+  width: 25%;
+  position: absolute;
+  top: 0;
+  left: 26%;
+  background-color: #fff;
+}
+
+.mask .sort text {
+  font-size: 12px;
+  color: #9b9b9b;
+  display: block;
+  text-align: center;
+  height: 2rem;
+  line-height: 2rem;
+}
+
+
+.contentTxt .projectList {
+  height: 94%;
+  min-height: 980rpx;
+  overflow: hidden;
+  position: relative;
+  margin-top: 0.5rem;
+}
+
+.contentTxt .projectList .projectSon {
+  width: 100%;
+  height: 8rem;
+  position: relative;
+  border-top: 1px solid #ccc;
+}
+
+.contentTxt .projectList .projectSon .avatar {
+  width: 5rem;
+  float: left;
+  margin-left: 0.8rem;
+}
+
+.contentTxt .projectList .projectSon .avatar .avatarP {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 10px;
+  margin-top: 0.5rem;
+}
+
+.contentTxt .projectList .projectSon .avatar .aIcon {
+  width: 35rpx;
+  height: 35rpx;
+  margin-left: 0.3rem;
+  margin-top: 0.2rem;
+  display: block;
+  float: left;
+}
+
+.contentTxt .projectList .projectSon .avatar text {
+  display: block;
+  padding: 0 0.3rem;
+  height: 0.8rem;
+  font-size: 10px;
+  color: #fff;
+  text-align: center;
+  line-height: 0.8rem;
+  background: linear-gradient(270deg, #FCA400 0%, #FEE073 100%);
+  border-radius: 2px;
+  float: left;
+  margin-left: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.contentTxt .projectList .projectSon .introduction {
+  width: 66%;
+  float: left;
+  overflow: hidden;
+  margin-top: 0.5rem;
+  margin-left: 0.9rem;
+}
+
+.contentTxt .projectList .projectSon .introduction .title {
+  overflow: hidden;
+}
+
+.contentTxt .projectList .projectSon .introduction .title text {
+  font-size: 0.88rem;
+  color: #333;
+  display: block;
+  float: left;
+  font-weight: bold;
+}
+
+.contentTxt .projectList .projectSon .introduction .title image {
+  width: 0.94rem;
+  height: 0.94rem;
+  display: block;
+  float: left;
+  margin: 0.1rem 0 0 0.2rem;
+}
+
+.contentTxt .projectList .projectSon .introduction .mode {
+  overflow: hidden;
+}
+
+.contentTxt .projectList .projectSon .introduction .mode text {
+  display: block;
+  font-size: 14px;
+  color: #4a4a4a;
+  margin-left: 0.5rem;
+  float: left;
+}
+
+.contentTxt .projectList .projectSon .introduction .time {
+  overflow: hidden;
+}
+
+.contentTxt .projectList .projectSon .introduction .time text {
+  display: block;
+  font-size: 14px;
+  color: #4a4a4a;
+  margin-left: 0.5rem;
+  float: left;
+}
+
+.contentTxt .projectList .projectSon .introduction .address {
+  overflow: hidden;
+}
+
+.contentTxt .projectList .projectSon .introduction .address text {
+  display: block;
+  font-size: 14px;
+  color: #4a4a4a;
+  margin-left: 0.5rem;
+  float: left;
+}
+
+.contentTxt .projectList .projectSon .introduction .cost {
+  overflow: hidden;
+}
+
+.contentTxt .projectList .projectSon .introduction .cost text {
+  display: block;
+  font-size: 14px;
+  color: #4a4a4a;
+  margin-left: 0.3rem;
+  float: left;
+}
+
+.contentTxt .projectList .projectSon .introduction .cost text:last-child {
+  float: right;
+}
+
+.contentTxt .projectList .projectSon .status {
+  width: 94rpx;
+  height: 84rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 99;
+}
+
+.contentTxt .projectList .projectSon .status image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.noContent{
+  width: 80%;
+  margin:5rem auto 0;
+}
+.noContent image{
+  width: 9rem;
+  height: 6.5rem;
+  margin: 0 auto;
+  display: block;
+}
+.noContent text{
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+}

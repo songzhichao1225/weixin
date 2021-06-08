@@ -89,7 +89,8 @@
         "assistantThree/assistantThree",
         "voucher/voucher",
         "insuranceDe/insuranceDe",
-        "redEnvelope/redEnvelope"
+        "redEnvelope/redEnvelope",
+        "contentTxt/contentTxt"
       ] 
     }
   ],

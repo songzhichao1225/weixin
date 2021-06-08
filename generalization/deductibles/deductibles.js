@@ -22,8 +22,7 @@ Page({
   },
 
   list(show){
-    util.Request("/api/getOffsetRollList", {
-      "type":1,
+    util.Request("/api/getUsableOffsetRolls", {
       "page":this.data.page
     }, "post",
     (res) => {

@@ -35,7 +35,7 @@
 	<view class="venuesLst" wx:for="{{venuesLst}}" wx:key="index" bindtap="venueDetails" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-uid="{{item.uid}}" data-city="{{item.city}}"  data-name="{{item.name}}">
 		<view class="boss">
 			<view class="left">
-				<image src="{{img}}/{{item.siteimg}}"></image>
+				<image mode="aspectFill" src="{{img}}/{{item.siteimg}}"></image>
 			</view>
 			<view class="right">
 				<view class="top">
@@ -50,13 +50,10 @@
 						<image src="/assets/{{item.scores>=4?'StarSel2@2x.png':'StarSelYb2@2x.png'||item.scores==3?'StarNor2@2x.png':''}}"></image>
 						<image src="/assets/{{item.scores==5?'StarSel2@2x.png':'StarSelYb2@2x.png'||item.scores==4?'StarNor2@2x.png':''}}"></image>
 						<text>{{item.scores}}分</text>
-						
 					</view>
-					<view class="money" wx:if="{{sporttype!='22'}}"><text style="display:block;float:left">价格：￥{{item.minmoney}}/小时起</text> <text style="display:block;float:right;color: #9B9B9B;">{{item.range}}</text></view>
-					<view class="money" wx:if="{{sporttype=='22'}}"><text style="display:block;float:left">价格：￥{{item.minmoney}}/次起</text> <text style="display:block;float:right;color: #9B9B9B;">{{item.range}}</text></view>
-				
-					
-				</view>
+					<view class="money" wx:if="{{sporttype!='22'}}"><text style="display:block;float:left">价格：{{item.minmoney}}</text> <text style="display:block;float:right;color: #9B9B9B;">{{item.range}}</text></view>
+					<view class="money" wx:if="{{sporttype=='22'}}"><text style="display:block;float:left">价格：{{item.minmoney}}</text> <text style="display:block;float:right;color: #9B9B9B;">{{item.range}}</text></view>
+				</view> 
 			</view>
 		</view>
 

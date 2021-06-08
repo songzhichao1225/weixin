@@ -1,84 +1,4 @@
-<!--index.wxml-->
-<view class="content" bindtap='itemSelectionH'>
-	<view class="headerCity" style="padding-top:{{statusBarHeight}}px">
-		<!-- bindtap='cityList' -->
-		<text>{{selectCity}}</text>
-		<!-- <image class="image" src='/assets/HomeIconJt@2x.png'></image> -->
-		<view class="inputBox" bindtap='inputS'>
-			<image style='display:block;width:0.8rem;height:0.8rem;margin:0.5rem 0 0 0.45rem;float:left;'
-				src='/assets/SearchIcon@2x.png'></image>
-			<input type='text' disabled='true' placeholder='请输入地址' value="{{addressN}}" placeholder-style="font-size:14px;"
-				confirm-type="search"></input>
-		</view>
-		<!-- <image class="news" bindtap="news" src="../../../assets/news.png"></image> -->
-	</view>
-	<view class="bannerBack">
-		<image class="back" src="../../../assets/bannerback@2x.png"></image>
-		<swiper autoplay="{{true}}" class="banner" indicator-dots="true" indicator-color="#ddd"
-			indicator-active-color="#fff">
-			<block wx:for="{{bannerArr}}" wx:key='index'>
-				<swiper-item>
-					<image src="{{img}}/{{item.picurl}}" class="slide-image" />
-				</swiper-item>
-			</block>
-		</swiper>
-	</view>
-	<view class="homeSelect">
-
-		<view bindtap="bookOnly">
-			<image src='/assets/jindingOne.png'></image>
-			<text>仅订场馆</text>
-		</view>
-
-		<view bindtap="contentSon">
-			<image src='/assets/jindingTwo.png'></image>
-			<text>踢馆</text>
-		</view>
-
-		<view bindtap="partner">
-			<image src='/assets/jindingFour.png'></image>
-			<text>找陪练</text>
-		</view>
-
-		<view bindtap="company">
-			<image src='/assets/jindingThree.png'></image>
-			<text>运动结伴</text>
-		</view>
-
-		<view bindtap="organizing">
-			<image src='/assets/jindingFive.png'></image>
-			<text>组织活动</text>
-		</view>
-
-		<view bindtap="competition">
-			<image src='/assets/jindingSix.png'></image> 
-			<text>比赛赛事</text>
-		</view>
-	
-		<view bindtap="forbade">
-			<image src='/assets/run.png'></image>
-			<text>报名偏好</text>
-			<!-- bindtap="signUp" -->
-		</view>
-		 <view bindtap="forbade">
-			<image src='/assets/HomeIconJinbi@2x.png'></image>
-			<text>赢对手果</text>
-			<!-- bindtap="generaGold" -->
-		</view>
-		
-		<!--<view bindtap="forbade">
-			<image src='/assets/generalization.png'></image>
-			<text>我是推广员</text>
-			bindtap='generalization'
-		</view>
-		<view bindtap="forbade">
-			<image src='/assets/cooperate.png'></image>
-			<text>场馆入驻</text>
-			bindtap='goldMall'
-		</view>
-	 -->
-	</view>
-
+<view class="contentTxt">
 	<view class="projectNav">
 		<view style='margin:0;' catchtap='itemSelection'>
 			<text style="{{sportName!=='运动项目'?'color:#D85D27;':''}}">{{sportName}}</text>
@@ -99,13 +19,14 @@
 		</view>
 	</view>
 
-	<view class="projectList">
 
-		<view class="noContent" wx:if="{{projectData.length==0}}">
+<scroll-view class="projectList" scroll-y="auto" enhanced="true" lower-threshold="400"  refresher-enabled="true" refresher-triggered="{{enabled}}"
+      bindrefresherrefresh="refresh" bindscrolltolower="tolower">
+
+	<view class="noContent" wx:if="{{projectData.length==0}}">
 			<image src="/assets/nottxt.png"></image>
-			<text>抱歉，您可以放宽筛选条件试试!</text>
-			<text>或自己发布活动吧，报名条件您说了算!</text>
-			<text>还可多得5枚对手果!</text>
+			<text>您好，您的搜索结果是空噢~</text>
+			
 		</view>
 
 		<view class="projectSon" wx:if="{{projectData.length>0}}" bindtap="activites" data-uuid="{{item.uuid}}"
@@ -146,7 +67,8 @@
 				<view class="cost">
 					<text style='margin:0;'>场地费:AA</text>
 					<text wx:if="{{item.MoneyPerhour!=0}}">陪练费:{{item.MoneyPerhour}}/人</text>
-					<text wx:if="{{item.Tips!=0.00||item.Tips!=0}}">入场费:{{item.Tips}}/人</text>
+					<text wx:if="{{item.Tips!=0.00&&item.PipeMain!=2||item.Tips!=0&&item.PipeMain!=2}}">入场费:{{item.Tips}}/人</text>
+					<text wx:if="{{item.PipeMain==2}}">奖金:￥{{item.PipeMainMoney}}</text>
 					<!-- <text wx:if="{{item.organizations!=0}}">组织费:￥{{item.organizations}}</text> -->
 					<text>{{item.range}}</text>
 				</view>
@@ -162,7 +84,31 @@
 		</view>
 
 
-		<view class="mask" wx:if="{{hidden}}">
+
+
+</scroll-view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<view class="mask" wx:if="{{hidden}}">
 			<view class="activity" wx:if="{{hiddenOne}}">
 				<view class="activitySon" catchtap='secondary' wx:for="{{activity}}" wx:key='index' data-name="{{item.name}}"
 					data-num="{{item.id}}">
@@ -191,44 +137,6 @@
 				</view>
 			</view>
 		</view>
-	</view>
-
-	<!-- <view class="flexd" bindtap="download">
-    <image src="/assets/comeOn@2x.png"></image>
-  </view> -->
-
-	<view class="isSignN" wx:if="{{flagIs}}">
-		<view class="isSignbox">
-			<image class="img" src='/assets/PicQiandao.png'></image>
-			<text class="txt">恭喜+1枚通用金币
-				目前通用金币{{goldNum}}个</text>
-		</view>
-		<view class="close" bindtap='close'>
-			<image src='/assets/BtnDown@2x.png'></image>
-		</view>
-	</view>
-
-	<download wx:if="{{download}}" bindtap="closeDowload"></download>
-
-	<!-- <view class="bossZhe" wx:if="{{getSetting==1}}">
-		  <view class="shoModel">
-				<text>检测到您未打开地理位置权限，是否前往开启</text>
-        <view class="footerBtn">
-					<view class="left">手动定位</view>
-					<view class="right">前往开启<button bindtap="openSetting" style="opacity: 0;">5858</button></view>
-				</view>
-			</view>
-	 </view> -->
-	<view class="forbade" wx:if="{{forbade}}">
-		<view class="contentbade">
-			<text>下载APP更多精彩体验</text>
-			<image bindlongtap="saveImg" data-src="/assets/twoCode.png" class="twoCode" src="../../../assets/twoCode.png">
-			</image>
-			<text>长按保存二维码识别下载</text>
-			<image class="closeTwo" bindtap="closeTwo" src="../../../assets/closeTwo.png"></image>
-		</view>
-	</view>
-
 
 
 </view>

@@ -35,7 +35,7 @@
           <image class="img" src='/assets/Pic1Hg.png'></image>
           <image class="imgTwo" src='/assets/Pic1Cd.png'></image>
           <image class="imgThree" mode="aspectFill" src='{{img}}/{{drankingList.topThree[0].imgURL}}'></image>
-          <view class="text" style="bottom:45rpx">
+          <view class="text" style="bottom:18rpx">
             <text class="txt" style="font-weight:bold">{{drankingList.topThree[0].nickname}}</text>
             <text class="type">{{drankingList.topThree[0].total}}</text>
           </view>
@@ -46,7 +46,7 @@
           <image class="img" src='/assets/Pic2Hg.png'></image>
           <image class="imgTwot" src='/assets/Pic2Cd.png'></image>
           <image class="imgThree" mode="aspectFill" src='{{img}}/{{drankingList.topThree[1].imgURL}}'></image>
-          <view class="text" style="bottom:45rpx">
+          <view class="text" style="bottom:18rpx">
             <text class="txt" style="font-weight:bold;color:#99C3EB">{{drankingList.topThree[1].nickname}}</text>
             <text class="type">{{drankingList.topThree[1].total}}</text>
           </view>
@@ -56,7 +56,7 @@
           <image class="img" src='/assets/Pic3Hg.png'></image>
           <image class="imgTwot" src='/assets/Pic3Cd.png'></image>
           <image class="imgThree" mode="aspectFill" src='{{img}}/{{drankingList.topThree[2].imgURL}}'></image>
-          <view class="text" style="bottom:45rpx">
+          <view class="text" style="bottom:18rpx">
             <text class="txt" style="font-weight:bold;color:#F6976E">{{drankingList.topThree[2].nickname}}</text>
             <text class="type">{{drankingList.topThree[2].total}}</text>
           </view>
@@ -153,7 +153,7 @@
           <image class="imgTwo" src='/assets/Pic1Cd.png'></image>
           <image wx:if="{{drankingList.topThree[0].imgURL!=''}}" class="imgThree" mode="aspectFill" src='{{img}}/{{drankingList.topThree[0].imgURL}}'></image>
           <image wx:if="{{drankingList.topThree[0].imgURL==''}}" class="imgThree" mode="aspectFill" src='../../assets/tiaozhan.png'></image>
-          <view class="text" style="bottom:45rpx">
+          <view class="text" style="bottom:18rpx">
             <text class="txt">{{drankingList.topThree[0].nickname}}</text>
             <view style="overflow:hidden;justify-content:center;display:flex">
               <text class="type" style="float:left">{{name}}</text>
@@ -169,8 +169,8 @@
           <image class="imgTwot" src='/assets/Pic2Cd.png'></image>
           <image wx:if="{{drankingList.topThree[1].imgURL!=''}}" class="imgThree" mode="aspectFill" src='{{img}}/{{drankingList.topThree[1].imgURL}}'></image>
           <image wx:if="{{drankingList.topThree[1].imgURL==''}}" class="imgThree" mode="aspectFill" src='../../assets/tiaozhan.png'></image>
-          <view class="text" style="bottom:45rpx">
-            <text class="txt">{{drankingList.topThree[1].nickname}}</text>
+          <view class="text" style="bottom:18rpx">
+            <text class="txt">受到广泛豆腐干地方{{drankingList.topThree[1].nickname}}</text>
             <view>
               <text class="type" style="float:left">{{name}}</text>
               <text class="grade" style="float:left">{{drankingList.topThree[1].level}}</text>
@@ -184,7 +184,7 @@
           <image class="imgTwot" src='/assets/Pic3Cd.png'></image>
           <image wx:if="{{drankingList.topThree[2].imgURL!=''}}" class="imgThree" mode="aspectFill" src='{{img}}/{{drankingList.topThree[2].imgURL}}'></image>
           <image wx:if="{{drankingList.topThree[2].imgURL==''}}" class="imgThree" mode="aspectFill" src='../../assets/tiaozhan.png'></image>
-          <view class="text" style="bottom:45rpx">
+          <view class="text" style="bottom:18rpx">
             <text class="txt">{{drankingList.topThree[2].nickname}}</text>
             <view>
               <text class="type" style="float:left">{{name}}</text>

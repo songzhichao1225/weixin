@@ -2,7 +2,7 @@
 	<view class="tap">
 		<view class="headContent">
 			<view class="leftImg">
-				<image class="image" bindtap="avataBoss" data-src="{{img}}/{{personalData.imgURL}}"
+				<image class="image" bindtap="avataBoss" mode="aspectFill" data-src="{{img}}/{{personalData.imgURL}}"
 					src='{{img}}/{{personalData.imgURL}}'></image>
 				<view class="name">
 
@@ -179,7 +179,7 @@
       bindrefresherrefresh="refreshTwo" bindscrolltolower="tolowerTwo">
 		<view class="sonList" wx:for="{{publicLst}}" wx:key="index" data-uuid="{{item.uuid}}" bindtap="activities">
 			<view class="left">
-				<image src="{{img}}/{{item.imgURL}}"></image>
+				<image mode="aspectFill" src="{{img}}/{{item.imgURL}}"></image>
 				<view class="leftBottom">
 					<image wx:if="{{item.SportName=='网球'}}" class="imageTwo" src='/assets/icon_dj_wq.png'></image>
 					<image wx:if="{{item.SportName=='高尔夫'}}" class="imageTwo" src='/assets/icon_dj_gef.png'></image>
@@ -201,7 +201,7 @@
 				<view class="patterns">
 					<text>{{item.SportMode}}</text>
 					<text>{{item.SportName}}</text>
-					<text>{{item.SportType}}</text>
+					<text>{{item.SportTypeName}}</text>
 					<text>缺{{item.lockNumber}}人</text>
 				</view>
 				<view class="patterns">

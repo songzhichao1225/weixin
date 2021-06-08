@@ -14,7 +14,8 @@ page {
 
 .navTitle {
   overflow: hidden;
-
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .textPianhao {
@@ -25,7 +26,7 @@ page {
 }
 
 .navTitle>view {
-  width: 5.91rem;
+  width: 25%;
   height: 1.81rem;
   text-align: center;
   float: left;
@@ -35,7 +36,7 @@ page {
   margin: 0.5rem 0;
   background: #F3F3F3;
   border-radius: 0.91rem;
-  margin-left: 2rem;
+  margin-left: 6.25%;
 }
 
 
@@ -420,6 +421,7 @@ page {
   height: 5rem;
   overflow: hidden;
   padding-top: 1rem;
+  padding-bottom: 3rem;
 }
 
 .footer>.nowTxt {

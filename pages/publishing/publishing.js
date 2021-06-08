@@ -10,7 +10,24 @@ Page({
     sportType: '', //二级分类id
     sportName: '请选择', //一级分类名称
     sportypeName: '', //二级分类名称
-    sportypeNameThree:'',
+
+    sportIdFour: '', //一级分类id
+    sportTypeFour: '', //二级分类id
+    sportNameFour: '请选择', //一级分类名称
+    sportypeNameFour: '', //二级分类名称
+
+    sportIdFive: '', //一级分类id
+    sportTypeFive: '', //二级分类id
+    sportNameFive: '请选择', //一级分类名称
+    sportypeNameFive: '', //二级分类名称
+
+    sportIdSix: '', //一级分类id
+    sportTypeSix: '', //二级分类id
+    sportNameSix: '请选择', //一级分类名称
+    sportypeNameSix: '', //二级分类名称
+
+    sportypeNameThree: '',
+    siteNameThree: '请选择',
     checked: false,
     sportIdTwo: '', //一级分类id
     sportTypeTwo: '', //二级分类id
@@ -45,7 +62,7 @@ Page({
     arrayLanThree: [{
       id: 1,
       name: '娱乐模式'
-    },{
+    }, {
       id: 2,
       name: '竞技模式'
     }],
@@ -132,7 +149,11 @@ Page({
     modeNum: '', //运动模式Id
     TrialNum: '0人', //裁判人数,
     Trial: 0, //选择裁判id
+    TrialNumSix: '0人', //裁判人数,
+    TrialSix: 0, //选择裁判id
     TrialRader: '请选择', //裁判等级
+    TrialRaderThree: '请选择',
+    TrialRaderSix: '请选择', //裁判等级
     bookin: '', //预定完场地返回参数
     bookinTwo: '', //另一个
     siteid: '', //预定的哪个场馆的id
@@ -140,35 +161,85 @@ Page({
     modeThree: '请选择', //运动模式名称
     modeNumThree: '', //运动模式Id
 
+    modeFour: '我是陪练', //运动模式名称
+    modeNumFour: '3', //运动模式Id
+
+    modeFive: '我找陪练', //运动模式名称
+    modeNumFive: '4', //运动模式Id
+
+    modeSix: '竞技模式', //运动模式名称
+    modeNumSix: '2', //运动模式Id
+
     siteidTwo: '', //预定的哪个场馆的id
     siteNameTwo: '请选择', //当前场馆名称
 
-
+    siteidFour: '',
+    siteNameFour: '请选择', //当前场馆名称
+    siteNameFive: '请选择', //当前场馆名称
+    siteNameSix: '请选择', //当前场馆名称
     startTime: '', //开始时间
     startTimerof: '请选择',
+    startTimerofFour: '请选择',
     timer: '', //开始时间段
     timeLen: '无', //时长
     placeMoney: '0', //场地费,
     sumMoney: '0', //真实场地费
-
+    placeMoneyThree: '0',
     startTimeTwo: '请选择', //开始时间
     timerTwo: '', //开始时间段
     timeLenTwo: '无', //时长
     placeMoneyTwo: '0', //场地费
 
     age: '不限',
+    ageThree: '不限',
+    ageFour: '不限',
+    ageFive: '不限',
+    ageSix: '不限',
     refereeFee: 0.00, //裁判费
+    refereeFeeThree: '0',
+    refereeFeeSix: '0',
     sex: '不限', //性别
+    sexThree: '不限', //性别
+    sexSix: '不限', //性别
+    sexFour: '不限', //性别
+    sexFive: '不限', //性别
     rank: '不限', //级别
+    rankThree: '不限', //级别
+    rankFour: '不限', //级别
+    rankFive: '不限', //级别
+    rankSix: '不限', //级别
     numB: [], //b能参加人数
     numA: [], //a能参加人数
     numC: [], //a能参加人数
+
+    numBThree: [], //b能参加人数
+    numAThree: [], //a能参加人数
+    numCThree: [], //a能参加人数
+
+
+    numBFour: [], //b能参加人数
+    numAFour: [], //a能参加人数
+    numCFour: [], //a能参加人数
+
+    numBFive: [], //b能参加人数
+    numAFive: [], //a能参加人数
+    numCFive: [], //a能参加人数
+
     mineDetail: [], //本人信息
     team: 0,
     indexTeam: 0,
     umpire: [], //裁判人数
+    umpireSix: [], //裁判人数
+    umpireThree: [],
     shouldered: 'AA',
+    shoulderedThree: 'AA',
+    shoulderedFour: 'AA',
+    shoulderedFive: 'AA',
+    shoulderedSix: '输方买单',
     tips: '', //打赏费
+    tipsThree: '', //打赏费
+    tipsFour: '', //陪练费
+    tipsFive: '', //陪练费
     comments: '', //备注
     venueid: '', //场地号
     venueidTwo: '',
@@ -176,6 +247,8 @@ Page({
     breakupTwo: [],
     refereegrade: '', //裁判等级
     commentsTwo: '',
+    commentsFour: '',
+    commentsFive: '',
     cf: true,
     sportLeve: '', //发布者等级运动项目
     textKOp: '',
@@ -186,6 +259,11 @@ Page({
     SiteSumMoney: '0',
     bannerTop: '', //banner图
     displayTxt: [],
+    displayTxtTwo: [],
+    displayTxtThree: [],
+    displayTxtFour: [],
+    displayTxtFive: [],
+    displayTxtSix: []
   },
 
   /**
@@ -224,6 +302,13 @@ Page({
     }
   },
   onLoad: function (options) {
+    if (options.indexSw != undefined) {
+      this.setData({
+        indexSw: options.indexSw
+      })
+    }
+
+
 
     util.request("/api/getActivityBanner", {
         mylat: wx.getStorageSync('lat'),
@@ -268,15 +353,42 @@ Page({
         data: 0,
       })
     }
+    if (wx.getStorageSync('TrialPickerFSix') == '') {
+      wx.setStorage({
+        key: 'TrialPickerFSix',
+        data: 0,
+      })
+    }
+
     if (wx.getStorageSync('TrialRaderF') == '') {
       this.setData({
         refereegrade: '',
         TrialRader: '请选择'
       })
     }
+    if (wx.getStorageSync('TrialRaderFThree') == '') {
+      this.setData({
+        refereegradeThree: '',
+        TrialRaderThree: '请选择'
+      })
+    }
+
+    if (wx.getStorageSync('TrialRaderFSix') == '') {
+      this.setData({
+        refereegradeSix: '',
+        TrialRaderSix: '请选择'
+      })
+    }
     if (wx.getStorageSync('shoulderedF') == '') {
       wx.setStorage({
         key: 'shoulderedF',
+        data: 'AA',
+      })
+    }
+
+    if (wx.getStorageSync('shoulderedFThree') == '') {
+      wx.setStorage({
+        key: 'shoulderedFThree',
         data: 'AA',
       })
     }
@@ -287,9 +399,58 @@ Page({
         data: '不限',
       })
     }
+    if (wx.getStorageSync('sexFThree') == '') {
+      wx.setStorage({
+        key: 'sexFThree',
+        data: '不限',
+      })
+    }
+
+    if (wx.getStorageSync('sexFFour') == '') {
+      wx.setStorage({
+        key: 'sexFFour',
+        data: '不限',
+      })
+    }
+    if (wx.getStorageSync('sexFFive') == '') {
+      wx.setStorage({
+        key: 'sexFFive',
+        data: '不限',
+      })
+    }
+    if (wx.getStorageSync('sexFSix') == '') {
+      wx.setStorage({
+        key: 'sexFSix',
+        data: '不限',
+      })
+    }
     if (wx.getStorageSync('ageF') == '') {
       wx.setStorage({
         key: 'ageF',
+        data: '不限',
+      })
+    }
+    if (wx.getStorageSync('ageFThree') == '') {
+      wx.setStorage({
+        key: 'ageFThree',
+        data: '不限',
+      })
+    }
+    if (wx.getStorageSync('ageFFour') == '') {
+      wx.setStorage({
+        key: 'ageFFour',
+        data: '不限',
+      })
+    }
+    if (wx.getStorageSync('ageFFive') == '') {
+      wx.setStorage({
+        key: 'ageFFive',
+        data: '不限',
+      })
+    }
+    if (wx.getStorageSync('ageFSix') == '') {
+      wx.setStorage({
+        key: 'ageFSix',
         data: '不限',
       })
     }
@@ -300,6 +461,30 @@ Page({
       })
     }
 
+    if (wx.getStorageSync('rankFThree') == '') {
+      wx.setStorage({
+        key: 'rankFThree',
+        data: '不限',
+      })
+    }
+    if (wx.getStorageSync('rankFFour') == '') {
+      wx.setStorage({
+        key: 'rankFFour',
+        data: '不限',
+      })
+    }
+    if (wx.getStorageSync('rankFFive') == '') {
+      wx.setStorage({
+        key: 'rankFFive',
+        data: '不限',
+      })
+    }
+    if (wx.getStorageSync('rankFSix') == '') {
+      wx.setStorage({
+        key: 'rankFSix',
+        data: '不限',
+      })
+    }
     this.setData({
       sportId: wx.getStorageSync('sportIdF'),
       sportType: wx.getStorageSync('sportTypeF'),
@@ -313,22 +498,57 @@ Page({
       sportTypeTwo: wx.getStorageSync('sportTypeFTwo'),
       sportNameTwo: wx.getStorageSync('sportNameFTwo'),
       sportypeNameTwo: wx.getStorageSync('sportypeNameFTwo'),
+      sportIdFour: wx.getStorageSync('sportIdFFour'),
+      sportTypeFour: wx.getStorageSync('sportTypeFFour'),
+      sportNameFour: wx.getStorageSync('sportNameFFour'),
+      sportypeNameFour: wx.getStorageSync('sportypeNameFFour'),
+      sportIdFive: wx.getStorageSync('sportIdFFive'),
+      sportTypeFive: wx.getStorageSync('sportTypeFFive'),
+      sportNameFive: wx.getStorageSync('sportNameFFive'),
+      sportypeNameFive: wx.getStorageSync('sportypeNameFFive'),
+      sportIdSix: wx.getStorageSync('sportIdFSix'),
+      sportTypeSix: wx.getStorageSync('sportTypeFSix'),
+      sportNameSix: wx.getStorageSync('sportNameFSix'),
+      sportypeNameSix: wx.getStorageSync('sportypeNameFSix'),
       sex: wx.getStorageSync('sexF'),
+      sexThree: wx.getStorageSync('sexFThree'),
+      sexFour: wx.getStorageSync('sexFFour'),
+      sexFive: wx.getStorageSync('sexFFive'),
+      sexSix: wx.getStorageSync('sexFSix'),
       age: wx.getStorageSync('ageF'),
+      ageThree: wx.getStorageSync('ageFThree'),
+      ageFour: wx.getStorageSync('ageFFour'),
+      ageFive: wx.getStorageSync('ageFFive'),
+      ageSix: wx.getStorageSync('ageFSix'),
       rank: wx.getStorageSync('rankF'),
+      rankThree: wx.getStorageSync('rankFThree'),
+      rankFour: wx.getStorageSync('rankFFour'),
+      rankFive: wx.getStorageSync('rankFFive'),
+      rankSix: wx.getStorageSync('rankFSIx'),
       TrialNum: this.data.TrialArray[wx.getStorageSync('TrialPickerF')].name == undefined ? '' : this.data.TrialArray[wx.getStorageSync('TrialPickerF')].name,
       Trial: wx.getStorageSync('TrialPickerF'),
-      TrialNumThree: this.data.TrialArray[wx.getStorageSync('TrialPickerFThree')].name == undefined ? '' : this.data.TrialArray[wx.getStorageSync('TrialPickerFThree')].name,
-      TrialThree: wx.getStorageSync('TrialPickerFThree'),
       refereegrade: wx.getStorageSync('TrialRaderF'),
       TrialRader: wx.getStorageSync('TrialRaderF') == '' ? '请选择' : wx.getStorageSync('TrialRaderF'),
+
+      TrialNumThree: this.data.TrialArray[wx.getStorageSync('TrialPickerFThree')].name == undefined ? '' : this.data.TrialArray[wx.getStorageSync('TrialPickerFThree')].name,
+      TrialThree: wx.getStorageSync('TrialPickerFThree'),
+      refereegradeThree: wx.getStorageSync('TrialRaderFThree'),
+      TrialRaderThree: wx.getStorageSync('TrialRaderFThree') == '' ? '请选择' : wx.getStorageSync('TrialRaderFThree'),
+      TrialNumSix: this.data.TrialArray[wx.getStorageSync('TrialPickerFSix')].name == undefined ? '' : this.data.TrialArray[wx.getStorageSync('TrialPickerFSix')].name,
+      TrialSix: wx.getStorageSync('TrialPickerFSix'),
+      refereegradeSix: wx.getStorageSync('TrialRaderFSix'),
+      TrialRaderSix: wx.getStorageSync('TrialRaderFSix') == '' ? '请选择' : wx.getStorageSync('TrialRaderFSix'),
+
+
       shouldered: wx.getStorageSync('shoulderedF'),
-      comments: wx.getStorageSync('commentsF')
+      shoulderedThree: wx.getStorageSync('shoulderedFThree'),
+      comments: wx.getStorageSync('commentsF'),
+      commentsFour: wx.getStorageSync('commentsFFour'),
+      commentsFive: wx.getStorageSync('commentsFFive')
     })
-    if(this.data.indexSw!='2'){
-      this.onKO()
-    }
-    
+
+
+
 
     if (wx.getStorageSync('sportTypeF') == 5) {
       this.setData({
@@ -432,6 +652,52 @@ Page({
         commentsTwo: wx.getStorageSync('commentsFTwo')
       })
     }
+
+    let idgoFour = wx.getStorageSync('sportIdFFour')
+    if (idgoFour == 1 || idgoFour == 2 || idgoFour == 7) {
+      this.setData({
+        commentsFour: '球，球拍各参与者均须自备'
+      })
+    } else if (idgoFour == 4) {
+      this.setData({
+        commentsFour: '发布者带篮球'
+      })
+    } else if (idgoFour == 5) {
+      this.setData({
+        commentsFour: '发布者带足球'
+      })
+    } else if (idgoFour == 6) {
+      this.setData({
+        commentsFour: '发布者带排球'
+      })
+    } else {
+      this.setData({
+        commentsFour: wx.getStorageSync('commentsFFour')
+      })
+    }
+
+    let idgoFive = wx.getStorageSync('sportIdFFive')
+    if (idgoFive == 1 || idgoFive == 2 || idgoFive == 7) {
+      this.setData({
+        commentsFive: '球，球拍各参与者均须自备'
+      })
+    } else if (idgoFour == 4) {
+      this.setData({
+        commentsFive: '发布者带篮球'
+      })
+    } else if (idgoFive == 5) {
+      this.setData({
+        commentsFive: '发布者带足球'
+      })
+    } else if (idgoFive == 6) {
+      this.setData({
+        commentsFive: '发布者带排球'
+      })
+    } else {
+      this.setData({
+        commentsFive: wx.getStorageSync('commentsFFive')
+      })
+    }
     wx.hideLoading()
 
   },
@@ -445,6 +711,9 @@ Page({
     this.setData({
       indexSw: e.currentTarget.dataset.index
     })
+    this.onKO()
+
+
   },
   sportsList: function () {
     wx.navigateTo({
@@ -454,10 +723,26 @@ Page({
       uuidArr: [],
       umpire: []
     })
-    if(this.data.indexSw!='2'){
-      this.onKO()
-    }
-    
+    this.onKO()
+  },
+
+  sportsListSix: function () {
+    wx.navigateTo({
+      url: "/pages/sportsList/sportsList?flag=6"
+    })
+    this.setData({
+      uuidArrSix: [],
+      umpireSix: []
+    })
+    this.onKO()
+  },
+
+  sportsListFive: function () {
+    wx.navigateTo({
+      url: "/pages/sportsList/sportsList?flag=5"
+    })
+
+
   },
 
   sportsListTwo: function () {
@@ -470,6 +755,14 @@ Page({
     wx.navigateTo({
       url: "/pages/sportsList/sportsList?flag=3"
     })
+
+  },
+
+  sportsListFour: function () {
+    wx.navigateTo({
+      url: "/pages/sportsList/sportsList?flag=4"
+    })
+
   },
 
   pickerTap: function () {
@@ -487,7 +780,6 @@ Page({
     }
   },
   pickerTapThree: function () {
-    console.log(8585)
     if (this.data.sportypeNameThree == '') {
       wx.showToast({
         title: '请选择运动项目',
@@ -501,6 +793,8 @@ Page({
       })
     }
   },
+
+
 
   preferences: function () {
     wx.navigateTo({
@@ -570,7 +864,8 @@ Page({
         data: Number(e.detail.value) + 1,
       })
     }
-    if (this.data.array[e.detail.value].name === '我找陪练' || this.data.array[e.detail.value].name === '我是陪练') {
+    if (this.data.array[e.detail.value].name === '我找陪练' || this.data.array[e.detail.value].name === '我是陪练' && this.data.tips == '') {
+
       util.request("/api/getAccmoney", {
           'grade': '4',
           'CityName': wx.getStorageSync('cityInfo'),
@@ -624,7 +919,7 @@ Page({
         modeThree: this.data.arrayLanThree[e.detail.value].name,
         modeNumThree: Number(e.detail.value) + 1,
       })
-     
+
       if (this.data.arrayLanThree[e.detail.value].name != '竞技模式') {
         this.setData({
           TrialNumThree: '0人',
@@ -642,7 +937,7 @@ Page({
         data: Number(e.detail.value) + 1,
       })
     }
-  
+
   },
 
 
@@ -671,6 +966,29 @@ Page({
     }
     this.setData({
       umpire: arr1
+    })
+  },
+
+  TrialPickerSix: function (e) {
+    this.setData({
+      TrialNumSix: this.data.TrialArray[e.detail.value].name,
+      TrialSix: e.detail.value
+    })
+    wx.setStorage({
+      key: 'TrialPickerFSix',
+      data: e.detail.value,
+    })
+
+    let TrialNumSix = e.detail.value
+    let arr1 = []
+    for (var j = 0; j < TrialNumSix; j++) {
+      let obj = {
+        name: '报名'
+      }
+      arr1.push(obj)
+    }
+    this.setData({
+      umpireSix: arr1
     })
   },
 
@@ -735,6 +1053,78 @@ Page({
     })
   },
 
+  TrialRaderThree: function (e) {
+    this.setData({
+      refereegrade: this.data.TrialRaderArr[e.detail.value].name
+    })
+    wx.setStorage({
+      key: 'TrialRaderFThree',
+      data: this.data.TrialRaderArr[e.detail.value].name,
+    })
+
+    util.request("/api/getcaipanf", {
+        'name': this.data.TrialRaderArr[e.detail.value].name,
+        'sportid': this.data.sportIdThree,
+        'number': Number(this.data.TrialNumThree.slice(0, 1)),
+        'duration': parseFloat(this.data.timeLenThree)
+      }, "post",
+      (res) => {
+        this.setData({
+          refereeFeeThree: res.data.data
+        })
+        wx.setStorage({
+          key: 'refereeFeeThree',
+          data: res.data.data,
+        })
+
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
+    this.setData({
+      TrialRaderThree: this.data.TrialRaderArr[e.detail.value].name
+    })
+  },
+
+  TrialRaderSix: function (e) {
+    this.setData({
+      refereegradeSix: this.data.TrialRaderArr[e.detail.value].name
+    })
+    wx.setStorage({
+      key: 'TrialRaderFSix',
+      data: this.data.TrialRaderArr[e.detail.value].name,
+    })
+
+    util.request("/api/getcaipanf", {
+        'name': this.data.TrialRaderArr[e.detail.value].name,
+        'sportid': this.data.sportIdSix,
+        'number': Number(this.data.TrialNumSix.slice(0, 1)),
+        'duration': parseFloat(this.data.timeLenSix)
+      }, "post",
+      (res) => {
+        this.setData({
+          refereeFeeSix: res.data.data
+        })
+        wx.setStorage({
+          key: 'refereeFeeSix',
+          data: res.data.data,
+        })
+
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
+    this.setData({
+      TrialRaderSix: this.data.TrialRaderArr[e.detail.value].name
+    })
+  },
+
+
+
   bindPickerAge: function (e) {
     if ((e.detail.value[0] + 9) > (e.detail.value[1] + 9)) {
       wx.showToast({
@@ -778,6 +1168,185 @@ Page({
     }
 
   },
+
+
+  bindPickerAgeThree: function (e) {
+    if ((e.detail.value[0] + 9) > (e.detail.value[1] + 9)) {
+      wx.showToast({
+        title: '最小年龄不能高于最大年龄',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if ((e.detail.value[0] + 9) == 9 && (e.detail.value[1] + 9) == 9) {
+      this.setData({
+        ageThree: '不限'
+      })
+      wx.setStorage({
+        key: 'ageFThree',
+        data: '不限',
+      })
+    } else if ((e.detail.value[0] + 9) == 10 && (e.detail.value[1] + 9) !== 70) {
+      this.setData({
+        ageThree: 10 + '-' + (e.detail.value[1] + 9) + '岁'
+      })
+      wx.setStorage({
+        key: 'ageFThree',
+        data: 10 + '-' + (e.detail.value[1] + 9) + '岁',
+      })
+    } else if (e.detail.value[0] !== 10 && e.detail.value[1] == 70) {
+      this.setData({
+        ageThree: (e.detail.value[0] + 9) + '-' + 70 + '岁'
+      })
+      wx.setStorage({
+        key: 'ageFThree',
+        data: (e.detail.value[0] + 9) + '-' + 70 + '岁',
+      })
+    } else {
+      this.setData({
+        ageThree: (e.detail.value[0] + 9) + '-' + (e.detail.value[1] + 9) + '岁'
+      })
+      wx.setStorage({
+        key: 'ageFThree',
+        data: (e.detail.value[0] + 9) + '-' + (e.detail.value[1] + 9) + '岁',
+      })
+    }
+
+  },
+
+
+  bindPickerAgeFour: function (e) {
+    if ((e.detail.value[0] + 9) > (e.detail.value[1] + 9)) {
+      wx.showToast({
+        title: '最小年龄不能高于最大年龄',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if ((e.detail.value[0] + 9) == 9 && (e.detail.value[1] + 9) == 9) {
+      this.setData({
+        ageFour: '不限'
+      })
+      wx.setStorage({
+        key: 'ageFFour',
+        data: '不限',
+      })
+    } else if ((e.detail.value[0] + 9) == 10 && (e.detail.value[1] + 9) !== 70) {
+      this.setData({
+        ageFour: 10 + '-' + (e.detail.value[1] + 9) + '岁'
+      })
+      wx.setStorage({
+        key: 'ageFFour',
+        data: 10 + '-' + (e.detail.value[1] + 9) + '岁',
+      })
+    } else if (e.detail.value[0] !== 10 && e.detail.value[1] == 70) {
+      this.setData({
+        ageFour: (e.detail.value[0] + 9) + '-' + 70 + '岁'
+      })
+      wx.setStorage({
+        key: 'ageFFour',
+        data: (e.detail.value[0] + 9) + '-' + 70 + '岁',
+      })
+    } else {
+      this.setData({
+        ageFour: (e.detail.value[0] + 9) + '-' + (e.detail.value[1] + 9) + '岁'
+      })
+      wx.setStorage({
+        key: 'ageFFour',
+        data: (e.detail.value[0] + 9) + '-' + (e.detail.value[1] + 9) + '岁',
+      })
+    }
+  },
+
+
+  bindPickerAgeFive: function (e) {
+    if ((e.detail.value[0] + 9) > (e.detail.value[1] + 9)) {
+      wx.showToast({
+        title: '最小年龄不能高于最大年龄',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if ((e.detail.value[0] + 9) == 9 && (e.detail.value[1] + 9) == 9) {
+      this.setData({
+        ageFive: '不限'
+      })
+      wx.setStorage({
+        key: 'ageFFive',
+        data: '不限',
+      })
+    } else if ((e.detail.value[0] + 9) == 10 && (e.detail.value[1] + 9) !== 70) {
+      this.setData({
+        ageFive: 10 + '-' + (e.detail.value[1] + 9) + '岁'
+      })
+      wx.setStorage({
+        key: 'ageFFive',
+        data: 10 + '-' + (e.detail.value[1] + 9) + '岁',
+      })
+    } else if (e.detail.value[0] !== 10 && e.detail.value[1] == 70) {
+      this.setData({
+        ageFive: (e.detail.value[0] + 9) + '-' + 70 + '岁'
+      })
+      wx.setStorage({
+        key: 'ageFFive',
+        data: (e.detail.value[0] + 9) + '-' + 70 + '岁',
+      })
+    } else {
+      this.setData({
+        ageFive: (e.detail.value[0] + 9) + '-' + (e.detail.value[1] + 9) + '岁'
+      })
+      wx.setStorage({
+        key: 'ageFFvie',
+        data: (e.detail.value[0] + 9) + '-' + (e.detail.value[1] + 9) + '岁',
+      })
+    }
+  },
+
+  bindPickerAgeSix: function (e) {
+    if ((e.detail.value[0] + 9) > (e.detail.value[1] + 9)) {
+      wx.showToast({
+        title: '最小年龄不能高于最大年龄',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if ((e.detail.value[0] + 9) == 9 && (e.detail.value[1] + 9) == 9) {
+      this.setData({
+        ageSix: '不限'
+      })
+      wx.setStorage({
+        key: 'ageFSix',
+        data: '不限',
+      })
+    } else if ((e.detail.value[0] + 9) == 10 && (e.detail.value[1] + 9) !== 70) {
+      this.setData({
+        ageSix: 10 + '-' + (e.detail.value[1] + 9) + '岁'
+      })
+      wx.setStorage({
+        key: 'ageFSix',
+        data: 10 + '-' + (e.detail.value[1] + 9) + '岁',
+      })
+    } else if (e.detail.value[0] !== 10 && e.detail.value[1] == 70) {
+      this.setData({
+        ageSix: (e.detail.value[0] + 9) + '-' + 70 + '岁'
+      })
+      wx.setStorage({
+        key: 'ageFSix',
+        data: (e.detail.value[0] + 9) + '-' + 70 + '岁',
+      })
+    } else {
+      this.setData({
+        ageSix: (e.detail.value[0] + 9) + '-' + (e.detail.value[1] + 9) + '岁'
+      })
+      wx.setStorage({
+        key: 'ageFSix',
+        data: (e.detail.value[0] + 9) + '-' + (e.detail.value[1] + 9) + '岁',
+      })
+    }
+
+  },
+
+
   bindPickerShouldered: function (e) {
     if (this.data.modeNum == '') {
       wx.showToast({
@@ -789,6 +1358,21 @@ Page({
     } else {
       this.setData({
         shouldered: this.data.shoulderedArr[e.detail.value].name
+      })
+    }
+
+  },
+  bindPickerShoulderedThree: function (e) {
+    if (this.data.modeNumThree == '') {
+      wx.showToast({
+        title: '请选择运动模式',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else {
+      this.setData({
+        shoulderedThree: this.data.shoulderedArr[e.detail.value].name
       })
     }
 
@@ -833,14 +1417,128 @@ Page({
     }
   },
 
-  bindPickerSex: function (e) {
+  venuesThree: function (e) {
+    if (e.currentTarget.dataset == undefined) {
+      wx.showToast({
+        title: '请选择运动项目',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
 
+    } else if (this.data.modeThree == '请选择') {
+      wx.showToast({
+        title: '请选择运动模式',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else {
+      wx.navigateTo({
+        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=2'
+      })
+    }
+  },
+
+  venuesFour: function (e) {
+    if (e.currentTarget.dataset == undefined) {
+      wx.showToast({
+        title: '请选择运动项目',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+
+    } else {
+      wx.navigateTo({
+        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=3'
+      })
+    }
+  },
+  venuesFive: function (e) {
+    if (e.currentTarget.dataset == undefined) {
+      wx.showToast({
+        title: '请选择运动项目',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+
+    } else {
+      wx.navigateTo({
+        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=4'
+      })
+    }
+  },
+
+  venuesSix: function (e) {
+    if (e.currentTarget.dataset == undefined) {
+      wx.showToast({
+        title: '请选择运动项目',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else {
+      wx.navigateTo({
+        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=5'
+      })
+    }
+  },
+
+
+  bindPickerSex: function (e) {
     this.setData({
       sex: this.data.sexArr[e.detail.value].name
     })
     let ko = this.data.sexArr[e.detail.value].name
     wx.setStorage({
       key: 'sexF',
+      data: ko,
+    })
+  },
+
+  bindPickerSexThree: function (e) {
+    this.setData({
+      sexThree: this.data.sexArr[e.detail.value].name
+    })
+    let ko = this.data.sexArr[e.detail.value].name
+    wx.setStorage({
+      key: 'sexFThree',
+      data: ko,
+    })
+  },
+
+  bindPickerSexFour: function (e) {
+    this.setData({
+      sexFour: this.data.sexArr[e.detail.value].name
+    })
+    let ko = this.data.sexArr[e.detail.value].name
+    wx.setStorage({
+      key: 'sexFFour',
+      data: ko,
+    })
+  },
+
+  bindPickerSexFive: function (e) {
+    this.setData({
+      sexFive: this.data.sexArr[e.detail.value].name
+    })
+    let ko = this.data.sexArr[e.detail.value].name
+    wx.setStorage({
+      key: 'sexFFive',
+      data: ko,
+    })
+  },
+
+
+  bindPickerSexSix: function (e) {
+    this.setData({
+      sexSix: this.data.sexArr[e.detail.value].name
+    })
+    let ko = this.data.sexArr[e.detail.value].name
+    wx.setStorage({
+      key: 'sexFSix',
       data: ko,
     })
   },
@@ -873,11 +1571,11 @@ Page({
 
     } else if (e.detail.value[0] !== 0 && e.detail.value[1] == 0) {
       this.setData({
-        rank: e.detail.value[0] + '-' + 10 + '级'
+        rank: e.detail.value[0] + '-' + 15 + '级'
       })
       wx.setStorage({
         key: 'rankF',
-        data: e.detail.value[0] + '-' + 10 + '级',
+        data: e.detail.value[0] + '-' + 15 + '级',
       })
     } else {
       this.setData({
@@ -888,9 +1586,192 @@ Page({
         data: e.detail.value[0] + '-' + e.detail.value[1] + '级',
       })
     }
-
-
   },
+
+
+  bindPickerRankThree: function (e) {
+    if (e.detail.value[0] > e.detail.value[1] && e.detail.value[1] !== 0) {
+      wx.showToast({
+        title: '最小级别不能高于最大级别',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (e.detail.value[0] == 0 && e.detail.value[1] == 0) {
+      this.setData({
+        rankThree: '不限'
+      })
+      wx.setStorage({
+        key: 'rankFThree',
+        data: '不限',
+      })
+    } else if (e.detail.value[0] == 0 && e.detail.value[1] !== 0) {
+      this.setData({
+        rankThree: 1 + '-' + e.detail.value[1] + '级'
+      })
+      wx.setStorage({
+        key: 'rankFThree',
+        data: 1 + '-' + e.detail.value[1] + '级',
+      })
+
+    } else if (e.detail.value[0] !== 0 && e.detail.value[1] == 0) {
+      this.setData({
+        rankThree: e.detail.value[0] + '-' + 15 + '级'
+      })
+      wx.setStorage({
+        key: 'rankFThree',
+        data: e.detail.value[0] + '-' + 15 + '级',
+      })
+    } else {
+      this.setData({
+        rankThree: e.detail.value[0] + '-' + e.detail.value[1] + '级'
+      })
+      wx.setStorage({
+        key: 'rankFThree',
+        data: e.detail.value[0] + '-' + e.detail.value[1] + '级',
+      })
+    }
+  },
+
+
+
+
+  bindPickerRankFour: function (e) {
+    if (e.detail.value[0] > e.detail.value[1] && e.detail.value[1] !== 0) {
+      wx.showToast({
+        title: '最小级别不能高于最大级别',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (e.detail.value[0] == 0 && e.detail.value[1] == 0) {
+      this.setData({
+        rankFour: '不限'
+      })
+      wx.setStorage({
+        key: 'rankFFour',
+        data: '不限',
+      })
+    } else if (e.detail.value[0] == 0 && e.detail.value[1] !== 0) {
+      this.setData({
+        rankFour: 1 + '-' + e.detail.value[1] + '级'
+      })
+      wx.setStorage({
+        key: 'rankFFour',
+        data: 1 + '-' + e.detail.value[1] + '级',
+      })
+
+    } else if (e.detail.value[0] !== 0 && e.detail.value[1] == 0) {
+      this.setData({
+        rankFour: e.detail.value[0] + '-' + 15 + '级'
+      })
+      wx.setStorage({
+        key: 'rankFFour',
+        data: e.detail.value[0] + '-' + 15 + '级',
+      })
+    } else {
+      this.setData({
+        rankFour: e.detail.value[0] + '-' + e.detail.value[1] + '级'
+      })
+      wx.setStorage({
+        key: 'rankFFour',
+        data: e.detail.value[0] + '-' + e.detail.value[1] + '级',
+      })
+    }
+  },
+
+
+  bindPickerRankFive: function (e) {
+    if (e.detail.value[0] > e.detail.value[1] && e.detail.value[1] !== 0) {
+      wx.showToast({
+        title: '最小级别不能高于最大级别',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (e.detail.value[0] == 0 && e.detail.value[1] == 0) {
+      this.setData({
+        rankFive: '不限'
+      })
+      wx.setStorage({
+        key: 'rankFFive',
+        data: '不限',
+      })
+    } else if (e.detail.value[0] == 0 && e.detail.value[1] !== 0) {
+      this.setData({
+        rankFive: 1 + '-' + e.detail.value[1] + '级'
+      })
+      wx.setStorage({
+        key: 'rankFFive',
+        data: 1 + '-' + e.detail.value[1] + '级',
+      })
+
+    } else if (e.detail.value[0] !== 0 && e.detail.value[1] == 0) {
+      this.setData({
+        rankFive: e.detail.value[0] + '-' + 15 + '级'
+      })
+      wx.setStorage({
+        key: 'rankFFive',
+        data: e.detail.value[0] + '-' + 15 + '级',
+      })
+    } else {
+      this.setData({
+        rankFive: e.detail.value[0] + '-' + e.detail.value[1] + '级'
+      })
+      wx.setStorage({
+        key: 'rankFFive',
+        data: e.detail.value[0] + '-' + e.detail.value[1] + '级',
+      })
+    }
+  },
+
+
+  bindPickerRankSix: function (e) {
+    if (e.detail.value[0] > e.detail.value[1] && e.detail.value[1] !== 0) {
+      wx.showToast({
+        title: '最小级别不能高于最大级别',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (e.detail.value[0] == 0 && e.detail.value[1] == 0) {
+      this.setData({
+        rankSix: '不限'
+      })
+      wx.setStorage({
+        key: 'rankFSix',
+        data: '不限',
+      })
+    } else if (e.detail.value[0] == 0 && e.detail.value[1] !== 0) {
+      this.setData({
+        rankSix: 1 + '-' + e.detail.value[1] + '级'
+      })
+      wx.setStorage({
+        key: 'rankFSix',
+        data: 1 + '-' + e.detail.value[1] + '级',
+      })
+
+    } else if (e.detail.value[0] !== 0 && e.detail.value[1] == 0) {
+      this.setData({
+        rankSix: e.detail.value[0] + '-' + 15 + '级'
+      })
+      wx.setStorage({
+        key: 'rankFSix',
+        data: e.detail.value[0] + '-' + 15 + '级',
+      })
+    } else {
+      this.setData({
+        rankSix: e.detail.value[0] + '-' + e.detail.value[1] + '级'
+      })
+      wx.setStorage({
+        key: 'rankFSix',
+        data: e.detail.value[0] + '-' + e.detail.value[1] + '级',
+      })
+    }
+  },
+
+
+
   startDateTime: function (e) {
     if (this.data.siteid == '') {
       wx.showToast({
@@ -921,6 +1802,317 @@ Page({
     }
   },
 
+  startDateTimeThree: function (e) {
+    if (this.data.siteidThree == '') {
+      wx.showToast({
+        title: '请选择运动场馆',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdThree + '&sporttype=' + this.data.sportTypeThree + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flag=1' + '&flagTwo=1' + '&hood=3',
+      })
+    }
+  },
+
+  startDateTimeFour: function (e) {
+    if (this.data.siteidFour == '') {
+      wx.showToast({
+        title: '请选择运动场馆',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdFour + '&sporttype=' + this.data.sportTypeFour + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flag=1' + '&flagTwo=1' + '&hood=4',
+      })
+    }
+  },
+
+  startDateTimeFive: function (e) {
+    if (this.data.siteidFive == '') {
+      wx.showToast({
+        title: '请选择运动场馆',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdFive + '&sporttype=' + this.data.sportTypeFive + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flag=1' + '&flagTwo=1' + '&hood=5',
+      })
+    }
+  },
+  startDateTimeSix: function (e) {
+    if (this.data.siteidSix == '') {
+      wx.showToast({
+        title: '请选择运动场馆',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdSix + '&sporttype=' + this.data.sportTypeSix + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flag=1' + '&flagTwo=1' + '&hood=6',
+      })
+    }
+  },
+
+
+  //我是陪练
+  releaseFour: function () {
+    let {
+      sportIdFour,
+      sportTypeFour,
+      modeNumFour,
+      siteidFour,
+      timeLenFour,
+      placeMoneyFour,
+      shoulderedFour,
+      ageFour,
+      sexFour,
+      rankFour,
+      tipsFour,
+      commentsFour,
+      numAFour,
+      numBFour,
+      numCFour,
+      venueidFour,
+      startTimeFour,
+      timerFour,
+      siteNameFour,
+      sumMoneyFour
+    } = this.data
+    let numArr = []
+    let numBrr = []
+    let numCrr = []
+    for (let i in numAFour) {
+      if (numAFour[i].uuid != undefined) {
+        let ko = {
+          team: 1,
+          uuid: numAFour[i].uuid
+        }
+        numArr.push(ko)
+      }
+    }
+    for (let i in numBFour) {
+      if (numBFour[i].uuid != undefined) {
+        let ko = {
+          team: 2,
+          uuid: numBFour[i].uuid
+        }
+        numBrr.push(ko)
+      }
+    }
+    for (let i in numCFour) {
+      if (numCFour[i].uuid != undefined) {
+        let ko = {
+          team: 2,
+          uuid: numCFour[i].uuid
+        }
+        numCrr.push(ko)
+      }
+    }
+
+    if (sportIdFour == '') {
+      wx.showToast({
+        title: '请选择运动项目',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (modeNumFour == '') {
+      wx.showToast({
+        title: '请选择运动模式',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (siteidFour == '') {
+      wx.showToast({
+        title: '请选择运动场馆',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (startTimeFour == '') {
+      wx.showToast({
+        title: '请选择开始时间',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else {
+      let obj = {
+        sportid: sportIdFour,
+        sportType: sportTypeFour,
+        SportMode: modeNumFour,
+        siteUid: siteidFour,
+        StartTime: startTimeFour + ' ' + timerFour,
+        PlayTime: parseFloat(timeLenFour),
+        SiteMoney: placeMoneyFour,
+        PaySiteMoneyType: shoulderedFour == 'AA' ? 1 : 2,
+        teamSex: sexFour == '男' ? '0' : '' || sexFour == '不限' ? '2' : '' || sexFour == '女' ? '1' : '',
+        LevelMax: rankFour == '不限' ? '15' : parseFloat(rankFour.split('-')[1]),
+        LevelMin: rankFour == '不限' ? '1' : parseFloat(rankFour.split('-')[0]),
+        Tips: 0,
+        Reward: 0,
+        Accompany: tipsFour,
+        comments: commentsFour,
+        member: [...numArr, ...numBrr, ...numCrr],
+        MoneyPerhour: '',
+        venueid: venueidFour,
+        refereefee: 0,
+        RefereeNumber: 0,
+        Refereegrade: 0,
+        number: numAFour.length + numBFour.length + numCFour.length,
+        isPublisher: 1,
+        Agemin: ageFour == '不限' ? '10' : parseFloat(ageFour.split('-')[0]),
+        Agemax: ageFour == '不限' ? '70' : parseFloat(ageFour.split('-')[1]),
+        SiteSumMoney: sumMoneyFour,
+        name: '我是陪练'
+      }
+
+
+      app.globalData = obj
+      app.deductibles = []
+      app.envelope
+      wx.navigateTo({
+        url: '/generalization/payFor/payFor?look=1',
+      })
+    }
+
+  },
+
+
+  //我找陪练
+  releaseFive: function () {
+    let {
+      sportIdFive,
+      sportTypeFive,
+      modeNumFive,
+      siteidFive,
+      timeLenFive,
+      placeMoneyFive,
+      shoulderedFive,
+      ageFive,
+      sexFive,
+      rankFive,
+      tipsFive,
+      commentsFive,
+      numAFive,
+      numBFive,
+      numCFive,
+      venueidFive,
+      startTimeFive,
+      timerFive,
+      siteNameFive,
+      sumMoneyFive
+    } = this.data
+    let numArr = []
+    let numBrr = []
+    let numCrr = []
+    for (let i in numAFive) {
+      if (numAFive[i].uuid != undefined) {
+        let ko = {
+          team: 1,
+          uuid: numAFive[i].uuid
+        }
+        numArr.push(ko)
+      }
+    }
+    for (let i in numBFive) {
+      if (numBFive[i].uuid != undefined) {
+        let ko = {
+          team: 2,
+          uuid: numBFive[i].uuid
+        }
+        numBrr.push(ko)
+      }
+    }
+    for (let i in numCFive) {
+      if (numCFive[i].uuid != undefined) {
+        let ko = {
+          team: 2,
+          uuid: numCFive[i].uuid
+        }
+        numCrr.push(ko)
+      }
+    }
+
+    if (sportIdFive == '') {
+      wx.showToast({
+        title: '请选择运动项目',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (modeNumFive == '') {
+      wx.showToast({
+        title: '请选择运动模式',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (siteidFive == '') {
+      wx.showToast({
+        title: '请选择运动场馆',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (startTimeFive == '') {
+      wx.showToast({
+        title: '请选择开始时间',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else {
+      let obj = {
+        sportid: sportIdFive,
+        sportType: sportTypeFive,
+        SportMode: modeNumFive,
+        siteUid: siteidFive,
+        StartTime: startTimeFive + ' ' + timerFive,
+        PlayTime: parseFloat(timeLenFive),
+        SiteMoney: placeMoneyFive,
+        PaySiteMoneyType: shoulderedFive == 'AA' ? 1 : 2,
+        teamSex: sexFive == '男' ? '0' : '' || sexFive == '不限' ? '2' : '' || sexFive == '女' ? '1' : '',
+        LevelMax: rankFive == '不限' ? '15' : parseFloat(rankFive.split('-')[1]),
+        LevelMin: rankFive == '不限' ? '1' : parseFloat(rankFive.split('-')[0]),
+        Tips: 0,
+        Reward: 0,
+        Accompany: tipsFive,
+        comments: commentsFive,
+        member: [...numArr, ...numBrr, ...numCrr],
+        MoneyPerhour: '',
+        venueid: venueidFive,
+        refereefee: 0,
+        RefereeNumber: 0,
+        Refereegrade: 0,
+        number: numAFive.length + numBFive.length + numCFive.length,
+        isPublisher: 1,
+        Agemin: ageFive == '不限' ? '10' : parseFloat(ageFive.split('-')[0]),
+        Agemax: ageFive == '不限' ? '70' : parseFloat(ageFive.split('-')[1]),
+        SiteSumMoney: sumMoneyFive,
+        name: '我找陪练'
+      }
+
+
+      console.log(obj)
+      app.globalData = obj
+      app.deductibles = []
+      app.envelope
+      wx.navigateTo({
+        url: '/generalization/payFor/payFor?look=1',
+      })
+    }
+
+  },
 
 
 
@@ -932,8 +2124,21 @@ Page({
   onShow: function () {
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];
+
+    this.setData({
+      displayTxt: [],
+      displayTxtTwo: [],
+      displayTxtThree: [],
+      displayTxtFour: [],
+      displayTxtFive: [],
+      displayTxtSix: []
+
+
+    })
+
+    ///////运动伙伴
     if (wx.getStorageSync('bookin') != '' && wx.getStorageSync('bookin').data[0].placeDate != undefined) {
-      if (wx.getStorageSync('mode') != '娱乐模式' && wx.getStorageSync('mode') != '竞技模式') {
+      if (wx.getStorageSync('mode') != '娱乐模式' && wx.getStorageSync('mode') != '竞技模式' && this.data.tips == '') {
         util.request("/api/getAccmoney", {
             'grade': '4',
             'CityName': wx.getStorageSync('cityInfo'),
@@ -952,6 +2157,7 @@ Page({
           () => {}
         )
       }
+
       let kood = wx.getStorageSync('bookin').data[0].placeDate.slice(5, wx.getStorageSync('bookin').data[0].placeDate.lenght)
       let pmoney = wx.getStorageSync('bookin').data[0].placeMoney.toString()
       if (pmoney.indexOf('.') == -1) {
@@ -973,7 +2179,8 @@ Page({
             type: Number(this.data.indexSw) + 1,
             status: 1,
             referee: wx.getStorageSync('refereeFee'),
-            siteMoney: wx.getStorageSync('bookin').data[0].placeMoney + '.00'
+            siteMoney: wx.getStorageSync('bookin').data[0].placeMoney + '.00',
+            lr: wx.getStorageSync('bookin').data[0].lr
           }, "post",
           (res) => {
             this.setData({
@@ -985,10 +2192,6 @@ Page({
           },
           () => {}
         )
-
-
-
-
       } else {
 
         util.Request("/api/display", {
@@ -996,7 +2199,8 @@ Page({
             type: Number(this.data.indexSw) + 1,
             status: 1,
             referee: wx.getStorageSync('refereeFee'),
-            siteMoney: wx.getStorageSync('bookin').data[0].placeMoney + '.00'
+            siteMoney: wx.getStorageSync('bookin').data[0].placeMoney + '.00',
+            lr: wx.getStorageSync('bookin').data[0].lr
           }, "post",
           (res) => {
             this.setData({
@@ -1022,6 +2226,7 @@ Page({
         }, 500)
       }
 
+
       util.request("/api/getcaipanf", {
           'name': wx.getStorageSync('TrialRaderF'),
           'sportid': this.data.sportId,
@@ -1044,7 +2249,8 @@ Page({
                 type: Number(this.data.indexSw) + 1,
                 status: 1,
                 referee: res.data.data,
-                siteMoney: this.data.placeMoney
+                siteMoney: this.data.placeMoney,
+                lr: wx.getStorageSync('bookin').data[0].lr
               }, "post",
               (res) => {
                 displayTxt: res.data.data
@@ -1073,6 +2279,148 @@ Page({
       })
     }
 
+
+
+
+    ///////组织活动
+
+    if (wx.getStorageSync('bookinThree') != '' && wx.getStorageSync('bookinThree').data[0].placeDate != undefined) {
+      console.log('执行呀')
+
+      let kood = wx.getStorageSync('bookinThree').data[0].placeDate.slice(5, wx.getStorageSync('bookinThree').data[0].placeDate.lenght)
+      let pmoney = wx.getStorageSync('bookinThree').data[0].placeMoney.toString()
+      if (pmoney.indexOf('.') == -1) {
+        setTimeout(() => {
+          this.setData({
+            startTimeThree: wx.getStorageSync('bookinThree').data[0].placeDate,
+            startTimerofThree: kood.replace('-', '月') + '日',
+            timerThree: wx.getStorageSync('bookinThree').data[0].placeTime,
+            timeLenThree: wx.getStorageSync('bookinThree').data[0].placeTimeLen,
+            placeMoneyThree: wx.getStorageSync('bookinThree').data[0].placeMoney + '.00',
+            venueidThree: wx.getStorageSync('bookinThree').data[0].placeNun,
+            sumMoneyThree: wx.getStorageSync('bookinThree').data[0].placeMoneyTwo + '.00',
+            refereeFeeThree: wx.getStorageSync('refereeFeeThree')
+          })
+        }, 500)
+
+        util.Request("/api/display", {
+            SportType: this.data.sportTypeThree,
+            type: Number(this.data.indexSw),
+            status: 1,
+            referee: wx.getStorageSync('refereeFeeThree'),
+            siteMoney: wx.getStorageSync('bookinThree').data[0].placeMoney + '.00',
+            orgPrice: this.data.tipsThree,
+            lr: wx.getStorageSync('bookinThree').data[0].lr
+          }, "post",
+          (res) => {
+            this.setData({
+              displayTxtThree: res.data.data
+            })
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
+      } else {
+
+        util.Request("/api/display", {
+            SportType: this.data.sportTypeThree,
+            type: Number(this.data.indexSw),
+            status: 1,
+            referee: wx.getStorageSync('refereeFeeThree'),
+            siteMoney: wx.getStorageSync('bookinThree').data[0].placeMoney + '.00',
+            orgPrice: this.data.tipsThree,
+            lr: wx.getStorageSync('bookinThree').data[0].lr
+          }, "post",
+          (res) => {
+            this.setData({
+              displayTxtThree: res.data.data
+            })
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
+        setTimeout(() => {
+          this.setData({
+            startTimeThree: wx.getStorageSync('bookinThree').data[0].placeDate,
+            startTimerofThree: kood.replace('-', '月') + '日',
+            timerThree: wx.getStorageSync('bookinThree').data[0].placeTime,
+            timeLenThree: wx.getStorageSync('bookinThree').data[0].placeTimeLen,
+            placeMoneyThree: wx.getStorageSync('bookinThree').data[0].placeMoney,
+            venueidThree: wx.getStorageSync('bookinThree').data[0].placeNun,
+            sumMoneyThree: wx.getStorageSync('bookinThree').data[0].placeMoneyTwo + '.00',
+            refereeFeeThree: wx.getStorageSync('refereeFeeThree')
+          })
+        }, 500)
+      }
+
+
+      util.request("/api/getcaipanf", {
+          'name': wx.getStorageSync('TrialRaderFThree'),
+          'sportid': this.data.sportIdThree,
+          'number': Number(this.data.TrialNumThree.slice(0, 1)),
+          'duration': parseFloat(wx.getStorageSync('bookinThree').data[0].placeTimeLen)
+        }, "post",
+        (res) => {
+          let ref = res.data.data.toString()
+          if (ref.indexOf('.') == -1) {
+            this.setData({
+              refereeFeeThree: res.data.data + '.00'
+            })
+            wx.setStorageSync('refereeFeeThree', res.data.data + '.00')
+          } else {
+            this.setData({
+              refereeFeeThree: res.data.data
+            })
+            util.Request("/api/display", {
+                SportType: this.data.sportTypeThree,
+                type: Number(this.data.indexSw),
+                status: 1,
+                referee: res.data.data,
+                siteMoney: this.data.placeMoneyThree,
+                orgPrice: this.state.tipsThree,
+                lr: wx.getStorageSync('bookinThree').data[0].lr
+              }, "post",
+              (res) => {
+                displayTxtThree: res.data.data
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
+            wx.setStorageSync('refereeFeeThree', res.data.data)
+          }
+        },
+        () => {
+          console.log("失败")
+        },
+        () => {}
+      )
+
+    } else {
+      this.setData({
+        startTimeThree: '', //开始时间
+        startTimerofThree: '请选择',
+        timerThree: '', //开始时间段
+        timeLenThree: '无', //时长
+        placeMoneyThree: '0', //场地费
+      })
+    }
+
+
+
+
+
+
+
+
+
+
+    ////////////仅预订场馆
     if (wx.getStorageSync('bookinTwo') !== '') {
       setTimeout(() => {
         let to = []
@@ -1084,6 +2432,24 @@ Page({
           lp.money = hop[i].split('-')[2]
           to.push(lp)
         }
+        util.Request("/api/display", {
+            SportType: this.data.sportTypeTwo,
+            type: Number(this.data.indexSw) + 2,
+            status: 1,
+            referee: 0,
+            siteMoney: wx.getStorageSync('bookinTwo').data[0].placeMoney + '.00',
+            lr: wx.getStorageSync('bookinTwo').data[0].lr
+          }, "post",
+          (res) => {
+            this.setData({
+              displayTxtTwo: res.data.data
+            })
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
 
         this.setData({
           startTimeTwo: wx.getStorageSync('bookinTwo').data[0].placeDate,
@@ -1109,6 +2475,343 @@ Page({
       })
     }
 
+
+
+
+    ///////我是陪练
+    if (wx.getStorageSync('bookinFour') != '' && wx.getStorageSync('bookinFour').data[0].placeDate != undefined) {
+
+      if (this.data.tipsFour == '') {
+        util.request("/api/getAccmoney", {
+            'grade': '4',
+            'CityName': wx.getStorageSync('cityInfo'),
+            'SportId': this.data.sportIdFour,
+            'PlayTime': parseFloat(wx.getStorageSync('bookinFour').data[0].placeTimeLen),
+            'SiteMoney': wx.getStorageSync('bookinFour').data[0].placeMoney
+          }, "post",
+          (res) => {
+            this.setData({
+              tipsFour: res.data.data
+            })
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
+      }
+
+
+
+      let kood = wx.getStorageSync('bookinFour').data[0].placeDate.slice(5, wx.getStorageSync('bookinFour').data[0].placeDate.lenght)
+      let pmoney = wx.getStorageSync('bookinFour').data[0].placeMoney.toString()
+      if (pmoney.indexOf('.') == -1) {
+        setTimeout(() => {
+          this.setData({
+            startTimeFour: wx.getStorageSync('bookinFour').data[0].placeDate,
+            startTimerofFour: kood.replace('-', '月') + '日',
+            timerFour: wx.getStorageSync('bookinFour').data[0].placeTime,
+            timeLenFour: wx.getStorageSync('bookinFour').data[0].placeTimeLen,
+            placeMoneyFour: wx.getStorageSync('bookinFour').data[0].placeMoney + '.00',
+            venueidFour: wx.getStorageSync('bookinFour').data[0].placeNun,
+            sumMoneyFour: wx.getStorageSync('bookinFour').data[0].placeMoneyTwo + '.00',
+          })
+        }, 500)
+
+        util.Request("/api/display", {
+            SportType: this.data.sportTypeFour,
+            type: 1,
+            status: 1,
+            referee: '0',
+            siteMoney: wx.getStorageSync('bookinFour').data[0].placeMoney + '.00',
+            lr: wx.getStorageSync('bookinFour').data[0].lr
+          }, "post",
+          (res) => {
+            this.setData({
+              displayTxtFour: res.data.data
+            })
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
+      } else {
+
+        util.Request("/api/display", {
+            SportType: this.data.sportTypeFour,
+            type: 1,
+            status: 1,
+            referee: '0',
+            siteMoney: wx.getStorageSync('bookinFour').data[0].placeMoney + '.00',
+            lr: wx.getStorageSync('bookinFour').data[0].lr
+          }, "post",
+          (res) => {
+            this.setData({
+              displayTxtFour: res.data.data
+            })
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
+        setTimeout(() => {
+          this.setData({
+            startTimeFour: wx.getStorageSync('bookinFour').data[0].placeDate,
+            startTimerofFour: kood.replace('-', '月') + '日',
+            timerFour: wx.getStorageSync('bookinFour').data[0].placeTime,
+            timeLenFour: wx.getStorageSync('bookinFour').data[0].placeTimeLen,
+            placeMoneyFour: wx.getStorageSync('bookinFour').data[0].placeMoney,
+            venueidFour: wx.getStorageSync('bookinFour').data[0].placeNun,
+            sumMoneyFour: wx.getStorageSync('bookinFour').data[0].placeMoneyTwo + '.00',
+          })
+        }, 500)
+      }
+
+
+    } else {
+      this.setData({
+        startTimeFour: '', //开始时间
+        startTimerofFour: '请选择',
+        timerFour: '', //开始时间段
+        timeLenFour: '无', //时长
+        placeMoneyFour: '0', //场地费
+      })
+    }
+
+
+    ///////我找陪练
+    if (wx.getStorageSync('bookinFive') != '' && wx.getStorageSync('bookinFive').data[0].placeDate != undefined) {
+
+      if (this.data.tipsFive== '') {
+        console.log('我执行了')
+        util.request("/api/getAccmoney", {
+            'grade': '4',
+            'CityName': wx.getStorageSync('cityInfo'),
+            'SportId': this.data.sportIdFive,
+            'PlayTime': parseFloat(wx.getStorageSync('bookinFive').data[0].placeTimeLen),
+            'SiteMoney': wx.getStorageSync('bookinFive').data[0].placeMoney
+          }, "post",
+          (res) => {
+            this.setData({
+              tipsFive: res.data.data
+            })
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
+      }
+
+
+      let kood = wx.getStorageSync('bookinFive').data[0].placeDate.slice(5, wx.getStorageSync('bookinFive').data[0].placeDate.lenght)
+      let pmoney = wx.getStorageSync('bookinFive').data[0].placeMoney.toString()
+      if (pmoney.indexOf('.') == -1) {
+        setTimeout(() => {
+          this.setData({
+            startTimeFive: wx.getStorageSync('bookinFive').data[0].placeDate,
+            startTimerofFive: kood.replace('-', '月') + '日',
+            timerFive: wx.getStorageSync('bookinFive').data[0].placeTime,
+            timeLenFive: wx.getStorageSync('bookinFive').data[0].placeTimeLen,
+            placeMoneyFive: wx.getStorageSync('bookinFive').data[0].placeMoney + '.00',
+            venueidFive: wx.getStorageSync('bookinFive').data[0].placeNun,
+            sumMoneyFive: wx.getStorageSync('bookinFive').data[0].placeMoneyTwo + '.00',
+          })
+        }, 500)
+
+        util.Request("/api/display", {
+            SportType: this.data.sportTypeFive,
+            type: 1,
+            status: 1,
+            referee: '0',
+            siteMoney: wx.getStorageSync('bookinFive').data[0].placeMoney + '.00',
+            lr: wx.getStorageSync('bookinFive').data[0].lr
+          }, "post",
+          (res) => {
+            this.setData({
+              displayTxtFive: res.data.data
+            })
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
+      } else {
+
+        util.Request("/api/display", {
+            SportType: this.data.sportTypeFive,
+            type: 1,
+            status: 1,
+            referee: '0',
+            siteMoney: wx.getStorageSync('bookinFive').data[0].placeMoney + '.00',
+            lr: wx.getStorageSync('bookinFive').data[0].lr
+          }, "post",
+          (res) => {
+            this.setData({
+              displayTxtFive: res.data.data
+            })
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
+        setTimeout(() => {
+          this.setData({
+            startTimeFive: wx.getStorageSync('bookinFive').data[0].placeDate,
+            startTimerofFive: kood.replace('-', '月') + '日',
+            timerFive: wx.getStorageSync('bookinFive').data[0].placeTime,
+            timeLenFive: wx.getStorageSync('bookinFive').data[0].placeTimeLen,
+            placeMoneyFive: wx.getStorageSync('bookinFive').data[0].placeMoney,
+            venueidFive: wx.getStorageSync('bookinFive').data[0].placeNun,
+            sumMoneyFive: wx.getStorageSync('bookinFive').data[0].placeMoneyTwo + '.00',
+          })
+        }, 500)
+      }
+
+
+    } else {
+      this.setData({
+        startTimeFive: '', //开始时间
+        startTimerofFive: '请选择',
+        timerFive: '', //开始时间段
+        timeLenFive: '无', //时长
+        placeMoneyFive: '0', //场地费
+      })
+    }
+
+
+    ///////我是馆主
+    if (wx.getStorageSync('bookinSix') != '' && wx.getStorageSync('bookinSix').data[0].placeDate != undefined) {
+
+
+      let kood = wx.getStorageSync('bookinSix').data[0].placeDate.slice(5, wx.getStorageSync('bookinSix').data[0].placeDate.lenght)
+      let pmoney = wx.getStorageSync('bookinSix').data[0].placeMoney.toString()
+      if (pmoney.indexOf('.') == -1) {
+        setTimeout(() => {
+          this.setData({
+            startTimeSix: wx.getStorageSync('bookinSix').data[0].placeDate,
+            startTimerofSix: kood.replace('-', '月') + '日',
+            timerSix: wx.getStorageSync('bookinSix').data[0].placeTime,
+            timeLenSix: wx.getStorageSync('bookinSix').data[0].placeTimeLen,
+            placeMoneySix: wx.getStorageSync('bookinSix').data[0].placeMoney + '.00',
+            venueidSix: wx.getStorageSync('bookinSix').data[0].placeNun,
+            sumMoneySix: wx.getStorageSync('bookinSix').data[0].placeMoneyTwo + '.00',
+            refereeFeeSix: wx.getStorageSync('refereeFeeSix')
+          })
+        }, 500)
+
+        util.Request("/api/display", {
+            SportType: this.data.sportTypeSix,
+            type: 1,
+            status: 1,
+            referee: wx.getStorageSync('refereeFeeSix'),
+            siteMoney: wx.getStorageSync('bookinSix').data[0].placeMoney + '.00',
+            lr: wx.getStorageSync('bookinSix').data[0].lr
+          }, "post",
+          (res) => {
+            this.setData({
+              displayTxtSix: res.data.data
+            })
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
+      } else {
+
+        util.Request("/api/display", {
+            SportType: this.data.sportType,
+            type: 1,
+            status: 1,
+            referee: wx.getStorageSync('refereeFeeSix'),
+            siteMoney: wx.getStorageSync('bookinSix').data[0].placeMoney + '.00',
+            lr: wx.getStorageSync('bookinSix').data[0].lr
+          }, "post",
+          (res) => {
+            this.setData({
+              displayTxtSix: res.data.data
+            })
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
+        setTimeout(() => {
+          this.setData({
+            startTimeSix: wx.getStorageSync('bookinSix').data[0].placeDate,
+            startTimerofSix: kood.replace('-', '月') + '日',
+            timerSix: wx.getStorageSync('bookinSix').data[0].placeTime,
+            timeLenSix: wx.getStorageSync('bookinSix').data[0].placeTimeLen,
+            placeMoneySix: wx.getStorageSync('bookinSix').data[0].placeMoney,
+            venueidSix: wx.getStorageSync('bookinSix').data[0].placeNun,
+            sumMoneySix: wx.getStorageSync('bookinSix').data[0].placeMoneyTwo + '.00',
+            refereeFeeSix: wx.getStorageSync('refereeFeeSix')
+          })
+        }, 500)
+      }
+
+
+      util.request("/api/getcaipanf", {
+          'name': wx.getStorageSync('TrialRaderFSix'),
+          'sportid': this.data.sportIdSix,
+          'number': Number(this.data.TrialNumSix.slice(0, 1)),
+          'duration': parseFloat(wx.getStorageSync('bookinSix').data[0].placeTimeLen)
+        }, "post",
+        (res) => {
+          let ref = res.data.data.toString()
+          if (ref.indexOf('.') == -1) {
+            this.setData({
+              refereeFeeSix: res.data.data + '.00'
+            })
+            wx.setStorageSync('refereeFeeSix', res.data.data + '.00')
+          } else {
+            this.setData({
+              refereeFeeSix: res.data.data
+            })
+            util.Request("/api/display", {
+                SportType: this.data.sportTypeSix,
+                type: 1,
+                status: 1,
+                referee: res.data.data,
+                siteMoney: this.data.placeMoneySix,
+                lr: wx.getStorageSync('bookinSix').data[0].lr
+              }, "post",
+              (res) => {
+                displayTxtSix: res.data.data
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
+            wx.setStorageSync('refereeFeeSix', res.data.data)
+          }
+        },
+        () => {
+          console.log("失败")
+        },
+        () => {}
+      )
+
+    } else {
+      this.setData({
+        startTimeSix: '', //开始时间
+        startTimerofSix: '请选择',
+        timerSix: '', //开始时间段
+        timeLenSix: '无', //时长
+        placeMoneySix: '0', //场地费
+      })
+    }
+
+
+
+
     if (wx.getStorageSync('siteid') !== '' && wx.getStorageSync('siteid') !== undefined) {
       this.setData({
         siteid: wx.getStorageSync('siteid').siteid,
@@ -1133,6 +2836,55 @@ Page({
       })
     }
 
+    if (wx.getStorageSync('siteidThree') !== '' && wx.getStorageSync('siteid') !== undefined) {
+      this.setData({
+        siteidThree: wx.getStorageSync('siteidThree').siteid,
+        siteNameThree: wx.getStorageSync('siteidThree').name,
+      })
+    } else {
+      this.setData({
+        siteidThree: '',
+        siteNameThree: '请选择',
+      })
+    }
+
+    if (wx.getStorageSync('siteidFour') !== '') {
+      this.setData({
+        siteidFour: wx.getStorageSync('siteidFour').siteid,
+        siteNameFour: wx.getStorageSync('siteidFour').name,
+      })
+    } else {
+      this.setData({
+        siteidFour: '',
+        siteNameFour: '请选择',
+      })
+    }
+
+
+    if (wx.getStorageSync('siteidFive') !== '') {
+      this.setData({
+        siteidFive: wx.getStorageSync('siteidFive').siteid,
+        siteNameFive: wx.getStorageSync('siteidFive').name,
+      })
+    } else {
+      this.setData({
+        siteidFive: '',
+        siteNameFive: '请选择',
+      })
+    }
+
+    if (wx.getStorageSync('siteidSix') !== '') {
+      this.setData({
+        siteidSix: wx.getStorageSync('siteidSix').siteid,
+        siteNameSix: wx.getStorageSync('siteidSix').name,
+      })
+    } else {
+      this.setData({
+        siteidSix: '',
+        siteNameSix: '请选择',
+      })
+    }
+
     if (wx.getStorageSync('mode') !== '') {
       this.setData({
         mode: wx.getStorageSync('mode'),
@@ -1142,6 +2894,18 @@ Page({
       this.setData({
         mode: '请选择',
         modeNum: 0
+      })
+    }
+
+    if (wx.getStorageSync('modeThree') !== '') {
+      this.setData({
+        modeThree: wx.getStorageSync('modeThree'),
+        modeNumThree: wx.getStorageSync('modeNumThree')
+      })
+    } else {
+      this.setData({
+        modeThree: '请选择',
+        modeNumThree: 0
       })
     }
     if (wx.getStorageSync('TrialPickerF') == '') {
@@ -1320,6 +3084,8 @@ Page({
       cf: cf
     })
 
+
+
     let idgo = wx.getStorageSync('sportIdF')
     if (idgo == 1 || idgo == 2 || idgo == 7) {
       this.setData({
@@ -1343,6 +3109,8 @@ Page({
       })
     }
 
+
+
     let idgoTwo = wx.getStorageSync('sportIdFTwo')
     if (idgoTwo == 1 || idgoTwo == 2 || idgoTwo == 7) {
       this.setData({
@@ -1365,10 +3133,103 @@ Page({
         commentsTwo: wx.getStorageSync('commentsFTwo')
       })
     }
+
+
+    let idgoThree = wx.getStorageSync('sportIdFThree')
+    if (idgoThree == 1 || idgoThree == 2 || idgoThree == 7) {
+      this.setData({
+        commentsThree: '球，球拍各参与者均须自备'
+      })
+    } else if (idgoThree == 4) {
+      this.setData({
+        commentsThree: '发布者带篮球'
+      })
+    } else if (idgoThree == 5) {
+      this.setData({
+        commentsThree: '发布者带足球'
+      })
+    } else if (idgoThree == 6) {
+      this.setData({
+        commentsThree: '发布者带排球'
+      })
+    } else {
+      this.setData({
+        commentsThree: wx.getStorageSync('commentsFThree')
+      })
+    }
+
+    let idgoFour = wx.getStorageSync('sportIdFFour')
+    if (idgoFour == 1 || idgoFour == 2 || idgoFour == 7) {
+      this.setData({
+        commentsFour: '球，球拍各参与者均须自备'
+      })
+    } else if (idgoFour == 4) {
+      this.setData({
+        commentsFour: '发布者带篮球'
+      })
+    } else if (idgoFour == 5) {
+      this.setData({
+        commentsFour: '发布者带足球'
+      })
+    } else if (idgoFour == 6) {
+      this.setData({
+        commentsFour: '发布者带排球'
+      })
+    } else {
+      this.setData({
+        commentsFour: wx.getStorageSync('commentsFFour')
+      })
+    }
+
+    let idgoFive = wx.getStorageSync('sportIdFFive')
+    if (idgoFive == 1 || idgoFive == 2 || idgoFive == 7) {
+      this.setData({
+        commentsFive: '球，球拍各参与者均须自备'
+      })
+    } else if (idgoFive == 4) {
+      this.setData({
+        commentsFive: '发布者带篮球'
+      })
+    } else if (idgoFive == 5) {
+      this.setData({
+        commentsFive: '发布者带足球'
+      })
+    } else if (idgoFive == 6) {
+      this.setData({
+        commentsFive: '发布者带排球'
+      })
+    } else {
+      this.setData({
+        commentsFive: wx.getStorageSync('commentsFFive')
+      })
+    }
+
+    let idgoSix = wx.getStorageSync('sportIdFSix')
+    if (idgoSix == 1 || idgoSix == 2 || idgoSix == 7) {
+      this.setData({
+        commentsSix: '球，球拍各参与者均须自备'
+      })
+    } else if (idgoSix == 4) {
+      this.setData({
+        commentsSix: '发布者带篮球'
+      })
+    } else if (idgoSix == 5) {
+      this.setData({
+        commentsSix: '发布者带足球'
+      })
+    } else if (idgoSix == 6) {
+      this.setData({
+        commentsSix: '发布者带排球'
+      })
+    } else {
+      this.setData({
+        commentsSix: wx.getStorageSync('commentsFSix')
+      })
+    }
+
+    this.onKO()
+
     if (currPage.data.sportsList != undefined) {
-      if(this.data.indexSw!='2'){
-        this.onKO()
-      }
       currPage.data.sportsList = undefined
     }
     this.setData({
@@ -1384,19 +3245,49 @@ Page({
       sportTypeTwo: wx.getStorageSync('sportTypeFTwo'),
       sportNameTwo: wx.getStorageSync('sportNameFTwo'),
       sportypeNameTwo: wx.getStorageSync('sportypeNameFTwo'),
+      sportIdFour: wx.getStorageSync('sportIdFFour'),
+      sportTypeFour: wx.getStorageSync('sportTypeFFour'),
+      sportNameFour: wx.getStorageSync('sportNameFFour'),
+      sportypeNameFour: wx.getStorageSync('sportypeNameFFour'),
+      sportIdFive: wx.getStorageSync('sportIdFFive'),
+      sportTypeFive: wx.getStorageSync('sportTypeFFive'),
+      sportNameFive: wx.getStorageSync('sportNameFFive'),
+      sportypeNameFive: wx.getStorageSync('sportypeNameFFive'),
+      sportIdSix: wx.getStorageSync('sportIdFSix'),
+      sportTypeSix: wx.getStorageSync('sportTypeFSix'),
+      sportNameSix: wx.getStorageSync('sportNameFSix'),
+      sportypeNameSix: wx.getStorageSync('sportypeNameFSix'),
       sex: wx.getStorageSync('sexF'),
+      sexThree: wx.getStorageSync('sexFThree'),
+      sexFour: wx.getStorageSync('sexFFour'),
+      sexFive: wx.getStorageSync('sexFFive'),
+      sexSix: wx.getStorageSync('sexFSix'),
       age: wx.getStorageSync('ageF'),
       rank: wx.getStorageSync('rankF'),
+      ageThree: wx.getStorageSync('ageFThree'),
+      ageFour: wx.getStorageSync('ageFFour'),
+      ageFive: wx.getStorageSync('ageFFive'),
+      ageSix: wx.getStorageSync('ageFSix'),
+      rankThree: wx.getStorageSync('rankFThree'),
+      rankFour: wx.getStorageSync('rankFFour'),
+      rankFive: wx.getStorageSync('rankFFive'),
+      rankSix: wx.getStorageSync('rankFSix'),
       TrialNum: this.data.TrialArray[wx.getStorageSync('TrialPickerF')].name,
       Trial: wx.getStorageSync('TrialPickerF'),
       refereegrade: wx.getStorageSync('TrialPickerF'),
-         
+
       TrialNumThree: this.data.TrialArray[wx.getStorageSync('TrialPickerFThree')].name,
       TrialThree: wx.getStorageSync('TrialPickerFThree'),
       refereegradeThree: wx.getStorageSync('TrialPickerFThree'),
+      TrialNumSix: this.data.TrialArray[wx.getStorageSync('TrialPickerFSix')].name,
+      TrialSix: wx.getStorageSync('TrialPickerFSix'),
+      refereegradeSix: wx.getStorageSync('TrialPickerFSix'),
 
       TrialRader: wx.getStorageSync('TrialRaderF') == '' ? '请选择' : wx.getStorageSync('TrialRaderF'),
+      TrialRaderThree: wx.getStorageSync('TrialRaderFThree') == '' ? '请选择' : wx.getStorageSync('TrialRaderFThree'),
+      TrialRaderSix: wx.getStorageSync('TrialRaderFSix') == '' ? '请选择' : wx.getStorageSync('TrialRaderFSix'),
       shouldered: wx.getStorageSync('shoulderedF'),
+      shoulderedThree: wx.getStorageSync('shoulderedFThree'),
     })
 
 
@@ -1411,9 +3302,156 @@ Page({
 
   },
 
+  //组织活动
+  Organization() {
+    let {
+      sportIdThree,
+      sportTypeThree,
+      modeNumThree,
+      siteidThree,
+      timeLenThree,
+      placeMoneyThree,
+      shoulderedThree,
+      ageThree,
+      sexThree,
+      rankThree,
+      tipsThree,
+      commentsThree,
+      numAThree,
+      numBThree,
+      numCThree,
+      venueidThree,
+      refereeFeeThree,
+      TrialNumThree,
+      TrialRaderThree,
+      startTimeThree,
+      timerThree,
+      sumMoneyThree
+    } = this.data
+    let numArr = []
+    let numBrr = []
+    let numCrr = []
+    for (let i in numAThree) {
+      if (numAThree[i].uuid != undefined) {
+        let ko = {
+          team: 1,
+          uuid: numAThree[i].uuid
+        }
+        numArr.push(ko)
+      }
+    }
+    for (let i in numBThree) {
+      if (numBThree[i].uuid != undefined) {
+        let ko = {
+          team: 2,
+          uuid: numBThree[i].uuid
+        }
+        numBrr.push(ko)
+      }
+    }
+    for (let i in numCThree) {
+      if (numCThree[i].uuid != undefined) {
+        let ko = {
+          team: 2,
+          uuid: numCThree[i].uuid
+        }
+        numCrr.push(ko)
+      }
+    }
+
+    if (sportIdThree == '') {
+      wx.showToast({
+        title: '请选择运动项目',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (modeNumThree == '') {
+      wx.showToast({
+        title: '请选择运动模式',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (siteidThree == '') {
+      wx.showToast({
+        title: '请选择运动场馆',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (startTimeThree == '') {
+      wx.showToast({
+        title: '请选择开始时间',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else {
+      let obj = {
+        sportid: sportIdThree,
+        sportType: sportTypeThree,
+        SportMode: modeNumThree,
+        siteUid: siteidThree,
+        StartTime: startTimeThree + ' ' + timerThree,
+        PlayTime: parseFloat(timeLenThree),
+        SiteMoney: placeMoneyThree,
+        PaySiteMoneyType: shoulderedThree == 'AA' ? 1 : 2,
+        teamSex: sexThree == '男' ? '0' : '' || sexThree == '不限' ? '2' : '' || sexThree == '女' ? '1' : '',
+        LevelMax: rankThree == '不限' ? '15' : parseFloat(rankThree.split('-')[1]),
+        LevelMin: rankThree == '不限' ? '1' : parseFloat(rankThree.split('-')[0]),
+        organization: tipsThree,
+        Tips: 0,
+        Reward: 0,
+        Accompany: this.data.modeThree != '娱乐模式' && this.data.modeThree != '竞技模式' ? tipsThree : 0,
+        comments: commentsThree,
+        member: [...numArr, ...numBrr, ...numCrr],
+        MoneyPerhour: '',
+        venueid: venueidThree,
+        refereefee: refereeFeeThree,
+        RefereeNumber: Number(TrialNumThree.slice(0, 1)),
+        Refereegrade: TrialRaderThree,
+        number: numAThree.length + numBThree.length + numCThree.length,
+        isPublisher: 1,
+        Agemin: ageThree == '不限' ? '10' : parseFloat(ageThree.split('-')[0]),
+        Agemax: ageThree == '不限' ? '70' : parseFloat(ageThree.split('-')[1]),
+        SiteSumMoney: sumMoneyThree,
+        payType: 'balance',
+        lr: wx.getStorageSync('bookinThree'),
+      }
+      util.Request("/api/userAddorganization", obj, "post",
+        (res) => {
+          if (res.data.code == 2000) {
+            wx.navigateTo({
+              url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=2' + '&referee=' + res.data.data.referee + '&status=1' + '&time=' + res.data.data.CreateTime + '&ok=1',
+            })
+          }
+        },
+        () => {
+          console.log("失败")
+        },
+        () => {}
+      )
+
+
+
+    }
+
+
+
+
+  },
+
+  tipsSix: function (e) {
+    this.setData({
+      tipsSix: e.detail.value
+    })
+  },
+
 
   //邀请好友
   invitaional: function (e) {
+    return false
     if (this.data.modeNum == '') {
       wx.showToast({
         title: '请选择运动模式',
@@ -1489,107 +3527,501 @@ Page({
         uuid: wx.getStorageSync('uuid')
       }, "get",
       (res) => {
-        let numAB = 0
-        switch (wx.getStorageSync('sportypeNameF')) {
-          case '单打':
-            numAB = 1
-            break;
-          case '双打':
-            numAB = 2
-            break;
-          case '中式黑八':
-            numAB = 1
-            break;
-          case '美式9球':
-            numAB = 1
-            break;
-          case '斯诺克':
-            numAB = 1
-            break;
-          case '5v5':
-            numAB = 5
-            break;
-          case '3v3':
-            numAB = 3
-            break;
-          case '11人制':
-            numAB = 11
-            break;
-          case '8人制':
-            numAB = 8
-            break;
-          case '7人制':
-            numAB = 7
-            break;
-          case '5人制':
-            numAB = 5
-            break;
-          case '6v6':
-            numAB = 6
-            break;
-          case '单打':
-            numAB = 1
-            break;
-          case '双打':
-            numAB = 2
-            break;
-          case '比杆赛':
-            numAB = 1
-            break;
-          case '比洞赛':
-            numAB = 1
-            break;
-          case '双打(3队)':
-            numAB = 2
-            break;
-          case '3v3(3队)':
-            numAB = 3
-            break;
-          default:
-            numAB = 0
-        }
-        var arr2 = new Array();
-        var arr1 = []
-        var arr3 = []
-        util.Request("/api/getSportLevel", {
-            'sportId': this.data.sportId
-          }, "get",
-          (res) => {
-            this.setData({
-              sportLeve: res.data.data
-            })
-            let projectNow = res.data.data
-            let name = res.data.data.name
-            this.judgmentBall(name, projectNow)
-            let obj = {
-              imgURL: wx.getStorageSync('imgURL'),
-              heightLevel: 'Lv' + projectNow.level,
-              name: projectNow.nameSon
+        if (res.data.code === 2000) {
+          if (this.data.indexSw == '0') {
+            let numAB = 0
+            switch (wx.getStorageSync('sportypeNameF')) {
+              case '单打':
+                numAB = 1
+                break;
+              case '双打':
+                numAB = 2
+                break;
+              case '中式黑八':
+                numAB = 1
+                break;
+              case '美式9球':
+                numAB = 1
+                break;
+              case '斯诺克':
+                numAB = 1
+                break;
+              case '5v5':
+                numAB = 5
+                break;
+              case '3v3':
+                numAB = 3
+                break;
+              case '11人制':
+                numAB = 11
+                break;
+              case '8人制':
+                numAB = 8
+                break;
+              case '7人制':
+                numAB = 7
+                break;
+              case '5人制':
+                numAB = 5
+                break;
+              case '6v6':
+                numAB = 6
+                break;
+              case '单打':
+                numAB = 1
+                break;
+              case '双打':
+                numAB = 2
+                break;
+              case '比杆赛':
+                numAB = 1
+                break;
+              case '比洞赛':
+                numAB = 1
+                break;
+              case '双打(3队)':
+                numAB = 2
+                break;
+              case '3v3(3队)':
+                numAB = 3
+                break;
+              default:
+                numAB = 0
             }
+            var arr2 = new Array();
+            var arr1 = []
+            var arr3 = []
+            util.Request("/api/getSportLevel", {
+                'sportId': this.data.sportId
+              }, "get",
+              (res) => {
+                this.setData({
+                  sportLeve: res.data.data
+                })
+                let projectNow = res.data.data
+                let name = res.data.data.name
+                this.judgmentBall(name, projectNow)
+                let obj = {
+                  imgURL: wx.getStorageSync('imgURL'),
+                  heightLevel: 'Lv' + projectNow.level,
+                  name: projectNow.nameSon
+                }
+                for (var i = 0; i < numAB; i++) {
+                  let obj = {}
+                  arr2.push(obj);
+                  arr1.push(obj)
+                  arr3.push(obj)
+                  if (wx.getStorageSync('sportypeNameF') != '双打(3队)' && wx.getStorageSync('sportypeNameF') != '3v3(3队)') {
+                    arr3 = []
+                  }
+                }
+                arr2.unshift(obj)
+                this.setData({
+                  numB: arr1,
+                  numBThree: arr1,
+                  numA: arr2.slice(0, arr2.length - 1),
+                  numC: arr3
+                })
+
+
+
+                wx.hideLoading()
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
+          } else if (this.data.indexSw == '2') {
+            let numAB = 0
+            switch (wx.getStorageSync('sportypeNameFThree')) {
+              case '单打':
+                numAB = 1
+                break;
+              case '双打':
+                numAB = 2
+                break;
+              case '中式黑八':
+                numAB = 1
+                break;
+              case '美式9球':
+                numAB = 1
+                break;
+              case '斯诺克':
+                numAB = 1
+                break;
+              case '5v5':
+                numAB = 5
+                break;
+              case '3v3':
+                numAB = 3
+                break;
+              case '11人制':
+                numAB = 11
+                break;
+              case '8人制':
+                numAB = 8
+                break;
+              case '7人制':
+                numAB = 7
+                break;
+              case '5人制':
+                numAB = 5
+                break;
+              case '6v6':
+                numAB = 6
+                break;
+              case '单打':
+                numAB = 1
+                break;
+              case '双打':
+                numAB = 2
+                break;
+              case '比杆赛':
+                numAB = 1
+                break;
+              case '比洞赛':
+                numAB = 1
+                break;
+              case '双打(3队)':
+                numAB = 2
+                break;
+              case '3v3(3队)':
+                numAB = 3
+                break;
+              default:
+                numAB = 0
+            }
+            var arr2 = new Array();
+            var arr1 = []
+            var arr3 = []
+
             for (var i = 0; i < numAB; i++) {
               let obj = {}
               arr2.push(obj);
               arr1.push(obj)
               arr3.push(obj)
-              if (wx.getStorageSync('sportypeNameF') != '双打(3队)' && wx.getStorageSync('sportypeNameF') != '3v3(3队)') {
+              if (wx.getStorageSync('sportypeNameFThree') != '双打(3队)' && wx.getStorageSync('sportypeNameFThree') != '3v3(3队)') {
                 arr3 = []
               }
             }
-            arr2.unshift(obj)
             this.setData({
-              numB: arr1,
-              numA: arr2.slice(0, arr2.length - 1),
-              numC: arr3
+              numBThree: arr1,
+              numAThree: arr2,
+              numCThree: arr3
             })
+          } else if (this.data.indexSw == '3') {
+            let numAB = 0
+            switch (wx.getStorageSync('sportypeNameFFour')) {
+              case '单打':
+                numAB = 1
+                break;
+              case '双打':
+                numAB = 2
+                break;
+              case '中式黑八':
+                numAB = 1
+                break;
+              case '美式9球':
+                numAB = 1
+                break;
+              case '斯诺克':
+                numAB = 1
+                break;
+              case '5v5':
+                numAB = 5
+                break;
+              case '3v3':
+                numAB = 3
+                break;
+              case '11人制':
+                numAB = 11
+                break;
+              case '8人制':
+                numAB = 8
+                break;
+              case '7人制':
+                numAB = 7
+                break;
+              case '5人制':
+                numAB = 5
+                break;
+              case '6v6':
+                numAB = 6
+                break;
+              case '单打':
+                numAB = 1
+                break;
+              case '双打':
+                numAB = 2
+                break;
+              case '比杆赛':
+                numAB = 1
+                break;
+              case '比洞赛':
+                numAB = 1
+                break;
+              case '双打(3队)':
+                numAB = 2
+                break;
+              case '3v3(3队)':
+                numAB = 3
+                break;
+              default:
+                numAB = 0
+            }
+            var arr2 = new Array();
+            var arr1 = []
+            var arr3 = []
+            util.Request("/api/getSportLevel", {
+                'sportId': this.data.sportIdFour
+              }, "get",
+              (res) => {
+                this.setData({
+                  sportLeveFour: res.data.data
+                })
+                let projectNow = res.data.data
+                let name = res.data.data.name
+                this.judgmentBall(name, projectNow)
+                let obj = {
+                  imgURL: wx.getStorageSync('imgURL'),
+                  heightLevel: 'Lv' + projectNow.level,
+                  name: projectNow.nameSon
+                }
+                for (var i = 0; i < numAB; i++) {
+                  let obj = {}
+                  arr2.push(obj);
+                  arr1.push(obj)
+                  arr3.push(obj)
+                  if (wx.getStorageSync('sportypeNameFFour') != '双打(3队)' && wx.getStorageSync('sportypeNameFFour') != '3v3(3队)') {
+                    arr3 = []
+                  }
+                }
+                arr2.unshift(obj)
+                this.setData({
+                  numBFour: arr1,
+                  numAFour: arr2.slice(0, arr2.length - 1),
+                  numCFour: arr3
+                })
 
 
-            wx.hideLoading()
-          },
-          () => {
-            console.log("失败")
-          },
-          () => {}
-        )
+
+                wx.hideLoading()
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
+          } else if (this.data.indexSw == '4') {
+            let numAB = 0
+            switch (wx.getStorageSync('sportypeNameFFive')) {
+              case '单打':
+                numAB = 1
+                break;
+              case '双打':
+                numAB = 2
+                break;
+              case '中式黑八':
+                numAB = 1
+                break;
+              case '美式9球':
+                numAB = 1
+                break;
+              case '斯诺克':
+                numAB = 1
+                break;
+              case '5v5':
+                numAB = 5
+                break;
+              case '3v3':
+                numAB = 3
+                break;
+              case '11人制':
+                numAB = 11
+                break;
+              case '8人制':
+                numAB = 8
+                break;
+              case '7人制':
+                numAB = 7
+                break;
+              case '5人制':
+                numAB = 5
+                break;
+              case '6v6':
+                numAB = 6
+                break;
+              case '单打':
+                numAB = 1
+                break;
+              case '双打':
+                numAB = 2
+                break;
+              case '比杆赛':
+                numAB = 1
+                break;
+              case '比洞赛':
+                numAB = 1
+                break;
+              case '双打(3队)':
+                numAB = 2
+                break;
+              case '3v3(3队)':
+                numAB = 3
+                break;
+              default:
+                numAB = 0
+            }
+            var arr2 = new Array();
+            var arr1 = []
+            var arr3 = []
+            util.Request("/api/getSportLevel", {
+                'sportId': this.data.sportIdFive
+              }, "get",
+              (res) => {
+                this.setData({
+                  sportLeveFive: res.data.data
+                })
+                let projectNow = res.data.data
+                let name = res.data.data.name
+                this.judgmentBall(name, projectNow)
+                let obj = {
+                  imgURL: wx.getStorageSync('imgURL'),
+                  heightLevel: 'Lv' + projectNow.level,
+                  name: projectNow.nameSon
+                }
+                for (var i = 0; i < numAB; i++) {
+                  let obj = {}
+                  arr2.push(obj);
+                  arr1.push(obj)
+                  arr3.push(obj)
+                  if (wx.getStorageSync('sportypeNameFFive') != '双打(3队)' && wx.getStorageSync('sportypeNameFFive') != '3v3(3队)') {
+                    arr3 = []
+                  }
+                }
+                arr2.unshift(obj)
+                this.setData({
+                  numBFive: arr1,
+                  numAFive: arr2.slice(0, arr2.length - 1),
+                  numCFive: arr3
+                })
+
+
+
+                wx.hideLoading()
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
+          } else if (this.data.indexSw == '5') {
+            let numAB = 0
+            switch (wx.getStorageSync('sportypeNameFSix')) {
+              case '单打':
+                numAB = 1
+                break;
+              case '双打':
+                numAB = 2
+                break;
+              case '中式黑八':
+                numAB = 1
+                break;
+              case '美式9球':
+                numAB = 1
+                break;
+              case '斯诺克':
+                numAB = 1
+                break;
+              case '5v5':
+                numAB = 5
+                break;
+              case '3v3':
+                numAB = 3
+                break;
+              case '11人制':
+                numAB = 11
+                break;
+              case '8人制':
+                numAB = 8
+                break;
+              case '7人制':
+                numAB = 7
+                break;
+              case '5人制':
+                numAB = 5
+                break;
+              case '6v6':
+                numAB = 6
+                break;
+              case '单打':
+                numAB = 1
+                break;
+              case '双打':
+                numAB = 2
+                break;
+              case '比杆赛':
+                numAB = 1
+                break;
+              case '比洞赛':
+                numAB = 1
+                break;
+              case '双打(3队)':
+                numAB = 2
+                break;
+              case '3v3(3队)':
+                numAB = 3
+                break;
+              default:
+                numAB = 0
+            }
+            var arr2 = new Array();
+            var arr1 = []
+            var arr3 = []
+            util.Request("/api/getSportLevel", {
+                'sportId': this.data.sportIdSix
+              }, "get",
+              (res) => {
+                this.setData({
+                  sportLeveSix: res.data.data
+                })
+                let projectNow = res.data.data
+                let name = res.data.data.name
+                this.judgmentBall(name, projectNow)
+                let obj = {
+                  imgURL: wx.getStorageSync('imgURL'),
+                  heightLevel: 'Lv' + projectNow.level,
+                  name: projectNow.nameSon
+                }
+                for (var i = 0; i < numAB; i++) {
+                  let obj = {}
+                  arr2.push(obj);
+                  arr1.push(obj)
+                  arr3.push(obj)
+                  if (wx.getStorageSync('sportypeNameFSix') != '双打(3队)' && wx.getStorageSync('sportypeNameFSix') != '3v3(3队)') {
+                    arr3 = []
+                  }
+                }
+                arr2.unshift(obj)
+                this.setData({
+                  numBSix: arr1,
+                  numASix: arr2.slice(0, arr2.length - 1),
+                  numCSix: arr3
+                })
+
+
+
+                wx.hideLoading()
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
+          }
+        }
+
 
 
       },
@@ -1625,11 +4057,81 @@ Page({
       tips: e.detail.value
     })
   },
+
+  //组织费
+  tipsThree: function (e) {
+    this.setData({
+      tipsThree: e.detail.value
+    })
+    if (wx.getStorageSync('bookinThree') != '') {
+      util.Request("/api/display", {
+          SportType: this.data.sportTypeThree,
+          type: Number(this.data.indexSw),
+          status: 1,
+          referee: wx.getStorageSync('refereeFeeThree'),
+          siteMoney: wx.getStorageSync('bookinThree').data[0].placeMoney + '.00',
+          orgPrice: e.detail.value,
+          lr: wx.getStorageSync('bookinThree').data[0].lr
+        }, "post",
+        (res) => {
+          this.setData({
+            displayTxtThree: res.data.data
+          })
+        },
+        () => {
+          console.log("失败")
+        },
+        () => {}
+      )
+    }
+
+
+  },
+
+  //陪练费
+  tipsFour: function (e) {
+    this.setData({
+      tipsFour: e.detail.value
+    })
+  },
+
+  //陪练费
+  tipsFive: function (e) {
+    console.log('我是输入框噢')
+    this.setData({
+      tipsFive: e.detail.value
+    })
+  },
   comment: function (e) {
     this.setData({
       comments: e.detail.value
     })
   },
+
+  commentThree: function (e) {
+    this.setData({
+      commentsThree: e.detail.value
+    })
+  },
+
+  commentFour: function (e) {
+    this.setData({
+      commentsFour: e.detail.value
+    })
+  },
+
+  commentFive: function (e) {
+    this.setData({
+      commentsFive: e.detail.value
+    })
+  },
+
+  commentSix: function (e) {
+    this.setData({
+      commentsSix: e.detail.value
+    })
+  },
+
   //发布活动
   release: function () {
     let {
@@ -1652,6 +4154,7 @@ Page({
       refereeFee,
       TrialNum,
       refereegrade,
+      TrialRader,
       startTime,
       timer,
       checked,
@@ -1728,18 +4231,18 @@ Page({
         SiteMoney: placeMoney,
         PaySiteMoneyType: shouldered == 'AA' ? 1 : 2,
         teamSex: sex == '男' ? '0' : '' || sex == '不限' ? '2' : '' || sex == '女' ? '1' : '',
-        LevelMax: rank == '不限' ? '10' : parseFloat(rank.split('-')[1]),
+        LevelMax: rank == '不限' ? '15' : parseFloat(rank.split('-')[1]),
         LevelMin: rank == '不限' ? '1' : parseFloat(rank.split('-')[0]),
         Tips: tips,
-        Reward:0,
-        Accompany:this.data.mode!='娱乐模式'&&this.data.mode!='竞技模式'?tips:0,
+        Reward: 0,
+        Accompany: this.data.mode != '娱乐模式' && this.data.mode != '竞技模式' ? tips : 0,
         comments: comments,
         member: [...numArr, ...numBrr, ...numCrr],
         MoneyPerhour: '',
         venueid: venueid,
         refereefee: refereeFee,
         RefereeNumber: Number(TrialNum.slice(0, 1)),
-        Refereegrade: refereegrade,
+        Refereegrade: TrialRader == '请选择' ? '' : TrialRader,
         number: numA.length + numB.length + numC.length,
         isPublisher: 1,
         Agemin: age == '不限' ? '10' : parseFloat(age.split('-')[0]),
@@ -1747,11 +4250,11 @@ Page({
         SiteSumMoney: sumMoney
       }
 
-    
 
-
-      console.log(obj)
       app.globalData = obj
+
+      app.deductibles = []
+      app.envelope = []
       let ydata = {
         sportid: sportId,
         sporttype: sportType,
@@ -1793,6 +4296,143 @@ Page({
 
 
   },
+
+
+
+  //我是馆主
+  releaseSix: function () {
+    let {
+      sportIdSix,
+      sportTypeSix,
+      modeNumSix,
+      siteidSix,
+      timeLenSix,
+      placeMoneySix,
+      shoulderedSix,
+      ageSix,
+      sexSix,
+      rankSix,
+      tipsSix,
+      commentsSix,
+      numASix,
+      numBSix,
+      numCSix,
+      venueidSix,
+      refereeFeeSix,
+      TrialNumSix,
+      TrialRaderSix,
+      startTimeSix,
+      timerSix,
+      sumMoneySix
+    } = this.data
+    let numArr = []
+    let numBrr = []
+    let numCrr = []
+    for (let i in numASix) {
+      if (numASix[i].uuid != undefined) {
+        let ko = {
+          team: 1,
+          uuid: numASix[i].uuid
+        }
+        numArr.push(ko)
+      }
+    }
+    for (let i in numBSix) {
+      if (numBSix[i].uuid != undefined) {
+        let ko = {
+          team: 2,
+          uuid: numBSix[i].uuid
+        }
+        numBrr.push(ko)
+      }
+    }
+    for (let i in numCSix) {
+      if (numCSix[i].uuid != undefined) {
+        let ko = {
+          team: 2,
+          uuid: numCSix[i].uuid
+        }
+        numCrr.push(ko)
+      }
+    }
+
+    if (sportIdSix == '') {
+      wx.showToast({
+        title: '请选择运动项目',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (modeNumSix == '') {
+      wx.showToast({
+        title: '请选择运动模式',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (siteidSix == '') {
+      wx.showToast({
+        title: '请选择运动场馆',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (startTimeSix == '') {
+      wx.showToast({
+        title: '请选择开始时间',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else {
+      let obj = {
+        sportid: sportIdSix,
+        sportType: sportTypeSix,
+        SportMode: modeNumSix,
+        siteUid: siteidSix,
+        StartTime: startTimeSix + ' ' + timerSix,
+        PlayTime: parseFloat(timeLenSix),
+        SiteMoney: placeMoneySix,
+        PaySiteMoneyType: shoulderedSix == 'AA' ? 1 : 2,
+        teamSex: sexSix == '男' ? '0' : '' || sexSix == '不限' ? '2' : '' || sexSix == '女' ? '1' : '',
+        LevelMax: rankSix == '不限' ? '15' : parseFloat(rankSix.split('-')[1]),
+        LevelMin: rankSix == '不限' ? '1' : parseFloat(rankSix.split('-')[0]),
+        Tips: 0,
+        Reward: 0,
+        Accompany: 0,
+        comments: commentsSix,
+        member: [...numArr, ...numBrr, ...numCrr],
+        MoneyPerhour: '',
+        venueid: venueidSix,
+        refereefee: refereeFeeSix,
+        RefereeNumber: Number(TrialNumSix.slice(0, 1)),
+        Refereegrade: TrialRaderSix,
+        number: numASix.length + numBSix.length,
+        isPublisher: 1,
+        Agemin: ageSix == '不限' ? '10' : parseFloat(ageSix.split('-')[0]),
+        Agemax: ageSix == '不限' ? '70' : parseFloat(ageSix.split('-')[1]),
+        SiteSumMoney: sumMoneySix,
+        PipeMain: 2,
+        PipeMainMoney: tipsSix,
+      }
+
+
+      app.globalData = obj
+      app.deductibles = []
+      app.envelope
+      wx.navigateTo({
+        url: '/generalization/payFor/payFor?look=1',
+      })
+
+    }
+
+
+
+
+  },
+
+
+
   commentsTwo: function (e) {
     this.setData({
       commentsTwo: e.detail.value
@@ -1848,7 +4488,9 @@ Page({
         SiteSumMoney: SiteSumMoney
       }
       app.userReserveVenue = obj
-
+      app.deductibles = []
+      app.envelop=[]
+      
       wx.navigateTo({
         url: '/generalization/payFor/payFor?look=2',
       })
@@ -1873,14 +4515,10 @@ Page({
   },
 
   saveImg(e) {
-    console.log()
     wx.saveImageToPhotosAlbum({
       filePath: e.currentTarget.dataset.src,
-      success: function (data) {
-        console.log(data);
-      },
+      success: function (data) {},
       fail: function (err) {
-        console.log(err);
         if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
           console.log("用户一开始拒绝了，我们想再次发起授权")
           console.log(
@@ -1889,21 +4527,14 @@ Page({
 
           wx.openSetting({
             success(settingdata) {
-              console.log(settingdata)
 
               if (settingdata.authSetting[
                   'scope.writePhotosAlbum'
                 ]) {
 
-                console.log(
-                  '获取权限成功，给出再次点击图片保存到相册的提示。'
-                )
 
               } else {
 
-                console.log(
-                  '获取权限失败，给出不给权限就无法正常使用的提示'
-                )
 
               }
 

@@ -20,6 +20,19 @@ Page({
       Invite_code: app.globalData.Invite_code
     })
 
+    if (wx.getStorageSync('TrialPickerF') == '') {
+      wx.setStorage({
+        key: 'TrialPickerF',
+        data: 0,
+      })
+    }
+    if (wx.getStorageSync('TrialPickerFThree') == '') {
+      wx.setStorage({
+        key: 'TrialPickerFThree',
+        data: 0,
+      })
+    }
+
 
   },
 

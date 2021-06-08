@@ -20,17 +20,50 @@ Page({
     util.request("/api/getAllSportLst", {}, "get",
       (res) => {
         let obj = res.data.data.slice(0, 7)
-        if(options.flag==='1'){
-          obj[3].sportType=obj[3].sportType.slice(0, 3)
+        obj[4].sportType=obj[4].sportType.slice(0,5)
+        if (options.flag === '1') {
+          obj[3].sportType = obj[3].sportType.slice(0, 3)
+          obj[1].sportType = obj[1].sportType.slice(0, 2)
+        }
+
+        if(options.flag === '6'){
+          obj[0].sportType = obj[0].sportType.slice(0, 2)
+          obj[3].sportType = obj[3].sportType.slice(0, 2)
+          obj[1].sportType = obj[1].sportType.slice(0, 2)
+        }
+
+        if(options.flag === '3'){
+          obj[1].sportType = obj[1].sportType.slice(0, 2)
+          obj[3].sportType = obj[3].sportType.slice(0, 2)
+        }
+
+
+        if (options.flag == '4' || options.flag == '5') {
+          let arrt = []
+          for (let i in obj) {
+            if (obj[i].id != 4 && obj[i].id != 5 && obj[i].id != 6) {
+
+              if (obj[i].id == 1) {
+                obj[i].sportType = obj[i].sportType.slice(0, 1)
+              } else if (obj[i].id == 2) {
+                obj[i].sportType = obj[i].sportType.slice(0, 1)
+              } else if (obj[i].id == 7) {
+                obj[i].sportType = obj[i].sportType.slice(0, 1)
+              }
+              arrt.push(obj[i])
+            }
+          }
+          obj = arrt
         }
         this.setData({
           sportsList: obj
         })
         wx.hideLoading()
       },
-      () => { console.log("失败") },
       () => {
-      }
+        console.log("失败")
+      },
+      () => {}
     )
 
 
@@ -61,9 +94,15 @@ Page({
         key: 'sportypeNameF',
       })
 
-      wx.removeStorage({key: 'bookin'})
-      wx.removeStorage({key: 'mode'})
-      wx.removeStorage({key: 'siteid'})
+      wx.removeStorage({
+        key: 'bookin'
+      })
+      wx.removeStorage({
+        key: 'mode'
+      })
+      wx.removeStorage({
+        key: 'siteid'
+      })
       wx.setStorage({
         data: '不限',
         key: 'sexF',
@@ -93,7 +132,7 @@ Page({
       })
       wx.setStorage({
         key: 'sportTypeFTwo',
-        data:data.sporttype,
+        data: data.sporttype,
       })
       wx.setStorage({
         key: 'sportNameFTwo',
@@ -103,8 +142,12 @@ Page({
         key: 'sportypeNameFTwo',
         data: data.nametwo,
       })
-      wx.removeStorage({key: 'bookinTwo'})
-      wx.removeStorage({key: 'siteidTwo'})
+      wx.removeStorage({
+        key: 'bookinTwo'
+      })
+      wx.removeStorage({
+        key: 'siteidTwo'
+      })
 
       wx.navigateBack({
         delta: 1
@@ -116,7 +159,7 @@ Page({
       })
       wx.setStorage({
         key: 'sportTypeFThree',
-        data:data.sporttype,
+        data: data.sporttype,
       })
       wx.setStorage({
         key: 'sportNameFThree',
@@ -126,8 +169,93 @@ Page({
         key: 'sportypeNameFThree',
         data: data.nametwo,
       })
-      wx.removeStorage({key: 'bookinThree'})
-      wx.removeStorage({key: 'siteidThree'})
+      wx.removeStorage({
+        key: 'bookinThree'
+      })
+      wx.removeStorage({
+        key: 'siteidThree'
+      })
+
+      wx.navigateBack({
+        delta: 1
+      })
+    } else if (this.data.flag == 4) {
+      wx.setStorage({
+        key: 'sportIdFFour',
+        data: data.id,
+      })
+      wx.setStorage({
+        key: 'sportTypeFFour',
+        data: data.sporttype,
+      })
+      wx.setStorage({
+        key: 'sportNameFFour',
+        data: data.name,
+      })
+      wx.setStorage({
+        key: 'sportypeNameFFour',
+        data: data.nametwo,
+      })
+      wx.removeStorage({
+        key: 'bookinFour'
+      })
+      wx.removeStorage({
+        key: 'siteidFour'
+      })
+
+      wx.navigateBack({
+        delta: 1
+      })
+    } else if (this.data.flag == 5) {
+      wx.setStorage({
+        key: 'sportIdFFive',
+        data: data.id,
+      })
+      wx.setStorage({
+        key: 'sportTypeFFive',
+        data: data.sporttype,
+      })
+      wx.setStorage({
+        key: 'sportNameFFive',
+        data: data.name,
+      })
+      wx.setStorage({
+        key: 'sportypeNameFFive',
+        data: data.nametwo,
+      })
+      wx.removeStorage({
+        key: 'bookinFive'
+      })
+      wx.removeStorage({
+        key: 'siteidFive'
+      })
+
+      wx.navigateBack({
+        delta: 1
+      })
+    }else if (this.data.flag == 6) {
+      wx.setStorage({
+        key: 'sportIdFSix',
+        data: data.id,
+      })
+      wx.setStorage({
+        key: 'sportTypeFSix',
+        data: data.sporttype,
+      })
+      wx.setStorage({
+        key: 'sportNameFSix',
+        data: data.name,
+      })
+      wx.setStorage({
+        key: 'sportypeNameFSix',
+        data: data.nametwo,
+      })
+      wx.removeStorage({
+        key: 'bookinSix'
+      })
+      wx.removeStorage({
+        key: 'siteidSix'
+      })
 
       wx.navigateBack({
         delta: 1

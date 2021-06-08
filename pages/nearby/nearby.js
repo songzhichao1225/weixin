@@ -80,11 +80,15 @@
      DistanceTwo: 0,
      showTwo: false,
      bigShotList: [],
+     topScroll:'dfgrfg'
    },
 
 
 
    list(show) {
+    wx.showLoading({
+      title: '加载中',
+    })
      util.Request("/api/getNearbyOpponentList", {
          page: this.data.page,
          sex: this.data.arraySex[Number(this.data.sex)].id,
@@ -95,17 +99,15 @@
          mylng: wx.getStorageSync('lng')
        }, "post",
        (res) => {
-
-
          if (show == true) {
            var data = [...this.data.dynameicList, ...res.data.data]
-          //  if (res.data.data.length == 0) {
-          //    wx.showToast({
-          //      title: '没有更多了~',
-          //      icon: 'none',
-          //      duration: 2000
-          //    })
-          //  }
+           if (res.data.data.length == 0) {
+             wx.showToast({
+               title: '没有更多了~',
+               icon: 'none',
+               duration: 2000
+             })
+           }
 
          } else {
            var data = res.data.data
@@ -151,19 +153,25 @@
    
    bindSex: function (e) {
      this.setData({
-       sex: e.detail.value
+       sex: e.detail.value,
+       page:1,
+       topScroll:0
      })
      this.list()
    },
    bindSport: function (e) {
      this.setData({
-       Sport: e.detail.value
+       Sport: e.detail.value,
+       page:1,
+       topScroll:0
      })
      this.list()
    },
    bindDistance: function (e) {
      this.setData({
-       Distance: e.detail.value
+       Distance: e.detail.value,
+       page:1,
+       topScroll:0
      })
      this.list()
    },

@@ -54,7 +54,7 @@ page {
 
 .venuesLst .boss .left {
   width: 5.5rem;
-  height: 4.25rem;
+  height: 5.5rem;
   border-radius: 0.13rem;
   float: left;
   margin-top: 0.78rem;

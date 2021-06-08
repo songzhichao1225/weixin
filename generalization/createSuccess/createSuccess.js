@@ -8,7 +8,9 @@ Page({
     text: '',
     uuid:'',
     type:'1',
-    forbade:false
+    forbade:false,
+    status:'1',
+    ok:''
   },
 
   /**
@@ -19,7 +21,9 @@ Page({
       uuid:options.inviteId,
       time:options.time,
       type:options.Identification,
-      typeInfo:options.typeInfo
+      typeInfo:options.typeInfo,
+      status:options.status,
+      ok:options.ok
     })
     util.Request("/api/getwWord", {
         inviteId: options.inviteId,
@@ -53,6 +57,7 @@ Page({
 
     util.Request("/api/getDepositRule", {}, "get",
     (res) => {
+      
       wx.showModal({
         title: '提示',
         showCancel:false,

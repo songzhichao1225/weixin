@@ -8,14 +8,25 @@
 
 
 	<view class="text">
-		<view class="headTop">
+		<view class="headTop" wx:if="{{ok!=1}}">
 			<text wx:if="{{typeInfo!=1}}">活动匹配成功后，为保证所有人利益。</text>
 			<text class="comm">{{text.red}}</text>
 		</view>
-		<view class="center">
+
+		<view class="headTop" wx:if="{{ok==1}}">
+			<text class="comm">活动已创建成功，赶紧邀请运动者加入吧！</text>
+		</view>
+
+		<view class="center" wx:if="{{ok!=1}}">
 			<text>温馨提示:</text>
 			<text style="padding-top:1rem">{{text.black}}</text>
 			<text style="color:#D0021B;padding-top:1rem">2、您好，请务必下载APP，场馆签到、评价等均须在APP端操作完成，谢谢!</text>
+		</view>
+
+		<view class="center" wx:if="{{ok==1}}">
+			<text>温馨提示:</text>
+			<text style="padding-top:1rem">{{text.black}}</text>
+			<text style="color:#D0021B;padding-top:1rem">2、每邀请1位新用户参与并完成该活动后，将按10元/位奖励您，赶紧邀请吧！</text>
 		</view>
 
 		<text bindtap="detailRules" wx:if="{{typeInfo!=1}}"

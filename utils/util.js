@@ -266,7 +266,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
             duration: 1500,
             mask: true
           })
-        } else if (res.data.code == 4001) {
+        } else if (res.data.code == 4001||res.data.code == 4000) {
           wx.showToast({
             title: '登录超时',
             icon: 'none',

@@ -97,6 +97,42 @@ Page({
     img: '',
     getSetting: 0
   },
+
+  bookOnly:function(){
+    wx.reLaunch({
+      url: '/pages/publishing/publishing?indexSw=1'
+    })
+  },
+
+  organizing :function(){
+    wx.reLaunch({
+      url: '/pages/publishing/publishing?indexSw=2'
+    })
+  },
+
+  contentSon:function(){
+    wx.navigateTo({
+      url: '/generalization/contentTxt/contentTxt?flag=2',
+    })
+  },
+
+  partner:function(){
+    wx.navigateTo({
+      url: '/generalization/contentTxt/contentTxt?flag=3',
+    })
+  },
+  company:function(){
+    wx.navigateTo({
+      url: '/generalization/contentTxt/contentTxt?flag=4',
+    })
+  },
+  competition:function(){
+    wx.navigateTo({
+      url: '/generalization/contentTxt/contentTxt?flag=6',
+    })
+  },
+
+
   map: function () {
     var that = this;
     /*获取定位地理位置*/
