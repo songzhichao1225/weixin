@@ -285,3 +285,15 @@ page{
   text-align: center;
   font-size: 0.75rem;
 }
+.fixedImg{
+  width: 2.648rem;
+  height: 2rem;
+  position: fixed;
+  left: 50%;
+  margin-left: -1.65rem;
+  bottom: 2.13rem;
+}
+.fixedImg>image{
+  width: 100%;
+  height: 100%;
+}

@@ -384,7 +384,7 @@
         {
           "name": "选择抵用券",
           "pathName": "generalization/deductibles/deductibles",
-          "query": "siteMoney=54.00&offsetquota=2",
+          "query": "siteMoney=54.00&offsetquota=250",
           "scene": null
         },
         {

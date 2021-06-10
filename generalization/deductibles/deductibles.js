@@ -80,7 +80,7 @@ Page({
     let index=e.currentTarget.dataset.index
     let num=e.currentTarget.dataset.num
     let number=e.currentTarget.dataset.number
-    this.setData({moneyAll:this.data.moneyAll+moneysmall,})
+    this.setData({moneyAll:this.data.moneyAll+moneysmall})
     if(money>this.data.siteMoney){
       wx.showToast({
         title: '场地费满'+money+'可用',
@@ -94,7 +94,8 @@ Page({
         icon: 'none',
         duration: 2000
       })
-    }else if(num>number){
+      this.setData({moneyAll:this.data.moneyAll-moneysmall,})
+    }else if(num>=number){
       wx.showToast({
         title: '抵用券不足',
         icon: 'none',

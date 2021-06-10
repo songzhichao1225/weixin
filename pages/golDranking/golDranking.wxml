@@ -1,5 +1,5 @@
 
-
+<view wx:if="{{timeOut}}">
 <view class="tap" style="padding-top:{{statusBarHeight}}px">
   <view bindtap="tap" style="{{flag===1?'opacity:1':'opacity:0.8'}}" data-num='1'><text>对手果排行</text>
     <view wx:if="{{flag===1}}" style="width:1rem;height:0.12rem;background:#fff;margin:0 auto;"></view>
@@ -170,7 +170,7 @@
           <image wx:if="{{drankingList.topThree[1].imgURL!=''}}" class="imgThree" mode="aspectFill" src='{{img}}/{{drankingList.topThree[1].imgURL}}'></image>
           <image wx:if="{{drankingList.topThree[1].imgURL==''}}" class="imgThree" mode="aspectFill" src='../../assets/tiaozhan.png'></image>
           <view class="text" style="bottom:18rpx">
-            <text class="txt">受到广泛豆腐干地方{{drankingList.topThree[1].nickname}}</text>
+            <text class="txt">{{drankingList.topThree[1].nickname}}</text>
             <view>
               <text class="type" style="float:left">{{name}}</text>
               <text class="grade" style="float:left">{{drankingList.topThree[1].level}}</text>
@@ -230,9 +230,12 @@
     </scroll-view>
   </view>
 
+</view>
+</view>
 
 
-
-
-
+<view class="timeOut" wx:if="{{timeOut==false}}">
+  <image src="../../assets/timeOut.png"></image>
+  <text>登录后查看排行榜</text>
+  <button class="timeBtn" bindtap="timeOut">立即登录</button>
 </view>

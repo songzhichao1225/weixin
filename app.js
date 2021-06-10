@@ -6,7 +6,8 @@ App({
     globalData:[],
     userReserveVenue:[],
     deductibles:[],
-    envelope:[]
+    envelope:[],
+    timeOut:0
 },
 
   onLaunch: function () {
@@ -23,6 +24,7 @@ App({
             (res) => {
               wx.setStorageSync('openid', res.data.data.openid);
               wx.setStorageSync('sessionKey', res.data.data.session_key);
+              wx.setStorageSync('unionid', res.data.data.unionid);
             },
             () => {
               console.log("失败")
@@ -40,6 +42,7 @@ App({
     userInfo: null,
     statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
     selected:0,
-    Invite_code:''
+    Invite_code:'',
+    
   }
 })

@@ -1,4 +1,5 @@
-<view class="publishing">
+<view class="publishing" >
+	<!-- wx:if="{{timeOut}}" -->
 	<swiper indicator-dots="true" indicator-active-color="#fff" autoplay="true">
 		<swiper-item wx:for="{{bannerTop}}" wx:key='index' class="swiperItem">
 			<view class="bannerTxt">{{item.name}}</view>
@@ -178,7 +179,7 @@
 					</view>
 					<view class="right">
 						<text style="float:left;" bindtap="sexQiu" data-type='4'
-							data-mode="{{mode=='娱乐模式'?'出场费用':'陪练费用'&&mode=='竞技模式'?'出场费用':'陪练费用'}}">{{mode=='娱乐模式'?'出场费用':'陪练费用'&&mode=='竞技模式'?'出场费用':'陪练费用'}}<text
+							data-mode="{{mode=='娱乐模式'?'出场费用':'陪练费用'&&mode=='竞技模式'?'出场费用':'陪练费用'&&mode=='请选择'?'出场费用':'陪练费用'}}">{{mode=='娱乐模式'?'出场费用':'陪练费用'&&mode=='竞技模式'?'出场费用':'陪练费用'&&mode=='请选择'?'出场费用':'陪练费用'}}<text
 								style="padding-left:0.5rem;color:#9B9B9B;">￥</text></text>
 						<image class="image" src="/assets/right.png"></image>
 						<input style="float:right;height:2.75rem;width:2.5rem;color:#9B9B9B;font-size:0.75rem;" maxlength="5"
@@ -211,7 +212,7 @@
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
 								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
 								<text class="TeamAsonTwo" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">A{{index+1}}</text>
@@ -231,7 +232,7 @@
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
 								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
 								<text class="TeamAsonTwo" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">B{{index+1}}</text>
@@ -252,7 +253,7 @@
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
 								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
 								<text class="TeamAsonTwo" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">C{{index+1}}</text>
@@ -271,7 +272,7 @@
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.name!='报名'}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.name!='报名'}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image class="project" wx:if="{{item.name!='报名'}}" src="/assets/{{activitiesData.ballImgSon}}"></image>
 								<text wx:if="{{item.name!='报名'}}" class="grade">{{item.heightLevel}}</text>
 								<text class="TeamAsonTwo">C{{index+1}}</text>
@@ -527,16 +528,16 @@
 								<view class="invite" bindtap="invitaional" data-index="{{index}}" data-uuid="{{item.uuid}}"
 									data-team="1" wx:if="{{item.imgURL==undefined}}">
 									邀请
-									<text class="TeamAson" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">A{{index+1}}</text>
-									<text class="TeamAson" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我找陪练'?'练习方':'陪练方'}}</text>
+									<text class="TeamAson" wx:if="{{modeThree!='我找陪练'&&modeThree!='我是陪练'}}">A{{index+1}}</text>
+									<text class="TeamAson" wx:if="{{modeThree=='我找陪练'||modeThree=='我是陪练'}}">{{modeThree=='我找陪练'?'练习方':'陪练方'}}</text>
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
 								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">A{{index+1}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我找陪练'?'练习方':'陪练方'}}</text>
+								<text class="TeamAsonTwo" wx:if="{{modeThree!='我找陪练'&&modeThree!='我是陪练'}}">A{{index+1}}</text>
+								<text class="TeamAsonTwo" wx:if="{{modeThree=='我找陪练'||modeThree=='我是陪练'}}">{{modeThree=='我找陪练'?'练习方':'陪练方'}}</text>
 							</view>
 						</view>
 					</view>
@@ -547,16 +548,16 @@
 								<view class="invite" bindtap="invitaional" data-index="{{index}}" data-uuid="{{item.uuid}}"
 									data-team="2" style="font-size:12px;" wx:if="{{item.imgURL==undefined}}">
 									邀请
-									<text class="TeamAson" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">B{{index+1}}</text>
-									<text class="TeamAson" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我是陪练'?'练习方':'陪练方'}}</text>
+									<text class="TeamAson" wx:if="{{modeThree!='我找陪练'&&modeThree!='我是陪练'}}">B{{index+1}}</text>
+									<text class="TeamAson" wx:if="{{modeThree=='我找陪练'||modeThree=='我是陪练'}}">{{modeThree=='我是陪练'?'练习方':'陪练方'}}</text>
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.imgURL!=undefined}}"  mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
 								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">B{{index+1}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我是陪练'?'练习方':'陪练方'}}</text>
+								<text class="TeamAsonTwo" wx:if="{{modeThree!='我找陪练'&&modeThree!='我是陪练'}}">B{{index+1}}</text>
+								<text class="TeamAsonTwo" wx:if="{{modeThree=='我找陪练'||modeThree=='我是陪练'}}">{{modeThree=='我是陪练'?'练习方':'陪练方'}}</text>
 							</view>
 						</view>
 					</view>
@@ -568,16 +569,16 @@
 								<view class="invite" bindtap="invitaional" data-index="{{index}}" data-uuid="{{item.uuid}}"
 									data-team="3" style="font-size:12px;" wx:if="{{item.imgURL==undefined}}">
 									邀请
-									<text class="TeamAson" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">B{{index+1}}</text>
-									<text class="TeamAson" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我是陪练'?'练习方':'陪练方'}}</text>
+									<text class="TeamAson" wx:if="{{modeThree!='我找陪练'&&modeThree!='我是陪练'}}">B{{index+1}}</text>
+									<text class="TeamAson" wx:if="{{modeThree=='我找陪练'||modeThree=='我是陪练'}}">{{modeThree=='我是陪练'?'练习方':'陪练方'}}</text>
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
 								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">C{{index+1}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我是陪练'?'练习方':'陪练方'}}</text>
+								<text class="TeamAsonTwo" wx:if="{{modeThree!='我找陪练'&&modeThree!='我是陪练'}}">C{{index+1}}</text>
+								<text class="TeamAsonTwo" wx:if="{{modeThree=='我找陪练'||modeThree=='我是陪练'}}">{{modeThree=='我是陪练'?'练习方':'陪练方'}}</text>
 							</view>
 						</view>
 					</view>
@@ -592,7 +593,7 @@
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.name!='报名'}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.name!='报名'}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image class="project" wx:if="{{item.name!='报名'}}" src="/assets/{{activitiesData.ballImgSon}}"></image>
 								<text wx:if="{{item.name!='报名'}}" class="grade">{{item.heightLevel}}</text>
 								<text class="TeamAsonTwo">C{{index+1}}</text>
@@ -761,7 +762,7 @@
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
 								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
 								<text class="TeamAsonTwo" wx:if="{{modeFour!='我找陪练'&&modeFour!='我是陪练'}}">A{{index+1}}</text>
@@ -781,7 +782,7 @@
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
 								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
 								<text class="TeamAsonTwo" wx:if="{{modeFour!='我找陪练'&&modeFour!='我是陪练'}}">B{{index+1}}</text>
@@ -802,7 +803,7 @@
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
 								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
 								<text class="TeamAsonTwo" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">C{{index+1}}</text>
@@ -971,7 +972,7 @@
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
 								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
 								<text class="TeamAsonTwo" wx:if="{{modeFive!='我找陪练'&&modeFive!='我是陪练'}}">A{{index+1}}</text>
@@ -991,7 +992,7 @@
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
 								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
 								<text class="TeamAsonTwo" wx:if="{{modeFive!='我找陪练'&&modeFive!='我是陪练'}}">B{{index+1}}</text>
@@ -1199,7 +1200,7 @@
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
 								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
 								<text class="TeamAsonTwo" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">A{{index+1}}</text>
@@ -1219,7 +1220,7 @@
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
 								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
 								<text class="TeamAsonTwo" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">B{{index+1}}</text>
@@ -1240,7 +1241,7 @@
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.name!='报名'}}" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="logo" wx:if="{{item.name!='报名'}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image class="project" wx:if="{{item.name!='报名'}}" src="/assets/{{activitiesData.ballImgSon}}"></image>
 								<text wx:if="{{item.name!='报名'}}" class="grade">{{item.heightLevel}}</text>
 								<text class="TeamAsonTwo">C{{index+1}}</text>
@@ -1302,16 +1303,21 @@
 	</view>
 
 
-	<!-- <view class="forbade" style="{{forbade==true?'background:rgba(000,000,000,0.7)':'background:transparent'}}" bindtap="forbade">
+	<view class="forbade" style="{{forbade==true?'background:rgba(000,000,000,0.7)':'background:transparent'}}" bindtap="forbade">
 	  <view class="contentbade" wx:if="{{forbade}}">
 		   <text>下载APP更多精彩体验</text>
 			 <image bindlongtap="saveImg" data-src="/assets/twoCode.png" class="twoCode" src="../../assets/twoCode.png"></image>
 			 <text>长按保存二维码识别下载</text>
-		
 		</view>
-	 </view> -->
+	 </view>
 
 
 
 
 </view>
+
+<!-- <view class="timeOut" wx:if="{{timeOut==false}}">
+	<image src="../../assets/timeOut.png"></image>
+	<text>登录后发布活动</text>
+  <button class="timeBtn" bindtap="timeOut">立即登录</button>
+</view> -->

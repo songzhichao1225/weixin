@@ -423,8 +423,7 @@ getsuggest: function(e) {
   },
 
   venueDetails:function(e){
-   
-    
+
       wx.navigateTo({
         url: '/generalization/venueDetails/venueDetails?sportid=' + this.data.sportId + '&sporttype=' + this.data.sporttype + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&falg=' + this.data.falg,
       })

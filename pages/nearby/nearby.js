@@ -5,7 +5,7 @@
 
  Page({
    data: {
-    statusBarHeight: app.globalData.statusBarHeight-3,
+     statusBarHeight: app.globalData.statusBarHeight - 3,
      arraySex: [{
        name: '全部',
        id: 2
@@ -17,9 +17,9 @@
        id: 1
      }],
      arraySport: [{
-      name: '全部',
-      id: 0
-    },{
+       name: '全部',
+       id: 0
+     }, {
        name: '羽毛球',
        id: 1
      }, {
@@ -80,16 +80,17 @@
      DistanceTwo: 0,
      showTwo: false,
      bigShotList: [],
-     topScroll:'dfgrfg'
+     topScroll: 'dfgrfg',
+     timeOut: true,
    },
 
 
 
    list(show) {
-    wx.showLoading({
-      title: '加载中',
-    })
-     util.Request("/api/getNearbyOpponentList", {
+     wx.showLoading({
+       title: '加载中',
+     })
+     util.request("/api/getNearbyOpponentList", {
          page: this.data.page,
          sex: this.data.arraySex[Number(this.data.sex)].id,
          sportid: this.data.arraySport[Number(this.data.Sport)].id,
@@ -99,6 +100,12 @@
          mylng: wx.getStorageSync('lng')
        }, "post",
        (res) => {
+
+         if (res.data.code == 4001) {
+           this.setData({
+             timeOut: false
+           })
+         }
          if (show == true) {
            var data = [...this.data.dynameicList, ...res.data.data]
            if (res.data.data.length == 0) {
@@ -150,28 +157,28 @@
      })
 
    },
-   
+
    bindSex: function (e) {
      this.setData({
        sex: e.detail.value,
-       page:1,
-       topScroll:0
+       page: 1,
+       topScroll: 0
      })
      this.list()
    },
    bindSport: function (e) {
      this.setData({
        Sport: e.detail.value,
-       page:1,
-       topScroll:0
+       page: 1,
+       topScroll: 0
      })
      this.list()
    },
    bindDistance: function (e) {
      this.setData({
        Distance: e.detail.value,
-       page:1,
-       topScroll:0
+       page: 1,
+       topScroll: 0
      })
      this.list()
    },
@@ -280,7 +287,7 @@
    },
 
    bigShotList(showTwo) {
-     util.Request("/api/getNearbyOpponentList", {
+     util.request("/api/getNearbyOpponentList", {
          page: this.data.pageTwo,
          sex: this.data.arraySex[Number(this.data.sexTwo)].id,
          sportid: this.data.arraySport[Number(this.data.SportTwo)].id,
@@ -290,8 +297,6 @@
          mylng: wx.getStorageSync('lng')
        }, "post",
        (res) => {
-
-
          if (showTwo == true) {
            var data = [...this.data.bigShotList, ...res.data.data]
            if (res.data.data.length == 0) {
@@ -354,15 +359,26 @@
      }
 
    },
-   onShow(){
-     this.setData({page:1})
+   onShow() {
+     this.setData({
+       page: 1
+     })
      this.list()
-    if (typeof this.getTabBar === 'function' &&
-    this.getTabBar()) {
-    this.getTabBar().setData({
-      selected: 1 //这里写相应页面的序号
-    })
-  }
+     if (typeof this.getTabBar === 'function' &&
+       this.getTabBar()) {
+       this.getTabBar().setData({
+         selected: 1 //这里写相应页面的序号
+       })
+     }
+   },
+
+   timeOut: function () {
+     wx.navigateTo({
+       url: '/pages/authorization/authorization'
+     })
+     this.setData({
+       timeOut: true
+     })
    }
 
  })

@@ -10,7 +10,7 @@ Page({
     sportType: '', //二级分类id
     sportName: '请选择', //一级分类名称
     sportypeName: '', //二级分类名称
-
+    forbade:false,
     sportIdFour: '', //一级分类id
     sportTypeFour: '', //二级分类id
     sportNameFour: '请选择', //一级分类名称
@@ -237,7 +237,7 @@ Page({
     shoulderedFive: 'AA',
     shoulderedSix: '输方买单',
     tips: '', //打赏费
-    tipsThree: '', //打赏费
+    tipsThree: 0, //打赏费
     tipsFour: '', //陪练费
     tipsFive: '', //陪练费
     comments: '', //备注
@@ -263,9 +263,13 @@ Page({
     displayTxtThree: [],
     displayTxtFour: [],
     displayTxtFive: [],
-    displayTxtSix: []
+    displayTxtSix: [],
+    timeOut:true
   },
 
+  forbade:function(){
+     this.setData({forbade:true})
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -307,6 +311,12 @@ Page({
         indexSw: options.indexSw
       })
     }
+
+
+
+
+
+
 
 
 
@@ -765,6 +775,8 @@ Page({
 
   },
 
+ 
+
   pickerTap: function () {
     if (this.data.sportypeName == '') {
       wx.showToast({
@@ -885,7 +897,6 @@ Page({
       )
     }
   },
-
 
 
 
@@ -1812,7 +1823,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdThree + '&sporttype=' + this.data.sportTypeThree + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flag=1' + '&flagTwo=1' + '&hood=3',
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdThree + '&sporttype=' + this.data.sportTypeThree + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flag=2' + '&flagTwo=2' + '&hood=3',
       })
     }
   },
@@ -1827,7 +1838,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdFour + '&sporttype=' + this.data.sportTypeFour + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flag=1' + '&flagTwo=1' + '&hood=4',
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdFour + '&sporttype=' + this.data.sportTypeFour + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flag=0' + '&flagTwo=2' + '&hood=4',
       })
     }
   },
@@ -1842,7 +1853,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdFive + '&sporttype=' + this.data.sportTypeFive + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flag=1' + '&flagTwo=1' + '&hood=5',
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdFive + '&sporttype=' + this.data.sportTypeFive + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flag=0' + '&flagTwo=2' + '&hood=5',
       })
     }
   },
@@ -1856,7 +1867,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdSix + '&sporttype=' + this.data.sportTypeSix + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flag=1' + '&flagTwo=1' + '&hood=6',
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdSix + '&sporttype=' + this.data.sportTypeSix + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flag=0' + '&flagTwo=2' + '&hood=6',
       })
     }
   },
@@ -2101,9 +2112,6 @@ Page({
         SiteSumMoney: sumMoneyFive,
         name: '我找陪练'
       }
-
-
-      console.log(obj)
       app.globalData = obj
       app.deductibles = []
       app.envelope
@@ -2285,7 +2293,6 @@ Page({
     ///////组织活动
 
     if (wx.getStorageSync('bookinThree') != '' && wx.getStorageSync('bookinThree').data[0].placeDate != undefined) {
-      console.log('执行呀')
 
       let kood = wx.getStorageSync('bookinThree').data[0].placeDate.slice(5, wx.getStorageSync('bookinThree').data[0].placeDate.lenght)
       let pmoney = wx.getStorageSync('bookinThree').data[0].placeMoney.toString()
@@ -2309,7 +2316,7 @@ Page({
             status: 1,
             referee: wx.getStorageSync('refereeFeeThree'),
             siteMoney: wx.getStorageSync('bookinThree').data[0].placeMoney + '.00',
-            orgPrice: this.data.tipsThree,
+            orgPrice: this.data.tipsThree==''?0:this.data.tipsThree,
             lr: wx.getStorageSync('bookinThree').data[0].lr
           }, "post",
           (res) => {
@@ -2330,7 +2337,7 @@ Page({
             status: 1,
             referee: wx.getStorageSync('refereeFeeThree'),
             siteMoney: wx.getStorageSync('bookinThree').data[0].placeMoney + '.00',
-            orgPrice: this.data.tipsThree,
+            orgPrice: this.data.tipsThree==''?0:this.data.tipsThree,
             lr: wx.getStorageSync('bookinThree').data[0].lr
           }, "post",
           (res) => {
@@ -2381,7 +2388,7 @@ Page({
                 status: 1,
                 referee: res.data.data,
                 siteMoney: this.data.placeMoneyThree,
-                orgPrice: this.state.tipsThree,
+                orgPrice: this.data.tipsThree==''?0:this.data.tipsThree,
                 lr: wx.getStorageSync('bookinThree').data[0].lr
               }, "post",
               (res) => {
@@ -2585,7 +2592,6 @@ Page({
     if (wx.getStorageSync('bookinFive') != '' && wx.getStorageSync('bookinFive').data[0].placeDate != undefined) {
 
       if (this.data.tipsFive== '') {
-        console.log('我执行了')
         util.request("/api/getAccmoney", {
             'grade': '4',
             'CityName': wx.getStorageSync('cityInfo'),
@@ -3523,514 +3529,555 @@ Page({
 
 
   onKO: function () {
-    util.Request("/api/getUserDetailInfo", {
-        uuid: wx.getStorageSync('uuid')
-      }, "get",
-      (res) => {
-        if (res.data.code === 2000) {
-          if (this.data.indexSw == '0') {
-            let numAB = 0
-            switch (wx.getStorageSync('sportypeNameF')) {
-              case '单打':
-                numAB = 1
-                break;
-              case '双打':
-                numAB = 2
-                break;
-              case '中式黑八':
-                numAB = 1
-                break;
-              case '美式9球':
-                numAB = 1
-                break;
-              case '斯诺克':
-                numAB = 1
-                break;
-              case '5v5':
-                numAB = 5
-                break;
-              case '3v3':
-                numAB = 3
-                break;
-              case '11人制':
-                numAB = 11
-                break;
-              case '8人制':
-                numAB = 8
-                break;
-              case '7人制':
-                numAB = 7
-                break;
-              case '5人制':
-                numAB = 5
-                break;
-              case '6v6':
-                numAB = 6
-                break;
-              case '单打':
-                numAB = 1
-                break;
-              case '双打':
-                numAB = 2
-                break;
-              case '比杆赛':
-                numAB = 1
-                break;
-              case '比洞赛':
-                numAB = 1
-                break;
-              case '双打(3队)':
-                numAB = 2
-                break;
-              case '3v3(3队)':
-                numAB = 3
-                break;
-              default:
-                numAB = 0
+    util.Request("/api/usercread", {}, "post",
+    (res) => {
+      if(res.data.code==4001){
+       this.setData({timeOut:false})
+      }else{
+        this.setData({timeOut:true})
+        if (res.data.data.type==1) {
+          wx.showModal({
+            title: '温馨提示',
+            showCancel:false,
+            content: res.data.data.commit+'(打开APP支付)',
+            success (res) {
+              wx.reLaunch({
+                url: '/pages/homePage/content/content'
+              })
             }
-            var arr2 = new Array();
-            var arr1 = []
-            var arr3 = []
-            util.Request("/api/getSportLevel", {
-                'sportId': this.data.sportId
-              }, "get",
-              (res) => {
-                this.setData({
-                  sportLeve: res.data.data
-                })
-                let projectNow = res.data.data
-                let name = res.data.data.name
-                this.judgmentBall(name, projectNow)
-                let obj = {
-                  imgURL: wx.getStorageSync('imgURL'),
-                  heightLevel: 'Lv' + projectNow.level,
-                  name: projectNow.nameSon
+          })
+        }else{
+          util.Request("/api/getUserDetailInfo", {
+            uuid: wx.getStorageSync('uuid')
+          }, "get",
+          (res) => {
+            if (res.data.code === 2000) {
+              if (this.data.indexSw == '0') {
+                let numAB = 0
+                switch (wx.getStorageSync('sportypeNameF')) {
+                  case '单打':
+                    numAB = 1
+                    break;
+                  case '双打':
+                    numAB = 2
+                    break;
+                  case '中式黑八':
+                    numAB = 1
+                    break;
+                  case '美式9球':
+                    numAB = 1
+                    break;
+                  case '斯诺克':
+                    numAB = 1
+                    break;
+                  case '5v5':
+                    numAB = 5
+                    break;
+                  case '3v3':
+                    numAB = 3
+                    break;
+                  case '11人制':
+                    numAB = 11
+                    break;
+                  case '8人制':
+                    numAB = 8
+                    break;
+                  case '7人制':
+                    numAB = 7
+                    break;
+                  case '5人制':
+                    numAB = 5
+                    break;
+                  case '6v6':
+                    numAB = 6
+                    break;
+                  case '单打':
+                    numAB = 1
+                    break;
+                  case '双打':
+                    numAB = 2
+                    break;
+                  case '比杆赛':
+                    numAB = 1
+                    break;
+                  case '比洞赛':
+                    numAB = 1
+                    break;
+                  case '双打(3队)':
+                    numAB = 2
+                    break;
+                  case '3v3(3队)':
+                    numAB = 3
+                    break;
+                  default:
+                    numAB = 0
                 }
+                var arr2 = new Array();
+                var arr1 = []
+                var arr3 = []
+                util.Request("/api/getSportLevel", {
+                    'sportId': this.data.sportId
+                  }, "get",
+                  (res) => {
+                    this.setData({
+                      sportLeve: res.data.data
+                    })
+                    let projectNow = res.data.data
+                    let name = res.data.data.name
+                    this.judgmentBall(name, projectNow)
+                    let obj = {
+                      imgURL: wx.getStorageSync('imgURL'),
+                      heightLevel: 'Lv' + projectNow.level,
+                      name: projectNow.nameSon
+                    }
+                    for (var i = 0; i < numAB; i++) {
+                      let obj = {}
+                      arr2.push(obj);
+                      arr1.push(obj)
+                      arr3.push(obj)
+                      if (wx.getStorageSync('sportypeNameF') != '双打(3队)' && wx.getStorageSync('sportypeNameF') != '3v3(3队)') {
+                        arr3 = []
+                      }
+                    }
+                    arr2.unshift(obj)
+                    this.setData({
+                      numB: arr1,
+                      numBThree: arr1,
+                      numA: arr2.slice(0, arr2.length - 1),
+                      numC: arr3
+                    })
+    
+    
+    
+                    wx.hideLoading()
+                  },
+                  () => {
+                    console.log("失败")
+                  },
+                  () => {}
+                )
+              } else if (this.data.indexSw == '2') {
+                let numAB = 0
+                switch (wx.getStorageSync('sportypeNameFThree')) {
+                  case '单打':
+                    numAB = 1
+                    break;
+                  case '双打':
+                    numAB = 2
+                    break;
+                  case '中式黑八':
+                    numAB = 1
+                    break;
+                  case '美式9球':
+                    numAB = 1
+                    break;
+                  case '斯诺克':
+                    numAB = 1
+                    break;
+                  case '5v5':
+                    numAB = 5
+                    break;
+                  case '3v3':
+                    numAB = 3
+                    break;
+                  case '11人制':
+                    numAB = 11
+                    break;
+                  case '8人制':
+                    numAB = 8
+                    break;
+                  case '7人制':
+                    numAB = 7
+                    break;
+                  case '5人制':
+                    numAB = 5
+                    break;
+                  case '6v6':
+                    numAB = 6
+                    break;
+                  case '单打':
+                    numAB = 1
+                    break;
+                  case '双打':
+                    numAB = 2
+                    break;
+                  case '比杆赛':
+                    numAB = 1
+                    break;
+                  case '比洞赛':
+                    numAB = 1
+                    break;
+                  case '双打(3队)':
+                    numAB = 2
+                    break;
+                  case '3v3(3队)':
+                    numAB = 3
+                    break;
+                  default:
+                    numAB = 0
+                }
+                var arr2 = new Array();
+                var arr1 = []
+                var arr3 = []
+    
                 for (var i = 0; i < numAB; i++) {
                   let obj = {}
                   arr2.push(obj);
                   arr1.push(obj)
                   arr3.push(obj)
-                  if (wx.getStorageSync('sportypeNameF') != '双打(3队)' && wx.getStorageSync('sportypeNameF') != '3v3(3队)') {
+                  if (wx.getStorageSync('sportypeNameFThree') != '双打(3队)' && wx.getStorageSync('sportypeNameFThree') != '3v3(3队)') {
                     arr3 = []
                   }
                 }
-                arr2.unshift(obj)
                 this.setData({
-                  numB: arr1,
                   numBThree: arr1,
-                  numA: arr2.slice(0, arr2.length - 1),
-                  numC: arr3
+                  numAThree: arr2,
+                  numCThree: arr3
                 })
-
-
-
-                wx.hideLoading()
-              },
-              () => {
-                console.log("失败")
-              },
-              () => {}
-            )
-          } else if (this.data.indexSw == '2') {
-            let numAB = 0
-            switch (wx.getStorageSync('sportypeNameFThree')) {
-              case '单打':
-                numAB = 1
-                break;
-              case '双打':
-                numAB = 2
-                break;
-              case '中式黑八':
-                numAB = 1
-                break;
-              case '美式9球':
-                numAB = 1
-                break;
-              case '斯诺克':
-                numAB = 1
-                break;
-              case '5v5':
-                numAB = 5
-                break;
-              case '3v3':
-                numAB = 3
-                break;
-              case '11人制':
-                numAB = 11
-                break;
-              case '8人制':
-                numAB = 8
-                break;
-              case '7人制':
-                numAB = 7
-                break;
-              case '5人制':
-                numAB = 5
-                break;
-              case '6v6':
-                numAB = 6
-                break;
-              case '单打':
-                numAB = 1
-                break;
-              case '双打':
-                numAB = 2
-                break;
-              case '比杆赛':
-                numAB = 1
-                break;
-              case '比洞赛':
-                numAB = 1
-                break;
-              case '双打(3队)':
-                numAB = 2
-                break;
-              case '3v3(3队)':
-                numAB = 3
-                break;
-              default:
-                numAB = 0
-            }
-            var arr2 = new Array();
-            var arr1 = []
-            var arr3 = []
-
-            for (var i = 0; i < numAB; i++) {
-              let obj = {}
-              arr2.push(obj);
-              arr1.push(obj)
-              arr3.push(obj)
-              if (wx.getStorageSync('sportypeNameFThree') != '双打(3队)' && wx.getStorageSync('sportypeNameFThree') != '3v3(3队)') {
-                arr3 = []
+              } else if (this.data.indexSw == '3') {
+                let numAB = 0
+                switch (wx.getStorageSync('sportypeNameFFour')) {
+                  case '单打':
+                    numAB = 1
+                    break;
+                  case '双打':
+                    numAB = 2
+                    break;
+                  case '中式黑八':
+                    numAB = 1
+                    break;
+                  case '美式9球':
+                    numAB = 1
+                    break;
+                  case '斯诺克':
+                    numAB = 1
+                    break;
+                  case '5v5':
+                    numAB = 5
+                    break;
+                  case '3v3':
+                    numAB = 3
+                    break;
+                  case '11人制':
+                    numAB = 11
+                    break;
+                  case '8人制':
+                    numAB = 8
+                    break;
+                  case '7人制':
+                    numAB = 7
+                    break;
+                  case '5人制':
+                    numAB = 5
+                    break;
+                  case '6v6':
+                    numAB = 6
+                    break;
+                  case '单打':
+                    numAB = 1
+                    break;
+                  case '双打':
+                    numAB = 2
+                    break;
+                  case '比杆赛':
+                    numAB = 1
+                    break;
+                  case '比洞赛':
+                    numAB = 1
+                    break;
+                  case '双打(3队)':
+                    numAB = 2
+                    break;
+                  case '3v3(3队)':
+                    numAB = 3
+                    break;
+                  default:
+                    numAB = 0
+                }
+                var arr2 = new Array();
+                var arr1 = []
+                var arr3 = []
+                util.Request("/api/getSportLevel", {
+                    'sportId': this.data.sportIdFour
+                  }, "get",
+                  (res) => {
+                    this.setData({
+                      sportLeveFour: res.data.data
+                    })
+                    let projectNow = res.data.data
+                    let name = res.data.data.name
+                    this.judgmentBall(name, projectNow)
+                    let obj = {
+                      imgURL: wx.getStorageSync('imgURL'),
+                      heightLevel: 'Lv' + projectNow.level,
+                      name: projectNow.nameSon
+                    }
+                    for (var i = 0; i < numAB; i++) {
+                      let obj = {}
+                      arr2.push(obj);
+                      arr1.push(obj)
+                      arr3.push(obj)
+                      if (wx.getStorageSync('sportypeNameFFour') != '双打(3队)' && wx.getStorageSync('sportypeNameFFour') != '3v3(3队)') {
+                        arr3 = []
+                      }
+                    }
+                    arr2.unshift(obj)
+                    this.setData({
+                      numBFour: arr1,
+                      numAFour: arr2.slice(0, arr2.length - 1),
+                      numCFour: arr3
+                    })
+    
+    
+    
+                    wx.hideLoading()
+                  },
+                  () => {
+                    console.log("失败")
+                  },
+                  () => {}
+                )
+              } else if (this.data.indexSw == '4') {
+                let numAB = 0
+                switch (wx.getStorageSync('sportypeNameFFive')) {
+                  case '单打':
+                    numAB = 1
+                    break;
+                  case '双打':
+                    numAB = 2
+                    break;
+                  case '中式黑八':
+                    numAB = 1
+                    break;
+                  case '美式9球':
+                    numAB = 1
+                    break;
+                  case '斯诺克':
+                    numAB = 1
+                    break;
+                  case '5v5':
+                    numAB = 5
+                    break;
+                  case '3v3':
+                    numAB = 3
+                    break;
+                  case '11人制':
+                    numAB = 11
+                    break;
+                  case '8人制':
+                    numAB = 8
+                    break;
+                  case '7人制':
+                    numAB = 7
+                    break;
+                  case '5人制':
+                    numAB = 5
+                    break;
+                  case '6v6':
+                    numAB = 6
+                    break;
+                  case '单打':
+                    numAB = 1
+                    break;
+                  case '双打':
+                    numAB = 2
+                    break;
+                  case '比杆赛':
+                    numAB = 1
+                    break;
+                  case '比洞赛':
+                    numAB = 1
+                    break;
+                  case '双打(3队)':
+                    numAB = 2
+                    break;
+                  case '3v3(3队)':
+                    numAB = 3
+                    break;
+                  default:
+                    numAB = 0
+                }
+                var arr2 = new Array();
+                var arr1 = []
+                var arr3 = []
+                util.Request("/api/getSportLevel", {
+                    'sportId': this.data.sportIdFive
+                  }, "get",
+                  (res) => {
+                    this.setData({
+                      sportLeveFive: res.data.data
+                    })
+                    let projectNow = res.data.data
+                    let name = res.data.data.name
+                    this.judgmentBall(name, projectNow)
+                    let obj = {
+                      imgURL: wx.getStorageSync('imgURL'),
+                      heightLevel: 'Lv' + projectNow.level,
+                      name: projectNow.nameSon
+                    }
+                    for (var i = 0; i < numAB; i++) {
+                      let obj = {}
+                      arr2.push(obj);
+                      arr1.push(obj)
+                      arr3.push(obj)
+                      if (wx.getStorageSync('sportypeNameFFive') != '双打(3队)' && wx.getStorageSync('sportypeNameFFive') != '3v3(3队)') {
+                        arr3 = []
+                      }
+                    }
+                    arr2.unshift(obj)
+                    this.setData({
+                      numBFive: arr1,
+                      numAFive: arr2.slice(0, arr2.length - 1),
+                      numCFive: arr3
+                    })
+    
+    
+    
+                    wx.hideLoading()
+                  },
+                  () => {
+                    console.log("失败")
+                  },
+                  () => {}
+                )
+              } else if (this.data.indexSw == '5') {
+                let numAB = 0
+                switch (wx.getStorageSync('sportypeNameFSix')) {
+                  case '单打':
+                    numAB = 1
+                    break;
+                  case '双打':
+                    numAB = 2
+                    break;
+                  case '中式黑八':
+                    numAB = 1
+                    break;
+                  case '美式9球':
+                    numAB = 1
+                    break;
+                  case '斯诺克':
+                    numAB = 1
+                    break;
+                  case '5v5':
+                    numAB = 5
+                    break;
+                  case '3v3':
+                    numAB = 3
+                    break;
+                  case '11人制':
+                    numAB = 11
+                    break;
+                  case '8人制':
+                    numAB = 8
+                    break;
+                  case '7人制':
+                    numAB = 7
+                    break;
+                  case '5人制':
+                    numAB = 5
+                    break;
+                  case '6v6':
+                    numAB = 6
+                    break;
+                  case '单打':
+                    numAB = 1
+                    break;
+                  case '双打':
+                    numAB = 2
+                    break;
+                  case '比杆赛':
+                    numAB = 1
+                    break;
+                  case '比洞赛':
+                    numAB = 1
+                    break;
+                  case '双打(3队)':
+                    numAB = 2
+                    break;
+                  case '3v3(3队)':
+                    numAB = 3
+                    break;
+                  default:
+                    numAB = 0
+                }
+                var arr2 = new Array();
+                var arr1 = []
+                var arr3 = []
+                util.Request("/api/getSportLevel", {
+                    'sportId': this.data.sportIdSix
+                  }, "get",
+                  (res) => {
+                    this.setData({
+                      sportLeveSix: res.data.data
+                    })
+                    let projectNow = res.data.data
+                    let name = res.data.data.name
+                    this.judgmentBall(name, projectNow)
+                    let obj = {
+                      imgURL: wx.getStorageSync('imgURL'),
+                      heightLevel: 'Lv' + projectNow.level,
+                      name: projectNow.nameSon
+                    }
+                    for (var i = 0; i < numAB; i++) {
+                      let obj = {}
+                      arr2.push(obj);
+                      arr1.push(obj)
+                      arr3.push(obj)
+                      if (wx.getStorageSync('sportypeNameFSix') != '双打(3队)' && wx.getStorageSync('sportypeNameFSix') != '3v3(3队)') {
+                        arr3 = []
+                      }
+                    }
+                    arr2.unshift(obj)
+                    this.setData({
+                      numBSix: arr1,
+                      numASix: arr2.slice(0, arr2.length - 1),
+                      numCSix: arr3
+                    })
+    
+    
+    
+                    wx.hideLoading()
+                  },
+                  () => {
+                    console.log("失败")
+                  },
+                  () => {}
+                )
               }
             }
-            this.setData({
-              numBThree: arr1,
-              numAThree: arr2,
-              numCThree: arr3
-            })
-          } else if (this.data.indexSw == '3') {
-            let numAB = 0
-            switch (wx.getStorageSync('sportypeNameFFour')) {
-              case '单打':
-                numAB = 1
-                break;
-              case '双打':
-                numAB = 2
-                break;
-              case '中式黑八':
-                numAB = 1
-                break;
-              case '美式9球':
-                numAB = 1
-                break;
-              case '斯诺克':
-                numAB = 1
-                break;
-              case '5v5':
-                numAB = 5
-                break;
-              case '3v3':
-                numAB = 3
-                break;
-              case '11人制':
-                numAB = 11
-                break;
-              case '8人制':
-                numAB = 8
-                break;
-              case '7人制':
-                numAB = 7
-                break;
-              case '5人制':
-                numAB = 5
-                break;
-              case '6v6':
-                numAB = 6
-                break;
-              case '单打':
-                numAB = 1
-                break;
-              case '双打':
-                numAB = 2
-                break;
-              case '比杆赛':
-                numAB = 1
-                break;
-              case '比洞赛':
-                numAB = 1
-                break;
-              case '双打(3队)':
-                numAB = 2
-                break;
-              case '3v3(3队)':
-                numAB = 3
-                break;
-              default:
-                numAB = 0
-            }
-            var arr2 = new Array();
-            var arr1 = []
-            var arr3 = []
-            util.Request("/api/getSportLevel", {
-                'sportId': this.data.sportIdFour
-              }, "get",
-              (res) => {
-                this.setData({
-                  sportLeveFour: res.data.data
-                })
-                let projectNow = res.data.data
-                let name = res.data.data.name
-                this.judgmentBall(name, projectNow)
-                let obj = {
-                  imgURL: wx.getStorageSync('imgURL'),
-                  heightLevel: 'Lv' + projectNow.level,
-                  name: projectNow.nameSon
-                }
-                for (var i = 0; i < numAB; i++) {
-                  let obj = {}
-                  arr2.push(obj);
-                  arr1.push(obj)
-                  arr3.push(obj)
-                  if (wx.getStorageSync('sportypeNameFFour') != '双打(3队)' && wx.getStorageSync('sportypeNameFFour') != '3v3(3队)') {
-                    arr3 = []
-                  }
-                }
-                arr2.unshift(obj)
-                this.setData({
-                  numBFour: arr1,
-                  numAFour: arr2.slice(0, arr2.length - 1),
-                  numCFour: arr3
-                })
-
-
-
-                wx.hideLoading()
-              },
-              () => {
-                console.log("失败")
-              },
-              () => {}
-            )
-          } else if (this.data.indexSw == '4') {
-            let numAB = 0
-            switch (wx.getStorageSync('sportypeNameFFive')) {
-              case '单打':
-                numAB = 1
-                break;
-              case '双打':
-                numAB = 2
-                break;
-              case '中式黑八':
-                numAB = 1
-                break;
-              case '美式9球':
-                numAB = 1
-                break;
-              case '斯诺克':
-                numAB = 1
-                break;
-              case '5v5':
-                numAB = 5
-                break;
-              case '3v3':
-                numAB = 3
-                break;
-              case '11人制':
-                numAB = 11
-                break;
-              case '8人制':
-                numAB = 8
-                break;
-              case '7人制':
-                numAB = 7
-                break;
-              case '5人制':
-                numAB = 5
-                break;
-              case '6v6':
-                numAB = 6
-                break;
-              case '单打':
-                numAB = 1
-                break;
-              case '双打':
-                numAB = 2
-                break;
-              case '比杆赛':
-                numAB = 1
-                break;
-              case '比洞赛':
-                numAB = 1
-                break;
-              case '双打(3队)':
-                numAB = 2
-                break;
-              case '3v3(3队)':
-                numAB = 3
-                break;
-              default:
-                numAB = 0
-            }
-            var arr2 = new Array();
-            var arr1 = []
-            var arr3 = []
-            util.Request("/api/getSportLevel", {
-                'sportId': this.data.sportIdFive
-              }, "get",
-              (res) => {
-                this.setData({
-                  sportLeveFive: res.data.data
-                })
-                let projectNow = res.data.data
-                let name = res.data.data.name
-                this.judgmentBall(name, projectNow)
-                let obj = {
-                  imgURL: wx.getStorageSync('imgURL'),
-                  heightLevel: 'Lv' + projectNow.level,
-                  name: projectNow.nameSon
-                }
-                for (var i = 0; i < numAB; i++) {
-                  let obj = {}
-                  arr2.push(obj);
-                  arr1.push(obj)
-                  arr3.push(obj)
-                  if (wx.getStorageSync('sportypeNameFFive') != '双打(3队)' && wx.getStorageSync('sportypeNameFFive') != '3v3(3队)') {
-                    arr3 = []
-                  }
-                }
-                arr2.unshift(obj)
-                this.setData({
-                  numBFive: arr1,
-                  numAFive: arr2.slice(0, arr2.length - 1),
-                  numCFive: arr3
-                })
-
-
-
-                wx.hideLoading()
-              },
-              () => {
-                console.log("失败")
-              },
-              () => {}
-            )
-          } else if (this.data.indexSw == '5') {
-            let numAB = 0
-            switch (wx.getStorageSync('sportypeNameFSix')) {
-              case '单打':
-                numAB = 1
-                break;
-              case '双打':
-                numAB = 2
-                break;
-              case '中式黑八':
-                numAB = 1
-                break;
-              case '美式9球':
-                numAB = 1
-                break;
-              case '斯诺克':
-                numAB = 1
-                break;
-              case '5v5':
-                numAB = 5
-                break;
-              case '3v3':
-                numAB = 3
-                break;
-              case '11人制':
-                numAB = 11
-                break;
-              case '8人制':
-                numAB = 8
-                break;
-              case '7人制':
-                numAB = 7
-                break;
-              case '5人制':
-                numAB = 5
-                break;
-              case '6v6':
-                numAB = 6
-                break;
-              case '单打':
-                numAB = 1
-                break;
-              case '双打':
-                numAB = 2
-                break;
-              case '比杆赛':
-                numAB = 1
-                break;
-              case '比洞赛':
-                numAB = 1
-                break;
-              case '双打(3队)':
-                numAB = 2
-                break;
-              case '3v3(3队)':
-                numAB = 3
-                break;
-              default:
-                numAB = 0
-            }
-            var arr2 = new Array();
-            var arr1 = []
-            var arr3 = []
-            util.Request("/api/getSportLevel", {
-                'sportId': this.data.sportIdSix
-              }, "get",
-              (res) => {
-                this.setData({
-                  sportLeveSix: res.data.data
-                })
-                let projectNow = res.data.data
-                let name = res.data.data.name
-                this.judgmentBall(name, projectNow)
-                let obj = {
-                  imgURL: wx.getStorageSync('imgURL'),
-                  heightLevel: 'Lv' + projectNow.level,
-                  name: projectNow.nameSon
-                }
-                for (var i = 0; i < numAB; i++) {
-                  let obj = {}
-                  arr2.push(obj);
-                  arr1.push(obj)
-                  arr3.push(obj)
-                  if (wx.getStorageSync('sportypeNameFSix') != '双打(3队)' && wx.getStorageSync('sportypeNameFSix') != '3v3(3队)') {
-                    arr3 = []
-                  }
-                }
-                arr2.unshift(obj)
-                this.setData({
-                  numBSix: arr1,
-                  numASix: arr2.slice(0, arr2.length - 1),
-                  numCSix: arr3
-                })
-
-
-
-                wx.hideLoading()
-              },
-              () => {
-                console.log("失败")
-              },
-              () => {}
-            )
-          }
+    
+    
+    
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
+  
         }
+      }
+
+   
 
 
+    },
+    () => {
+      console.log("失败")
+    },
+    () => {}
+  )
 
-      },
-      () => {
-        console.log("失败")
-      },
-      () => {}
-    )
+
+   
+  
   },
+
+
+
+
+
+
   //判断球类
   judgmentBall: function (name, projectNow) {
     if (name == '台球') {
@@ -4488,9 +4535,10 @@ Page({
         SiteSumMoney: SiteSumMoney
       }
       app.userReserveVenue = obj
+
       app.deductibles = []
-      app.envelop=[]
-      
+      app.envelope=[]
+
       wx.navigateTo({
         url: '/generalization/payFor/payFor?look=2',
       })
@@ -4548,6 +4596,14 @@ Page({
 
     })
 
+  },
+  timeOut: function () {
+    wx.navigateTo({
+      url: '/pages/authorization/authorization'
+    })
+    this.setData({
+      timeOut: true
+    })
   }
 
 })

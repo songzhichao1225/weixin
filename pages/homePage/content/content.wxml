@@ -25,7 +25,7 @@
 	</view>
 	<view class="homeSelect">
 
-		<view bindtap="bookOnly">
+		<!-- <view bindtap="bookOnly">
 			<image src='/assets/jindingOne.png'></image>
 			<text>仅订场馆</text>
 		</view>
@@ -58,13 +58,13 @@
 		<view bindtap="forbade">
 			<image src='/assets/run.png'></image>
 			<text>报名偏好</text>
-			<!-- bindtap="signUp" -->
+			bindtap="signUp"
 		</view>
 		 <view bindtap="forbade">
 			<image src='/assets/HomeIconJinbi@2x.png'></image>
 			<text>赢对手果</text>
-			<!-- bindtap="generaGold" -->
-		</view>
+			bindtap="generaGold"
+		</view> -->
 		
 		<!--<view bindtap="forbade">
 			<image src='/assets/generalization.png'></image>
@@ -144,7 +144,7 @@
 					<!-- <text>（北京市…）</text> -->
 				</view>
 				<view class="cost">
-					<text style='margin:0;'>场地费:AA</text>
+					<text style='margin:0;'>场地费:{{item.PaySiteMoneyType==1?'AA':'输方买单'}}</text>
 					<text wx:if="{{item.MoneyPerhour!=0}}">陪练费:{{item.MoneyPerhour}}/人</text>
 					<text wx:if="{{item.Tips!=0.00||item.Tips!=0}}">入场费:{{item.Tips}}/人</text>
 					<!-- <text wx:if="{{item.organizations!=0}}">组织费:￥{{item.organizations}}</text> -->

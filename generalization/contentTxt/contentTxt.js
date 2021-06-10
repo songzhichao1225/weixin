@@ -72,9 +72,8 @@ Page({
   },
 
   onLoad: function (options) {
-   
     wx.setNavigationBarTitle({
-      title: options.flag==1?'踢馆':''
+      title: options.flag==2?'踢馆':options.flag==3?'找陪练':options.flag==4?'运动结伴':options.flag==6?'比赛赛事':''
     })
     this.setData({flag:options.flag,img: util.API})
     //获取项目分类
@@ -355,6 +354,31 @@ Page({
     this.goleloand()
 
   },
+
+  releaseSix:function(){
+    if(this.data.flag==2){
+      wx.reLaunch({
+        url: '/pages/publishing/publishing?indexSw=5'
+      })
+    }else if(this.data.flag==3){
+      wx.reLaunch({
+        url: '/pages/publishing/publishing?indexSw=4'
+      })
+    }else if(this.data.flag==4){
+      wx.reLaunch({
+        url: '/pages/publishing/publishing?indexSw=0'
+      })
+    }
+
+  },
+  forbade:function(){
+    wx.showToast({
+      title: '功能开发中~',
+      icon: 'none',
+      duration: 2000
+    })
+    
+  }
 
 
   

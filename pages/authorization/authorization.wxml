@@ -1,8 +1,7 @@
 <!--index.wxml-->
 <view class="authorization">
     <image class="logo" src="/assets/tiaozhan.png"></image>
-
-    <button class="btn" wx:if="{{authorization==0}}" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">微信登录</button>
+    <view class="btn" wx:if="{{authorization==0}}" bindtap="getUserProfile">微信登录</view>
     <button class="btn" wx:if="{{authorization==1}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">绑定手机号</button>
     <navigator class="close" open-type="exit" target="miniProgram" hover-class="navigator-hover">取消登录</navigator>
 </view>

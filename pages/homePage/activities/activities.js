@@ -26,7 +26,8 @@ Page({
     reverseInfo: 0,
     typeInfo: '',
     displayTxt: [],
-    Invitation:'',
+    Invitation: '',
+    timeOut: true,
   },
 
   onLoad: function (option) {
@@ -38,7 +39,7 @@ Page({
     } else {
       app.globalData.Invite_code = option.Invite_code
     }
-    
+
     if (option != undefined) {
       if (option.hoog != undefined) {
         this.setData({
@@ -61,7 +62,7 @@ Page({
       wx.setStorageSync('activitieshoog', option.hoog)
       wx.setStorageSync('activitiestype', '1')
     }
-    
+
   },
 
   onShow() {
@@ -119,126 +120,143 @@ Page({
         'uuid': this.data.uuid
       }, "get",
       (res) => {
-        let projectNow = res.data.data
-        if (projectNow.reserve == 1) {
-          projectNow.SportMode = '仅预订场馆'
-        } else {
-          if (projectNow.SportMode == '1') {
-            projectNow.SportModeTwo = '娱乐模式'
-          } else if (projectNow.SportMode == '2') {
-            projectNow.SportModeTwo = '竞技模式'
-          } else if (projectNow.SportMode == '3') {
-            projectNow.SportModeTwo = '我是陪练'
-          } else if (projectNow.SportMode == '4') {
-            projectNow.SportModeTwo = '我找陪练'
-          }
-        }
-
-        this.setData({
-          AwinBuserInfoOne: projectNow.AwinBuserInfo,
-          AloseBuserInfoTwo: projectNow.AloseBuserInfo,
-          AdrawBuserInfoThree: projectNow.AdrawBuserInfo,
-          getwaiverInfoFour: projectNow.getwaiverInfo
-        })
-        this.tagStatus(projectNow)
-        this.tagStatusTwo(projectNow)
-        this.tagStatusThree(projectNow)
-        let object = {
-          name: "报名",
-          hid: false,
-        }
-        if (projectNow.needNumber > 1) {
-          let needNum = 0
-          if (projectNow.SportType == 21 || projectNow.SportType == 20) {
-            needNum = projectNow.needNumber / 3
-            for (let i = 0; i = needNum - projectNow.teamC.length; i++) {
-              projectNow.teamC.push(object)
-            }
-          } else {
-            needNum = projectNow.needNumber / 2
-            for (let i = 0; i = projectNow.RefereeNumber - projectNow.teamC.length; i++) {
-              projectNow.teamC.push(object)
-            }
-          }
-          for (let i = 0; i = needNum - projectNow.teamA.length; i++) {
-            projectNow.teamA.push(object)
-          }
-          for (let i = 0; i = needNum - projectNow.teamB.length; i++) {
-            projectNow.teamB.push(object)
-          }
-          if (projectNow.teamA[0].uuid != wx.getStorageSync('uuid')) {
-            this.setData({
-              Publisher: 0
-            })
-          } else {
-            this.setData({
-              Publisher: 1
-            })
-          }
-          let koarr = [...projectNow.teamA, ...projectNow.teamB]
-          let hoArr = []
-          for (let i in koarr) {
-            hoArr.push(koarr[i].uuid)
-          }
-          if (hoArr.indexOf(wx.getStorageSync('uuid')) == -1) {
-            this.setData({
-              typeTwo: 0
-            })
-          } else {
-            this.setData({
-              typeTwo: 1
-            })
-          }
-        }
-        projectNow.PipeMainMoney= projectNow.PipeMainMoney.slice(0, projectNow.PipeMainMoney.length-1)
-        this.countdown(projectNow.JoinEndTime)
-        let sportName = projectNow.sportName
-        this.judgmentBall(sportName, projectNow)
-        this.setData({
-          activitiesData: projectNow,
-          moneyType: projectNow.SiteMoney.toString().indexOf('.'),
-          tipsType: projectNow.Tips.toString().indexOf('.'),
-          deservedType: projectNow.deserved.toString().indexOf('.'),
-          flag: true
-        })
-
-        util.Request("/api/display", {
-            'SportType': projectNow.SportType,
-            'type': projectNow.organization == 1 ? 2 : 1,
-            'status': projectNow.isPublisher == 1 ? 1 : 2,
-            'referee': projectNow.refereeFee,
-            'siteMoney': projectNow.SiteMoney
-          }, "post",
-          (res) => {
-            this.setData({
-              displayTxt: res.data.data
-            })
-
-            wx.hideLoading()
-          },
-          () => {
-            console.log("失败")
-          },
-          () => {}
-        )
-        util.Request("/api/getRefereeResult", {
-          'publicuuid': this.data.uuid
-        }, "post",
-        (res) => {
+        if (res.data.code == 4001) {
           this.setData({
-            getRefereeResult: res.data.data
+            timeOut: false
           })
-          wx.hideLoading()
-        },
-        () => {
-          console.log("失败")
-        },
-        () => {}
-      )
+        } else {
+          let projectNow = res.data.data
+          if (projectNow.reserve == 1) {
+            projectNow.SportMode = '仅预订场馆'
+          } else {
+            if (projectNow.SportMode == '1') {
+              projectNow.SportModeTwo = '娱乐模式'
+            } else if (projectNow.SportMode == '2') {
+              projectNow.SportModeTwo = '竞技模式'
+            } else if (projectNow.SportMode == '3') {
+              projectNow.SportModeTwo = '我是陪练'
+            } else if (projectNow.SportMode == '4') {
+              projectNow.SportModeTwo = '我找陪练'
+            }
+          }
 
-      util.Request("/api/getHighestLevel", {}, "get",
-      (res) => {
-        this.setData({Invitation:res.data.data.Invitation})
+          this.setData({
+            AwinBuserInfoOne: projectNow.AwinBuserInfo,
+            AloseBuserInfoTwo: projectNow.AloseBuserInfo,
+            AdrawBuserInfoThree: projectNow.AdrawBuserInfo,
+            getwaiverInfoFour: projectNow.getwaiverInfo
+          })
+          this.tagStatus(projectNow)
+          this.tagStatusTwo(projectNow)
+          this.tagStatusThree(projectNow)
+          let object = {
+            name: "报名",
+            hid: false,
+          }
+          if (projectNow.needNumber > 1) {
+            let needNum = 0
+            if (projectNow.SportType == 21 || projectNow.SportType == 20) {
+              needNum = projectNow.needNumber / 3
+              for (let i = 0; i = needNum - projectNow.teamC.length; i++) {
+                projectNow.teamC.push(object)
+              }
+            } else {
+              needNum = projectNow.needNumber / 2
+              for (let i = 0; i = projectNow.RefereeNumber - projectNow.teamC.length; i++) {
+                projectNow.teamC.push(object)
+              }
+            }
+            for (let i = 0; i = needNum - projectNow.teamA.length; i++) {
+              projectNow.teamA.push(object)
+            }
+            for (let i = 0; i = needNum - projectNow.teamB.length; i++) {
+              projectNow.teamB.push(object)
+            }
+            if (projectNow.teamA[0].uuid != wx.getStorageSync('uuid')) {
+              this.setData({
+                Publisher: 0
+              })
+            } else {
+              this.setData({
+                Publisher: 1
+              })
+            }
+            let koarr = [...projectNow.teamA, ...projectNow.teamB]
+            let hoArr = []
+            for (let i in koarr) {
+              hoArr.push(koarr[i].uuid)
+            }
+            if (hoArr.indexOf(wx.getStorageSync('uuid')) == -1) {
+              this.setData({
+                typeTwo: 0
+              })
+            } else {
+              this.setData({
+                typeTwo: 1
+              })
+            }
+          }
+          projectNow.PipeMainMoney = projectNow.PipeMainMoney.slice(0, projectNow.PipeMainMoney.length - 1)
+          this.countdown(projectNow.JoinEndTime)
+          let sportName = projectNow.sportName
+          this.judgmentBall(sportName, projectNow)
+          this.setData({
+            activitiesData: projectNow,
+            moneyType: projectNow.SiteMoney.toString().indexOf('.'),
+            tipsType: projectNow.Tips.toString().indexOf('.'),
+            deservedType: projectNow.deserved.toString().indexOf('.'),
+            flag: true,
+            timeOut: true,
+          })
+
+          util.Request("/api/display", {
+              'SportType': projectNow.SportType,
+              'type': projectNow.organization == 1 ? 2 : 1,
+              'status': projectNow.isPublisher == 1 ? 1 : 2,
+              'referee': projectNow.refereeFee,
+              'siteMoney': projectNow.SiteMoney
+            }, "post",
+            (res) => {
+              this.setData({
+                displayTxt: res.data.data
+              })
+
+              wx.hideLoading()
+            },
+            () => {
+              console.log("失败")
+            },
+            () => {}
+          )
+          util.Request("/api/getRefereeResult", {
+              'publicuuid': this.data.uuid
+            }, "post",
+            (res) => {
+              this.setData({
+                getRefereeResult: res.data.data
+              })
+              wx.hideLoading()
+            },
+            () => {
+              console.log("失败")
+            },
+            () => {}
+          )
+
+          util.Request("/api/getHighestLevel", {}, "get",
+            (res) => {
+              this.setData({
+                Invitation: res.data.data.Invitation
+              })
+              wx.hideLoading()
+            },
+            () => {
+              console.log("失败")
+            },
+            () => {}
+          )
+        }
+
         wx.hideLoading()
       },
       () => {
@@ -247,19 +265,11 @@ Page({
       () => {}
     )
 
-        wx.hideLoading()
-      },
-      () => {
-        console.log("失败")
-      },
-      () => {}
-    )
-  
-
-    
 
 
-  
+
+
+
   },
   //判断球类
   judgmentBall: function (sportName, projectNow) {
@@ -349,9 +359,9 @@ Page({
   },
   onShareAppMessage: function (res) {
     return {
-      title: '我邀请您参加'+this.data.activitiesData.wxShare+'在'+this.data.activitiesData.siteName+'的'+this.data.activitiesData.sportName+this.data.activitiesData.sportTypeName+'活动',
-      path: '/pages/homePage/activities/activities?uuid=' + this.data.uuid + '&hoog=1' + '&type=1'+'&Invite_code='+this.data.Invitation,
-      imageUrl:'../../../assets/fengxiang.jpg',
+      title: '我邀请您参加' + this.data.activitiesData.wxShare + '在' + this.data.activitiesData.siteName + '的' + this.data.activitiesData.sportName + this.data.activitiesData.sportTypeName + '活动',
+      path: '/pages/homePage/activities/activities?uuid=' + this.data.uuid + '&hoog=1' + '&type=1' + '&Invite_code=' + this.data.Invitation,
+      imageUrl: '../../../assets/fengxiang.jpg',
       success: function () {
         util.Request("/api/userShare", {
             'type': 'activity'
@@ -372,21 +382,21 @@ Page({
                 mask: true
               })
             }
-  
+
           },
           () => {
             console.log("失败")
           },
           () => {}
         )
-  
+
       }
     }
 
- 
 
 
-    
+
+
   },
   onUnload: function () {
     // if (this.data.hoog == 1) {
@@ -512,6 +522,7 @@ Page({
   },
   //取消发布/取消报名
   cancels: function (e) {
+
     if (e.currentTarget.dataset.type == 1) {
       let that = this
       wx.showModal({
@@ -658,6 +669,8 @@ Page({
   },
   //用户报名
   userSignUp: function (e) {
+
+
     let that = this
     if (e.currentTarget.dataset.team == 1) {
       var teamText = 'A'
@@ -670,18 +683,16 @@ Page({
     let index = e.currentTarget.dataset.index
 
 
-
     if (this.data.typeTwo == 0) {
-
       util.Request("/api/usercread", {}, "post",
         (res) => {
-          if (res.data.data.type== 1) {
+          if (res.data.data.type == 1) {
             wx.showModal({
               title: '温馨提示',
-              showCancel:false,
-              content: res.data.data.commit+'(打开APP支付)',
-              success (res) {
-                
+              showCancel: false,
+              content: res.data.data.commit + '(打开APP支付)',
+              success(res) {
+
               }
             })
           } else {
@@ -690,7 +701,7 @@ Page({
               }, "post",
               (res) => {
                 if (res.data.code == 2000) {
-
+                  wx.hideLoading()
                   wx.showModal({
                     title: '提示',
                     content: '您确定加入' + teamText + '队么?',
@@ -698,7 +709,7 @@ Page({
                       if (res.confirm) {
                         let obj = {
                           inviteId: that.data.activitiesData.uuid,
-                          team: e.currentTarget.dataset.team,
+                          team: e.currentTarget.dataset.team == 3 ? 4 : e.currentTarget.dataset.team,
                           SecondSportId: that.data.activitiesData.SportType,
                           sportid: that.data.activitiesData.SportId,
                           startTime: that.data.activitiesData.StartTime,
@@ -740,7 +751,7 @@ Page({
         },
         () => {
           console.log("失败")
-        },() => {}
+        }, () => {}
       )
     }
   },
@@ -777,6 +788,11 @@ Page({
     })
 
   },
+  timeOut: function () {
+    wx.navigateTo({
+      url: '/pages/authorization/authorization'
+    })
+  }
 
 
 

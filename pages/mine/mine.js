@@ -10,7 +10,7 @@ Page({
     statusBarHeight: app.globalData.statusBarHeight + 45,
     forbade: false,
     avatar: '',
-    name:'',
+    name: '',
     goldNum: '',
     flag: false,
     flagTwo: 0,
@@ -74,17 +74,19 @@ Page({
     img: '',
     Invitation: '', //邀请码
     baseSixFour: '',
+    option: '',
+    timeOut: true
   },
 
   onLoad: function (option) {
-    
     if (option.Invite_code == undefined) {
       app.globalData.Invite_code = '';
     } else {
       app.globalData.Invite_code = option.Invite_code
     }
     this.setData({
-      img: util.API
+      img: util.API,
+      option: option
     })
     // if (wx.getStorageSync('token')) {
     //   wx.showLoading({
@@ -139,43 +141,57 @@ Page({
     //     }
     //   })
     // } else {
-      
+
     // }
 
-  
+
     wx.hideLoading()
   },
   onShow: function () {
-    let option=''
-    this.onLoad(option)
+    this.onLoad(this.data.option)
 
     util.Request("/api/getHighestLevel", {}, "get",
-    (res) => {
-      this.setData({
-        Invitation: res.data.data.Invitation,
-        flag: true
-      })
-      util.Request("/api/getUserDetailInfo", {
-                'uuid': wx.getStorageSync('uuid')
-              }, "get",
-              (res) => {
-                this.setData({
-                  mineDetail: res.data.data,
-                  imgURL: wx.getStorageSync('imgURL')
-                })
-              },
-              () => {
-                console.log("失败")
-              },
-              () => {}
-            )
+      (res) => {
+        if (res.data.code == 4001) {
+          this.setData({
+            timeOut: false,
+            flag: true
+          })
+        } else {
+          this.setData({
+            Invitation: res.data.data.Invitation,
+            flag: true,
+            timeOut: true
+          })
+          util.Request("/api/getUserDetailInfo", {
+              'uuid': wx.getStorageSync('uuid')
+            }, "get",
+            (res) => {
+              this.setData({
+                mineDetail: res.data.data,
+                imgURL: wx.getStorageSync('imgURL')
+              })
+            },
+            () => {
+              console.log("失败")
+            },
+            () => {}
+          )
 
-    },
-    () => {
-      console.log("失败")
-    },
-    () => {}
-  )
+
+
+        }
+
+
+
+
+
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
@@ -185,9 +201,15 @@ Page({
 
   },
   activities: function () {
-    wx.navigateTo({
-      url: '/generalization/mineActivities/mineActivities'
-    })
+    if (this.data.timeOut == false) {
+      wx.navigateTo({
+        url: '/pages/authorization/authorization'
+      })
+    } else {
+      wx.navigateTo({
+        url: '/generalization/mineActivities/mineActivities'
+      })
+    }
   },
   gold: function () {
     wx.navigateTo({
@@ -195,37 +217,73 @@ Page({
     })
   },
   mineMoney: function () {
-    wx.navigateTo({
-      url: '/pages/mineWallet/mineWallet'
-    })
+    if (this.data.timeOut == false) {
+      wx.navigateTo({
+        url: '/pages/authorization/authorization'
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/mineWallet/mineWallet'
+      })
+    }
   },
   mineAbout: function () {
-    wx.navigateTo({
-      url: '/generalization/aboutApp/aboutApp'
-    })
+    if (this.data.timeOut == false) {
+      wx.navigateTo({
+        url: '/pages/authorization/authorization'
+      })
+    } else {
+      wx.navigateTo({
+        url: '/generalization/aboutApp/aboutApp'
+      })
+    }
   },
   mineGold: function () {
-    wx.navigateTo({
-      url: '/generalization/mineGold/mineGold'
-    })
+    if (this.data.timeOut == false) {
+      wx.navigateTo({
+        url: '/pages/authorization/authorization'
+      })
+    } else {
+      wx.navigateTo({
+        url: '/generalization/mineGold/mineGold'
+      })
+    }
   },
 
   voucher: function () {
-    wx.navigateTo({
-      url: '/generalization/voucher/voucher'
-    })
+    if (this.data.timeOut == false) {
+      wx.navigateTo({
+        url: '/pages/authorization/authorization'
+      })
+    } else {
+      wx.navigateTo({
+        url: '/generalization/voucher/voucher'
+      })
+    }
   },
 
   mineFen: function () {
-    wx.navigateTo({
-      url: '/generalization/Technical/Technical'
-    })
+    if (this.data.timeOut == false) {
+      wx.navigateTo({
+        url: '/pages/authorization/authorization'
+      })
+    } else {
+      wx.navigateTo({
+        url: '/generalization/Technical/Technical'
+      })
+    }
   },
 
   minefriends: function () {
-    wx.navigateTo({
-      url: '/generalization/mineFriend/mineFriend'
-    })
+    if (this.data.timeOut == false) {
+      wx.navigateTo({
+        url: '/pages/authorization/authorization'
+      })
+    } else {
+      wx.navigateTo({
+        url: '/generalization/mineFriend/mineFriend'
+      })
+    }
   },
 
   golDranking: function () {
@@ -235,9 +293,15 @@ Page({
   },
 
   mineOpinion: function () {
-    wx.navigateTo({
-      url: '/pages/mineOpinion/mineOpinion'
-    })
+    if (this.data.timeOut == false) {
+      wx.navigateTo({
+        url: '/pages/authorization/authorization'
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/mineOpinion/mineOpinion'
+      })
+    }
   },
 
   aboutApp: function () {
@@ -245,16 +309,22 @@ Page({
       url: '/pages/aboutApp/aboutApp'
     })
   },
-  
+
   personalData: function () {
     wx.navigateTo({
       url: '/pages/personalData/personalData'
     })
   },
   mineHelp: function () {
-    wx.navigateTo({
-      url: '/generalization/assistant/assistant'
-    })
+    if (this.data.timeOut == false) {
+      wx.navigateTo({
+        url: '/pages/authorization/authorization'
+      })
+    } else {
+      wx.navigateTo({
+        url: '/generalization/assistant/assistant'
+      })
+    }
   },
   minePreference: function () {
     wx.navigateTo({
@@ -340,6 +410,7 @@ Page({
       }
     })
   },
+
   twoCode() {
     wx.showLoading({
       title: '获取中~',
@@ -365,6 +436,14 @@ Page({
   information() {
     this.setData({
       flagTwo: 0
+    })
+  },
+  timeOut: function () {
+    wx.navigateTo({
+      url: '/pages/authorization/authorization'
+    })
+    this.setData({
+      timeOut: true
     })
   }
 })

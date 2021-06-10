@@ -180,8 +180,8 @@
 										wx:if="{{activitiesData.SportModeTwo=='我是陪练'||activitiesData.SportModeTwo=='我找陪练'}}">{{activitiesData.SportModeTwo=='我是陪练'?'陪练方':'练习方'}}</text>
 								</view>
 								<image class="logo" wx:if="{{item.playerUUID!='empty'}}" bindtap="getUserDetailInfo"
-									data-uid="{{item.uuid}}" src='{{img}}/{{item.imgURL}}'></image>
-								<image wx:if="{{item.playerUUID!='empty'}}" class="project" src="/assets/{{activitiesData.ballImgSon}}">
+									data-uid="{{item.uuid}}"  mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
+								<image wx:if="{{item.playerUUID!='empty'}}" class="project" mode="aspectFill" src="/assets/{{activitiesData.ballImgSon}}">
 								</image>
 								<text wx:if="{{item.playerUUID!='empty'}}" class="grade">{{item.heightLevel}}</text>
 								<text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4}}" class="isSigin">{{item.nameStatus}}</text>
@@ -209,8 +209,8 @@
 
 								</view>
 								<image class="logo" wx:if="{{item.playerUUID!='empty'}}" bindtap="getUserDetailInfo"
-									data-uid="{{item.uuid}}" src='{{img}}/{{item.imgURL}}'></image>
-								<image class="project" wx:if="{{item.playerUUID!='empty'}}" src="/assets/{{activitiesData.ballImgSon}}">
+									data-uid="{{item.uuid}}"mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="project" wx:if="{{item.playerUUID!='empty'}}"mode="aspectFill" src="/assets/{{activitiesData.ballImgSon}}">
 								</image>
 								<text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4}}" class="isSigin">{{item.nameStatus}}</text>
 								<text wx:if="{{item.playerUUID!='empty'}}" class="grade">{{item.heightLevel}}</text>
@@ -222,7 +222,7 @@
 
 					<view class="TeamB" style="border:none;" wx:if="{{activitiesData.teamC.length!=0}}">
 						<text class="titleBDui">{{activitiesData.SportType==21||activitiesData.SportType==20?'C队':'裁判'}}</text>
-						<view class="peopleList" style="margin-left:4%;">
+						<view class="peopleList">
 							<view class="son" wx:for="{{activitiesData.teamC}}" wx:key='index'>
 
 								<view class="invite" wx:if="{{item.playerUUID=='empty'}}"
@@ -233,8 +233,8 @@
 									<text class="TeamAson">C{{index+1}}</text>
 								</view>
 								<image class="logo" wx:if="{{item.playerUUID!='empty'}}" bindtap="getUserDetailInfo"
-									data-uid="{{item.uuid}}" src='{{img}}/{{item.imgURL}}'></image>
-								<image class="project" wx:if="{{item.playerUUID!='empty'}}" src="/assets/{{activitiesData.ballImgSon}}">
+									data-uid="{{item.uuid}}"mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
+								<image class="project" wx:if="{{item.playerUUID!='empty'}}"mode="aspectFill" src="/assets/{{activitiesData.ballImgSon}}">
 								</image>
 								<text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4}}" class="isSigin">{{item.nameStatus}}</text>
 								<text wx:if="{{item.playerUUID!='empty'}}" class="grade">{{item.heightLevel}}</text>
@@ -552,4 +552,11 @@
 
 
 
+</view>
+
+
+	<view class="timeOut" wx:if="{{timeOut==false}}">
+<image src="../../../assets/timeOut.png"></image>
+<text>登录后查看该活动详情</text>
+  <button class="timeBtn" bindtap="timeOut">立即登录</button>
 </view>

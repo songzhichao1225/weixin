@@ -1,4 +1,4 @@
-<view class="nearby">
+<view class="nearby" wx:if="{{timeOut}}">
   <view class="headNav" style="padding-top:{{statusBarHeight}}px">
     <view bindtap="indexOne" style="{{type==1?'opacity:1':'opacity:0.6'}}" data-index="1">人气选手<view wx:if="{{type==1}}">
       </view>
@@ -31,8 +31,9 @@
         </view>
       </picker>
     </view>
-    <scroll-view scroll-y="true" scroll-top="{{topScroll}}"  enhanced="true" lower-threshold="400"  refresher-enabled="true" refresher-triggered="{{enabled}}"
-      bindrefresherrefresh="refresh" bindscrolltolower="tolower" class="dynamicState">
+    <scroll-view scroll-y="true" scroll-top="{{topScroll}}" enhanced="true" lower-threshold="400"
+      refresher-enabled="true" refresher-triggered="{{enabled}}" bindrefresherrefresh="refresh"
+      bindscrolltolower="tolower" class="dynamicState">
       <view class='left'>
         <view wx:for="{{dynameicListLeft}}" bindtap="dynamicDetails" data-uuid="{{item.uuid}}" class="boss"
           wx:key="index">
@@ -55,7 +56,7 @@
             <view class="join" catchtap="possible" data-num="{{item.publiccount}}" data-uuid="{{item.playeruuid}}">
               可参与活动({{item.publiccount}})</view>
           </view>
-          
+
         </view>
 
 
@@ -162,4 +163,11 @@
 
 
 
+</view>
+
+
+<view class="timeOut" wx:if="{{timeOut==false}}">
+  <image src="../../assets/timeOut.png"></image>
+  <text>登录后查看附近对手</text>
+  <button class="timeBtn" bindtap="timeOut">立即登录</button>
 </view>
