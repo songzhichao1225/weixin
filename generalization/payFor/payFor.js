@@ -27,7 +27,8 @@ Page({
     nameBlur: '',
     numBlur: '',
     Moneytotal: 0.00,
-    exemption: 0.00
+    exemption: 0.00,
+    organization:0,
 
   },
 
@@ -120,8 +121,10 @@ Page({
       Accompany: app.globalData.Accompany,
       Reward: app.globalData.Reward,
       Referee: app.globalData.refereefee,
-      Insurance: this.data.checkedFlag == true ? '1' : '0'
+      Insurance: this.data.checkedFlag == true ? '1' : '0',
+    
     }
+    this.setData({organization:app.globalData.organization})
     util.Request("/api/getElplainInfo", obj, "get",
       (res) => {
         let k = res.data.data.Total.toString()
@@ -215,8 +218,6 @@ Page({
         modeNum: app.globalData.SportMode,
         Referee: app.globalData.refereefee
       })
-
-
       this.kokopl()
     } else if (options.look == 2) {
       let obj = {
@@ -291,8 +292,6 @@ Page({
       if (this.data.current == 1) {
         if (this.data.ko != 1) {
             if(app.globalData.PipeMain==2){
-              
-
               let obj = {
                 sportid: app.globalData.sportid,
                 sportType: app.globalData.sportType,
@@ -326,14 +325,15 @@ Page({
                 openID: wx.getStorageSync('openid'),
                 PipeMain:app.globalData.PipeMain,
                 PipeMainMoney:app.globalData.PipeMainMoney,
-                lr:wx.getStorageSync('bookinSix').data[0].lr
+                lr:wx.getStorageSync('bookinSix').data[0].lr,
+                openPrice:wx.getStorageSync('bookinSix').data[0].openPrice
               }
     
               util.Request("/api/userAddActivity_ADD", obj, "post",//发布踢馆活动
-                (res) => {
+                (resTwo) => {
                   wx.hideLoading()
-                  if (res.data.code == 2000) {
-                    var wxPay = res.data.data.sign_data.sign_data
+                  if (resTwo.data.code == 2000) {
+                    var wxPay = resTwo.data.data.sign_data.sign_data
                     console.log(wxPay)
                     wx.requestPayment({
                       'timeStamp': wxPay.timeStamp.toString(),
@@ -343,7 +343,7 @@ Page({
                       'paySign': wxPay.sign,
                       'success': function (res) {
                         wx.navigateTo({
-                          url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + res.data.data.referee + '&status=1' + '&time=' + res.data.data.CreateTime,
+                          url: '/generalization/createSuccess/createSuccess?inviteId=' + resTwo.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' +  app.globalData.Refereegrade + '&status=1',
                         })
                       },
                       'fail': function (res) {},
@@ -396,13 +396,14 @@ Page({
                 Insurance: this.data.checkedFlag == true ? '1' : '0',
                 small:'1',
                 openID: wx.getStorageSync('openid'),
+                openPrice:app.globalData.openPrice
               }
     
-              util.Request("/api/userAddActivity", obj, "post",
-                (res) => {
+              util.Request("/api/userAddActivity_ADD", obj, "post",
+                (resTwo) => {
                   wx.hideLoading()
-                  if (res.data.code == 2000) {
-                    var wxPay = res.data.data.sign_data.sign_data
+                  if (resTwo.data.code == 2000) {
+                    var wxPay = resTwo.data.data.sign_data.sign_data
                     wx.requestPayment({
                       'timeStamp': wxPay.timeStamp.toString(),
                       'nonceStr': wxPay.nonceStr,
@@ -411,10 +412,12 @@ Page({
                       'paySign': wxPay.sign,
                       'success': function (res) {
                         wx.navigateTo({
-                          url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + res.data.data.referee + '&status=1' + '&time=' + res.data.data.CreateTime,
+                          url: '/generalization/createSuccess/createSuccess?inviteId=' + resTwo.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + app.globalData.refereefee + '&status=1',
                         })
                       },
-                      'fail': function (res) {},
+                      'fail': function (res) {
+                        console.log('没成功')
+                      },
     
                     })
                   } else {
@@ -542,7 +545,9 @@ Page({
                   Insurance: this.data.checkedFlag == true ? '1' : '0',
                   PipeMain:app.globalData.PipeMain,
                   PipeMainMoney:app.globalData.PipeMainMoney,
-                  lr:wx.getStorageSync('bookinSix').data[0].lr
+                  lr:wx.getStorageSync('bookinSix').data[0].lr,
+                  openPrice:wx.getStorageSync('bookinSix').data[0].openPrice
+                  
                 }
                 util.Request("/api/userAddActivity_ADD", obj, "post",
                   (res) => {
@@ -599,9 +604,10 @@ Page({
                   hbmedetail: this.data.hbmedetail,
                   hbMoney: this.data.hbMoney,
                   Insurance: this.data.checkedFlag == true ? '1' : '0',
+                  openPrice:app.globalData.openPrice
                 }
 
-                util.Request("/api/userAddActivity", obj, "post",
+                util.Request("/api/userAddActivity_ADD", obj, "post",
                   (res) => {
 
                     if (res.data.code == 2000) {
@@ -849,7 +855,8 @@ Page({
   //支付
   payTo: function () {
 
-    if (this.data.compensates != false||this.data.look==2) {
+
+    if (this.data.compensates != false||this.data.look==2||this.data.organization==1) {
       if (this.data.current == 1) {
         wx.showLoading({
           title: '获取中~',

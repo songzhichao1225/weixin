@@ -90,7 +90,8 @@
         "voucher/voucher",
         "insuranceDe/insuranceDe",
         "redEnvelope/redEnvelope",
-        "contentTxt/contentTxt"
+        "contentTxt/contentTxt",
+        "webviewMood/webviewMood"
       ] 
     }
   ],

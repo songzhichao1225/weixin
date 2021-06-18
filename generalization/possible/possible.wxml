@@ -3,7 +3,7 @@
       bindrefresherrefresh="refreshTwo" bindscrolltolower="tolowerTwo">
 		<view class="sonList" wx:for="{{publicLst}}" wx:key="index" data-uuid="{{item.uuid}}" bindtap="activities">
 			<view class="left">
-				<image src="{{img}}/{{item.imgURL}}"></image>
+				<image src="{{img}}{{item.imgURL}}"></image>
 				<view class="leftBottom">
 					<image wx:if="{{item.SportName=='网球'}}" class="imageTwo" src='/assets/icon_dj_wq.png'></image>
 					<image wx:if="{{item.SportName=='高尔夫'}}" class="imageTwo" src='/assets/icon_dj_gef.png'></image>

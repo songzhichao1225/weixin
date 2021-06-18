@@ -99,7 +99,7 @@
         {
           "name": "活动详情",
           "pathName": "pages/homePage/activities/activities",
-          "query": "uuid= 9d62d760-0319-fcd3-9ff7-1e474390d517&type=1&hoog=1&Invite_code=85857858",
+          "query": "uuid= 05e8a8ec-e4d6-0de4-ed95-5a629391fa45&type=1&hoog=1&Invite_code=85857858",
           "scene": null
         },
         {
@@ -420,6 +420,18 @@
         {
           "name": "红包",
           "pathName": "generalization/redEnvelope/redEnvelope",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/homePage/content/content",
+          "pathName": "pages/homePage/content/content",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/mine",
+          "pathName": "pages/mine/mine",
           "query": "",
           "scene": null
         }

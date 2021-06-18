@@ -3,5 +3,5 @@
     <image class="logo" src="/assets/tiaozhan.png"></image>
     <view class="btn" wx:if="{{authorization==0}}" bindtap="getUserProfile">微信登录</view>
     <button class="btn" wx:if="{{authorization==1}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">绑定手机号</button>
-    <navigator class="close" open-type="exit" target="miniProgram" hover-class="navigator-hover">取消登录</navigator>
+    <view class="close" bindtap="close">取消登录</view>
 </view>

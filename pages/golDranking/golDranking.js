@@ -50,7 +50,7 @@ Page({
       {
         name: '区排名',
         num: '4',
-        color: true,
+        color: false,
         title: wx.getStorageSync('area'),
         nameE: 'area'
       },
@@ -86,13 +86,11 @@ Page({
     name: '羽毛球',
     flag: 1,
     img: '',
-    timeOut: true
   },
   onLoad: function () {
     this.setData({
       img: util.API
     })
-    this.drankingListTwo()
   },
 
   tap: function (e) {
@@ -169,18 +167,11 @@ Page({
         'type': nameE
       }, "get",
       (res) => {
-        if (res.data.code == 4001) {
-          this.setData({
-            timeOut: false
-          })
-        } else {
-          this.setData({
-            timeOut: true
-          })
+       
           this.setData({
             drankingList: res.data.data
           })
-        }
+        
 
         wx.hideLoading()
       },
@@ -224,6 +215,7 @@ Page({
     })
   },
   onShow() {
+    this.setData({flag:1})
     this.drankingListTwo()
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
@@ -232,11 +224,6 @@ Page({
       })
     }
   },
-  timeOut: function () {
-    wx.navigateTo({
-      url: '/pages/authorization/authorization'
-    })
-   
-  }
+ 
 
 })

@@ -15,12 +15,12 @@ const formatNumber = n => {
 
 
 
-let API = "https://zhaoduishou.oss-cn-beijing.aliyuncs.com";  //正式
-// let API = "https://zhaoduishoustg.oss-cn-beijing.aliyuncs.com"; //测试
+// let API = "https://zhaoduishou.oss-cn-beijing.aliyuncs.com/";  //正式
+let API = "https://zhaoduishoustg.oss-cn-beijing.aliyuncs.com/"; //测试
  
 
-let apiS = "https://app.tiaozhanmeiyitian.com";  //正式 
-// let apiS = "https://appstg.tiaozhanmeiyitian.com"; //测试 
+// let apiS = "https://app.tiaozhanmeiyitian.com";  //正式 
+let apiS = "https://appstg.tiaozhanmeiyitian.com"; //测试 
 
 
 
@@ -267,16 +267,16 @@ function Request(url, data, method, successFn, failFn, completeFn) {
             mask: true
           })
         } else if (res.data.code == 4001||res.data.code == 4000) {
-          // wx.showToast({
-          //   title: '登录超时',
-          //   icon: 'none',
-          //   duration: 1500,
-          //   mask: true
-          // })
-          // wx.navigateTo({
-          //   url: '/pages/authorization/authorization'
-          // })
-          successFn(res);
+          wx.showToast({
+            title: '登录超时',
+            icon: 'none',
+            duration: 1500,
+            mask: true
+          })
+          wx.navigateTo({
+            url: '/pages/authorization/authorization'
+          })
+         
           wx.hideLoading()
         } else {
           successFn(res);
@@ -362,10 +362,7 @@ function request(url, data, method, successFn, failFn, completeFn) {
 function imgRequest(url, data,formData, method, successFn, failFn, completeFn) {
 
   if (url == '/api/uploadHeaderImgWX') {
-    wx.showLoading({
-      title: '正在上传',
-      mask: true
-    })
+   
     wx.uploadFile({
       url: apiS + url,
       filePath: data,
@@ -376,7 +373,6 @@ function imgRequest(url, data,formData, method, successFn, failFn, completeFn) {
       },
       method: method,
       success: function (res) {
-        wx.hideLoading()
         if (res.data.code == 2000) {
           successFn(res);
 

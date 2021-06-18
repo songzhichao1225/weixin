@@ -1,6 +1,6 @@
 <view class="insuranceDe">
 	<view class="one">保险金额<span>￥{{InsuranceDetails.money}}</span></view>
-	<view class="two" bindtap="previewImage"  data-src="{{img}}/{{InsuranceDetails.img}}">保单详情<image src="../../assets/right.png"></image><image src="{{img}}/{{InsuranceDetails.img}}"></image></view>
+	<view class="two" bindtap="previewImage"  data-src="{{img}}{{InsuranceDetails.img}}">保单详情<image src="../../assets/right.png"></image><image src="{{img}}{{InsuranceDetails.img}}"></image></view>
 
 
 </view>

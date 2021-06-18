@@ -8,7 +8,7 @@
 				<view class="characterList" wx:for="{{getInviteFriends}}" wx:key="index" data-uid="{{item.FriendUUID}}"
 					bindtap='getUserDetailInfoTwo'>
 					<view style="float:left">
-						<image class="img" src='{{img}}/{{item.userInfo.imgURL}}'></image>
+						<image class="img" src='{{img}}{{item.userInfo.imgURL}}'></image>
 						<view style="width:4.4rem">
 							<image wx:if="{{item.userInfo.sex==0}}" class='image' src='/assets/sex0@2x.png'></image>
 							<image wx:if="{{item.userInfo.sex==1}}" class='image' style="width:0.6rem;" src='/assets/sex1@2x.png'>

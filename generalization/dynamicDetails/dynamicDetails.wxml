@@ -4,14 +4,14 @@
 		autoplay="{{false}}" bindchange="counting" interval="{{false}}" duration="{{500}}">
 		<block wx:for="{{details.dynamic.ImgURL}}" wx:key="index">
 			<swiper-item>
-				<image class="swiper-item" bindtap="previewImage" data-src="{{img}}/{{item}}" mode="aspectFill"
-					style="height:24rem" src="{{img}}/{{item}}"></image>
+				<image class="swiper-item" bindtap="previewImage" data-src="{{img}}{{item}}" mode="aspectFill"
+					style="height:24rem" src="{{img}}{{item}}"></image>
 			</swiper-item>
 		</block>
 	</swiper>
 
 	<video  wx:if="{{details.dynamic.contentType==2}}" id="myVideo"
-		src="{{img}}/{{details.dynamic.ImgURL[0]}}"
+		src="{{img}}{{details.dynamic.ImgURL[0]}}"
 		binderror="videoErrorCallback" show-center-play-btn='{{false}}' show-play-btn="{{true}}" controls
 		bindenterpictureinpicture='bindVideoEnterPictureInPicture'
 		bindleavepictureinpicture='bindVideoLeavePictureInPicture'></video>
@@ -22,7 +22,7 @@
 	<view class="content">
 		<view class="headUser">
 			<view class="avatar" data-id="{{details.dynamic.playeruuid}}" bindtap="getIndividuals">
-				<image src="{{img}}/{{details.dynamic.playerimgurl}}"></image>
+				<image src="{{img}}{{details.dynamic.playerimgurl}}"></image>
 			</view>
 			<view class="title">
 				<view class="name">{{details.dynamic.nickname}}</view>
@@ -43,7 +43,7 @@
 	<view class="commentsList" bindlongtap="deleteComments" data-isown="{{item.isown}}" data-id="{{item.uuid}}"
 		wx:for="{{detailsTwo}}" wx:key="index">
 		<view class="left">
-			<image data-id="{{item.playeruuid}}" bindtap="getIndividuals" src="{{img}}/{{item.playerimgurl}}"></image>
+			<image data-id="{{item.playeruuid}}" bindtap="getIndividuals" src="{{img}}{{item.playerimgurl}}"></image>
 		</view>
 		<view class="right">
 			<view class="name">{{item.nickname}}</view>

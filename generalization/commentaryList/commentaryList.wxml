@@ -15,7 +15,7 @@
 			</view>
 			<view class="content">{{item.content}}</view>
 			<view class="contentImg">
-				<image src="{{img}}/{{i}}" bindtap="previewImageTwo" data-index="{{index}}" data-src="{{img}}/{{i}}" wx:for="{{item.images}}"  wx:for-item="i" wx:key="idx" wx:for-index="idx"></image>
+				<image src="{{img}}{{i}}" bindtap="previewImageTwo" data-index="{{index}}" data-src="{{img}}{{i}}" wx:for="{{item.images}}"  wx:for-item="i" wx:key="idx" wx:for-index="idx"></image>
 			</view>
       <view class="farter" wx:if="{{item.content_reply!=''}}">
 					<image src="/assets/kefu.png"></image><text>场馆回复:</text>

@@ -34,7 +34,7 @@ Page({
 
         if(options.flag === '3'){
           obj[1].sportType = obj[1].sportType.slice(0, 2)
-          obj[3].sportType = obj[3].sportType.slice(0, 2)
+          obj[3].sportType = obj[3].sportType.slice(0, 3)
         }
 
 

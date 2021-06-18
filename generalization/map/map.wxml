@@ -35,7 +35,7 @@
 	<view class="venuesLst" wx:for="{{venuesLst}}" wx:key="index" bindtap="venueDetails" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-uid="{{item.uid}}" data-city="{{item.city}}"  data-name="{{item.name}}">
 		<view class="boss">
 			<view class="left">
-				<image mode="aspectFill" src="{{img}}/{{item.siteimg}}"></image>
+				<image mode="aspectFill" src="{{img}}{{item.siteimg}}"></image>
 			</view>
 			<view class="right">
 				<view class="top">

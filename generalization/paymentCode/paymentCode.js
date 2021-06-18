@@ -18,9 +18,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(wx.getStorageSync('phone'))
     this.setData({
-      telephone:wx.getStorageSync('phone')==''?wx.getStorageSync('telephone').slice(0, 3) + '****' + wx.getStorageSync('phone').slice(7, 11) :wx.getStorageSync('phone').slice(0, 3) + '****' + wx.getStorageSync('phone').slice(7, 11),
+      telephone:wx.getStorageSync('phone')==''?wx.getStorageSync('telephone').slice(0, 3) + '****' + wx.getStorageSync('telephone').slice(7, 11) :wx.getStorageSync('phone').slice(0, 3) + '****' + wx.getStorageSync('phone').slice(7, 11),
       
     })
     wx.hideLoading()

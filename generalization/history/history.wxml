@@ -1,6 +1,6 @@
 <view class="history" wx:for="{{historyList}}" wx:key='index'>
   <view class="title">
-    <image src="{{img}}/{{item.playerimgurl}}"></image>
+    <image src="{{img}}{{item.playerimgurl}}"></image>
     <view class="information">
       <text>{{item.playerName}}</text>
       <text>{{item.intime}}</text>
@@ -8,6 +8,6 @@
   </view>
 
   <text class="content">{{item.title}}</text>
-  <image wx:if="{{item.baseURL!=''}}" class="imgT" src="{{img}}/{{item.baseURL}}"></image>
+  <image wx:if="{{item.baseURL!=''}}" class="imgT" src="{{img}}{{item.baseURL}}"></image>
 </view>
 

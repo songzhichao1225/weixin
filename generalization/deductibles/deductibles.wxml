@@ -21,6 +21,17 @@
 
     </view>
   </scroll-view>
+  <view class="foooterHood" wx:if="{{flag==0}}" bindtap="forbade">下载APP，再领200元抵用券！<image src="../../assets/arrow-right.png"></image></view>
   <view class="total"><text>合计:</text><text>已选择抵用券金额：{{moneyNum}}元</text></view>
   <button class="submit" bindtap="submit">确定</button>
+
+
+  	<view class="forbade" wx:if="{{forbade}}" style="{{forbade==true?'background:rgba(000,000,000,0.7)':'background:transparent'}}" >
+	  <view class="contentbade" >
+		   <text>下载APP更多精彩体验</text>
+			 <image bindlongtap="saveImg" data-src="/assets/twoCode.png" class="twoCode" src="../../assets/twoCode.png"></image>
+       <text>长按保存二维码识别下载</text>
+       <image class="closeTwo" bindtap="closeTwo" src="../../assets/closeTwo.png"></image>
+		</view>
+	 </view>
 </view>

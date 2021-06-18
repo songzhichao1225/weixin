@@ -75,7 +75,71 @@ Page({
     Invitation: '', //邀请码
     baseSixFour: '',
     option: '',
-    timeOut: true
+    timeOut: true,
+    officialAccount: true,   //公众号提示
+    closeImg: false,
+  },
+
+  replacement:function(){
+
+    wx.showActionSheet({
+      itemList: ['拍照', '从手机选择'],
+      success: function(res) {
+        wx.showNavigationBarLoading()
+        let imgArr = null;
+        if (res.tapIndex == 0) {
+          imgArr = ['camera']
+        } else if (res.tapIndex == 1) {
+          imgArr = ['album']
+        }
+        
+        wx.chooseImage({
+          count: 1,
+          sizeType: ['original', 'compressed'],
+          sourceType: imgArr,
+          success (res) {
+            let tempFilePaths = res.tempFilePaths[0]
+            util.Request("/api/uploadHeaderImg", tempFilePaths, 'post',
+            (res) => {
+              util.Request("/api/getUserDetailInfo", {
+                'uuid': wx.getStorageSync('uuid')
+              }, "get",
+              (res) => {
+                this.setData({
+                  mineDetail: res.data.data,
+                  imgURL: wx.getStorageSync('imgURL')
+                })
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
+            },
+            () => {},
+            () => {}
+          )
+          }
+        })
+
+      }})
+
+    
+   
+  },
+
+   //关闭公众号组件
+   closeOfficialAccount: function () {
+    this.setData({
+      officialAccount: false
+    })
+  },
+	
+	//當時用了組件才會顯示
+  bindload: function () {
+    this.setData({
+      closeImg: true,
+    })
   },
 
   onLoad: function (option) {
@@ -417,13 +481,12 @@ Page({
     })
     util.Request("/api/program_qrcode", {}, "post",
       (res) => {
-        base64src('data:image/jpeg;base64,' + res.data.data, res => {
+        base64src('data:image/jpeg;base64,'+res.data.data, res => {
           this.setData({
             baseSixFour: res,
             flagTwo: 1
           })
-        });
-
+        })
         wx.hideLoading()
       },
       () => {

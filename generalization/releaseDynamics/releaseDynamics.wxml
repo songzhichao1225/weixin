@@ -7,7 +7,7 @@
 		<textarea auto-height bindinput="textInput" maxlength="200" placeholder="分享一个新动态吧..." />
 		<view class="imgContent">
 		<view wx:for="{{imgURLT}}" wx:key="index">
-			<image  src="{{img}}/{{item}}" mode="aspectFill"></image>
+			<image  src="{{img}}{{item}}" mode="aspectFill"></image>
 			<view class="delet" bindtap="delet" data-src="{{item}}">×</view>
 		</view>
 		<view>

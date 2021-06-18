@@ -24,7 +24,7 @@
           data-uuid="{{drankingList.topThree[0].PlayerUUID}}" bindtap="details">
           <image class="img" src='/assets/Pic1Hg.png'></image>
           <image class="imgTwo" src='/assets/Pic1Cd.png'></image>
-          <image class="imgThree" src='{{img}}/{{drankingList.topThree[0].imgURL}}'></image>
+          <image class="imgThree" src='{{img}}{{drankingList.topThree[0].imgURL}}'></image>
           <view class="text">
             <text class="txt">{{drankingList.topThree[0].nickname}}</text>
             <text class="type">{{name}}</text>
@@ -37,7 +37,7 @@
           data-uuid="{{drankingList.topThree[1].PlayerUUID}}" bindtap="details">
           <image class="img" src='/assets/Pic2Hg.png'></image>
           <image class="imgTwot" src='/assets/Pic2Cd.png'></image>
-          <image class="imgThree" src='{{img}}/{{drankingList.topThree[1].imgURL}}'></image>
+          <image class="imgThree" src='{{img}}{{drankingList.topThree[1].imgURL}}'></image>
           <view class="text">
             <text class="txt" style="color:#99C3EB">{{drankingList.topThree[1].nickname}}</text>
             <text class="type">{{name}}</text>
@@ -48,7 +48,7 @@
           data-uuid="{{drankingList.topThree[2].PlayerUUID}}" bindtap="details">
           <image class="img" src='/assets/Pic3Hg.png'></image>
           <image class="imgTwot" src='/assets/Pic3Cd.png'></image>
-          <image class="imgThree" src='{{img}}/{{drankingList.topThree[2].imgURL}}'></image>
+          <image class="imgThree" src='{{img}}{{drankingList.topThree[2].imgURL}}'></image>
           <view class="text">
             <text class="txt" >{{drankingList.topThree[2].nickname}}</text>
             <text class="type">{{name}}</text>
@@ -61,7 +61,7 @@
         <view class="listSon" wx:for="{{drankingList.otherRankInfo}}" wx:key="index" data-uuid="{{item.PlayerUUID}}"
           bindtap="details">
           <text class="number">{{item.rank}}</text>
-          <image class="avatar" src='{{img}}/{{item.imgURL}}'></image>
+          <image class="avatar" src='{{img}}{{item.imgURL}}'></image>
           <text class="name">{{item.nickname}}</text>
           <text class="type">{{name}}</text>
           <text class="gradeTwo">{{item.level}}</text>
@@ -80,7 +80,7 @@
             <text
               style="position:absolute;top:0.3rem,display:block;line-height:2rem;width:1.88rem;text-align:center;color:#D0021B;">{{drankingList.userRankInfo.rank}}</text>
           </view>
-          <image class="avatar" style="margin-left:2rem" src='{{img}}/{{drankingList.userRankInfo.imgURL}}'></image>
+          <image class="avatar" style="margin-left:2rem" src='{{img}}{{drankingList.userRankInfo.imgURL}}'></image>
           <text class="name" style="color:#D85D27;">{{drankingList.userRankInfo.nickname}}</text>
           <text class="type">{{name}}</text>
           <text class="gradeTwo">{{drankingList.userRankInfo.level}}</text>
@@ -146,7 +146,7 @@
           data-uuid="{{drankingList.topThree[0].PlayerUUID}}" bindtap="details">
           <image class="img" src='/assets/Pic1Hg.png'></image>
           <image class="imgTwo" src='/assets/Pic1Cd.png'></image>
-          <image wx:if="{{drankingList.topThree[0].imgURL!=''}}" class="imgThree" src='{{img}}/{{drankingList.topThree[0].imgURL}}'></image>
+          <image wx:if="{{drankingList.topThree[0].imgURL!=''}}" class="imgThree" src='{{img}}{{drankingList.topThree[0].imgURL}}'></image>
           <image wx:if="{{drankingList.topThree[0].imgURL==''}}" class="imgThree" src='../../assets/tiaozhan.png'></image>
           <view class="text">
             <text class="txt">{{drankingList.topThree[0].nickname}}</text>
@@ -159,7 +159,7 @@
           data-uuid="{{drankingList.topThree[1].PlayerUUID}}" bindtap="details">
           <image class="img" src='/assets/Pic2Hg.png'></image>
           <image class="imgTwot" src='/assets/Pic2Cd.png'></image>
-          <image wx:if="{{drankingList.topThree[1].imgURL!=''}}" class="imgThree" src='{{img}}/{{drankingList.topThree[1].imgURL}}'></image>
+          <image wx:if="{{drankingList.topThree[1].imgURL!=''}}" class="imgThree" src='{{img}}{{drankingList.topThree[1].imgURL}}'></image>
           <image wx:if="{{drankingList.topThree[1].imgURL==''}}" class="imgThree" src='../../assets/tiaozhan.png'></image>
           <view class="text">
             <text class="txt">{{drankingList.topThree[1].nickname}}</text>
@@ -171,7 +171,7 @@
           data-uuid="{{drankingList.topThree[2].PlayerUUID}}" bindtap="details">
           <image class="img" src='/assets/Pic3Hg.png'></image>
           <image class="imgTwot" src='/assets/Pic3Cd.png'></image>
-          <image wx:if="{{drankingList.topThree[2].imgURL!=''}}" class="imgThree" src='{{img}}/{{drankingList.topThree[2].imgURL}}'></image>
+          <image wx:if="{{drankingList.topThree[2].imgURL!=''}}" class="imgThree" src='{{img}}{{drankingList.topThree[2].imgURL}}'></image>
           <image wx:if="{{drankingList.topThree[2].imgURL==''}}" class="imgThree" src='../../assets/tiaozhan.png'></image>
           <view class="text">
             <text class="txt">{{drankingList.topThree[2].nickname}}</text>
@@ -185,7 +185,7 @@
         <view class="listSon" wx:for="{{drankingList.otherRankInfo}}" wx:key="index" data-uuid="{{item.PlayerUUID}}"
           bindtap="details">
           <text class="number">{{item.rank}}</text>
-          <image class="avatar" src='{{img}}/{{item.imgURL}}'></image>
+          <image class="avatar" src='{{img}}{{item.imgURL}}'></image>
           <text class="name">{{item.nickname}}</text>
           <text class="type">{{name}}</text>
           <text class="gradeTwo">{{item.level}}</text>
@@ -204,7 +204,7 @@
             <text
               style="position:absolute;top:0.3rem,display:block;line-height:2rem;width:1.88rem;text-align:center;color:#D0021B;">{{drankingList.userRankInfo.rank}}</text>
           </view>
-          <image class="avatar" style="margin-left:2rem" src='{{img}}/{{drankingList.userRankInfo.imgURL}}'></image>
+          <image class="avatar" style="margin-left:2rem" src='{{img}}{{drankingList.userRankInfo.imgURL}}'></image>
           <text class="name" style="color:#D85D27;">{{drankingList.userRankInfo.nickname}}</text>
           <text class="type">{{name}}</text>
           <text class="gradeTwo">{{drankingList.userRankInfo.level}}</text>

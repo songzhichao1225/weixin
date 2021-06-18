@@ -2,10 +2,10 @@
 
   <image class="banner" src='/assets/WdBgBanner@2x.png'></image>
   <view class="headerTop" style="top:{{statusBarHeight+20}}px">
-    <view class="header"  wx:if="{{timeOut}}"  bindtap="forbade">
-      <image class="avatar" catchtap="Personal" mode="aspectFill" data-uuid="{{mineDetail.uuid}}" wx:if="{{mineDetail.imgURL!=''}}"
-        src='{{img}}/{{mineDetail.imgURL}}'></image>
-      <open-data class="avatar" wx:elif="{{mineDetail.imgURL==''}}" type="userAvatarUrl"></open-data>
+    <view class="header" bindtap="Personal" data-uuid="{{mineDetail.uuid}}">
+      <image class="avatar" catchtap="replacement" mode="aspectFill" 
+        wx:if="{{mineDetail.imgURL!=''}}" src='{{img}}{{mineDetail.imgURL}}'></image>
+
       <view class="name">
         <text class="nickName" wx:if="{{mineDetail.nickname!=''}}">{{mineDetail.nickname}}</text>
         <open-data class="nickName" wx:elif="{{mineDetail.nickname==''}}" type="userNickName"></open-data>
@@ -27,16 +27,11 @@
     <open-data class="name" wx:if="{{name==''}}" type="userNickName" class='userName'></open-data> -->
 
       <image class="arrow" src='/assets/right.png'></image>
-        <image class="topRight" catchtap="twoCode" src="../../assets/smallcode.png"></image>
+      <image class="topRight" catchtap="twoCode" src="../../assets/smallcode.png"></image>
     </view>
 
 
-    
-<view class="header" wx:if="{{timeOut==false}}" bindtap="timeOut">
-  <image class="avatar" src='../../assets/tiaozhan.png'></image>
-  <image class="arrow" src='/assets/right.png'></image>
-  <text style="float:right;margin-top:44rpx;padding-right:10rpx">立即登录</text>
-</view>
+
 
 
 
@@ -48,11 +43,11 @@
 
 
     <view class="gold">
-      <view bindtap="{{timeOut==false?'timeOut':'gold'}}" style="border-right:2rpx solid #ccc;">
+      <view bindtap="gold" style="border-right:2rpx solid #ccc;">
         <image class="rankingList" style="width:44rpx;height:42rpx" src='/assets/zuanshi.png'></image>
         <text class="txt">对手果排行榜</text>
       </view>
-      <view bindtap="{{timeOut==false?'timeOut':'golDranking'}}">
+      <view bindtap="golDranking">
         <image class="rankingList" src='/assets/PicWdPhb@2x.png'></image>
         <text class="txt">技术分排行榜</text>
       </view>
@@ -86,9 +81,15 @@
       <image src="{{baseSixFour}}"></image>
       <view catchtap="saveImg" data-src="{{baseSixFour}}">保存小程序码</view>
     </view>
-
   </view>
 
 
 
+
+</view>
+
+<text class="officialTxt" wx:if="{{closeImg}}">为了您及时接收活动信息，请关注公众号！</text>
+<view class="official-account" wx:if="{{officialAccount}}">
+  <official-account bindload="bindload" style="width:100%;"></official-account>
+  
 </view>

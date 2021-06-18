@@ -204,7 +204,8 @@ Page({
       sportType: e.currentTarget.dataset.num,
       pages: 1,
       sportName: this.data.sportName + e.currentTarget.dataset.name,
-      hidden:false
+      hidden:false,
+      hiddenTwo:false
     })
     this.goleloand()
 
@@ -257,7 +258,6 @@ Page({
         
     }
    
-
       let jsonData={
         page:this.data.pages,
         city:wx.getStorageSync('cityInfo'),

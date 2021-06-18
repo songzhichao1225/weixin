@@ -14,7 +14,7 @@ Page({
     sort: [{
         name: "距离由近到远",
         num: 0
-      },
+      }, 
       {
         name: "时间由近到远",
         num: 1
@@ -88,14 +88,30 @@ Page({
     sprtSeName: '推荐排序',
     startTime: '',
     endTime: '',
-    joinCondition: '',
+    joinCondition: 1,
     mingrade: 0,
     maxgrade: 0,
     praise: 0,
     Agemin: 1, //最小年龄
     Agemax: 99, //最大年龄
     img: '',
-    getSetting: 0
+    getSetting: 0,
+    officialAccount: false,   //公众号提示
+    closeImg: true,
+  },
+
+   //关闭公众号组件
+   closeOfficialAccount: function () {
+    this.setData({
+      officialAccount: true
+    })
+  },
+	
+	//當時用了組件才會顯示
+  bindload: function () {
+    this.setData({
+      closeImg: false,
+    })
   },
 
   bookOnly:function(){
@@ -303,7 +319,6 @@ Page({
           flag: true
         })
         wx.stopPullDownRefresh() //停止下拉刷新
-
       },
       () => {
         wx.stopPullDownRefresh() //停止下拉刷新

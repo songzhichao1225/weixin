@@ -16,7 +16,6 @@ Page({
     
   },
   detal:function(e){
-    console.log(e.detail)
     if(this.data.option.flag=='0'&&this.data.option.hood==undefined){
       wx.setStorage({
         data:e.detail,

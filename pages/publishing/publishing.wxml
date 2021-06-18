@@ -1,5 +1,5 @@
-<view class="publishing" >
-	<!-- wx:if="{{timeOut}}" -->
+<view class="publishing" wx:if="{{timeOut}}" >
+	
 	<swiper indicator-dots="true" indicator-active-color="#fff" autoplay="true">
 		<swiper-item wx:for="{{bannerTop}}" wx:key='index' class="swiperItem">
 			<view class="bannerTxt">{{item.name}}</view>
@@ -51,7 +51,7 @@
 					</view>
 					<view class="right">
 						<image class="image" src="/assets/right.png"></image>
-						<picker range="{{cf==false?arrayLan:cf=='no'?arrayLanTwo:array}}" bindchange="picker"
+						<picker range="{{arrayLan}}" bindchange="picker"
 							disabled="{{disabled}}" bindtap="pickerTap" range-key="name" style="float:right;">
 							<view class="textTwo" style="text-align:right;font-size:0.75rem;">
 								{{mode}}
@@ -291,7 +291,7 @@
 				<view class="footer">
 					<view class="nowTxt">
 						<text class="firstTxt" wx:if="{{displayTxt.length!=0}}">{{displayTxt.sentence}}</text>
-						<text class="lastTxt">实付￥{{displayTxt.length!=0?displayTxt.total:0.00}}</text>
+						<text class="lastTxt">实付￥{{displayTxt.length!=0?displayTxt.total:0.00}}</text><text style="color:#D85D27;font-size:0.75rem;float:left;margin-top:0.2rem">{{displayTxt.sentence2}}</text>
 					</view>
 					<button class="btnConfirm" bindtap="release">确认发布</button>
 				</view>
@@ -353,7 +353,7 @@
 			<view class="footer">
 				<view class="nowTxt">
 					<text class="firstTxt" wx:if="{{displayTxtTwo.length!=0}}">{{displayTxtTwo.sentence}}</text>
-					<text class="lastTxt">实付￥{{displayTxtTwo.length!=0?displayTxtTwo.total:0.00}}</text>
+					<text class="lastTxt">实付￥{{displayTxtTwo.length!=0?displayTxtTwo.total:0.00}}</text><text style="color:#D85D27;font-size:0.75rem;float:left;margin-top:0.2rem">{{displayTxtTwo.sentence2}}</text>
 				</view>
 				<button class="btnConfirm" bindtap="releaseTwo">预订场馆</button>
 			</view>
@@ -820,7 +820,7 @@
 				<view class="footer">
 					<view class="nowTxt">
 						<text class="firstTxt" wx:if="{{displayTxtFour.length!=0}}">{{displayTxtFour.sentence}}</text>
-						<text class="lastTxt">实付￥{{displayTxtFour.length!=0?displayTxtFour.total:0.00}}</text>
+						<text class="lastTxt">实付￥{{displayTxtFour.length!=0?displayTxtFour.total:0.00}}</text><text style="color:#D85D27;font-size:0.75rem;float:left;margin-top:0.2rem">{{displayTxtFour.sentence2}}</text>
 					</view>
 					<button class="btnConfirm" bindtap="releaseFour">确认发布</button>
 				</view>
@@ -875,7 +875,7 @@
 					<view class="left">
 						<text style="padding-left:0.5rem;float:left;">开始时间</text>
 						<view style="float:right;color:#9B9B9B;padding-left:0.3rem;font-size:0.75rem;" data-uid="{{siteidFive}}"
-							data-name="{{siteNameFive}}" bindtap="startDateTimeFour">{{startTimerofFive}}{{timerFive}}</view>
+							data-name="{{siteNameFive}}" bindtap="startDateTimeFive">{{startTimerofFive}}{{timerFive}}</view>
 					</view>
 					<view class="right">
 						<image class="image" src="/assets/right.png"></image>
@@ -1011,7 +1011,7 @@
 				<view class="footer">
 					<view class="nowTxt">
 						<text class="firstTxt" wx:if="{{displayTxtFive.length!=0}}">{{displayTxtFive.sentence}}</text>
-						<text class="lastTxt">实付￥{{displayTxtFive.length!=0?displayTxtFive.total:0.00}}</text>
+						<text class="lastTxt">实付￥{{displayTxtFive.length!=0?displayTxtFive.total:0.00}}</text><text style="color:#D85D27;font-size:0.75rem;float:left;margin-top:0.2rem">{{displayTxtFive.sentence2}}</text>
 					</view>
 					<button class="btnConfirm" bindtap="releaseFive">确认发布</button>
 				</view>
@@ -1260,7 +1260,7 @@
 				<view class="footer">
 					<view class="nowTxt">
 						<text class="firstTxt" wx:if="{{displayTxtSix.length!=0}}">{{displayTxtSix.sentence}}</text>
-						<text class="lastTxt">实付￥{{displayTxtSix.length!=0?displayTxtSix.total:0.00}}</text>
+						<text class="lastTxt">实付￥{{displayTxtSix.length!=0?displayTxtSix.total:0.00}}</text><text style="color:#D85D27;font-size:0.75rem;float:left;margin-top:0.2rem">{{displayTxtSix.sentence2}}</text>
 					</view>
 					<button class="btnConfirm" bindtap="releaseSix">确认发布</button>
 				</view>
@@ -1303,21 +1303,21 @@
 	</view>
 
 
-	<view class="forbade" style="{{forbade==true?'background:rgba(000,000,000,0.7)':'background:transparent'}}" bindtap="forbade">
+	<!-- <view class="forbade" style="{{forbade==true?'background:rgba(000,000,000,0.7)':'background:transparent'}}" bindtap="forbade">
 	  <view class="contentbade" wx:if="{{forbade}}">
 		   <text>下载APP更多精彩体验</text>
 			 <image bindlongtap="saveImg" data-src="/assets/twoCode.png" class="twoCode" src="../../assets/twoCode.png"></image>
 			 <text>长按保存二维码识别下载</text>
 		</view>
-	 </view>
+	 </view> -->
 
 
 
 
 </view>
 
-<!-- <view class="timeOut" wx:if="{{timeOut==false}}">
+<view class="timeOut" wx:if="{{timeOut==false}}">
 	<image src="../../assets/timeOut.png"></image>
 	<text>登录后发布活动</text>
   <button class="timeBtn" bindtap="timeOut">立即登录</button>
-</view> -->
+</view>

@@ -853,13 +853,13 @@ image {
   color: #E83030;
   font-size: 0.94rem;
   font-weight: 550;
-  display:table-cell;
-  vertical-align:middle;
-  line-height:32px;
+  display: table-cell;
+  vertical-align: middle;
+  line-height: 32px;
 }
 
 .scrollContent {
-  height: 85%;
+  height: 78%;
 }
 
 .bottomTow {
@@ -897,7 +897,7 @@ image {
   color: #fff;
 }
 
-.timeOut{
+.timeOut {
   width: 60%;
   position: absolute;
   top: 50%;
@@ -906,20 +906,222 @@ image {
   margin-top: -14rem;
 
 }
-.timeOut>image{
+
+.timeOut>image {
   width: 100%;
   height: 10rem;
 }
-.timeOut>text{
+
+.timeOut>text {
   font-size: 0.75rem;
   text-align: center;
   display: block;
 }
-.timeOut .timeBtn{
+
+.timeOut .timeBtn {
   width: 50%;
   height: 2rem;
   background: #D85D27;
   color: #fff;
   font-size: 0.75rem;
   margin: 0.5rem auto 0;
+}
+
+.headerTopso {
+  width: 100%;
+  font-size: 0.88rem;
+  color: #FFF;
+  line-height: 1rem;
+  background: #D85D27;
+  overflow: hidden;
+}
+
+.headerTopso .centerTxt {
+  display: block;
+  width: 65%;
+  padding: 0.3rem 0;
+  float: left;
+  padding-left: 2.5%;
+  font-size: 0.75rem;
+}
+
+.headerTopso .borderRight {
+  display: block;
+  float: left;
+  padding: 0.2rem 0.5rem;
+  margin-top: 0.2rem;
+  border: 0.06rem solid #fff;
+  font-size: 0.75rem;
+  color: #fff;
+  border-radius: 0.3rem;
+}
+
+.icon-small {
+  float: left;
+  margin-left: 2.5%;
+  margin-top: 0.5%;
+}
+
+.rightBtn {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  border-bottom: 0.06rem solid #D85D27;
+  color: #D85D27;
+}
+
+.masking {
+  width: 100%;
+  height: 100%;
+  background: rgba(000, 000, 000, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.contetnMask {
+  width: 90%;
+  height: 90%;
+  background: #fff;
+  border-radius: 1rem;
+  margin-left: 5%;
+  margin-top: 10%;
+}
+
+.contetnMask .header {
+  height: 2rem;
+  border-bottom: 0.06rem solid #ccc;
+  position: relative;
+}
+
+.contetnMask .header>text:first-child {
+  text-align: center;
+  font-size: 0.88rem;
+  display: block;
+  line-height: 2rem;
+}
+
+.contetnMask .header>text:last-child {
+  font-size: 0.75rem;
+  color: #ccc;
+  position: absolute;
+  right: 0.5rem;
+  display: block;
+  line-height: 2rem;
+  top: 0;
+}
+
+.participative {
+  height: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.participative .sonList {
+  padding: 0.75rem 2.5%;
+  overflow: hidden;
+  position: relative;
+  border-top: 0.06rem solid #ededed;
+}
+
+.participative .sonList .left {
+  width: 4.2rem;
+  float: left;
+}
+
+.participative .sonList .left>image {
+  width: 3.88rem;
+  height: 3.88rem;
+  border-radius: 0.75rem;
+}
+
+.leftBottom {
+  overflow: hidden;
+  margin-top: 0.3rem;
+}
+
+.leftBottom>image {
+  width: 1.1rem;
+  height: 1.1rem;
+  float: left;
+  margin-left: 0.3rem;
+}
+
+.leftBottom>view {
+  width: 1.6rem;
+  height: 1rem;
+  background-image: linear-gradient(90deg, #FCA400 0%, #FEE073 100%);
+  border-radius: 2px;
+  color: #fff;
+  font-size: 10px;
+  text-align: center;
+  float: left;
+  margin-left: 0.5rem;
+}
+
+.participative .sonList .right {
+  float: left;
+  line-height: 1.3rem;
+  width: 70.5%;
+}
+
+.participative .sonList .right .name {
+  font-size: 0.88rem;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.participative .sonList .right .name>text {
+  float: left;
+  display: block;
+}
+
+.participative .sonList .right .name>image {
+  width: 0.94rem;
+  height: 0.94rem;
+  display: block;
+  float: left;
+  margin-left: 0.3rem;
+  margin-top: 0.2rem;
+}
+
+.patterns {
+  overflow: hidden;
+
+}
+
+.patterns text {
+  font-size: 0.75rem;
+  padding-left: 0.5rem;
+  display: block;
+  float: left;
+}
+
+.patterns text:first-child {
+  color: #D85D27;
+  padding-left: 0;
+}
+
+.rightImg {
+  width: 2.94rem;
+  height: 2.94rem;
+  position: absolute;
+  right: 0;
+  top: 0rem;
+}
+
+.rightImg>image {
+  width: 100%;
+  height: 100%;
+}
+
+.bosBoxBtn {
+  width: 5.06rem;
+  height: 1.88rem;
+  background: linear-gradient(90deg, #FF8522 0%, #F8350D 100%);
+  border-radius: 0.94rem;
+  text-align:center;
+  line-height: 1.88rem;
+  position: fixed;
+  right: 2.5%;
+  margin-top: -0.3rem;
 }

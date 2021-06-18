@@ -443,6 +443,7 @@ page {
 .footer .nowTxt .lastTxt {
   font-size: 1rem;
   font-weight: blod;
+  float: left;
 }
 
 

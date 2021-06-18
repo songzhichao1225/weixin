@@ -223,14 +223,14 @@ page {
 }
 
 .content .projectList .projectSon .avatar {
-  width: 5rem;
+  width: 160rpx;
   float: left;
   margin-left: 0.8rem;
 }
 
 .content .projectList .projectSon .avatar .avatarP {
-  width: 5rem;
-  height: 5rem;
+  width: 160rpx;
+  height: 160rpx;
   border-radius: 10px;
   margin-top: 0.5rem;
 }
@@ -525,7 +525,7 @@ page {
   border-radius: 0.79rem;
   background: #fff;
   position: absolute;
-  top: 10%;
+  top: 20%;
   left: 7.5%;
   padding: 1.56rem 0;
 }
@@ -562,3 +562,4 @@ page {
   height: 100%;
   overflow-y: auto;
 }
+

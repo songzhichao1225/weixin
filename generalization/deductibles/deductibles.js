@@ -13,11 +13,32 @@ Page({
     offsetquota:0,
     moneyAll:0,
     moneyNum:0,
+    flag:1,
+    forbade:false
+  },
+
+  forbade:function(){
+    this.setData({forbade:true})
+  },
+  closeTwo:function(){
+    this.setData({forbade:false})
   },
 
 
   onLoad: function (options) {
     this.setData({siteMoney:options.siteMoney,offsetquota:options.offsetquota})
+    util.Request("/api/frame", { }, "post",
+    (res) => {
+       this.setData({flag:res.data.data})
+
+    },
+    () => {
+      console.log("失败")
+    },
+    () => {}
+  )
+
+
    this.list()
   },
 
