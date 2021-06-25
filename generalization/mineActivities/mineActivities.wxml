@@ -93,36 +93,36 @@
 					<text class="lstTwo"> <text style="color:#D85D27;font-weight:500;">{{item.SportMode}}</text>
 					<text style="padding-left:1rem;">{{item.sportName}}</text>
 					<text style="padding-left:1rem;">{{item.sportTypeName}}</text></text>
-					<text><text>{{item.startDays}}</text>
-					<text style="padding-left:0.5rem;">{{item.week}}</text>
-					<text style="padding-left:0.5rem;">{{item.startTimes}}-{{item.endTimes}}</text></text>
-					<text>{{item.sitesName}}</text>
-					<text wx:if="{{item.reserve==0}}">场地费:<text style="padding-left:0.5rem;">{{item.PaySiteMoneyType==1?'AA':'输者买单'}}</text>
-					<text style="padding-left:1rem;" wx:if="{{item.Tips!=0.00||item.MoneyPerhour!=0.00}}">{{item.SportMode=='1'?'入场费':'陪练费'||item.SportMode=='2'?'入场费:':'陪练费'}}</text>
-					<text style="padding-left:0.5rem;" wx:if="{{item.Tips!='0'&&item.Tips!='0.00'}}">{{item.Tips}}元</text>
-					<text style="padding-left:0.5rem;" wx:if="{{item.MoneyPerhour!='0'&&item.MoneyPerhour!='0.00'}}">{{item.MoneyPerhour}}元</text>
-					</text>
-					<text wx:if="{{item.reserve==1}}">场地费:<text style="padding-left:0.5rem;">发布者买单</text>
-					<text style="padding-left:1rem;" wx:if="{{item.Tips!=0.00||item.MoneyPerhour!=0.00}}">{{item.SportMode=='1'?'入场费':'陪练费'||item.SportMode=='2'?'入场费:':'陪练费'}}</text>
-					<text style="padding-left:0.5rem;" wx:if="{{item.Tips!='0'&&item.Tips!='0.00'}}">{{item.Tips}}元</text>
-					<text style="padding-left:0.5rem;" wx:if="{{item.MoneyPerhour!='0'&&item.MoneyPerhour!='0.00'}}">{{item.MoneyPerhour}}元</text>
-					</text>
+					<text><text wx:if="{{item.term_validity==0}}">{{item.startDays}}</text>
+					<text  wx:if="{{item.term_validity==0}}"style="padding-left:0.5rem;">{{item.week}}</text>
+					<text wx:if="{{item.term_validity==0}}" style="padding-left:0.5rem;">{{item.startTimes}}-{{item.endTimes}}</text>
+					<text wx:if="{{item.term_validity!=0}}">{{item.term_validity}}</text>
+				</text>
 					
-          <view  class="btnBos" wx:if="{{item.reserve==1&&item.PublicStatus==2&&item.sportTypeName!='散场'}}">	<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="1">取消预订</view></view>
+					<text>{{item.sitesName}}</text>
+					<view class="cost">
+					<text style='margin:0;'>场地费:{{item.PaySiteMoneyType==1?'AA':item.PaySiteMoneyType==2?'输方买单':'练习方买单'}}</text>
+					<text wx:if="{{item.MoneyPerhour!=0}}">陪练费:￥{{item.MoneyPerhour}}/人</text>
+					<text wx:if="{{item.Tips!=0.00||item.Tips!=0}}">入场费:￥{{item.Tips}}/人</text>
+					<!-- <text wx:if="{{item.organizations!=0}}">组织费:￥{{item.organizations}}</text> -->
+					<text>{{item.range}}</text>
+				</view>
+					
+          <view  class="btnBos" wx:if="{{item.reserve==1&&item.PublicStatus==2}}">	<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="1">取消预订</view></view>
 					<view class="btnBos" wx:if="{{item.reserve!=1}}">
 						<view class="isConfirmResult" wx:if="{{item.isComplaint==1}}">投诉中</view>
-						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="1" wx:if="{{item.PublicStatus==1&&item.isSignIn==0&&type!='join'}}">取消发布</view>
+						<!-- <view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="1" wx:if="{{item.PublicStatus==1&&item.isSignIn==0&&type!='join'}}">取消发布</view>
 						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="2" wx:if="{{item.PublicStatus==1&&item.isSignIn==0&&type=='join'}}">取消报名</view>
 						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="1" wx:if="{{item.PublicStatus==1&&item.isSignIn==1&&type!='join'}}">取消发布</view>
-						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="2" wx:if="{{item.PublicStatus==1&&item.isSignIn==1&&type=='join'}}">取消报名</view>
-						<view class="isConfirmResult" catchtap="isQuit" data-uuid="{{item.uuid}}" wx:if="{{item.PublicStatus==2&&item.isQuit==1}}">提前退出</view>
+						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="2" wx:if="{{item.PublicStatus==1&&item.isSignIn==1&&type=='join'}}">取消报名</view> -->
+						<!-- <view class="isConfirmResult" catchtap="isQuit" data-uuid="{{item.uuid}}" wx:if="{{item.PublicStatus==2&&item.isQuit==1}}">提前退出</view>
 						<view class="isConfirmResult" style="background:#E9E9E9" wx:if="{{item.PublicStatus==2&&item.isQuit==2}}">提前退出</view>
 						<view class="isConfirmResult" catchtap="signin" data-id="{{item.uuid}}" wx:if="{{item.SigninYes==1&&item.PublicStatus!=7&&item.isSignIn==0}}">场馆签到</view>
 						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.SigninYes==1&&item.isSignIn==1}}">已签到</view>
 						<view class="isConfirmResult" catchtap="SignOut" data-uuid="{{item.uuid}}" wx:if="{{item.PublicStatus==3&&item.isQuitInGame==1}}">中途退出</view>
 						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.PublicStatus==3&&item.isQuitInGame==2}}">中途退出</view>
 						<view class="isConfirmResult" bindtap="comResult" data-id="{{item.uuid}}" wx:if="{{item.PublicStatus==4&&item.end==2&&item.isConfirmResult==0}}">填写结果</view>
-						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.PublicStatus==4&&item.end==2&&item.isConfirmResult==1}}">填写结果</view>
+						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.PublicStatus==4&&item.end==2&&item.isConfirmResult==1}}">填写结果</view> -->
 						<!-- <view class="isConfirmResult" catchtap="comment" data-id="{{item.uuid}}" wx:if="{{item.PublicStatus==6&&item.Comment==0}}">待评价</view>
 						<view class="isConfirmResult" style="background:#E9E9E9;" wx:if="{{item.PublicStatus==6&&item.PublicStatus!=7&&item.Comment!=0}}">待评价</view> -->
 					</view>

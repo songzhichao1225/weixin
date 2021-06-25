@@ -63,6 +63,14 @@ Page({
       num: 10
     },
   ],
+  forbade:false,
+  },
+
+  forbade:function(){
+    this.setData({forbade:true})
+  },
+  closeTwo:function(){
+    this.setData({forbade:false})
   },
 
   activites: function (e) {
@@ -85,8 +93,15 @@ Page({
           name: "全部"
         }
         activityNow.unshift(aa)
+        let arrSport=[
+          {name:'全部',id:0},
+          {name:'羽毛球',id:1},
+          {name:'乒乓球',id:2},
+          {name:'台球',id:3},
+          {name:'网球',id:7},
+        ]
         this.setData({
-          activity: res.data.data.slice(0, res.data.data.length-1)
+          activity:options.flag==3?arrSport:res.data.data
         })
       },
       () => {},
@@ -175,15 +190,34 @@ Page({
           arr.push(...res.data.data.slice(0, 4))
           arr.push(...res.data.data.slice(5, 6))
           arr.push(...res.data.data.slice(4, 5))
-          if (id == 5) {
-            this.setData({
-              activitySon: arr
-            })
-          } else {
-            this.setData({
-              activitySon: res.data.data
-            })
+          if(this.data.flag==2){
+            if(id==1||id==2||id==4){
+              this.setData({
+                activitySon:  res.data.data.slice(1,3)
+              })
+            } else {
+              this.setData({
+                activitySon: res.data.data
+              })
+            }
+
+          }else{
+            if (id == 5) {
+              this.setData({
+                activitySon: arr
+              })
+            }else if(id==1||id==2||id==7){
+             
+              this.setData({
+                activitySon:  res.data.data.slice(1,2)
+              })
+            } else {
+              this.setData({
+                activitySon: res.data.data
+              })
+            }
           }
+         
 
         },
         () => {},
@@ -216,7 +250,8 @@ Page({
       acitvitysort: e.currentTarget.dataset.num,
       pages: 1,
       sprtSeName: e.currentTarget.dataset.name,
-      hidden:false
+      hidden:false,
+      sortHid:false,
     })
     this.goleloand()
   },
@@ -244,7 +279,8 @@ Page({
     this.setData({
       range: e.currentTarget.dataset.num,
       pages: 1,
-      rangeName: e.currentTarget.dataset.name
+      rangeName: e.currentTarget.dataset.name,
+      hidden:false
     })
     this.goleloand()
   },
@@ -357,9 +393,27 @@ Page({
 
   releaseSix:function(){
     if(this.data.flag==2){
-      wx.reLaunch({
-        url: '/pages/publishing/publishing?indexSw=5'
-      })
+
+  util.Request("/api/ActivityWhitelist", {}, "post",
+      (res) => {
+       if(res.data.code===2000){
+        wx.reLaunch({
+          url: '/pages/publishing/publishing?indexSw=5'
+        })
+       }else{
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none',
+          duration: 2000
+        })
+       }
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
+
     }else if(this.data.flag==3){
       wx.reLaunch({
         url: '/pages/publishing/publishing?indexSw=4'
@@ -371,13 +425,48 @@ Page({
     }
 
   },
-  forbade:function(){
-    wx.showToast({
-      title: '功能开发中~',
-      icon: 'none',
-      duration: 2000
+  saveImg(e) {
+    wx.saveImageToPhotosAlbum({
+      filePath: e.currentTarget.dataset.src,
+      success: function (data) {
+        console.log(data);
+      },fail: function (err) {
+        console.log(err);
+        if (err.errMsg ==="saveImageToPhotosAlbum:fail auth deny") {console.log("用户一开始拒绝了，我们想再次发起授权")
+          console.log(
+            '打开设置窗口'
+          )
+
+          wx.openSetting({
+            success(settingdata) {
+              console.log(settingdata)
+
+              if (settingdata.authSetting[
+                  'scope.writePhotosAlbum'
+                ]) {
+
+                console.log(
+                  '获取权限成功，给出再次点击图片保存到相册的提示。'
+                )
+
+              } else {
+
+                console.log(
+                  '获取权限失败，给出不给权限就无法正常使用的提示'
+                )
+
+              }
+
+            }
+
+          })
+
+        }
+
+      }
+
     })
-    
+   
   }
 
 

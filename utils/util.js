@@ -47,10 +47,11 @@ function Request(url, data, method, successFn, failFn, completeFn) {
       method: method,
       success: function (res) {
         wx.hideLoading()
-        if (res.data.code == 2000) {
+        let data=JSON.parse(res.data)
+        if (data.code == 2000) {
           successFn(res);
 
-        } else if (res.data.code == 40101) {
+        } else if (data.code == 40101) {
           wx.showToast({
             title: '身份验证失败',
             icon: 'none',

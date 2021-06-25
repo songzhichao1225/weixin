@@ -8,7 +8,8 @@ Page({
     headIdx: 1,
     page: 1,
     rollList:[],
-    endfirom:true
+    endfirom:true,
+    jieshen:''
 
   },
 
@@ -26,7 +27,7 @@ Page({
     }, "post",
     (res) => {
       if (res.data.code == 2000) {
-        this.setData({rollList:res.data.data,endfirom:false})
+        this.setData({rollList:res.data.data,endfirom:false,jieshen:res.data.other})
 
         wx.hideLoading()
       }

@@ -44,7 +44,7 @@ page{
   display: block;
 }
 .scrollView{
-  height: 93%;
+  height: 90%;
 }
 .content{
   width: 90%;
@@ -99,4 +99,21 @@ page{
   position: absolute;
   right: 0;
   top: 1.4rem;
+}
+.jieshen{
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+  text-align: right;
+  padding-right: 5%;
+}
+
+ 
+ .topLeft>image {
+  width: 4.63rem;
+  height: 1.13rem;
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0.5rem;
 }

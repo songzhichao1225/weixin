@@ -65,9 +65,10 @@ page {
 
 .payFor .venueFee {
   border-top: 0.06rem solid #E9E9E9;
-  padding: 0;
+  padding: 0.3rem;
   padding-left: 2.5%;
   overflow: hidden;
+
 }
 
 .payFor .venueFee .title {

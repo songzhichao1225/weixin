@@ -1,4 +1,5 @@
 const util = require('../../utils/util.js')
+var app = getApp();
 Page({
 
   /**
@@ -23,13 +24,17 @@ Page({
       type:options.Identification,
       typeInfo:options.typeInfo,
       status:options.status,
-      ok:options.ok
+      ok:options.ok,
+      lr:options.lr
     })
+    app.envelope=[]
+    app.deductibles=[]
     util.Request("/api/getwWord", {
         inviteId: options.inviteId,
         Identification: options.Identification,
         referee: options.referee,
-        status: options.status
+        status: options.status,
+        lr:options.lr
       }, "post",
       (res) => {
         this.setData({

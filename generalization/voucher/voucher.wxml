@@ -3,21 +3,25 @@
 		<view bindtap="header" style="{{headIdx==1?'color:#D85D27':''}}" data-index="1">可用抵用券 <view wx:if="{{headIdx==1}}" class="line"></view></view>
 		<view bindtap="header" style="{{headIdx==2?'color:#D85D27':''}}" data-index="2">历史抵用券  <view wx:if="{{headIdx==2}}" class="line"></view></view>
 	</view>
+	<view class="jieshen" wx:if="{{headIdx==1&&rollList.length>0}}">可为您节省{{jieshen}}元</view>
+	<view class="jieshen" wx:if="{{headIdx==2&&rollList.length>0}}">已为您节省{{jieshen}}元</view>
 
 	<scroll-view scroll-y  refresher-enabled="true" refresher-triggered="{{endfirom}}"  bindrefresherrefresh="refresh" class="scrollView" >
     <view class="content" wx:for="{{rollList}}" style="{{headIdx==2?'background:#F3F3F3;color:#9B9B9B;':''}}" wx:key="index">
 			<view class="left"><span>￥</span><span>{{item.reduce}}</span></view>
 			<view class="right">
-				<text>满{{item.full}}元可用</text>
+				<text wx:if="{{item.reduce!=item.full}}">满{{item.full}}元可用</text>
+				<text wx:if="{{item.reduce==item.full}}">新人红包</text>
 				<text wx:if="{{headIdx==1}}">剩余{{item.number}}张</text>
 				<text wx:if="{{headIdx==2}}" style="color:#9b9b9b;">{{item.number}}张</text>
-        <text>有效期至{{item.dateend}}</text>
+				<text wx:if="{{item.reduce!=item.full}}">有效期至{{item.dateend}}</text>
+				<text wx:if="{{item.reduce==item.full}}">永久</text>
 				<image wx:if="{{item.type!=undefined&&item.type==1}}" class="imageFie" src="../../assets/yiguoqi.png"></image>
 				<image wx:if="{{item.type!=undefined&&item.type==2}}" class="imageFie" src="../../assets/yishiyong.png"></image>
 				<image wx:if="{{item.type!=undefined&&item.type==3}}"class="imageFie" src="../../assets/yituihuan.png"></image>
 			</view>
 
-
+      <view class="topLeft" wx:if="{{item.reduce==item.full}}"><image src="../../assets/titleLeft.png"></image></view>
 
 
 

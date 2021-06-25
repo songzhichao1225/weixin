@@ -54,7 +54,7 @@
 					<text>{{item.SportName}}</text>
 					<text>{{item.HighestLevelName}}</text>
 					<text>{{item.SportTypeName}}</text>
-					<text>缺{{item.lockNumber}}人</text>
+					<text>{{item.lockNumbers}}</text>
 				</view>
 				<view class="time">
 					<text style='margin:0;'>{{item.startDays}}</text>
@@ -137,6 +137,17 @@
 				</view>
 			</view>
 		</view>
+
+
+		<view class="forbade" wx:if="{{forbade}}">
+		<view class="contentbade">
+			<text>下载APP更多精彩体验</text>
+			<image bindlongtap="saveImg" data-src="/assets/twoCode.png" class="twoCode" src="../../assets/twoCode.png">
+			</image>
+			<text>长按保存二维码识别下载</text>
+			<image class="closeTwo" bindtap="closeTwo" src="../../assets/closeTwo.png"></image>
+		</view>
+	</view> 
 
 
 </view>

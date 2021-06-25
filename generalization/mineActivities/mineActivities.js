@@ -73,6 +73,21 @@ Page({
     )
   },
   navList: function (e) {
+    util.Request("/api/getActiveCount", {
+      'type': type
+    }, "get",
+    (res) => {
+      this.setData({
+        activitiesNum: res.data.data
+      })
+      wx.hideLoading()
+    },
+    () => {
+      console.log("失败")
+    },
+    () => {}
+  )
+
     this.setData({
       statusType: e.currentTarget.dataset.id
     })

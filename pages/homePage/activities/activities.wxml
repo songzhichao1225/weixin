@@ -8,11 +8,12 @@
 		<image src='/assets/moneyHood.png'></image>
 		<text>踢馆成功，平台会支付给赢方奖金￥{{activitiesData.PipeMainMoney}},赶紧报名pk吧！</text>
 	</view>
+
 	<view class="countdown" wx:if="{{end}}">截至报名倒计时:
 		{{countDownDay}}天{{countDownHour}}小时{{countDownMinute}}分{{countDownSecond}}秒</view>
 
 
-	<scroll-view scroll-y="true" class="scrollContent">
+	<scroll-view scroll-y="true" class="scrollContent" style="{{activitiesData.stay==1?'height:86%':activitiesData.PipeMain==2?'height:75%':'height:80%'}}">
 		<view style="border-bottom:2rpx solid #E9E9E9;padding-bottom:24rpx;position: relative;">
 			<view class="status">
 				<image wx:if="{{activitiesData.PublicStatus==2}}" src='/assets/dai.png'></image>
@@ -24,13 +25,12 @@
 				<image wx:if="{{activitiesData.PublicStatus==5}}" src='/assets/wancheng.png'></image>
 			</view>
 			<view class="contnet">
-
 				<view class="contentTop">
 					<image class="contentImg" src='/assets/{{activitiesData.ballImg}}'></image>
 					<view class="contentText">
 						<text>ID {{activitiesData.orderId}}</text>
 						<text>{{activitiesData.sportName}} {{activitiesData.sportTypeName}}</text>
-						<text>{{activitiesData.SportModeTwo}}</text>
+						<text>{{activitiesData.SportModeTwo=='我找陪练'?'发布者找陪练':activitiesData.SportModeTwo}}</text>
 					</view>
 				</view>
 				<view class="line"></view>
@@ -53,7 +53,7 @@
 						<text style="color:#9B9B9B">场馆地点</text>
 						<image src='/assets/IconHdxqDw@2x.png'></image>
 						<!-- bindtap="addressGo" -->
-						<text style="padding-left:0.3rem;display:block;width:75%" data-lat="{{activitiesData.siteLat}}"
+						<text style="padding-left:0.3rem;display:block;width:70%" data-lat="{{activitiesData.siteLat}}"
 							data-lng="{{activitiesData.siteLng}}"
 							data-address="{{activitiesData.siteAddress}}">{{activitiesData.siteAddress}}</text>
 					</view>
@@ -92,7 +92,7 @@
 					<view class="publisherTxt">
 						<view class="one">
 							<text>场地费用</text>
-							<text class="money">￥{{activitiesData.reserve==1?activitiesData.SiteMoney:activitiesData.SiteMoneys+'/人'}}</text>
+							<text class="money">￥{{activitiesData.reserve==1||activitiesData.SportModeTwo=='我找陪练'||activitiesData.SportModeTwo=='我是陪练'?activitiesData.SiteMoney:activitiesData.SiteMoneys+'/人'}}</text>
 							<view class="one" style="width:100%" wx:if="{{activitiesData.refereeFee!=0}}">
 								<text>裁判费用</text>
 								<text class="money">￥{{activitiesData.refereeFees}}/人</text>
@@ -132,12 +132,12 @@
 						</view>
 						<view class="two" wx:if="{{activitiesData.Tips!=0&&activitiesData.PipeMain!=2}}">
 							<text class="way">入场费用</text>
-							<text>￥{{activitiesData.Tips}}{{tipsType==-1?'.00':'0'}}/人</text>
+							<text>￥{{activitiesData.Tips}}/人</text>
 						</view>
 
-						<view class="two" wx:if="{{activitiesData.MoneyPerhour!=0}}">
+						<view class="two" wx:if="{{activitiesData.SportModeTwo=='我找陪练'||activitiesData.SportModeTwo=='我是陪练'}}">
 							<text class="way">陪练费用</text>
-							<text>￥{{activitiesData.MoneyPerhour}}{{tipsType==-1?'.00':'0'}}/人</text>
+							<text>￥{{activitiesData.MoneyPerhour}}</text>
 						</view>
 
 						<view class="two" wx:if="{{activitiesData.PipeMain==2}}">
@@ -154,7 +154,7 @@
 					<view class="publisherTxt" wx:if="{{activitiesData.referee!==0&&activitiesData.reserve!=1}}">
 						<view class="one">
 							<text>裁判应得</text>
-							<text class="time">{{activitiesData.deserved }}{{deservedType==-1?'.00':'0'}}元/人</text>
+							<text class="time">{{activitiesData.deserved }}元/人</text>
 						</view>
 						<view class="two">
 							<text class="way">裁判等级</text>
@@ -189,13 +189,13 @@
 								<image wx:if="{{item.playerUUID!='empty'}}" class="project" mode="aspectFill" src="/assets/{{activitiesData.ballImgSon}}">
 								</image>
 								<text wx:if="{{item.playerUUID!='empty'}}" class="grade">{{item.heightLevel}}</text>
-								<text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4}}" class="isSigin">{{item.nameStatus}}</text>
+								<!-- <text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4&&activitiesData.PublicStatus!=7}}" class="isSigin">{{item.nameStatus}}</text> -->
 								<text class="TeamAsonTwo"
-									wx:if="{{item.uuid==plarUUid&&activitiesData.SportModeTwo!='我是陪练'&&activitiesData.SportModeTwo!='我找陪练'}}">我</text>
+									wx:if="{{item.uuid==plarUUid}}">我</text>
 								<text class="TeamAsonTwo"
 									wx:if="{{item.uuid!=plarUUid&&item.playerUUID!='empty'&&activitiesData.SportModeTwo!='我是陪练'&&activitiesData.SportModeTwo!='我找陪练'}}">A{{index+1}}</text>
 								<text class="TeamAsonTwo"
-									wx:if="{{item.playerUUID!='empty'&&activitiesData.SportModeTwo=='我是陪练'||item.playerUUID!='empty'&&activitiesData.SportModeTwo=='我找陪练'}}">{{activitiesData.SportModeTwo=='我是陪练'?'陪练方':'练习方'}}</text>
+									wx:if="{{item.uuid!=plarUUid&&item.playerUUID!='empty'&&activitiesData.SportModeTwo=='我是陪练'||item.uuid!=plarUUid&&item.playerUUID!='empty'&&activitiesData.SportModeTwo=='我找陪练'}}">{{activitiesData.SportModeTwo=='我是陪练'?'陪练方':'练习方'}}</text>
 							</view>
 						</view>
 					</view>
@@ -203,8 +203,7 @@
 						<text class="titleBDui">B队</text>
 						<view class="peopleList">
 							<view class="son" wx:for="{{activitiesData.teamB}}" wx:key='index'>
-
-								<view class="invite" wx:if="{{item.playerUUID=='empty'}}" bindtap="userSignUp" data-index="{{index}}"
+								<view class="invite" wx:if="{{item.playerUUID=='empty'}}" data-name="{{activitiesData.SportModeTwo}}" data-uuid="{{activitiesData.uuid}}" bindtap="userSignUp" data-index="{{index}}"
 									data-team="2">
 									<!-- 邀请 -->
 									<text
@@ -213,19 +212,19 @@
 										wx:if="{{activitiesData.SportModeTwo!='我是陪练'&&activitiesData.SportModeTwo!='我找陪练'}}">B{{index+1}}</text>
 									<text class="TeamAson"
 										wx:if="{{activitiesData.SportModeTwo=='我是陪练'||activitiesData.SportModeTwo=='我找陪练'}}">{{activitiesData.SportModeTwo=='我是陪练'?'练习方':'陪练方'}}</text>
-
 								</view>
 								<image class="logo" wx:if="{{item.playerUUID!='empty'}}" bindtap="getUserDetailInfo"
 									data-uid="{{item.uuid}}"mode="aspectFill" src='{{img}}{{item.imgURL}}'></image>
 								<image class="project" wx:if="{{item.playerUUID!='empty'}}"mode="aspectFill" src="/assets/{{activitiesData.ballImgSon}}">
 								</image>
-								<text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4}}" class="isSigin">{{item.nameStatus}}</text>
+								<!-- <text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4&&activitiesData.PublicStatus!=7}}" class="isSigin">{{item.nameStatus}}</text> -->
 								<text wx:if="{{item.playerUUID!='empty'}}" class="grade">{{item.heightLevel}}</text>
-								<text wx:if="{{item.uuid==plarUUid&&activitiesData.SportModeTwo!='我是陪练'&&activitiesData.SportModeTwo!='我找陪练'}}" class="TeamAsonTwo">我</text>
+								<text wx:if="{{item.uuid==plarUUid}}" class="TeamAsonTwo">我</text>
 								<text wx:if="{{item.uuid!=plarUUid&&item.playerUUID!='empty'&&activitiesData.SportModeTwo!='我是陪练'&&activitiesData.SportModeTwo!='我找陪练'}}" class="TeamAsonTwo">B{{index+1}}</text>
 								<text class="TeamAsonTwo"
-									wx:if="{{item.playerUUID!='empty'&&activitiesData.SportModeTwo=='我是陪练'||item.playerUUID!='empty'&&activitiesData.SportModeTwo=='我找陪练'}}">{{activitiesData.SportModeTwo=='我是陪练'?'练习方':'陪练方'}}</text>
+									wx:if="{{item.uuid!=plarUUid&&item.playerUUID!='empty'&&activitiesData.SportModeTwo=='我是陪练'||item.uuid!=plarUUid&&item.playerUUID!='empty'&&activitiesData.SportModeTwo=='我找陪练'}}">{{activitiesData.SportModeTwo=='我是陪练'?'练习方':'陪练方'}}</text>
 							</view>
+							<view bindtap="checkedTwoyou" class="buchangjin" wx:if="{{activitiesData.SportModeTwo=='我找陪练'&&activitiesData.teamB[0].playerUUID=='empty'}}"> <radio color="#D85D27"  checked="{{checkedTwoyou}}" /><text>阅读并同意</text><text style="color:blue" catchtap="rules">《补偿金规则》</text></view>
 						</view>
 					</view>
 
@@ -234,19 +233,17 @@
 						<text class="titleBDui">{{activitiesData.SportType==21||activitiesData.SportType==20?'C队':'裁判'}}</text>
 						<view class="peopleList" style="margin-left:38rpx;width:75%">
 							<view class="son" wx:for="{{activitiesData.teamC}}" wx:key='index'>
-
 								<view class="invite" wx:if="{{item.playerUUID=='empty'}}"
 									bindtap="{{activitiesData.SportType==21||activitiesData.SportType==20?'userSignUp':'addReferees'}}"
 									data-index="{{index}}" data-team="3">
-									<text
-										class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'':'报名':'已结束'}}</text>
+									<text wx:if="{{activitiesData.SportType==21||activitiesData.SportType==20}}" class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'':'报名':'已结束'}}</text>
 									<text class="TeamAson">C{{index+1}}</text>
 								</view>
 								<image class="logo" wx:if="{{item.playerUUID!='empty'}}" bindtap="getUserDetailInfo"
 									data-uid="{{item.uuid}}"mode="aspectFill" src='{{img}}{{item.imgURL}}'></image>
 								<image class="project" wx:if="{{item.playerUUID!='empty'}}"mode="aspectFill" src="/assets/{{activitiesData.ballImgSon}}">
 								</image>
-								<text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4}}" class="isSigin">{{item.nameStatus}}</text>
+								<!-- <text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4&&activitiesData.PublicStatus!=7}}" class="isSigin">{{item.nameStatus}}</text> -->
 								<text wx:if="{{item.playerUUID!='empty'}}" class="grade">{{item.heightLevel}}</text>
 								<text wx:if="{{item.playerUUID!='empty'}}" class="TeamAsonTwo">C{{index+1}}</text>
 							</view>
@@ -269,11 +266,11 @@
 					<text>{{activitiesData.ComplaintsResult}}</text>
 				</view>
 				<view class="lineTwo" wx:if="{{type==1&&activitiesData.PublicStatus!=1&&activitiesData.Complaint!=4}}"></view>
-				<view class="Attendance" bindtap="attendance" data-uuid="{{activitiesData.uuid}}"
+				<!-- <view class="Attendance" bindtap="attendance" data-uuid="{{activitiesData.uuid}}"
 					wx:if="{{type==1&&activitiesData.PublicStatus==4&&activitiesData.reserve!=1||activitiesData.PublicStatus==6&&activitiesData.reserve!=1||activitiesData.PublicStatus==5&&activitiesData.reserve!=1}}">
 					<text>到场情况及规则</text>
 					<image src="/assets/right.png"></image>
-				</view>
+				</view> -->
 				<view class="lineTwo"
 					wx:if="{{type==1&&activitiesData.PublicStatus==4||activitiesData.PublicStatus==6||activitiesData.PublicStatus==5}}">
 				</view>
@@ -366,12 +363,15 @@
 				<view class="acquire"
 					wx:if="{{type==1&&activitiesData.PublicStatus==6&&activitiesData.reserve!=1||activitiesData.PublicStatus==5&&activitiesData.reserve!=1||activitiesData.PublicStatus==7&&activitiesData.reserve!=1}}">
 					<view class="title">费用及金币获得</view>
-					<view class="acquireSon"><text>场地费</text><text>{{activitiesData.getTips}}</text></view>
-					<view class="acquireSon" wx:if="{{activitiesData.isPublisher==0}}">
+					<view class="acquireSon"><text>场地费</text><text>{{activitiesData.getlist}}</text></view>
+					<view class="acquireSon" wx:if="{{activitiesData.SportModeTwo!='我找陪练'&&activitiesData.SportModeTwo!='我是陪练'}}">
 						<text>入场费</text><text>预付{{activitiesData.Tips}}{{tipsType==-1?'.00':'0'}}，实付{{activitiesData.Tips}}{{tipsType==-1?'.00':'0'}}，退还{{activitiesData.Tips}}{{tipsType==-1?'.00':'0'}}</text>
 					</view>
+					<view class="acquireSon" wx:if="{{activitiesData.SportModeTwo=='我找陪练'||activitiesData.SportModeTwo=='我是陪练'}}">
+						<text>陪练费</text><text>+{{activitiesData.MoneyPerhour}}{{tipsType==-1?'.00':'0'}}</text>
+					</view>
 					<view class="acquireSon" wx:if="{{activitiesData.isPublisher==1}}">
-						<text>出场费</text><text>{{activitiesData.getTips}}</text>
+						<text>{{activitiesData.organization==1?'组织费':'出场费'}}</text><text>{{activitiesData.getTips}}</text>
 					</view>
 					<view class="acquireSon"><text>对手果</text><text>{{activitiesData.GetCommonCoins}}枚</text></view>
 					<view class="acquireSon"><text>技术分</text><text>{{activitiesData.GetCoins}}分</text></view>
@@ -431,8 +431,8 @@
 	</scroll-view>
 
 	<view class="bottomTow" wx:if="{{activitiesData.PublicStatus!=7&&activitiesData.PublicStatus!=5}}">
-		<image src="../../../assets/hongbaoTwo.png"></image><text>每邀请1位新用户注册并使用，奖励您10元。</text>
-		<button open-type="share">去邀请</button>
+		<image src="../../../assets/hongbaoTwo.png"></image><text>每分享1位新用户注册并使用，奖励您10元。</text>
+		<button open-type="share">去分享</button>
 	</view>
 
 
@@ -556,8 +556,8 @@
 
 
 	<view class="displayTxt" wx:if="{{activitiesData.lackNumbers!=0&&activitiesData.stay!=1}}">
-		<view>{{displayTxt.sentence}}</view>
-		<view>实付：￥{{displayTxt.total}}</view>
+		<view style="{{activitiesData.SportMode==4?'font-size:0.75rem;width:100%;text-align:left':''}}">{{displayTxt.sentence}}</view>
+		<view wx:if="{{activitiesData.SportMode!=4}}">实付：￥{{displayTxt.total}}</view>
 	</view>
 
 
@@ -609,8 +609,8 @@
 					<text style="color:#000">{{item.address}}</text>
 				</view>
 				<view class="patterns">
-					<text style="color:#000" >场地费:{{item.PaySiteMoneyType==1?'AA':'输者买单'}}</text>
-					<text wx:if="{{item.MoneyPerhour!=0}}">陪练费:{{item.MoneyPerhour}}/人</text>
+					<text style="color:#000" >场地费:{{item.PaySiteMoneyType==1?'AA':item.PaySiteMoneyType==2?'输者买单':'练习方买单'}}</text>
+					<text wx:if="{{item.MoneyPerhour!=0}}">陪练费:{{item.MoneyPerhour}}</text>
 					<text wx:if="{{item.Tips!=0.00||item.Tips!=0}}">入场费:{{item.Tips}}/人</text>
 					<text style="float:right">{{item.range}}</text>
 				</view>

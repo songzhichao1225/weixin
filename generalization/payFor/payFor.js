@@ -28,7 +28,7 @@ Page({
     numBlur: '',
     Moneytotal: 0.00,
     exemption: 0.00,
-    organization:0,
+    organization: 0,
 
   },
 
@@ -122,15 +122,18 @@ Page({
       Reward: app.globalData.Reward,
       Referee: app.globalData.refereefee,
       Insurance: this.data.checkedFlag == true ? '1' : '0',
-    
+
     }
-    this.setData({organization:app.globalData.organization})
+    this.setData({
+      organization: app.globalData.organization
+    })
     util.Request("/api/getElplainInfo", obj, "get",
       (res) => {
         let k = res.data.data.Total.toString()
         if (k.indexOf('.') == -1) {
           res.data.data.Total = res.data.data.Total + '.00'
         }
+        res.data.data.Accompany = res.data.data.Accompany.toFixed(2)
         res.data.data.InsuranceMoney = res.data.data.InsuranceMoney.slice(0, res.data.data.InsuranceMoney.length - 5)
         res.data.data.Compensation = res.data.data.Compensation.slice(0, res.data.data.Compensation.length - 5)
         this.setData({
@@ -285,161 +288,162 @@ Page({
   },
 
 
-  hidePayLayer: function () { 
+  hidePayLayer: function () {
     var val = this.data.pwdVal;
 
     if (this.data.look == 1) {
       if (this.data.current == 1) {
         if (this.data.ko != 1) {
-            if(app.globalData.PipeMain==2){
-              let obj = {
-                sportid: app.globalData.sportid,
-                sportType: app.globalData.sportType,
-                SportMode: app.globalData.SportMode,
-                siteUid: app.globalData.siteUid,
-                StartTime: app.globalData.StartTime,
-                PlayTime: app.globalData.PlayTime,
-                SiteMoney: app.globalData.SiteMoney,
-                PaySiteMoneyType: app.globalData.PaySiteMoneyType,
-                teamSex: app.globalData.teamSex,
-                LevelMin: app.globalData.LevelMin,
-                LevelMax: app.globalData.LevelMax,
-                Tips: app.globalData.SportMode == 1 ? app.globalData.Tips : 0 || app.globalData.SportMode == 2 ? app.globalData.Tips : 0,
-                comments: app.globalData.comments,
-                member: app.globalData.member.length === 0 ? '' : JSON.stringify(app.globalData.member),
-                MoneyPerhour:app.globalData.name=='我找陪练'||app.globalData.name=='我是陪练'? app.globalData.Accompany:app.globalData.SportMode == 3 ? app.globalData.Tips : 0 || app.globalData.SportMode == 4 ? app.globalData.Tips : 0,
-                payType: this.data.current == 3 ? 'balance' : 'wechatpay',
-                venueid: app.globalData.venueid,
-                refereefee: app.globalData.refereefee,
-                RefereeNumber: app.globalData.RefereeNumber,
-                Refereegrade: app.globalData.Refereegrade,
-                Agemin: app.globalData.Agemin,
-                Agemax: app.globalData.Agemax,
-                SiteSumMoney: app.globalData.SiteSumMoney,
-                volumeMoney: this.data.volumeMoney,
-                volumedetail: this.data.volumedetail,
-                hbmedetail: this.data.hbmedetail,
-                hbMoney: this.data.hbMoney,
-                Insurance: this.data.checkedFlag == true ? '1' : '0',
-                small:'1',
-                openID: wx.getStorageSync('openid'),
-                PipeMain:app.globalData.PipeMain,
-                PipeMainMoney:app.globalData.PipeMainMoney,
-                lr:wx.getStorageSync('bookinSix').data[0].lr,
-                openPrice:wx.getStorageSync('bookinSix').data[0].openPrice
-              }
-    
-              util.Request("/api/userAddActivity_ADD", obj, "post",//发布踢馆活动
-                (resTwo) => {
-                  wx.hideLoading()
-                  if (resTwo.data.code == 2000) {
-                    var wxPay = resTwo.data.data.sign_data.sign_data
-                    console.log(wxPay)
-                    wx.requestPayment({
-                      'timeStamp': wxPay.timeStamp.toString(),
-                      'nonceStr': wxPay.nonceStr,
-                      'package': wxPay.package,
-                      'signType': 'MD5',
-                      'paySign': wxPay.sign,
-                      'success': function (res) {
-                        wx.navigateTo({
-                          url: '/generalization/createSuccess/createSuccess?inviteId=' + resTwo.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' +  app.globalData.Refereegrade + '&status=1',
-                        })
-                      },
-                      'fail': function (res) {},
-    
-                    })
-                  } else {
-                    wx.showToast({
-                      title: res.data.msg,
-                      icon: 'none',
-                      duration: 1500,
-                      mask: true
-                    })
-                  }
-    
-                },
-                () => {
-                  console.log("失败")
-                },
-                () => {}
-              )
-            }else{
-              let obj = {
-                sportid: app.globalData.sportid,
-                sportType: app.globalData.sportType,
-                SportMode: app.globalData.SportMode,
-                siteUid: app.globalData.siteUid,
-                StartTime: app.globalData.StartTime,
-                PlayTime: app.globalData.PlayTime,
-                SiteMoney: app.globalData.SiteMoney,
-                PaySiteMoneyType: app.globalData.PaySiteMoneyType,
-                teamSex: app.globalData.teamSex,
-                LevelMin: app.globalData.LevelMin,
-                LevelMax: app.globalData.LevelMax,
-                Tips: app.globalData.SportMode == 1 ? app.globalData.Tips : 0 || app.globalData.SportMode == 2 ? app.globalData.Tips : 0,
-                comments: app.globalData.comments,
-                member: app.globalData.member.length === 0 ? '' : JSON.stringify(app.globalData.member),
-                MoneyPerhour:app.globalData.name=='我找陪练'||app.globalData.name=='我是陪练'? app.globalData.Accompany:app.globalData.SportMode == 3 ? app.globalData.Tips : 0 || app.globalData.SportMode == 4 ? app.globalData.Tips : 0,
-                payType: this.data.current == 3 ? 'balance' : 'wechatpay',
-                venueid: app.globalData.venueid,
-                refereefee: app.globalData.refereefee,
-                RefereeNumber: app.globalData.RefereeNumber,
-                Refereegrade: app.globalData.Refereegrade,
-                Agemin: app.globalData.Agemin,
-                Agemax: app.globalData.Agemax,
-                SiteSumMoney: app.globalData.SiteSumMoney,
-                volumeMoney: this.data.volumeMoney,
-                volumedetail: this.data.volumedetail,
-                hbmedetail: this.data.hbmedetail,
-                hbMoney: this.data.hbMoney,
-                Insurance: this.data.checkedFlag == true ? '1' : '0',
-                small:'1',
-                openID: wx.getStorageSync('openid'),
-                openPrice:app.globalData.openPrice
-              }
-    
-              util.Request("/api/userAddActivity_ADD", obj, "post",
-                (resTwo) => {
-                  wx.hideLoading()
-                  if (resTwo.data.code == 2000) {
-                    var wxPay = resTwo.data.data.sign_data.sign_data
-                    wx.requestPayment({
-                      'timeStamp': wxPay.timeStamp.toString(),
-                      'nonceStr': wxPay.nonceStr,
-                      'package': wxPay.package,
-                      'signType': 'MD5',
-                      'paySign': wxPay.sign,
-                      'success': function (res) {
-                        wx.navigateTo({
-                          url: '/generalization/createSuccess/createSuccess?inviteId=' + resTwo.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + app.globalData.refereefee + '&status=1',
-                        })
-                      },
-                      'fail': function (res) {
-                        console.log('没成功')
-                      },
-    
-                    })
-                  } else {
-                    wx.showToast({
-                      title: res.data.msg,
-                      icon: 'none',
-                      duration: 1500,
-                      mask: true
-                    })
-                  }
-    
-                },
-                () => {
-                  console.log("失败")
-                },
-                () => {}
-              )
-
+          if (app.globalData.PipeMain == 2) {
+            let obj = {
+              sportid: app.globalData.sportid,
+              sportType: app.globalData.sportType,
+              SportMode: app.globalData.SportMode,
+              siteUid: app.globalData.siteUid,
+              StartTime: app.globalData.StartTime,
+              PlayTime: app.globalData.PlayTime,
+              SiteMoney: app.globalData.SiteMoney,
+              PaySiteMoneyType: app.globalData.PaySiteMoneyType,
+              teamSex: app.globalData.teamSex,
+              LevelMin: app.globalData.LevelMin,
+              LevelMax: app.globalData.LevelMax,
+              Tips: app.globalData.SportMode == 1 ? app.globalData.Tips : 0 || app.globalData.SportMode == 2 ? app.globalData.Tips : 0,
+              comments: app.globalData.comments,
+              member: app.globalData.member.length === 0 ? '' : JSON.stringify(app.globalData.member),
+              MoneyPerhour: app.globalData.name == '我找陪练' || app.globalData.name == '我是陪练' ? app.globalData.Accompany : app.globalData.SportMode == 3 ? app.globalData.Tips : 0 || app.globalData.SportMode == 4 ? app.globalData.Tips : 0,
+              payType: this.data.current == 3 ? 'balance' : 'wechatpay',
+              venueid: app.globalData.venueid,
+              refereefee: app.globalData.refereefee,
+              RefereeNumber: app.globalData.RefereeNumber,
+              Refereegrade: app.globalData.Refereegrade,
+              Agemin: app.globalData.Agemin,
+              Agemax: app.globalData.Agemax,
+              SiteSumMoney: app.globalData.SiteSumMoney,
+              volumeMoney: this.data.volumeMoney,
+              volumedetail: this.data.volumedetail,
+              hbmedetail: this.data.hbmedetail,
+              hbMoney: this.data.hbMoney,
+              Insurance: this.data.checkedFlag == true ? '1' : '0',
+              small: '1',
+              openID: wx.getStorageSync('openid'),
+              PipeMain: app.globalData.PipeMain,
+              PipeMainMoney: app.globalData.PipeMainMoney,
+              lr: wx.getStorageSync('bookinSix').data[0].lr,
+              openPrice: wx.getStorageSync('bookinSix').data[0].openPrice
             }
 
+            util.Request("/api/userAddActivity_ADD", obj, "post", //发布踢馆活动
+              (resTwo) => {
+                wx.hideLoading()
+                if (resTwo.data.code == 2000) {
+                  var wxPay = resTwo.data.data.sign_data.sign_data
+                  console.log(wxPay)
+                  wx.requestPayment({
+                    'timeStamp': wxPay.timeStamp.toString(),
+                    'nonceStr': wxPay.nonceStr,
+                    'package': wxPay.package,
+                    'signType': 'MD5',
+                    'paySign': wxPay.sign,
+                    'success': function (res) {
+                      wx.navigateTo({
+                        url: '/generalization/createSuccess/createSuccess?inviteId=' + resTwo.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + app.globalData.Refereegrade + '&status=1' + '&lr=' + wx.getStorageSync('bookinSix').data[0].lr,
+                      })
+                    },
+                    'fail': function (res) {},
 
-          
+                  })
+                } else {
+                  wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none',
+                    duration: 1500,
+                    mask: true
+                  })
+                }
+
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
+          } else {
+            let obj = {
+              sportid: app.globalData.sportid,
+              sportType: app.globalData.sportType,
+              SportMode: app.globalData.SportMode,
+              siteUid: app.globalData.siteUid,
+              StartTime: app.globalData.StartTime,
+              PlayTime: app.globalData.PlayTime,
+              SiteMoney: app.globalData.SiteMoney,
+              PaySiteMoneyType: app.globalData.PaySiteMoneyType,
+              teamSex: app.globalData.teamSex,
+              LevelMin: app.globalData.LevelMin,
+              LevelMax: app.globalData.LevelMax,
+              Tips: app.globalData.SportMode == 1 ? app.globalData.Tips : 0 || app.globalData.SportMode == 2 ? app.globalData.Tips : 0,
+              comments: app.globalData.comments,
+              member: app.globalData.member.length === 0 ? '' : JSON.stringify(app.globalData.member),
+              MoneyPerhour: app.globalData.name == '我找陪练' || app.globalData.name == '我是陪练' ? app.globalData.Accompany : app.globalData.SportMode == 3 ? app.globalData.Tips : 0 || app.globalData.SportMode == 4 ? app.globalData.Tips : 0,
+              payType: this.data.current == 3 ? 'balance' : 'wechatpay',
+              venueid: app.globalData.venueid,
+              refereefee: app.globalData.refereefee,
+              RefereeNumber: app.globalData.RefereeNumber,
+              Refereegrade: app.globalData.Refereegrade,
+              Agemin: app.globalData.Agemin,
+              Agemax: app.globalData.Agemax,
+              SiteSumMoney: app.globalData.SiteSumMoney,
+              volumeMoney: this.data.volumeMoney,
+              volumedetail: this.data.volumedetail,
+              hbmedetail: this.data.hbmedetail,
+              hbMoney: this.data.hbMoney,
+              Insurance: this.data.checkedFlag == true ? '1' : '0',
+              small: '1',
+              openID: wx.getStorageSync('openid'),
+              openPrice: app.globalData.openPrice,
+              lr: app.globalData.lr
+            }
+
+            util.Request("/api/userAddActivity_ADD", obj, "post",
+              (resTwo) => {
+                wx.hideLoading()
+                if (resTwo.data.code == 2000) {
+                  var wxPay = resTwo.data.data.sign_data.sign_data
+                  wx.requestPayment({
+                    'timeStamp': wxPay.timeStamp.toString(),
+                    'nonceStr': wxPay.nonceStr,
+                    'package': wxPay.package,
+                    'signType': 'MD5',
+                    'paySign': wxPay.sign,
+                    'success': function (res) {
+                      wx.navigateTo({
+                        url: '/generalization/createSuccess/createSuccess?inviteId=' + resTwo.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + app.globalData.refereefee + '&status=1' + '&lr=' + app.globalData.lr,
+                      })
+                    },
+                    'fail': function (res) {
+                      console.log('没成功')
+                    },
+
+                  })
+                } else {
+                  wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none',
+                    duration: 1500,
+                    mask: true
+                  })
+                }
+
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
+
+          }
+
+
+
         } else if (this.data.ko == 1) {
 
 
@@ -511,134 +515,135 @@ Page({
 
 
               if (this.data.ko != 1) {
-  
-               if(app.globalData.PipeMain==2){
-                 console.log('我是踢馆')
-                let obj = {
-                  sportid: app.globalData.sportid,
-                  sportType: app.globalData.sportType,
-                  SportMode: app.globalData.SportMode,
-                  siteUid: app.globalData.siteUid,
-                  StartTime: app.globalData.StartTime,
-                  PlayTime: app.globalData.PlayTime,
-                  SiteMoney: app.globalData.SiteMoney - this.data.volumeMoney,
-                  PaySiteMoneyType: app.globalData.PaySiteMoneyType,
-                  teamSex: app.globalData.teamSex,
-                  LevelMin: app.globalData.LevelMin,
-                  LevelMax: app.globalData.LevelMax,
-                  Tips: app.globalData.SportMode == 1 ? app.globalData.Tips : 0 || app.globalData.SportMode == 2 ? app.globalData.Tips : 0,
-                  comments: app.globalData.comments,
-                  member: app.globalData.member.length === 0 ? '' : JSON.stringify(app.globalData.member),
-                  MoneyPerhour:app.globalData.name=='我找陪练'||app.globalData.name=='我是陪练'? app.globalData.Accompany:app.globalData.SportMode == 3 ? app.globalData.Tips : 0 || app.globalData.SportMode == 4 ? app.globalData.Tips : 0,
-                  payType: this.data.current == 3 ? 'balance' : 'wechatpay',
-                  venueid: app.globalData.venueid,
-                  refereefee: app.globalData.refereefee,
-                  RefereeNumber: app.globalData.RefereeNumber,
-                  Refereegrade: app.globalData.Refereegrade,
-                  Agemin: app.globalData.Agemin,
-                  Agemax: app.globalData.Agemax,
-                  SiteSumMoney: app.globalData.SiteSumMoney,
-                  volumeMoney: this.data.volumeMoney,
-                  volumedetail: this.data.volumedetail,
-                  hbmedetail: this.data.hbmedetail,
-                  hbMoney: this.data.hbMoney,
-                  Insurance: this.data.checkedFlag == true ? '1' : '0',
-                  PipeMain:app.globalData.PipeMain,
-                  PipeMainMoney:app.globalData.PipeMainMoney,
-                  lr:wx.getStorageSync('bookinSix').data[0].lr,
-                  openPrice:wx.getStorageSync('bookinSix').data[0].openPrice
-                  
+
+                if (app.globalData.PipeMain == 2) {
+                  console.log('我是踢馆')
+                  let obj = {
+                    sportid: app.globalData.sportid,
+                    sportType: app.globalData.sportType,
+                    SportMode: app.globalData.SportMode,
+                    siteUid: app.globalData.siteUid,
+                    StartTime: app.globalData.StartTime,
+                    PlayTime: app.globalData.PlayTime,
+                    SiteMoney: app.globalData.SiteMoney - this.data.volumeMoney,
+                    PaySiteMoneyType: app.globalData.PaySiteMoneyType,
+                    teamSex: app.globalData.teamSex,
+                    LevelMin: app.globalData.LevelMin,
+                    LevelMax: app.globalData.LevelMax,
+                    Tips: app.globalData.SportMode == 1 ? app.globalData.Tips : 0 || app.globalData.SportMode == 2 ? app.globalData.Tips : 0,
+                    comments: app.globalData.comments,
+                    member: app.globalData.member.length === 0 ? '' : JSON.stringify(app.globalData.member),
+                    MoneyPerhour: app.globalData.name == '我找陪练' || app.globalData.name == '我是陪练' ? app.globalData.Accompany : app.globalData.SportMode == 3 ? app.globalData.Tips : 0 || app.globalData.SportMode == 4 ? app.globalData.Tips : 0,
+                    payType: this.data.current == 3 ? 'balance' : 'wechatpay',
+                    venueid: app.globalData.venueid,
+                    refereefee: app.globalData.refereefee,
+                    RefereeNumber: app.globalData.RefereeNumber,
+                    Refereegrade: app.globalData.Refereegrade,
+                    Agemin: app.globalData.Agemin,
+                    Agemax: app.globalData.Agemax,
+                    SiteSumMoney: app.globalData.SiteSumMoney,
+                    volumeMoney: this.data.volumeMoney,
+                    volumedetail: this.data.volumedetail,
+                    hbmedetail: this.data.hbmedetail,
+                    hbMoney: this.data.hbMoney,
+                    Insurance: this.data.checkedFlag == true ? '1' : '0',
+                    PipeMain: app.globalData.PipeMain,
+                    PipeMainMoney: app.globalData.PipeMainMoney,
+                    lr: wx.getStorageSync('bookinSix').data[0].lr,
+                    openPrice: wx.getStorageSync('bookinSix').data[0].openPrice
+
+                  }
+                  util.Request("/api/userAddActivity_ADD", obj, "post",
+                    (res) => {
+
+                      if (res.data.code == 2000) {
+                        wx.removeStorage({
+                          key: 'bookinSix'
+                        })
+                        wx.navigateTo({
+                          url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + app.globalData.refereefee + '&status=1' + '&lt=' + app.globalData.lr,
+                        })
+                      } else {
+                        wx.showToast({
+                          title: res.data.msg,
+                          icon: 'none',
+                          duration: 1500,
+                          mask: true
+                        })
+
+                      }
+                    },
+                    () => {
+                      console.log("失败")
+                    },
+                    () => {}
+                  )
+                } else {
+                  let obj = {
+                    sportid: app.globalData.sportid,
+                    sportType: app.globalData.sportType,
+                    SportMode: app.globalData.SportMode,
+                    siteUid: app.globalData.siteUid,
+                    StartTime: app.globalData.StartTime,
+                    PlayTime: app.globalData.PlayTime,
+                    SiteMoney: app.globalData.SiteMoney - this.data.volumeMoney,
+                    PaySiteMoneyType: app.globalData.PaySiteMoneyType,
+                    teamSex: app.globalData.teamSex,
+                    LevelMin: app.globalData.LevelMin,
+                    LevelMax: app.globalData.LevelMax,
+                    Tips: app.globalData.SportMode == 1 ? app.globalData.Tips : 0 || app.globalData.SportMode == 2 ? app.globalData.Tips : 0,
+                    comments: app.globalData.comments,
+                    member: app.globalData.member.length === 0 ? '' : JSON.stringify(app.globalData.member),
+                    MoneyPerhour: app.globalData.name == '我找陪练' || app.globalData.name == '我是陪练' ? app.globalData.Accompany : app.globalData.SportMode == 3 ? app.globalData.Tips : 0 || app.globalData.SportMode == 4 ? app.globalData.Tips : 0,
+                    payType: this.data.current == 3 ? 'balance' : 'wechatpay',
+                    venueid: app.globalData.venueid,
+                    refereefee: app.globalData.refereefee,
+                    RefereeNumber: app.globalData.RefereeNumber,
+                    Refereegrade: app.globalData.Refereegrade,
+                    Agemin: app.globalData.Agemin,
+                    Agemax: app.globalData.Agemax,
+                    SiteSumMoney: app.globalData.SiteSumMoney,
+                    volumeMoney: this.data.volumeMoney,
+                    volumedetail: this.data.volumedetail,
+                    hbmedetail: this.data.hbmedetail,
+                    hbMoney: this.data.hbMoney,
+                    Insurance: this.data.checkedFlag == true ? '1' : '0',
+                    openPrice: app.globalData.openPrice,
+                    lr: app.globalData.lr
+                  }
+
+                  util.Request("/api/userAddActivity_ADD", obj, "post",
+                    (res) => {
+
+                      if (res.data.code == 2000) {
+                        wx.removeStorage({
+                          key: 'bookin'
+                        })
+                        wx.navigateTo({
+                          url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + res.data.data.referee + '&status=1' + '&time=' + res.data.data.CreateTime,
+                        })
+                      } else {
+                        wx.showToast({
+                          title: res.data.msg,
+                          icon: 'none',
+                          duration: 1500,
+                          mask: true
+                        })
+
+                      }
+                    },
+                    () => {
+                      console.log("失败")
+                    },
+                    () => {}
+                  )
                 }
-                util.Request("/api/userAddActivity_ADD", obj, "post",
-                  (res) => {
-
-                    if (res.data.code == 2000) {
-                      wx.removeStorage({
-                        key: 'bookinSix'
-                      })
-                      wx.navigateTo({
-                        url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + res.data.data.referee + '&status=1' + '&time=' + res.data.data.CreateTime,
-                      })
-                    } else {
-                      wx.showToast({
-                        title: res.data.msg,
-                        icon: 'none',
-                        duration: 1500,
-                        mask: true
-                      })
-
-                    }
-                  },
-                  () => {
-                    console.log("失败")
-                  },
-                  () => {}
-                )
-               }else{
-                let obj = {
-                  sportid: app.globalData.sportid,
-                  sportType: app.globalData.sportType,
-                  SportMode: app.globalData.SportMode,
-                  siteUid: app.globalData.siteUid,
-                  StartTime: app.globalData.StartTime,
-                  PlayTime: app.globalData.PlayTime,
-                  SiteMoney: app.globalData.SiteMoney - this.data.volumeMoney,
-                  PaySiteMoneyType: app.globalData.PaySiteMoneyType,
-                  teamSex: app.globalData.teamSex,
-                  LevelMin: app.globalData.LevelMin,
-                  LevelMax: app.globalData.LevelMax,
-                  Tips: app.globalData.SportMode == 1 ? app.globalData.Tips : 0 || app.globalData.SportMode == 2 ? app.globalData.Tips : 0,
-                  comments: app.globalData.comments,
-                  member: app.globalData.member.length === 0 ? '' : JSON.stringify(app.globalData.member),
-                  MoneyPerhour:app.globalData.name=='我找陪练'||app.globalData.name=='我是陪练'? app.globalData.Accompany:app.globalData.SportMode == 3 ? app.globalData.Tips : 0 || app.globalData.SportMode == 4 ? app.globalData.Tips : 0,
-                  payType: this.data.current == 3 ? 'balance' : 'wechatpay',
-                  venueid: app.globalData.venueid,
-                  refereefee: app.globalData.refereefee,
-                  RefereeNumber: app.globalData.RefereeNumber,
-                  Refereegrade: app.globalData.Refereegrade,
-                  Agemin: app.globalData.Agemin,
-                  Agemax: app.globalData.Agemax,
-                  SiteSumMoney: app.globalData.SiteSumMoney,
-                  volumeMoney: this.data.volumeMoney,
-                  volumedetail: this.data.volumedetail,
-                  hbmedetail: this.data.hbmedetail,
-                  hbMoney: this.data.hbMoney,
-                  Insurance: this.data.checkedFlag == true ? '1' : '0',
-                  openPrice:app.globalData.openPrice
-                }
-
-                util.Request("/api/userAddActivity_ADD", obj, "post",
-                  (res) => {
-
-                    if (res.data.code == 2000) {
-                      wx.removeStorage({
-                        key: 'bookin'
-                      })
-                      wx.navigateTo({
-                        url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + res.data.data.referee + '&status=1' + '&time=' + res.data.data.CreateTime,
-                      })
-                    } else {
-                      wx.showToast({
-                        title: res.data.msg,
-                        icon: 'none',
-                        duration: 1500,
-                        mask: true
-                      })
-
-                    }
-                  },
-                  () => {
-                    console.log("失败")
-                  },
-                  () => {}
-                )
-               }
 
 
 
 
 
-                
+
               } else if (this.data.ko == 1) {
                 util.Request("/api/userSignUp", {
                     inviteId: app.globalData.inviteId,
@@ -730,9 +735,13 @@ Page({
           comments: app.userReserveVenue.comments,
           payType: this.data.current == 3 ? 'balance' : 'wechatpay',
           venueid: app.userReserveVenue.venueid,
-          breakup: app.userReserveVenue.sportType == 22||app.userReserveVenue.sportType == 24? app.userReserveVenue.breakup : '',
+          breakup: app.userReserveVenue.sportType == 22 || app.userReserveVenue.sportType == 24 ? app.userReserveVenue.breakup : '',
           SiteSumMoney: app.userReserveVenue.SiteSumMoney,
           small: 1,
+          volumeMoney: this.data.volumeMoney,
+          volumedetail: this.data.volumedetail,
+          hbmedetail: this.data.hbmedetail,
+          hbMoney: this.data.hbMoney,
           openID: wx.getStorageSync('openid'),
         }
         util.Request("/api/userReserveVenue", obj, "post",
@@ -783,7 +792,11 @@ Page({
                 comments: app.userReserveVenue.comments,
                 payType: this.data.current == 3 ? 'balance' : 'wechatpay',
                 venueid: app.userReserveVenue.venueid,
-                breakup: app.userReserveVenue.sportType == 22||app.userReserveVenue.sportType == 24 ? app.userReserveVenue.breakup : '',
+                volumeMoney: this.data.volumeMoney,
+                volumedetail: this.data.volumedetail,
+                hbmedetail: this.data.hbmedetail,
+                hbMoney: this.data.hbMoney,
+                breakup: app.userReserveVenue.sportType == 22 || app.userReserveVenue.sportType == 24 ? app.userReserveVenue.breakup : '',
                 SiteSumMoney: app.userReserveVenue.SiteSumMoney
               }
               util.Request("/api/userReserveVenue", obj, "post",
@@ -791,7 +804,7 @@ Page({
 
                   if (res.data.code == 2000) {
                     wx.navigateTo({
-                      url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=1' + '&referee=0'+ '&status=2' + '&time=' + res.data.data.CreateTime,
+                      url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=1' + '&referee=0' + '&status=2' + '&time=' + res.data.data.CreateTime,
                     })
                   } else {
                     wx.showToast({
@@ -854,9 +867,10 @@ Page({
   },
   //支付
   payTo: function () {
+   
 
+    if (this.data.look == 2 || this.data.organization == 0) {
 
-    if (this.data.compensates != false||this.data.look==2||this.data.organization==1) {
       if (this.data.current == 1) {
         wx.showLoading({
           title: '获取中~',
@@ -874,15 +888,37 @@ Page({
         } else {
           this.showInputLayer();
         }
-
       }
     } else {
-      wx.showToast({
-        title: '请仔细阅读费用说明并勾选补偿金选项',
-        icon: 'none',
-        duration: 2000,
-        mask: true
-      })
+      if(this.data.compensates == false ){
+        wx.showToast({
+          title: '请仔细阅读费用说明并勾选补偿金选项',
+          icon: 'none',
+          duration: 2000,
+          mask: true
+        })
+      }else{
+        if (this.data.current == 1) {
+          wx.showLoading({
+            title: '获取中~',
+            mask: true
+          });
+          this.hidePayLayer()
+        } else {
+          if (Number(this.data.getElplainInfo.money) < Number(this.data.getElplainInfo.Total)) {
+            wx.showToast({
+              title: '钱包余额不足',
+              icon: 'none',
+              duration: 1500,
+              mask: true
+            })
+          } else {
+            this.showInputLayer();
+          }
+        }
+      }
+
+     
 
     }
 
@@ -911,19 +947,18 @@ Page({
    */
   onShow: function () {
     if (app.deductibles != undefined && app.deductibles.length != 0) {
-      
       this.setData({
         volumedetail: app.deductibles.volumedetail,
         volumeMoney: app.deductibles.moneyNum.toFixed(2),
         exemption: (app.deductibles.moneyNum + Number(this.data.hbMoney)).toFixed(2),
-        Moneytotal: (this.data.getElplainInfo.Total - app.deductibles.moneyNum) < 0 ? '0.01' : (this.data.getElplainInfo.Total - app.deductibles.moneyNum).toFixed(2)
+        Moneytotal: (this.data.getElplainInfo.Total - app.deductibles.moneyNum-this.data.hbMoney) < 0 ? '0.01' : (this.data.getElplainInfo.Total - app.deductibles.moneyNum-this.data.hbMoney).toFixed(2)
       })
     } else {
-      
       this.setData({
         volumedetail: '',
         volumeMoney: 0.00,
-        exemption: Number(this.data.hbMoney).toFixed(2)
+        exemption: Number(this.data.hbMoney).toFixed(2),
+        Moneytotal: (this.data.getElplainInfo.Total-this.data.hbMoney - 0) < 0 ? '0.01' : (this.data.getElplainInfo.Total-this.data.hbMoney - 0).toFixed(2)
       })
     }
     if (app.envelope != undefined && app.envelope.length != 0) {
@@ -937,7 +972,8 @@ Page({
       this.setData({
         hbmedetail: '',
         hbMoney: 0.00,
-        exemption: Number(this.data.volumeMoney).toFixed(2)
+        exemption: Number(this.data.volumeMoney).toFixed(2),
+        Moneytotal: (this.data.getElplainInfo.Total - this.data.volumeMoney -0) <= 0 ? '0.01' : (this.data.getElplainInfo.Total - this.data.volumeMoney - 0).toFixed(2)
       })
     }
 

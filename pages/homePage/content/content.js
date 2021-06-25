@@ -98,6 +98,8 @@ Page({
     getSetting: 0,
     officialAccount: false,   //公众号提示
     closeImg: true,
+    enabled: true,
+    maskActivity:[],
   },
 
    //关闭公众号组件
@@ -148,6 +150,31 @@ Page({
     })
   },
 
+  closeMask:function(){
+    this.setData({maskActivity:[]})
+  },
+
+  goOn:function(e){
+    util.Request("/api/ifAgreeOrgActivityNotFull", {
+      uuid:e.currentTarget.dataset.uuid,
+      type:e.currentTarget.dataset.index
+    }, "post",
+    (res) => {
+      wx.showToast({
+        title: res.data.msg,
+        icon: 'success',
+        duration: 1500,
+        mask: true
+      })
+      this.setData({maskActivity:[]})
+      wx.hideLoading()
+    },
+    () => {},
+    () => {
+
+    }
+  )
+  },
 
   map: function () {
     var that = this;
@@ -188,6 +215,46 @@ Page({
   },
 
   onLoad: function () {
+
+    if(wx.getStorageSync('token')){
+     
+      util.Request("/api/alertForOrgActivityNotFullWindow", {}, "post",
+      (res) => {
+        let projectDataNow = res.data.data.activeLst
+        for (let i in projectDataNow) {
+          if (projectDataNow[i].SportMode == '1') {
+            projectDataNow[i].SportMode = '娱乐模式'
+          } else if (projectDataNow[i].SportMode == '2') {
+            projectDataNow[i].SportMode = '竞技模式'
+          } else if (projectDataNow[i].SportMode == '3') {
+            projectDataNow[i].SportMode = '我是陪练'
+          } else if (projectDataNow[i].SportMode == '4') {
+            projectDataNow[i].SportMode = '我找陪练'
+          } else if (projectDataNow[i].PaySiteMoneyType == 1) {
+            projectDataNow[i].PaySiteMoneyType = 'AA'
+          } else if (projectDataNow[i].PaySiteMoneyType == 0) {
+            projectDataNow[i].PaySiteMoneyType = '输方买单'
+          }
+          if(projectDataNow[i].MoneyPerhour.toString().indexOf('.')==-1){
+            projectDataNow[i].MoneyPerhour=projectDataNow[i].MoneyPerhour+'.00'
+          }
+        }
+        this.setData({
+          maskActivity: projectDataNow==undefined?[]:projectDataNow
+        })
+
+      },
+      () => {},
+      () => {
+
+      }
+    )
+
+    }
+
+
+
+
     this.map()
     this.setData({
       img: util.API
@@ -221,7 +288,7 @@ Page({
         }
         activityNow.unshift(aa)
         this.setData({
-          activity: res.data.data.slice(0, res.data.data.length-1)
+          activity: res.data.data
         })
 
       },
@@ -232,7 +299,22 @@ Page({
     )
 
   },
+  refresh() {
+    this.setData({
+      enabled: true,
+      pages: 1
+    })
+    this.goleloand()
 
+  },
+
+  tolower: function () {
+    this.setData({
+      pages: this.data.pages + 1
+    })
+    let show = true
+    this.goleloand(show)
+  },
 
   //初始化获取活动列表函数
   goleloand: function (show) {
@@ -310,7 +392,8 @@ Page({
           })
         } else {
           this.setData({
-            projectData: projectDataNow
+            projectData: projectDataNow,
+            enabled: false,
           })
         }
 
@@ -728,7 +811,6 @@ Page({
     })
   },
   saveImg(e) {
-    console.log()
     wx.saveImageToPhotosAlbum({
       filePath: e.currentTarget.dataset.src,
       success: function (data) {
@@ -771,4 +853,5 @@ Page({
     })
    
   }
+  
 })

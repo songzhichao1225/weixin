@@ -26,11 +26,11 @@ Page({
 
 
   onLoad: function (options) {
+    app.deductibles=[]
     this.setData({siteMoney:options.siteMoney,offsetquota:options.offsetquota})
-    util.Request("/api/frame", { }, "post",
+    util.Request("/api/frame", {}, "post",
     (res) => {
        this.setData({flag:res.data.data})
-
     },
     () => {
       console.log("失败")
@@ -101,21 +101,28 @@ Page({
     let index=e.currentTarget.dataset.index
     let num=e.currentTarget.dataset.num
     let number=e.currentTarget.dataset.number
-    this.setData({moneyAll:this.data.moneyAll+moneysmall})
+    
+   
+    
     if(money>this.data.siteMoney){
       wx.showToast({
         title: '场地费满'+money+'可用',
         icon: 'none',
         duration: 2000
       })
-      this.setData({moneyAll:0})
-    }else if(this.data.moneyAll>this.data.offsetquota){
+      
+    }else if(this.data.moneyAll>=this.data.offsetquota){
       wx.showToast({
         title: '最多可使用场地费抵用券'+this.data.offsetquota+'元',
         icon: 'none',
         duration: 2000
       })
-      this.setData({moneyAll:this.data.moneyAll-moneysmall,})
+    }else if(this.data.moneyAll+moneysmall>this.data.offsetquota){
+      wx.showToast({
+        title: '最多可使用场地费抵用券'+this.data.offsetquota+'元',
+        icon: 'none',
+        duration: 2000
+      })
     }else if(num>=number){
       wx.showToast({
         title: '抵用券不足',
@@ -124,7 +131,7 @@ Page({
       })
     }else{
       let k="list["+index+"].num"
-      this.setData({moneyNum:this.data.moneyAll,[k]:this.data.list[index].num+1})
+      this.setData({moneyNum:this.data.moneyAll+moneysmall,moneyAll:this.data.moneyAll+moneysmall,[k]:this.data.list[index].num+1})
     }
   },
   subtracts(e){

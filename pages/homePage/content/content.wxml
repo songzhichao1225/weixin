@@ -80,7 +80,7 @@
 
 	<view class="projectNav">
 		<view style='margin:0;' catchtap='itemSelection'>
-			<text style="{{sportName!=='运动项目'?'color:#D85D27;':''}}">{{sportName}}</text>
+			<text style="{{sportName!=='运动项目'?'color:#D85D27':''}}">{{sportName}}</text>
 			<image class="imgRight" src='/assets/home_icon_jt_xia_nor@2x.png'></image>
 		</view>
 		<view catchtap='sortHid'>
@@ -98,13 +98,18 @@
 		</view>
 	</view>
 
-	<view class="projectList">
+
+
+   <scroll-view scroll-y="auto" enhanced="true" lower-threshold="200"
+      refresher-enabled="true" refresher-triggered="{{enabled}}" bindrefresherrefresh="refresh"
+      bindscrolltolower="tolower" class="projectList" style="height:50%">
+	
 
 		<view class="noContent" wx:if="{{projectData.length==0}}">
 			<image src="/assets/nottxt.png"></image>
 			<text>抱歉，您可以放宽筛选条件试试!</text>
 			<text>或自己发布活动吧，报名条件您说了算!</text>
-			<text>还可多得5枚对手果!</text>
+			<text>还可多得50枚对手果!</text>
 		</view>
 
 		<view class="projectSon" wx:if="{{projectData.length>0}}" bindtap="activites" data-uuid="{{item.uuid}}"
@@ -190,11 +195,7 @@
 				</view>
 			</view>
 		</view>
-	</view>
-
-	<!-- <view class="flexd" bindtap="download">
-    <image src="/assets/comeOn@2x.png"></image>
-  </view> -->
+</scroll-view>
 
 	<view class="isSignN" wx:if="{{flagIs}}">
 		<view class="isSignbox">
@@ -226,6 +227,68 @@
 			<text>长按保存二维码识别下载</text>
 			<image class="closeTwo" bindtap="closeTwo" src="../../../assets/closeTwo.png"></image>
 		</view>
+	</view> 
+
+	<view class="contentMask" wx:if="{{maskActivity.length>0}}">
+	 <view class="contentMaskSon">
+		 <view style="font-size:0.88rem;text-align:center;padding-top:0.5rem">待处理的活动</view>
+	 <scroll-view class="projectList lppd">
+		<view class="projectSon"   data-uuid="{{item.uuid}}"
+			wx:for="{{maskActivity}}" wx:key='index'>
+			<view class="avatar">
+				<image class="avatarP" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
+				<image wx:if="{{item.SportName=='网球'}}" class="aIcon" src='/assets/icon_dj_wq.png'></image>
+				<image wx:if="{{item.SportName=='高尔夫'}}" class="aIcon" src='/assets/icon_dj_gef.png'></image>
+				<image wx:if="{{item.SportName=='篮球'}}" class="aIcon" src='/assets/icon_dj_lq.png'></image>
+				<image wx:if="{{item.SportName=='乒乓球'}}" class="aIcon" src='/assets/icon_dj_ppq.png'></image>
+				<image wx:if="{{item.SportName=='排球'}}" class="aIcon" src='/assets/icon_dj_pq.png'></image>
+				<image wx:if="{{item.SportName=='台球'}}" class="aIcon" src='/assets/icon_dj_tq.png'></image>
+				<image wx:if="{{item.SportName=='羽毛球'}}" class="aIcon" src='/assets/icon_dj_ymq.png'></image>
+				<image wx:if="{{item.SportName=='足球'}}" class="aIcon" src='/assets/icon_dj_zq.png'></image>
+				<text>{{item.nowLevel}}</text>
+			</view>
+			<view class="introduction">
+				<view class="title">
+					<text>{{item.nickname}}</text>
+					<image wx:if="{{item.sex==0}}" src='/assets/sex0@2x.png'></image>
+					<image wx:if="{{item.sex==1}}" src='/assets/sex1@2x.png'></image>
+				</view>
+				<view class="mode">
+					<text style='margin:0;color:#D85D27;'>{{item.SportMode}}</text>
+					<text>{{item.SportName}}</text>
+					<text>{{item.HighestLevelName}}</text>
+					<text>{{item.SportTypeName}}</text>
+					<text>{{item.lockNumbers}}</text>
+				</view>
+				<view class="time">
+					<text style='margin:0;'>{{item.startDays}}</text>
+					<text>{{item.week}}</text>
+					<text>{{item.startTimes}}-{{item.endTimes}}</text> </view>
+				<view class="address">
+					<text style='margin:0;'>{{item.address}}</text>
+					<!-- <text>（北京市…）</text> -->
+				</view>
+				<view class="footerBtn">
+					<view bindtap="goOn" data-id="{{item.uuid}}" data-index="1">继续匹配</view>
+					<view bindtap="goOn" data-id="{{item.uuid}}" data-index="0">停止报名</view>
+				</view>
+			
+			
+			</view>
+			<view class="status">
+				<image wx:if="{{item.PublicStatus==2}}" src='/assets/dai.png'></image>
+				<image wx:if="{{item.PublicStatus==6}}" src='/assets/pinjia.png'></image>
+				<image wx:if="{{item.PublicStatus==3}}" src='/assets/huodong.png'></image>
+				<image wx:if="{{item.PublicStatus==1}}" src='/assets/pipei.png'></image>
+				<image wx:if="{{item.PublicStatus==7}}" src='/assets/tuichu.png'></image>
+				<image wx:if="{{item.PublicStatus==5}}" src='/assets/wancheng.png'></image>
+			</view>
+		</view>
+	 
+	 </scroll-view>
+	 </view>
+	 <view class="colseMask" bindtap="closeMask"><image src="../../../assets/BtnDown@2x.png"></image> </view>
+	
 	</view>
 
 </view>

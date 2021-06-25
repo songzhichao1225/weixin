@@ -23,7 +23,16 @@ Page({
       (res) => {
         let you = res.data.data
         for (let i in you) {
-          you[i].checked = 0
+          if(app.envelope!=undefined){
+            if(you[i].money==app.envelope.money){
+              you[i].checked=1
+            }else{
+              you[i].checked = 0
+            }
+          }else{
+            you[i].checked = 0
+          }
+         
         }
         this.setData({
           redList: you
@@ -46,15 +55,22 @@ Page({
 
   checked(e) {
     let redList = this.data.redList
-    for (let i in redList) {
-      redList[i].checked = 0
+    
+    
+    if(redList[e.currentTarget.dataset.index].checked==1){
+      redList[e.currentTarget.dataset.index].checked = 0
+    }else{
+      for (let i in redList) {
+        redList[i].checked = 0
+      }
+      redList[e.currentTarget.dataset.index].checked = 1
     }
-    redList[e.currentTarget.dataset.index].checked = 1
+    
     this.setData({
       redList: redList,
-      selectLink:redList[e.currentTarget.dataset.index]
+      selectLink:redList[e.currentTarget.dataset.index].checked==1?redList[e.currentTarget.dataset.index]:[]
     })
-    app.envelope=redList[e.currentTarget.dataset.index]
+    app.envelope=redList[e.currentTarget.dataset.index].checked==1?redList[e.currentTarget.dataset.index]:[]
   },
 
   comfir(){

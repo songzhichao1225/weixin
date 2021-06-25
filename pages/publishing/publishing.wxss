@@ -67,7 +67,7 @@ page {
   width: 0.44rem;
   height: 0.69rem;
   float: right;
-  margin-top: 1.03rem;
+  margin-top: 1.09rem;
   margin-right: 0.69rem;
 }
 
@@ -75,8 +75,8 @@ page {
   float: right;
   color: #9b9b9b;
   display: block;
-  width: 3rem;
-  text-align: center;
+  width: 4rem;
+  text-align: right;
 }
 
 .content .list .weui-input {
@@ -108,9 +108,8 @@ page {
 }
 
 .content .TeamA {
-  margin-top: 0.81rem;
   overflow: hidden;
-  padding-bottom: 1.56rem;
+  padding-bottom: 0.81rem;
   border-bottom: 0.06rem solid #e9e9e9;
 }
 
@@ -122,9 +121,8 @@ page {
 }
 
 .content .TeamB {
-  margin-top: 0.81rem;
   overflow: hidden;
-  padding-bottom: 1.56rem;
+  padding-bottom: 0.81rem;
 }
 
 .content .TeamB text {
@@ -336,7 +334,6 @@ page {
 }
 
 .sanList {
-  float: right;
   color: #9b9b9b;
 }
 
@@ -398,13 +395,7 @@ page {
   position: relative;
 }
 
-.bannerTxt {
-  font-size: 0.8rem;
-  color: #fff;
-  position: absolute;
-  left: 0.5rem;
-  top: 0.5rem;
-}
+
 
 .footer .btnConfirm {
   width: 6.5rem;
@@ -415,6 +406,7 @@ page {
   color: #fff;
   float: right;
   margin-right: 0.5rem;
+  line-height: 2.31rem;
 }
 
 .footer {
@@ -472,5 +464,80 @@ page {
   color: #fff;
   font-size: 0.75rem;
   margin: 0.3rem auto 0;
+}
+
+.switchBtn{
+  float: right;
+  
+}
+
+.koRing{
+  float: right;
+}
+
+.arrowBot{
+  width: 100%;
+  height: 100%;
+  background: rgba(000, 000, 000, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10001;
+}
+.botContent{
+  width: 100%;
+  height: 18rem;
+  background: #fff;
+  border-radius: 1rem 1rem 0  0;
+  position: absolute;
+  bottom: 0;
+}
+
+.btnHead{
+  line-height: 2rem;
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+.botContent .list .left{
+  width: 97.5%;
+}
+.botContent .list .right{
+  width: 97.5%;
+}
+.botContentBtn{
+  width: 95%;
+  height: 2.69rem;
+  margin: 1rem auto 0;
+  background: #D85D27;
+  color: #fff;
+  line-height: 2.69rem;
+  border-radius: 1.34rem;
+}
+.cbotContentCloas{
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+.cbotContentCloas>image{
+  width: 100%;
+  height: 100%;
+}
+.buchangjin{
+  font-size: 0.75rem;
+  width: 50%;
+  float: left;
+  margin-left: 2.5%;
+  overflow: hidden;
+}
+.buchangjin>radio{
+  float: left;
+  transform: scale(0.8);
+}
+.buchangjin>text{
+  float: left;
+  line-height: 1.5rem;
 }
 

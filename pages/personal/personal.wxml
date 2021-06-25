@@ -155,7 +155,8 @@
 					<view class="userDetails">
 						<image src="{{img}}/{{item.imgURL}}"></image>
 						<view>{{item.nickname}}</view>
-						<image catchtap="thumbsUp" data-uuid="{{item.uuid}}"
+						<!-- catchtap="thumbsUp" -->
+						<image  data-uuid="{{item.uuid}}"
 							src="{{item.isown==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
 						<view class="fabulou">{{item.fabulou}}</view>
 					</view>

@@ -69,7 +69,7 @@ Page({
         click: 'mineOpinion'
       },
     ],
-    mineDetail: '',
+    mineDetail: [],
     imgURL: '',
     img: '',
     Invitation: '', //邀请码
@@ -81,7 +81,7 @@ Page({
   },
 
   replacement:function(){
-
+     let that=this
     wx.showActionSheet({
       itemList: ['拍照', '从手机选择'],
       success: function(res) {
@@ -100,21 +100,20 @@ Page({
           success (res) {
             let tempFilePaths = res.tempFilePaths[0]
             util.Request("/api/uploadHeaderImg", tempFilePaths, 'post',
-            (res) => {
-              util.Request("/api/getUserDetailInfo", {
-                'uuid': wx.getStorageSync('uuid')
-              }, "get",
-              (res) => {
-                this.setData({
-                  mineDetail: res.data.data,
-                  imgURL: wx.getStorageSync('imgURL')
-                })
-              },
-              () => {
-                console.log("失败")
-              },
-              () => {}
-            )
+            (resTwo) => {
+                util.Request("/api/getUserDetailInfo", {
+                  'uuid': wx.getStorageSync('uuid')
+                }, "get",
+                (resThree) => {
+                  that.setData({
+                    mineDetail: resThree.data.data,
+                  })
+                },
+                () => {
+                  console.log("失败")
+                }, 
+                () => {}
+              )
             },
             () => {},
             () => {}

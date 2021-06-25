@@ -297,3 +297,20 @@ page {
   line-height: 2.69rem;
   margin-top: 1rem;
 }
+
+.cost {
+  overflow: hidden;
+}
+
+.cost text {
+  display: block;
+  font-size: 0.75rem;
+  color: #4a4a4a;
+  margin-left: 0.3rem;
+  float: left;
+}
+
+.cost text:last-child {
+  float: right;
+  font-size: 0.75rem;
+}

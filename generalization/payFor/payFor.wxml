@@ -17,25 +17,25 @@
 		</view>
 
 	</view>
-	<view class="line"  wx:if="{{organization!=1}}"></view>
-	<view class="account " wx:if="{{organization!=1}}">费用说明</view>
+	<view class="line"  wx:if="{{organization==1}}"></view>
+	<view class="account " wx:if="{{organization==1}}">费用说明</view>
  <view class="venueFee" wx:if="{{look==2}}">
 		<text>场地费</text>
 		<text class="jishi">{{getElplainInfo.siteMoneyInfo}} </text>
 	</view>
-	<!--
+	
 	<view class="venueFee" wx:if="{{getElplainInfo.TipsMoney!=''&&getElplainInfo.TipsMoney!=undefined}}">
-		<text>入场费</text>
+		<text style="font-size:0.88rem">入场费</text>
 		<text class="jishi">{{getElplainInfo.TipsMoney}}</text>
 	</view>
 
 	<view class="venueFee" wx:if="{{getElplainInfo.MoneyPerhour!=''&&getElplainInfo.MoneyPerhour!=undefined}}">
-		<text>陪练费</text>
+		<text style="font-size:0.88rem">陪练费</text>
 		<text class="jishi">{{getElplainInfo.MoneyPerhour}}</text>
-	</view> -->
+	</view>
 
 
-	<view class="venueFee" wx:if="{{look!=2&&organization!=1}}">
+	<view class="venueFee" wx:if="{{look!=2&&organization==1}}">
 		<view>
 			<radio color="#D85D27" class="kosdfhgh" style="margin-top:0.5rem" bindtap="compensates" checked="{{compensates}}">补偿金</radio>
 		</view>
@@ -72,7 +72,7 @@
 			<radio class="radio" color="#D85D27" checked="{{current==3?true:false}}"></radio>
 		</radio-group>
 	</view>
-	<view class="fanshi" wx:if="{{getElplainInfo.isoffset!=2||getElplainInfo.moner!=2}}" style="color:#000;font-size:1rem;line-height:3.06rem;font-weight:600;padding-left:2.5%">红包/抵用券</view>
+	<view class="fanshi" wx:if="{{getElplainInfo.isoffset==1||getElplainInfo.moner==1}}" style="color:#000;font-size:1rem;line-height:3.06rem;font-weight:600;padding-left:2.5%">红包/抵用券</view>
 
 	<view class="fanshi" wx:if="{{getElplainInfo.moner==1}}" bindtap="redEnvelope">
 		<image class="img" src="/assets/hongbao.png"></image>
@@ -81,16 +81,16 @@
 		<text style="float:right;color:#D85D27">{{hbMoney!=0?'-'+hbMoney+'元':'有可用的红包'}}</text>
 	</view>
 
-	<view class="fanshi" wx:if="{{getElplainInfo.isoffset!=2}}" >
+	<view class="fanshi" wx:if="{{getElplainInfo.isoffset==1}}" bindtap="deductibles" >
 		<image class="img" src="/assets/kaQuan.png"></image>
 		<text>场地费抵用券 </text>
 		<image class="image" src="../../assets/right.png"></image>
 		<text wx:if="{{getElplainInfo.isoffset==0}}" style="float:right;color:#D85D27">无可用的抵用券</text>
 		<text wx:if="{{getElplainInfo.isoffset==1}}" style="float:right;color:#D85D27"
-			bindtap="deductibles">{{volumeMoney!=0?'-'+volumeMoney+'元':'有可用的抵用券'}}</text>
+			>{{volumeMoney!=0?'-'+volumeMoney+'元':'有可用的抵用券'}}</text>
 	</view>
 
-	<view style="color:#ccc;font-size:0.75rem;text-align:center;margin-top:0.63rem">如活动匹配失败或截止报名前取消，预付的所有费用将全额退还。</view>
+	<view style="color:#979797;font-size:0.75rem;text-align:center;margin-top:0.63rem">如活动匹配失败或截止报名前取消，预付的所有费用将全额退还。</view>
 
 	<view class="moneyAll">
 		<text>原￥{{getElplainInfo.Total}}</text>

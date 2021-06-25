@@ -16,7 +16,7 @@
           <image class="hao" bindtap="joinMoney" data-money="{{item.full}}" data-num="{{item.num}}" data-number="{{item.number}}" data-index="{{index}}" data-moneysmall="{{item.reduce}}" src="../../assets/zeng.png"></image>
         </view>
         <view class="num" wx:if="{{item.num==0}}">选择数量</view>
-        <view class="num" wx:if="{{item.num==1}}" bindtap="clearOut" data-index="{{index}}" data-moneysmall="{{item.reduce}}">点击清空</view>
+        <view class="num" wx:if="{{item.num>0}}" bindtap="clearOut" data-index="{{index}}" data-moneysmall="{{item.reduce}}">点击清空</view>
       </view>
 
     </view>

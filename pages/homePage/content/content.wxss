@@ -8,7 +8,7 @@ page {
   margin: 0;
   color: #4a4a4a;
   overflow: hidden;
-  min-height: 110%;
+  height: 100%;
   position: relative;
 }
 
@@ -131,7 +131,7 @@ page {
   width: 100%;
   margin: 6.1rem auto 0;
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   border-bottom: 0.06rem solid #ccc;
   padding-bottom: 0.5rem;
 }
@@ -172,19 +172,22 @@ page {
   justify-content: center;
   align-items: center;
 }
-.content .projectNav>view:nth-child(2){
-  flex: 1.3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}  
-.content .projectNav>view:first-child{
+
+.content .projectNav>view:nth-child(2) {
   flex: 1.3;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.content .projectNav>view:last-child{
+
+.content .projectNav>view:first-child {
+  flex: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content .projectNav>view:last-child {
   flex: 1.1;
   display: flex;
   justify-content: center;
@@ -192,27 +195,24 @@ page {
 }
 
 .content .projectNav>view>text {
-  font-size: 14px;
+  font-size: 0.7rem;
   display: block;
   text-align: center;
   line-height: 1.3rem;
   float: left;
 }
 
-.content .imgRight{
+.content .imgRight {
   width: 0.4rem;
   height: 0.3rem;
-   float: left;
-   margin-top: 0.2rem;
+  float: left;
+  margin-top: 0.2rem;
 }
 
 .content .projectList {
-  height: 50%;
-  min-height: 980rpx;
   overflow: hidden;
   position: relative;
   margin-top: 0.5rem;
-  padding-bottom: 2.5rem;
 }
 
 .content .projectList .projectSon {
@@ -220,6 +220,10 @@ page {
   height: 8rem;
   position: relative;
   border-top: 1px solid #ccc;
+}
+
+.content .projectList .projectSon:last-child {
+  margin-bottom: 1rem;
 }
 
 .content .projectList .projectSon .avatar {
@@ -337,6 +341,7 @@ page {
 
 .content .projectList .projectSon .introduction .cost text:last-child {
   float: right;
+  font-size: 0.75rem;
 }
 
 .content .projectList .projectSon .status {
@@ -375,7 +380,7 @@ page {
 
 .mask .activity {
   width: 26%;
-  height: 17.1rem;
+  height: 19rem;
   background-color: #fff;
 }
 
@@ -446,32 +451,38 @@ page {
   width: 100%;
   height: 100%;
 }
-.noContent{
+
+.noContent {
   width: 80%;
-  margin:5rem auto 0;
+  margin: 0 auto 0;
+  padding-top: 5rem;
 }
-.noContent image{
+
+.noContent image {
   width: 9rem;
   height: 6.5rem;
   margin: 0 auto;
   display: block;
 }
-.noContent text{
+
+.noContent text {
   display: block;
   text-align: center;
   font-size: 0.75rem;
 }
-.bossZhe{
+
+.bossZhe {
   width: 100%;
   height: 100%;
   position: absolute;
   background: rgba(000, 000, 000, 0.6);
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   z-index: 1001;
 
 }
-.bossZhe>.shoModel{
+
+.bossZhe>.shoModel {
   width: 65%;
   height: 7rem;
   background: #fff;
@@ -479,47 +490,54 @@ page {
   position: absolute;
   top: 30%;
   left: 17.5%;
-  padding:0 2.5%;
+  padding: 0 2.5%;
   font-size: 0.88rem;
 }
-.bossZhe>.shoModel>text{
+
+.bossZhe>.shoModel>text {
   display: block;
   margin-top: 1rem;
   text-align: center;
 }
-.bossZhe>.shoModel .footerBtn{
+
+.bossZhe>.shoModel .footerBtn {
   border-top: 0.06rem solid #e9e9e9;
   margin-top: 1rem;
 }
-.bossZhe>.shoModel .footerBtn>.right{
+
+.bossZhe>.shoModel .footerBtn>.right {
   border-left: 0.06rem solid #e9e9e9;
 }
-.bossZhe>.shoModel .footerBtn>view{
+
+.bossZhe>.shoModel .footerBtn>view {
   width: 49%;
-  height:2.5rem;
+  height: 2.5rem;
   float: left;
   text-align: center;
   line-height: 2.5rem;
   position: relative;
 }
-.bossZhe>.shoModel .footerBtn button{
-  border:none;
+
+.bossZhe>.shoModel .footerBtn button {
+  border: none;
   background: #fff;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
 }
-.forbade{
+
+.forbade {
   width: 100%;
-  height: 100%; 
-  background:rgba(000, 000, 000, 0.7);
+  height: 100%;
+  background: rgba(000, 000, 000, 0.7);
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1001;
 }
-.forbade .contentbade{
+
+.forbade .contentbade {
   width: 85%;
   min-height: 2rem;
   border-radius: 0.79rem;
@@ -529,24 +547,28 @@ page {
   left: 7.5%;
   padding: 1.56rem 0;
 }
-.forbade .contentbade>text:first-child{
+
+.forbade .contentbade>text:first-child {
   display: block;
   text-align: center;
   font-size: 1rem;
 }
-.forbade .contentbade .twoCode{
+
+.forbade .contentbade .twoCode {
   width: 13.38rem;
   height: 13.88rem;
   display: block;
   margin: 0 auto;
 }
-.forbade .contentbade>text:nth-child(3){
+
+.forbade .contentbade>text:nth-child(3) {
   font-size: 1rem;
   display: block;
   text-align: center;
   color: #D85D27;
 }
-.closeTwo{
+
+.closeTwo {
   display: block;
   width: 1.5rem;
   height: 1.5rem;
@@ -554,12 +576,108 @@ page {
   top: 0;
   right: 0;
 }
-.customizing{
+
+.customizing {
   height: 3rem;
-  background:#F5520B ;
+  background: #F5520B;
 }
-.scroll{
+
+.scroll {
   height: 100%;
   overflow-y: auto;
 }
 
+.contentMask {
+  width: 100%;
+  height: 100%;
+  background: rgba(000, 000, 000, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.contentMaskSon {
+  width: 95%;
+  height: 28rem;
+  background: linear-gradient(180deg, #FFFFDE 0%, #FDF6B4 100%);
+  border-radius: 0.38rem;
+  margin: 30% auto 0;
+}
+
+.colseMask {
+  width: 2.06rem;
+  height: 2.06rem;
+  margin: 1rem auto 0;
+}
+
+.colseMask>image {
+  width: 100%;
+  height: 100%;
+}
+
+.lppd {
+  height: 85%;
+  width: 95%;
+  margin: 0 auto;
+  font-size: 0.75rem;
+  padding-top: 5%;
+}
+
+.content .lppd .projectSon .avatar {
+  width: 3.5rem;
+}
+
+.content .lppd .projectSon .avatar .avatarP {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.content .lppd .projectSon .avatar text {
+  margin-left: 0.2rem;
+}
+
+.content .lppd .projectSon {
+  background: #fff;
+  border: none;
+  margin-top: 0.5rem;
+}
+
+.content .lppd .projectSon .avatar .aIcon {
+  margin-left: 0;
+}
+
+.content .lppd .projectSon .introduction .mode text {
+  font-size: 0.75rem;
+}
+
+.content .lppd .projectSon .introduction .time text {
+  font-size: 0.75rem;
+}
+
+.content .lppd .projectSon .introduction .address text {
+  font-size: 0.75rem;
+}
+
+.content .lppd .projectSon .introduction .cost text {
+  font-size: 0.75rem;
+}
+
+.footerBtn {
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.footerBtn>view {
+  width: 4.25rem;
+  height: 1.69rem;
+  background: #D85D27;
+  border-radius: 0.84rem;
+  float: right;
+  text-align: center;
+  line-height: 1.69rem;
+  font-size: 0.75rem;
+  color: #fff;
+}
+.footerBtn>view:last-child{
+  margin-right: 0.63rem;
+}
