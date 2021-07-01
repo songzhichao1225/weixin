@@ -32,23 +32,31 @@ Page({
     publicLst: [],
     flagClick: false,
     checkedTwoyou:0,
+    rule:'',
+    ruleFlag:false
   },
 
-  rules:function(){
-    util.Request("/api/getDepositRule", {type:3}, "get",
-    (res) => {
-      wx.showModal({
-        title: '补偿金规则',
-        showCancel:false,
-        content: res.data.data.rule,
-      })
-    },
-    () => {
-      console.log("失败")
-    },
-    () => {}
-  )
+  ruleFlag:function(){
+    this.setData({ruleFlag:false})
   },
+  rules: function () {
+    util.Request("/api/getDepositRule", {
+        type: 3
+      }, "get",
+      (res) => {
+        this.setData({rule:res.data.data.rule,ruleFlag:true})
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
+  },
+
+
+
+
+ 
 
   checkedTwoyou:function(){
      if(this.data.checkedTwoyou==0){
@@ -102,11 +110,6 @@ Page({
       (res) => {
 
         let projectNow = res.data.data.activeLst
-
-
-
-
-
         for (let i in projectNow) {
           projectNow[i].MoneyPerhour= projectNow[i].MoneyPerhour.toFixed(2)
           projectNow[i].Tips=projectNow[i].Tips.toFixed(2)
@@ -626,14 +629,7 @@ Page({
 
 
   },
-  onUnload: function () {
-    // if (this.data.hoog == 1) {
-    //   wx.reLaunch({
-    //     url: '/pages/homePage/content/content'
-    //   })
-    // }
-
-  },
+ 
 
   tagStatus: function (projectNow) {
     for (let i in projectNow.teamA) {

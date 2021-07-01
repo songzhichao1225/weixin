@@ -334,10 +334,10 @@ Page({
 
             util.Request("/api/userAddActivity_ADD", obj, "post", //发布踢馆活动
               (resTwo) => {
+                
                 wx.hideLoading()
                 if (resTwo.data.code == 2000) {
                   var wxPay = resTwo.data.data.sign_data.sign_data
-                  console.log(wxPay)
                   wx.requestPayment({
                     'timeStamp': wxPay.timeStamp.toString(),
                     'nonceStr': wxPay.nonceStr,
@@ -348,6 +348,7 @@ Page({
                       wx.navigateTo({
                         url: '/generalization/createSuccess/createSuccess?inviteId=' + resTwo.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + app.globalData.Refereegrade + '&status=1' + '&lr=' + wx.getStorageSync('bookinSix').data[0].lr,
                       })
+                      
                     },
                     'fail': function (res) {},
 
@@ -407,6 +408,7 @@ Page({
               (resTwo) => {
                 wx.hideLoading()
                 if (resTwo.data.code == 2000) {
+                
                   var wxPay = resTwo.data.data.sign_data.sign_data
                   wx.requestPayment({
                     'timeStamp': wxPay.timeStamp.toString(),
@@ -415,6 +417,7 @@ Page({
                     'signType': 'MD5',
                     'paySign': wxPay.sign,
                     'success': function (res) {
+                      
                       wx.navigateTo({
                         url: '/generalization/createSuccess/createSuccess?inviteId=' + resTwo.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + app.globalData.refereefee + '&status=1' + '&lr=' + app.globalData.lr,
                       })
@@ -480,14 +483,13 @@ Page({
                     })
                   },
                   'fail': function (res) {},
-
                 })
               } else {
                 wx.showToast({
                   title: res.data.msg,
                   icon: 'none',
                   duration: 1500,
-                  mask: true
+                  mask: true 
                 })
               }
 
@@ -517,7 +519,6 @@ Page({
               if (this.data.ko != 1) {
 
                 if (app.globalData.PipeMain == 2) {
-                  console.log('我是踢馆')
                   let obj = {
                     sportid: app.globalData.sportid,
                     sportType: app.globalData.sportType,
@@ -619,6 +620,19 @@ Page({
                         wx.removeStorage({
                           key: 'bookin'
                         })
+                        wx.removeStorage({
+                          key: 'bookinThree'
+                        })
+
+                      
+
+                        wx.removeStorage({
+                          key: 'bookinFive'
+                        })
+                        wx.removeStorage({
+                          key: 'bookinFour'
+                        })
+                        
                         wx.navigateTo({
                           url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + res.data.data.referee + '&status=1' + '&time=' + res.data.data.CreateTime,
                         })
@@ -755,8 +769,11 @@ Page({
               'signType': 'MD5',
               'paySign': wxPay.sign,
               'success': function (res) {
+                wx.removeStorage({
+                  key: 'bookinTwo'
+                })
                 wx.navigateTo({
-                  url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=1' + '&referee=0' + '&status=2' + '&time=' + res.data.data.CreateTime,
+                  url: '/generalization/createSuccess/createSuccess?inviteId=' + app.globalData.inviteId + '&Identification=1' + '&typeInfo=1' + '&referee=0' + '&status=2',
                 })
               },
               'fail': function (res) {
@@ -803,8 +820,11 @@ Page({
                 (res) => {
 
                   if (res.data.code == 2000) {
+                    wx.removeStorage({
+                      key: 'bookinTwo'
+                    })
                     wx.navigateTo({
-                      url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=1' + '&referee=0' + '&status=2' + '&time=' + res.data.data.CreateTime,
+                      url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=1' + '&referee=0' + '&status=2',
                     })
                   } else {
                     wx.showToast({
@@ -926,7 +946,7 @@ Page({
   },
   deductibles() {
     wx.navigateTo({
-      url: '/generalization/deductibles/deductibles?siteMoney=' + this.data.getElplainInfo.Total + '&offsetquota=' + this.data.getElplainInfo.offsetquota,
+      url: '/generalization/deductibles/deductibles?siteMoney=' + this.data.getElplainInfo.field + '&offsetquota=' + this.data.getElplainInfo.offsetquota,
     })
   },
   previewImage: function (e) {
@@ -976,6 +996,10 @@ Page({
         Moneytotal: (this.data.getElplainInfo.Total - this.data.volumeMoney -0) <= 0 ? '0.01' : (this.data.getElplainInfo.Total - this.data.volumeMoney - 0).toFixed(2)
       })
     }
+    if(app.deductibles.length == 0&&app.envelope.length==0){
+      this.setData({Moneytotal:'0.00'})
+    }
+
 
   },
 

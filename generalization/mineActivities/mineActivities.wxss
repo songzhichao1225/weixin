@@ -132,7 +132,7 @@ page {
 
 .listBoss .content {
   width: 95%;
-  margin: 1.12rem auto;
+  margin: 0.5rem auto;
   overflow: hidden;
 }
 

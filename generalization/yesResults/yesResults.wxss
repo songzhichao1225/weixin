@@ -20,12 +20,14 @@
 
 .yesResults .banner .content .left {
   float: left;
-  width: 5.13rem;
+  width: 40%;
 }
 
 .yesResults .banner .content .left image {
   width: 5.13rem;
   height: 4.94rem;
+  margin: 0 auto;
+  display: block;
 }
 
 .yesResults .banner .content .left text {
@@ -40,17 +42,20 @@
   color: #fff;
   font-size: 1.88rem;
   line-height: 4.94rem;
-  margin-left: 1.8rem;
+  width: 20%;
+  text-align: center;
 }
 
 .yesResults .banner .content .right {
   float: right;
-  width: 5.13rem;
+  width: 40%;
 }
 
 .yesResults .banner .content .right image {
   width: 5.13rem;
   height: 4.94rem;
+  display: block;
+  margin: 0 auto;
 }
 
 .yesResults .banner .content .right text {
@@ -95,11 +100,13 @@
   line-height: 11rem;
   float: left;
   font-size: 1.25rem;
+  width: 15%;
+  text-align: center;
 }
 
 .operation .bossBtn {
   float: left;
-  margin-left: 1.4rem;
+  width: 70%;
 }
 
 .operation .bossBtn>button {
@@ -107,14 +114,17 @@
   height: 2.2rem;
   background: #F3F3F3;
   border-radius: 0.19rem;
-  margin-top: 1rem;
   border: none;
+  margin: 1rem auto 0;
+  line-height: 2.2rem;
 }
 
 .operation .right {
   line-height: 11rem;
   float: right;
   font-size: 1.25rem;
+  width: 15%;
+  text-align: center;
 }
 
 .btn {

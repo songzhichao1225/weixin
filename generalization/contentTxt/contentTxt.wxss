@@ -90,7 +90,7 @@ page{
 }
 
 .mask .activityTwo {
-  width: 32.5%;
+  width: 30.5%;
   position: absolute;
   top: 0;
   left: 25%;
@@ -286,8 +286,8 @@ page{
   font-size: 0.75rem;
 }
 .fixedImg{
-  width: 3.348rem;
-  height: 2.5rem;
+  width: 2.648rem;
+  height: 2rem;
   position: fixed;
   left: 50%;
   margin-left: -1.65rem;

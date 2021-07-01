@@ -128,13 +128,11 @@
   height: 1.81rem;
   border-radius: 0.13rem;
   border: 0.06rem solid rgba(155, 155, 155, 1);
-  margin-left: 3.4%;
   margin-top: 0.63rem;
   font-size: 0.75rem;
   color: #9B9B9B;
   text-align: center;
   line-height: 1.81rem;
-  float: left;
 }
 
 .list .content .listSon:nth-child(2) {
@@ -200,4 +198,9 @@
   color: #fff;
   margin-top: 0.75rem;
   font-size: 1rem;
+}
+.bossBabel{
+  display: flex;
+  flex-wrap:wrap;
+  justify-content:space-between
 }

@@ -38,6 +38,7 @@ App({
    
     wx.login({
       success: res => {
+        
         if (res.code) {
           util.request("/api/getSmallOpenId", {
             'code': res.code
@@ -46,8 +47,15 @@ App({
       let BMap = new bmap.BMapWX({
         ak:'ElFBk4MF87qZXoiLbD0zofEmZIS6bHT2'
       });
-      let fail = function (data) {}
+      let fail = function (data) {
+        wx.setStorageSync('lat','39.90')
+        wx.setStorageSync('lng','116.38')
+        wx.setStorageSync('province','北京市')
+        wx.setStorageSync("cityInfo", '北京市')
+        wx.setStorageSync('area', '东城区')
+      }
       let success = function (data) {
+      
         let wxMarkerData = data.wxMarkerData;
         wx.setStorageSync('province',data.originalData.result.addressComponent.province)
         wx.setStorageSync("cityInfo", data.originalData.result.addressComponent.city)

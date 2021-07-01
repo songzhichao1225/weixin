@@ -4,6 +4,7 @@
 		<image class="image" src="/assets/PicBgZfcg.png"></image>
 		<image class="imageS" src="/assets/PicZfDg.png"></image>
 		<text class="ojbk">{{typeInfo==1?'预订成功':type==1?'创建成功':'报名成功'}}</text>
+		<text class="ojbkTwo" bindtap="details" data-uuid="{{uuid}}">查看活动详情</text>
 	</view>
 
 
@@ -17,32 +18,34 @@
 			<text class="comm">活动已创建成功，赶紧邀请运动者加入吧！</text>
 		</view>
 
-		<view class="center" wx:if="{{ok!=1}}">
+		<view class="center" wx:if="{{ok!=1&&status!=2}}">
 			<text>温馨提示:</text>
 			<text style="padding-top:1rem">{{text.black}}</text>
-			<text style="color:#D0021B;padding-top:1rem">2、您好，请务必下载APP，场馆签到、评价等均须在APP端操作完成，谢谢!</text>
+			<text style="padding-top:1rem">2、您好，请务必下载APP，场馆签到、评价等均须在APP端操作完成，谢谢!</text>
+			<text style="padding-top:1rem">3、分享后，每有一位新用户使用，奖励您10元。</text>
 		</view>
 
 		<view class="center" wx:if="{{status==2}}">
 			<text>温馨提示:</text>
 			<text style="padding-top:1rem">1、请准时到达场馆。</text>
-			<text style="color:#D0021B;padding-top:1rem">2、您好，请务必下载APP，场馆签到、评价等均须在APP端操作完成，谢谢!</text>
+			<text style="padding-top:1rem">2、分享后，每有一位新用户使用，奖励您10元。</text>
 		</view>
 
-		<view class="center" wx:if="{{ok==1}}">
+		<view class="center" wx:if="{{ok==1&&status!=2}}">
 			<text>温馨提示:</text>
 			<text style="padding-top:1rem">{{text.black}}</text>
-			<text style="color:#D0021B;padding-top:1rem">2、您好，请务必下载APP，场馆签到、评价等均须在APP端操作完成，谢谢!</text>
+			<text style="padding-top:1rem">2、您好，请务必下载APP，场馆签到、评价等均须在APP端操作完成，谢谢!</text>
+			<text style="padding-top:1rem">3、分享后，每有一位新用户使用，奖励您10元。</text>
 		</view>
 
-		<text bindtap="detailRules" wx:if="{{typeInfo!=1}}"
+		<text bindtap="detailRules" wx:if="{{typeInfo!=1&&status!=2}}"
 			style="color:blue;margin-top:1rem;padding:0.5rem 0 0 2.5%;">规则?</text>
 	</view>
 
 
 	<view class="btn">
+		<button class="btnSonOne" open-type="share" >去分享</button>
 		<button class="btnSonOne" bindtap="forbade">保存识别二维码下载APP</button>
-		<button class="btnSonOne" bindtap="details" data-uuid="{{uuid}}">查看活动详情</button>
 
 	</view>
 	<text
@@ -58,3 +61,12 @@
 			 <image class="closeTwo" bindtap="closeTwo" src="../../assets/closeTwo.png"></image>
 		</view>
 	 </view>
+
+
+	 <view class="compensation" wx:if="{{ruleFlag}}">
+		<view class="kokao">
+			<text class="headFire">补偿金规则</text>
+			<text class="contentTxt">{{rule}}</text>
+			<view class="footet" bindtap="ruleFlag">确定</view>
+		</view>
+	</view>

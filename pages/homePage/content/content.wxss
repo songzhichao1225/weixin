@@ -76,7 +76,7 @@ page {
 
 .content .headerCity text {
   width: 15%;
-  font-size: 14px;
+  font-size: 0.88rem;
   display: block;
   text-align: center;
   float: left;
@@ -107,7 +107,7 @@ page {
   width: 50%;
   height: 1.8rem;
   margin-left: 0.2rem;
-  font-size: 14px;
+  font-size: 0.88rem;
 }
 
 .content .bannerBack .back {
@@ -195,7 +195,7 @@ page {
 }
 
 .content .projectNav>view>text {
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   display: block;
   text-align: center;
   line-height: 1.3rem;
@@ -213,28 +213,29 @@ page {
   overflow: hidden;
   position: relative;
   margin-top: 0.5rem;
+  height: 50%;
 }
 
 .content .projectList .projectSon {
   width: 100%;
-  height: 8rem;
+  height: 6.5rem;
   position: relative;
   border-top: 1px solid #ccc;
 }
 
 .content .projectList .projectSon:last-child {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .content .projectList .projectSon .avatar {
-  width: 160rpx;
+  width: 4rem;
   float: left;
   margin-left: 0.8rem;
 }
 
 .content .projectList .projectSon .avatar .avatarP {
-  width: 160rpx;
-  height: 160rpx;
+  width: 4rem;
+  height: 4rem;
   border-radius: 10px;
   margin-top: 0.5rem;
 }
@@ -264,7 +265,7 @@ page {
 }
 
 .content .projectList .projectSon .introduction {
-  width: 66%;
+  width: 73%;
   float: left;
   overflow: hidden;
   margin-top: 0.5rem;
@@ -297,7 +298,7 @@ page {
 
 .content .projectList .projectSon .introduction .mode text {
   display: block;
-  font-size: 14px;
+  font-size: 0.78rem;
   color: #4a4a4a;
   margin-left: 0.5rem;
   float: left;
@@ -309,7 +310,7 @@ page {
 
 .content .projectList .projectSon .introduction .time text {
   display: block;
-  font-size: 14px;
+  font-size: 0.78rem;
   color: #4a4a4a;
   margin-left: 0.5rem;
   float: left;
@@ -321,7 +322,7 @@ page {
 
 .content .projectList .projectSon .introduction .address text {
   display: block;
-  font-size: 14px;
+  font-size: 0.78rem;
   color: #4a4a4a;
   margin-left: 0.5rem;
   float: left;
@@ -333,7 +334,7 @@ page {
 
 .content .projectList .projectSon .introduction .cost text {
   display: block;
-  font-size: 14px;
+  font-size: 0.78rem;
   color: #4a4a4a;
   margin-left: 0.3rem;
   float: left;

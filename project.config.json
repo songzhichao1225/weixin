@@ -59,7 +59,7 @@
         {
           "name": "不属实",
           "pathName": "generalization/notTrue/notTrue",
-          "query": "uuid= 37f92997-eec4-8e4c-3fd3-6fc015a3740a",
+          "query": "uuid= d71121ff-669a-06ba-290c-5996cb1d746f",
           "scene": null
         },
         {
@@ -202,7 +202,7 @@
         {
           "name": "创建活动成功",
           "pathName": "generalization/createSuccess/createSuccess",
-          "query": "Identification=1&inviteId=da182f78-b3aa-2dab-175f-d75326a47af2&referee=0&status=2&lr=20",
+          "query": "Identification=1&inviteId=da182f78-b3aa-2dab-175f-d75326a47af2&referee=0&status=1&lr=20&typeInfo=2&typeHood=3",
           "scene": null
         },
         {
@@ -248,10 +248,9 @@
           "scene": null
         },
         {
-          "id": 29,
           "name": "运动伙伴评价",
           "pathName": "generalization/appraisals/appraisals",
-          "query": "id=68662c1f-514e-5fe1-2611-684d54a6b0e5",
+          "query": "id= d71121ff-669a-06ba-290c-5996cb1d746f",
           "scene": null
         },
         {

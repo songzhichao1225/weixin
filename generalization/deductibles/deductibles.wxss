@@ -69,7 +69,8 @@ page {
 .operation .onclick .hao {
   width: 0.88rem;
   height: 0.88rem;
-
+  display: block;
+  margin: 0.2rem auto 0;
 }
 
 .operation .onclick>text {
@@ -85,7 +86,6 @@ page {
 }
 
 .operation {
-  width: 4.5rem;
   position: absolute;
   right: 0.5rem;
   top: 2rem;

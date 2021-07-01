@@ -96,8 +96,8 @@
          sportid: this.data.arraySport[Number(this.data.Sport)].id,
          distance: this.data.arrayDistance[Number(this.data.Distance)].id,
          type: this.data.type,
-         mylat: wx.getStorageSync('lat'),
-         mylng: wx.getStorageSync('lng')
+         mylat: wx.getStorageSync('lat')==''?'39.90997893717994':wx.getStorageSync('lat'),
+         mylng: wx.getStorageSync('lng')==''?'116.65714059554433':wx.getStorageSync('lng')
        }, "post",
        (res) => {
 

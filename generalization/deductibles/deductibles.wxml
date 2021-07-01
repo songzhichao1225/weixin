@@ -1,7 +1,7 @@
 <view class="deductibles">
   <view class="title">本次场地费{{siteMoney}}元，最多可使用场地费抵用券{{offsetquota}}元</view>
   <scroll-view scroll-y="auto" class="scrollList" refresher-enabled="true" refresher-triggered="{{enabled}}"
-    bindrefresherrefresh="refresh" bindscrolltolower="tolower">
+    bindrefresherrefresh="refresh" >
     <view class="listSon" wx:for="{{list}}" wx:key="index">
       <view class="left"><text>￥</text><text>{{item.reduce}}</text></view>
       <view class="center">
@@ -11,9 +11,13 @@
       </view>
       <view class="operation">
         <view class="onclick">
+          <view style="width:2rem;height:2rem;float:left">
           <image class="hao" bindtap="subtracts" data-index="{{index}}" data-moneysmall="{{item.reduce}}" src="../../assets/jian.png"></image>
-          <text>{{item.num}}</text>
+        </view>
+          <text style="float:left">{{item.num}}</text>
+          <view style="width:2rem;height:2rem;float:left">
           <image class="hao" bindtap="joinMoney" data-money="{{item.full}}" data-num="{{item.num}}" data-number="{{item.number}}" data-index="{{index}}" data-moneysmall="{{item.reduce}}" src="../../assets/zeng.png"></image>
+        </view>
         </view>
         <view class="num" wx:if="{{item.num==0}}">选择数量</view>
         <view class="num" wx:if="{{item.num>0}}" bindtap="clearOut" data-index="{{index}}" data-moneysmall="{{item.reduce}}">点击清空</view>

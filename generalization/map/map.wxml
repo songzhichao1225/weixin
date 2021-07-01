@@ -1,7 +1,7 @@
 <view class="search" wx:if="{{city!==''}}">
 
 	<view class="left">
-		<picker mode="region" bindchange="bindRegionChange" custom-item="{{customItem}}">
+		<picker mode="region" disabled="true" bindchange="bindRegionChange" custom-item="{{customItem}}">
 			<view class="picker">
 				{{city}}
 			</view>

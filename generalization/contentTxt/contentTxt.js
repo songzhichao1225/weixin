@@ -13,7 +13,7 @@ Page({
     rangeName: '距离范围',
     sprtSeName: '推荐排序',
     pages:1,
-    sportId:0,
+    sportId:0, 
     range:0,
     SportMode:'',
     sportType:0,
@@ -201,7 +201,7 @@ Page({
               })
             }
 
-          }else{
+          }else if(this.data.flag==3){
             if (id == 5) {
               this.setData({
                 activitySon: arr
@@ -216,6 +216,10 @@ Page({
                 activitySon: res.data.data
               })
             }
+          }else{
+            this.setData({
+              activitySon: res.data.data
+            })
           }
          
 
@@ -393,7 +397,6 @@ Page({
 
   releaseSix:function(){
     if(this.data.flag==2){
-
   util.Request("/api/ActivityWhitelist", {}, "post",
       (res) => {
        if(res.data.code===2000){

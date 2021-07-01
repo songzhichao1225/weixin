@@ -13,7 +13,6 @@ Page({
    */
   onLoad: function (options) {
     this.setData({option:options})
-    
   },
   detal:function(e){
     if(this.data.option.flag=='0'&&this.data.option.hood==undefined){
@@ -47,12 +46,11 @@ Page({
         key:'bookinSix',
       })
     }
-    if( Number(this.data.option.flagTwo)!==1){
       wx.navigateBack({
         delta: Number(this.data.option.flagTwo)
       })
    
-    }
+    
     
   },
   /**

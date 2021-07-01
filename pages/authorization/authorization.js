@@ -106,6 +106,8 @@ Page({
           wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
           wx.setStorageSync('telephone', res.data.data.telephone); //存储用户电话
           wx.setStorageSync('imgURL', res.data.data.imgURL); //存储用户电话
+          wx.setStorageSync('invitation', res.data.data.Invitation); //存储邀请码
+          
           wx.hideLoading()
           if (wx.getStorageSync('activitieshoog') == '1') {
             wx.reLaunch({
@@ -167,6 +169,7 @@ Page({
                           wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
                           wx.setStorageSync('telephone', res.data.data.telephone); //存储用户电话
                           wx.setStorageSync('imgURL', res.data.data.imgURL); //存储用户电话
+                          wx.setStorageSync('invitation', res.data.data.Invitation); //存储邀请码
                           wx.hideLoading()
                           if (wx.getStorageSync('activitieshoog') == '1') {
                             wx.reLaunch({
@@ -306,6 +309,7 @@ Page({
                             wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
                             wx.setStorageSync('telephone', res.data.data.tel); //存储用户电话
                             wx.setStorageSync('imgURL', res.data.data.imgURL); //存储用户电话
+                            wx.setStorageSync('invitation', res.data.data.Invitation); //存储邀请码
                             if (wx.getStorageSync('activitieshoog') == '1') {
                               wx.reLaunch({
                                 url: "/pages/homePage/activities/activities?uuid=" + wx.getStorageSync('activitiesId')

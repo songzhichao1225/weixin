@@ -84,7 +84,7 @@ Page({
         key: 'siteid',
       })
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag='+this.data.falg+'&flagTwo=2',
+        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag='+this.data.falg+'&flagTwo=3',
       })
     }else if(this.data.falg==1){
       wx.setStorage({
@@ -92,7 +92,7 @@ Page({
         key: 'siteidTwo',
       })
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag='+this.data.falg+'&flagTwo=2',
+        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag='+this.data.falg+'&flagTwo=3',
       })
     }else if(this.data.falg==2){
       wx.setStorage({
@@ -100,7 +100,7 @@ Page({
         key: 'siteidThree',
       })
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag=2'+'&flagTwo=2'+'&hood=3',
+        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag=2'+'&flagTwo=3'+'&hood=3',
       })
     }else if(this.data.falg==3){
       wx.setStorage({
@@ -108,7 +108,7 @@ Page({
         key: 'siteidFour',
       })
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag=0'+'&flagTwo=2'+'&hood=4',
+        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag=0'+'&flagTwo=3'+'&hood=4',
       })
     }else if(this.data.falg==4){
       wx.setStorage({
@@ -116,7 +116,7 @@ Page({
         key: 'siteidFive',
       })
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag=0'+'&flagTwo=2'+'&hood=5',
+        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag=0'+'&flagTwo=3'+'&hood=5',
       })
     }else if(this.data.falg==5){
       wx.setStorage({
@@ -124,7 +124,7 @@ Page({
         key: 'siteidSix',
       })
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag=0'+'&flagTwo=2'+'&hood=6',
+        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag=0'+'&flagTwo=3'+'&hood=6',
       })
     }
   },

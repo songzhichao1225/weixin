@@ -343,6 +343,7 @@ page {
 .insurance>text {
   float: right;
   line-height: 2.63rem;
+  font-size: 0.88rem;
 }
 
 .realNameBoss {

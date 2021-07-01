@@ -3,7 +3,7 @@ const util = require('../../utils/util.js')
 var app = getApp();
 Page({
   data: {
-    checkedTwoyou:0,
+    checkedTwoyou: 0,
     masking: false,
     contentSon: 0,
     indexSw: 0,
@@ -250,6 +250,7 @@ Page({
     commentsFour: '',
     commentsFive: '',
     cf: true,
+    cfTwo: true,
     sportLeve: '', //发布者等级运动项目
     textKOp: '',
     titleKOp: '',
@@ -264,46 +265,58 @@ Page({
     displayTxtFive: [],
     displayTxtSix: [],
     timeOut: true,
-    tipsSix:'(选填)',
+    tipsSix: '(选填)',
     switch1Checked: false,
-    cbotContentCloas:false
+    cbotContentCloas: false,
+    rule: '',
+    ruleFlag: false,
   },
 
-  checkedTwoyou:function(){
-    if(this.data.checkedTwoyou==0){
-       this.setData({checkedTwoyou:1})
-    }else{
-     this.setData({checkedTwoyou:0})
+  checkedTwoyou: function () {
+    if (this.data.checkedTwoyou == 0) {
+      this.setData({
+        checkedTwoyou: 1
+      })
+    } else {
+      this.setData({
+        checkedTwoyou: 0
+      })
     }
- },
- rules:function(){
-  util.Request("/api/getDepositRule", {type:3}, "get",
-  (res) => {
-    wx.showModal({
-      title: '补偿金规则',
-      showCancel:false,
-      content: res.data.data.rule,
-    })
   },
-  () => {
-    console.log("失败")
-  },
-  () => {}
-)
-},
-  cbotContentCloasOne:function(){
-    this.setData({cbotContentCloas:true})
-  },
-
-  cbotContentCloas:function(){
-    this.setData({cbotContentCloas:false})
-  },
-
-  forbade: function () {
+  ruleFlag: function () {
     this.setData({
-      forbade: true
+      ruleFlag: false
     })
   },
+  rules: function () {
+    util.Request("/api/getDepositRule", {
+        type: 3
+      }, "get",
+      (res) => {
+        this.setData({
+          rule: res.data.data.rule,
+          ruleFlag: true
+        })
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
+  },
+  cbotContentCloasOne: function () {
+    this.setData({
+      cbotContentCloas: true
+    })
+  },
+
+  cbotContentCloas: function () {
+    this.setData({
+      cbotContentCloas: false
+    })
+  },
+
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -596,71 +609,112 @@ Page({
       commentsFour: wx.getStorageSync('commentsFFour'),
       commentsFive: wx.getStorageSync('commentsFFive')
     })
-
-
-
-
-    if (wx.getStorageSync('sportTypeF') == 5) {
+    if (wx.getStorageSync('sportTypeF') == 23) {
       this.setData({
-        cf: false
+        cfTwo: false
+      })
+    } else if (wx.getStorageSync('sportTypeF') == 1) {
+      this.setData({
+        cfTwo: false
+      })
+    } else if (wx.getStorageSync('sportTypeF') == 2) {
+      this.setData({
+        cfTwo: false
+      })
+    } else if (wx.getStorageSync('sportTypeF') == 3) {
+      this.setData({
+        cfTwo: false
+      })
+    } else if (wx.getStorageSync('sportTypeF') == 4) {
+      this.setData({
+        cfTwo: false
+      })
+    } else if (wx.getStorageSync('sportTypeF') == 6) {
+      this.setData({
+        cfTwo: false
+      })
+    } else if (wx.getStorageSync('sportTypeF') == 5) {
+      this.setData({
+        cfTwo: false
       })
     } else if (wx.getStorageSync('sportTypeF') == 7) {
       this.setData({
-        cf: false
+        cfTwo: false
       })
     } else if (wx.getStorageSync('sportTypeF') == 10) {
       this.setData({
-        cf: false
+        cfTwo: false
       })
     } else if (wx.getStorageSync('sportTypeF') == 11) {
       this.setData({
-        cf: false
+        cfTwo: false
       })
     } else if (wx.getStorageSync('sportTypeF') == 13) {
       this.setData({
-        cf: false
+        cfTwo: false
       })
     } else if (wx.getStorageSync('sportTypeF') == 14) {
       this.setData({
-        cf: false
+        cfTwo: false
       })
     } else if (wx.getStorageSync('sportTypeF') == 15) {
       this.setData({
-        cf: false
+        cfTwo: false
       })
     } else if (wx.getStorageSync('sportTypeF') == 16) {
       this.setData({
-        cf: false
+        cfTwo: false
       })
     } else if (wx.getStorageSync('sportTypeF') == 12) {
       this.setData({
-        cf: false
+        cfTwo: false
       })
     } else if (wx.getStorageSync('sportTypeF') == 9) {
       this.setData({
-        cf: false
+        cfTwo: false
       })
     } else if (wx.getStorageSync('sportTypeF') == 12) {
       this.setData({
-        cf: false
+        cfTwo: false
       })
     } else if (wx.getStorageSync('sportTypeF') == 20) {
       this.setData({
-        cf: 'no'
+        cfTwo: 'no'
       })
     } else if (wx.getStorageSync('sportTypeF') == 21) {
       this.setData({
-        cf: 'no'
+        cfTwo: 'no'
       })
     } else {
       this.setData({
-        cf: true
+        cfTwo: true
       })
     }
-
-
-
-    if (wx.getStorageSync('sportTypeFThree') == 5) {
+    if (wx.getStorageSync('sportTypeFThree') == 23) {
+      this.setData({
+        cf: false
+      })
+    } else if (wx.getStorageSync('sportTypeFThree') == 1) {
+      this.setData({
+        cf: false
+      })
+    } else if (wx.getStorageSync('sportTypeFThree') == 2) {
+      this.setData({
+        cf: false
+      })
+    } else if (wx.getStorageSync('sportTypeFThree') == 3) {
+      this.setData({
+        cf: false
+      })
+    } else if (wx.getStorageSync('sportTypeFThree') == 4) {
+      this.setData({
+        cf: false
+      })
+    } else if (wx.getStorageSync('sportTypeFThree') == 6) {
+      this.setData({
+        cf: false
+      })
+    } else if (wx.getStorageSync('sportTypeFThree') == 5) {
       this.setData({
         cf: false
       })
@@ -855,7 +909,7 @@ Page({
       this.setData({
         indexSw: e.detail.current
       })
-      let j = e.detail.current == 2 ? 6 : e.detail.current == 3 ? 2 : e.detail.current== 4 ? 3 : e.detail.current == 5 ? 4 : e.detail.current == 0 ? 5 : e.detail.current == 1 ? 1 : ''
+      let j = e.detail.current == 2 ? 6 : e.detail.current == 3 ? 2 : e.detail.current == 4 ? 3 : e.detail.current == 5 ? 4 : e.detail.current == 0 ? 5 : e.detail.current == 1 ? 1 : ''
       util.request("/api/getIndexBannerRelease", {
           'type': j,
         }, "get",
@@ -1462,7 +1516,7 @@ Page({
               referee: res.data.data,
               siteMoney: wx.getStorageSync('bookinThree').data[0].placeMoney + '.00',
               lr: wx.getStorageSync('bookinThree').data[0].lr,
-              orgPrice:this.data.tipsThree==''?0:this.data.tipsThree,
+              orgPrice: this.data.tipsThree == '' ? 0 : this.data.tipsThree,
               openPrice: wx.getStorageSync('bookinThree').data[0].openPrice
             }, "post",
             (res) => {
@@ -1571,7 +1625,7 @@ Page({
         key: 'ageF',
         data: '不限',
       })
-    } else if ((e.detail.value[0] + 9) == 10 && (e.detail.value[1] + 9) !== 70) {
+    } else if ((e.detail.value[0] + 9) == 9 && (e.detail.value[1] + 9) !== 70) {
       this.setData({
         age: 10 + '-' + (e.detail.value[1] + 9) + '岁'
       })
@@ -1579,7 +1633,7 @@ Page({
         key: 'ageF',
         data: 10 + '-' + (e.detail.value[1] + 9) + '岁',
       })
-    } else if (e.detail.value[0] !== 10 && e.detail.value[1] == 70) {
+    } else if (e.detail.value[0] !== 9 && e.detail.value[1] == 70) {
       this.setData({
         age: (e.detail.value[0] + 9) + '-' + 70 + '岁'
       })
@@ -1616,7 +1670,7 @@ Page({
         key: 'ageFThree',
         data: '不限',
       })
-    } else if ((e.detail.value[0] + 9) == 10 && (e.detail.value[1] + 9) !== 70) {
+    } else if ((e.detail.value[0] + 9) == 9 && (e.detail.value[1] + 9) !== 70) {
       this.setData({
         ageThree: 10 + '-' + (e.detail.value[1] + 9) + '岁'
       })
@@ -1624,7 +1678,7 @@ Page({
         key: 'ageFThree',
         data: 10 + '-' + (e.detail.value[1] + 9) + '岁',
       })
-    } else if (e.detail.value[0] !== 10 && e.detail.value[1] == 70) {
+    } else if (e.detail.value[0] !== 9 && e.detail.value[1] == 70) {
       this.setData({
         ageThree: (e.detail.value[0] + 9) + '-' + 70 + '岁'
       })
@@ -1661,7 +1715,7 @@ Page({
         key: 'ageFFour',
         data: '不限',
       })
-    } else if ((e.detail.value[0] + 9) == 10 && (e.detail.value[1] + 9) !== 70) {
+    } else if ((e.detail.value[0] + 9) == 9 && (e.detail.value[1] + 9) !== 70) {
       this.setData({
         ageFour: 10 + '-' + (e.detail.value[1] + 9) + '岁'
       })
@@ -1669,7 +1723,7 @@ Page({
         key: 'ageFFour',
         data: 10 + '-' + (e.detail.value[1] + 9) + '岁',
       })
-    } else if (e.detail.value[0] !== 10 && e.detail.value[1] == 70) {
+    } else if (e.detail.value[0] !== 9 && e.detail.value[1] == 70) {
       this.setData({
         ageFour: (e.detail.value[0] + 9) + '-' + 70 + '岁'
       })
@@ -1705,7 +1759,7 @@ Page({
         key: 'ageFFive',
         data: '不限',
       })
-    } else if ((e.detail.value[0] + 9) == 10 && (e.detail.value[1] + 9) !== 70) {
+    } else if ((e.detail.value[0] + 9) == 9 && (e.detail.value[1] + 9) !== 70) {
       this.setData({
         ageFive: 10 + '-' + (e.detail.value[1] + 9) + '岁'
       })
@@ -1713,7 +1767,7 @@ Page({
         key: 'ageFFive',
         data: 10 + '-' + (e.detail.value[1] + 9) + '岁',
       })
-    } else if (e.detail.value[0] !== 10 && e.detail.value[1] == 70) {
+    } else if (e.detail.value[0] !== 9 && e.detail.value[1] == 70) {
       this.setData({
         ageFive: (e.detail.value[0] + 9) + '-' + 70 + '岁'
       })
@@ -1748,7 +1802,7 @@ Page({
         key: 'ageFSix',
         data: '不限',
       })
-    } else if ((e.detail.value[0] + 9) == 10 && (e.detail.value[1] + 9) !== 70) {
+    } else if ((e.detail.value[0] + 9) == 9 && (e.detail.value[1] + 9) !== 70) {
       this.setData({
         ageSix: 10 + '-' + (e.detail.value[1] + 9) + '岁'
       })
@@ -1756,7 +1810,7 @@ Page({
         key: 'ageFSix',
         data: 10 + '-' + (e.detail.value[1] + 9) + '岁',
       })
-    } else if (e.detail.value[0] !== 10 && e.detail.value[1] == 70) {
+    } else if (e.detail.value[0] !== 9 && e.detail.value[1] == 70) {
       this.setData({
         ageSix: (e.detail.value[0] + 9) + '-' + 70 + '岁'
       })
@@ -1789,6 +1843,7 @@ Page({
       this.setData({
         shouldered: this.data.shoulderedArr[e.detail.value].name
       })
+      wx.setStorageSync('shoulderedF', this.data.shoulderedArr[e.detail.value].name)
     }
 
   },
@@ -1804,8 +1859,8 @@ Page({
       this.setData({
         shoulderedThree: this.data.shoulderedArr[e.detail.value].name
       })
+      wx.setStorageSync('shoulderedFThree', this.data.shoulderedArr[e.detail.value].name)
     }
-
   },
 
   venues: function (e) {
@@ -1886,7 +1941,7 @@ Page({
     }
   },
   venuesFive: function (e) {
-    if (e.currentTarget.dataset == undefined) {
+    if (e.currentTarget.dataset.sportid == '') {
       wx.showToast({
         title: '请选择运动项目',
         icon: 'none',
@@ -2375,7 +2430,7 @@ Page({
         duration: 1500,
         mask: true
       })
-    }else if(this.data.checkedTwoyou!=1){
+    } else if (this.data.checkedTwoyou != 1) {
       wx.showToast({
         title: '请阅读并同意《补偿金规则》',
         icon: 'none',
@@ -2391,13 +2446,13 @@ Page({
         StartTime: startTimeFour + ' ' + timerFour,
         PlayTime: parseFloat(timeLenFour),
         SiteMoney: placeMoneyFour,
-        PaySiteMoneyType:3,
+        PaySiteMoneyType: 3,
         teamSex: sexFour == '男' ? '0' : '' || sexFour == '不限' ? '2' : '' || sexFour == '女' ? '1' : '',
         LevelMax: rankFour == '不限' ? '15' : parseFloat(rankFour.split('-')[1]),
         LevelMin: rankFour == '不限' ? '1' : parseFloat(rankFour.split('-')[0]),
         comments: commentsFour,
         member: [...numArr, ...numBrr, ...numCrr],
-        MoneyPerhour: tipsFour==''?0:tipsFour,
+        MoneyPerhour: tipsFour == '' ? 0 : tipsFour,
         venueid: venueidFour,
         Agemin: ageFour == '不限' ? '10' : parseFloat(ageFour.split('-')[0]),
         Agemax: ageFour == '不限' ? '70' : parseFloat(ageFour.split('-')[1]),
@@ -2406,35 +2461,29 @@ Page({
       }
 
       util.Request("/api/userAddtrainee", obj, "post",
-      (res) => {
-        if(res.data.code==2000){
-          wx.navigateTo({
-            url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=2' + '&referee=' + res.data.data.referee + '&status=1' + '&time=' + res.data.data.CreateTime + '&ok=0' + '&lr=' + wx.getStorageSync('bookinFour').data[0].lr,
-          })
-        }else{
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'none',
-            duration: 1500,
-            mask: true
-          })
-        }
-       
-      },
-      () => { console.log("失败") },
-      () => {
-      }
-    )
+        (res) => {
+          if (res.data.code == 2000) {
 
+            wx.navigateTo({
+              url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=2' + '&referee=' + res.data.data.referee + '&status=1' + '&time=' + res.data.data.CreateTime + '&ok=0' + '&lr=' + wx.getStorageSync('bookinFour').data[0].lr,
+            })
 
+          } else {
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'none',
+              duration: 1500,
+              mask: true
+            })
+          }
 
+        },
+        () => {
+          console.log("失败")
+        },
+        () => {}
+      )
 
-      // app.globalData = obj
-      // app.deductibles = []
-      // app.envelope
-      // wx.navigateTo({
-      //   url: '/generalization/payFor/payFor?look=1',
-      // })
     }
 
   },
@@ -2538,7 +2587,7 @@ Page({
         LevelMin: rankFive == '不限' ? '1' : parseFloat(rankFive.split('-')[0]),
         Tips: 0,
         Reward: 0,
-        Accompany: tipsFive==''?0:tipsFive,
+        Accompany: tipsFive == '' ? 0 : tipsFive,
         comments: commentsFive,
         member: [...numArr, ...numBrr, ...numCrr],
         MoneyPerhour: '',
@@ -2554,7 +2603,7 @@ Page({
         name: '我找陪练',
         openPrice: wx.getStorageSync('bookinFive').data[0].openPrice,
         lr: wx.getStorageSync('bookinFive').data[0].lr,
-        organization:0
+        organization: 0
       }
       app.globalData = obj
       app.deductibles = []
@@ -2602,75 +2651,18 @@ Page({
       }
 
       let kood = wx.getStorageSync('bookin').data[0].placeDate.slice(5, wx.getStorageSync('bookin').data[0].placeDate.lenght)
-      let pmoney = wx.getStorageSync('bookin').data[0].placeMoney.toString()
-      if (pmoney.indexOf('.') == -1) {
-        setTimeout(() => {
-          this.setData({
-            startTime: wx.getStorageSync('bookin').data[0].placeDate,
-            startTimerof: kood.replace('-', '月') + '日',
-            timer: wx.getStorageSync('bookin').data[0].placeTime,
-            timeLen: wx.getStorageSync('bookin').data[0].placeTimeLen,
-            placeMoney: wx.getStorageSync('bookin').data[0].placeMoney + '.00',
-            venueid: wx.getStorageSync('bookin').data[0].placeNun,
-            sumMoney: wx.getStorageSync('bookin').data[0].placeMoneyTwo + '.00',
-            refereeFee: wx.getStorageSync('refereeFee')
-          })
-        }, 500)
-
-        util.Request("/api/display", {
-            SportType: this.data.sportType,
-            type: Number(this.data.indexSw) + 1,
-            status: 1,
-            referee: wx.getStorageSync('refereeFee'),
-            siteMoney: wx.getStorageSync('bookin').data[0].placeMoney + '.00',
-            lr: wx.getStorageSync('bookin').data[0].lr,
-            openPrice: wx.getStorageSync('bookin').data[0].openPrice
-          }, "post",
-          (res) => {
-            this.setData({
-              displayTxt: res.data.data
-            })
-          },
-          () => {
-            console.log("失败")
-          },
-          () => {}
-        )
-      } else {
-
-        util.Request("/api/display", {
-            SportType: this.data.sportType,
-            type: Number(this.data.indexSw) + 1,
-            status: 1,
-            referee: wx.getStorageSync('refereeFee'),
-            siteMoney: wx.getStorageSync('bookin').data[0].placeMoney + '.00',
-            lr: wx.getStorageSync('bookin').data[0].lr,
-            openPrice: wx.getStorageSync('bookin').data[0].openPrice
-          }, "post",
-          (res) => {
-            this.setData({
-              displayTxt: res.data.data
-            })
-          },
-          () => {
-            console.log("失败")
-          },
-          () => {}
-        )
-        setTimeout(() => {
-          this.setData({
-            startTime: wx.getStorageSync('bookin').data[0].placeDate,
-            startTimerof: kood.replace('-', '月') + '日',
-            timer: wx.getStorageSync('bookin').data[0].placeTime,
-            timeLen: wx.getStorageSync('bookin').data[0].placeTimeLen,
-            placeMoney: wx.getStorageSync('bookin').data[0].placeMoney,
-            venueid: wx.getStorageSync('bookin').data[0].placeNun,
-            sumMoney: wx.getStorageSync('bookin').data[0].placeMoneyTwo + '.00',
-            refereeFee: wx.getStorageSync('refereeFee')
-          })
-        }, 500)
-      }
-
+     
+      setTimeout(() => {
+        this.setData({
+          startTime: wx.getStorageSync('bookin').data[0].placeDate,
+          startTimerof: kood.replace('-', '月') + '日',
+          timer: wx.getStorageSync('bookin').data[0].placeTime,
+          timeLen: wx.getStorageSync('bookin').data[0].placeTimeLen,
+          placeMoney: wx.getStorageSync('bookin').data[0].placeMoney.toFixed(2),
+          venueid: wx.getStorageSync('bookin').data[0].placeNun,
+          sumMoney: wx.getStorageSync('bookin').data[0].placeMoneyTwo.toFixed(2),
+        })
+      }, 50)
 
       util.request("/api/getcaipanf", {
           'name': this.data.TrialRader,
@@ -2725,79 +2717,22 @@ Page({
 
 
     ///////组织活动
-    if (wx.getStorageSync('bookinThree') != '' && wx.getStorageSync('bookinThree').data[0].placeDate != undefined && this.data.indexSw == 2) {
-
+    if (wx.getStorageSync('bookinThree') != '' && this.data.indexSw == 2) {
       let kood = wx.getStorageSync('bookinThree').data[0].placeDate.slice(5, wx.getStorageSync('bookinThree').data[0].placeDate.lenght)
-      let pmoney = wx.getStorageSync('bookinThree').data[0].placeMoney.toString()
-      if (pmoney.indexOf('.') == -1) {
-        setTimeout(() => {
-          this.setData({
-            startTimeThree: wx.getStorageSync('bookinThree').data[0].placeDate,
-            startTimerofThree: kood.replace('-', '月') + '日',
-            timerThree: wx.getStorageSync('bookinThree').data[0].placeTime,
-            timeLenThree: wx.getStorageSync('bookinThree').data[0].placeTimeLen,
-            placeMoneyThree: wx.getStorageSync('bookinThree').data[0].placeMoney + '.00',
-            venueidThree: wx.getStorageSync('bookinThree').data[0].placeNun,
-            sumMoneyThree: wx.getStorageSync('bookinThree').data[0].placeMoneyTwo + '.00',
-            refereeFeeThree: wx.getStorageSync('refereeFeeThree')
-          })
-        }, 500)
 
-        util.Request("/api/display", {
-            SportType: this.data.sportTypeThree,
-            type:2,
-            status: 1,
-            referee: wx.getStorageSync('refereeFeeThree'),
-            siteMoney: wx.getStorageSync('bookinThree').data[0].placeMoney + '.00',
-            orgPrice: this.data.tipsThree == '' ? 0 : this.data.tipsThree,
-            lr: wx.getStorageSync('bookinThree').data[0].lr,
-            openPrice: wx.getStorageSync('bookinThree').data[0].openPrice
-          }, "post",
-          (res) => {
-            this.setData({
-              displayTxtThree: res.data.data
-            })
-          },
-          () => {
-            console.log("失败")
-          },
-          () => {}
-        )
-      } else {
 
-        util.Request("/api/display", {
-            SportType: this.data.sportTypeThree,
-            type: 2,
-            status: 1,
-            referee: wx.getStorageSync('refereeFeeThree'),
-            siteMoney: wx.getStorageSync('bookinThree').data[0].placeMoney + '.00',
-            orgPrice: this.data.tipsThree == '' ? 0 : this.data.tipsThree,
-            lr: wx.getStorageSync('bookinThree').data[0].lr,
-            openPrice: wx.getStorageSync('bookinThree').data[0].openPrice
-          }, "post",
-          (res) => {
-            this.setData({
-              displayTxtThree: res.data.data
-            })
-          },
-          () => {
-            console.log("失败")
-          },
-          () => {}
-        )
-        setTimeout(() => {
-          this.setData({
-            startTimeThree: wx.getStorageSync('bookinThree').data[0].placeDate,
-            startTimerofThree: kood.replace('-', '月') + '日',
-            timerThree: wx.getStorageSync('bookinThree').data[0].placeTime,
-            timeLenThree: wx.getStorageSync('bookinThree').data[0].placeTimeLen,
-            placeMoneyThree: wx.getStorageSync('bookinThree').data[0].placeMoney,
-            venueidThree: wx.getStorageSync('bookinThree').data[0].placeNun,
-            sumMoneyThree: wx.getStorageSync('bookinThree').data[0].placeMoneyTwo + '.00',
-            refereeFeeThree: wx.getStorageSync('refereeFeeThree')
-          })
-        }, 500)
-      }
+      
+      setTimeout(() => {
+        this.setData({
+          startTimeThree: wx.getStorageSync('bookinThree').data[0].placeDate,
+          startTimerofThree: kood.replace('-', '月') + '日',
+          timerThree: wx.getStorageSync('bookinThree').data[0].placeTime,
+          timeLenThree: wx.getStorageSync('bookinThree').data[0].placeTimeLen,
+          placeMoneyThree: wx.getStorageSync('bookinThree').data[0].placeMoney,
+          venueidThree: wx.getStorageSync('bookinThree').data[0].placeNun,
+          sumMoneyThree: wx.getStorageSync('bookinThree').data[0].placeMoneyTwo + '.00',
+        })
+      }, 50)
 
 
       util.request("/api/getcaipanf", {
@@ -2813,7 +2748,7 @@ Page({
           })
           util.Request("/api/display", {
               SportType: this.data.sportTypeThree,
-              type:2,
+              type: 2,
               status: 1,
               referee: res.data.data,
               siteMoney: wx.getStorageSync('bookinThree').data[0].placeMoney,
@@ -2999,25 +2934,25 @@ Page({
             tipsFive: res.data.data
           })
           util.Request("/api/display", {
-            SportType: this.data.sportTypeFive,
-            type: 4,
-            status: 1,
-            referee: '0',
-            siteMoney: wx.getStorageSync('bookinFive').data[0].placeMoney + '.00',
-            lr: wx.getStorageSync('bookinFive').data[0].lr,
-            openPrice: wx.getStorageSync('bookinFive').data[0].openPrice,
-            pPrice:res.data.data
-          }, "post",
-          (res) => {
-            this.setData({
-              displayTxtFive: res.data.data
-            })
-          },
-          () => {
-            console.log("失败")
-          },
-          () => {}
-        )
+              SportType: this.data.sportTypeFive,
+              type: 4,
+              status: 1,
+              referee: '0',
+              siteMoney: wx.getStorageSync('bookinFive').data[0].placeMoney + '.00',
+              lr: wx.getStorageSync('bookinFive').data[0].lr,
+              openPrice: wx.getStorageSync('bookinFive').data[0].openPrice,
+              pPrice: res.data.data
+            }, "post",
+            (res) => {
+              this.setData({
+                displayTxtFive: res.data.data
+              })
+            },
+            () => {
+              console.log("失败")
+            },
+            () => {}
+          )
         },
         () => {
           console.log("失败")
@@ -3042,10 +2977,10 @@ Page({
           })
         }, 500)
 
-        
+
       } else {
 
-      
+
         setTimeout(() => {
           this.setData({
             startTimeFive: wx.getStorageSync('bookinFive').data[0].placeDate,
@@ -3425,54 +3360,90 @@ Page({
     }
 
 
-    let cf = ''
+    let cfTwo = ''
     switch (wx.getStorageSync('sportTypeF')) {
+      case 23:
+        cfTwo = false
+        break;
+      case 1:
+        cfTwo = false
+        break;
+      case 2:
+        cfTwo = false
+        break;
+      case 3:
+        cfTwo = false
+        break;
       case 5:
-        cf = false
+        cfTwo = false
+        break;
+      case 6:
+        cfTwo = false
+        break;
+      case 4:
+        cfTwo = false
         break;
       case 7:
-        cf = false
+        cfTwo = false
         break;
       case 10:
-        cf = false
+        cfTwo = false
         break;
       case 11:
-        cf = false
+        cfTwo = false
         break;
       case 13:
-        cf = false
+        cfTwo = false
         break;
       case 14:
-        cf = false
+        cfTwo = false
         break;
       case 15:
-        cf = false
+        cfTwo = false
         break;
       case 16:
-        cf = false
+        cfTwo = false
         break;
       case 12:
-        cf = false
+        cfTwo = false
         break;
       case 9:
-        cf = false
+        cfTwo = false
         break;
       case 20:
-        cf = 'no'
+        cfTwo = 'no'
         break;
       case 21:
-        cf = 'no'
+        cfTwo = 'no'
         break;
       default:
-        cf = true
+        cfTwo = true
     }
     this.setData({
-      cf: cf
+      cfTwo: cfTwo
     })
 
-
+    let cf = ''
     switch (wx.getStorageSync('sportTypeFThree')) {
+      case 23:
+        cf = false
+        break;
+      case 1:
+        cf = false
+        break;
+      case 2:
+        cf = false
+        break;
+      case 3:
+        cf = false
+        break;
       case 5:
+        cf = false
+        break;
+      case 6:
+        cf = false
+        break;
+      case 4:
         cf = false
         break;
       case 7:
@@ -3741,7 +3712,6 @@ Page({
 
   //组织活动
   Organization() {
-
     let {
       sportIdThree,
       sportTypeThree,
@@ -3859,27 +3829,28 @@ Page({
         openPrice: wx.getStorageSync('bookinThree').data[0].openPrice,
         ifMustSign: this.data.switch1Checked == false ? 0 : 1
       }
-      wx.showLoading({
-        title: '加载中',
-        mask:true,
-      })
-
+      
+      
       util.Request("/api/userAddorganization", obj, "post",
         (res) => {
           if (res.data.code == 2000) {
+
             wx.navigateTo({
               url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=2' + '&referee=' + res.data.data.referee + '&status=1' + '&time=' + res.data.data.CreateTime + '&ok=1' + '&lr=' + wx.getStorageSync('bookinThree').data[0].lr,
             })
+
+
             wx.hideLoading()
 
-          }else{
+          } else {
+            wx.hideLoading()
             wx.showToast({
               title: res.data.msg,
               icon: 'none',
-              duration: 1000
+              duration: 1500
             })
-            wx.hideLoading()
-            
+
+
           }
         },
         () => {
@@ -4145,7 +4116,7 @@ Page({
                       case '7人制':
                         numAB = 7
                         break;
-                        case '6人制':
+                      case '6人制':
                         numAB = 6
                         break;
                       case '5人制':
@@ -4226,7 +4197,7 @@ Page({
                       case '7人制':
                         numAB = 7
                         break;
-                        case '6人制':
+                      case '6人制':
                         numAB = 6
                         break;
                       case '5人制':
@@ -4332,7 +4303,7 @@ Page({
                       case '7人制':
                         numAB = 7
                         break;
-                        case '6人制':
+                      case '6人制':
                         numAB = 6
                         break;
                       case '5人制':
@@ -4438,7 +4409,7 @@ Page({
                       case '7人制':
                         numAB = 7
                         break;
-                        case '6人制':
+                      case '6人制':
                         numAB = 6
                         break;
                       case '5人制':
@@ -4616,6 +4587,28 @@ Page({
     this.setData({
       tipsFive: e.detail.value
     })
+
+    util.Request("/api/display", {
+        SportType: this.data.sportTypeFive,
+        type: 4,
+        status: 1,
+        referee: '0',
+        siteMoney: wx.getStorageSync('bookinFive').data[0].placeMoney + '.00',
+        lr: wx.getStorageSync('bookinFive').data[0].lr,
+        openPrice: wx.getStorageSync('bookinFive').data[0].openPrice,
+        pPrice: e.detail.value
+      }, "post",
+      (res) => {
+        this.setData({
+          displayTxtFive: res.data.data
+        })
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
+
   },
   comment: function (e) {
     this.setData({
@@ -4765,7 +4758,7 @@ Page({
         SiteSumMoney: sumMoney,
         openPrice: wx.getStorageSync('bookin').data[0].openPrice,
         lr: wx.getStorageSync('bookin').data[0].lr,
-        organization:1
+        organization: 1
       }
 
 
@@ -4792,7 +4785,7 @@ Page({
         reward: tips,
         remarks: comments,
         sitecity: wx.getStorageSync('cityInfo')
-        
+
       }
       if (checked == true) {
         util.Request("/api/SavePlayerReleasePreference", ydata, "post",
@@ -4934,10 +4927,9 @@ Page({
         PipeMain: 2,
         PipeMainMoney: tipsSix == '(选填)' ? 0 : tipsSix,
         openPrice: wx.getStorageSync('bookinSix').data[0].openPrice,
-        organization:1
+        organization: 1
       }
 
-      console.log(obj)
 
 
       app.globalData = obj

@@ -11,7 +11,11 @@ Page({
     type:'1',
     forbade:false,
     status:'1',
-    ok:''
+    ok:'',
+    textTwo:[],
+    rule:'',
+    ruleFlag:false,
+    typeHood:0
   },
 
   /**
@@ -25,8 +29,25 @@ Page({
       typeInfo:options.typeInfo,
       status:options.status,
       ok:options.ok,
-      lr:options.lr
+      lr:options.lr,
     })
+    wx.removeStorage({
+      key: 'bookinThree',
+    })
+    wx.removeStorage({
+      key: 'bookinFour',
+    })
+    wx.removeStorage({
+      key: 'bookinSix'
+    })
+    wx.removeStorage({
+      key: 'bookin'
+    })
+    wx.removeStorage({
+      key: 'bookinFive'
+    })
+ 
+
     app.envelope=[]
     app.deductibles=[]
     util.Request("/api/getwWord", {
@@ -38,7 +59,8 @@ Page({
       }, "post",
       (res) => {
         this.setData({
-          text: res.data.data
+          text: res.data.data,
+          textTwo:res.data.other
         })
         wx.hideLoading()
       },
@@ -58,33 +80,63 @@ Page({
       url: '/pages/homePage/activities/activities?uuid='+this.data.uuid+'&hoog=0'+'&type=1',
     })
   },
-  detailRules:function(){
 
+  ruleFlag:function(){
+    this.setData({ruleFlag:false})
+  },
+  detailRules: function () {
     util.Request("/api/getDepositRule", {}, "get",
-    (res) => {
-      
-      wx.showModal({
-        title: '提示',
-        showCancel:false,
-        content:  res.data.data.rule,
-        success (res) {
-  
-        }
-      })
-    },
-    () => {
-      console.log("失败")
-    },
-    () => {}
-  )
-
-
-    
-    
+      (res) => {
+        this.setData({rule:res.data.data.rule,ruleFlag:true})
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
   },
 
 
+  
 
+
+  onShareAppMessage: function (res) {
+    return {
+      title: '我邀请您来订' + this.data.textTwo.sportName + '场地，平均节省30%以上',
+      path: '/pages/homePage/activities/activities?uuid=' + this.data.uuid + '&hoog=1' + '&type=1' + '&Invite_code=' + wx.getStorageSync('invitation'),
+      imageUrl: '../../assets/fengxiang.jpg',
+      success: function () {
+        util.Request("/api/userShare", {
+            'type': 'activity'
+          }, "post",
+          (res) => {
+            if (res.data.code === 2000) {
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'success',
+                duration: 1500,
+                mask: true
+              })
+            } else {
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'none',
+                duration: 1500,
+                mask: true
+              })
+            }
+
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
+
+      }
+    }
+
+  },
   
   onUnload: function () {
     wx.reLaunch({

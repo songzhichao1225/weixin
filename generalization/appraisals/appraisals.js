@@ -101,7 +101,9 @@ Page({
     userComment: '',
     value: '',
     imgBaseURL: '',
-    img:'',
+    img: '',
+    babelList: [],
+    huodongId: '',
   },
 
   /**
@@ -109,8 +111,10 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      img:util.API
+      img: util.API,
+      huodongId: options.id
     })
+    let forArr = []
     util.Request("/api/getNeedCommentUsersLst", {
         'uuid': options.id
       }, "get",
@@ -118,19 +122,33 @@ Page({
         this.setData({
           list: res.data.data
         })
-        let forArr = []
         for (let i in res.data.data.usersInfo) {
-          let userComment = {
-            uuid: res.data.data.usersInfo[i].playerUUID,
-            score: 5,
-            label: ''
-          }
-          forArr.push(userComment)
-          this.setData({
-            userComment: forArr
-          })
-        }
+          util.request("/api/getLabelInfo", {
+              'level': 5,
+              'uuid': options.id,
+              'userid': res.data.data.usersInfo[i].playerUUID
+            }, "get",
+            (resTwo) => {
 
+              let userComment = {
+                uuid: res.data.data.usersInfo[i].playerUUID,
+                score: 5,
+                label: ''
+              }
+              forArr.push(userComment)
+              this.setData({
+                babelList: [...this.data.babelList, resTwo.data.data]
+              })
+            },
+            () => {
+              console.log("失败")
+            },
+            () => {}
+          )
+        }
+        this.setData({
+          userComment: forArr,
+        })
         wx.hideLoading()
       },
       () => {
@@ -158,6 +176,28 @@ Page({
     this.setData({
       [no]: this.data.range
     })
+
+    util.request("/api/getLabelInfo", {
+        'level': this.data.range,
+        'uuid': this.data.huodongId,
+        'userid': e.currentTarget.dataset.plaerid
+      }, "get",
+      (res) => {
+        let babelList = this.data.babelList
+        babelList.fill(res.data.data, e.currentTarget.dataset.idx, 1)
+        this.setData({
+          babelList: babelList
+        })
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
+
+
+
+
 
 
   },
@@ -249,8 +289,7 @@ Page({
                 })
                 wx.hideLoading()
               },
-              () => {
-              },
+              () => {},
               () => {}
             )
           }
@@ -263,28 +302,28 @@ Page({
   },
 
   firHoom: function (e) {
-    if (this.data.list.usersInfo[e.currentTarget.dataset.index].res[e.currentTarget.dataset.ben].background == undefined || this.data.list.usersInfo[e.currentTarget.dataset.index].res[e.currentTarget.dataset.ben].background == '') {
-      let yy = 'list.usersInfo[' + e.currentTarget.dataset.index + '].res[' + e.currentTarget.dataset.ben + '].background'
+    if (this.data.babelList[e.currentTarget.dataset.index][e.currentTarget.dataset.ben].background == undefined || this.data.babelList[e.currentTarget.dataset.index][e.currentTarget.dataset.ben].background == '') {
+      let yy = 'babelList[' + e.currentTarget.dataset.index + '][' + e.currentTarget.dataset.ben + '].background'
       this.setData({
         [yy]: 'background:#D85D27;color:#fff;border:none;'
       })
-    } else if (this.data.list.usersInfo[e.currentTarget.dataset.index].res[e.currentTarget.dataset.ben].background != '') {
-      let yy = 'list.usersInfo[' + e.currentTarget.dataset.index + '].res[' + e.currentTarget.dataset.ben + '].background'
+    } else if (this.data.babelList[e.currentTarget.dataset.index][e.currentTarget.dataset.ben].background != '') {
+      let yy = 'babelList[' + e.currentTarget.dataset.index + '][' + e.currentTarget.dataset.ben + '].background'
       this.setData({
         [yy]: ''
       })
     }
     let arrid = []
-    for (let i in this.data.list.usersInfo[e.currentTarget.dataset.index].res) {
-      if (this.data.list.usersInfo[e.currentTarget.dataset.index].res[i].background != undefined && this.data.list.usersInfo[e.currentTarget.dataset.index].res[i].background != '') {
-        arrid.push(this.data.list.usersInfo[e.currentTarget.dataset.index].res[i].id)
+    for (let i in this.data.babelList[e.currentTarget.dataset.index]) {
+      if (this.data.babelList[e.currentTarget.dataset.index][i].background != undefined && this.data.babelList[e.currentTarget.dataset.index][i].background != '') {
+        arrid.push(this.data.babelList[e.currentTarget.dataset.index][i].id)
       }
     }
     let good = 'userComment[' + e.currentTarget.dataset.index + '].label'
     this.setData({
       [good]: arrid.join('|')
-
     })
+
   },
   textarea: function (e) {
     this.setData({
@@ -312,6 +351,7 @@ Page({
       imgBaseURL: imgBaseURL,
       imgURL: imageUrl
     }
+
     util.Request("/api/addComment", obj, "post",
       (res) => {
         if (res.data.code == 2000) {
@@ -333,16 +373,8 @@ Page({
     )
   },
   oneKey: function (e) {
-    let {
-      list
-    } = this.data
-    let arrID = []
-    for (let i in list.usersInfo) {
-      arrID.push(list.usersInfo[i].playerUUID)
-    }
+  
     let obj = {
-      uuid: arrID.join('|'),
-      siteUid: e.currentTarget.dataset.siteid,
       publicUuid: e.currentTarget.dataset.pubid
     }
     util.Request("/api/addAllGoodsComment", obj, "post",

@@ -99,10 +99,39 @@
 	</view>
 
 
+ <view class="projectList">
+	<view class="mask" catchtouchmove='catchTouchMove' wx:if="{{hidden}}">
+			<view class="activity" wx:if="{{hiddenOne}}">
+				<view class="activitySon" catchtap='secondary' wx:for="{{activity}}" wx:key='index' data-name="{{item.name}}"
+					data-num="{{item.id}}">
+					<text style="{{numId===item.id?'color:#D85D27;':''}}">{{item.name}}</text>
+					<image src='/assets/HomeIconJtRightNol@2x.png'></image>
+				</view>
+			</view>
+			<view class="activityTwo" wx:if="{{hiddenTwo}}">
+				<view class="activityTwoSon" wx:for="{{activitySon}}" bindtap='activityTwoSon' wx:key='index'
+					data-name="{{item.name}}" data-num="{{item.id}}">
+					<text wx:if="{{item.name!='按次收费'&&item.name!='散场'}}">{{item.name}}</text>
+				</view>
+			</view>
 
-   <scroll-view scroll-y="auto" enhanced="true" lower-threshold="200"
+			<view class="sort" wx:if="{{sortHid}}">
+				<view class="sortSon" wx:for="{{sort}}" bindtap='sortSe' data-name="{{item.name}}" data-num="{{item.num}}"
+					wx:key='index'>
+					<text>{{item.name}}</text>
+				</view>
+			</view>
+
+			<view class="sort" style='left:50%;' wx:if="{{statusHid}}">
+				<view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key='index' data-name="{{item.name}}"
+					data-num="{{item.num}}">
+					<text>{{item.name}}</text>
+				</view>
+			</view>
+		</view>
+	<scroll-view scroll-y="auto" enhanced="true" lower-threshold="200"
       refresher-enabled="true" refresher-triggered="{{enabled}}" bindrefresherrefresh="refresh"
-      bindscrolltolower="tolower" class="projectList" style="height:50%">
+      bindscrolltolower="tolower"  style="height:100%">
 	
 
 		<view class="noContent" wx:if="{{projectData.length==0}}">
@@ -148,8 +177,8 @@
 					<!-- <text>（北京市…）</text> -->
 				</view>
 				<view class="cost">
-					<text style='margin:0;'>场地费:{{item.PaySiteMoneyType==1?'AA':'输方买单'}}</text>
-					<text wx:if="{{item.MoneyPerhour!=0}}">陪练费:￥{{item.MoneyPerhour}}/人</text>
+					<text style='margin:0;'>场地费:{{item.PaySiteMoneyType==1?'AA':item.PaySiteMoneyType==2?'输者买单':'练习方买单'}}</text>
+					<text wx:if="{{item.MoneyPerhour!=0}}">陪练费:￥{{item.MoneyPerhour}}</text>
 					<text wx:if="{{item.Tips!=0.00||item.Tips!=0}}">入场费:￥{{item.Tips}}/人</text>
 					<!-- <text wx:if="{{item.organizations!=0}}">组织费:￥{{item.organizations}}</text> -->
 					<text>{{item.range}}</text>
@@ -166,36 +195,10 @@
 		</view>
 
 
-		<view class="mask" wx:if="{{hidden}}">
-			<view class="activity" wx:if="{{hiddenOne}}">
-				<view class="activitySon" catchtap='secondary' wx:for="{{activity}}" wx:key='index' data-name="{{item.name}}"
-					data-num="{{item.id}}">
-					<text style="{{numId===item.id?'color:#D85D27;':''}}">{{item.name}}</text>
-					<image src='/assets/HomeIconJtRightNol@2x.png'></image>
-				</view>
-			</view>
-			<view class="activityTwo" wx:if="{{hiddenTwo}}">
-				<view class="activityTwoSon" wx:for="{{activitySon}}" bindtap='activityTwoSon' wx:key='index'
-					data-name="{{item.name}}" data-num="{{item.id}}">
-					<text wx:if="{{item.name!='按次收费'&&item.name!='散场'}}">{{item.name}}</text>
-				</view>
-			</view>
-
-			<view class="sort" wx:if="{{sortHid}}">
-				<view class="sortSon" wx:for="{{sort}}" bindtap='sortSe' data-name="{{item.name}}" data-num="{{item.num}}"
-					wx:key='index'>
-					<text>{{item.name}}</text>
-				</view>
-			</view>
-
-			<view class="sort" style='left:50%;' wx:if="{{statusHid}}">
-				<view class="sortSon" wx:for="{{statusH}}" bindtap='statusSe' wx:key='index' data-name="{{item.name}}"
-					data-num="{{item.num}}">
-					<text>{{item.name}}</text>
-				</view>
-			</view>
-		</view>
+	
 </scroll-view>
+ </view>
+  
 
 	<view class="isSignN" wx:if="{{flagIs}}">
 		<view class="isSignbox">
@@ -271,6 +274,73 @@
 				<view class="footerBtn">
 					<view bindtap="goOn" data-id="{{item.uuid}}" data-index="1">继续匹配</view>
 					<view bindtap="goOn" data-id="{{item.uuid}}" data-index="0">停止报名</view>
+				</view>
+			
+			
+			</view>
+			<view class="status">
+				<image wx:if="{{item.PublicStatus==2}}" src='/assets/dai.png'></image>
+				<image wx:if="{{item.PublicStatus==6}}" src='/assets/pinjia.png'></image>
+				<image wx:if="{{item.PublicStatus==3}}" src='/assets/huodong.png'></image>
+				<image wx:if="{{item.PublicStatus==1}}" src='/assets/pipei.png'></image>
+				<image wx:if="{{item.PublicStatus==7}}" src='/assets/tuichu.png'></image>
+				<image wx:if="{{item.PublicStatus==5}}" src='/assets/wancheng.png'></image>
+			</view>
+		</view>
+	 
+	 </scroll-view>
+	 </view>
+	 <view class="colseMask" bindtap="closeMask"><image src="../../../assets/BtnDown@2x.png"></image> </view>
+	
+	</view>
+
+
+
+
+	<view class="contentMask" wx:if="{{maskActivityTwo.length>0&&maskActivity.length==0}}">
+	 <view class="contentMaskSon">
+		 <view style="font-size:0.88rem;text-align:center;padding-top:0.5rem">待处理的活动</view>
+	 <scroll-view class="projectList lppd">
+		<view class="projectSon"   data-uuid="{{item.uuid}}"
+			wx:for="{{maskActivityTwo}}" wx:key='index'>
+			<view class="avatar">
+				<image class="avatarP" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
+				<image wx:if="{{item.SportName=='网球'}}" class="aIcon" src='/assets/icon_dj_wq.png'></image>
+				<image wx:if="{{item.SportName=='高尔夫'}}" class="aIcon" src='/assets/icon_dj_gef.png'></image>
+				<image wx:if="{{item.SportName=='篮球'}}" class="aIcon" src='/assets/icon_dj_lq.png'></image>
+				<image wx:if="{{item.SportName=='乒乓球'}}" class="aIcon" src='/assets/icon_dj_ppq.png'></image>
+				<image wx:if="{{item.SportName=='排球'}}" class="aIcon" src='/assets/icon_dj_pq.png'></image>
+				<image wx:if="{{item.SportName=='台球'}}" class="aIcon" src='/assets/icon_dj_tq.png'></image>
+				<image wx:if="{{item.SportName=='羽毛球'}}" class="aIcon" src='/assets/icon_dj_ymq.png'></image>
+				<image wx:if="{{item.SportName=='足球'}}" class="aIcon" src='/assets/icon_dj_zq.png'></image>
+				<text>{{item.nowLevel}}</text>
+			</view>
+			<view class="introduction">
+				<view class="title">
+					<text>{{item.nickname}}</text>
+					<image wx:if="{{item.sex==0}}" src='/assets/sex0@2x.png'></image>
+					<image wx:if="{{item.sex==1}}" src='/assets/sex1@2x.png'></image>
+				</view>
+				<view class="mode">
+					<text style='margin:0;color:#D85D27;'>{{item.SportMode}}</text>
+					<text>{{item.SportName}}</text>
+					<text>{{item.HighestLevelName}}</text>
+					<text>{{item.SportTypeName}}</text>
+					<text>{{item.lockNumbers}}</text>
+				</view>
+				<view class="time">
+					<text style='margin:0;'>{{item.startDays}}</text>
+					<text>{{item.week}}</text>
+					<text>{{item.startTimes}}-{{item.endTimes}}</text> </view>
+				<view class="address">
+					<text style='margin:0;'>{{item.address}}</text>
+					<!-- <text>（北京市…）</text> -->
+				</view>
+				<view class="footerBtn">
+					<view style="width:7.75rem" bindtap="signin" data-id="{{item.uuid}}" data-index="1">签到</view>
+					<view style="width:7.75rem" bindtap="comResult" data-id="{{item.uuid}}" data-index="1">填写比赛结果</view>
+					<view  bindtap="onKey" data-id="{{item.uuid}}" data-index="1">一键好评</view>
+					<view  bindtap="comment" data-id="{{item.uuid}}" data-index="1">去评价</view>
 				</view>
 			
 			

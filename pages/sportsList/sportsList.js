@@ -100,6 +100,7 @@ Page({
       wx.removeStorage({
         key: 'mode'
       })
+      
       wx.removeStorage({
         key: 'siteid'
       })
@@ -174,6 +175,9 @@ Page({
       })
       wx.removeStorage({
         key: 'siteidThree'
+      })
+      wx.removeStorage({
+        key: 'modeThree'
       })
 
       wx.navigateBack({

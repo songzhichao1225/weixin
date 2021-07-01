@@ -16,6 +16,12 @@ Page({
    */
   onLoad: function () {
     this.content()
+    if(app.envelope.money!=undefined){
+      this.setData({
+        selectLink:{money:app.envelope.money}
+      })
+    }
+    
   },
 
   content() {
@@ -26,6 +32,7 @@ Page({
           if(app.envelope!=undefined){
             if(you[i].money==app.envelope.money){
               you[i].checked=1
+            
             }else{
               you[i].checked = 0
             }

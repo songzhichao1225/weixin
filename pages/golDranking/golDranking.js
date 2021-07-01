@@ -75,9 +75,6 @@ Page({
         title: '全国',
         nameE: 'country'
       }
-
-
-
     ],
     title: '通州区',
     drankingList: [],
@@ -91,7 +88,7 @@ Page({
     this.setData({
       img: util.API
     })
-    this.drankingListTwo()
+    
   },
 
   tap: function (e) {
@@ -217,6 +214,7 @@ Page({
   },
   onShow() {
     this.setData({flag:1})
+    this.drankingListTwo()
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({

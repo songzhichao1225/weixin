@@ -101,16 +101,16 @@
 					
 					<text>{{item.sitesName}}</text>
 					<view class="cost">
-					<text style='margin:0;'>场地费:{{item.PaySiteMoneyType==1?'AA':item.PaySiteMoneyType==2?'输方买单':'练习方买单'}}</text>
+					<text style='margin:0;'>场地费:{{item.SportMode=='仅预订场馆'?'发布者买单':item.PaySiteMoneyType==1?'AA':item.PaySiteMoneyType==2?'输方买单':'练习方买单'}}</text>
 					<text wx:if="{{item.MoneyPerhour!=0}}">陪练费:￥{{item.MoneyPerhour}}/人</text>
 					<text wx:if="{{item.Tips!=0.00||item.Tips!=0}}">入场费:￥{{item.Tips}}/人</text>
 					<!-- <text wx:if="{{item.organizations!=0}}">组织费:￥{{item.organizations}}</text> -->
 					<text>{{item.range}}</text>
 				</view>
 					
-          <view  class="btnBos" wx:if="{{item.reserve==1&&item.PublicStatus==2}}">	<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="1">取消预订</view></view>
+          <!-- <view  class="btnBos" wx:if="{{item.reserve==1&&item.PublicStatus==2}}">	<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="1">取消预订</view></view> -->
 					<view class="btnBos" wx:if="{{item.reserve!=1}}">
-						<view class="isConfirmResult" wx:if="{{item.isComplaint==1}}">投诉中</view>
+						<!-- <view class="isConfirmResult" wx:if="{{item.isComplaint==1}}">投诉中</view> -->
 						<!-- <view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="1" wx:if="{{item.PublicStatus==1&&item.isSignIn==0&&type!='join'}}">取消发布</view>
 						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="2" wx:if="{{item.PublicStatus==1&&item.isSignIn==0&&type=='join'}}">取消报名</view>
 						<view class="isConfirmResult" catchtap="cancels" data-uuid="{{item.uuid}}" data-type="1" wx:if="{{item.PublicStatus==1&&item.isSignIn==1&&type!='join'}}">取消发布</view>

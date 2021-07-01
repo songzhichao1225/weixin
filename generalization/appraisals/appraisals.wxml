@@ -19,13 +19,15 @@
 		</view>
 		<view class="center"><text>整体评分:</text>
 			<view class="xing">
-				<image wx:for="{{images}}" bindtap="xing" data-idx="{{idx}}" data-index="{{index}}" wx:key="index" src="{{item.src}}"></image>
+				<image wx:for="{{images}}" data-plaerid="{{list.usersInfo[idx].playerUUID}}" bindtap="xing" data-idx="{{idx}}" data-index="{{index}}" wx:key="index" src="{{item.src}}"></image>
 				<text style="font-size:0.75rem;color:#4A4A4A;margin-top:0.3rem;margin-left:0.2rem;">{{range}}分</text>
 			</view>
 		</view>
 		<view class="content">
 			<text>基于对ta的印象点击下方标签评价吧！</text>
-			<view class="listSon" wx:for="{{item.res}}" data-index="{{idx}}" style="{{user.background}}" bindtap="firHoom" data-id="{{user.id}}" wx:for-item="user" data-ben="{{idxTwo}}" wx:for-index="idxTwo" wx:key="index">{{user.labelName}}</view>
+			<view class="bossBabel">
+				<view class="listSon" wx:for="{{babelList[idx]}}" data-index="{{idx}}" style="{{user.background}}" bindtap="firHoom" data-id="{{user.id}}" wx:for-item="user" data-ben="{{idxTwo}}" wx:for-index="idxTwo" wx:key="index">{{user.labelName}}</view>
+			</view>
 		</view>
 		<view class="line" style="margin-top:0.94rem;"></view>
 	</view>
