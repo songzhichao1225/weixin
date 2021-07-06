@@ -76,15 +76,17 @@ Page({
     baseSixFour: '',
     option: '',
     timeOut: true,
-    officialAccount: true,   //公众号提示
+    officialAccount: true, //公众号提示
     closeImg: false,
+    userTkContent:[],
+    userTk:2
   },
 
-  replacement:function(){
-     let that=this
+  replacement: function () {
+    let that = this
     wx.showActionSheet({
       itemList: ['拍照', '从手机选择'],
-      success: function(res) {
+      success: function (res) {
         wx.showNavigationBarLoading()
         let imgArr = null;
         if (res.tapIndex == 0) {
@@ -92,49 +94,50 @@ Page({
         } else if (res.tapIndex == 1) {
           imgArr = ['album']
         }
-        
+
         wx.chooseImage({
           count: 1,
           sizeType: ['original', 'compressed'],
           sourceType: imgArr,
-          success (res) {
+          success(res) {
             let tempFilePaths = res.tempFilePaths[0]
             util.Request("/api/uploadHeaderImg", tempFilePaths, 'post',
-            (resTwo) => {
+              (resTwo) => {
                 util.Request("/api/getUserDetailInfo", {
-                  'uuid': wx.getStorageSync('uuid')
-                }, "get",
-                (resThree) => {
-                  that.setData({
-                    mineDetail: resThree.data.data,
-                  })
-                },
-                () => {
-                  console.log("失败")
-                }, 
-                () => {}
-              )
-            },
-            () => {},
-            () => {}
-          )
+                    'uuid': wx.getStorageSync('uuid')
+                  }, "get",
+                  (resThree) => {
+                    that.setData({
+                      mineDetail: resThree.data.data,
+                    })
+                  },
+                  () => {
+                    console.log("失败")
+                  },
+                  () => {}
+                )
+              },
+              () => {},
+              () => {}
+            )
           }
         })
 
-      }})
+      }
+    })
 
-    
-   
+
+
   },
 
-   //关闭公众号组件
-   closeOfficialAccount: function () {
+  //关闭公众号组件
+  closeOfficialAccount: function () {
     this.setData({
       officialAccount: false
     })
   },
-	
-	//當時用了組件才會顯示
+
+  //當時用了組件才會顯示
   bindload: function () {
     this.setData({
       closeImg: true,
@@ -241,8 +244,26 @@ Page({
             () => {}
           )
 
-
-
+          util.Request("/api/getusertk", {}, "post",
+            (res) => {
+              if(wx.getStorageSync('userTk')==2){
+                this.setData({
+                  userTk:2,
+                  userTkContent:res.data.data.RegistDate
+               })
+              }else{
+                this.setData({
+                  userTk:res.data.data.type,
+                  userTkContent:res.data.data.RegistDate
+               })
+              }
+             
+            },
+            () => {
+              console.log("失败")
+            },
+            () => {}
+          )
         }
 
 
@@ -480,7 +501,7 @@ Page({
     })
     util.Request("/api/program_qrcode", {}, "post",
       (res) => {
-        base64src('data:image/jpeg;base64,'+res.data.data, res => {
+        base64src('data:image/jpeg;base64,' + res.data.data, res => {
           this.setData({
             baseSixFour: res,
             flagTwo: 1
@@ -507,5 +528,14 @@ Page({
     this.setData({
       timeOut: true
     })
+  },
+  invitationalList: function () {
+    wx.navigateTo({
+      url: '/generalization/invitationalList/invitationalList'
+    })
+  },
+  banner:function(){
+    this.setData({userTk:2})
+    wx.setStorageSync('userTk', 2)
   }
 })

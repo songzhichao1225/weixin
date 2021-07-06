@@ -84,7 +84,7 @@ Page({
         key: 'siteid',
       })
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag='+this.data.falg+'&flagTwo=3',
+        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag='+this.data.falg+'&flagTwo=3'+'&hood=1',
       })
     }else if(this.data.falg==1){
       wx.setStorage({
@@ -92,7 +92,7 @@ Page({
         key: 'siteidTwo',
       })
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag='+this.data.falg+'&flagTwo=3',
+        url: '/generalization/bookIn/bookIn?sportid='+this.data.sportId+'&sporttype='+this.data.sporttype+'&siteuid='+e.currentTarget.dataset.uid+'&token='+wx.getStorageSync('token')+'&flag='+this.data.falg+'&flagTwo=3'+'&hood=2',
       })
     }else if(this.data.falg==2){
       wx.setStorage({

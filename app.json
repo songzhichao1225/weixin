@@ -91,7 +91,8 @@
         "insuranceDe/insuranceDe",
         "redEnvelope/redEnvelope",
         "contentTxt/contentTxt",
-        "webviewMood/webviewMood"
+        "webviewMood/webviewMood",
+        "invitationalList/invitationalList"
       ] 
     }
   ],
@@ -145,7 +146,9 @@
      
     ]
   },
-
+  "requiredBackgroundModes": [
+    "location"
+  ],
 
   "sitemapLocation": "sitemap50.json",
   "permission": {

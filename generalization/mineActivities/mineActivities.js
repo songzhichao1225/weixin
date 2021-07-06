@@ -44,7 +44,7 @@ Page({
           } else if (projectDataNow[i].PaySiteMoneyType == 1) {
             projectDataNow[i].PaySiteMoneyType = 'AA'
           } else if (projectDataNow[i].PaySiteMoneyType == 0) {
-            projectDataNow[i].PaySiteMoneyType = '输者买单'
+            projectDataNow[i].PaySiteMoneyType = '输方买单'
           }
         }
         if (page != 1) {
@@ -283,8 +283,8 @@ Page({
   isQuit:function(e){
     let that=this
     wx.showModal({
-      title: '提示',
-      content: '您确定提前退出本次活动么?',
+      title: '温馨提示',
+      content:  that.data.listSon.SportMode == '我找陪练' || that.data.listSon.SportMode == '我是陪练' ? '您确定提前退出吗？如不是练习方先提前退出，您提前退出后，将被要求补缴补偿金且无法拿到陪练费。' : '您确定提前退出本次活动么?',
       success (res) {
         if (res.confirm) {
           util.Request("/api/getmessage", { 'uuid':e.currentTarget.dataset.uuid,type:3}, "post", 
@@ -333,6 +333,19 @@ Page({
       url: '/pages/publishing/publishing'
     })
   },
+
+  onShow:function(){
+    let page = 1
+    let statusType = 'all'
+    let type = 'join'
+    this.setData({
+      statusType: 'all',
+      type: 'join',
+      img:util.API
+    })
+    this.activitiesNum(type)
+    this.common(page, statusType, type)
+  }
   
 
 })

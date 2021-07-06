@@ -420,7 +420,7 @@
 					</view>
 					<view class="right">
 						<image class="image" src="/assets/right.png"></image>
-						<picker range="{{cf==false?arrayLanThree:arrayLanTwo}}" bindchange="pickerThree" bindtap="pickerTapThree" range-key="name"
+						<picker range="{{cf==false?arrayLanThree:arrayLanTwo}}" disabled="{{disabledThree}}" bindchange="pickerThree" bindtap="pickerTapThree" range-key="name"
 							style="float:right;">
 							<view class="textTwo" style="text-align:right;font-size:0.75rem;">
 								{{modeThree}}
@@ -568,7 +568,7 @@
 							<view class="left">
 								<text style="float:left;padding-left:0.5rem;" bindtap="sexQiu" data-type='3'>技术级别</text>
 								<image class="image" style="margin-right:0;" src="/assets/right.png"></image>
-								<picker mode="multiSelector" bindchange="bindPickerRankFour" range="{{rankArr}}" style="float:right;">
+								<picker mode="multiSelector" bindchange="bindPickerRankThree" range="{{rankArr}}" style="float:right;">
 									<view class="textTwo" style="text-align:right;float:right;margin-left:0.3rem;font-size:0.75rem;">
 										{{rankThree}}
 									</view>

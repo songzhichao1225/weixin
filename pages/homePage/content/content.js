@@ -100,7 +100,7 @@ Page({
     closeImg: true,
     enabled: true,
     maskActivity: [],
-    maskActivityTwo:[]
+    maskActivityTwo: []
   },
 
 
@@ -155,6 +155,11 @@ Page({
       maskActivity: []
     })
   },
+  closeMaskTwo:function(){
+    this.setData({
+      maskActivityTwo: []
+    })
+  },
 
   goOn: function (e) {
     util.Request("/api/ifAgreeOrgActivityNotFull", {
@@ -192,26 +197,66 @@ Page({
       let wxMarkerData = data.wxMarkerData;
       that.setData({
         markers: wxMarkerData,
-        latitude: data.originalData.result.location.lat,
-        longitude: data.originalData.result.location.lng,
         address: data.originalData.result.addressComponent.district,
         cityInfo: data.originalData.result.addressComponent,
         selectCity: data.originalData.result.addressComponent.city
       })
-
-      that.goleloand()
       wx.setStorageSync('province', data.originalData.result.addressComponent.province)
       wx.setStorageSync("cityInfo", data.originalData.result.addressComponent.city)
       wx.setStorageSync('area', data.originalData.result.addressComponent.district)
       wx.setStorageSync('address', wxMarkerData[0].address)
-      wx.setStorageSync('lat', data.originalData.result.location.lat)
-      wx.setStorageSync('lng', data.originalData.result.location.lng)
     }
-
+    wx.getLocation({
+      type: 'gcj02',
+      isHighAccuracy: true,
+      success: res => {
+        wx.setStorageSync('lat', res.latitude + 0.00540)
+        wx.setStorageSync('lng', res.longitude + 0.005900)
+        that.goleloand()
+      },
+      fail: e => {
+        wx.getSetting({
+          success: res => {
+            console.log(res)
+            if (typeof (res.authSetting['scope.userLocation']) != 'undefined' && !res.authSetting['scope.userLocation']) {
+              wx.showModal({
+                title: '提示',
+                content: '您拒绝了定位权限，将无法使用活动签到功能',
+                success: res => {
+                  if (res.confirm) {
+                    wx.openSetting({
+                      success: res => {
+                        if (res.authSetting['scope.userLocation']) {
+                          wx.getLocation({
+                            type: 'gcj02',
+                            isHighAccuracy: true,
+                            success: res => {
+                              wx.setStorageSync('lat', res.latitude + 0.00540)
+                              wx.setStorageSync('lng', res.longitude + 0.005900)
+                              that.goleloand()
+                            }
+                          });
+                        } else {
+                          wx.showToast({
+                            title: '您拒绝了定位权限，将无法使用活动签到功能',
+                            icon: 'none'
+                          });
+                        }
+                      }
+                    });
+                  }
+                }
+              });
+            }
+          }
+        });
+      }
+    });
     BMap.regeocoding({
       fail: fail,
       success: success
     });
+
 
   },
   openSetting() {
@@ -255,6 +300,10 @@ Page({
       )
 
     }
+
+
+
+
 
 
 
@@ -373,7 +422,7 @@ Page({
       jsonData.Agemax = Agemax,
       jsonData.istherereferee = 0
     jsonData.PipeMain = 0
-    util.request("/api/getIndexAcitivitylist", jsonData, "get",
+    util.request("/api/getIndexAcitivitylistPipeMain", jsonData, "get",
       (res) => {
         let projectDataNow = res.data.data.activeLst
         for (let i in projectDataNow) {
@@ -452,28 +501,15 @@ Page({
     }
 
 
-    util.Request("/api/Statistics", {page:1}, "get",
+    util.Request("/api/Statistics", {}, "get",
       (res) => {
         let projectDataNow = res.data.data
-        for (let i in projectDataNow) {
-          if (projectDataNow[i].SportMode == '1') {
-            projectDataNow[i].SportMode = '娱乐模式'
-          } else if (projectDataNow[i].SportMode == '2') {
-            projectDataNow[i].SportMode = '竞技模式'
-          } else if (projectDataNow[i].SportMode == '3') {
-            projectDataNow[i].SportMode = '我是陪练'
-          } else if (projectDataNow[i].SportMode == '4') {
-            projectDataNow[i].SportMode = '我找陪练'
-          } else if (projectDataNow[i].PaySiteMoneyType == 1) {
-            projectDataNow[i].PaySiteMoneyType = 'AA'
-          } else if (projectDataNow[i].PaySiteMoneyType == 0) {
-            projectDataNow[i].PaySiteMoneyType = '输方买单'
-          }
-          if (projectDataNow[i].MoneyPerhour.toString().indexOf('.') == -1) {
-            projectDataNow[i].MoneyPerhour = projectDataNow[i].MoneyPerhour + '.00'
-          }
-        }
-        this.setData({maskActivityTwo:projectDataNow==undefined?[]:projectDataNow})
+        
+     
+       
+        this.setData({
+          maskActivityTwo: projectDataNow == undefined ? [] : projectDataNow
+        })
 
       },
       () => {},
@@ -497,8 +533,8 @@ Page({
   },
 
 
-   //场馆签到
-   signin: function (e) {
+  //场馆签到
+  signin: function (e) {
     util.Request("/api/userArrivalSignin", {
         'publicUid': e.currentTarget.dataset.id,
         'lat': wx.getStorageSync('lat'),
@@ -511,7 +547,9 @@ Page({
           duration: 1500,
           mask: true
         })
-       this.setData({maskActivityTwo:[]})
+        this.setData({
+          maskActivityTwo: []
+        })
 
       },
       () => {
@@ -521,46 +559,48 @@ Page({
     )
   },
 
-   //填写比赛结果F
-   comResult: function (e) {
+  //填写比赛结果F
+  comResult: function (e) {
     wx.navigateTo({
       url: '/generalization/yesResults/yesResults?publicuuid=' + e.currentTarget.dataset.id,
     })
   },
 
-onKey:function(e){
+  onKey: function (e) {
 
-  let obj = {
-    publicUuid: e.currentTarget.dataset.pubid
-  }
-  util.Request("/api/addAllGoodsComment", obj, "post",
-    (res) => {
-     
-
-      wx.showToast({
-        title: res.data.msg,
-        icon: 'none',
-        duration: 1500,
-        mask: true
-      })
-      this.setData({maskActivityTwo:[]})
-      wx.hideLoading()
-    },
-    () => {
-      console.log("失败")
-    },
-    () => {}
-  )
+    let obj = {
+      publicUuid: e.currentTarget.dataset.pubid
+    }
+    util.Request("/api/addAllGoodsComment", obj, "post",
+      (res) => {
 
 
-},
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none',
+          duration: 1500,
+          mask: true
+        })
+        this.setData({
+          maskActivityTwo: []
+        })
+        wx.hideLoading()
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
 
- //跳转待评价
- comment: function (e) {
-  wx.navigateTo({
-    url: '/generalization/appraisals/appraisals?id=' + e.currentTarget.dataset.id,
-  })
-},
+
+  },
+
+  //跳转待评价
+  comment: function (e) {
+    wx.navigateTo({
+      url: '/generalization/appraisals/appraisals?id=' + e.currentTarget.dataset.id,
+    })
+  },
 
 
 

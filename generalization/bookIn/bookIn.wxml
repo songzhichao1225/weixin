@@ -3,8 +3,8 @@
 
 
 
-<!-- <web-view bindmessage="detal" src="https://www.cg.zhaoduishou.com/#/appOrder?siteuid={{option.siteuid}}&sportid={{option.sportid}}&token={{option.token}}&sporttype={{option.sporttype}}&flag={{option.flag}}"> -->
+<web-view bindmessage="detal" src="https://www.cg.zhaoduishou.com/#/appOrder?siteuid={{option.siteuid}}&sportid={{option.sportid}}&token={{option.token}}&sporttype={{option.sporttype}}&flag={{option.flag}}">
 
 
-<web-view bindmessage="detal" src="https://cgstg.zhaoduishou.com/#/appOrder?siteuid={{option.siteuid}}&sportid={{option.sportid}}&token={{option.token}}&sporttype={{option.sporttype}}&flag={{option.flag}}">
+<!-- <web-view bindmessage="detal" src="https://cgstg.zhaoduishou.com/#/appOrder?siteuid={{option.siteuid}}&sportid={{option.sportid}}&token={{option.token}}&sporttype={{option.sporttype}}&flag={{option.flag}}"> -->
 </web-view>

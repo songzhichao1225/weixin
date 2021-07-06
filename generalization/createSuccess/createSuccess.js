@@ -85,7 +85,7 @@ Page({
     this.setData({ruleFlag:false})
   },
   detailRules: function () {
-    util.Request("/api/getDepositRule", {}, "get",
+    util.Request("/api/getDepositRule", {type:this.data.text.black.indexOf('练习方')!=-1?3:1}, "get",
       (res) => {
         this.setData({rule:res.data.data.rule,ruleFlag:true})
       },

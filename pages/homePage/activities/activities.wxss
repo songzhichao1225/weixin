@@ -265,6 +265,8 @@ image {
   width: 75%;
   float: left;
   margin-left: 40rpx;
+  display: flex;
+  flex-wrap:wrap;
 }
 
 .participants .peopleList .son:nth-child(3N+1) {
@@ -400,6 +402,10 @@ image {
   width: 49.5%;
   height: 2.69rem;
   float: left;
+  background: #ccc;
+  color: #fff;
+  line-height: 2.69rem;
+  border-radius: 0;
 }
 
 .bootomBtn {
@@ -501,6 +507,7 @@ image {
   padding-left: 2.5%;
   font-size: 1rem;
   border-bottom: 0.06rem solid #E9E9E9;
+  font-weight: bold;
 }
 
 .competitionRu .one {
@@ -1186,4 +1193,11 @@ image {
   font-size: 0.88rem;
   margin-top: 1rem;
   color: rgb(37, 123, 235);
+}
+.jieguoTxt{
+  display: block;
+  width: 95%;
+  margin: 0 auto;
+  font-size: 0.75rem;
+  color:#9b9b9b ;
 }

@@ -44,32 +44,8 @@ App({
             'code': res.code
           }, "get",
             (res) => {
-      let BMap = new bmap.BMapWX({
-        ak:'ElFBk4MF87qZXoiLbD0zofEmZIS6bHT2'
-      });
-      let fail = function (data) {
-        wx.setStorageSync('lat','39.90')
-        wx.setStorageSync('lng','116.38')
-        wx.setStorageSync('province','北京市')
-        wx.setStorageSync("cityInfo", '北京市')
-        wx.setStorageSync('area', '东城区')
-      }
-      let success = function (data) {
+    
       
-        let wxMarkerData = data.wxMarkerData;
-        wx.setStorageSync('province',data.originalData.result.addressComponent.province)
-        wx.setStorageSync("cityInfo", data.originalData.result.addressComponent.city)
-        wx.setStorageSync('area', data.originalData.result.addressComponent.district)
-        wx.setStorageSync('address', wxMarkerData[0].address)
-        wx.setStorageSync('lat', data.originalData.result.location.lat)
-        wx.setStorageSync('lng',data.originalData.result.location.lng)
-      }
-  
-      BMap.regeocoding({
-        fail: fail,
-        success: success
-      });
-              
               wx.setStorageSync('openid', res.data.data.openid);
               wx.setStorageSync('sessionKey', res.data.data.session_key);
               wx.setStorageSync('unionid', res.data.data.unionid);

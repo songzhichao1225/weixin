@@ -39,7 +39,7 @@ Page({
       name: '娱乐模式'
     }],
     patternsArray:[{name: "不限",num: 0},{name: "娱乐模式",num: 1},{name: "竞技模式",num: 2},{name: "发布者是陪练",num: 3},{name: "发布者找陪练",num: 4}],
-    shoulderedArray:[{name: "不限",num: 0},{name: "AA",num: 1},{name: "输者买单",num: 2}],
+    shoulderedArray:[{name: "不限",num: 0},{name: "AA",num: 1},{name: "输方买单",num: 2}],
     shoulderedArrayTwo:[{name: "不限",num: 0},{name: "AA",num: 1}],
     publisherArray:[{name: "男",num: 0},{name: "女",num: 1},{name: "不限",num: 2}],
     showModalStatus: false,

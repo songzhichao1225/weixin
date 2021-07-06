@@ -77,9 +77,10 @@
 
   <view class="information" bindtap="information" wx:if="{{flagTwo==1}}">
     <view class="informationSon">
-      <text>扫描我加入找对手，再获100元场地费</text>
+      <text class="headTxxt">扫描我加入找对手，再获100元场地费</text>
       <image src="{{baseSixFour}}"></image>
       <view catchtap="saveImg" data-src="{{baseSixFour}}">保存小程序码</view>
+      <text class="meBady" catchtap="invitationalList">我邀请的用户</text>
     </view>
   </view>
 
@@ -91,5 +92,11 @@
 <text class="officialTxt" wx:if="{{closeImg}}">为了您及时接收活动信息，请关注公众号！</text>
 <view class="official-account" wx:if="{{officialAccount}}">
   <official-account bindload="bindload" style="width:100%;"></official-account>
-  
 </view>
+
+
+<!-- <view class="userTk" wx:if="{{userTk==1}}">
+ <image class="banner" bindtap="banner" src="../../assets/xinren.png"></image>
+ <text class="text">{{userTkContent.date}}</text>
+</view> -->
+

@@ -55,7 +55,7 @@
 		<text>价格</text>
 		<view class="xing">
 			<image wx:for="{{imagesFour}}" bindtap="xingFour" data-index="{{index}}" wx:key="index" src="{{item.src}}"></image>
-			<text style="font-size:0.88rem;color:#4A4A4A;line-height:1.25rem;margin-left:0.2rem;">{{rangeFour==5?'超赞':''||rangeFour==4?'满意':''||rangeFour==3?'一般':''||rangeFour==2?'较差':''||rangeFour==1?'极差':''}}</text>
+			<text style="font-size:0.88rem;color:#4A4A4A;line-height:1.25rem;margin-left:0.2rem;">{{rangeFour==5?'超赞':''||rangeFour==4?'满意':''||rangeFour==3?'一般':''||rangeFour==2?'一般':''||rangeFour==1?'一般':''}}</text>
 		</view>
 	</view>
 

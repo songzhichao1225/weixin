@@ -134,20 +134,20 @@ page{
 
 .contentTxt .projectList .projectSon {
   width: 100%;
-  height: 8rem;
+  height: 6.5rem;
   position: relative;
   border-top: 1px solid #ccc;
 }
 
 .contentTxt .projectList .projectSon .avatar {
-  width: 5rem;
+  width: 4rem;
   float: left;
   margin-left: 0.8rem;
 }
 
 .contentTxt .projectList .projectSon .avatar .avatarP {
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 10px;
   margin-top: 0.5rem;
 }
@@ -177,7 +177,7 @@ page{
 }
 
 .contentTxt .projectList .projectSon .introduction {
-  width: 66%;
+  width: 73%;
   float: left;
   overflow: hidden;
   margin-top: 0.5rem;
@@ -210,7 +210,7 @@ page{
 
 .contentTxt .projectList .projectSon .introduction .mode text {
   display: block;
-  font-size: 14px;
+  font-size: 0.78rem;
   color: #4a4a4a;
   margin-left: 0.5rem;
   float: left;
@@ -222,7 +222,7 @@ page{
 
 .contentTxt .projectList .projectSon .introduction .time text {
   display: block;
-  font-size: 14px;
+  font-size: 0.78rem;
   color: #4a4a4a;
   margin-left: 0.5rem;
   float: left;
@@ -234,7 +234,7 @@ page{
 
 .contentTxt .projectList .projectSon .introduction .address text {
   display: block;
-  font-size: 14px;
+  font-size: 0.78rem;
   color: #4a4a4a;
   margin-left: 0.5rem;
   float: left;
@@ -246,7 +246,7 @@ page{
 
 .contentTxt .projectList .projectSon .introduction .cost text {
   display: block;
-  font-size: 14px;
+  font-size: 0.78rem;
   color: #4a4a4a;
   margin-left: 0.3rem;
   float: left;

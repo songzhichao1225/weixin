@@ -96,15 +96,7 @@
   color: #fff;
 }
 
-.btn>button:last-child {
-  width: 95%;
-  height: 2.69rem;
-  border: 0.06rem solid #D85D27;
-  border-radius: 1.34rem;
-  color: #D85D27;
-  background: #fff;
-  margin-top: 1rem;
-}
+
 .forbade{
   width: 100%;
   height: 100%; 

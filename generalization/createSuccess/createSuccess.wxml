@@ -21,8 +21,7 @@
 		<view class="center" wx:if="{{ok!=1&&status!=2}}">
 			<text>温馨提示:</text>
 			<text style="padding-top:1rem">{{text.black}}</text>
-			<text style="padding-top:1rem">2、您好，请务必下载APP，场馆签到、评价等均须在APP端操作完成，谢谢!</text>
-			<text style="padding-top:1rem">3、分享后，每有一位新用户使用，奖励您10元。</text>
+			<text style="padding-top:1rem">2、分享后，每有一位新用户使用，奖励您10元。</text>
 		</view>
 
 		<view class="center" wx:if="{{status==2}}">
@@ -34,8 +33,7 @@
 		<view class="center" wx:if="{{ok==1&&status!=2}}">
 			<text>温馨提示:</text>
 			<text style="padding-top:1rem">{{text.black}}</text>
-			<text style="padding-top:1rem">2、您好，请务必下载APP，场馆签到、评价等均须在APP端操作完成，谢谢!</text>
-			<text style="padding-top:1rem">3、分享后，每有一位新用户使用，奖励您10元。</text>
+			<text style="padding-top:1rem">2、分享后，每有一位新用户使用，奖励您10元。</text>
 		</view>
 
 		<text bindtap="detailRules" wx:if="{{typeInfo!=1&&status!=2}}"
@@ -45,7 +43,7 @@
 
 	<view class="btn">
 		<button class="btnSonOne" open-type="share" >去分享</button>
-		<button class="btnSonOne" bindtap="forbade">保存识别二维码下载APP</button>
+		<!-- <button class="btnSonOne" bindtap="forbade">保存识别二维码下载APP</button> -->
 
 	</view>
 	<text

@@ -1,0 +1,19 @@
+<scroll-view scroll-y="true" class="invitationalList" enhanced="true" lower-threshold="400"
+      refresher-enabled="true" refresher-triggered="{{enabled}}" bindrefresherrefresh="refresh" bindscrolltolower="tolower">
+	<view class="listSon" wx:for="{{list}}" wx:key="index">
+	 <image class="left" src="{{img}}{{item.imgURL}}"></image>
+	 <view class="center">
+			<view class="centerTop"><text class="name">{{item.nickname}}</text><image src="../../assets/sex0@2x.png"></image></view>
+			<view class="time">注册时间：{{item.RegistDate}}</view>
+	 </view>
+	 <view class="right">
+		 <text>奖励{{item.sm}}对手果</text>
+		 <text>(合：￥{{item.num}}元)</text>
+	 </view>
+	</view>
+	<view class="textNot" wx:if="{{list.length==0}}">
+   快去邀请他人注册吧~
+	</view>
+
+	
+</scroll-view>

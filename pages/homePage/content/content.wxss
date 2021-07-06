@@ -599,10 +599,11 @@ page {
 
 .contentMaskSon {
   width: 95%;
-  height: 28rem;
+  max-height: 26rem;
   background: linear-gradient(180deg, #FFFFDE 0%, #FDF6B4 100%);
   border-radius: 0.38rem;
   margin: 30% auto 0;
+  padding-bottom: 2rem;
 }
 
 .colseMask {
@@ -665,7 +666,6 @@ page {
 
 .footerBtn {
   overflow: hidden;
-  margin-top: 1rem;
 }
 
 .footerBtn>view {

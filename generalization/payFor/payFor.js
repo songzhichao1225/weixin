@@ -122,7 +122,7 @@ Page({
       Reward: app.globalData.Reward,
       Referee: app.globalData.refereefee,
       Insurance: this.data.checkedFlag == true ? '1' : '0',
-
+      Tips: app.globalData.Tips
     }
     this.setData({
       organization: app.globalData.organization
@@ -401,7 +401,8 @@ Page({
               small: '1',
               openID: wx.getStorageSync('openid'),
               openPrice: app.globalData.openPrice,
-              lr: app.globalData.lr
+              lr: app.globalData.lr,
+              PipeMain:0
             }
 
             util.Request("/api/userAddActivity_ADD", obj, "post",
@@ -429,7 +430,7 @@ Page({
                   })
                 } else {
                   wx.showToast({
-                    title: res.data.msg,
+                    title: resTwo.data.msg,
                     icon: 'none',
                     duration: 1500,
                     mask: true
@@ -483,6 +484,13 @@ Page({
                     })
                   },
                   'fail': function (res) {},
+                })
+              }else if(res.data.code==4004){
+                wx.showToast({
+                  title:'请去APP实名认证',
+                  icon: 'none',
+                  duration: 1500,
+                  mask: true 
                 })
               } else {
                 wx.showToast({
@@ -564,6 +572,13 @@ Page({
                         wx.navigateTo({
                           url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + app.globalData.refereefee + '&status=1' + '&lt=' + app.globalData.lr,
                         })
+                      }else if(res.data.code==4004){
+                        wx.showToast({
+                          title: '请去APP实名认证',
+                          icon: 'none',
+                          duration: 1500,
+                          mask: true
+                        })
                       } else {
                         wx.showToast({
                           title: res.data.msg,
@@ -610,12 +625,12 @@ Page({
                     hbMoney: this.data.hbMoney,
                     Insurance: this.data.checkedFlag == true ? '1' : '0',
                     openPrice: app.globalData.openPrice,
-                    lr: app.globalData.lr
+                    lr: app.globalData.lr,
+                    PipeMain:0
                   }
 
                   util.Request("/api/userAddActivity_ADD", obj, "post",
                     (res) => {
-
                       if (res.data.code == 2000) {
                         wx.removeStorage({
                           key: 'bookin'
@@ -624,17 +639,23 @@ Page({
                           key: 'bookinThree'
                         })
 
-                      
-
                         wx.removeStorage({
                           key: 'bookinFive'
                         })
                         wx.removeStorage({
                           key: 'bookinFour'
                         })
-                        
+
+                      
                         wx.navigateTo({
                           url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + res.data.data.referee + '&status=1' + '&time=' + res.data.data.CreateTime,
+                        })
+                      }else if(res.data.code==4004){
+                        wx.showToast({
+                          title: '请去APP实名认证',
+                          icon: 'none',
+                          duration: 1500,
+                          mask: true
                         })
                       } else {
                         wx.showToast({
@@ -818,7 +839,6 @@ Page({
               }
               util.Request("/api/userReserveVenue", obj, "post",
                 (res) => {
-
                   if (res.data.code == 2000) {
                     wx.removeStorage({
                       key: 'bookinTwo'

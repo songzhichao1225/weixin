@@ -101,7 +101,7 @@ Page({
       wx.setStorage({key: 'sexF',data: dat.sex==0?'男':dat.sex==1?'女':'不限'})
       wx.setStorage({key: 'ageF',data: dat.minavg+'-'+dat.maxavg+'岁'})
       wx.setStorage({key: 'rankF',data: dat.mingrade+'-'+dat.maxgrade+'级'})
-      wx.setStorage({key: 'shoulderedF',data: dat.bearmode==1?'AA':'输者买单'})
+      wx.setStorage({key: 'shoulderedF',data: dat.bearmode==1?'AA':'输方买单'})
       wx.setStorage({key: 'commentsF',data: dat.remarks})
       wx.switchTab({
         url: '/pages/publishing/publishing'

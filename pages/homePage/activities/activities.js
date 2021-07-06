@@ -31,20 +31,25 @@ Page({
     enabledTwo: false,
     publicLst: [],
     flagClick: false,
-    checkedTwoyou:0,
-    rule:'',
-    ruleFlag:false
+    checkedTwoyou: 0,
+    rule: '',
+    ruleFlag: false
   },
 
-  ruleFlag:function(){
-    this.setData({ruleFlag:false})
+  ruleFlag: function () {
+    this.setData({
+      ruleFlag: false
+    })
   },
   rules: function () {
     util.Request("/api/getDepositRule", {
         type: 3
       }, "get",
       (res) => {
-        this.setData({rule:res.data.data.rule,ruleFlag:true})
+        this.setData({
+          rule: res.data.data.rule,
+          ruleFlag: true
+        })
       },
       () => {
         console.log("失败")
@@ -56,14 +61,18 @@ Page({
 
 
 
- 
 
-  checkedTwoyou:function(){
-     if(this.data.checkedTwoyou==0){
-        this.setData({checkedTwoyou:1})
-     }else{
-      this.setData({checkedTwoyou:0})
-     }
+
+  checkedTwoyou: function () {
+    if (this.data.checkedTwoyou == 0) {
+      this.setData({
+        checkedTwoyou: 1
+      })
+    } else {
+      this.setData({
+        checkedTwoyou: 0
+      })
+    }
   },
 
   webviewMood: function () {
@@ -111,8 +120,8 @@ Page({
 
         let projectNow = res.data.data.activeLst
         for (let i in projectNow) {
-          projectNow[i].MoneyPerhour= projectNow[i].MoneyPerhour.toFixed(2)
-          projectNow[i].Tips=projectNow[i].Tips.toFixed(2)
+          projectNow[i].MoneyPerhour = projectNow[i].MoneyPerhour.toFixed(2)
+          projectNow[i].Tips = projectNow[i].Tips.toFixed(2)
           if (projectNow[i].reserve == 1) {
             projectNow[i].SportModeTwo = '仅预订场馆'
           } else {
@@ -188,11 +197,7 @@ Page({
           hoog: 0
         })
       }
-      if (option.type != undefined) {
-        this.setData({
-          type: option.type
-        })
-      }
+     
       this.setData({
         uuid: option.uuid
       })
@@ -253,7 +258,7 @@ Page({
 
   //接口函数
   koopdf: function () {
-    let that=this
+    let that = this
     util.Request("/api/getActivityInfo", {
         'uuid': this.data.uuid
       }, "get",
@@ -297,12 +302,12 @@ Page({
               Publisher: 1
             })
           }
-          let koarr = [...projectNow.teamA, ...projectNow.teamB,...projectNow.teamC]
+          let koarr = [...projectNow.teamA, ...projectNow.teamB, ...projectNow.teamC]
           let hoArr = []
           for (let i in koarr) {
             hoArr.push(koarr[i].uuid)
           }
-          if (hoArr.indexOf(wx.getStorageSync('uuid')) != -1 && projectNow.isPublisher == 1&&projectNow.organization==0||projectNow.organization==1&&hoArr.indexOf(wx.getStorageSync('uuid')) != -1) {
+          if (hoArr.indexOf(wx.getStorageSync('uuid')) != -1 && projectNow.isPublisher == 1 && projectNow.organization == 0 || projectNow.organization == 1 && hoArr.indexOf(wx.getStorageSync('uuid')) != -1) {
             this.setData({
               typeTwo: 1
             })
@@ -312,10 +317,10 @@ Page({
             })
           }
         }
-        projectNow.deserved=projectNow.deserved.toFixed(2)
-        projectNow.MoneyPerhour=projectNow.MoneyPerhour.toFixed(2)
-        projectNow.Tips=projectNow.Tips.toFixed(2)
-        projectNow.SiteMoney=projectNow.SiteMoney.toFixed(2)
+        projectNow.deserved = projectNow.deserved.toFixed(2)
+        projectNow.MoneyPerhour = projectNow.MoneyPerhour.toFixed(2)
+        projectNow.Tips = projectNow.Tips.toFixed(2)
+        projectNow.SiteMoney = projectNow.SiteMoney.toFixed(2)
         projectNow.PipeMainMoney = projectNow.PipeMainMoney.slice(0, projectNow.PipeMainMoney.length - 1)
         this.countdown(projectNow.JoinEndTime)
         let sportName = projectNow.sportName
@@ -325,18 +330,21 @@ Page({
           moneyType: projectNow.SiteMoney.toString().indexOf('.'),
           flag: true,
         })
+        if(projectNow.stay==1||projectNow.isPublisher==1){
+             this.setData({type:1})
+        }
 
         util.Request("/api/display", {
             'SportType': projectNow.SportType,
-            'type': projectNow.organization == 1 ? 2 :projectNow.SportMode==4?5:projectNow.reserve==1?3:projectNow.SportMode==3?4:1,
+            'type': projectNow.organization == 1 ? 2 : projectNow.SportMode == 4 ? 5 : projectNow.reserve == 1 ? 3 : projectNow.SportMode == 3 ? 4 : 1,
             'status': projectNow.isPublisher == 1 ? 1 : 2,
             'referee': projectNow.refereeFee,
             'siteMoney': projectNow.SiteMoney,
             'Tips': projectNow.Tips,
             'lr': projectNow.lr,
             'openPrice': projectNow.openPrice,
-            'pPrice':projectNow.MoneyPerhour,
-            'tips':projectNow.Tips
+            'pPrice': projectNow.MoneyPerhour,
+            'tips': projectNow.Tips
           }, "post",
           (res) => {
             this.setData({
@@ -366,68 +374,68 @@ Page({
         )
 
         util.Request("/api/alertForOrgActivityNotFullWindow", {
-          'uuid': this.data.uuid
-        }, "post",
-        (res) => {
-          if(res.data.data.alert!=''){
-            wx.showModal({
-              title: '温馨提示',
-              content: res.data.data.alert,
-              success (res) {
-                if (res.confirm) {
-                  util.Request("/api/ifAgreeOrgActivityNotFull", {
-                    'uuid': that.data.uuid,
-                    'type':1
-                  }, "post",
-                  (resTwo) => {
-                    wx.showToast({
-                      title: resTwo.data.msg,
-                      icon: 'success',
-                      duration: 1500,
-                      mask: true
-                    })
-                    wx.hideLoading()
-                  },
-                  () => {
-                    console.log("失败")
-                  },
-                  () => {}
-                )
-                } else if (res.cancel) {
-                  util.Request("/api/ifAgreeOrgActivityNotFull", {
-                    'uuid': that.data.uuid,
-                    'type':0
-                  }, "post",
-                  (resTwo) => {
-                    wx.showToast({
-                      title: resTwo.data.msg,
-                      icon: 'success',
-                      duration: 1500,
-                      mask: true
-                    })
-                    
-                    wx.hideLoading()
-                  },
-                  () => {
-                    console.log("失败")
-                  },
-                  () => {}
-                )
+            'uuid': this.data.uuid
+          }, "post",
+          (res) => {
+            if (res.data.data.alert != '') {
+              wx.showModal({
+                title: '温馨提示',
+                content: res.data.data.alert,
+                success(res) {
+                  if (res.confirm) {
+                    util.Request("/api/ifAgreeOrgActivityNotFull", {
+                        'uuid': that.data.uuid,
+                        'type': 1
+                      }, "post",
+                      (resTwo) => {
+                        wx.showToast({
+                          title: resTwo.data.msg,
+                          icon: 'success',
+                          duration: 1500,
+                          mask: true
+                        })
+                        wx.hideLoading()
+                      },
+                      () => {
+                        console.log("失败")
+                      },
+                      () => {}
+                    )
+                  } else if (res.cancel) {
+                    util.Request("/api/ifAgreeOrgActivityNotFull", {
+                        'uuid': that.data.uuid,
+                        'type': 0
+                      }, "post",
+                      (resTwo) => {
+                        wx.showToast({
+                          title: resTwo.data.msg,
+                          icon: 'success',
+                          duration: 1500,
+                          mask: true
+                        })
+
+                        wx.hideLoading()
+                      },
+                      () => {
+                        console.log("失败")
+                      },
+                      () => {}
+                    )
+                  }
                 }
-              }
-            })
-             
-          }
-         
+              })
+
+            }
 
 
-          wx.hideLoading()
-        },
-        () => {
-          console.log("失败")
-        },
-        () => {}
-      )
+
+            wx.hideLoading()
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
 
         util.Request("/api/getHighestLevel", {}, "get",
           (res) => {
@@ -470,12 +478,12 @@ Page({
               }
               this.setData({
                 publicLst: projectNow,
-               
+
               })
             } else {
               this.setData({
                 publicLst: [],
-               
+
               })
             }
 
@@ -623,18 +631,67 @@ Page({
 
       }
     }
-
-
-
-
-
   },
- 
+
 
   tagStatus: function (projectNow) {
     for (let i in projectNow.teamA) {
-      if (projectNow.teamA[i].isSignIns != 4) {
-        if (projectNow.teamA[i].isSignIns == 1) {
+      if (projectNow.PublicStatus == 2&&projectNow.ifMustSign==1) {
+        if (projectNow.teamA[i].isQuit == 2) {
+          projectNow.teamA[i].nameStatus = '提前退出'
+        }else if (projectNow.teamA[i].isSignIns == 1) {
+          projectNow.teamA[i].nameStatus = '已签到'
+        } else if (projectNow.teamA[i].isSignIns == 2) {
+          projectNow.teamA[i].nameStatus = '迟到'
+        } else if (projectNow.teamA[i].isSignIns == 3) {
+          projectNow.teamA[i].nameStatus = '未签到'
+        } 
+      }
+      if (projectNow.PublicStatus == 3&&projectNow.ifMustSign==1) {
+        if (projectNow.teamA[i].isQuit == 2) {
+          projectNow.teamA[i].nameStatus = '提前退出'
+        }else if (projectNow.teamA[i].isQuitInGame == 2) {
+          projectNow.teamA[i].nameStatus = '中途退出'
+        }else if (projectNow.teamA[i].isSignIns == 1) {
+          projectNow.teamA[i].nameStatus = '已签到'
+        } else if (projectNow.teamA[i].isSignIns== 2) {
+          projectNow.teamA[i].nameStatus = '迟到'
+        } else if (projectNow.teamA[i].isSignIns == 3) {
+          projectNow.teamA[i].nameStatus = '未签到'
+        }
+      }
+      if (projectNow.PublicStatus == 4&&projectNow.ifMustSign==1) {
+        if (projectNow.teamA[i].isQuit == 2) {
+          projectNow.teamA[i].nameStatus = '提前退出'
+        } else if (projectNow.teamA[i].isQuitInGame == 2) {
+          projectNow.teamA[i].nameStatus = '中途退出'
+        } else if (projectNow.teamA[i].isConfirmResult == 1) {
+          projectNow.teamA[i].nameStatus = '已填写'
+        } else if (projectNow.teamA[i].isConfirmResult == 0) {
+          projectNow.teamA[i].nameStatus = '待填写'
+        }
+      }
+
+      if (projectNow.teamA[i].isCancel != 2 && projectNow.PublicStatus == 6&&projectNow.ifMustSign==1) {
+        if(projectNow.teamA[i].isSignIn == 1){
+          if (projectNow.teamA[i].isComment == 1) {
+            projectNow.teamA[i].nameStatus = '已评价'
+          } else if (projectNow.teamA[i].isComment == 0) {
+            projectNow.teamA[i].nameStatus = '待评价'
+          }
+        }else{
+          if (projectNow.teamA[i].isQuit == 2) {
+            projectNow.teamA[i].nameStatus = '提前退出'
+          }else if (projectNow.teamA[i].isQuitInGame == 2) {
+            projectNow.teamA[i].nameStatus = '中途退出'
+          } else if (projectNow.teamA[i].isSignIns == 3) {
+            projectNow.teamA[i].nameStatus = '未签到'
+          }
+        }
+  
+      }
+      if (projectNow.PublicStatus == 7&&projectNow.ifMustSign==1) {
+        if (projectNow.teamA[i].isSignIn == 1) {
           projectNow.teamA[i].nameStatus = '已签到'
         } else if (projectNow.teamA[i].isSignIns == 2) {
           projectNow.teamA[i].nameStatus = '迟到'
@@ -642,24 +699,18 @@ Page({
           projectNow.teamA[i].nameStatus = '未签到'
         }
       }
-      if (projectNow.teamA[i].isQuit == 2) {
-        projectNow.teamA[i].nameStatus = '提前退出'
-      }
-      if (projectNow.teamA[i].isQuitInGame == 2) {
-        projectNow.teamA[i].nameStatus = '中途退出'
-      }
-      if (projectNow.teamA[i].isConfirmResult != 2 && projectNow.PublicStatus == 4) {
-        if (projectNow.teamA[i].isConfirmResult == 1) {
-          projectNow.teamA[i].nameStatus = '已填写'
-        } else if (projectNow.teamA[i].isConfirmResult == 0) {
-          projectNow.teamA[i].nameStatus = '待填写'
-        }
-      }
-      if (projectNow.teamA[i].isCancel != 2 && projectNow.PublicStatus == 6) {
-        if (projectNow.teamA[i].isCancel == 1) {
-          projectNow.teamA[i].nameStatus = '已评价'
-        } else if (projectNow.teamA[i].isCancel == 0) {
-          projectNow.teamA[i].nameStatus = '待评价'
+
+      if (projectNow.PublicStatus == 5&&projectNow.ifMustSign==1) {
+          if (projectNow.teamA[i].isQuit == 2) {
+            projectNow.teamA[i].nameStatus = '提前退出'
+          }else if (projectNow.teamA[i].isQuitInGame == 2) {
+            projectNow.teamA[i].nameStatus = '中途退出'
+          }else if (projectNow.teamA[i].isComment == 1) {
+            projectNow.teamA[i].nameStatus = '已评价'
+          } else if (projectNow.teamA[i].isSignIns == 2) {
+          projectNow.teamA[i].nameStatus = '迟到'
+        } else if (projectNow.teamA[i].isSignIns == 3) {
+          projectNow.teamA[i].nameStatus = '未签到'
         }
       }
     }
@@ -667,70 +718,167 @@ Page({
 
   tagStatusTwo: function (projectNow) {
     for (let i in projectNow.teamB) {
-      if (projectNow.teamB[i].isSignIns != 4) {
-        if (projectNow.teamB[i].isSignIns == 1) {
+      if (projectNow.PublicStatus == 2&&projectNow.ifMustSign==1) {
+        if (projectNow.teamB[i].isQuit == 2) {
+          projectNow.teamB[i].nameStatus = '提前退出'
+        }else if (projectNow.teamB[i].isSignIn == 1) {
           projectNow.teamB[i].nameStatus = '已签到'
-        } else if (projectNow.teamB[i].isSignIns == 2) {
+        } else if (projectNow.teamB[i].isSignIn == 2) {
           projectNow.teamB[i].nameStatus = '迟到'
-        } else if (projectNow.teamB[i].isSignIns == 3) {
+        } else if (projectNow.teamB[i].isSignIn == 3) {
+          projectNow.teamB[i].nameStatus = '未签到'
+        }
+
+      }
+      if (projectNow.PublicStatus == 3&&projectNow.ifMustSign==1) {
+        if (projectNow.teamB[i].isQuit == 2) {
+          projectNow.teamB[i].nameStatus = '提前退出'
+        }else if (projectNow.teamB[i].isQuitInGame == 2) {
+          projectNow.teamB[i].nameStatus = '中途退出'
+        }else if (projectNow.teamB[i].isSignIn == 1) {
+          projectNow.teamB[i].nameStatus = '已签到'
+        } else if (projectNow.teamB[i].isSignIn == 2) {
+          projectNow.teamB[i].nameStatus = '迟到'
+        } else if (projectNow.teamB[i].isSignIn == 3) {
           projectNow.teamB[i].nameStatus = '未签到'
         }
       }
-      if (projectNow.teamB[i].isQuit == 2) {
-        projectNow.teamB[i].nameStatus = '提前退出'
-      }
-      if (projectNow.teamB[i].isQuitInGame == 2) {
-        projectNow.teamB[i].nameStatus = '中途退出'
-      }
-      if (projectNow.teamB[i].isConfirmResult != 2 && projectNow.PublicStatus == 4) {
-        if (projectNow.teamB[i].isConfirmResult == 1) {
+      if (projectNow.PublicStatus == 4&&projectNow.ifMustSign==1) {
+        if (projectNow.teamB[i].isQuit == 2) {
+          projectNow.teamB[i].nameStatus = '提前退出'
+        } else if (projectNow.teamB[i].isQuitInGame == 2) {
+          projectNow.teamB[i].nameStatus = '中途退出'
+        } else if (projectNow.teamB[i].isConfirmResult == 1) {
           projectNow.teamB[i].nameStatus = '已填写'
         } else if (projectNow.teamB[i].isConfirmResult == 0) {
           projectNow.teamB[i].nameStatus = '待填写'
         }
       }
-      if (projectNow.teamB[i].isCancel != 2 && projectNow.PublicStatus == 6) {
-        if (projectNow.teamB[i].isCancel == 1) {
-          projectNow.teamB[i].nameStatus = '已评价'
-        } else if (projectNow.teamB[i].isCancel == 0) {
-          projectNow.teamB[i].nameStatus = '待评价'
+      if (projectNow.teamB[i].isCancel != 2 && projectNow.PublicStatus == 6&&projectNow.ifMustSign==1) {
+        if(projectNow.teamB[i].isSignIn == 1){
+          if (projectNow.teamB[i].isComment == 1) {
+            projectNow.teamB[i].nameStatus = '已评价'
+          } else if (projectNow.teamB[i].isComment == 0) {
+            projectNow.teamB[i].nameStatus = '待评价'
+          }
+        }else{
+          if (projectNow.teamB[i].isQuit == 2) {
+            projectNow.teamB[i].nameStatus = '提前退出'
+          }else if (projectNow.teamB[i].isQuitInGame == 2) {
+            projectNow.teamB[i].nameStatus = '中途退出'
+          } else if (projectNow.teamB[i].isSignIn == 3) {
+            projectNow.teamB[i].nameStatus = '未签到'
+          }
         }
       }
+      if (projectNow.PublicStatus == 7&&projectNow.ifMustSign==1) {
+        if (projectNow.teamB[i].isSignIn== 1) {
+          projectNow.teamB[i].nameStatus = '已签到'
+        } else if (projectNow.teamB[i].isSignIn == 2) {
+          projectNow.teamB[i].nameStatus = '迟到'
+        } else if (projectNow.teamB[i].isSignIn == 3) {
+          projectNow.teamB[i].nameStatus = '未签到'
+        }
+      }
+
+      if (projectNow.PublicStatus == 5&&projectNow.ifMustSign==1) {
+        if (projectNow.teamB[i].isQuit == 2) {
+          projectNow.teamB[i].nameStatus = '提前退出'
+        }else if (projectNow.teamB[i].isQuitInGame == 2) {
+          projectNow.teamB[i].nameStatus = '中途退出'
+        }else if (projectNow.teamB[i].isComment == 1) {
+          projectNow.teamB[i].nameStatus = '已评价'
+        } else if (projectNow.teamB[i].isSignIns == 2) {
+        projectNow.teamB[i].nameStatus = '迟到'
+      } else if (projectNow.teamB[i].isSignIns == 3) {
+        projectNow.teamB[i].nameStatus = '未签到'
+      }
+    }
     }
   },
+
   tagStatusThree: function (projectNow) {
     for (let i in projectNow.teamC) {
-      if (projectNow.teamC[i].isSignIns != 4) {
-        if (projectNow.teamC[i].isSignIns == 1) {
+      if (projectNow.PublicStatus == 2&&projectNow.ifMustSign==1) {
+        if (projectNow.teamC[i].isQuit == 2) {
+          projectNow.teamC[i].nameStatus = '提前退出'
+        }else if (projectNow.teamC[i].isSignIn == 1) {
           projectNow.teamC[i].nameStatus = '已签到'
-        } else if (projectNow.teamC[i].isSignIns == 2) {
+        } else if (projectNow.teamC[i].isSignIn == 2) {
           projectNow.teamC[i].nameStatus = '迟到'
-        } else if (projectNow.teamC[i].isSignIns == 3) {
+        } else if (projectNow.teamC[i].isSignIn == 3) {
+          projectNow.teamC[i].nameStatus = '未签到'
+        }
+
+      }
+      if (projectNow.PublicStatus == 3&&projectNow.ifMustSign==1) {
+        if (projectNow.teamC[i].isQuit == 2) {
+          projectNow.teamC[i].nameStatus = '提前退出'
+        }else if (projectNow.teamC[i].isQuitInGame == 2) {
+          projectNow.teamC[i].nameStatus = '中途退出'
+        }else if (projectNow.teamC[i].isSignIn == 1) {
+          projectNow.teamC[i].nameStatus = '已签到'
+        } else if (projectNow.teamC[i].isSignIn == 2) {
+          projectNow.teamC[i].nameStatus = '迟到'
+        } else if (projectNow.teamC[i].isSignIn == 3) {
           projectNow.teamC[i].nameStatus = '未签到'
         }
       }
-      if (projectNow.teamC[i].isQuit == 2) {
-        projectNow.teamC[i].nameStatus = '提前退出'
-      }
-      if (projectNow.teamC[i].isQuitInGame == 2) {
-        projectNow.teamC[i].nameStatus = '中途退出'
-      }
-      if (projectNow.teamC[i].isConfirmResult != 2 && projectNow.PublicStatus == 4) {
-        if (projectNow.teamC[i].isConfirmResult == 1) {
+      if (projectNow.PublicStatus == 4&&projectNow.ifMustSign==1) {
+        if (projectNow.teamC[i].isQuit == 2) {
+          projectNow.teamC[i].nameStatus = '提前退出'
+        } else if (projectNow.teamC[i].isQuitInGame == 2) {
+          projectNow.teamC[i].nameStatus = '中途退出'
+        } else if (projectNow.teamC[i].isConfirmResult == 1) {
           projectNow.teamC[i].nameStatus = '已填写'
         } else if (projectNow.teamC[i].isConfirmResult == 0) {
           projectNow.teamC[i].nameStatus = '待填写'
+        }else if (projectNow.teamC[i].isSignIn == 2) {
+          projectNow.teamC[i].nameStatus = '迟到'
         }
       }
-      if (projectNow.teamC[i].isCancel != 2 && projectNow.PublicStatus == 6) {
-        if (projectNow.teamC[i].isCancel == 1) {
-          projectNow.teamC[i].nameStatus = '已评价'
-        } else if (projectNow.teamC[i].isCancel == 0) {
-          projectNow.teamC[i].nameStatus = '待评价'
+      if (projectNow.teamC[i].isCancel != 2 && projectNow.PublicStatus == 6&&projectNow.ifMustSign==1) {
+        if(projectNow.teamC[i].isSignIn == 1){
+          if (projectNow.teamC[i].isComment == 1) {
+            projectNow.teamC[i].nameStatus = '已评价'
+          } else if (projectNow.teamC[i].isComment == 0) {
+            projectNow.teamC[i].nameStatus = '待评价'
+          }
+        }else{
+          if (projectNow.teamC[i].isQuit == 2) {
+            projectNow.teamC[i].nameStatus = '提前退出'
+          }else if (projectNow.teamC[i].isQuitInGame == 2) {
+            projectNow.teamC[i].nameStatus = '中途退出'
+          } else if (projectNow.teamC[i].isSignIn == 3) {
+            projectNow.teamC[i].nameStatus = '未签到'
+          }
         }
+      }
+      if (projectNow.PublicStatus == 7&&projectNow.ifMustSign==1) {
+        if (projectNow.teamC[i].isSignIns == 1) {
+          projectNow.teamC[i].nameStatus = '已签到'
+        } else if (projectNow.teamC[i].isSignIn == 2) {
+          projectNow.teamC[i].nameStatus = '迟到'
+        } else if (projectNow.teamC[i].isSignIn == 3) {
+          projectNow.teamC[i].nameStatus = '未签到'
+        }
+      }
+      if (projectNow.PublicStatus == 5&&projectNow.ifMustSign==1) {
+        if (projectNow.teamC[i].isQuit == 2) {
+          projectNow.teamC[i].nameStatus = '提前退出'
+        }else if (projectNow.teamC[i].isQuitInGame == 2) {
+          projectNow.teamC[i].nameStatus = '中途退出'
+        }else if (projectNow.teamC[i].isComment == 1) {
+          projectNow.teamC[i].nameStatus = '已评价'
+        } else if (projectNow.teamC[i].isSignIns == 2) {
+        projectNow.teamC[i].nameStatus = '迟到'
+      } else if (projectNow.teamC[i].isSignIns == 3) {
+        projectNow.teamC[i].nameStatus = '未签到'
       }
     }
+    }
   },
+
   //活动投诉
   complaintsCon: function (e) {
     wx.navigateTo({
@@ -834,8 +982,8 @@ Page({
   isQuit: function (e) {
     let that = this
     wx.showModal({
-      title: '提示',
-      content: '您确定提前退出本次活动么?',
+      title: '温馨提示',
+      content: this.data.activitiesData.SportModeTwo == '我找陪练' || this.data.activitiesData.SportModeTwo == '我是陪练' ? '您确定提前退出吗？如不是练习方先提前退出，您提前退出后，将被要求补缴补偿金且无法拿到陪练费。' : '您确定提前退出本次活动么?',
       success(res) {
         if (res.confirm) {
           util.Request("/api/getmessage", {
@@ -859,10 +1007,11 @@ Page({
   SignOut: function (e) {
     let that = this
     wx.showModal({
-      title: '提示',
+      title: '温馨提示',
       content: '您确定退出本次活动么?',
       success(res) {
         if (res.confirm) {
+
           util.Request("/api/userMidwaySignOut", {
               'uuid': e.currentTarget.dataset.uuid
             }, "post",
@@ -898,14 +1047,14 @@ Page({
     if (e.currentTarget.dataset.team == 1) {
       var teamText = 'A队'
     } else if (e.currentTarget.dataset.team == 2) {
-      if(this.data.activitiesData.SportModeTwo=='我找陪练'){
+      if (this.data.activitiesData.SportModeTwo == '我找陪练') {
         var teamText = '陪练方'
-      }else if(this.data.activitiesData.SportModeTwo=='我是陪练'){
+      } else if (this.data.activitiesData.SportModeTwo == '我是陪练') {
         var teamText = '练习方'
-      }else{
+      } else {
         var teamText = 'B队'
       }
-      
+
     } else {
       var teamText = 'C队'
     }
@@ -918,108 +1067,183 @@ Page({
     })
 
     let index = e.currentTarget.dataset.index
-    if(e.currentTarget.dataset.name == '我找陪练'&&this.data.checkedTwoyou!=1){
+    if (e.currentTarget.dataset.name == '我找陪练' && this.data.checkedTwoyou != 1) {
       wx.showToast({
         title: '请阅读并同意《补偿金规则》',
         icon: 'none',
         duration: 1500,
         mask: true
       })
-      this.setData({ flagClick: false})
-    }else{
-    if (this.data.typeTwo == 0 && this.data.activitiesData.PublicStatus == 1) {
-      util.Request("/api/usercread", {}, "post",
-        (res) => {
-
-          if (res.data.data.type == 1) {
-            wx.showModal({
-              title: '温馨提示',
-              showCancel: false,
-              content: res.data.data.commit + '(打开APP支付)',
-            })
-            this.setData({
-              flagClick: false
-            })
-          } else {
-            wx.showModal({
-              title: '提示',
-              content: '您确定加入' + teamText + '么?',
-              success(res) {
-                if (res.confirm) {
-                  let obj = {
-                    inviteId: that.data.activitiesData.uuid,
-                    team: e.currentTarget.dataset.team == 3 ? 4 : e.currentTarget.dataset.team,
-                    SecondSportId: that.data.activitiesData.SportType,
-                    sportid: that.data.activitiesData.SportId,
-                    startTime: that.data.activitiesData.StartTime,
-                    playTime: that.data.activitiesData.PlayTime,
-                    SportMode: that.data.activitiesData.SportMode,
-                    SiteMoney: that.data.activitiesData.SiteMoney,
-                    number: that.data.activitiesData.needNumber,
-                    PaySiteMoneyType: that.data.activitiesData.PaySiteMoneyType,
-                    isPublisher: 0,
-                    isCooper: 1,
-                    Accompany: that.data.activitiesData.MoneyPerhour,
-                    Reward: that.data.activitiesData.Tips,
-                    refereefee: that.data.activitiesData.refereeFee,
-                    CreateTime: that.data.activitiesData.CreateTime,
-                    pos: index.toString(),
-                    organization:that.data.activitiesData.SportMode==3?0:that.data.activitiesData.ifMustSign,
-                  }
-
-                  if (e.currentTarget.dataset.name == '我找陪练') {
-                    util.Request("/api/usertrainee", {
-                        'inviteId': that.data.activitiesData.uuid,
-                        'team':e.currentTarget.dataset.team == 3 ? 4 : e.currentTarget.dataset.team,
-                        'SecondSportId':that.data.activitiesData.SportType,
-                        'startTime':that.data.activitiesData.StartTime,
-                        'playTime':that.data.activitiesData.PlayTime,
-                        'FirstSportId':that.data.activitiesData.SportId,
-                        'pos':0
-                      }, "post",
-                      (res) => {
-                        if(res.data.code==2000){
-                          wx.navigateTo({
-                            url: '/generalization/createSuccess/createSuccess?inviteId=' + that.data.activitiesData.uuid + '&Identification=2' + '&typeInfo=0' + '&referee=0'  + '&status=1' + '&time=' + app.globalData.CreateTime,
-                          })
-                        }else{
-                          wx.showToast({
-                            title: res.data.msg,
-                            icon: 'none',
-                            duration: 1500,
-                            mask: true
-                          })
+      this.setData({
+        flagClick: false
+      })
+    } else {
+      if (this.data.typeTwo == 0 && this.data.activitiesData.PublicStatus == 1) {
+        
+        util.Request("/api/getCondition", {
+            'uuid': that.data.activitiesData.uuid,
+            'mark': 1,
+            'team': e.currentTarget.dataset.team == 3 ? 4 : e.currentTarget.dataset.team
+          }, "post",
+          (resSix) => {
+            if (resSix.data.code == 2000) {
+              util.Request("/api/getjudgeTime", {
+                'StartTime': that.data.activitiesData.StartTime,
+                'PlayTime':that.data.activitiesData.PlayTime,
+                'SportId': that.data.activitiesData.SportId,
+                'SportMode':that.data.activitiesData.SportMode,
+                'venueid':that.data.activitiesData.venueid,
+                'siteUid':that.data.activitiesData.siteUid,
+                'sportType':that.data.activitiesData.SportType
+              }, "post",
+              (resTwo) => {
+                if(resTwo.data.code==2000){
+                  util.Request("/api/usercread", {}, "post",
+                  (res) => {
+                    if (res.data.data.type == 1) {
+                      wx.showModal({
+                        title: '温馨提示',
+                        showCancel: false,
+                        content: res.data.data.commit + '(打开APP支付)',
+                      })
+                      this.setData({
+                        flagClick: false
+                      })
+                    } else {
+                      wx.showModal({
+                        title: '提示',
+                        content: '您确定加入' + teamText + '么?',
+                        success(res) {
+                          if (res.confirm) {
+                            let obj = {
+                              inviteId: that.data.activitiesData.uuid,
+                              team: e.currentTarget.dataset.team == 3 ? 4 : e.currentTarget.dataset.team,
+                              SecondSportId: that.data.activitiesData.SportType,
+                              sportid: that.data.activitiesData.SportId,
+                              startTime: that.data.activitiesData.StartTime,
+                              playTime: that.data.activitiesData.PlayTime,
+                              SportMode: that.data.activitiesData.SportMode,
+                              SiteMoney: that.data.activitiesData.SiteMoney,
+                              number: that.data.activitiesData.needNumber,
+                              PaySiteMoneyType: that.data.activitiesData.PaySiteMoneyType,
+                              isPublisher: 0,
+                              isCooper: 1,
+                              Accompany: that.data.activitiesData.MoneyPerhour,
+                              Reward: that.data.activitiesData.Tips,
+                              refereefee: that.data.activitiesData.refereeFee,
+                              CreateTime: that.data.activitiesData.CreateTime,
+                              pos: index.toString(),
+                              organization: that.data.activitiesData.SportMode == 3 ? 0 : that.data.activitiesData.ifMustSign,
+                            }
+  
+                            if (e.currentTarget.dataset.name == '我找陪练') {
+                              util.Request("/api/usertrainee", {
+                                  'inviteId': that.data.activitiesData.uuid,
+                                  'team': e.currentTarget.dataset.team == 3 ? 4 : e.currentTarget.dataset.team,
+                                  'SecondSportId': that.data.activitiesData.SportType,
+                                  'startTime': that.data.activitiesData.StartTime,
+                                  'playTime': that.data.activitiesData.PlayTime,
+                                  'FirstSportId': that.data.activitiesData.SportId,
+                                  'pos': 0
+                                }, "post",
+                                (res) => {
+                                  if (res.data.code == 2000) {
+                                    wx.navigateTo({
+                                      url: '/generalization/createSuccess/createSuccess?inviteId=' + that.data.activitiesData.uuid + '&Identification=2' + '&typeInfo=0' + '&referee=0' + '&status=1' + '&time=' + app.globalData.CreateTime,
+                                    })
+                                  } else {
+                                    wx.showToast({
+                                      title: res.data.msg,
+                                      icon: 'none',
+                                      duration: 1500,
+                                      mask: true
+                                    })
+                                  }
+  
+                                },
+                                () => {
+                                  console.log("失败")
+                                },
+                                () => {}
+                              )
+                            } else {
+                              app.globalData = obj
+                              wx.navigateTo({
+                                url: '/generalization/payFor/payFor?look=1' + '&ko=1',
+                              })
+                            }
+  
+                          } else if (res.cancel) {}
                         }
-                          
-                      },
-                      () => {
-                        console.log("失败")
-                      },
-                      () => {}
-                    )
-                  } else {
-                    app.globalData = obj
-                    wx.navigateTo({
-                      url: '/generalization/payFor/payFor?look=1' + '&ko=1',
-                    })
-                  }
+                      })
+                      this.setData({
+                        flagClick: false
+                      })
+  
+                    }
+  
+                  },
+                  () => {
+                    console.log("失败")
+                  }, () => {}
+                )
+  
+                }else{
+                  wx.showToast({
+                    title: resTwo.data.msg,
+                    icon: 'none',
+                    duration: 1500,
+                    mask: true
+                  })
+                }
+               
+        
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
 
-                } else if (res.cancel) {}
-              }
-            })
-            this.setData({
-              flagClick: false
-            })
 
-          }
 
-        },
-        () => {
-          console.log("失败")
-        }, () => {}
-      )
+
+
+
+
+
+
+             
+
+            
+
+
+            
+            } else {
+              wx.showToast({
+                title: resSix.data.msg,
+                icon: 'none',
+                duration: 1500,
+                mask: true
+              })
+              this.setData({
+                flagClick: false
+              })
+            }
+
+
+          },
+          () => {
+            console.log("失败")
+          },
+          () => {}
+        )
+
+
+
+
+      }
     }
-  }
   },
   insuranceDe() {
     wx.navigateTo({

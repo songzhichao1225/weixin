@@ -43,7 +43,7 @@ Page({
         } else if (projectDataNow[i].PaySiteMoneyType == 1) {
           projectDataNow[i].PaySiteMoneyType = 'AA'
         } else if (projectDataNow[i].PaySiteMoneyType == 0) {
-          projectDataNow[i].PaySiteMoneyType = '输者买单'
+          projectDataNow[i].PaySiteMoneyType = '输方买单'
         }
       }
       if (showTwo == true) {

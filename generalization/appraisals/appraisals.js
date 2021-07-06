@@ -343,7 +343,7 @@ Page({
     let obj = {
       siteUid: e.currentTarget.dataset.siteid,
       publicUuid: e.currentTarget.dataset.pubid,
-      userComment: userComment,
+      userComment: JSON.stringify(userComment),
       price: rangeFour,
       service: rangeThree,
       equscore: rangeTwo,

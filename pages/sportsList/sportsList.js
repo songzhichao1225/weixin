@@ -100,6 +100,12 @@ Page({
       wx.removeStorage({
         key: 'mode'
       })
+
+      wx.removeStorage({
+        key: 'shoulderedF'
+      })
+
+      
       
       wx.removeStorage({
         key: 'siteid'

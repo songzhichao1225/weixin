@@ -42,7 +42,7 @@
           <text>场馆费用</text>
           <text class="money">{{activitiesData.SiteMoney}}.00元</text>
           <text class="way">承担方式</text>
-          <text style='margin-left:0.8rem;'>{{activitiesData.PaySiteMoneyType==1?'AA':'输者买单'}}</text>
+          <text style='margin-left:0.8rem;'>{{activitiesData.PaySiteMoneyType==1?'AA':'输方买单'}}</text>
         </view>
         <view class="publisherTxt">
           <text>活动时间</text>

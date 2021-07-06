@@ -193,10 +193,9 @@
           "scene": null
         },
         {
-          "id": -1,
           "name": "支付",
           "pathName": "generalization/payFor/payFor",
-          "query": "",
+          "query": "look=1",
           "scene": null
         },
         {
@@ -438,6 +437,12 @@
           "name": "pages/homePage/content/content",
           "pathName": "pages/homePage/content/content",
           "query": "Identification=1&inviteId=da182f78-b3aa-2dab-175f-d75326a47af2&referee=0&status=2&lr=20",
+          "scene": null
+        },
+        {
+          "name": "邀请记录",
+          "pathName": "generalization/invitationalList/invitationalList",
+          "query": "",
           "scene": null
         }
       ]

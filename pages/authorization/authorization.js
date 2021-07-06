@@ -293,7 +293,7 @@ Page({
                       'openId': '',
                       'loginType':3
                     }, "post",
-                    (res) => {0
+                    (res) => {
                       util.request("/api/getbindmobile", {
                           'mobile': wx.getStorageSync('phone'),
                           'wechatid': wx.getStorageSync('unionid'),

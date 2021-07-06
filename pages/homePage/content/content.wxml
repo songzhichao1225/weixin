@@ -177,7 +177,7 @@
 					<!-- <text>（北京市…）</text> -->
 				</view>
 				<view class="cost">
-					<text style='margin:0;'>场地费:{{item.PaySiteMoneyType==1?'AA':item.PaySiteMoneyType==2?'输者买单':'练习方买单'}}</text>
+					<text style='margin:0;'>场地费:{{item.PaySiteMoneyType==1?'AA':item.PaySiteMoneyType==2?'输方买单':'练习方买单'}}</text>
 					<text wx:if="{{item.MoneyPerhour!=0}}">陪练费:￥{{item.MoneyPerhour}}</text>
 					<text wx:if="{{item.Tips!=0.00||item.Tips!=0}}">入场费:￥{{item.Tips}}/人</text>
 					<!-- <text wx:if="{{item.organizations!=0}}">组织费:￥{{item.organizations}}</text> -->
@@ -300,47 +300,43 @@
 	<view class="contentMask" wx:if="{{maskActivityTwo.length>0&&maskActivity.length==0}}">
 	 <view class="contentMaskSon">
 		 <view style="font-size:0.88rem;text-align:center;padding-top:0.5rem">待处理的活动</view>
-	 <scroll-view class="projectList lppd">
-		<view class="projectSon"   data-uuid="{{item.uuid}}"
+	 <scroll-view class="projectList" style="height:85%">
+		<view class="projectSon " bindtap="activites" style="margin:0.5rem auto 0;height:7rem;background:#fff;border:none;" data-uuid="{{item.uuid}}"
 			wx:for="{{maskActivityTwo}}" wx:key='index'>
 			<view class="avatar">
 				<image class="avatarP" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
-				<image wx:if="{{item.SportName=='网球'}}" class="aIcon" src='/assets/icon_dj_wq.png'></image>
-				<image wx:if="{{item.SportName=='高尔夫'}}" class="aIcon" src='/assets/icon_dj_gef.png'></image>
-				<image wx:if="{{item.SportName=='篮球'}}" class="aIcon" src='/assets/icon_dj_lq.png'></image>
-				<image wx:if="{{item.SportName=='乒乓球'}}" class="aIcon" src='/assets/icon_dj_ppq.png'></image>
-				<image wx:if="{{item.SportName=='排球'}}" class="aIcon" src='/assets/icon_dj_pq.png'></image>
-				<image wx:if="{{item.SportName=='台球'}}" class="aIcon" src='/assets/icon_dj_tq.png'></image>
-				<image wx:if="{{item.SportName=='羽毛球'}}" class="aIcon" src='/assets/icon_dj_ymq.png'></image>
-				<image wx:if="{{item.SportName=='足球'}}" class="aIcon" src='/assets/icon_dj_zq.png'></image>
+				<image wx:if="{{item.sportName=='网球'}}" class="aIcon" src='../../../assets/icon_dj_wq.png'></image>
+				<image wx:if="{{item.sportName=='高尔夫'}}" class="aIcon" src='../../../assets/icon_dj_gef.png'></image>
+				<image wx:if="{{item.sportName=='篮球'}}" class="aIcon" src='../../../assets/icon_dj_lq.png'></image>
+				<image wx:if="{{item.sportName=='乒乓球'}}" class="aIcon" src='../../../assets/icon_dj_ppq.png'></image>
+				<image wx:if="{{item.sportName=='排球'}}" class="aIcon" src='../../../assets/icon_dj_pq.png'></image>
+				<image wx:if="{{item.sportName=='台球'}}" class="aIcon" src='../../../assets/icon_dj_tq.png'></image>
+				<image wx:if="{{item.sportName=='羽毛球'}}" class="aIcon" src='../../../assets/icon_dj_ymq.png'></image>
+				<image wx:if="{{item.sportName=='足球'}}" class="aIcon" src='../../../assets/icon_dj_zq.png'></image>
 				<text>{{item.nowLevel}}</text>
 			</view>
 			<view class="introduction">
 				<view class="title">
 					<text>{{item.nickname}}</text>
-					<image wx:if="{{item.sex==0}}" src='/assets/sex0@2x.png'></image>
-					<image wx:if="{{item.sex==1}}" src='/assets/sex1@2x.png'></image>
+					<image wx:if="{{item.sex==0}}" src='../../../assets/sex0@2x.png'></image>
+					<image wx:if="{{item.sex==1}}" src='../../../assets/sex1@2x.png'></image>
 				</view>
 				<view class="mode">
 					<text style='margin:0;color:#D85D27;'>{{item.SportMode}}</text>
-					<text>{{item.SportName}}</text>
-					<text>{{item.HighestLevelName}}</text>
-					<text>{{item.SportTypeName}}</text>
-					<text>{{item.lockNumbers}}</text>
+					<text>{{item.sportName}}</text>
+					<text>{{item.sportTypeName}}</text>
 				</view>
 				<view class="time">
 					<text style='margin:0;'>{{item.startDays}}</text>
 					<text>{{item.week}}</text>
 					<text>{{item.startTimes}}-{{item.endTimes}}</text> </view>
 				<view class="address">
-					<text style='margin:0;'>{{item.address}}</text>
-					<!-- <text>（北京市…）</text> -->
+					<text style='margin:0;'>{{item.sitename}}</text>
 				</view>
 				<view class="footerBtn">
-					<view style="width:7.75rem" bindtap="signin" data-id="{{item.uuid}}" data-index="1">签到</view>
-					<view style="width:7.75rem" bindtap="comResult" data-id="{{item.uuid}}" data-index="1">填写比赛结果</view>
-					<view  bindtap="onKey" data-id="{{item.uuid}}" data-index="1">一键好评</view>
-					<view  bindtap="comment" data-id="{{item.uuid}}" data-index="1">去评价</view>
+					<view wx:if="{{item.status==2}}" style="width:7.75rem" catchtap="signin" data-id="{{item.uuid}}" data-index="1">签到</view>
+					<view wx:if="{{item.status==0}}" style="width:7.75rem" catchtap="comResult" data-id="{{item.uuid}}" data-index="1">填写比赛结果</view>
+					<view wx:if="{{item.status==4}}" catchtap="comment" data-id="{{item.uuid}}" data-index="1">去评价</view>
 				</view>
 			
 			
@@ -352,12 +348,13 @@
 				<image wx:if="{{item.PublicStatus==1}}" src='/assets/pipei.png'></image>
 				<image wx:if="{{item.PublicStatus==7}}" src='/assets/tuichu.png'></image>
 				<image wx:if="{{item.PublicStatus==5}}" src='/assets/wancheng.png'></image>
+				<image wx:if="{{item.PublicStatus==4}}" src='/assets/jieguo.png'></image>
 			</view>
 		</view>
 	 
 	 </scroll-view>
 	 </view>
-	 <view class="colseMask" bindtap="closeMask"><image src="../../../assets/BtnDown@2x.png"></image> </view>
+	 <view class="colseMask" bindtap="closeMaskTwo"><image src="../../../assets/BtnDown@2x.png"></image> </view>
 	
 	</view>
 

@@ -65,7 +65,7 @@
 					<!-- <text>（北京市…）</text> -->
 				</view>
 				<view class="cost">
-					<text style='margin:0;'>场地费:{{item.PaySiteMoneyType==1?'AA':'输方买单'}}</text>
+					<text style='margin:0;'>场地费:{{item.PaySiteMoneyType==1?'AA':item.PaySiteMoneyType==2?'输方买单':'练习方买单'}}</text>
 					<text wx:if="{{item.MoneyPerhour!=0}}">陪练费:{{item.MoneyPerhour}}/人</text>
 					<text wx:if="{{item.Tips!=0.00&&item.PipeMain!=2||item.Tips!=0&&item.PipeMain!=2}}">入场费:{{item.Tips}}/人</text>
 					<text wx:if="{{item.PipeMain==2}}">奖金:￥{{item.PipeMainMoney}}</text>

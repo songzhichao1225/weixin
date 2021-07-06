@@ -12,7 +12,7 @@
     <text>场地承担方式</text>
     <view class="modeH">
       <text bindtap='siteTap' data-num="1" style="{{siteIndex==1?'background:#D85D27;color: #fff;':''}}">AA</text>
-      <text bindtap='siteTap' class="right" data-num="2" style="{{siteIndex==2?'background:#D85D27;color: #fff;':''}}">输者买单</text>
+      <text bindtap='siteTap' class="right" data-num="2" style="{{siteIndex==2?'background:#D85D27;color: #fff;':''}}">输方买单</text>
     </view>
   </view>
 

@@ -16,7 +16,13 @@ Page({
     })
     util.Request("/api/getTechCoins", {}, "get",
       (res) => {
-        this.setData({ userTechcoins: res.data.data, flag: true })
+        let hood=res.data.data
+         for(let i in hood){
+           hood[i].total=hood[i].total.toFixed(2)
+           hood[i].maxcoins=hood[i].maxcoins.toFixed(2)
+           hood[i].mincoins=hood[i].mincoins.toFixed(2)
+         }
+        this.setData({ userTechcoins: hood, flag: true })
         wx.hideLoading()
       },
       () => { console.log("失败") },

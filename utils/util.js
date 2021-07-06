@@ -15,12 +15,12 @@ const formatNumber = n => {
 
 
 
-// let API = "https://zhaoduishou.oss-cn-beijing.aliyuncs.com/";  //正式
-let API = "https://zhaoduishoustg.oss-cn-beijing.aliyuncs.com/"; //测试
+let API = "https://zhaoduishou.oss-cn-beijing.aliyuncs.com/";  //正式
+// let API = "https://zhaoduishoustg.oss-cn-beijing.aliyuncs.com/"; //测试
  
 
-// let apiS = "https://app.tiaozhanmeiyitian.com";  //正式 
-let apiS = "https://appstg.tiaozhanmeiyitian.com"; //测试 
+let apiS = "https://app.tiaozhanmeiyitian.com";  //正式 
+// let apiS = "https://appstg.tiaozhanmeiyitian.com"; //测试 
 
 
 

@@ -13,14 +13,17 @@ Page({
    */
   onLoad: function (options) {
     this.setData({option:options})
+    console.log(options)
   },
+
   detal:function(e){
-    if(this.data.option.flag=='0'&&this.data.option.hood==undefined){
+    
+    if(this.data.option.hood=='1'){
       wx.setStorage({
         data:e.detail,
         key:'bookin',
       })
-    }else if(this.data.option.flag=='1'){
+    }else if(this.data.option.hood=='2'){
       wx.setStorage({
         data:e.detail,
         key:'bookinTwo',
@@ -49,9 +52,6 @@ Page({
       wx.navigateBack({
         delta: Number(this.data.option.flagTwo)
       })
-   
-    
-    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

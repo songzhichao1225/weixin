@@ -90,7 +90,7 @@
 			>{{volumeMoney!=0?'-'+volumeMoney+'元':'有可用的抵用券'}}</text>
 	</view>
 
-	<view style="color:#979797;font-size:0.75rem;text-align:center;margin-top:0.63rem">如活动匹配失败或截止报名前取消，预付的所有费用将全额退还。</view>
+	<view wx:if="{{look==1}}" style="color:#979797;font-size:0.75rem;text-align:center;margin-top:0.63rem">如活动匹配失败或截止报名前取消，预付的所有费用将全额退还。</view>
 
 	<view class="moneyAll">
 		<text>原￥{{getElplainInfo.Total}}</text>
