@@ -284,7 +284,7 @@ Page({
     let that=this
     wx.showModal({
       title: '温馨提示',
-      content:  that.data.listSon.SportMode == '我找陪练' || that.data.listSon.SportMode == '我是陪练' ? '您确定提前退出吗？如不是练习方先提前退出，您提前退出后，将被要求补缴补偿金且无法拿到陪练费。' : '您确定提前退出本次活动么?',
+      content:  that.data.listSon.SportMode == '我找陪练' || that.data.listSon.SportMode == '我是陪练' ? '您确定提前退出吗？如不是练习方先提前退出，您提前退出后，将被要求补缴补偿金且无法拿到陪练费。' : '您确定提前退出吗?系统将会按照用户提前退出的先后顺序，要求用户补缴补偿金。',
       success (res) {
         if (res.confirm) {
           util.Request("/api/getmessage", { 'uuid':e.currentTarget.dataset.uuid,type:3}, "post", 
@@ -306,26 +306,36 @@ Page({
   },
   SignOut:function(e){
     let that=this
-    wx.showModal({
-      title: '提示',
-      content: '您确定退出本次活动么?',
-      success (res) {
-        if (res.confirm) {
-          util.Request("/api/userMidwaySignOut", { 'uuid':e.currentTarget.dataset.uuid}, "post", 
-          (res) => {
-            let page = this.data.page
-            let statusType = this.data.statusType
-            let type = this.data.type
-            that.common(page, statusType, type)
-          },
-          () => { console.log("失败") },
-          () => {
+
+    util.Request("/api/userHalfwayHint", { 'uuid':e.currentTarget.dataset.uuid}, "post", 
+    (resTwo) => {
+      wx.showModal({
+        title: '提示',
+        content: resTwo.data.data,
+        success (res) {
+          if (res.confirm) {
+            util.Request("/api/userMidwaySignOut", { 'uuid':e.currentTarget.dataset.uuid}, "post", 
+            (res) => {
+              let page = this.data.page
+              let statusType = this.data.statusType
+              let type = this.data.type
+              that.common(page, statusType, type)
+            },
+            () => { console.log("失败") },
+            () => {
+            }
+          )
+          } else if (res.cancel) {
           }
-        )
-        } else if (res.cancel) {
         }
-      }
-    })
+      })
+    },
+    () => { console.log("失败") },
+    () => {
+    }
+  )
+
+    
    
   },
   navSub:function(){

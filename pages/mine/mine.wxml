@@ -84,9 +84,6 @@
     </view>
   </view>
 
-
-
-
 </view>
 
 <text class="officialTxt" wx:if="{{closeImg}}">为了您及时接收活动信息，请关注公众号！</text>
@@ -95,8 +92,10 @@
 </view>
 
 
-<!-- <view class="userTk" wx:if="{{userTk==1}}">
- <image class="banner" bindtap="banner" src="../../assets/xinren.png"></image>
- <text class="text">{{userTkContent.date}}</text>
-</view> -->
+
+<view class="userTk" wx:if="{{userTk==1}}">
+ <image class="close" bindtap="banner" src="../../assets/BtnDown@2x.png"></image>
+ <image class="banner" src="../../assets/xinren.png"></image>
+ <text class="text">{{userTkContent.RegistDate}}</text>
+</view>
 

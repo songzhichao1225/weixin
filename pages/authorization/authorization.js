@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 var util = require("../../utils/util.js");
+var bmap = require("../../utils/bmap-wx.min.js");
 Page({
   data: {
     phone: '',
@@ -10,12 +11,37 @@ Page({
     authorization: 0,
     Invite_code: '',
     wxImage: '',
-    avatarImg:'',
+    avatarImg: '',
+    ak: "ElFBk4MF87qZXoiLbD0zofEmZIS6bHT2", //申请到的ak
   },
 
 
 
   onLoad: function (option) {
+
+    let that=this
+    let BMap = new bmap.BMapWX({
+      ak: that.data.ak
+    });
+    let fail = function (data) {}
+    let success = function (data) {
+      let wxMarkerData = data.wxMarkerData;
+      that.setData({
+        markers: wxMarkerData,
+        district: data.originalData.result.addressComponent.district,
+        province: data.originalData.result.addressComponent.province,
+        city: data.originalData.result.addressComponent.city
+      })
+    }
+
+    BMap.regeocoding({
+      fail: fail,
+      success: success
+    });
+
+
+
+
     var query = wx.createSelectorQuery()
     query.select('#name').boundingClientRect()
     query.selectViewport().scrollOffset()
@@ -58,9 +84,9 @@ Page({
 
   },
 
- 
 
-  close:function(){
+
+  close: function () {
     wx.reLaunch({
       url: "/pages/homePage/content/content"
     })
@@ -91,50 +117,50 @@ Page({
 
   getUserProfile: function () {
 
-    if(wx.getStorageSync('token')){
+    if (wx.getStorageSync('token')) {
       util.request("/api/wechatLogin", {
-        'uid': wx.getStorageSync('unionid'),
-        'sex': '男',
-        'imgURL': '',
-        'nickname': '',
-        'openId': '',
-        'loginType':3
-      }, "post",
-      (res) => {
-        if (res.data.data.telephone != '' && res.data.data.telephone != undefined) {
-          wx.setStorageSync('token', res.data.data.token); //存储token
-          wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
-          wx.setStorageSync('telephone', res.data.data.telephone); //存储用户电话
-          wx.setStorageSync('imgURL', res.data.data.imgURL); //存储用户电话
-          wx.setStorageSync('invitation', res.data.data.Invitation); //存储邀请码
-          
-          wx.hideLoading()
-          if (wx.getStorageSync('activitieshoog') == '1') {
-            wx.reLaunch({
-              url: "/pages/homePage/activities/activities?uuid=" + wx.getStorageSync('activitiesId')
-            })
-          } else {
-            setTimeout(function () {
-              wx.navigateBack({
-                delta: 1
+          'uid': wx.getStorageSync('unionid'),
+          'sex': '男',
+          'imgURL': '',
+          'nickname': '',
+          'openId': '',
+          'loginType': 3
+        }, "post",
+        (res) => {
+          if (res.data.data.telephone != '' && res.data.data.telephone != undefined) {
+            wx.setStorageSync('token', res.data.data.token); //存储token
+            wx.setStorageSync('uuid', res.data.data.uuid); //存储用户uuid
+            wx.setStorageSync('telephone', res.data.data.telephone); //存储用户电话
+            wx.setStorageSync('imgURL', res.data.data.imgURL); //存储用户电话
+            wx.setStorageSync('invitation', res.data.data.Invitation); //存储邀请码
+
+            wx.hideLoading()
+            if (wx.getStorageSync('activitieshoog') == '1') {
+              wx.reLaunch({
+                url: "/pages/homePage/activities/activities?uuid=" + wx.getStorageSync('activitiesId')
               })
+            } else {
+              setTimeout(function () {
+                wx.navigateBack({
+                  delta: 1
+                })
+              })
+            }
+          } else {
+            this.setData({
+              authorization: 1
             })
+            wx.hideLoading()
           }
-        } else {
-          this.setData({
-            authorization: 1
-          })
-          wx.hideLoading()
-        }
 
-      },
-      () => {
-        console.log("失败")
-      },
-      () => {}
-    )
+        },
+        () => {
+          console.log("失败")
+        },
+        () => {}
+      )
 
-    }else{
+    } else {
 
       wx.getUserProfile({
         desc: '用于小程序展示头像昵称',
@@ -154,14 +180,13 @@ Page({
                       title: '登录中~',
                       mask: true
                     })
-  
                     util.request("/api/wechatLogin", {
                         'uid': wx.getStorageSync('unionid'),
                         'sex': '男',
                         'imgURL': res.userInfo.avatarUrl,
                         'nickname': res.userInfo.nickName,
                         'openId': '',
-                        'loginType':3
+                        'loginType': 3
                       }, "post",
                       (res) => {
                         if (res.data.data.telephone != '' && res.data.data.telephone != undefined) {
@@ -183,7 +208,6 @@ Page({
                             })
                           }
                         } else {
-  
                           wx.downloadFile({
                             url: res.data.data.imgURL,
                             success(resTwo) {
@@ -192,7 +216,9 @@ Page({
                                     uuid: res.data.data.uuid
                                   }, "post",
                                   (resThree) => {
-                                    that.setData({avatarImg:resThree.data})
+                                    that.setData({
+                                      avatarImg: resThree.data
+                                    })
                                   },
                                   () => {
                                     console.log("失败")
@@ -207,7 +233,7 @@ Page({
                           })
                           wx.hideLoading()
                         }
-  
+
                       },
                       () => {
                         console.log("失败")
@@ -218,10 +244,10 @@ Page({
                 })
               }
             }
-  
+
           })
-  
-  
+
+
         }
       })
 
@@ -229,7 +255,7 @@ Page({
 
 
 
- 
+
   },
 
 
@@ -284,14 +310,13 @@ Page({
                 (res) => {
                   wx.setStorageSync('phone', res.data.data.phoneNumber)
 
-
                   util.request("/api/wechatLogin", {
                       'uid': wx.getStorageSync('unionid'),
                       'sex': '男',
                       'imgURL': that.data.avatarUrl,
                       'nickname': that.data.nickName,
                       'openId': '',
-                      'loginType':3
+                      'loginType': 3
                     }, "post",
                     (res) => {
                       util.request("/api/getbindmobile", {
@@ -300,8 +325,8 @@ Page({
                           'Invitation': that.data.Invite_code,
                           'imgURL': res.data.data.imgURL,
                           'nickname': res.data.data.nickname,
-                          'residence': wx.getStorageSync('province') + ',' + wx.getStorageSync('cityInfo') + ',' + wx.getStorageSync('area'),
-                          'loginType':3
+                          'residence': that.data.province + ',' + that.data.city+ ',' + that.data.district,
+                          'loginType': 3
                         }, "post",
                         (res) => {
                           if (res.data.code == 2000) {

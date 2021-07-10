@@ -101,6 +101,7 @@ Page({
           sourceType: imgArr,
           success(res) {
             let tempFilePaths = res.tempFilePaths[0]
+            console.log(tempFilePaths)
             util.Request("/api/uploadHeaderImg", tempFilePaths, 'post',
               (resTwo) => {
                 util.Request("/api/getUserDetailInfo", {
@@ -237,6 +238,18 @@ Page({
                 mineDetail: res.data.data,
                 imgURL: wx.getStorageSync('imgURL')
               })
+              util.Request("/api/getusertk", {}, "post",
+              (res) => {
+                this.setData({
+                  userTk:res.data.data.type,
+                  userTkContent:res.data.data
+               })
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
             },
             () => {
               console.log("失败")
@@ -244,26 +257,7 @@ Page({
             () => {}
           )
 
-          util.Request("/api/getusertk", {}, "post",
-            (res) => {
-              if(wx.getStorageSync('userTk')==2){
-                this.setData({
-                  userTk:2,
-                  userTkContent:res.data.data.RegistDate
-               })
-              }else{
-                this.setData({
-                  userTk:res.data.data.type,
-                  userTkContent:res.data.data.RegistDate
-               })
-              }
-             
-            },
-            () => {
-              console.log("失败")
-            },
-            () => {}
-          )
+        
         }
 
 
@@ -535,7 +529,16 @@ Page({
     })
   },
   banner:function(){
-    this.setData({userTk:2})
-    wx.setStorageSync('userTk', 2)
+    util.Request("/api/closeGiftWindow", {}, "post",
+    (res) => {
+      this.setData({userTk:2})
+      wx.hideLoading()
+    },
+    () => {
+      console.log("失败")
+    },
+    () => {}
+  )
+   
   }
-})
+}) 

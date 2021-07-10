@@ -103,7 +103,8 @@
 					<view class="cost">
 					<text style='margin:0;'>场地费:{{item.SportMode=='仅预订场馆'?'发布者买单':item.PaySiteMoneyType==1?'AA':item.PaySiteMoneyType==2?'输方买单':'练习方买单'}}</text>
 					<text wx:if="{{item.MoneyPerhour!=0}}">陪练费:￥{{item.MoneyPerhour}}</text>
-					<text wx:if="{{item.Tips!=0.00||item.Tips!=0}}">入场费:￥{{item.Tips}}/人</text>
+					<text wx:if="{{item.IsPublisher==0}}">入场费:￥{{item.Tips}}/人</text>
+					<text wx:if="{{item.IsPublisher==1}}">出场费:￥{{item.Tips}}/人</text>
 					<!-- <text wx:if="{{item.organizations!=0}}">组织费:￥{{item.organizations}}</text> -->
 					<text>{{item.range}}</text>
 				</view>
@@ -114,7 +115,7 @@
 						<view class="isConfirmResult" catchtap="signin" data-id="{{item.uuid}}" wx:if="{{item.PublicStatus==2&&item.ifMustSign==1&&item.SigninYes==1&&item.isSignIn==0||item.PublicStatus==3&&item.ifMustSign==1&&item.SigninYes==1&&item.isSignIn==0}}">签到</view>
 						<view class="isConfirmResult" style="background:#ccc;" wx:if="{{item.PublicStatus==2&&item.ifMustSign==1&&item.SigninYes==0&&item.isSignIn==1||item.PublicStatus==3&&item.ifMustSign==1&&item.SigninYes==0&&item.isSignIn==1}}">已签到</view>
 						<view class="isConfirmResult" catchtap="SignOut" data-uuid="{{item.uuid}}" wx:if="{{item.isSignIn==1&&item.PublicStatus==3&&item.isQuitInGame==1&&item.ifMustSign==1&&item.isQuit!=2}}">中途退出</view>
-						<view class="isConfirmResult" bindtap="comResult" data-id="{{item.uuid}}" wx:if="{{item.PublicStatus==4&&item.end==2&&item.isConfirmResult==0}}">填写结果</view>
+						<view class="isConfirmResult" catchtap="comResult" data-id="{{item.uuid}}" wx:if="{{item.PublicStatus==4&&item.end==2&&item.isConfirmResult==0}}">填写结果</view>
 						<view class="isConfirmResult" style="background:#ccc;" wx:if="{{item.PublicStatus==4&&item.end==2&&item.isConfirmResult==1&&item.isQuit!=2&&item.isConfirmResult!=2}}">已填写结果</view>
 						<view class="isConfirmResult" catchtap="comment" data-id="{{item.uuid}}" wx:if="{{item.PublicStatus==6&&item.Comment==0}}">待评价</view>
 						<view class="isConfirmResult" style="background:#ccc;" wx:if="{{item.PublicStatus==6&&item.PublicStatus!=7&&item.Comment!=0&&item.isQuit!=2&&item.isConfirmResult!=2}}">已评价</view>
@@ -137,7 +138,6 @@
 	</view>
  <view class="contetnTxt" wx:if="{{listSon.length==0}}"><text>您暂时还没有内容奥~</text><text style="color:#9b9b9b">可以去发布您喜爱的活动</text></view>
   <button class="btnSub" bindtap="navSub" wx:if="{{listSon.length==0}}">去发布活动</button>
-
 </scroll-view>
 
 

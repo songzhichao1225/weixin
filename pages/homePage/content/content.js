@@ -550,7 +550,6 @@ Page({
         this.setData({
           maskActivityTwo: []
         })
-
       },
       () => {
         console.log("失败")
@@ -567,14 +566,11 @@ Page({
   },
 
   onKey: function (e) {
-
     let obj = {
-      publicUuid: e.currentTarget.dataset.pubid
+      publicUuid: e.currentTarget.dataset.id
     }
     util.Request("/api/addAllGoodsComment", obj, "post",
       (res) => {
-
-
         wx.showToast({
           title: res.data.msg,
           icon: 'none',

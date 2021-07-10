@@ -337,6 +337,7 @@
 					<view wx:if="{{item.status==2}}" style="width:7.75rem" catchtap="signin" data-id="{{item.uuid}}" data-index="1">签到</view>
 					<view wx:if="{{item.status==0}}" style="width:7.75rem" catchtap="comResult" data-id="{{item.uuid}}" data-index="1">填写比赛结果</view>
 					<view wx:if="{{item.status==4}}" catchtap="comment" data-id="{{item.uuid}}" data-index="1">去评价</view>
+					<view wx:if="{{item.status==4}}" catchtap="onKey" data-id="{{item.uuid}}" data-index="1">一键好评</view>
 				</view>
 			
 			

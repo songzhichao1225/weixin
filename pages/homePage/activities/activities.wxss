@@ -514,6 +514,7 @@ image {
   height: 3.25rem;
   padding-left: 2.5%;
   border-bottom: 0.06rem solid #E9E9E9;
+  overflow: hidden;
 }
 
 .competitionRu .one text {

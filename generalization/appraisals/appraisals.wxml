@@ -63,11 +63,11 @@
 	<view class="comment">
 		<textarea maxlength="100" placeholder="说一说您对本场馆的评价吧！" bindinput="textarea" placeholder-style="font-size:0.75rem;">
 
-   </textarea>
-		<view class="putier" bindtap="chooseImg">
-    <image wx:if="{{imgURLT!=''}}" src="{{imgURLT}}"></image>
+	 </textarea>
+	 <image wx:for="{{imgList}}" wx:if="{{imgURLT!=''}}" src="{{imgURLT}}"></image>
+
+	 <view class="putier" bindtap="chooseImg">
 			<image wx:if="{{imgURLT==''}}" src="/assets/Shangchuanzhaopian.png"></image>
-			
 		</view>
 
 

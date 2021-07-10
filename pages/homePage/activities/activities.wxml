@@ -397,7 +397,7 @@
 
 				<view class="acquire"
 					wx:if="{{activitiesData.PublicStatus==6&&activitiesData.reserve!=1||activitiesData.PublicStatus==5&&activitiesData.reserve!=1||activitiesData.PublicStatus==7&&activitiesData.reserve!=1}}">
-					<view class="title">费用及金币获得</view>
+					<view class="title">费用及对手果获得</view>
 					<view class="acquireSon"><text>场地费</text><text>{{activitiesData.getlist}}</text></view>
 					<view class="acquireSon"  wx:if="{{activitiesData.Tips!=0&&activitiesData.PipeMain!=2&&activitiesData.isPublisher!=1}}">
 						<text>入场费</text><text>预付{{activitiesData.Tips}}，实付{{activitiesData.Tips}}，退还{{activitiesData.Tips}}</text>
@@ -473,7 +473,7 @@
 			</view>
 
 			
-		<view class="readyToGo" wx:if="{{activitiesData.organization!=1&&activitiesData.ifMustSign==1&&activitiesData.PublicStatus==2&&activitiesData.reserve!=1}}">
+		<view class="readyToGo" wx:if="{{activitiesData.organization!=1&&activitiesData.isQuit!=2&&activitiesData.ifMustSign==1&&activitiesData.PublicStatus==2&&activitiesData.reserve!=1}}">
 			<button class="btnTwo" catchtap="isQuit" data-uuid="{{activitiesData.uuid}}"
 				style="color:#fff;background:#D85D27;" wx:if="{{activitiesData.isQuit==1}}">提前退出</button>
 			<button class="btnTwo" wx:if="{{activitiesData.isQuit==2}}">提前退出</button>

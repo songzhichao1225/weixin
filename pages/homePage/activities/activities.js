@@ -669,6 +669,12 @@ Page({
           projectNow.teamA[i].nameStatus = '已填写'
         } else if (projectNow.teamA[i].isConfirmResult == 0) {
           projectNow.teamA[i].nameStatus = '待填写'
+        }else if (projectNow.teamA[i].isSignIns == 1) {
+          projectNow.teamA[i].nameStatus = '已签到'
+        } else if (projectNow.teamA[i].isSignIns == 2) {
+          projectNow.teamA[i].nameStatus = '迟到'
+        } else if (projectNow.teamA[i].isSignIns == 3) {
+          projectNow.teamA[i].nameStatus = '未签到'
         }
       }
 
@@ -721,25 +727,24 @@ Page({
       if (projectNow.PublicStatus == 2&&projectNow.ifMustSign==1) {
         if (projectNow.teamB[i].isQuit == 2) {
           projectNow.teamB[i].nameStatus = '提前退出'
-        }else if (projectNow.teamB[i].isSignIn == 1) {
+        }else if (projectNow.teamB[i].isSignIns == 1) {
           projectNow.teamB[i].nameStatus = '已签到'
-        } else if (projectNow.teamB[i].isSignIn == 2) {
+        } else if (projectNow.teamB[i].isSignIns == 2) {
           projectNow.teamB[i].nameStatus = '迟到'
-        } else if (projectNow.teamB[i].isSignIn == 3) {
+        } else if (projectNow.teamB[i].isSignIns == 3) {
           projectNow.teamB[i].nameStatus = '未签到'
         }
-
       }
       if (projectNow.PublicStatus == 3&&projectNow.ifMustSign==1) {
         if (projectNow.teamB[i].isQuit == 2) {
           projectNow.teamB[i].nameStatus = '提前退出'
         }else if (projectNow.teamB[i].isQuitInGame == 2) {
           projectNow.teamB[i].nameStatus = '中途退出'
-        }else if (projectNow.teamB[i].isSignIn == 1) {
+        }else if (projectNow.teamB[i].isSignIns == 1) {
           projectNow.teamB[i].nameStatus = '已签到'
-        } else if (projectNow.teamB[i].isSignIn == 2) {
+        } else if (projectNow.teamB[i].isSignIns == 2) {
           projectNow.teamB[i].nameStatus = '迟到'
-        } else if (projectNow.teamB[i].isSignIn == 3) {
+        } else if (projectNow.teamB[i].isSignIns == 3) {
           projectNow.teamB[i].nameStatus = '未签到'
         }
       }
@@ -752,6 +757,12 @@ Page({
           projectNow.teamB[i].nameStatus = '已填写'
         } else if (projectNow.teamB[i].isConfirmResult == 0) {
           projectNow.teamB[i].nameStatus = '待填写'
+        }else if (projectNow.teamB[i].isSignIns == 1) {
+          projectNow.teamB[i].nameStatus = '已签到'
+        } else if (projectNow.teamB[i].isSignIns == 2) {
+          projectNow.teamB[i].nameStatus = '迟到'
+        } else if (projectNow.teamB[i].isSignIns == 3) {
+          projectNow.teamB[i].nameStatus = '未签到'
         }
       }
       if (projectNow.teamB[i].isCancel != 2 && projectNow.PublicStatus == 6&&projectNow.ifMustSign==1) {
@@ -766,17 +777,17 @@ Page({
             projectNow.teamB[i].nameStatus = '提前退出'
           }else if (projectNow.teamB[i].isQuitInGame == 2) {
             projectNow.teamB[i].nameStatus = '中途退出'
-          } else if (projectNow.teamB[i].isSignIn == 3) {
+          } else if (projectNow.teamB[i].isSignIns == 3) {
             projectNow.teamB[i].nameStatus = '未签到'
           }
         }
       }
       if (projectNow.PublicStatus == 7&&projectNow.ifMustSign==1) {
-        if (projectNow.teamB[i].isSignIn== 1) {
+        if (projectNow.teamB[i].isSignIns== 1) {
           projectNow.teamB[i].nameStatus = '已签到'
-        } else if (projectNow.teamB[i].isSignIn == 2) {
+        } else if (projectNow.teamB[i].isSignIns == 2) {
           projectNow.teamB[i].nameStatus = '迟到'
-        } else if (projectNow.teamB[i].isSignIn == 3) {
+        } else if (projectNow.teamB[i].isSignIns == 3) {
           projectNow.teamB[i].nameStatus = '未签到'
         }
       }
@@ -802,11 +813,11 @@ Page({
       if (projectNow.PublicStatus == 2&&projectNow.ifMustSign==1) {
         if (projectNow.teamC[i].isQuit == 2) {
           projectNow.teamC[i].nameStatus = '提前退出'
-        }else if (projectNow.teamC[i].isSignIn == 1) {
+        }else if (projectNow.teamC[i].isSignIns == 1) {
           projectNow.teamC[i].nameStatus = '已签到'
-        } else if (projectNow.teamC[i].isSignIn == 2) {
+        } else if (projectNow.teamC[i].isSignIns == 2) {
           projectNow.teamC[i].nameStatus = '迟到'
-        } else if (projectNow.teamC[i].isSignIn == 3) {
+        } else if (projectNow.teamC[i].isSignIns == 3) {
           projectNow.teamC[i].nameStatus = '未签到'
         }
 
@@ -816,11 +827,11 @@ Page({
           projectNow.teamC[i].nameStatus = '提前退出'
         }else if (projectNow.teamC[i].isQuitInGame == 2) {
           projectNow.teamC[i].nameStatus = '中途退出'
-        }else if (projectNow.teamC[i].isSignIn == 1) {
+        }else if (projectNow.teamC[i].isSignIns == 1) {
           projectNow.teamC[i].nameStatus = '已签到'
-        } else if (projectNow.teamC[i].isSignIn == 2) {
+        } else if (projectNow.teamC[i].isSignIns == 2) {
           projectNow.teamC[i].nameStatus = '迟到'
-        } else if (projectNow.teamC[i].isSignIn == 3) {
+        } else if (projectNow.teamC[i].isSignIns == 3) {
           projectNow.teamC[i].nameStatus = '未签到'
         }
       }
@@ -833,8 +844,12 @@ Page({
           projectNow.teamC[i].nameStatus = '已填写'
         } else if (projectNow.teamC[i].isConfirmResult == 0) {
           projectNow.teamC[i].nameStatus = '待填写'
-        }else if (projectNow.teamC[i].isSignIn == 2) {
+        }else if (projectNow.teamC[i].isSignIns == 1) {
+          projectNow.teamC[i].nameStatus = '已签到'
+        } else if (projectNow.teamC[i].isSignIns == 2) {
           projectNow.teamC[i].nameStatus = '迟到'
+        } else if (projectNow.teamC[i].isSignIns == 3) {
+          projectNow.teamC[i].nameStatus = '未签到'
         }
       }
       if (projectNow.teamC[i].isCancel != 2 && projectNow.PublicStatus == 6&&projectNow.ifMustSign==1) {
@@ -849,7 +864,7 @@ Page({
             projectNow.teamC[i].nameStatus = '提前退出'
           }else if (projectNow.teamC[i].isQuitInGame == 2) {
             projectNow.teamC[i].nameStatus = '中途退出'
-          } else if (projectNow.teamC[i].isSignIn == 3) {
+          } else if (projectNow.teamC[i].isSignIns == 3) {
             projectNow.teamC[i].nameStatus = '未签到'
           }
         }
@@ -857,9 +872,9 @@ Page({
       if (projectNow.PublicStatus == 7&&projectNow.ifMustSign==1) {
         if (projectNow.teamC[i].isSignIns == 1) {
           projectNow.teamC[i].nameStatus = '已签到'
-        } else if (projectNow.teamC[i].isSignIn == 2) {
+        } else if (projectNow.teamC[i].isSignIns == 2) {
           projectNow.teamC[i].nameStatus = '迟到'
-        } else if (projectNow.teamC[i].isSignIn == 3) {
+        } else if (projectNow.teamC[i].isSignIns == 3) {
           projectNow.teamC[i].nameStatus = '未签到'
         }
       }
@@ -983,7 +998,7 @@ Page({
     let that = this
     wx.showModal({
       title: '温馨提示',
-      content: this.data.activitiesData.SportModeTwo == '我找陪练' || this.data.activitiesData.SportModeTwo == '我是陪练' ? '您确定提前退出吗？如不是练习方先提前退出，您提前退出后，将被要求补缴补偿金且无法拿到陪练费。' : '您确定提前退出本次活动么?',
+      content: this.data.activitiesData.SportModeTwo == '我找陪练' || this.data.activitiesData.SportModeTwo == '我是陪练' ? '您确定提前退出吗？如不是练习方先提前退出，您提前退出后，将被要求补缴补偿金且无法拿到陪练费。' : '您确定提前退出吗?系统将会按照用户提前退出的先后顺序，要求用户补缴补偿金。',
       success(res) {
         if (res.confirm) {
           util.Request("/api/getmessage", {
@@ -1006,27 +1021,38 @@ Page({
   //中途退赛
   SignOut: function (e) {
     let that = this
-    wx.showModal({
-      title: '温馨提示',
-      content: '您确定退出本次活动么?',
-      success(res) {
-        if (res.confirm) {
 
-          util.Request("/api/userMidwaySignOut", {
-              'uuid': e.currentTarget.dataset.uuid
-            }, "post",
-            (res) => {
-              that.koopdf()
-            },
-            () => {
-              console.log("失败")
-            },
-            () => {}
-          )
-        } else if (res.cancel) {}
-      }
-    })
 
+    util.Request("/api/userHalfwayHint", { 'uuid':e.currentTarget.dataset.uuid}, "post", 
+    (resTwo) => {
+      wx.showModal({
+        title: '提示',
+        content: resTwo.data.data,
+        success (res) {
+          if (res.confirm) {
+            util.Request("/api/userMidwaySignOut", {
+                'uuid': e.currentTarget.dataset.uuid
+              }, "post",
+              (res) => {
+                that.koopdf()
+              },
+              () => {
+                console.log("失败")
+              },
+              () => {}
+            )
+          } else if (res.cancel) {}
+        }
+      })
+    },
+    () => { console.log("失败") },
+    () => {
+    }
+  )
+
+    
+
+   
   },
   //填写比赛结果F
   comResult: function (e) {
@@ -1135,6 +1161,9 @@ Page({
                               pos: index.toString(),
                               organization: that.data.activitiesData.SportMode == 3 ? 0 : that.data.activitiesData.ifMustSign,
                             }
+                            that.setData({
+                              flagClick: false
+                            })
   
                             if (e.currentTarget.dataset.name == '我找陪练') {
                               util.Request("/api/usertrainee", {
@@ -1159,6 +1188,9 @@ Page({
                                       mask: true
                                     })
                                   }
+                                  this.setData({
+                                    flagClick: false
+                                  })
   
                                 },
                                 () => {
@@ -1170,6 +1202,10 @@ Page({
                               app.globalData = obj
                               wx.navigateTo({
                                 url: '/generalization/payFor/payFor?look=1' + '&ko=1',
+                              })
+
+                              that.setData({
+                                flagClick: false
                               })
                             }
   

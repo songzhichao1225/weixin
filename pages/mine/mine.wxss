@@ -330,16 +330,32 @@ text {
 .userTk .banner{
   display: block;
   position: absolute;
-  top: 20%;
-  left: 10%;
-  width: 80%;
+  width: 100%;
+  height: 80%;
 }
-.userTk .text{
+.userTk .textTwo{
   position: absolute;
-  font-size: 0.88rem;
+  font-size: 1rem;
   color: #fff;
   text-align: center;
   display: block;
-  top: 50%;
+  top: 60%;
   width: 100%;
+}
+.userTk .text{
+  position: absolute;
+  font-size: 0.9rem;
+  color: #fff;
+  text-align: center;
+  display: block;
+  top: 62%;
+  width: 100%;
+}
+.userTk .close{
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  right: 10%;
+  top: 20%;
+  z-index: 1001;
 }
