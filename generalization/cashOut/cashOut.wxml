@@ -1,0 +1,31 @@
+<view class="cashOut">
+	<view class="wechat">
+		<image src="../../assets/IconZfWx@2x.png"></image>
+		<text>提现到微信</text>
+		<radio class="radio" checked="true" color="#D85D27" />
+	</view>
+	<view class="text">提现金额</view>
+	<view class="inputBoss"><text>￥</text><input class="input" bindinput="input" value="{{input}}" type="number" placeholder="请输入金额"/></view>
+	<view class="textTwo"><text>当前钱包余额{{total}}元,</text><text bindtap="allMoney">全部提现</text></view>
+  <button class="bindComfire" bindtap="bindComfire">提现</button>
+</view>
+
+<view wx:if='{{showPayPwdInput}}'>
+		<view class='bg_layer'></view>
+		<view class='input_main'>
+			<view class='input_title'>
+				<view class='input_back' catchtap='close'><text></text></view>
+				<text>请输入支付密码</text>
+			</view>
+			<view class='input_tip'><text>提现金额</text></view>
+			<view class='input_tip'><text style="font-size:1rem">￥{{input}}</text></view>
+			<view class='input_row' catchtap='getFocus'>
+				<view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
+					<text wx:if='{{pwdVal.length>i}}'></text>
+				</view>
+			</view>
+			<view class='forget_pwd' catchtap="kop">忘记提现密码？</view>
+			<input class='input_control' value="{{pwdVal}}" password type='number' focus='{{payFocus}}' bindinput='inputPwd'
+				maxlength='6' />
+		</view>
+	</view>

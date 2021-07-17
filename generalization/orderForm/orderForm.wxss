@@ -1,0 +1,290 @@
+page {
+  height: 100%;
+}
+
+.prderForm {
+  height: 100%;
+}
+
+.headMoney {
+  padding: 0 2.5%;
+  height: 2.94rem;
+  line-height: 2.94rem;
+  border-top: 0.06rem solid #e9e9e9;
+  overflow: hidden;
+}
+
+.headMoney>text:first-child {
+  font-size: 1rem;
+  font-weight: bold;
+  float: left;
+}
+
+.headMoney>text:last-child {
+  font-size: 1rem;
+  font-weight: bold;
+  float: right;
+  color: #D85D27;
+}
+
+.line {
+  width: 23.44rem;
+  height: 0.63rem;
+  background: #F3F3F3;
+}
+
+.listSon {
+  height: 3rem;
+  padding: 0 2.5%;
+  border-bottom: 0.06rem solid #e9e9e9;
+  line-height: 3rem;
+}
+
+.listSon .avatar {
+  width: 1.5rem;
+  height: 1.5rem;
+  float: left;
+  margin-top: 0.75rem;
+}
+
+.listSon .text {
+  float: left;
+  font-size: 0.88rem;
+  margin-left: 0.75rem;
+}
+
+.listSon .radio {
+  float: right;
+}
+
+radio .wx-radio-input {
+  border-radius: 50%;
+  /* 圆角 */
+  width: 1rem;
+  height: 1rem;
+}
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  border-radius: 50%;
+  /* 圆角 */
+  width: 1rem;
+  /* 选中后对勾大小，不要超过背景的尺寸 */
+  height: 1rem;
+  /* 选中后对勾大小，不要超过背景的尺寸 */
+  line-height: 1rem;
+  text-align: center;
+  font-size: 30rpx;
+  /* 对勾大小 30rpx */
+  color: #fff;
+  /* 对勾颜色 白色 */
+  background: transparent;
+}
+
+.listSon .textTwo {
+  float: left;
+  font-size: 0.75rem;
+  margin-left: 0.75rem;
+}
+
+.fanshi .image {
+  width: 0.68rem;
+  height: 1.06rem;
+  display: block;
+  float: right;
+  margin-left: 1rem;
+  margin-top: 0.95rem;
+  margin-right: 0.5rem;
+  margin-right: 1rem;
+}
+
+.fanshi {
+  height: 3.06rem;
+  border-bottom: 0.06rem solid #E9E9E9;
+  overflow: hidden;
+}
+
+.fanshi .img {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding-left: 2.5%;
+  margin-top: 0.78rem;
+  float: left;
+}
+
+.fanshi>text {
+  line-height: 3.06rem;
+  font-size: 0.88rem;
+  color: #9B9B9B;
+  float: left;
+  margin-left: 0.75rem;
+}
+
+.fanshi .radio {
+  float: right;
+  line-height: 3.06rem;
+  margin-right: 2.5%;
+}
+
+
+.moneyAll {
+  text-align: left;
+  font-size: 0.88rem;
+  padding-left: 2.5%;
+  margin-top: 0.63rem;
+  width: 60%;
+}
+
+.moneyAll>text {
+  display: block;
+  font-size: 0.75rem;
+}
+
+.moneyAll>text:first-child {
+  color: #9B9B9B;
+  text-decoration: line-through;
+  float: left;
+}
+
+.moneyAll>text:nth-child(2) {
+  color: #D85D27;
+  padding-right: 0.5rem;
+  float: left;
+  margin-left: 0.5rem;
+}
+
+.moneyAll>text:last-child {
+  font-size: 1rem;
+  font-weight: bold;
+  clear: both;
+}
+
+.btn {
+  width: 90%;
+  height: 2.69rem;
+  background: #D85D27;
+  border-radius: 1.34rem;
+  margin: 2rem auto 0;
+  line-height: 2.69rem;
+  color: #fff;
+}
+
+.btn_pay {
+  margin: 100rpx auto;
+  width: 600rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-radius: 100rpx;
+  background-color: #d3a95a;
+  color: #fff;
+  font-size: 36rpx;
+  text-align: center;
+}
+
+/* 支付密码css start */
+.bg_layer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9998;
+}
+
+.input_main {
+  position: fixed;
+  left: 10%;
+  top: 200rpx;
+  width: 80%;
+  height: 15.5rem;
+  background-color: #fff;
+  z-index: 9999;
+}
+
+.input_title {
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  font-size: 32rpx;
+  border-bottom: 1rpx solid #e2e2e2;
+}
+
+.input_back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 80rpx;
+  height: 90rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input_back text {
+  width: 20rpx;
+  height: 20rpx;
+  background-color: white;
+  border: 1rpx solid #aaa;
+  border-width: 5rpx 0 0 5rpx;
+  transform: rotate(-45deg);
+}
+
+.input_tip {
+  margin: 30rpx;
+  font-size: 0.88rem;
+  color: #333;
+  text-align: center;
+}
+
+/* 密码掩码模拟 */
+.input_row {
+  width: 90%;
+  margin: 0 auto;
+  height: 98rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1rpx solid #e2e2e2;
+  border-radius: 20rpx;
+}
+
+.input_row .pwd_item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border-right: 1rpx solid #e2e2e2;
+  position: relative;
+}
+
+.pwd_item:nth-last-of-type(1) {
+  border-right: 0;
+}
+
+.pwd_item text {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 30rpx;
+  background-color: #555;
+}
+
+
+.forget_pwd {
+  float: left;
+  margin: 30rpx;
+  text-align: right;
+  font-size: 24rpx;
+  color: #9B9B9B;
+}
+
+/* 文本输入框位置: 设置到左边隐藏 */
+.input_control {
+  position: relative;
+  left: -1200rpx;
+  bottom: 0;
+  width: 100rpx;
+  height: 100rpx;
+
+}

@@ -1,5 +1,7 @@
 <view class="mine" wx:if="{{flag}}">
 
+  <scroll-view scroll-y="auto" class="scroll">
+
   <image class="banner" src='/assets/WdBgBanner@2x.png'></image>
   <view class="headerTop" style="top:{{statusBarHeight+20}}px">
     <view class="header" bindtap="Personal" data-uuid="{{mineDetail.uuid}}">
@@ -83,7 +85,7 @@
       <text class="meBady" catchtap="invitationalList">我邀请的用户</text>
     </view>
   </view>
-
+</scroll-view>
 </view>
 
 <text class="officialTxt" wx:if="{{closeImg}}">为了您及时接收活动信息，请关注公众号！</text>
@@ -93,9 +95,21 @@
 
 
 
-<view class="userTk" wx:if="{{userTk==1}}">
+<view class="userTk" wx:if="{{userTk==1||userTk==2}}">
  <image class="close" bindtap="banner" src="../../assets/BtnDown@2x.png"></image>
- <image class="banner" src="../../assets/xinren.png"></image>
- <text class="text">{{userTkContent.RegistDate}}</text>
+ <image class="banner" wx:if="{{userTk==1}}" src="../../assets/xinren.png"></image>
+ <image class="banner" bindtap="btnBottom" style="height:34.39rem" wx:if="{{userTk==2}}" src="../../assets/hongbaochuang.png"></image>
+ <text class="text" wx:if="{{userTk==1}}">{{userTkContent.RegistDate}}</text>
+ <text class="moneyRadom"  wx:if="{{userTk==2}}">￥{{radomMoeny}}</text>
+</view>
+
+<view class="certificate" wx:if="{{userTk==0&&certificate==300}}">
+  <image src="../../assets/daijinquan.png" bindtap="contentTgp"></image>
+	<image src="../../assets/BtnDown@2x.png" bindtap="closeTorigin" ></image>
+</view>
+
+<view class="certificate" wx:if="{{userTk==0&&certificate==200}}">
+  <image src="../../assets/3d43d36326fde0ae4b111faf473ccf7.png" bindtap="contentTgp"></image>
+	<image src="../../assets/BtnDown@2x.png" bindtap="closeTorigin"></image>
 </view>
 

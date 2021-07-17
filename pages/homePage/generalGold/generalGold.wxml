@@ -1,81 +1,58 @@
 <view class="generaGold">
-  <view class="header">
-    <image src="/assets/PicBannerRw.png"></image>
-    <view class="center">
-      <image src="/assets/PicJinbi.png"></image>
-      <text>{{coins}}</text>
+  <view class="bannerGold">
+    <image src="../../../assets/backgroundGold.png"></image>
+    <view class="bannerTexr">
+      <text>{{goldNum}}</text>
+      <text>当前对手果</text>
     </view>
-    <text class="footer">对手果{{coins}}个</text>
+    <view class="rightTxt" bindtap="goldDetails">对手果明细</view>
   </view>
   <view class="content">
-    <image src="/assets/HomeBgRwlb.png"></image>
-    <view class="Son">
-      <view class="ul">
-        <view class="li">
-        <view class="yuan"></view>
-          <view class="liSon">
-            <text>签到<text style="font-size:0.75rem;color:#333333;">（每天一次)</text></text>
-            <text style="display:block;font-size:0.75rem;color:#D85D27;">+2.5个对手果/次</text>
+    <view class="contentSon">
+      <view class="title">对手果的用途</view>
+      <view class="son">
+        <view class="left">
+          <view class="leftTop">
+            <view class="dian"></view>
+            <text>可兑换为现金存入钱包</text>
           </view>
-          <view class="btnRight" bindtap="Sign" wx:if="{{isSign===0}}">签到</view>
-           <view class="btnRight" style="background:#D5D5D5;"  wx:if="{{isSign===1}}">已签到</view>
-        </view>
-        <view class="li">
-         <view class="yuan"></view>
-          <view class="liSon">
-            <text>发布活动<text style="font-size:0.75rem;color:#333333;"></text></text>
-            <text style="display:block;font-size:0.75rem;color:#D85D27;">+5个对手果/次（匹配成功后）</text>
-            <text style="display:block;font-size:0.75rem;color:#D85D27;">分享活动后，还有可能<text style="color:#D0021B;font-weight:bold;">0元免费玩</text></text>
+          <view class="leftBottom">
+            对手果>2000,兑换比例50:1
           </view>
-          <view class="btnRight">去发布</view>
         </view>
+        <view class="right" bindtap="money">去兑换</view>
 
-        <view class="li">
-         <view class="yuan"></view>
-          <view class="liSon" style="max-width:70%;">
-            <text>分享小程序<text style="font-size:0.75rem;color:#333333;"></text></text>
-            <text style="display:block;font-size:0.75rem;color:#D85D27;">+50个对手果/新注册用户</text>
-            <text style="display:block;font-size:0.75rem;color:#D85D27;">例:有20个新用户注册，您将获得<text style="color:#D0021B;font-weight:bold;">1000个对手果</text></text>
+      </view>
+
+      <view class="son">
+        <view class="left">
+          <view class="leftTop">
+            <view class="dian"></view>
+            <text>可兑换为场地费抵用券</text>
           </view>
-          <view class="btnRight">去分享</view>
-        </view>
-
-        <view class="li">
-         <view class="yuan"></view>
-          <view class="liSon">
-            <text>新增场馆<text style="font-size:0.75rem;color:#333333;"></text></text>
-            <text style="display:block;font-size:0.75rem;color:#D85D27;">+50个对手果/次（审核通过后）</text>
+          <view class="leftBottom">
+            对手果>100,兑换比例10:1
           </view>
-          <view class="btnRight">去新增</view>
         </view>
+        <view class="right" bindtap="redemption">去兑换</view>
+      </view>
 
-         <view class="li">
-          <view class="yuan"></view>
-          <view class="liSon">
-            <text>更正场馆信息<text style="font-size:0.75rem;color:#333333;"></text></text>
-            <text style="display:block;font-size:0.75rem;color:#D85D27;">+20个对手果/次（审核通过后）</text>
+      <view class="son">
+        <view class="left">
+          <view class="leftTop">
+            <view class="dian"></view>
+            <text>自动转换为技术分</text>
           </view>
-          <view class="btnRight">去更正</view>
-        </view>
-
-        
-         <view class="li">
-          <view class="yuan"></view>
-          <view class="liSon">
-            <text>意见反馈<text style="font-size:0.75rem;color:#333333;"></text></text>
-            <text style="display:block;font-size:0.75rem;color:#D85D27;">+20个对手果/条(被认为是建设性意见)</text>
+          <view class="leftBottom">
+            当某项运动技术分小于5时，系统自动将10枚对手果转换为10技术分，对手果不足10时，则无法转换。
           </view>
-          <view class="btnRight">去反馈</view>
+         
         </view>
-
-
       </view>
 
 
     </view>
 
   </view>
-
-
 
 </view>

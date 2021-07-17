@@ -2,7 +2,7 @@
 	<view class="head">
 
 		<view class="leftText">
-			入账金额
+			{{moneyInfo.InOrOut==1?'入账金额':'出账金额'}}
 		</view>
 		<view class="money" style="{{moneyInfo.InOrOut==1?'color:#D85D27;':''}}">
 			{{moneyInfo.InOrOut==1?'+'+moneyInfo.Money:moneyInfo.Money}}

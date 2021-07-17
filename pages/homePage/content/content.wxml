@@ -1,9 +1,8 @@
 <!--index.wxml-->
 <view class="content" bindtap='itemSelectionH'>
 	<view class="headerCity" style="padding-top:{{statusBarHeight}}px">
-		<!-- bindtap='cityList' -->
-		<text>{{selectCity}}</text>
-		<!-- <image class="image" src='/assets/HomeIconJt@2x.png'></image> -->
+		<text bindtap='cityList'>{{selectCity}}</text>
+		<image class="image" src='/assets/HomeIconJt@2x.png'></image>
 		<view class="inputBox" bindtap='inputS'>
 			<image style='display:block;width:0.8rem;height:0.8rem;margin:0.5rem 0 0 0.45rem;float:left;'
 				src='/assets/SearchIcon@2x.png'></image>
@@ -59,10 +58,10 @@
 			<text>报名偏好</text>
 			<!-- bindtap="signUp" -->
 		</view>
-		<view bindtap="forbade">
+		<view bindtap="generaGold">
 			<image src='/assets/HomeIconJinbi@2x.png'></image>
 			<text>赢对手果</text>
-			<!-- bindtap="generaGold" -->
+			
 		</view>
 
 		<!--<view bindtap="forbade">
@@ -360,4 +359,17 @@
 	</view>
 
 </view>
+
+<view class="certificate" wx:if="{{certificate==300}}">
+  <image src="../../../assets/daijinquan.png" bindtap="contentTgp"></image>
+	<image src="../../../assets/BtnDown@2x.png" bindtap="closeTorigin" ></image>
+</view>
+
+<view class="certificate" wx:if="{{certificate==200}}">
+  <image src="../../../assets/3d43d36326fde0ae4b111faf473ccf7.png" bindtap="contentTgp"></image>
+	<image src="../../../assets/BtnDown@2x.png" bindtap="closeTorigin"></image>
+</view>
+
+
+
 

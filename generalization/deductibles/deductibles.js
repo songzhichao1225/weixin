@@ -47,7 +47,7 @@ Page({
       "page":this.data.page
     }, "post",
     (res) => {
-
+ 
       if (show == true) {
         var data = [...this.data.list, ...res.data.data]
         if (res.data.data.length == 0) {
@@ -101,9 +101,6 @@ Page({
     let index=e.currentTarget.dataset.index
     let num=e.currentTarget.dataset.num
     let number=e.currentTarget.dataset.number
-    
-   
-    
     if(money>this.data.siteMoney){
       wx.showToast({
         title: '场地费满'+money+'可用',

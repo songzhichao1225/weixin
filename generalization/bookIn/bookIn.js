@@ -12,8 +12,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({option:options})
-    console.log(options)
+    if(options.hood==2){
+      this.setData({option:options,flag:1})
+    }else{
+      this.setData({option:options,flag:0})
+    }
   },
 
   detal:function(e){

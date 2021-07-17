@@ -207,7 +207,6 @@ Page({
 
 
   onLoad: function (options) {
-
     this.setData({
       look: options.look,
       ko: options.ko,
@@ -334,7 +333,7 @@ Page({
 
             util.Request("/api/userAddActivity_ADD", obj, "post", //发布踢馆活动
               (resTwo) => {
-                
+
                 wx.hideLoading()
                 if (resTwo.data.code == 2000) {
                   var wxPay = resTwo.data.data.sign_data.sign_data
@@ -348,7 +347,7 @@ Page({
                       wx.navigateTo({
                         url: '/generalization/createSuccess/createSuccess?inviteId=' + resTwo.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + app.globalData.Refereegrade + '&status=1' + '&lr=' + wx.getStorageSync('bookinSix').data[0].lr,
                       })
-                      
+
                     },
                     'fail': function (res) {},
 
@@ -402,14 +401,14 @@ Page({
               openID: wx.getStorageSync('openid'),
               openPrice: app.globalData.openPrice,
               lr: app.globalData.lr,
-              PipeMain:0
+              PipeMain: 0
             }
 
             util.Request("/api/userAddActivity_ADD", obj, "post",
               (resTwo) => {
                 wx.hideLoading()
                 if (resTwo.data.code == 2000) {
-                
+
                   var wxPay = resTwo.data.data.sign_data.sign_data
                   wx.requestPayment({
                     'timeStamp': wxPay.timeStamp.toString(),
@@ -418,7 +417,7 @@ Page({
                     'signType': 'MD5',
                     'paySign': wxPay.sign,
                     'success': function (res) {
-                      
+
                       wx.navigateTo({
                         url: '/generalization/createSuccess/createSuccess?inviteId=' + resTwo.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + app.globalData.refereefee + '&status=1' + '&lr=' + app.globalData.lr,
                       })
@@ -485,19 +484,19 @@ Page({
                   },
                   'fail': function (res) {},
                 })
-              }else if(res.data.code==4004){
+              } else if (res.data.code == 4004) {
                 wx.showToast({
-                  title:'请去APP实名认证',
+                  title: '请去APP实名认证',
                   icon: 'none',
                   duration: 1500,
-                  mask: true 
+                  mask: true
                 })
               } else {
                 wx.showToast({
                   title: res.data.msg,
                   icon: 'none',
                   duration: 1500,
-                  mask: true 
+                  mask: true
                 })
               }
 
@@ -534,7 +533,7 @@ Page({
                     siteUid: app.globalData.siteUid,
                     StartTime: app.globalData.StartTime,
                     PlayTime: app.globalData.PlayTime,
-                    SiteMoney: app.globalData.SiteMoney - this.data.volumeMoney,
+                    SiteMoney: app.globalData.SiteMoney,
                     PaySiteMoneyType: app.globalData.PaySiteMoneyType,
                     teamSex: app.globalData.teamSex,
                     LevelMin: app.globalData.LevelMin,
@@ -572,7 +571,7 @@ Page({
                         wx.navigateTo({
                           url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + app.globalData.refereefee + '&status=1' + '&lt=' + app.globalData.lr,
                         })
-                      }else if(res.data.code==4004){
+                      } else if (res.data.code == 4004) {
                         wx.showToast({
                           title: '请去APP实名认证',
                           icon: 'none',
@@ -602,7 +601,7 @@ Page({
                     siteUid: app.globalData.siteUid,
                     StartTime: app.globalData.StartTime,
                     PlayTime: app.globalData.PlayTime,
-                    SiteMoney: app.globalData.SiteMoney - this.data.volumeMoney,
+                    SiteMoney: app.globalData.SiteMoney,
                     PaySiteMoneyType: app.globalData.PaySiteMoneyType,
                     teamSex: app.globalData.teamSex,
                     LevelMin: app.globalData.LevelMin,
@@ -626,7 +625,7 @@ Page({
                     Insurance: this.data.checkedFlag == true ? '1' : '0',
                     openPrice: app.globalData.openPrice,
                     lr: app.globalData.lr,
-                    PipeMain:0
+                    PipeMain: 0
                   }
 
                   util.Request("/api/userAddActivity_ADD", obj, "post",
@@ -646,11 +645,11 @@ Page({
                           key: 'bookinFour'
                         })
 
-                      
+
                         wx.navigateTo({
                           url: '/generalization/createSuccess/createSuccess?inviteId=' + res.data.data.uuid + '&Identification=1' + '&typeInfo=0' + '&referee=' + res.data.data.referee + '&status=1' + '&time=' + res.data.data.CreateTime,
                         })
-                      }else if(res.data.code==4004){
+                      } else if (res.data.code == 4004) {
                         wx.showToast({
                           title: '请去APP实名认证',
                           icon: 'none',
@@ -778,6 +777,8 @@ Page({
           hbmedetail: this.data.hbmedetail,
           hbMoney: this.data.hbMoney,
           openID: wx.getStorageSync('openid'),
+          openPrice: app.userReserveVenue.openPrice,
+          lr: app.userReserveVenue.lr,
         }
         util.Request("/api/userReserveVenue", obj, "post",
           (res) => {
@@ -835,7 +836,9 @@ Page({
                 hbmedetail: this.data.hbmedetail,
                 hbMoney: this.data.hbMoney,
                 breakup: app.userReserveVenue.sportType == 22 || app.userReserveVenue.sportType == 24 ? app.userReserveVenue.breakup : '',
-                SiteSumMoney: app.userReserveVenue.SiteSumMoney
+                SiteSumMoney: app.userReserveVenue.SiteSumMoney,
+                openPrice: app.userReserveVenue.openPrice,
+                lr: app.userReserveVenue.lr,
               }
               util.Request("/api/userReserveVenue", obj, "post",
                 (res) => {
@@ -907,7 +910,7 @@ Page({
   },
   //支付
   payTo: function () {
-   
+
 
     if (this.data.look == 2 || this.data.organization == 0) {
 
@@ -926,18 +929,42 @@ Page({
             mask: true
           })
         } else {
-          this.showInputLayer();
+          util.Request("/api/checkIsPutMoneyPwd", {small:1}, "post",
+            (res) => {
+              if (res.data.code == 2000) {
+                this.showInputLayer();
+              } else if (res.data.code == 4002) {
+                wx.showModal({
+                  title: '温馨提示',
+                  confirmText: '去设置',
+                  content: '您还没有设置提现密码，现在去设置吗？',
+                  success(res) {
+                    if (res.confirm) {
+                      wx.navigateTo({
+                        url: '/generalization/paymentCode/paymentCode'
+                      })
+                    } else if (res.cancel) {}
+                  }
+                })
+              }
+
+            },
+            () => {
+              console.log("失败")
+            },
+            () => {}
+          )
         }
       }
     } else {
-      if(this.data.compensates == false ){
+      if (this.data.compensates == false) {
         wx.showToast({
           title: '请仔细阅读费用说明并勾选补偿金选项',
           icon: 'none',
           duration: 2000,
           mask: true
         })
-      }else{
+      } else {
         if (this.data.current == 1) {
           wx.showLoading({
             title: '获取中~',
@@ -953,12 +980,36 @@ Page({
               mask: true
             })
           } else {
-            this.showInputLayer();
+            util.Request("/api/checkIsPutMoneyPwd", {small:1}, "post",
+            (res) => {
+              if (res.data.code == 2000) {
+                this.showInputLayer();
+              } else if (res.data.code == 4002) {
+                wx.showModal({
+                  title: '温馨提示',
+                  confirmText: '去设置',
+                  content: '您还没有设置提现密码，现在去设置吗？',
+                  success(res) {
+                    if (res.confirm) {
+                      wx.navigateTo({
+                        url: '/generalization/paymentCode/paymentCode'
+                      })
+                    } else if (res.cancel) {}
+                  }
+                })
+              }
+
+            },
+            () => {
+              console.log("失败")
+            },
+            () => {}
+          )
           }
         }
       }
 
-     
+
 
     }
 
@@ -966,7 +1017,7 @@ Page({
   },
   deductibles() {
     wx.navigateTo({
-      url: '/generalization/deductibles/deductibles?siteMoney=' + this.data.getElplainInfo.field + '&offsetquota=' + this.data.getElplainInfo.offsetquota,
+      url: '/generalization/deductibles/deductibles?siteMoney=' + this.data.getElplainInfo.siteMoney + '&offsetquota=' + this.data.getElplainInfo.offsetquota,
     })
   },
   previewImage: function (e) {
@@ -991,14 +1042,14 @@ Page({
         volumedetail: app.deductibles.volumedetail,
         volumeMoney: app.deductibles.moneyNum.toFixed(2),
         exemption: (app.deductibles.moneyNum + Number(this.data.hbMoney)).toFixed(2),
-        Moneytotal: (this.data.getElplainInfo.Total - app.deductibles.moneyNum-this.data.hbMoney) < 0 ? '0.01' : (this.data.getElplainInfo.Total - app.deductibles.moneyNum-this.data.hbMoney).toFixed(2)
+        Moneytotal: (this.data.getElplainInfo.Total - app.deductibles.moneyNum - this.data.hbMoney) < 0 ? '0.01' : (this.data.getElplainInfo.Total - app.deductibles.moneyNum - this.data.hbMoney).toFixed(2)
       })
     } else {
       this.setData({
         volumedetail: '',
         volumeMoney: 0.00,
         exemption: Number(this.data.hbMoney).toFixed(2),
-        Moneytotal: (this.data.getElplainInfo.Total-this.data.hbMoney - 0) < 0 ? '0.01' : (this.data.getElplainInfo.Total-this.data.hbMoney - 0).toFixed(2)
+        Moneytotal: (this.data.getElplainInfo.Total - this.data.hbMoney - 0) < 0 ? '0.01' : (this.data.getElplainInfo.Total - this.data.hbMoney - 0).toFixed(2)
       })
     }
     if (app.envelope != undefined && app.envelope.length != 0) {
@@ -1013,11 +1064,13 @@ Page({
         hbmedetail: '',
         hbMoney: 0.00,
         exemption: Number(this.data.volumeMoney).toFixed(2),
-        Moneytotal: (this.data.getElplainInfo.Total - this.data.volumeMoney -0) <= 0 ? '0.01' : (this.data.getElplainInfo.Total - this.data.volumeMoney - 0).toFixed(2)
+        Moneytotal: (this.data.getElplainInfo.Total - this.data.volumeMoney - 0) <= 0 ? '0.01' : (this.data.getElplainInfo.Total - this.data.volumeMoney - 0).toFixed(2)
       })
     }
-    if(app.deductibles.length == 0&&app.envelope.length==0){
-      this.setData({Moneytotal:'0.00'})
+    if (app.deductibles.length == 0 && app.envelope.length == 0) {
+      this.setData({
+        Moneytotal: '0.00'
+      })
     }
 
 

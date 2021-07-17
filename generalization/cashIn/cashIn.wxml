@@ -1,0 +1,37 @@
+<view class="cashIn">
+	<view class="backgroundGold">
+    <view class="backgroundTxt">
+			<text>{{goldNum}}</text>
+			<text>当前对手果</text>
+		</view>
+	</view>
+	<view class="text"><text>请输入要兑换成现金的对手果</text><text>(50的倍数)</text></view>
+	<input type="number" class="input" bindinput="input" value="{{input}}" placeholder="请输入对手果" />
+	<view class="textTwo"><text>兑换比例50:1</text><text bindtap="clickAll">全部兑换</text></view>
+
+	<button class="btnComfir" bindtap="btnComfir">确定</button>
+
+
+	<view wx:if='{{showPayPwdInput}}'>
+		<view class='bg_layer'></view>
+		<view class='input_main'>
+			<view class='input_title'>
+				<view class='input_back' catchtap='close'><text></text></view>
+				<text>请输入支付密码</text>
+			</view>
+			<view class='input_tip'><text>将扣除对手果</text></view>
+			<view class='input_tip'><text style="font-size:1rem">{{input}}</text></view>
+			<view class='input_row' catchtap='getFocus'>
+				<view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
+					<text wx:if='{{pwdVal.length>i}}'></text>
+				</view>
+			</view>
+			<view class='forget_pwd' catchtap="kop">忘记支付密码？</view>
+			<input class='input_control' value="{{pwdVal}}" password type='number' focus='{{payFocus}}' bindinput='inputPwd'
+				maxlength='6' />
+		</view>
+	</view>
+
+
+
+</view>

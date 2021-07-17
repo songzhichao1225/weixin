@@ -11,7 +11,6 @@ App({
 
   onLaunch: function () {
     var util = require("utils/util.js");
-    var bmap = require("utils/bmap-wx.min.js");
 
     const updateManager = wx.getUpdateManager()
     updateManager.onCheckForUpdate(function (res) {
@@ -67,6 +66,5 @@ App({
     statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
     selected:0,
     Invite_code:'',
-    
-  }
+  },
 })

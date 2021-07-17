@@ -33,9 +33,67 @@ Page({
     flagClick: false,
     checkedTwoyou: 0,
     rule: '',
-    ruleFlag: false
+    ruleFlag: false,
+    certificate:0
   },
 
+  contentTgp:function(){
+    util.Request("/api/AddOffsetRoll", {uuid:wx.getStorageSync('uuid')}, "post",
+    (res) => {
+      if(res.data.code==2000){
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'success',
+          duration: 1500,
+          mask: true
+        })
+        this.setData({
+          certificate: 0
+        })
+      }else{
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none',
+          duration: 1500,
+          mask: true
+        })
+      }
+      
+
+    },
+    () => {},
+    () => {
+
+    }
+  )
+  },
+
+
+
+  closeTorigin:function(){
+    this.setData({certificate:0})
+  },
+  duration:function(){
+    let that=this
+    wx.showModal({
+      title: '温馨提示',
+      content: '续时，请您先跟场馆方确定有无空闲场地！',
+      cancelText:'无场地',
+      confirmText:'有场地',
+      success (res) {
+        if (res.confirm) {
+          wx.navigateTo({
+            url: '/generalization/duration/duration?uuid='+that.data.activitiesData.uuid+'&endTimes='+that.data.activitiesData.endTimes,
+          })
+        } else if (res.cancel) {
+
+        }
+      }
+    })
+  
+
+    
+  },
   ruleFlag: function () {
     this.setData({
       ruleFlag: false
@@ -496,6 +554,8 @@ Page({
           () => {}
         )
 
+        
+
         wx.hideLoading()
       },
       () => {
@@ -504,6 +564,19 @@ Page({
       () => {}
     )
 
+
+    
+    
+        util.Request("/api/frame", {}, "post",
+        (res) => {
+          this.setData({certificate:res.data.other})
+          wx.hideLoading()
+        },
+        () => {},
+        () => {
+
+        }
+      )
 
 
 
@@ -1069,6 +1142,7 @@ Page({
   //用户报名
   userSignUp: function (e) {
 
+    
     let that = this
     if (e.currentTarget.dataset.team == 1) {
       var teamText = 'A队'
@@ -1160,6 +1234,7 @@ Page({
                               CreateTime: that.data.activitiesData.CreateTime,
                               pos: index.toString(),
                               organization: that.data.activitiesData.SportMode == 3 ? 0 : that.data.activitiesData.ifMustSign,
+                              teamText:teamText
                             }
                             that.setData({
                               flagClick: false
@@ -1176,6 +1251,7 @@ Page({
                                   'pos': 0
                                 }, "post",
                                 (res) => {
+                                  app.globalData.teamText='陪练方'
                                   if (res.data.code == 2000) {
                                     wx.navigateTo({
                                       url: '/generalization/createSuccess/createSuccess?inviteId=' + that.data.activitiesData.uuid + '&Identification=2' + '&typeInfo=0' + '&referee=0' + '&status=1' + '&time=' + app.globalData.CreateTime,
@@ -1188,7 +1264,7 @@ Page({
                                       mask: true
                                     })
                                   }
-                                  this.setData({
+                                  that.setData({
                                     flagClick: false
                                   })
   
@@ -1240,22 +1316,8 @@ Page({
               },
               () => {}
             )
-
-
-
-
-
-
-
-
-
-             
-
-            
-
-
-            
             } else {
+             
               wx.showToast({
                 title: resSix.data.msg,
                 icon: 'none',

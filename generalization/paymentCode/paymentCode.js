@@ -32,8 +32,6 @@ Page({
         duration: 1500,
         mask: true
       })
-
-
     } else {
       util.request("/api/toSendCode", {
           'mobile': wx.getStorageSync('phone')==''?wx.getStorageSync('telephone'):wx.getStorageSync('phone'),
@@ -44,12 +42,12 @@ Page({
             this.setData({
               text: 60
             })
-            setInterval(() => {
+            let time=setInterval(() => {
               if (this.data.text == 0) {
                 this.setData({
                   text: '获取验证码'
                 })
-                clearInterval()
+                clearInterval(time)
               } else {
                 this.setData({
                   text: this.data.text - 1
@@ -90,7 +88,7 @@ Page({
   },
   submit: function () {
     util.request("/api/checkCodeIsTrue", {
-        'mobile': wx.getStorageSync('phone'),
+        'mobile': wx.getStorageSync('phone')==''?wx.getStorageSync('telephone') :wx.getStorageSync('phone'),
         'code': this.data.codeNum,
         'type': 'putMoney'
       }, "post",

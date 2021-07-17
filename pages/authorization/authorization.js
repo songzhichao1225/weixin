@@ -9,7 +9,6 @@ Page({
     uuid: '',
     binding: '',
     authorization: 0,
-    Invite_code: '',
     wxImage: '',
     avatarImg: '',
     ak: "ElFBk4MF87qZXoiLbD0zofEmZIS6bHT2", //申请到的ak
@@ -18,7 +17,7 @@ Page({
 
 
   onLoad: function (option) {
-
+   console.log(app.globalData.Invite_code)
     let that=this
     let BMap = new bmap.BMapWX({
       ak: that.data.ak
@@ -30,7 +29,8 @@ Page({
         markers: wxMarkerData,
         district: data.originalData.result.addressComponent.district,
         province: data.originalData.result.addressComponent.province,
-        city: data.originalData.result.addressComponent.city
+        city: data.originalData.result.addressComponent.city,
+        
       })
     }
 
@@ -46,10 +46,6 @@ Page({
     query.select('#name').boundingClientRect()
     query.selectViewport().scrollOffset()
     query.exec(function (res) {})
-    this.setData({
-      Invite_code: app.globalData.Invite_code
-    })
-
     if (wx.getStorageSync('TrialPickerF') == '') {
       wx.setStorage({
         key: 'TrialPickerF',
@@ -116,7 +112,6 @@ Page({
   },
 
   getUserProfile: function () {
-
     if (wx.getStorageSync('token')) {
       util.request("/api/wechatLogin", {
           'uid': wx.getStorageSync('unionid'),
@@ -161,9 +156,9 @@ Page({
       )
 
     } else {
-
+     
       wx.getUserProfile({
-        desc: '用于小程序展示头像昵称',
+        desc: '用于小程序展示头像昵称', 
         success: (res) => {
           this.setData({
             avatarUrl: res.userInfo.avatarUrl,
@@ -322,7 +317,7 @@ Page({
                       util.request("/api/getbindmobile", {
                           'mobile': wx.getStorageSync('phone'),
                           'wechatid': wx.getStorageSync('unionid'),
-                          'Invitation': that.data.Invite_code,
+                          'Invitation': app.globalData.Invite_code,
                           'imgURL': res.data.data.imgURL,
                           'nickname': res.data.data.nickname,
                           'residence': that.data.province + ',' + that.data.city+ ',' + that.data.district,

@@ -90,7 +90,7 @@
 					<view class="lstHead">{{item.nickname}}
 						<image src="/assets/sex0@2x.png"></image>
 					</view>
-					<text class="lstTwo"> <text style="color:#D85D27;font-weight:500;">{{item.SportMode}}</text>
+					<text class="lstTwo"> <text style="color:#D85D27;font-weight:500;">{{item.SportModeTwo}}</text>
 					<text style="padding-left:1rem;">{{item.sportName}}</text>
 					<text style="padding-left:1rem;">{{item.sportTypeName}}</text></text>
 					<text><text wx:if="{{item.term_validity==0}}">{{item.startDays}}</text>
@@ -102,9 +102,9 @@
 					<text>{{item.sitesName}}</text>
 					<view class="cost">
 					<text style='margin:0;'>场地费:{{item.SportMode=='仅预订场馆'?'发布者买单':item.PaySiteMoneyType==1?'AA':item.PaySiteMoneyType==2?'输方买单':'练习方买单'}}</text>
-					<text wx:if="{{item.MoneyPerhour!=0}}">陪练费:￥{{item.MoneyPerhour}}</text>
-					<text wx:if="{{item.IsPublisher==0}}">入场费:￥{{item.Tips}}/人</text>
-					<text wx:if="{{item.IsPublisher==1}}">出场费:￥{{item.Tips}}/人</text>
+					<text wx:if="{{item.SportMode==3&&item.organization!=1||item.SportMode==4&&item.organization!=1}}">陪练费:￥{{item.MoneyPerhour}}</text>
+					<text wx:if="{{item.IsPublisher==0&&item.SportMode!=3&&item.SportMode!=4&&item.reserve!=1&&item.organization!=1}}">入场费:￥{{item.Tips}}/人</text>
+					<text wx:if="{{item.IsPublisher==1&&item.SportMode!=3&&item.SportMode!=4&&item.reserve!=1&&item.organization!=1}}">出场费:￥{{item.Tips}}/人</text>
 					<!-- <text wx:if="{{item.organizations!=0}}">组织费:￥{{item.organizations}}</text> -->
 					<text>{{item.range}}</text>
 				</view>

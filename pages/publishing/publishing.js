@@ -16,7 +16,7 @@ Page({
     sportNameFour: '请选择', //一级分类名称
     sportypeNameFour: '', //二级分类名称
 
-    sportIdFive: '', //一级分类id
+    sportIdFive: '', //一级分类idreleaseTwo
     sportTypeFive: '', //二级分类id
     sportNameFive: '请选择', //一级分类名称
     sportypeNameFive: '', //二级分类名称
@@ -271,7 +271,48 @@ Page({
     cbotContentCloas: false,
     rule: '',
     ruleFlag: false,
+    certificate: 0
   },
+
+  closeTorigin: function () {
+    this.setData({
+      certificate: 0
+    })
+  },
+
+  contentTgp: function () {
+    util.Request("/api/AddOffsetRoll", {
+        uuid: wx.getStorageSync('uuid')
+      }, "post",
+      (res) => {
+        if (res.data.code == 2000) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'success',
+            duration: 1500,
+            mask: true
+          })
+          this.setData({
+            certificate: 0
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 1500,
+            mask: true
+          })
+        }
+
+
+      },
+      () => {},
+      () => {
+
+      }
+    )
+  },
+
 
   checkedTwoyou: function () {
     if (this.data.checkedTwoyou == 0) {
@@ -381,6 +422,7 @@ Page({
         this.setData({
           bannerTop: [res.data.data]
         })
+       
       },
       () => {
         console.log("失败")
@@ -1134,16 +1176,9 @@ Page({
       this.setData({
         mode: this.data.array[e.detail.value].name,
         modeNum: Number(e.detail.value) + 1,
+        shouldered: this.data.array[e.detail.value].name == '娱乐模式' ? 'AA' : 'AA'
       })
-      if (this.data.array[e.detail.value].name == '我找陪练') {
-        this.setData({
-          rank: 4 + '-' + 10 + '级'
-        })
-        wx.setStorage({
-          key: 'rankF',
-          data: 4 + '-' + 10 + '级',
-        })
-      }
+
       if (this.data.array[e.detail.value].name != '竞技模式') {
         this.setData({
           TrialNum: '0人',
@@ -1161,26 +1196,7 @@ Page({
         data: Number(e.detail.value) + 1,
       })
     }
-    if (this.data.array[e.detail.value].name === '我找陪练' || this.data.array[e.detail.value].name === '我是陪练' && this.data.tips == '') {
 
-      util.request("/api/getAccmoney", {
-          'grade': '4',
-          'CityName': wx.getStorageSync('cityInfo'),
-          'SportId': this.data.sportId,
-          'PlayTime': parseFloat(wx.getStorageSync('bookin').data[0].placeTimeLen),
-          'SiteMoney': wx.getStorageSync('bookin').data[0].placeMoney
-        }, "post",
-        (res) => {
-          this.setData({
-            tips: res.data.data
-          })
-        },
-        () => {
-          console.log("失败")
-        },
-        () => {}
-      )
-    }
   },
 
 
@@ -2298,7 +2314,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportId + '&sporttype=' + this.data.sportType + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flagTwo=1'+'&hood=1',
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportId + '&sporttype=' + this.data.sportType + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flagTwo=1' + '&hood=1',
       })
     }
   },
@@ -2313,7 +2329,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdTwo + '&sporttype=' + this.data.sportTypeTwo + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flagTwo=1'+'&hood=2',
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdTwo + '&sporttype=' + this.data.sportTypeTwo + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flagTwo=1' + '&hood=2',
       })
     }
   },
@@ -2328,7 +2344,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdThree + '&sporttype=' + this.data.sportTypeThree + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token')+ '&flagTwo=2' + '&hood=3',
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdThree + '&sporttype=' + this.data.sportTypeThree + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flagTwo=2' + '&hood=3',
       })
     }
   },
@@ -2372,7 +2388,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdSix + '&sporttype=' + this.data.sportTypeSix + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token')+ '&flagTwo=2' + '&hood=6',
+        url: '/generalization/bookIn/bookIn?sportid=' + this.data.sportIdSix + '&sporttype=' + this.data.sportTypeSix + '&siteuid=' + e.currentTarget.dataset.uid + '&token=' + wx.getStorageSync('token') + '&flagTwo=2' + '&hood=6',
       })
     }
   },
@@ -2489,7 +2505,7 @@ Page({
         SiteSumMoney: sumMoneyFour,
         openPrice: wx.getStorageSync('bookinFour').data[0].openPrice,
       }
-
+      app.globalData.teamText = '陪练方'
       util.Request("/api/userAddtrainee", obj, "post",
         (res) => {
           if (res.data.code == 2000) {
@@ -2631,13 +2647,14 @@ Page({
         Agemax: ageFive == '不限' ? '70' : parseFloat(ageFive.split('-')[1]),
         SiteSumMoney: sumMoneyFive,
         name: '我找陪练',
+        teamText: '练习方',
         openPrice: wx.getStorageSync('bookinFive').data[0].openPrice,
         lr: wx.getStorageSync('bookinFive').data[0].lr,
         organization: 0
       }
       app.globalData = obj
       app.deductibles = []
-      app.envelope
+      app.envelope = []
       wx.navigateTo({
         url: '/generalization/payFor/payFor?look=1',
       })
@@ -2653,8 +2670,27 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
+    app.envelope = []
+    app.deductibles = []
+
+
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];
+
+
+    util.Request("/api/frame", {}, "post",
+    (res) => {
+      this.setData({
+        certificate: res.data.other
+      })
+      wx.hideLoading()
+    },
+    () => {},
+    () => {
+
+    }
+  )
 
     ///////运动伙伴
     if (wx.getStorageSync('bookin') != '' && this.data.indexSw == 0) {
@@ -3695,8 +3731,8 @@ Page({
       TrialRader: wx.getStorageSync('TrialRaderF') == '' ? '三级' : wx.getStorageSync('TrialRaderF'),
       TrialRaderThree: wx.getStorageSync('TrialRaderFThree') == '' ? '三级' : wx.getStorageSync('TrialRaderFThree'),
       TrialRaderSix: wx.getStorageSync('TrialRaderFSix') == '' ? '三级' : wx.getStorageSync('TrialRaderFSix'),
-      shouldered: wx.getStorageSync('shoulderedF') == '' ? 'AA' : wx.getStorageSync('shoulderedF'),
-      shoulderedThree: wx.getStorageSync('shoulderedFThree'),
+      shouldered: wx.getStorageSync('mode') == '娱乐模式' ? 'AA' : wx.getStorageSync('shoulderedF'),
+      shoulderedThree: wx.getStorageSync('modeThree') == '娱乐模式' ? 'AA' : wx.getStorageSync('shoulderedFThree'),
     })
 
 
@@ -4805,35 +4841,9 @@ Page({
       //     () => {}
       //   )
       // }
-      util.Request("/api/getjudgeTime", {
-          StartTime: startTime + ' ' + timer,
-          PlayTime: parseFloat(timeLen),
-          SportId: sportId,
-          SportMode: modeNum,
-          venueid: venueid,
-          siteUid: siteid,
-          sportType: sportType
-        }, "post",
-        (res) => {
-          if (res.data.code == 2000) {
-            wx.navigateTo({
-              url: '/generalization/payFor/payFor?look=1',
-            })
-          } else {
-            wx.showToast({
-              title: res.data.msg,
-              icon: 'none',
-              duration: 1500,
-              mask: true
-            })
-          }
-
-        },
-        () => {
-          console.log("失败")
-        },
-        () => {}
-      )
+      wx.navigateTo({
+        url: '/generalization/payFor/payFor?look=1',
+      })
 
 
 

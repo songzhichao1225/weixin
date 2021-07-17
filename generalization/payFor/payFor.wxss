@@ -339,7 +339,6 @@ page {
   font-size: 0.75rem;
   padding: 0 2.5%;
 }
-
 .insurance>text {
   float: right;
   line-height: 2.63rem;

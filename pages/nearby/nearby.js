@@ -82,8 +82,46 @@
      bigShotList: [],
      topScroll: 'dfgrfg',
      timeOut: true,
+     certificate: 0
    },
 
+   closeTorigin: function () {
+     this.setData({
+       certificate: 0
+     })
+   },
+
+   contentTgp: function () {
+     util.Request("/api/AddOffsetRoll", {
+         uuid: wx.getStorageSync('uuid')
+       }, "post",
+       (res) => {
+         if (res.data.code == 2000) {
+           wx.showToast({
+             title: res.data.msg,
+             icon: 'success',
+             duration: 1500,
+             mask: true
+           })
+           this.setData({
+             certificate: 0
+           })
+         } else {
+           wx.showToast({
+             title: res.data.msg,
+             icon: 'none',
+             duration: 1500,
+             mask: true
+           })
+         }
+
+       },
+       () => {},
+       () => {
+
+       }
+     )
+   },
 
 
    list(show) {
@@ -96,8 +134,8 @@
          sportid: this.data.arraySport[Number(this.data.Sport)].id,
          distance: this.data.arrayDistance[Number(this.data.Distance)].id,
          type: this.data.type,
-         mylat: wx.getStorageSync('lat')==''?'39.90997893717994':wx.getStorageSync('lat'),
-         mylng: wx.getStorageSync('lng')==''?'116.65714059554433':wx.getStorageSync('lng')
+         mylat: wx.getStorageSync('lat') == '' ? '39.90997893717994' : wx.getStorageSync('lat'),
+         mylng: wx.getStorageSync('lng') == '' ? '116.65714059554433' : wx.getStorageSync('lng')
        }, "post",
        (res) => {
 
@@ -155,6 +193,7 @@
      this.setData({
        img: util.API,
      })
+     
 
    },
 
@@ -363,6 +402,20 @@
      this.setData({
        page: 1
      })
+     if (wx.getStorageSync('token')) {
+      util.Request("/api/frame", {}, "post",
+        (res) => {
+          this.setData({
+            certificate: res.data.other
+          })
+          wx.hideLoading()
+        },
+        () => {},
+        () => {
+
+        }
+      )
+}
      this.list()
      if (typeof this.getTabBar === 'function' &&
        this.getTabBar()) {

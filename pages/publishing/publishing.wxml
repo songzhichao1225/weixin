@@ -1523,13 +1523,15 @@
 
 
 
-
-
-
-
-
-<view class="timeOut" wx:if="{{timeOut==false}}">
-	<image src="../../assets/timeOut.png"></image>
-	<text>登录后发布活动</text>
-	<button class="timeBtn" bindtap="timeOut">立即登录</button>
+<view class="certificate" wx:if="{{certificate==300}}">
+  <image src="/assets/daijinquan.png" bindtap="contentTgp"></image>
+	<image src="/assets/BtnDown@2x.png" bindtap="closeTorigin" ></image>
 </view>
+
+<view class="certificate" wx:if="{{certificate==200}}">
+  <image src="/assets/3d43d36326fde0ae4b111faf473ccf7.png" bindtap="contentTgp"></image>
+	<image src="/assets/BtnDown@2x.png" bindtap="closeTorigin"></image>
+</view>
+
+
+

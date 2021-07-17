@@ -31,6 +31,7 @@ Page({
       ok:options.ok,
       lr:options.lr,
     })
+    console.log(app.globalData.teamText)
     wx.removeStorage({
       key: 'bookinThree',
     })
@@ -85,7 +86,7 @@ Page({
     this.setData({ruleFlag:false})
   },
   detailRules: function () {
-    util.Request("/api/getDepositRule", {type:this.data.text.black.indexOf('练习方')!=-1?3:1}, "get",
+    util.Request("/api/getDepositRule", {type:app.globalData.teamText=='练习方'||app.globalData.teamText=='陪练方'?3:1}, "get",
       (res) => {
         this.setData({rule:res.data.data.rule,ruleFlag:true})
       },

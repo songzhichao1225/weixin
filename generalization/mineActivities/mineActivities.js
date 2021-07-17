@@ -32,15 +32,15 @@ Page({
         let projectDataNow = res.data.data.publicLst
         for (let i in projectDataNow) {
           if(projectDataNow[i].SportMode == '1'&&projectDataNow[i].reserve==1){
-            projectDataNow[i].SportMode = '仅预订场馆'
+            projectDataNow[i].SportModeTwo = '仅预订场馆'
           }else if (projectDataNow[i].SportMode == '1') {
-            projectDataNow[i].SportMode = '娱乐模式'
+            projectDataNow[i].SportModeTwo = '娱乐模式'
           } else if (projectDataNow[i].SportMode == '2') {
-            projectDataNow[i].SportMode = '竞技模式 '
+            projectDataNow[i].SportModeTwo = '竞技模式 '
           } else if (projectDataNow[i].SportMode == '3') {
-            projectDataNow[i].SportMode = '我是陪练 '
+            projectDataNow[i].SportModeTwo = '我是陪练 '
           } else if (projectDataNow[i].SportMode == '4') {
-            projectDataNow[i].SportMode = '我找陪练 '
+            projectDataNow[i].SportModeTwo = '我找陪练 '
           } else if (projectDataNow[i].PaySiteMoneyType == 1) {
             projectDataNow[i].PaySiteMoneyType = 'AA'
           } else if (projectDataNow[i].PaySiteMoneyType == 0) {
@@ -289,10 +289,19 @@ Page({
         if (res.confirm) {
           util.Request("/api/getmessage", { 'uuid':e.currentTarget.dataset.uuid,type:3}, "post", 
           (res) => {
-            let page = this.data.page
-            let statusType = this.data.statusType
-            let type = this.data.type
-            that.common(page, statusType, type)
+            if(res.data.code==2000){
+              let page = that.data.page
+              let statusType = that.data.statusType
+              let type = that.data.type
+              that.common(page, statusType, type)
+            }else{
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'none',
+                duration: 1500,
+                mask: true
+              })
+            }
           },
           () => { console.log("失败") },
           () => {
@@ -316,10 +325,20 @@ Page({
           if (res.confirm) {
             util.Request("/api/userMidwaySignOut", { 'uuid':e.currentTarget.dataset.uuid}, "post", 
             (res) => {
-              let page = this.data.page
-              let statusType = this.data.statusType
-              let type = this.data.type
-              that.common(page, statusType, type)
+              if(res.data.code==2000){
+                let page = that.data.page
+                let statusType = that.data.statusType
+                let type = that.data.type
+                that.common(page, statusType, type)
+              }else{
+                wx.showToast({
+                  title: res.data.msg,
+                  icon: 'none',
+                  duration: 1500,
+                  mask: true
+                })
+              }
+              
             },
             () => { console.log("失败") },
             () => {

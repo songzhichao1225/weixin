@@ -76,6 +76,7 @@
 					<view class="publisherTxt" wx:if="{{activitiesData.reserve!=1}}">
 						<text style="color:#9B9B9B">活动时间</text>
 						<text class="time">{{activitiesData.startDays}} {{activitiesData.startWeek}} {{activitiesData.startTimes}}-{{activitiesData.endTimes}}</text>
+				    <text class="xushi"  bindtap="duration" wx:if="{{activitiesData.PublicStatus!=1&&activitiesData.PublicStatus!=2&&activitiesData.PublicStatus!=7}}">续时</text>
 					</view>
 
 					<view class="publisherTxt" wx:if="{{activitiesData.reserve==1}}">
@@ -154,7 +155,7 @@
 							<text>￥{{activitiesData.Tips}}/人</text>
 						</view>
 
-						<view class="two" wx:if="{{activitiesData.PipeMain!=2&&activitiesData.isPublisher==1&&activitiesData.SportModeTwo!='我找陪练'&&activitiesData.SportModeTwo!='我是陪练'}}">
+						<view class="two" wx:if="{{activitiesData.organization!=1&&activitiesData.PipeMain!=2&&activitiesData.isPublisher==1&&activitiesData.SportModeTwo!='我找陪练'&&activitiesData.SportModeTwo!='我是陪练'}}">
 							<text class="way">出场费用</text>
 							<text>￥{{activitiesData.Tips}}/人</text>
 						</view>
@@ -400,7 +401,7 @@
 					<view class="title">费用及对手果获得</view>
 					<view class="acquireSon"><text>场地费</text><text>{{activitiesData.getlist}}</text></view>
 					<view class="acquireSon"  wx:if="{{activitiesData.Tips!=0&&activitiesData.PipeMain!=2&&activitiesData.isPublisher!=1}}">
-						<text>入场费</text><text>预付{{activitiesData.Tips}}，实付{{activitiesData.Tips}}，退还{{activitiesData.Tips}}</text>
+						<text>入场费</text><text>{{activitiesData.getTips}}</text>
 					</view>
 					<view class="acquireSon" wx:if="{{activitiesData.SportModeTwo=='我找陪练'||activitiesData.SportModeTwo=='我是陪练'}}">
 						<text>陪练费</text><text>{{activitiesData.getMoneyPerhour}}</text>
@@ -729,4 +730,15 @@
 		<text class="contentTxt">{{rule}}</text>
 		<view class="footet" bindtap="ruleFlag">确定</view>
 	</view>
+</view>
+
+
+<view class="certificate" wx:if="{{certificate==300}}">
+  <image src="../../../assets/daijinquan.png" bindtap="contentTgp"></image>
+	<image src="../../../assets/BtnDown@2x.png" bindtap="closeTorigin" ></image>
+</view>
+
+<view class="certificate" wx:if="{{certificate==200}}">
+  <image src="../../../assets/3d43d36326fde0ae4b111faf473ccf7.png" bindtap="contentTgp"></image>
+	<image src="../../../assets/BtnDown@2x.png" bindtap="closeTorigin"></image>
 </view>

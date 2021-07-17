@@ -1,0 +1,67 @@
+<view class="prderForm">
+	<view class="headMoney">
+		<text>本次活动您需要支付总费用</text>
+		<text>￥{{orderMent.sitemoney}}</text>
+	</view>
+	<view class="line"></view>
+	<view class="listSon">
+		<image class="avatar" src="../../assets/IconZfWx@2x.png"></image>
+		<text class="text">微信支付</text>
+		<radio class="radio" bindtap="payFun" data-type="1" color="#D85D27"  checked="{{type==1?true:false}}" />
+	</view>
+
+	<view class="listSon">
+		<image class="avatar" src="../../assets/IconZfQb@2x.png"></image>
+		<text class="text">钱包支付</text>
+		<text class="textTwo">(余额￥{{orderMent.playermoney}})</text>
+		<radio class="radio" bindtap="payFun" data-type="2" color="#D85D27"  checked="{{type==2?true:false}}" />
+	</view>
+
+	<view class="fanshi" wx:if="{{orderMent.moner==1}}" bindtap="redEnvelope">
+		<image class="img" src="/assets/hongbao.png"></image>
+		<text>新人红包 </text>
+		<image class="image" src="../../assets/right.png"></image>
+		<text style="float:right;color:#D85D27">{{hbMoney!=0?'-'+hbMoney+'元':'有可用的红包'}}</text>
+	</view>
+
+	<view class="fanshi" wx:if="{{orderMent.isoffset==1}}" bindtap="deductibles" >
+		<image class="img" src="/assets/kaQuan.png"></image>
+		<text>场地费抵用券 </text>
+		<image class="image" src="../../assets/right.png"></image>
+		<text wx:if="{{orderMent.isoffset==0}}" style="float:right;color:#D85D27">无可用的抵用券</text>
+		<text wx:if="{{orderMent.isoffset==1}}" style="float:right;color:#D85D27"
+			>{{volumeMoney!=0?'-'+volumeMoney+'元':'有可用的抵用券'}}</text>
+	</view>
+
+	<view class="moneyAll">
+		<text>原￥{{orderMent.sitemoney}}</text>
+		<text>减免￥{{exemption}}</text>
+		<text>合计：￥{{Moneytotal=='0.00'?orderMent.sitemoney:Moneytotal}}</text>
+	</view>
+
+	<button class="btn" bindtap="btnComfir">确定支付</button>
+
+
+	
+	<view wx:if='{{showPayPwdInput}}'>
+		<view class='bg_layer'></view>
+		<view class='input_main'>
+			<view class='input_title'>
+				<view class='input_back' catchtap='close'><text></text></view>
+				<text>请输入支付密码</text>
+			</view>
+			<view class='input_tip'><text>支付金额</text></view>
+			<view class='input_tip'><text style="font-size:1rem">￥{{Moneytotal=='0.00'?orderMent.sitemoney:Moneytotal}}</text></view>
+			<view class='input_row' catchtap='getFocus'>
+				<view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
+					<text wx:if='{{pwdVal.length>i}}'></text>
+				</view>
+			</view>
+			<view class='forget_pwd' catchtap="kop">忘记支付密码？</view>
+			<input class='input_control' value="{{pwdVal}}" password type='number' focus='{{payFocus}}' bindinput='inputPwd'
+				maxlength='6' />
+		</view>
+	</view>
+
+
+</view>

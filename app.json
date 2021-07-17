@@ -92,7 +92,13 @@
         "redEnvelope/redEnvelope",
         "contentTxt/contentTxt",
         "webviewMood/webviewMood",
-        "invitationalList/invitationalList"
+        "invitationalList/invitationalList",
+        "cashIn/cashIn",
+        "redemption/redemption",
+        "cashOut/cashOut",
+        "duration/duration",
+        "orderForm/orderForm",
+        "xuRecord/xuRecord"
       ] 
     }
   ],

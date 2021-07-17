@@ -93,8 +93,8 @@
 					<text class="sexColor">{{personalData.weight==null||personalData.weight==0?'未填写':personalData.weight+'kg'}}</text></text>
 				<text class="text"><text>常驻地:</text>
 					<text class="sexColorT">{{personalData.address}}</text></text>
-				<text class="text" style="color:#000" wx:if="{{personalData.faveriteSport!==''}}"><text
-						style="color:#9b9b9b">技术水平自我评定:</text> {{personalData.faveriteSport}}</text>
+				<text class="text" style="color:#000" ><text
+						style="color:#9b9b9b">技术水平自我评定:</text> {{personalData.faveriteSport==''?'拿不出手':personalData.faveriteSport}}</text>
 				<text class="text"><text>个人简介:</text>
 					<text class="sexColorT">{{personalData.comment==''?'无言以对':personalData.comment}}</text></text>
 			</view>

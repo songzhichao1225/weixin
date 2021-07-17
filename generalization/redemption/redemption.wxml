@@ -1,0 +1,40 @@
+<view class="redemption">
+  <view class="backgroundGold">
+    <view class="backgroundTxt">
+			<text>{{goldNum}}</text>
+			<text>当前对手果</text>
+		</view>
+  </view>
+  <view class="text">您当前可兑换<text style="color:#D85D27">{{goldNumMoney}}元</text>场地抵用券，兑换比例10:1。</view>
+  <scroll-view scroll-y="auto" style="height:65%;margin-top:0.5rem">
+    <view class="listSon" wx:for="{{list}}" wx:key="index">
+      <view class="left"><text>￥</text><text>{{item.reduce}}</text></view>
+      <view class="center">
+        <text>满{{item.full}}元可用</text>
+        <text>有效期至{{date}}</text>
+      </view>
+      <view class="operation">
+        <view class="onclick">
+          <view style="width:0.88rem;height:0.88rem;float:left">
+          <image class="hao" bindtap="subtracts" data-index="{{index}}" data-moneysmall="{{item.reduce}}" src="../../assets/jian.png"></image>
+        </view>
+          <text style="float:left">{{item.num}}</text>
+          <view style="width:0.88rem;height:0.88rem;float:left">
+          <image class="hao" bindtap="joinMoney" data-money="{{item.full}}" data-num="{{item.num}}"  data-index="{{index}}" data-moneysmall="{{item.reduce}}" src="../../assets/zeng.png"></image>
+        </view>
+        </view>
+        <view class="num" wx:if="{{item.num==0}}">选择数量</view>
+        <view class="num" wx:if="{{item.num>0}}" bindtap="clearOut" data-index="{{index}}" data-moneysmall="{{item.reduce}}">点击清空</view>
+      </view>
+
+    </view>
+
+
+  </scroll-view>
+
+  <view class="bottomTop">
+   <text>合计：</text>
+   <text>兑换￥{{moneyAll}}   扣除对手果{{moneyTwo}}</text>
+  </view>
+  <button class="bindComfir" bindtap="bindComfir">确定</button>
+</view>

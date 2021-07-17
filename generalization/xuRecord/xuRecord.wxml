@@ -1,0 +1,16 @@
+<view class="xuRecord">
+	<scroll-view class="scroll" scroll-y="auto"  bindscrolltolower="tolower"  refresher-enabled="true" refresher-triggered="{{enabled}}" bindrefresherrefresh="refresh">
+		<view class="son" wx:for="{{xuRecord}}" wx:key="index">
+			<view class="left">
+				<text>开始时间：{{item.datetime}}</text>
+				<text>时长：{{item.playtime}}</text>
+			</view>
+			<view class="right">
+				<text>￥{{item.mone}}</text>
+				<text>{{item.time}}</text>
+			</view>
+		</view>
+
+	</scroll-view>
+
+</view>

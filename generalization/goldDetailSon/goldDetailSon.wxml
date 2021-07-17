@@ -9,6 +9,7 @@
 	</view>
 	<view class="son"><text>类型</text><text>{{list.color==1?'支出':'收入'}}</text></view>
 	<view class="son"><text>时间</text><text>{{list.CoinsDate}}</text></view>
+	<view class="son" wx:if="{{list.OrderID!=''}}"><text>活动ID</text><text style="color:blue">{{list.OrderID}}</text></view>
 	<view class="son" wx:if="{{options.flag!='1'}}"><text>原来技术分</text><text>{{list.oldTotalCoins}}</text></view>
 	<view class="son" wx:if="{{options.flag!='1'}}"><text>原来等级</text><text>{{list.oldLevel}}</text></view>
 	<view class="son" wx:if="{{options.flag!='1'}}"><text>当前技术分</text><text>{{list.nowTotalCoins}}</text></view>

@@ -78,8 +78,88 @@ Page({
     timeOut: true,
     officialAccount: true, //公众号提示
     closeImg: false,
-    userTkContent:[],
-    userTk:2
+    userTkContent: [],
+    userTk: 0,
+    radomMoeny: '0.00',
+    certificate:0
+  },
+
+  closeTorigin:function(){
+    this.setData({certificate:0})
+  },
+
+
+  
+  contentTgp:function(){
+    util.Request("/api/AddOffsetRoll", {uuid:wx.getStorageSync('uuid')}, "post",
+    (res) => {
+      if(res.data.code==2000){
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'success',
+          duration: 1500,
+          mask: true
+        })
+        this.setData({
+          certificate: 0
+        })
+      }else{
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none',
+          duration: 1500,
+          mask: true
+        })
+      }
+      
+
+    },
+    () => {},
+    () => {
+
+    }
+  )
+  },
+
+  btnBottom: function () {
+    util.Request("/api/getDeposit", {
+        mun: this.data.radomMoeny
+      }, "post",
+      (res) => {
+        if (res.data.code == 2000) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'success',
+            duration: 1500,
+            mask: true
+          })
+          util.Request("/api/closeGiftWindow", {}, "post",
+            (res) => {
+              this.setData({
+                userTk: 0
+              })
+              wx.hideLoading()
+            },
+            () => {
+              console.log("失败")
+            },
+            () => {}
+          )
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'success',
+            duration: 1500,
+            mask: true
+          })
+        }
+
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
   },
 
   replacement: function () {
@@ -239,17 +319,46 @@ Page({
                 imgURL: wx.getStorageSync('imgURL')
               })
               util.Request("/api/getusertk", {}, "post",
-              (res) => {
-                this.setData({
-                  userTk:res.data.data.type,
-                  userTkContent:res.data.data
-               })
-              },
-              () => {
-                console.log("失败")
-              },
-              () => {}
-            )
+                (res) => {
+                  if (res.data.data.types == 2) {
+                    util.Request("/api/getRandom", {}, "post",
+                      (res) => {
+                        this.setData({
+                          radomMoeny: res.data.data
+                        })
+                      },
+                      () => {
+                        console.log("失败")
+                      },
+                      () => {}
+                    )
+                  }
+                  this.setData({
+                    userTk: res.data.data.types,
+                    userTkContent: res.data.data
+                  })
+                },
+                () => {
+                  console.log("失败")
+                },
+                () => {}
+              )
+
+             
+                util.Request("/api/frame", {}, "post",
+                (res) => {
+                  this.setData({certificate:res.data.other})
+                  wx.hideLoading()
+                },
+                () => {},
+                () => {
+        
+                }
+              )
+        
+            
+
+
             },
             () => {
               console.log("失败")
@@ -257,7 +366,7 @@ Page({
             () => {}
           )
 
-        
+
         }
 
 
@@ -528,17 +637,19 @@ Page({
       url: '/generalization/invitationalList/invitationalList'
     })
   },
-  banner:function(){
+  banner: function () {
     util.Request("/api/closeGiftWindow", {}, "post",
-    (res) => {
-      this.setData({userTk:2})
-      wx.hideLoading()
-    },
-    () => {
-      console.log("失败")
-    },
-    () => {}
-  )
-   
+      (res) => {
+        this.setData({
+          userTk: 0
+        })
+        wx.hideLoading()
+      },
+      () => {
+        console.log("失败")
+      },
+      () => {}
+    )
+
   }
-}) 
+})

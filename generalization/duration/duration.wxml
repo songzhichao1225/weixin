@@ -1,0 +1,42 @@
+<view class="duration">
+
+   
+
+	<view class="titleSon">
+		<text>开始时间</text>
+		<picker mode="multiSelector" value="{{value}}" range="{{timeArry}}" bindchange="bindTimeChange">
+			<image class="image" src="../../assets/right.png"></image>
+			<text class="picker">
+				{{startTime}}
+			</text>
+		</picker>
+	</view>
+
+	<view class="titleSon">
+		<text>时长</text>
+		<picker mode="multiSelector" value="{{valueTwo}}" range="{{timeLeght}}" bindchange="bindTimeChangeTwo">
+			<image class="image" src="../../assets/right.png"></image>
+			<text class="picker">
+				{{timeLeghtTwo}}
+			</text>
+		</picker>
+	</view>
+
+	<scroll-view scroll-y="auto" class="scroll">
+		<view class="listSon" wx:for="{{activitiesTime}}" wx:key="index">
+			<text>{{item.time}}</text>
+			<view class="rightBlue" style="{{item.status==2?'background:#333':''}}">
+				<view style="width:{{item.height}};background:#F5A623;position: absolute;height:100%;"></view>
+				<text class="textMoney">{{item.money}}</text>
+				</view>
+		</view>
+	</scroll-view>
+	<view class="btnBottom">
+		<text>{{money}}</text>
+		<button class="btn" bindtap="orderForm">确定</button>
+	</view>
+
+ 
+
+	<view class="xuRecord" bindtap="xuRecord">续时记录</view>
+</view>

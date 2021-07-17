@@ -1,99 +1,133 @@
+page {
+  height: 100%;
+}
+
 .generaGold {
   height: 100%;
 }
 
-.generaGold .header {
-  height: 162px;
+.bannerGold {
+  height: 12.88rem;
   position: relative;
 }
 
-.generaGold .header image {
+.bannerGold>image {
   width: 100%;
   height: 100%;
-  display: block;
 }
 
-.generaGold .header .center {
-  width: 69px;
-  height: 69px;
-  position: absolute;
-  top: 48px;
-  z-index: 99;
-  left: 50%;
-  margin-left: -34px;
-}
-
-.generaGold .header .center text {
+.bannerTexr {
   width: 100%;
-  font-size: 1.13rem;
-  color: #fff;
-  display: block;
   position: absolute;
-  top: 22px;
-  text-align: center;
+  top: 3.5rem;
 }
 
-.generaGold .header .footer {
-  position: absolute;
-  bottom: 0.3rem;
+.bannerTexr>text:first-child {
+  display: block;
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: bold;
   color: #fff;
+}
+
+.bannerTexr>text:last-child {
   font-size: 0.75rem;
-  background: #d85d27;
+  color: #fff;
   text-align: center;
-  left: 50%;
-  margin-left: -3rem;
-  width: 6rem;
-}
-.generaGold .content{
-  width: 100%;
-  position: relative
-}
-.generaGold .content image{
   display: block;
-  width: 100%;
-  height: 30rem;
 }
-.generaGold .content .Son{
+
+.content {
+  width: 100%;
+  height: 80%;
+  background: #F3F3F3;
+  border-radius: 0.75rem;
   position: absolute;
-  width: 85%;
-  left:7.25%;
-  top: 7%;
+  top: 20%;
 }
-.generaGold .content .Son>.ul{
-  width: 100%;
-  display: block;
+
+.contentSon {
+  width: 95%;
+  height: 18.44rem;
+  background: #FFFFFF;
+  border-radius: 0.5rem;
+  margin: 1rem auto 0;
 }
-.generaGold .content .Son>.ul>.li{
+
+.contentSon .title {
+  width: 95%;
+  height: 2.44rem;
+  line-height: 2.44rem;
+  margin: 0 auto;
+  border-bottom: 0.06rem solid #e9e9e9;
   font-size: 1rem;
-  padding:0.81rem 0;
-  width: 100%;
-  border-bottom:  0.06rem solid #E9E9E9;
+  text-align: center;
+  font-weight: bold;
+}
+
+.contentSon .son {
+  width: 95%;
+  min-height: 3.88rem;
+  margin: 0 auto;
+  border-bottom: 0.06rem solid #e9e9e9;
   overflow: hidden;
 }
-.generaGold .content .Son>.ul>.li .liSon{
+
+.contentSon .son .left {
   float: left;
 }
-.generaGold .content .Son>.ul>.li .btnRight{
+
+.contentSon .son .left .leftTop {
+  margin-top: 0.69rem;
+  overflow: hidden;
+}
+
+.contentSon .son .left .leftTop .dian {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background: #000;
+  float: left;
+  margin-top: 0.6rem;
+}
+
+.contentSon .son .left .leftTop>text {
+  font-size: 1rem;
+  float: left;
+  padding-left: 0.3rem;
+}
+
+.leftBottom {
+  font-size: 0.75rem;
+  color: #D85D27;
+  padding-left: 0.6rem;
+}
+
+.right {
   width: 3.44rem;
   height: 1.25rem;
   background: #D85D27;
-  border-radius:1.88rem;
-  float: right;
-  font-size: 0.69rem;
-  color: #fff;
-  text-align: center;
+  border-radius: 1.88rem;
   line-height: 1.25rem;
+  text-align: center;
+  float: right;
+  font-size: 0.75rem;
+  color: #fff;
+  margin-top: 1.315rem;
 }
-.generaGold .content .Son>.ul>.li .yuan{
-  width: 0.2rem;
-  height: 0.2rem;
-  background: #000;
-  border-radius: 50%;
+.leftBoontiy>image{
+  width: 1.5rem;
+  height: 1.5rem;
   float: left;
-  margin-right: 0.3rem;
-  margin-top: 0.2rem;
 }
-.generaGold .content .Son>.ul>.li:last-child{
-  padding-bottom: 0;
-  border: none;
+.leftBoontiy>text{
+  font-size: 0.75rem;
+  color: #D0021B;
+}
+.rightTxt{
+  font-size: 0.88rem;
+  color: #fff;
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
 }

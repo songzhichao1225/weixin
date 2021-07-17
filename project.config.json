@@ -99,7 +99,7 @@
         {
           "name": "活动详情",
           "pathName": "pages/homePage/activities/activities",
-          "query": "uuid= 05e8a8ec-e4d6-0de4-ed95-5a629391fa45&type=1&hoog=1&Invite_code=85857858",
+          "query": "uuid= c4b43fae-a0fe-4b0d-8774-a3cc9f8e46d2",
           "scene": null
         },
         {
@@ -370,7 +370,7 @@
         {
           "name": "明细",
           "pathName": "pages/goldDetails/goldDetails",
-          "query": "goldType=2",
+          "query": "goldType=1",
           "scene": null
         },
         {
@@ -443,6 +443,36 @@
           "name": "邀请记录",
           "pathName": "generalization/invitationalList/invitationalList",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "赢对手果",
+          "pathName": "pages/homePage/generalGold/generalGold",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "兑换现金",
+          "pathName": "generalization/cashIn/cashIn",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "兑换场地费抵用券",
+          "pathName": "generalization/redemption/redemption",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "提现",
+          "pathName": "generalization/cashOut/cashOut",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "续时",
+          "pathName": "generalization/duration/duration",
+          "query": "uuid=34badd1f-8bc9-750a-3da8-9c7c3887bad6&endTimes=13:00",
           "scene": null
         }
       ]

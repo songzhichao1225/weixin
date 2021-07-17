@@ -100,10 +100,44 @@ Page({
     closeImg: true,
     enabled: true,
     maskActivity: [],
-    maskActivityTwo: []
+    maskActivityTwo: [],
+    certificate:0
   },
 
+  closeTorigin:function(){
+    this.setData({certificate:0})
+  },
 
+  contentTgp:function(){
+    util.Request("/api/AddOffsetRoll", {uuid:wx.getStorageSync('uuid')}, "post",
+    (res) => {
+      if(res.data.code==2000){
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'success',
+          duration: 1500,
+          mask: true
+        })
+        this.setData({
+          certificate: 0
+        })
+      }else{
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none',
+          duration: 1500,
+          mask: true
+        })
+      }
+      
+
+    },
+    () => {},
+    () => {
+
+    }
+  )
+  },
 
   catchTouchMove: function () {
     return false
@@ -155,7 +189,7 @@ Page({
       maskActivity: []
     })
   },
-  closeMaskTwo:function(){
+  closeMaskTwo: function () {
     this.setData({
       maskActivityTwo: []
     })
@@ -288,6 +322,9 @@ Page({
               projectDataNow[i].MoneyPerhour = projectDataNow[i].MoneyPerhour + '.00'
             }
           }
+
+        
+
           this.setData({
             maskActivity: projectDataNow == undefined ? [] : projectDataNow
           })
@@ -478,9 +515,22 @@ Page({
 
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];
-    this.setData({
-      mydata: currPage.data.mydata
-    })
+   
+    if( currPage.data.mydata.city!=undefined){
+      this.setData({
+        mydata: currPage.data.mydata,
+        selectCity:currPage.data.mydata.city
+      })
+      wx.setStorageSync('cityInfo', currPage.data.mydata.city)
+      wx.setStorageSync('lat', currPage.data.mydata.lat)
+      wx.setStorageSync('lng', currPage.data.mydata.lng)
+      wx.setStorageSync('area', '')
+      setTimeout(() => {
+        this.goleloand()
+      }, 1000)
+    }
+
+   
 
 
 
@@ -504,12 +554,19 @@ Page({
     util.Request("/api/Statistics", {}, "get",
       (res) => {
         let projectDataNow = res.data.data
-        
-     
-       
         this.setData({
           maskActivityTwo: projectDataNow == undefined ? [] : projectDataNow
         })
+        util.Request("/api/frame", {}, "post",
+        (res) => {
+          this.setData({certificate:res.data.other})
+          wx.hideLoading()
+        },
+        () => {},
+        () => {
+
+        }
+      )
 
       },
       () => {},
@@ -886,27 +943,11 @@ Page({
     })
   },
   generaGold: function () {
-    if (wx.getStorageSync('token') && wx.getStorageSync('information') != '信息完善') {
-      wx.showModal({
-        content: '完善个人信息',
-        cancelText: '再看看',
-        confirmText: '去完善',
-        confirmColor: '#000',
-        success(res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '/pages/personalData/personalData'
-            })
-          } else if (res.cancel) {
 
-          }
-        }
-      })
-    } else if (wx.getStorageSync('token')) {
-      wx.navigateTo({
-        url: '/pages/homePage/generalGold/generalGold'
-      })
-    }
+    wx.navigateTo({
+      url: '/pages/homePage/generalGold/generalGold'
+    })
+
   },
   generalization: function () {
     if (wx.getStorageSync('token')) {

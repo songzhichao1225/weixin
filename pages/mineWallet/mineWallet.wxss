@@ -32,6 +32,7 @@ page {
   margin: 106rpx auto 0;
   font-size: 36rpx;
   color: #fff;
+  line-height: 80rpx;
 }
 .right{
   position: absolute;
