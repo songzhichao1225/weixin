@@ -1,6 +1,6 @@
 <view class="publishing" wx:if="{{timeOut}}">
 
-	<swiper indicator-dots="true" indicator-active-color="#fff" autoplay="true">
+	<swiper indicator-dots="true" indicator-active-color="transparent" autoplay="true">
 		<swiper-item wx:for="{{bannerTop}}" wx:key='index' class="swiperItem">
 			<image style="width:100%;height:100%;" src="{{img}}/{{item.picurl}}"></image>
 		</swiper-item>
@@ -15,17 +15,17 @@
 			style="{{indexSw==3?'color:#D85D27;background: rgba(216, 93, 39, 0.12);':''}}">
 			<text>我是陪练</text>
 		</view>
-		<view bindtap="navTitle" data-index="4"
+		<!-- <view bindtap="navTitle" data-index="4"
 			style="{{indexSw==4?'color:#D85D27;background: rgba(216, 93, 39, 0.12);':''}}">
 			<text>我找陪练</text>
-		</view>
-		<view bindtap="navTitle" data-index="5"
+		</view> -->
+		<!-- <view bindtap="navTitle" data-index="5"
 			style="{{indexSw==5?'color:#D85D27;background: rgba(216, 93, 39, 0.12);':''}}">
 			<text>我是馆主</text>
-		</view>
+		</view> -->
 		<view bindtap="navTitle" data-index="0"
 			style="{{indexSw==0?'color:#D85D27;background: rgba(216, 93, 39, 0.12);':''}}">
-			<text>运动结伴</text>
+			<text>找伙伴</text>
 		</view>
 		<view bindtap="navTitle" data-index="2"
 			style="{{indexSw==2?'color:#D85D27;background: rgba(216, 93, 39, 0.12);':''}}">
@@ -39,7 +39,7 @@
 		</view> -->
 	</view>
 	<view class="lineTwo"></view>
-	<swiper class="content" bindchange="swiper" current="{{indexSw}}" duration="0" style="height:67%;">
+	<swiper class="content" bindchange="swiper" circular="true" current="{{indexSw}}" duration="0" style="height:67%;">
 
 		<!-- 找运动伙伴 -->
 		<swiper-item>
@@ -85,7 +85,7 @@
 						<image class="image" src="/assets/right.png"></image>
 						<picker range="{{sportName=='高尔夫'?TrialRaderArrTwo:TrialRaderArr}}" bindchange="TrialRader" range-key="name"
 							style="float:right;">
-							<view style="float:right;color:#9B9B9B;padding-right:0.3rem;text-align:right;font-size:0.75rem">
+							<view style="float:right;color:#9B9B9B;text-align:right;font-size:0.75rem">
 								{{TrialRader}}
 							</view>
 						</picker>
@@ -448,7 +448,7 @@
 					<view class="right">
 						<image class="image" src="/assets/right.png"></image>
 						<picker range="{{TrialRaderArr}}" bindchange="TrialRaderThree" range-key="name" style="float:right;">
-							<view style="float:right;color:#9B9B9B;padding-right:0.3rem;text-align:right;font-size:0.75rem">
+							<view style="float:right;color:#9B9B9B;text-align:right;font-size:0.75rem">
 								{{TrialRaderThree}}
 							</view>
 						</picker>
@@ -969,512 +969,7 @@
 
 
 
-		<!-- 我找陪练 -->
-		<swiper-item>
-			<scroll-view style="height:100%;" scroll-y>
-				<view class="list">
-					<view class="left">
-						<image class="image" style="margin-right:0;" src="/assets/right.png"></image>
-						<text style="padding-left:0.5rem;float:left;">运动项目</text>
-						<view
-							style="float:right;text-align:right;color:#9B9B9B;padding-left:0.1rem;font-size:0.75rem;overfllow:hidden;"
-							bindtap="sportsListFive">{{sportNameFive==''?'请选择':sportNameFive}}
-							<text wx:if="{{sportypeNameFive!==''}}">{{sportypeNameFive}}</text>
-						</view>
-					</view>
-					<view class="right">
-						<view class="image"></view>
-						<picker range="{{array}}" bindchange="picker" disabled="true" range-key="name" style="float:right;">
-							<view class="textTwo" style="text-align:right;font-size:0.75rem;">
-								{{modeFive}}
-							</view>
-						</picker>
-						<view style="float:left;margin-right:0;" bindtap="modeShowst" data-index="1">运动模式</view>
-					</view>
-				</view>
 
-
-
-
-
-
-				<view class="list" bindtap="venuesFive" data-sportId="{{sportIdFive}}" data-sportType="{{sportTypeFive}}">
-					<text style="padding-left:0.5rem;">运动场馆</text>
-					<image class="image" src="/assets/right.png"></image>
-					<!-- <image style="width:1rem;height:1.3rem;float:right;" src="/assets/IconHdxqDw@2x.png"></image> -->
-					<text class="textTwo" style="width:60%;text-align:right;font-size:0.75rem;">{{siteNameFive}}</text>
-				</view>
-
-				<view class="list">
-					<view class="left">
-						<text style="padding-left:0.5rem;float:left;">开始时间</text>
-						<view style="float:right;color:#9B9B9B;padding-left:0.3rem;font-size:0.75rem;" data-uid="{{siteidFive}}"
-							data-name="{{siteNameFive}}" bindtap="startDateTimeFive">{{startTimerofFive}}{{timerFive}}</view>
-					</view>
-					<view class="right">
-						<image class="image" src="/assets/right.png"></image>
-						<text class="textTwo" style="text-align:right;font-size:0.75rem;" data-uid="{{siteidFive}}"
-							bindtap="startDateTimeFive" data-name="{{siteNameFive}}">{{timeLenFive}}</text>
-						<view style="float:left;">活动时长</view>
-					</view>
-				</view>
-
-				<view class="list">
-					<view class="left">
-						<text style="padding-left:0.5rem;float:left;">场地费用</text>
-						<text class="textTwo"
-							style='float:right;color:#9B9B9B;text-align:right;font-size:0.75rem;'>￥{{placeMoneyFive}}</text>
-					</view>
-
-					<view class="right">
-						<view class="image"></view>
-						<picker range="{{shoulderedArr}}" disabled="{{true}}" range-key="name" style="float:right;">
-							<view class="textTwo" style="text-align:right;font-size:0.75rem;">
-								{{shoulderedFive}}
-							</view>
-						</picker>
-						<view style="float:left;">承担方式</view>
-					</view>
-				</view>
-
-				<view class="list">
-					<view class="left">
-						<text style="float:left;padding-left:0.5rem" bindtap="sexQiu" data-type='4' data-mode="陪练费用">陪练费用<text
-								style="padding-left:0.5rem;color:#9B9B9B;font-size:0.75rem">￥</text></text>
-						<image class="image" style="margin-right:0" src="/assets/right.png"></image>
-						<input style="float:right;height:2.75rem;width:2.5rem;color:#9B9B9B;font-size:0.75rem;" maxlength="5"
-						bindblur="tipsFive" value="{{tipsFive}}" type="number" placeholder="(选填)"
-							placeholder-style="text-align:right;" />
-					</view>
-					<view class="right">
-						<text style="float:left;" bindtap="sexQiu" data-type='3'>更多要求</text>
-						<image class="image" style="margin-right:0.69rem;" src="/assets/right.png"></image>
-						<text class="textTwo" wx:if="{{sexFive=='不限'&&ageFive=='不限'&&rankFive=='不限'}}"
-							bindtap="cbotContentCloasOne">不限</text>
-						<text class="textTwo" wx:if="{{sexFive!='不限'||ageFive!='不限'||rankFive!='不限'}}"
-							bindtap="cbotContentCloasOne">查看</text>
-					</view>
-				</view>
-
-
-
-				<view class="arrowBot" wx:if="{{cbotContentCloas}}">
-					<view class="botContent">
-						<view class="btnHead">更多要求</view>
-						<view class="list">
-							<view class="left">
-								<text style="padding-left:0.5rem;float:left;" bindtap="sexQiu" data-type='1'>性别要求</text>
-								<image class="image" style="margin-right:0;" src="/assets/right.png"></image>
-								<picker bindchange="bindPickerSexFive" range="{{sexArr}}" range-key="name">
-									<view class="textTwo" style="text-align:right;float:right;margin-left:0.3rem;font-size:0.75rem;">
-										{{sexFive}}
-									</view>
-								</picker>
-							</view>
-
-						</view>
-
-						<view class="list">
-							<view class="right">
-								<view style="float:left;" bindtap="sexQiu" data-type='2'>年龄要求</view>
-								<image class="image" src="/assets/right.png"></image>
-								<picker bindchange="bindPickerAgeFive" range="{{ageArr}}" mode="multiSelector">
-									<view class="textTwo" style="text-align:right;float:right;margin-left:0;font-size:0.75rem;">
-										{{ageFive}}
-									</view>
-								</picker>
-							</view>
-						</view>
-						<view class="list">
-							<view class="left">
-								<text style="float:left;padding-left:0.5rem;" bindtap="sexQiu" data-type='3'>技术级别</text>
-								<image class="image" style="margin-right:0;" src="/assets/right.png"></image>
-								<picker mode="multiSelector" bindchange="bindPickerRankFive" range="{{rankArr}}" style="float:right;">
-									<view class="textTwo" style="text-align:right;float:right;margin-left:0.3rem;font-size:0.75rem;">
-										{{rankFive}}
-									</view>
-								</picker>
-							</view>
-						</view>
-
-
-						<view class="cbotContentCloas" bindtap="cbotContentCloas">
-							<image src="../../assets/closeTwo.png"></image>
-						</view>
-						<button class="botContentBtn" bindtap="cbotContentCloas">确定</button>
-
-					</view>
-
-				</view>
-
-
-
-
-				<view class="list">
-					<text style="padding-left:0.5rem;">活动备注</text>
-					<textarea auto-height="true" class="textarea" bindinput="commentFive" value="{{commentsFive}}" maxlength="150"
-						placeholder="请填写活动注意事项(选填150字)">
-          </textarea>
-				</view>
-				<view class="line"></view>
-				<view class="joinTil" wx:if="{{sportNameFive!=='请选择'&&sportNameFive!==''}}">
-					参与人员
-				</view>
-				<view class="aList" wx:if="{{sportNameFive!=='请选择'&&sportNameFive!==''}}">
-					<view class="TeamA">
-						<text>A队</text>
-						<view class="peopleList">
-							<view class="son" wx:for="{{numAFive}}" wx:key='index'>
-								<view class="invite" bindtap="invitaional" data-index="{{index}}" data-uuid="{{item.uuid}}"
-									data-team="1" wx:if="{{item.imgURL==undefined}}">
-									邀请
-									<text class="TeamAson" wx:if="{{modeFive!='我找陪练'&&modeFive!='我是陪练'}}">A{{index+1}}</text>
-									<text class="TeamAson"
-										wx:if="{{modeFive=='我找陪练'||modeFive=='我是陪练'}}">{{modeFive=='我找陪练'?'练习方':'陪练方'}}</text>
-									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
-									</image>
-								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'>
-								</image>
-								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
-								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
-								<text class="TeamAsonTwo" wx:if="{{modeFive!='我找陪练'&&modeFive!='我是陪练'}}">A{{index+1}}</text>
-								<text class="TeamAsonTwo"
-									wx:if="{{modeFive=='我找陪练'||modeFive=='我是陪练'}}">{{modeFive=='我找陪练'?'练习方':'陪练方'}}</text>
-							</view>
-						</view>
-					</view>
-					<view class="TeamB" style="{{umpire.length!==0?'border-bottom:0.06rem solid #e9e9e9':''}}">
-						<text>B队</text>
-						<view class="peopleList">
-							<view class="son" wx:for="{{numBFive}}" wx:key='index'>
-								<view class="invite" bindtap="invitaional" data-index="{{index}}" data-uuid="{{item.uuid}}"
-									data-team="2" style="font-size:12px;" wx:if="{{item.imgURL==undefined}}">
-									邀请
-									<text class="TeamAson" wx:if="{{modeFive!='我找陪练'&&modeFive!='我是陪练'}}">B{{index+1}}</text>
-									<text class="TeamAson"
-										wx:if="{{modeFive=='我找陪练'||modeFive=='我是陪练'}}">{{modeFive=='我是陪练'?'练习方':'陪练方'}}</text>
-									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
-									</image>
-								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'>
-								</image>
-								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
-								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
-								<text class="TeamAsonTwo" wx:if="{{modeFive!='我找陪练'&&modeFive!='我是陪练'}}">B{{index+1}}</text>
-								<text class="TeamAsonTwo"
-									wx:if="{{modeFive=='我找陪练'||modeFive=='我是陪练'}}">{{modeFive=='我是陪练'?'练习方':'陪练方'}}</text>
-							</view>
-						</view>
-					</view>
-
-
-
-				</view>
-				<!-- <view class="botmComfire"><text>将此发布条件保存为发布偏好</text>
-					<checkbox checked="{{checked}}" bindtap="checkboxChange"></checkbox>
-				</view> -->
-				<view class="line"></view>
-				<view class="footer">
-					<view class="nowTxt">
-						<text class="firstTxt" wx:if="{{displayTxtFive.length!=0}}">{{displayTxtFive.sentence}}</text>
-						<text class="lastTxt">实付￥{{displayTxtFive.length!=0?displayTxtFive.total:0.00}}</text><text
-							style="color:#D85D27;font-size:0.75rem;float:left;margin-top:0.2rem">{{displayTxtFive.sentence2}}</text>
-					</view>
-					<button class="btnConfirm" bindtap="releaseFive">确认发布</button>
-				</view>
-
-
-
-
-
-			</scroll-view>
-		</swiper-item>
-
-
-
-		<!-- 我是馆主 -->
-		<swiper-item>
-			<scroll-view style="height:100%;" scroll-y>
-				<view class="list">
-					<view class="left">
-						<image class="image" style="margin-right:0;" src="/assets/right.png"></image>
-						<text style="padding-left:0.5rem;float:left;">运动项目</text>
-						<view
-							style="float:right;text-align:right;color:#9B9B9B;padding-left:0.1rem;font-size:0.75rem;overfllow:hidden;"
-							bindtap="sportsListSix">{{sportNameSix==''?'请选择':sportNameSix}}
-							<text wx:if="{{sportypeNameSix!==''}}">{{sportypeNameSix}}</text>
-						</view>
-					</view>
-					<view class="right">
-						<view class="image"></view>
-						<picker range="{{array}}" bindchange="picker" disabled="true" range-key="name"
-							style="float:right;">
-							<view class="textTwo" style="text-align:right;font-size:0.75rem;">
-								{{modeSix}}
-							</view>
-						</picker>
-						<view style="float:left;margin-right:0;" bindtap="modeShowst" data-index="1">运动模式</view>
-					</view>
-				</view>
-
-
-
-
-
-				<view class="list" wx:if="{{modeSix=='竞技模式'}}">
-
-					<view class="left">
-						<text style="padding-left:0.5rem;float:left;">裁判人数</text>
-						<image class="image" style="margin-right:0;" src="/assets/right.png"></image>
-						<picker range="{{TrialArray}}" bindchange="TrialPickerSix" range-key="name">
-							<view style="float:right;color:#9B9B9B;padding-left:0.3rem;font-size:0.75rem;">
-								{{TrialNumSix}}
-							</view>
-						</picker>
-					</view>
-					<view class="right">
-						<image class="image" src="/assets/right.png"></image>
-						<picker range="{{sportName=='高尔夫'?TrialRaderArrTwo:TrialRaderArr}}" bindchange="TrialRaderSix"
-							range-key="name" style="float:right;">
-							<view style="float:right;color:#9B9B9B;padding-right:0.3rem;text-align:right;font-size:0.75rem">
-								{{TrialRaderSix}}
-							</view>
-						</picker>
-						<view style="float:left;">裁判等级</view>
-					</view>
-				</view>
-
-				<view class="list" bindtap="venuesSix" data-sportId="{{sportIdSix}}" data-sportType="{{sportTypeSix}}">
-					<text style="padding-left:0.5rem;">运动场馆</text>
-					<image class="image" src="/assets/right.png"></image>
-					<!-- <image style="width:1rem;height:1.3rem;float:right;" src="/assets/IconHdxqDw@2x.png"></image> -->
-					<text class="textTwo" style="width:60%;text-align:right;font-size:0.75rem;">{{siteNameSix}}</text>
-				</view>
-
-				<view class="list">
-					<view class="left">
-						<text style="padding-left:0.5rem;float:left;">开始时间</text>
-						<view style="float:right;color:#9B9B9B;padding-left:0.3rem;font-size:0.75rem;" data-uid="{{siteidSix}}"
-							data-name="{{siteNameSix}}" bindtap="startDateTimeSix">{{startTimerofSix}}{{timerSix}}</view>
-					</view>
-					<view class="right">
-						<image class="image" src="/assets/right.png"></image>
-						<text class="textTwo" style="text-align:right;font-size:0.75rem;" data-uid="{{siteidSix}}"
-							bindtap="startDateTimeSix" data-name="{{siteNameSix}}">{{timeLenSix}}</text>
-						<view style="float:left;">活动时长</view>
-					</view>
-				</view>
-
-				<view class="list">
-					<view class="left">
-						<view style="padding-left:0.5rem;float:left;" wx:if="{{TrialNumSix!=='0人'}}">
-							<text style="display:block;line-height:1.4rem;">场地费用</text>
-							<text style="display:block;line-height:1.3rem;">裁判费用</text>
-						</view>
-
-						<text style="padding-left:0.5rem;float:left;" wx:if="{{TrialNumSix=='0人'}}">场地费用</text>
-						<text class="textTwo"
-							style="{{TrialNumSix!=='0人'?'float:right;color:#9B9B9B;text-align:right;':'float:right;color:#9B9B9B;text-align:right;font-size:0.75rem;'}}"
-							wx:if="{{modeSix!=='竞技模式'}}">￥{{placeMoneySix}}</text>
-
-						<text class="textTwo"
-							style="{{TrialNumSix=='0人'?'float:right;color:#9B9B9B;margin-top:0.75rem;text-align:right;':'float:right;color:#9B9B9B;text-align:right;font-size:0.75rem;'}}"
-							wx:if="{{modeSix=='竞技模式'}}">
-							<text style="display:block;line-height:1.4rem;">￥{{placeMoneySix}}</text>
-							<text style="display:block;line-height:1.4rem;text-align:right;"
-								wx:if="{{TrialNumSix!=='0人'}}">￥{{refereeFeeSix}}</text>
-						</text>
-					</view>
-
-					<view class="right">
-
-						<view class="image"></view>
-						<picker bindchange="bindPickerShouldered" range="{{shoulderedArr}}" disabled="true" range-key="name"
-							style="float:right;">
-							<view class="textTwo" style="text-align:right;font-size:0.75rem;width:4rem">
-								{{shoulderedSix}}
-							</view>
-						</picker>
-						<view style="float:left;">承担方式</view>
-					</view>
-				</view>
-				<view class="list">
-					<view class="left">
-						<text style="float:left;padding-left:0.5rem;">奖金<text style="float:right;color:#9b9b9b;font-size:0.75rem">￥</text></text>
-						<image class="image" style="margin-right:0" src="/assets/right.png"></image>
-						<input style="float:right;height:2.75rem;width:2.5rem;color:#9B9B9B;font-size:0.75rem;text-align:right"
-							maxlength="5" bindblur="tipsSix" value="{{tipsSix}}" type="number" placeholder="(选填)"
-							placeholder-style="text-align:right;" />
-					</view>
-
-					<view class="right">
-						<text style="float:left;">更多要求</text>
-						<image class="image" style="margin-right:0.5rem;" src="/assets/right.png"></image>
-						<text class="textTwo" wx:if="{{sexSix=='不限'&&ageSix=='不限'&&rankSix=='不限'}}"
-							bindtap="cbotContentCloasOne">不限</text>
-						<text class="textTwo" wx:if="{{sexSix!='不限'||ageSix!='不限'||rankSix!='不限'}}"
-							bindtap="cbotContentCloasOne">查看</text>
-					</view>
-				</view>
-
-
-
-
-				<view class="list">
-					<text style="padding-left:0.5rem;">活动备注</text>
-					<textarea auto-height="true" class="textarea" bindinput="commentSix" value="{{commentsSix}}" maxlength="150"
-						placeholder="请填写活动注意事项(选填150字)">
-          </textarea>
-				</view>
-
-
-
-				<view class="arrowBot" wx:if="{{cbotContentCloas}}">
-					<view class="botContent">
-						<view class="btnHead">更多要求</view>
-
-						<view class="list">
-							<view class="left">
-								<text style="padding-left:0.5rem;float:left;" bindtap="sexQiu" data-type='1'>性别要求</text>
-								<image class="image" style="margin-right:0;" src="/assets/right.png"></image>
-								<picker bindchange="bindPickerSexSix" range="{{sexArr}}" range-key="name">
-									<view class="textTwo" style="text-align:right;float:right;margin-left:0.3rem;font-size:0.75rem;">
-										{{sexSix}}
-									</view>
-								</picker>
-							</view>
-
-						</view>
-
-						<view class="list">
-							<view class="right">
-								<view style="float:left;" bindtap="sexQiu" data-type='2'>年龄要求</view>
-								<image class="image" src="/assets/right.png"></image>
-								<picker bindchange="bindPickerAgeSix" range="{{ageArr}}" mode="multiSelector">
-									<view class="textTwo" style="text-align:right;float:right;margin-left:0;font-size:0.75rem;">
-										{{ageSix}}
-									</view>
-								</picker>
-							</view>
-						</view>
-						<view class="list">
-							<view class="left">
-								<text style="float:left;padding-left:0.5rem;" bindtap="sexQiu" data-type='3'>技术级别</text>
-								<image class="image" style="margin-right:0;" src="/assets/right.png"></image>
-								<picker mode="multiSelector" bindchange="bindPickerRankSix" range="{{rankArr}}" style="float:right;">
-									<view class="textTwo" style="text-align:right;float:right;margin-left:0.3rem;font-size:0.75rem;">
-										{{rankSix}}
-									</view>
-								</picker>
-							</view>
-						</view>
-						<view class="cbotContentCloas" bindtap="cbotContentCloas">
-							<image src="../../assets/closeTwo.png"></image>
-						</view>
-						<button class="botContentBtn" bindtap="cbotContentCloas">确定</button>
-
-					</view>
-
-				</view>
-
-
-
-
-
-
-
-				<view class="line"></view>
-				<view class="joinTil" wx:if="{{sportNameSix!=='请选择'&&sportNameSix!==''}}">
-					参与人员
-				</view>
-				<view class="aList" wx:if="{{sportNameSix!=='请选择'&&sportNameSix!==''}}">
-					<view class="TeamA">
-						<text>A队</text>
-						<view class="peopleList">
-							<view class="son" wx:for="{{numASix}}" wx:key='index'>
-								<view class="invite" bindtap="invitaional" data-index="{{index}}" data-uuid="{{item.uuid}}"
-									data-team="1" wx:if="{{item.imgURL==undefined}}">
-									邀请
-									<text class="TeamAson" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">A{{index+1}}</text>
-									<text class="TeamAson" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我找陪练'?'练习方':'陪练方'}}</text>
-									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
-									</image>
-								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'>
-								</image>
-								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
-								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">A{{index+1}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我找陪练'?'练习方':'陪练方'}}</text>
-							</view>
-						</view>
-					</view>
-					<view class="TeamB" style="{{umpire.length!==0?'border-bottom:0.06rem solid #e9e9e9':''}}">
-						<text>B队</text>
-						<view class="peopleList">
-							<view class="son" wx:for="{{numBSix}}" wx:key='index'>
-								<view class="invite" bindtap="invitaional" data-index="{{index}}" data-uuid="{{item.uuid}}"
-									data-team="2" style="font-size:12px;" wx:if="{{item.imgURL==undefined}}">
-									邀请
-									<text class="TeamAson" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">B{{index+1}}</text>
-									<text class="TeamAson" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我是陪练'?'练习方':'陪练方'}}</text>
-									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
-									</image>
-								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'>
-								</image>
-								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
-								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">B{{index+1}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我是陪练'?'练习方':'陪练方'}}</text>
-							</view>
-						</view>
-					</view>
-
-
-
-
-					<view class="TeamB" wx:if="{{umpireSix.length!==0&&modeSix=='竞技模式'}}">
-						<text>裁判</text>
-						<view class="peopleList" style="margin-left:19px;">
-							<view class="son" wx:for="{{umpireSix}}" wx:key='index'>
-								<view class="invite" wx:if="{{item.imgURL==undefined}}">
-									<text class="TeamAsonTwo">C{{index+1}}</text>
-									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
-									</image>
-								</view>
-								<image class="logo" wx:if="{{item.name!='报名'}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
-								<image class="project" wx:if="{{item.name!='报名'}}" src="/assets/{{activitiesData.ballImgSon}}"></image>
-								<text wx:if="{{item.name!='报名'}}" class="grade">{{item.heightLevel}}</text>
-								<text class="TeamAsonTwo">C{{index+1}}</text>
-							</view>
-						</view>
-					</view>
-
-
-
-
-				</view>
-				<!-- <view class="botmComfire"><text>将此发布条件保存为发布偏好</text>
-					<checkbox checked="{{checked}}" bindtap="checkboxChange"></checkbox>
-				</view> -->
-				<view class="line"></view>
-				<view class="footer">
-					<view class="nowTxt">
-						<text class="firstTxt" wx:if="{{displayTxtSix.length!=0}}">{{displayTxtSix.sentence}}</text>
-						<text class="lastTxt">实付￥{{displayTxtSix.length!=0?displayTxtSix.total:0.00}}</text><text
-							style="color:#D85D27;font-size:0.75rem;float:left;margin-top:0.2rem">{{displayTxtSix.sentence2}}</text>
-					</view>
-					<button class="btnConfirm" bindtap="releaseSix">确认发布</button>
-				</view>
-
-
-
-
-
-			</scroll-view>
-		</swiper-item>
 
 
 	</swiper>
@@ -1495,9 +990,9 @@
 			<view class="title">运动模式说明</view>
 			<view class="son"><text>娱乐模式</text><text>:无输赢，场地费所有人AA承担；</text></view>
 			<view class="son"><text>竞技模式</text><text>:有输赢，场地费所有人AA承担或输方买单；有技术分输赢，可以聘请裁判。</text></view>
-			<view class="son"><text>我是陪练</text><text>:无输赢，场地费双方AA承担，发布者是陪练，报名者是练习方。练习方支付陪练费给陪练方。技术级别4级及以上才可成为该运动项目的陪练。</text>
+			<view class="son"><text>我是陪练</text><text>:无输赢，场地费练习方承担，发布者是陪练，报名者是练习方。练习方支付陪练费给陪练方。技术级别4级及以上才可以成为该运动项目的陪练。</text>
 			</view>
-			<view class="son"><text>我找陪练</text><text>:无输赢，场地费双方AA承担，发布者是练习方，报名者是陪练。练习方支付陪练费给陪练方。技术级别4级及以上才可成为该运动项目的陪练。</text>
+			<view class="son"><text>我找陪练</text><text>:无输赢，场地费练习方承担，发布者是练习方，报名者是陪练。练习方支付陪练费给陪练方。技术级别4级及以上才可成为该运动项目的陪练。</text>
 			</view>
 		</view>
 
@@ -1525,12 +1020,10 @@
 
 <view class="certificate" wx:if="{{certificate==300}}">
   <image src="/assets/daijinquan.png" bindtap="contentTgp"></image>
-	<image src="/assets/BtnDown@2x.png" bindtap="closeTorigin" ></image>
 </view>
 
 <view class="certificate" wx:if="{{certificate==200}}">
   <image src="/assets/3d43d36326fde0ae4b111faf473ccf7.png" bindtap="contentTgp"></image>
-	<image src="/assets/BtnDown@2x.png" bindtap="closeTorigin"></image>
 </view>
 
 

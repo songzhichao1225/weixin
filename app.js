@@ -43,6 +43,8 @@ App({
             'code': res.code
           }, "get",
             (res) => {
+
+            
     
       
               wx.setStorageSync('openid', res.data.data.openid);
@@ -50,7 +52,6 @@ App({
               wx.setStorageSync('unionid', res.data.data.unionid);
             },
             () => {
-              console.log("失败")
             },
             () => {
             }

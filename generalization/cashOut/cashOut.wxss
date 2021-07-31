@@ -89,6 +89,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 
 .textTwo>text:last-child {
   color: #D85D27;
+  padding-top: 0.5rem;
 }
 
 .bindComfire {

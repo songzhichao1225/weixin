@@ -104,7 +104,7 @@ Page({
         this.setData({ nearbyData: res.data.data.Lst })
         wx.hideLoading()
       },
-      () => { console.log("失败") },
+      () => {  },
       () => {
       }
     )

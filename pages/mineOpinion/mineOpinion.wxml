@@ -13,8 +13,6 @@
 		<view>
 			<image src="../../assets/uploadImg.png" wx:if="{{imgURLT.length<2}}" bindtap="chooseImg" mode="widthFix"></image>
 		</view>
-
-		
 	</view>
 
 

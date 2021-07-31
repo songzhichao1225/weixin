@@ -19,7 +19,7 @@
     "checkSiteMap": false,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
+    "useMultiFrameRuntime": true,
     "useApiHook": true,
     "babelSetting": {
       "ignore": [],
@@ -32,7 +32,8 @@
     "userConfirmedUseCompilerModuleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": true
+    "minifyWXSS": true,
+    "useApiHostProcess": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.14.1",
@@ -99,7 +100,7 @@
         {
           "name": "活动详情",
           "pathName": "pages/homePage/activities/activities",
-          "query": "uuid= c4b43fae-a0fe-4b0d-8774-a3cc9f8e46d2",
+          "query": "uuid= 3a416d97-1141-63c0-d71f-248cdbd6f7fd",
           "scene": null
         },
         {

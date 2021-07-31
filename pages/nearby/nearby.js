@@ -85,11 +85,7 @@
      certificate: 0
    },
 
-   closeTorigin: function () {
-     this.setData({
-       certificate: 0
-     })
-   },
+ 
 
    contentTgp: function () {
      util.Request("/api/AddOffsetRoll", {
@@ -128,7 +124,7 @@
      wx.showLoading({
        title: '加载中',
      })
-     util.request("/api/getNearbyOpponentList", {
+     util.Request("/api/getNearbyOpponentList", {
          page: this.data.page,
          sex: this.data.arraySex[Number(this.data.sex)].id,
          sportid: this.data.arraySport[Number(this.data.Sport)].id,
@@ -194,6 +190,7 @@
        img: util.API,
      })
      
+     this.list()
 
    },
 
@@ -272,7 +269,6 @@
        }, "post",
        (res) => {},
        () => {
-         console.log("失败")
        },
        () => {}
      )
@@ -416,7 +412,6 @@
         }
       )
 }
-     this.list()
      if (typeof this.getTabBar === 'function' &&
        this.getTabBar()) {
        this.getTabBar().setData({

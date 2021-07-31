@@ -56,7 +56,6 @@ Page({
                       let ko=JSON.parse(res.data)
                       let  data=ko.data.baseURL+ko.data.filesURL
                       if(ko.code==2000){
-                        console.log(data)
                         that.setData({
                           imgURLT: [...that.data.imgURLT, data]
                         })
@@ -105,7 +104,7 @@ Page({
     let TEL_REGEXP = /^1([38]\d|5[0-35-9]|7[3678])\d{8}$/;
     if (textValue==''){
       wx.showToast({
-        title: '请输入反馈内容',
+        title: '请输入您的意见或建议！',
         icon: 'none',
         duration: 1500,
         mask: true
@@ -115,8 +114,8 @@ Page({
         'comment': textValue,
          'mobile': wx.getStorageSync('telephone'),
           'email': '',
-          'baseURL':imgURLT[0].split('/')[0]+'/'+imgURLT[0].split('/')[1]+'/'+imgURLT[0].split('/')[2]+'/',
-          'filesURL':imgURLT.length>1?imgURLT[0].split('/')[3]+'|'+imgURLT[1].split('/')[3]:imgURLT[0].split('/')[3]
+          'baseURL':imgURLT.length==0?'':imgURLT[0].split('/')[0]+'/'+imgURLT[0].split('/')[1]+'/'+imgURLT[0].split('/')[2]+'/',
+          'filesURL':imgURLT.length==0?'':imgURLT.length>1?imgURLT[0].split('/')[3]+'|'+imgURLT[1].split('/')[3]:imgURLT[0].split('/')[3]
           }, "post", 
         (res) => {
           if(res.data.code===2000){
@@ -141,7 +140,7 @@ Page({
             })
           }
         },
-        () => { console.log("失败") },
+        () => {  },
         () => {
         }
       )

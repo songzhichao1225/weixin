@@ -17,7 +17,6 @@ Page({
 
 
   onLoad: function (option) {
-   console.log(app.globalData.Invite_code)
     let that=this
     let BMap = new bmap.BMapWX({
       ak: that.data.ak
@@ -105,7 +104,6 @@ Page({
 
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -150,7 +148,6 @@ Page({
 
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -216,7 +213,6 @@ Page({
                                     })
                                   },
                                   () => {
-                                    console.log("失败")
                                   },
                                   () => {}
                                 )
@@ -231,7 +227,6 @@ Page({
 
                       },
                       () => {
-                        console.log("失败")
                       },
                       () => {}
                     )
@@ -349,7 +344,6 @@ Page({
                           }
                         },
                         () => {
-                          console.log("失败")
                         },
                         () => {}
                       )
@@ -357,13 +351,11 @@ Page({
 
                     },
                     () => {
-                      console.log("失败")
                     },
                     () => {}
                   )
                 },
                 () => {
-                  console.log("失败")
                 },
                 () => {}
               )
@@ -390,7 +382,6 @@ Page({
                     }, "post",
                     (res) => {},
                     () => {
-                      console.log("失败")
                     },
                     () => {}
                   )

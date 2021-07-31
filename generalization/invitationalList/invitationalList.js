@@ -7,7 +7,8 @@ Page({
   data: {
     list:[],
     enabled:true,
-    page:1
+    page:1,
+    listOther:''
   },
 
   /**
@@ -17,11 +18,10 @@ Page({
     this.setData({img: util.API})
     util.Request("/api/getSelectuser", {page:1}, "post",
     (res) => {
-      this.setData({list:res.data.data})
+      this.setData({list:res.data.data,listOther:res.data.other})
       wx.hideLoading()
     },
     () => {
-      console.log("失败")
     },
     () => {}
   )
@@ -34,7 +34,6 @@ Page({
       wx.hideLoading()
     },
     () => {
-      console.log("失败")
     },
     () => {}
   )
@@ -44,11 +43,10 @@ Page({
     util.Request("/api/getSelectuser", {page:this.data.page+1}, "post",
     (res) => {
 
-      this.setData({list:[this.data.list,...res.data.data],page:page+1})
+      this.setData({list:[...this.data.list,...res.data.data],page:this.data.page+1})
       wx.hideLoading()
     },
     () => {
-      console.log("失败")
     },
     () => {}
   )

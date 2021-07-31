@@ -6,7 +6,10 @@
 		</view>
 	</view>
 	<view class="text"><text>请输入要兑换成现金的对手果</text><text>(50的倍数)</text></view>
-	<input type="number" class="input" bindinput="input" value="{{input}}" placeholder="请输入对手果" />
+	<view class="inputBoss">
+	<input type="number" class="input" bindinput="input" value="{{input}}" placeholder="请输入对手果数量" />
+	<text class="ke" wx:if="{{input!=''}}">约可兑换￥{{inputTwo}}</text>
+</view>
 	<view class="textTwo"><text>兑换比例50:1</text><text bindtap="clickAll">全部兑换</text></view>
 
 	<button class="btnComfir" bindtap="btnComfir">确定</button>

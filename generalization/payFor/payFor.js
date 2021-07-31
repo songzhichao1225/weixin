@@ -61,7 +61,6 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -95,7 +94,6 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -144,7 +142,6 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -191,7 +188,6 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -241,7 +237,6 @@ Page({
           wx.hideLoading()
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -363,7 +358,6 @@ Page({
 
               },
               () => {
-                console.log("失败")
               },
               () => {}
             )
@@ -423,7 +417,6 @@ Page({
                       })
                     },
                     'fail': function (res) {
-                      console.log('没成功')
                     },
 
                   })
@@ -438,7 +431,6 @@ Page({
 
               },
               () => {
-                console.log("失败")
               },
               () => {}
             )
@@ -504,7 +496,6 @@ Page({
 
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -589,7 +580,6 @@ Page({
                       }
                     },
                     () => {
-                      console.log("失败")
                     },
                     () => {}
                   )
@@ -667,7 +657,6 @@ Page({
                       }
                     },
                     () => {
-                      console.log("失败")
                     },
                     () => {}
                   )
@@ -726,7 +715,6 @@ Page({
 
                   },
                   () => {
-                    console.log("失败")
                   },
                   () => {}
                 )
@@ -749,7 +737,6 @@ Page({
             }
           },
           () => {
-            console.log("失败")
           },
           () => {}
         )
@@ -799,13 +786,11 @@ Page({
                 })
               },
               'fail': function (res) {
-                console.log(res)
               },
             })
 
           },
           () => {
-            console.log("失败")
           },
           () => {}
         )
@@ -860,7 +845,6 @@ Page({
 
                 },
                 () => {
-                  console.log("失败")
                 },
                 () => {}
               )
@@ -881,7 +865,6 @@ Page({
             }
           },
           () => {
-            console.log("失败")
           },
           () => {}
         )
@@ -950,7 +933,6 @@ Page({
 
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -1001,7 +983,6 @@ Page({
 
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )

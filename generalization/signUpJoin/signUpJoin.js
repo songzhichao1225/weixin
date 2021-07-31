@@ -216,7 +216,6 @@ Page({
       })
     },
     () => {
-      console.log("失败")
     },
     () => {
     }
@@ -227,7 +226,6 @@ Page({
       this.setData({title:res.data.data})
     },
     () => {
-      console.log("失败")
     },
     () => {
     }
@@ -541,7 +539,6 @@ Page({
       }
     },
     () => {
-      console.log("失败")
     },
     () => {
     }

@@ -167,10 +167,10 @@
 }
 
 .comment textarea {
-  padding: 2.5%;
   height: 4rem;
-  width: 100%;
+  width: 95%;
   font-size: 0.75rem;
+  margin: 0.5rem auto 0;
 }
 
 .putier {
@@ -203,4 +203,34 @@
   display: flex;
   flex-wrap:wrap;
   justify-content:space-between
+}
+
+
+.imgContent{
+  margin-top: 1rem;
+  overflow: hidden;
+  margin-left: 2.5%;
+}
+.imgContent>view{
+  width: 30%;
+  height: 6.3rem;
+  margin-left: 3%;
+  float: left;
+  margin-top: 0.5rem;
+  position: relative;
+}
+.imgContent>view:nth-child(3n+1){
+  margin-left: 0;
+}
+.imgContent>view>image{
+  width: 100%;
+  height: 100%;
+}
+.delet{
+  color: #9b9b9b;
+  font-size: 2rem;
+  position: absolute;
+  top: 0.1rem;
+  right: 0.3rem;
+  line-height: 1.5rem;
 }

@@ -3,13 +3,14 @@ const util = require('../../../utils/util.js')
 
 Page({
   data: {
-    dataIndex: null,
+    dataIndex: 0,
     siteIndex: 0,
     sexIndex: 2,
     date: '选择日期',
     time: '选择开始时间',
     timeTwo: '选择结束时间',
-    rangeArr: ['不限', 1, 2, 3, 4, 5, 6, 7, 9, 10],
+    rangeArr: ['不限', 1, 2, 3, 4, 5, 6, 7, 9, 10,11,12,13,14,15],
+    timeArr:['00:00','00:30','01:00','01:30','02:00','02:30','03:00','03:30','04:00','04:30','05:00','05:30','06:00','06:30','07:00','07:30','08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30','23:00','23:30'],
     Grade: '最低等级',
     GradeTwo: '最高等级',
     praise: null,
@@ -18,6 +19,7 @@ Page({
     ageNum: 0,
     ageTwo:[],//最大年龄
     ageNumTwo:0,
+    umpireIndex:0,
   },
   onLoad: function () {
     if (wx.getStorageSync('dataIndex') != '' || wx.getStorageSync('siteIndex') != '' || wx.getStorageSync('sexIndex') != '' || wx.getStorageSync('date') != '' || wx.getStorageSync('time') != '' || wx.getStorageSync('timeTwo') != '' || wx.getStorageSync('Grade') != '' || wx.getStorageSync('GradeTwo') != '' || wx.getStorageSync('praise') != '' || wx.getStorageSync('Activities') != '') {
@@ -35,8 +37,8 @@ Page({
       })
     }
     let age = ['不限']
-    for (let i = 1; i < 100; i++) {
-      age.push(i)
+    for (let i = 1; i < 90; i++) {
+      age.push(i+9)
     }
     this.setData({
       age: age
@@ -48,24 +50,57 @@ Page({
   //选中运动模式
   modeTap: function (e) {
     let dataIndex = e.currentTarget.dataset.num
-    this.setData({
-      dataIndex: dataIndex
-    })
+    if(this.data.dataIndex==dataIndex){
+      this.setData({
+        dataIndex: 0
+      })
+    }else{
+      this.setData({
+        dataIndex: dataIndex
+      })
+    }
+    
+  },
+
+   //选中是否有裁判
+   umpire: function (e) {
+    let umpireIndex = e.currentTarget.dataset.num
+    if(this.data.umpireIndex==umpireIndex){
+      this.setData({
+        umpireIndex: 0
+      })
+    }else{
+      this.setData({
+        umpireIndex: umpireIndex
+      })
+    }
   },
   //选中场地方式
   siteTap: function (e) {
     let siteIndex = e.currentTarget.dataset.num
-    this.setData({
-      siteIndex: siteIndex
-    })
+    if(this.data.siteIndex==siteIndex){
+      this.setData({
+        siteIndex: 0
+      })      
+    }else{
+      this.setData({
+        siteIndex: siteIndex
+      })
+    }
 
   },
   //选中性别
   sexTap: function (e) {
     let sexIndex = e.currentTarget.dataset.num
-    this.setData({
-      sexIndex: sexIndex
-    })
+    if(this.data.sexIndex==sexIndex){
+      this.setData({
+        sexIndex: 2
+      })
+    }else{
+      this.setData({
+        sexIndex: sexIndex
+      })
+    }
 
   },
   //选择日期
@@ -77,6 +112,7 @@ Page({
   //选择开始时间
   bindTimeChange: function (e) {
     if (this.data.date !== '选择日期') {
+      
       this.setData({
         time: e.detail.value
       })
@@ -135,7 +171,7 @@ Page({
   //最低年龄
   age: function (e) {
     this.setData({
-      ageNum: e.detail.value
+      ageNum: Number(e.detail.value)+9
     })
     let ageTwo=['不限']
     for(let i=1;i<Number(100-this.data.ageNum);i++){
@@ -148,7 +184,7 @@ Page({
   //最高年龄
   ageTwo: function (e) {
     this.setData({
-      ageNumTwo: Number(e.detail.value)+Number(this.data.ageNum)
+      ageNumTwo: Number(e.detail.value)+9
     })
   },
 
@@ -167,7 +203,7 @@ Page({
   //重置
   reset: function () {
     this.setData({
-      dataIndex: null,
+      dataIndex: 0,
       siteIndex: 0,
       sexIndex: 2,
       date: '选择日期',
@@ -177,6 +213,7 @@ Page({
       GradeTwo: '最高等级',
       praise: null,
       Activities: null,
+      umpireIndex:0,
     })
   },
   //确认

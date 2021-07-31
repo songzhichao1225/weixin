@@ -12,15 +12,14 @@ page{
   display: block;
   width: 6rem;
   height: 6rem;
-  margin: 5rem auto 5rem;
-  
+  margin: 5rem auto 1rem;
 }
 .authorization>.btn{
-  width: 80%;
+  width: 65%;
   height: 2.56rem;
   border-radius: 0.5rem;
   background: #D85D27;
-  margin: 0 auto;
+  margin: 2rem auto 0;
   color:#fff;
   font-size: 16px;
   line-height: 2.56rem;
@@ -93,4 +92,15 @@ page{
   width: 8rem;
   left: 50%;
   margin-left: -4rem;
+}
+.textSon{
+  font-size: 0.75rem;
+  color: #9b9b9b;
+  display: block;
+  text-align: center;
+}
+.textOne{
+  font-size: 0.88rem;
+  display: block;
+  text-align: center;
 }

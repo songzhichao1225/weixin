@@ -34,7 +34,6 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -141,6 +140,12 @@ Page({
             'success': function (res) {
               app.deductibles = []
               app.envelope = []
+              wx.showToast({
+                title: '续时成功',
+                icon: 'success',
+                duration: 1500,
+                mask: true
+              })
               setTimeout(function(){
                 wx.navigateBack({
                   delta: 2,
@@ -148,21 +153,19 @@ Page({
               },1500)
             },
             'fail': function (res) {
-              console.log(res)
             },
           })
 
           wx.hideLoading()
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
 
     } else if (this.data.type == 2) {
       wx.hideLoading()
-      if (this.data.orderMent.playermoney > this.data.orderMent.sitemoney) {
+      if (Number(this.data.orderMent.playermoney) > Number(this.data.orderMent.sitemoney)) {
         util.Request("/api/checkIsPutMoneyPwd", {small:1}, "post",
           (res) => {
             if (res.data.code == 2000) {
@@ -187,7 +190,6 @@ Page({
 
           },
           () => {
-            console.log("失败")
           },
           () => {}
         )
@@ -260,7 +262,6 @@ Page({
                 wx.hideLoading()
               },
               () => {
-                console.log("失败")
               },
               () => {}
             )
@@ -280,7 +281,6 @@ Page({
 
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )

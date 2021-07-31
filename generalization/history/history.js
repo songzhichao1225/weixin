@@ -14,7 +14,7 @@ Page({
       (res) => {
         this.setData({historyList:res.data.data})
       },
-      () => { console.log("失败") },
+      () => { },
       () => {
       }
     )

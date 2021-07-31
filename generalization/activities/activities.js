@@ -54,7 +54,6 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {
       }
@@ -161,7 +160,6 @@ Page({
           (res) => {
           },
           () => {
-            console.log("失败")
           },
           () => {
           }

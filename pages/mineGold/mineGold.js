@@ -19,7 +19,7 @@ Page({
         this.setData({ userTechcoins:res.data.data,flag:true})
         wx.hideLoading()
       },
-      () => { console.log("失败") },
+      () => {  },
       () => {
       }
     )

@@ -63,7 +63,6 @@ Page({
       wx.hideLoading()
     },
     () => {
-      console.log("失败")
     },
     () => {
     }

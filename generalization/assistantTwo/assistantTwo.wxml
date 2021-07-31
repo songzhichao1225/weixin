@@ -19,7 +19,7 @@
     <text class="contentList">答：主要有如下4种做用：</text>
     <text class="contentList">1）可按50:1比例兑换现金；</text>
     <text class="contentList">2）可按10:1比例兑换为场地费抵用券；</text>
-    <text class="contentList">3）当某项运动技术分&lt;5时，系统自动将10枚对手果转换为10技术分。</text>
+    <text class="contentList">3）当某项运动技术分小于5时，系统自动将10枚对手果转换为10技术分。</text>
     <text class="contentList">4）当对手果排名靠前时，我们会有额外的奖励。</text>
   </view>
 </view>

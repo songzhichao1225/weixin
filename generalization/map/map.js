@@ -93,7 +93,6 @@ Page({
                 wx.hideLoading()
               },
               () => {
-                console.log("失败")
               },
               () => {}
             )
@@ -174,7 +173,6 @@ Page({
                 wx.hideLoading()
               },
               () => {
-                console.log("失败")
               },
               () => {}
             )
@@ -229,7 +227,6 @@ Page({
             wx.hideLoading()
           },
           () => {
-            console.log("失败")
           },
           () => {}
         )
@@ -292,7 +289,6 @@ Page({
           wx.hideLoading()
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -329,7 +325,6 @@ getsuggest: function(e) {
         });
       },
       fail: function(error) {
-        console.error(error);
       },
       complete: function(res) {
         
@@ -339,7 +334,6 @@ getsuggest: function(e) {
   },
 
   onRefresh:function(){
-    console.log('下拉被触发')
 
     let obj = {
       mylat:this.data.latitude,
@@ -374,7 +368,6 @@ getsuggest: function(e) {
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -405,7 +398,6 @@ getsuggest: function(e) {
           }
           objArr.push(obj)
         }
-       
         this.setData({
           venuesLst: [...this.data.venuesLst,...res.data.data.sitelst],
           markers: objArr,
@@ -415,7 +407,6 @@ getsuggest: function(e) {
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )

@@ -143,7 +143,7 @@ Page({
         this.setData({ drankingList:res.data.data})
         wx.hideLoading()
       },
-      () => { console.log("失败") },
+      () => {  },
       () => {
       }
     )

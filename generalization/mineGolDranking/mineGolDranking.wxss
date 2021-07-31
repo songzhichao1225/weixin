@@ -141,21 +141,18 @@ page {
   display: block;
   font-size: 12px;
   color: #333;
-  float: left;
-  margin-left: 20%;
+  text-align: center;
 }
 
 .topOne .text .grade {
   display: block;
-  font-size: 12px;
+  font-size: 10px;
   float: left;
-  margin-left: 15rpx;
   background:linear-gradient(270deg,rgba(252,164,0,1) 0%,rgba(254,224,115,1) 100%);
   border-radius:0.13rem;
   padding: 0 2rpx;
   color: #fff;
 }
-
 .topTwo {
   left: 5%;
   margin-left: 0;

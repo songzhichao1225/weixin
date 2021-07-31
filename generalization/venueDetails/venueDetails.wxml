@@ -2,7 +2,7 @@
 
 	<scroll-view scroll-x="true" style="width:100%;">
 		<view class="headerN" style="width:{{9*venue.filesURL.length}}rem">
-			<image class="modeSrc" src="{{img}}/{{item}}" data-src="{{img}}/{{fileArr.length==0?item:fileArr[index]}}" bindtap="previewImage" wx:for="{{venue.filesURL}}" wx:key="index"></image>
+			<image class="modeSrc" mode="aspectFill" src="{{img}}/{{item}}" data-src="{{img}}/{{fileArr.length==0?item:fileArr[index]}}" bindtap="previewImage" wx:for="{{venue.filesURL}}" wx:key="index"></image>
 		</view>
 	</scroll-view>
 
@@ -13,7 +13,7 @@
 			<text class="name">{{venue.name}}</text>
 			<view class="xing">                                                 
 				<text style="font-size:0.88rem;padding-right:0.5rem;">总体</text>
-				<image src="/assets/{{venue.scores>1?'StarSel2@2x.png':'StarSelYb2@2x.png'||venue.scores==0?'StarNor2@2x.png':''}}"></image>
+				<image src="/assets/{{venue.scores>=1?'StarSel2@2x.png':'StarSelYb2@2x.png'||venue.scores==0?'StarNor2@2x.png':''}}"></image>
 				<image src="/assets/{{venue.scores>=2?'StarSel2@2x.png':'StarSelYb2@2x.png'||venue.scores==1?'StarNor2@2x.png':''}}"></image>
 				<image src="/assets/{{venue.scores>=3?'StarSel2@2x.png':'StarSelYb2@2x.png'||venue.scores==2?'StarNor2@2x.png':''}}"></image>
 				<image src="/assets/{{venue.scores>=4?'StarSel2@2x.png':'StarSelYb2@2x.png'||venue.scores==3?'StarNor2@2x.png':''}}"></image>
@@ -22,13 +22,14 @@
 				<text style="color:#9B9B9B;font-size:0.75rem;padding-left:0.3rem;">履约率:{{venue.pfmRate}}</text>
 			</view>
 			<view class="sheshi"><text style="margin-left:0;">设施:{{venue.equscore}}</text><text>服务:{{venue.envscore}}</text><text>价格:{{venue.xjbScore}}</text>
-				<view class="btn"  wx:if="{{falg!=3}}" catchtap="bookIn" data-uid="{{venue.uid}}" data-name="{{venue.name}}">预订</view>
+				<view class="btn"  wx:if="{{falg!=22}}" catchtap="bookIn" data-uid="{{venue.uid}}" data-name="{{venue.name}}">预订</view>
 			</view>
 		</view>
 	</view>
 	<view class="address">
 		<image class="image" src="/assets/position.png"></image>
-		<view><text bindtap="addressGo" data-lat="{{venue.lat}}" data-lng="{{venue.lng}}" data-address="{{venue.address}}">{{venue.address}}</text></view>
+		<!-- addressGo -->
+		<view><text data-lat="{{venue.lat}}" data-lng="{{venue.lng}}" data-address="{{venue.address}}">{{venue.address}}</text></view>
 		<image class="imageTwo" bindtap="telephone" src="/assets/icon_tel@2x.png"></image>
 	</view>
 

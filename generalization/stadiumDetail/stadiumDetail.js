@@ -21,7 +21,7 @@ Page({
         this.setData({ dataList:res.data.data})
         wx.hideLoading()
       },
-      () => { console.log("失败") },
+      () => { },
       () => {
       }
     )
@@ -30,7 +30,7 @@ Page({
       (res) => {
         this.setData({detail:res.data.data})
       },
-      () => { console.log("失败") },
+      () => {  },
       () => {
       }
     )

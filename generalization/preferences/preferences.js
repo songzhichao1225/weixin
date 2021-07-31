@@ -22,7 +22,7 @@ Page({
        
         wx.hideLoading()
       },
-      () => { console.log("失败") },
+      () => {  },
       () => {
       }
     )
@@ -59,7 +59,7 @@ Page({
           (res) => {
             that.jod()
           },
-          () => { console.log("失败") },
+          () => {  },
           () => {
           }
         )
@@ -107,7 +107,7 @@ Page({
         url: '/pages/publishing/publishing'
       })
     },
-    () => { console.log("失败") },
+    () => {  },
     () => {
     }
   )

@@ -21,7 +21,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  onShow:function(){
+    console.log(this.data.uuid)
+  },
   onLoad: function (options) {
+    console.log(options.inviteId)
     this.setData({
       uuid:options.inviteId,
       time:options.time,
@@ -31,7 +35,6 @@ Page({
       ok:options.ok,
       lr:options.lr,
     })
-    console.log(app.globalData.teamText)
     wx.removeStorage({
       key: 'bookinThree',
     })
@@ -66,7 +69,6 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -91,7 +93,6 @@ Page({
         this.setData({rule:res.data.data.rule,ruleFlag:true})
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -129,7 +130,6 @@ Page({
 
           },
           () => {
-            console.log("失败")
           },
           () => {}
         )
@@ -155,35 +155,24 @@ Page({
     })
   },
   saveImg(e) {
-    console.log()
     wx.saveImageToPhotosAlbum({
       filePath: e.currentTarget.dataset.src,
       success: function (data) {
-        console.log(data);
       },fail: function (err) {
-        console.log(err);
-        if (err.errMsg ==="saveImageToPhotosAlbum:fail auth deny") {console.log("用户一开始拒绝了，我们想再次发起授权")
-          console.log(
-            '打开设置窗口'
-          )
+        if (err.errMsg ==="saveImageToPhotosAlbum:fail auth deny") {
+         
 
           wx.openSetting({
             success(settingdata) {
-              console.log(settingdata)
 
               if (settingdata.authSetting[
                   'scope.writePhotosAlbum'
                 ]) {
 
-                console.log(
-                  '获取权限成功，给出再次点击图片保存到相册的提示。'
-                )
 
               } else {
 
-                console.log(
-                  '获取权限失败，给出不给权限就无法正常使用的提示'
-                )
+                
 
               }
 

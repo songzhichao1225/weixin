@@ -31,7 +31,7 @@
 				<view class="duishoubi">
 					<text>对手果</text>
 					<text style="padding-left:1.56rem;">{{personalData.coinSum}}</text>
-					<text style="padding-left:0.6rem;color:#ddd" bindtap="counterCoin">对手果？</text>
+					<text style="padding-left:0.6rem;color:#ddd;height:1rem" bindtap="counterCoin">对手果？</text>
 				</view>
 				<view class="praise">
 					<text>好评率</text>
@@ -59,7 +59,7 @@
 				<view class="duishoubi">
 					<text>人气指数</text>
 					<text style="margin-left:0.8rem;">{{personalData.popular}}</text>
-					<text style="padding-left:0.6rem;color:#ddd" bindtap="closeFing">人气指数？</text>
+					<text style="padding-left:0.6rem;color:#ddd;height:2rem" bindtap="closeFing">人气指数？</text>
 				</view>
 			</view>
 			<view class="List">
@@ -138,8 +138,8 @@
 						<image src="{{img}}/{{item.imgURL}}"></image>
 						<view>{{item.nickname}}</view>
 
-						<!-- catchtap="thumbsUp" -->
-						<image  data-uuid="{{item.uuid}}" 
+						
+						<image  catchtap="thumbsUp" data-uuid="{{item.uuid}}" 
 							src="{{item.isown==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
 						<view class="fabulou">{{item.fabulou}}</view>
 					</view>
@@ -155,8 +155,8 @@
 					<view class="userDetails">
 						<image src="{{img}}/{{item.imgURL}}"></image>
 						<view>{{item.nickname}}</view>
-						<!-- catchtap="thumbsUp" -->
-						<image  data-uuid="{{item.uuid}}"
+						
+						<image catchtap="thumbsUp"  data-uuid="{{item.uuid}}"
 							src="{{item.isown==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
 						<view class="fabulou">{{item.fabulou}}</view>
 					</view>

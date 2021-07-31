@@ -65,7 +65,6 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -86,7 +85,6 @@ Page({
         }
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -110,7 +108,8 @@ Page({
   bossTitle: function (e) {
 
     this.setData({
-      indexd: e.currentTarget.dataset.index
+      indexd: e.currentTarget.dataset.index,
+      page:1
     })
     if (e.currentTarget.dataset.index == '2') {
       this.list()
@@ -158,7 +157,6 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -196,7 +194,6 @@ Page({
       }, "post",
       (res) => {},
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -207,7 +204,12 @@ Page({
     })
   },
   onShow: function () {
-    this.list()
+    this.setData({page:1})
+    let that=this
+    setTimeout(function(){
+      that.list()
+    },500)
+
   },
   avataBoss: function (e) {
     wx.previewImage({
@@ -268,7 +270,6 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )

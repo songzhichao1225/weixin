@@ -1,21 +1,67 @@
 <view class="releaseDynamics">
-	<view class="head">
-		<text>上传的第一张图片为动态展示时的封面图</text>
-		<button bindtap="submit">发表</button>
-	</view>
-	<view class="content">
-		<textarea auto-height bindinput="textInput" maxlength="200" placeholder="分享一个新动态吧..." />
-		<view class="imgContent">
-		<view wx:for="{{imgURLT}}" wx:key="index">
-			<image  src="{{img}}{{item}}" mode="aspectFill"></image>
-			<view class="delet" bindtap="delet" data-src="{{item}}">×</view>
-		</view>
-		<view>
-			<image src="../../assets/uploadImg.png" wx:if="{{imgURLT.length<9}}" bindtap="chooseImg" mode="widthFix"></image>
-		</view>
+ <view class="headSelect">
+ <view bindtap="btnUp" data-index="1" style="{{indexUp==1?'color:#fff;':''}}">发布图片 <view wx:if="{{indexUp==1}}"></view></view>
+ <view bindtap="btnUp" data-index="2" style="{{indexUp==2?'color:#fff;':''}}">发布视频 <view wx:if="{{indexUp==2}}"></view></view>
+ </view>
 
-		
+	<view class="imageUp" wx:if="{{indexUp==1}}">
+		<view class="head">
+			<text>上传的第一张图片为动态展示时的封面图</text>
+			<button bindtap="submit" disabled="{{disBtn}}">发布</button>
+		</view>
+		<view class="content">
+			<textarea auto-height bindinput="textInput" maxlength="200" placeholder="分享一个新动态吧..." />
+			<view class="imgContent">
+				<view wx:for="{{imgURLT}}" wx:key="index">
+					<image src="{{img}}{{item}}" mode="aspectFill"></image>
+					<view class="delet" bindtap="delet" data-src="{{item}}">×</view>
+				</view>
+				<view>
+					<image src="../../assets/uploadImg.png" wx:if="{{imgURLT.length<9}}" bindtap="chooseImg" mode="widthFix">
+					</image>
+				</view>
+			</view>
+		</view>
 	</view>
-</view>
+
+
+
+
+
+
+
+
+	<view class="imageUp" wx:if="{{indexUp==2}}">
+		<view class="head">
+			<text>上传的视频第一帧为动态展示时的封面图</text>
+			<button bindtap="submitTwo" disabled="{{disBtn}}">发布</button>
+		</view>
+		<view class="content">
+			<textarea auto-height bindinput="textInputTwo" maxlength="200" placeholder="分享一个新动态吧..." />
+			<view class="imgContent">
+				<view wx:if="{{thumbTempFilePath!=''}}">
+					<image src="{{thumbTempFilePath}}" mode="aspectFill"></image>
+					<view class="delet" bindtap="deletTwo">×</view>
+				</view>
+				<view>
+					<image src="../../assets/uploadImg.png" wx:if="{{thumbTempFilePath==''}}" bindtap="chooseImgTwo" mode="widthFix">
+					</image>
+				</view>
+			</view>
+		</view>
+	</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </view>

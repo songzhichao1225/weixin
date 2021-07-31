@@ -26,7 +26,6 @@ Page({
    wx.hideLoading()
     },
     () => {
-      console.log("失败")
     },
     () => {
     }
@@ -58,7 +57,6 @@ Page({
       that.jod()
     },
     () => {
-      console.log("失败")
     },
     () => {
     }

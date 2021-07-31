@@ -141,7 +141,6 @@ Page({
               })
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -152,7 +151,6 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -190,7 +188,6 @@ Page({
         })
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -260,10 +257,11 @@ Page({
     }
   },
   //上传图片
+  
   chooseImg: function () {
     var that = this
     wx.showActionSheet({
-      itemList: ['拍照', '从手机选择'],
+      itemList: ['拍照', '相册'],
       success: function (res) {
         wx.showNavigationBarLoading()
         let imgArr = null;
@@ -273,25 +271,50 @@ Page({
           imgArr = ['album']
         }
         wx.chooseImage({
-          count: 1,
+          count: 2 - that.data.imgURLT.length,
           sizeType: ['original', 'compressed'],
           sourceType: imgArr,
           success: function (res) {
-            let tempFilePaths = res.tempFilePaths[0]
-            that.setData({
-              imgURLT: tempFilePaths
-            })
-            util.Request("/api/uploadSiteImg", tempFilePaths, 'post',
-              (res) => {
-                that.setData({
-                  imageUrl: JSON.parse(res.data).data.filesURL,
-                  imgBaseURL: JSON.parse(res.data).data.baseURL
-                })
-                wx.hideLoading()
-              },
-              () => {},
-              () => {}
-            )
+            let tempFilePaths = res.tempFilePaths
+            let ko = tempFilePaths
+            for (let i in ko) {
+              wx.compressImage({
+                src: ko[i],
+                quality: 20,
+                success: function (res) {
+                  util.Request("/api/feedBackImgs", res.tempFilePath, 'post',
+                    (res) => {
+                      let ko=JSON.parse(res.data)
+                      let  data=ko.data.baseURL+ko.data.filesURL
+                      if(ko.code==2000){
+                        that.setData({
+                          imgURLT: [...that.data.imgURLT, data]
+                        })
+                      }else if(ko.code==4003){
+                        wx.showToast({
+                          title: '图片涉嫌违规，请重新上传',
+                          icon: 'none',
+                          duration: 1500,
+                          mask: true
+                        })
+                      }else{
+                        wx.showToast({
+                          title: '上传失败',
+                          icon: 'none',
+                          duration: 1500,
+                          mask: true
+                        })
+                      }
+                     
+                    },
+                    () => {},
+                    () => {}
+                  )
+                }
+              })
+            }
+
+
           }
         })
       },
@@ -299,6 +322,13 @@ Page({
         wx.hideNavigationBarLoading()
       }
     })
+  },
+
+  delet:function(e){
+    let src=e.currentTarget.dataset.src
+    let imgURLT=this.data.imgURLT
+    imgURLT.splice(imgURLT.indexOf(src),1)
+    this.setData({imgURLT:imgURLT})
   },
 
   firHoom: function (e) {
@@ -337,8 +367,7 @@ Page({
       rangeThree,
       rangeTwo,
       value,
-      imageUrl,
-      imgBaseURL
+      imgURLT,
     } = this.data
     let obj = {
       siteUid: e.currentTarget.dataset.siteid,
@@ -348,8 +377,8 @@ Page({
       service: rangeThree,
       equscore: rangeTwo,
       siteContent: value,
-      imgBaseURL: imgBaseURL,
-      imgURL: imageUrl
+      imgBaseURL: imgURLT.length==0?'':imgURLT[0].split('/')[0]+'/'+imgURLT[0].split('/')[1]+'/'+imgURLT[0].split('/')[2]+'/',
+      imgURL: imgURLT.length==0?'':imgURLT.length>1?imgURLT[0].split('/')[3]+'|'+imgURLT[1].split('/')[3]:imgURLT[0].split('/')[3]
     }
 
     util.Request("/api/addComment", obj, "post",
@@ -367,7 +396,6 @@ Page({
         })
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -394,7 +422,6 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )

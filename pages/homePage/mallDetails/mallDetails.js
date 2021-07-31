@@ -15,7 +15,7 @@ Page({
       (res) => {
         this.setData({ imgUrl:res.data.data.imgurl})
       },
-      () => { console.log("失败") },
+      () => {  },
       () => {
       }
     )

@@ -88,8 +88,7 @@
   width: 1.06rem;
   height: 1.06rem;
   float: left;
-  margin-top: 0.85rem;
-  margin-left: 1rem;
+  padding: 0.8rem 1.5rem;
 }
 
 .species {

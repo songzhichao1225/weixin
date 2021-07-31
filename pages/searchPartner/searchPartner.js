@@ -53,7 +53,7 @@ Page({
         wx.hideLoading()
         wx.stopPullDownRefresh()//停止下拉刷新
       },
-      () => { console.log("失败") },
+      () => {  },
       () => {
       }
     )

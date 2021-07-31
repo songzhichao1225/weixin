@@ -42,14 +42,12 @@ Page({
 
           },
           () => {
-            console.log("失败")
           },
           () => {}
         )
 
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -97,9 +95,11 @@ Page({
     util.Request("/api/CounterCurrencyExchangeVoucher", {volume:arrT.join()}, "post",
     (res) => {
        if(res.data.code==2000){
-        wx.navigateBack({
-          delta: 1
-        })
+        setTimeout(()=>{
+          wx.navigateBack({
+            delta: 1
+          })
+        },2000)
        }
 
      wx.showToast({
@@ -111,7 +111,6 @@ Page({
       
     },
     () => {
-      console.log("失败")
     },
     () => {}
   )

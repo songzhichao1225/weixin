@@ -10,13 +10,13 @@
         <text>有效期至{{item.dateend}}</text>
       </view>
       <view class="operation">
-        <view class="onclick">
-          <view style="width:2rem;height:2rem;float:left">
-          <image class="hao" bindtap="subtracts" data-index="{{index}}" data-moneysmall="{{item.reduce}}" src="../../assets/jian.png"></image>
+        <view class="onclick"> 
+          <view bindtap="subtracts"  data-index="{{index}}" data-moneysmall="{{item.reduce}}" style="width:2rem;height:2rem;float:left">
+          <image class="hao"  src="../../assets/jian.png"></image>
         </view>
           <text style="float:left">{{item.num}}</text>
-          <view style="width:2rem;height:2rem;float:left">
-          <image class="hao" bindtap="joinMoney" data-money="{{item.full}}" data-num="{{item.num}}" data-number="{{item.number}}" data-index="{{index}}" data-moneysmall="{{item.reduce}}" src="../../assets/zeng.png"></image>
+          <view bindtap="joinMoney" data-money="{{item.full}}" data-num="{{item.num}}" data-number="{{item.number}}" data-index="{{index}}" data-moneysmall="{{item.reduce}}" style="width:2rem;height:2rem;float:left">
+          <image class="hao"   src="../../assets/zeng.png"></image>
         </view>
         </view>
         <view class="num" wx:if="{{item.num==0}}">选择数量</view>

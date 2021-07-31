@@ -224,6 +224,8 @@ text {
   float: right;
   margin-left: 0.5rem;
   border-bottom: 0.06rem solid #000;
+  padding-top: 0.3rem;
+  margin-top: -0.3rem;
 }
 
 .information {
@@ -392,15 +394,7 @@ text {
    margin-top: -12.245rem;
 }
 
-.certificate>image:last-child{
-  width: 2.06rem;
-  height: 2.06rem;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  margin-top: 12.245rem;
-  margin-left: -1.03rem;
-}
+
 .scroll{
   height: 83%;
 }

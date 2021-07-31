@@ -42,13 +42,24 @@ page {
   font-size: 0.75rem;
   color: #D85D27;
 }
-
-.input {
+.inputBoss{
   width: 90%;
   height: 3rem;
   margin: 1rem auto 0;
   font-size: 1.5rem;
   border-bottom: 0.06rem solid #e9e9e9;
+}
+.input {
+  width: 70%;
+  height: 3rem;
+  float: left;
+  font-size: 1.5rem;
+}
+.ke{
+  float: right;
+  line-height: 3rem;
+  font-size: 0.75rem;
+  color: #D85D27;
 }
 
 .textTwo {

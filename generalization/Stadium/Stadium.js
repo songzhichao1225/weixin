@@ -17,7 +17,7 @@ Page({
         this.setData({ stadiumList: res.data.data })
         wx.hideLoading()
       },
-      () => { console.log("失败") },
+      () => {  },
       () => {
       }
     )

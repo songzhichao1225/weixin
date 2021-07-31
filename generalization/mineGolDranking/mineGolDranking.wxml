@@ -27,9 +27,11 @@
           <image class="imgThree" src='{{img}}{{drankingList.topThree[0].imgURL}}'></image>
           <view class="text">
             <text class="txt">{{drankingList.topThree[0].nickname}}</text>
-            <text class="type">{{name}}</text>
-            <text class="grade">{{drankingList.topThree[0].level}}</text>
-            
+            <view style="overflow:hidden;justify-content:center;display:flex">
+              <text class="type" style="float:left">{{name}}</text>
+              <text class="grade" style="float:left">{{drankingList.topThree[0].level}}</text>
+              <text class="type" style="float:left">{{drankingList.topThree[0].total}}</text>
+            </view>
           </view>
         </view>
 
@@ -40,8 +42,11 @@
           <image class="imgThree" src='{{img}}{{drankingList.topThree[1].imgURL}}'></image>
           <view class="text">
             <text class="txt" style="color:#99C3EB">{{drankingList.topThree[1].nickname}}</text>
-            <text class="type">{{name}}</text>
-            <text class="grade">{{drankingList.topThree[1].level}}</text>
+            <view style="overflow:hidden;justify-content:center;display:flex">
+              <text class="type" style="float:left">{{name}}</text>
+              <text class="grade" style="float:left">{{drankingList.topThree[1].level}}</text>
+              <text class="type" style="float:left">{{drankingList.topThree[1].total}}</text>
+            </view>
           </view>
         </view>
         <view class='topOne topthre' wx:if="{{drankingList.topThree.length>=3}}"
@@ -51,8 +56,11 @@
           <image class="imgThree" src='{{img}}{{drankingList.topThree[2].imgURL}}'></image>
           <view class="text">
             <text class="txt" >{{drankingList.topThree[2].nickname}}</text>
-            <text class="type">{{name}}</text>
-            <text class="grade">{{drankingList.topThree[2].level}}</text>
+            <view style="overflow:hidden;justify-content:center;display:flex">
+              <text class="type" style="float:left">{{name}}</text>
+              <text class="grade" style="float:left">{{drankingList.topThree[2].level}}</text>
+              <text class="type" style="float:left">{{drankingList.topThree[2].total}}</text>
+            </view>
           </view>
         </view>
       </view>
@@ -148,10 +156,13 @@
           <image class="imgTwo" src='/assets/Pic1Cd.png'></image>
           <image wx:if="{{drankingList.topThree[0].imgURL!=''}}" class="imgThree" src='{{img}}{{drankingList.topThree[0].imgURL}}'></image>
           <image wx:if="{{drankingList.topThree[0].imgURL==''}}" class="imgThree" src='../../assets/tiaozhan.png'></image>
-          <view class="text">
+          <view class="text" style="bottom:9px">
             <text class="txt">{{drankingList.topThree[0].nickname}}</text>
-            <text class="type">{{name}}</text>
-            <text class="grade">{{drankingList.topThree[0].level}}</text>
+            <view style="overflow:hidden;justify-content:center;display:flex">
+              <text class="type" style="float:left">{{name}}</text>
+              <text class="grade" style="float:left">{{drankingList.topThree[0].level}}</text>
+              <text class="type" style="float:left">{{drankingList.topThree[0].total}}</text>
+            </view>
           </view>
         </view>
 
@@ -161,10 +172,13 @@
           <image class="imgTwot" src='/assets/Pic2Cd.png'></image>
           <image wx:if="{{drankingList.topThree[1].imgURL!=''}}" class="imgThree" src='{{img}}{{drankingList.topThree[1].imgURL}}'></image>
           <image wx:if="{{drankingList.topThree[1].imgURL==''}}" class="imgThree" src='../../assets/tiaozhan.png'></image>
-          <view class="text">
+          <view class="text" style="bottom:9px">
             <text class="txt">{{drankingList.topThree[1].nickname}}</text>
-            <text class="type">{{name}}</text>
-            <text class="grade">{{drankingList.topThree[1].level}}</text>
+            <view style="overflow:hidden;justify-content:center;display:flex">
+              <text class="type" style="float:left">{{name}}</text>
+              <text class="grade" style="float:left">{{drankingList.topThree[1].level}}</text>
+              <text class="type" style="float:left">{{drankingList.topThree[1].total}}</text>
+            </view>
           </view>
         </view>
         <view class='topOne topthre' wx:if="{{drankingList.topThree.length>=3}}"
@@ -173,10 +187,13 @@
           <image class="imgTwot" src='/assets/Pic3Cd.png'></image>
           <image wx:if="{{drankingList.topThree[2].imgURL!=''}}" class="imgThree" src='{{img}}{{drankingList.topThree[2].imgURL}}'></image>
           <image wx:if="{{drankingList.topThree[2].imgURL==''}}" class="imgThree" src='../../assets/tiaozhan.png'></image>
-          <view class="text">
+          <view class="text" style="bottom:9px">
             <text class="txt">{{drankingList.topThree[2].nickname}}</text>
-            <text class="type">{{name}}</text>
-            <text class="grade">{{drankingList.topThree[2].level}}</text>
+            <view style="overflow:hidden;justify-content:center;display:flex">
+              <text class="type" style="float:left">{{name}}</text>
+              <text class="grade" style="float:left">{{drankingList.topThree[2].level}}</text>
+              <text class="type" style="float:left">{{drankingList.topThree[2].total}}</text>
+            </view>
           </view>
         </view>
       </view>

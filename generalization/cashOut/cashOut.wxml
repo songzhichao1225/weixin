@@ -5,7 +5,7 @@
 		<radio class="radio" checked="true" color="#D85D27" />
 	</view>
 	<view class="text">提现金额</view>
-	<view class="inputBoss"><text>￥</text><input class="input" bindinput="input" value="{{input}}" type="number" placeholder="请输入金额"/></view>
+	<view class="inputBoss"><text>￥</text><input class="input" bindinput="input" value="{{input}}" maxlength="9" type="number" placeholder="请输入金额"/></view>
 	<view class="textTwo"><text>当前钱包余额{{total}}元,</text><text bindtap="allMoney">全部提现</text></view>
   <button class="bindComfire" bindtap="bindComfire">提现</button>
 </view>

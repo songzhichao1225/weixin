@@ -48,6 +48,11 @@ Page({
       },
       // { img: 'IconWdGz@2x.png', name: '我的关注', click: 'mineAbout' },
       {
+        img: 'wefirend.png',
+        name: '我邀请的用户',
+        click: 'invitationalList'
+      },
+      {
         img: 'IconWdGyyy@2x.png',
         name: '关于小程序',
         click: 'aboutApp'
@@ -68,6 +73,7 @@ Page({
         name: '意见反馈',
         click: 'mineOpinion'
       },
+      
     ],
     mineDetail: [],
     imgURL: '',
@@ -84,9 +90,7 @@ Page({
     certificate:0
   },
 
-  closeTorigin:function(){
-    this.setData({certificate:0})
-  },
+
 
 
   
@@ -141,7 +145,6 @@ Page({
               wx.hideLoading()
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -156,7 +159,6 @@ Page({
 
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -181,7 +183,6 @@ Page({
           sourceType: imgArr,
           success(res) {
             let tempFilePaths = res.tempFilePaths[0]
-            console.log(tempFilePaths)
             util.Request("/api/uploadHeaderImg", tempFilePaths, 'post',
               (resTwo) => {
                 util.Request("/api/getUserDetailInfo", {
@@ -193,7 +194,6 @@ Page({
                     })
                   },
                   () => {
-                    console.log("失败")
                   },
                   () => {}
                 )
@@ -226,7 +226,7 @@ Page({
   },
 
   onLoad: function (option) {
-    if (option.Invite_code == undefined) {
+    if (option.Invite_code == undefined) { 
       app.globalData.Invite_code = '';
     } else {
       app.globalData.Invite_code = option.Invite_code
@@ -250,7 +250,6 @@ Page({
     //       wx.hideLoading()
     //     },
     //     () => {
-    //       console.log("失败")
     //     },
     //     () => {}
     //   )
@@ -265,7 +264,6 @@ Page({
     //         })
     //       },
     //       () => {
-    //         console.log("失败")
     //       },
     //       () => {}
     //     )
@@ -328,7 +326,6 @@ Page({
                         })
                       },
                       () => {
-                        console.log("失败")
                       },
                       () => {}
                     )
@@ -339,10 +336,23 @@ Page({
                   })
                 },
                 () => {
-                  console.log("失败")
                 },
                 () => {}
               )
+
+              util.Request("/api/program_qrcode", {}, "post",
+              (res) => {
+                base64src('data:image/jpeg;base64,' + res.data.data, res => {
+                  this.setData({
+                    baseSixFour: res,
+                  })
+                })
+                wx.hideLoading()
+              },
+              () => {
+              },
+              () => {}
+            )
 
              
                 util.Request("/api/frame", {}, "post",
@@ -361,7 +371,6 @@ Page({
 
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -375,7 +384,6 @@ Page({
 
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -547,28 +555,19 @@ Page({
       success: function (data) {},
       fail: function (err) {
         if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
-          console.log("用户一开始拒绝了，我们想再次发起授权")
-          console.log(
-            '打开设置窗口'
-          )
+         
 
           wx.openSetting({
             success(settingdata) {
-              console.log(settingdata)
 
               if (settingdata.authSetting[
                   'scope.writePhotosAlbum'
                 ]) {
 
-                console.log(
-                  '获取权限成功，给出再次点击图片保存到相册的提示。'
-                )
-
+               
               } else {
 
-                console.log(
-                  '获取权限失败，给出不给权限就无法正常使用的提示'
-                )
+               
 
               }
 
@@ -599,25 +598,7 @@ Page({
   },
 
   twoCode() {
-    wx.showLoading({
-      title: '获取中~',
-    })
-    util.Request("/api/program_qrcode", {}, "post",
-      (res) => {
-        base64src('data:image/jpeg;base64,' + res.data.data, res => {
-          this.setData({
-            baseSixFour: res,
-            flagTwo: 1
-          })
-        })
-        wx.hideLoading()
-      },
-      () => {
-        console.log("失败")
-      },
-      () => {}
-    )
-
+   this.setData({flagTwo: 1})
   },
   information() {
     this.setData({
@@ -646,7 +627,6 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )

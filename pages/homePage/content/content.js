@@ -101,42 +101,42 @@ Page({
     enabled: true,
     maskActivity: [],
     maskActivityTwo: [],
-    certificate:0
+    certificate: 0
   },
 
-  closeTorigin:function(){
-    this.setData({certificate:0})
-  },
 
-  contentTgp:function(){
-    util.Request("/api/AddOffsetRoll", {uuid:wx.getStorageSync('uuid')}, "post",
-    (res) => {
-      if(res.data.code==2000){
-        wx.showToast({
-          title: res.data.msg,
-          icon: 'success',
-          duration: 1500,
-          mask: true
-        })
-        this.setData({
-          certificate: 0
-        })
-      }else{
-        wx.showToast({
-          title: res.data.msg,
-          icon: 'none',
-          duration: 1500,
-          mask: true
-        })
+
+  contentTgp: function () {
+    util.Request("/api/AddOffsetRoll", {
+        uuid: wx.getStorageSync('uuid')
+      }, "post",
+      (res) => {
+        if (res.data.code == 2000) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'success',
+            duration: 1500,
+            mask: true
+          })
+          this.setData({
+            certificate: 0
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 1500,
+            mask: true
+          })
+        }
+
+
+      },
+      () => {},
+      () => {
+
       }
-      
-
-    },
-    () => {},
-    () => {
-
-    }
-  )
+    )
   },
 
   catchTouchMove: function () {
@@ -220,38 +220,28 @@ Page({
   },
 
   map: function () {
-    var that = this;
-    /*获取定位地理位置*/
-    //新建bmap
-    let BMap = new bmap.BMapWX({
-      ak: that.data.ak
-    });
-    let fail = function (data) {}
-    let success = function (data) {
-      let wxMarkerData = data.wxMarkerData;
-      that.setData({
-        markers: wxMarkerData,
-        address: data.originalData.result.addressComponent.district,
-        cityInfo: data.originalData.result.addressComponent,
-        selectCity: data.originalData.result.addressComponent.city
-      })
-      wx.setStorageSync('province', data.originalData.result.addressComponent.province)
-      wx.setStorageSync("cityInfo", data.originalData.result.addressComponent.city)
-      wx.setStorageSync('area', data.originalData.result.addressComponent.district)
-      wx.setStorageSync('address', wxMarkerData[0].address)
-    }
+
+    let that = this
     wx.getLocation({
       type: 'gcj02',
       isHighAccuracy: true,
       success: res => {
         wx.setStorageSync('lat', res.latitude + 0.00540)
         wx.setStorageSync('lng', res.longitude + 0.005900)
+        wx.request({
+          url: 'https://apis.map.qq.com/ws/geocoder/v1/?location=' + res.latitude + ',' + res.longitude + '&key=GMCBZ-TDALO-6ZRWH-S6TPE-66PIZ-M4FIJ',
+          success: function (res) {
+          wx.setStorageSync('province', res.data.result.address_component.province)
+          wx.setStorageSync("cityInfo", res.data.result.address_component.city)
+          wx.setStorageSync('area', res.data.result.address_component.district)
+          wx.setStorageSync('address', res.data.result.address)
+          }
+        })
         that.goleloand()
       },
       fail: e => {
         wx.getSetting({
           success: res => {
-            console.log(res)
             if (typeof (res.authSetting['scope.userLocation']) != 'undefined' && !res.authSetting['scope.userLocation']) {
               wx.showModal({
                 title: '提示',
@@ -286,10 +276,7 @@ Page({
         });
       }
     });
-    BMap.regeocoding({
-      fail: fail,
-      success: success
-    });
+
 
 
   },
@@ -298,7 +285,12 @@ Page({
   },
 
   onLoad: function () {
+
+
+
+
     this.goleloand()
+    this.map()
     if (wx.getStorageSync('token')) {
 
       util.Request("/api/alertForOrgActivityNotFullWindow", {}, "post",
@@ -323,7 +315,7 @@ Page({
             }
           }
 
-        
+
 
           this.setData({
             maskActivity: projectDataNow == undefined ? [] : projectDataNow
@@ -338,14 +330,6 @@ Page({
 
     }
 
-
-
-
-
-
-
-
-    this.map()
     this.setData({
       img: util.API
     })
@@ -515,11 +499,11 @@ Page({
 
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];
-   
-    if( currPage.data.mydata.city!=undefined){
+
+    if (currPage.data.mydata.city != undefined) {
       this.setData({
         mydata: currPage.data.mydata,
-        selectCity:currPage.data.mydata.city
+        selectCity: currPage.data.mydata.city
       })
       wx.setStorageSync('cityInfo', currPage.data.mydata.city)
       wx.setStorageSync('lat', currPage.data.mydata.lat)
@@ -530,7 +514,7 @@ Page({
       }, 1000)
     }
 
-   
+
 
 
 
@@ -558,15 +542,17 @@ Page({
           maskActivityTwo: projectDataNow == undefined ? [] : projectDataNow
         })
         util.Request("/api/frame", {}, "post",
-        (res) => {
-          this.setData({certificate:res.data.other})
-          wx.hideLoading()
-        },
-        () => {},
-        () => {
+          (res) => {
+            this.setData({
+              certificate: res.data.other
+            })
+            wx.hideLoading()
+          },
+          () => {},
+          () => {
 
-        }
-      )
+          }
+        )
 
       },
       () => {},
@@ -608,9 +594,7 @@ Page({
           maskActivityTwo: []
         })
       },
-      () => {
-        console.log("失败")
-      },
+      () => {},
       () => {}
     )
   },
@@ -639,9 +623,7 @@ Page({
         })
         wx.hideLoading()
       },
-      () => {
-        console.log("失败")
-      },
+      () => {},
       () => {}
     )
 
@@ -662,7 +644,6 @@ Page({
   inputS: function () {
     let {
       selectCity,
-      cityInfo
     } = this.data
 
     if (selectCity != null) {
@@ -697,9 +678,7 @@ Page({
               flagIs: true
             })
           },
-          () => {
-            console.log("失败")
-          },
+          () => {},
           () => {}
         )
         util.Request("/api/getCommonCoins", {}, "get",
@@ -708,9 +687,7 @@ Page({
               goldNum: res.data.data.coins
             })
           },
-          () => {
-            console.log("失败")
-          },
+          () => {},
           () => {
 
           }
@@ -969,34 +946,23 @@ Page({
   saveImg(e) {
     wx.saveImageToPhotosAlbum({
       filePath: e.currentTarget.dataset.src,
-      success: function (data) {
-        console.log(data);
-      },
+      success: function (data) {},
       fail: function (err) {
-        console.log(err);
         if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
-          console.log("用户一开始拒绝了，我们想再次发起授权")
-          console.log(
-            '打开设置窗口'
-          )
+
 
           wx.openSetting({
             success(settingdata) {
-              console.log(settingdata)
 
               if (settingdata.authSetting[
                   'scope.writePhotosAlbum'
                 ]) {
 
-                console.log(
-                  '获取权限成功，给出再次点击图片保存到相册的提示。'
-                )
+
 
               } else {
 
-                console.log(
-                  '获取权限失败，给出不给权限就无法正常使用的提示'
-                )
+
 
               }
 

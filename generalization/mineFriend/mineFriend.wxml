@@ -28,8 +28,8 @@
           </view>
           <view class="signs">
             <text style="margin:0;">年龄:{{item.userInfo.age}}岁</text>
-            <text>体重:{{item.userInfo.tall}}Kg</text>
-            <text>身高:{{item.userInfo.weight}}cm</text>
+            <text>体重:{{item.userInfo.weight}}Kg</text>
+            <text>身高:{{item.userInfo.tall}}cm</text>
           </view>
           <view class="interest">
             <text style='float:left;display:block;'>喜爱运行项目:{{item.sportidNameStr}}</text>

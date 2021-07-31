@@ -39,7 +39,6 @@ Component({
             type: String,
             value: "",
             observer: function(newVal, oldVal) {
-                console.log(newVal)
                 this.value = newVal;
                 this.searchMt();
             }
@@ -93,7 +92,6 @@ Component({
         //     success: function (res) {
         //       this.latitude = res.latitude;
         //       this.longitude = res.longitude;
-        //       // console.log(res)
         //     }
         //   })
         // },
@@ -133,7 +131,6 @@ Component({
         _search() {
             let data = this.data.data;
             let newData = [];
-            console.log(this.value)
             if(this.value!=undefined){
               for (let i = 0; i < data.length; i++) {
                 let itemArr = [];
@@ -175,7 +172,6 @@ Component({
             let num = -(list[this.data.listIndex + 1] - top - 40)
             // 渲染滚动索引
             if (index !== this.data.listIndex) {
-                // console.log(index)
                 this.setData({
                     // 'pos.oldIndex': index,
                     listIndex: index,

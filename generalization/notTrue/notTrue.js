@@ -53,7 +53,6 @@ Page({
       },
       fail: function(res) {
         wx.hideNavigationBarLoading()
-        console.log(res.errMsg)
       }
     })
   },
@@ -67,9 +66,8 @@ Page({
     let { status, textDetail, uuid}=this.data
     util.Request("/api/ComplainIsTrue", { 'publicUUID': uuid, 'status': status, 'title': textDetail }, "post",
       (res) => {
-        console.log(res)
       },
-      () => { console.log("失败") },
+      () => {  },
       () => {
       }
     )

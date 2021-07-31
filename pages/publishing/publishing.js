@@ -274,11 +274,7 @@ Page({
     certificate: 0
   },
 
-  closeTorigin: function () {
-    this.setData({
-      certificate: 0
-    })
-  },
+ 
 
   contentTgp: function () {
     util.Request("/api/AddOffsetRoll", {
@@ -341,7 +337,6 @@ Page({
         })
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -422,10 +417,9 @@ Page({
         this.setData({
           bannerTop: [res.data.data]
         })
-       
+
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -646,7 +640,7 @@ Page({
       TrialRaderSix: wx.getStorageSync('TrialRaderFSix') == '' ? '三级' : wx.getStorageSync('TrialRaderFSix'),
 
 
-      shouldered: wx.getStorageSync('shoulderedF'),
+      shouldered: wx.getStorageSync('shoulderedF')==''?'AA':wx.getStorageSync('shoulderedF'),
       shoulderedThree: wx.getStorageSync('shoulderedFThree'),
       comments: wx.getStorageSync('commentsF'),
       commentsFour: wx.getStorageSync('commentsFFour'),
@@ -681,6 +675,10 @@ Page({
         cfTwo: false
       })
     } else if (wx.getStorageSync('sportTypeF') == 7) {
+      this.setData({
+        cfTwo: false
+      })
+    } else if (wx.getStorageSync('sportTypeF') == 8) {
       this.setData({
         cfTwo: false
       })
@@ -765,7 +763,11 @@ Page({
       this.setData({
         cf: false
       })
-    } else if (wx.getStorageSync('sportTypeFThree') == 10) {
+    } else if (wx.getStorageSync('sportTypeFThree') == 8) {
+      this.setData({
+        cf: false
+      })
+    }else if (wx.getStorageSync('sportTypeFThree') == 10) {
       this.setData({
         cf: false
       })
@@ -955,7 +957,6 @@ Page({
                 })
               },
               () => {
-                console.log("失败")
               },
               () => {}
             )
@@ -969,7 +970,6 @@ Page({
           }
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -987,7 +987,6 @@ Page({
           })
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -1011,7 +1010,6 @@ Page({
                 })
               },
               () => {
-                console.log("失败")
               },
               () => {}
             )
@@ -1026,7 +1024,6 @@ Page({
           }
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -1044,11 +1041,9 @@ Page({
           })
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
-      console.log(2)
       this.onShow()
     }
   },
@@ -1173,6 +1168,29 @@ Page({
         mask: true
       })
     } else {
+      if(wx.getStorageSync('bookin')!=''&&e.detail.value==0){
+        util.Request("/api/display", {
+          SportType: this.data.sportType,
+          type: Number(this.data.indexSw) + 1,
+          status: 1,
+          referee:0,
+          siteMoney: wx.getStorageSync('bookin').data[0].placeMoney + '.00',
+          lr: wx.getStorageSync('bookin').data[0].lr,
+          openPrice: wx.getStorageSync('bookin').data[0].openPrice
+        }, "post",
+        (res) => {
+          this.setData({
+            displayTxt: res.data.data
+          })
+        },
+        () => {
+        },
+        () => {}
+      )
+      }
+      
+
+
       this.setData({
         mode: this.data.array[e.detail.value].name,
         modeNum: Number(e.detail.value) + 1,
@@ -1262,12 +1280,17 @@ Page({
   TrialPicker: function (e) {
     this.setData({
       TrialNum: this.data.TrialArray[e.detail.value].name,
-      Trial: e.detail.value
+      Trial: e.detail.value,
+      shouldered: 'AA'
     })
     wx.setStorage({
       key: 'TrialPickerF',
       data: e.detail.value,
-    })
+    }) 
+    wx.setStorage({
+      key: 'shoulderedF',
+      data: 'AA',
+    }) 
 
     let TrialNum = e.detail.value
     let arr1 = []
@@ -1307,7 +1330,6 @@ Page({
               })
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -1320,11 +1342,9 @@ Page({
           key: 'refereeFee',
           data: res.data.data.toFixed(2),
         })
-        console.log(3)
         this.onShow()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -1381,7 +1401,6 @@ Page({
               })
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -1392,11 +1411,9 @@ Page({
           key: 'refereeFeeSix',
           data: res.data.data.toFixed(2),
         })
-        console.log(4)
         this.onShow()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -1450,7 +1467,6 @@ Page({
               })
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -1459,11 +1475,9 @@ Page({
           key: 'refereeFeeThree',
           data: res.data.data.toFixed(2),
         })
-        console.log(5)
         this.onShow()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -1508,7 +1522,6 @@ Page({
               })
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -1526,7 +1539,6 @@ Page({
         })
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -1572,7 +1584,6 @@ Page({
               })
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -1586,7 +1597,6 @@ Page({
 
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -1630,7 +1640,6 @@ Page({
               })
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -1645,7 +1654,6 @@ Page({
 
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -1934,7 +1942,6 @@ Page({
   },
 
   venuesTwo: function (e) {
-    console.log(e.currentTarget.dataset)
     if (e.currentTarget.dataset.sportId == '') {
       wx.showToast({
         title: '请选择运动项目',
@@ -2525,7 +2532,6 @@ Page({
 
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -2680,17 +2686,17 @@ Page({
 
 
     util.Request("/api/frame", {}, "post",
-    (res) => {
-      this.setData({
-        certificate: res.data.other
-      })
-      wx.hideLoading()
-    },
-    () => {},
-    () => {
+      (res) => {
+        this.setData({
+          certificate: res.data.other
+        })
+        wx.hideLoading()
+      },
+      () => {},
+      () => {
 
-    }
-  )
+      }
+    )
 
     ///////运动伙伴
     if (wx.getStorageSync('bookin') != '' && this.data.indexSw == 0) {
@@ -2732,7 +2738,6 @@ Page({
               })
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -2740,7 +2745,6 @@ Page({
 
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -2802,7 +2806,6 @@ Page({
 
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -2810,7 +2813,6 @@ Page({
 
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -2862,7 +2864,6 @@ Page({
             })
           },
           () => {
-            console.log("失败")
           },
           () => {}
         )
@@ -2911,7 +2912,6 @@ Page({
           })
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -2990,13 +2990,11 @@ Page({
               })
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -3083,7 +3081,6 @@ Page({
             })
           },
           () => {
-            console.log("失败")
           },
           () => {}
         )
@@ -3104,7 +3101,6 @@ Page({
             })
           },
           () => {
-            console.log("失败")
           },
           () => {}
         )
@@ -3149,7 +3145,6 @@ Page({
 
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -3157,7 +3152,6 @@ Page({
 
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -3386,7 +3380,6 @@ Page({
               currPage.data.memberUid = undefined
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -3395,7 +3388,6 @@ Page({
 
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -3429,6 +3421,9 @@ Page({
       case 7:
         cfTwo = false
         break;
+        case 8:
+          cfTwo = false
+          break;
       case 10:
         cfTwo = false
         break;
@@ -3490,6 +3485,9 @@ Page({
         cf = false
         break;
       case 7:
+        cf = false
+        break;
+        case 8:
         cf = false
         break;
       case 10:
@@ -3731,7 +3729,7 @@ Page({
       TrialRader: wx.getStorageSync('TrialRaderF') == '' ? '三级' : wx.getStorageSync('TrialRaderF'),
       TrialRaderThree: wx.getStorageSync('TrialRaderFThree') == '' ? '三级' : wx.getStorageSync('TrialRaderFThree'),
       TrialRaderSix: wx.getStorageSync('TrialRaderFSix') == '' ? '三级' : wx.getStorageSync('TrialRaderFSix'),
-      shouldered: wx.getStorageSync('mode') == '娱乐模式' ? 'AA' : wx.getStorageSync('shoulderedF'),
+      shouldered: wx.getStorageSync('shoulderedF') == '' ? 'AA' : wx.getStorageSync('shoulderedF'),
       shoulderedThree: wx.getStorageSync('modeThree') == '娱乐模式' ? 'AA' : wx.getStorageSync('shoulderedFThree'),
     })
 
@@ -3897,7 +3895,6 @@ Page({
           }
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -4122,7 +4119,6 @@ Page({
                         wx.hideLoading()
                       },
                       () => {
-                        console.log("失败")
                       },
                       () => {}
                     )
@@ -4309,7 +4305,6 @@ Page({
                         wx.hideLoading()
                       },
                       () => {
-                        console.log("失败")
                       },
                       () => {}
                     )
@@ -4415,7 +4410,6 @@ Page({
                         wx.hideLoading()
                       },
                       () => {
-                        console.log("失败")
                       },
                       () => {}
                     )
@@ -4521,7 +4515,6 @@ Page({
                         wx.hideLoading()
                       },
                       () => {
-                        console.log("失败")
                       },
                       () => {}
                     )
@@ -4532,7 +4525,6 @@ Page({
 
               },
               () => {
-                console.log("失败")
               },
               () => {}
             )
@@ -4545,7 +4537,6 @@ Page({
 
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -4609,7 +4600,6 @@ Page({
           })
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -4647,7 +4637,6 @@ Page({
         })
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -4836,7 +4825,6 @@ Page({
 
       //     },
       //     () => {
-      //       console.log("失败")
       //     },
       //     () => {}
       //   )
@@ -5080,10 +5068,7 @@ Page({
       success: function (data) {},
       fail: function (err) {
         if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
-          console.log("用户一开始拒绝了，我们想再次发起授权")
-          console.log(
-            '打开设置窗口'
-          )
+         
 
           wx.openSetting({
             success(settingdata) {

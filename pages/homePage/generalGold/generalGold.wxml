@@ -8,7 +8,55 @@
     <view class="rightTxt" bindtap="goldDetails">对手果明细</view>
   </view>
   <view class="content">
-    <view class="contentSon">
+
+    <view class="contentSonTwo contentSon">
+      <view class="son">
+        <view class="left">
+          <view class="leftTop">
+            <view class="dian"></view>
+            <text>每日打卡</text>
+          </view>
+          <view class="leftBottom">
+            +2.5枚对手果/次
+          </view>
+        </view>
+        <view class="right" wx:if="{{isSign==0}}" bindtap="punchIn">打卡</view>
+        <view class="right" style="background:#D5D5D5;color:#fff" wx:if="{{isSign==1}}">已打卡</view>
+      </view>
+
+      <view class="son">
+        <view class="left">
+          <view class="leftTop">
+            <view class="dian"></view>
+            <text>发布活动</text>
+          </view>
+          <view class="leftBottom">
+           <text style="display:block">+50枚对手果/次（匹配成功后）</text>
+           <text style="display:block">每邀1新用户参与并完成活动后，将减免您场地费</text>
+           <text style="color:#D0021B;font-weight:blod">10元，即500枚对手果</text>
+          </view>
+        </view>
+        <view class="right" bindtap="publishing">去发布</view>
+      </view>
+
+      <view class="son">
+        <view class="left">
+          <view class="leftTop">
+            <view class="dian"></view>
+            <text>意见反馈</text>
+          </view>
+          <view class="leftBottom">
+            <text style="display:block">+1000枚对手果/条，即+20元/条</text>
+            <text style="block">（被认为是建设性意见）</text>
+          </view>
+        </view>
+        <view class="right" bindtap="mineOpinion">去反馈</view>
+      </view>
+
+
+    </view>
+
+    <view class="contentSon" style="height:18.44rem">
       <view class="title">对手果的用途</view>
       <view class="son">
         <view class="left">

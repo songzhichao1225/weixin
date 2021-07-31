@@ -25,7 +25,7 @@ Page({
         this.setData({ userTechcoins: hood, flag: true })
         wx.hideLoading()
       },
-      () => { console.log("失败") },
+      () => { },
       () => {
       }
     )

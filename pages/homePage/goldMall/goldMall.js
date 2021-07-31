@@ -38,19 +38,18 @@ Page({
           banerLst:res.data.data
         })
       },
-      () => { console.log("失败") },
+      () => {  },
       () => {
       }
     )
     util.Request("/api/getCommonCoins", {}, "get",
       (res) => {
        
-        console.log(res.data.data)
         this.setData({
           coins:res.data.data.coins
         })
       },
-      () => { console.log("失败") },
+      () => {  },
       () => {
       }
     )
@@ -85,7 +84,7 @@ Page({
           }
           
         },
-        () => { console.log("失败") },
+        () => {  },
         () => {
         }
       )

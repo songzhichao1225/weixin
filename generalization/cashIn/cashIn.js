@@ -4,6 +4,7 @@ Page({
   data: {
     goldNum: 0,
     input: '',
+    inputTwo:0.00,
     showPayPwdInput: false, //是否展示密码输入层
   },
 
@@ -16,19 +17,20 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
   },
   input: function (e) {
     this.setData({
-      input: e.detail.value
+      input: e.detail.value,
+      inputTwo:Number(e.detail.value)/50
     })
   },
   clickAll: function () {
     this.setData({
-      input: this.data.goldNum
+      input: Math.floor(this.data.goldNum),
+      inputTwo:Math.floor(Number(this.data.goldNum)/50)
     })
   },
 
@@ -67,7 +69,6 @@ Page({
           }
         },
         () => {
-          console.log("失败")
         },
         () => {}
       )
@@ -99,17 +100,25 @@ Page({
         this.onLoad()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
   },
 
   btnComfir: function () {
-    this.setData({
-      showPayPwdInput: true,
-      payFocus: true
-    });
+    if(this.data.input==''||this.data.input==0){
+      wx.showToast({
+        title: '请正确输入对手果数量',
+        icon: 'none',
+        duration: 2000
+      })
+    }else{
+      this.setData({
+        showPayPwdInput: true,
+        payFocus: true
+      })
+    }
+    
   },
 
 

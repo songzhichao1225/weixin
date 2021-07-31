@@ -175,7 +175,6 @@ Page({
      this.goleloand()
    },
    () => {
-     console.log("失败")
    },
    () => {
    }

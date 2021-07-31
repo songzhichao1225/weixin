@@ -10,8 +10,10 @@
 	</view>
 
 	<view class="countdown">
-		<text class="firstTxt"
-			wx:if="{{end==true}}" style="{{activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&activitiesData.isPublisher==1||activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&activitiesData.stay==1?'':'width:100%;text-align:center'}}">截至报名倒计时:{{countDownDay}}天{{countDownHour}}小时{{countDownMinute}}分{{countDownSecond}}秒</text>
+		<text class="firstTxt" wx:if="{{end==true}}"
+			style="{{activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&activitiesData.isPublisher==1||activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&activitiesData.stay==1||activitiesData.PublicStatus==1&&activitiesData.organization==1&&activitiesData.stay==1?'':'width:100%;text-align:center'}}">截至报名倒计时:{{countDownDay}}天{{countDownHour}}小时{{countDownMinute}}分{{countDownSecond}}秒</text>
+	
+	
 		<text class="btnWork"
 			wx:if="{{activitiesData.reserve==1&&activitiesData.PublicStatus!=5&&activitiesData.PublicStatus!=7&&activitiesData.Yescancel==1}}"
 			catchtap="cancels" data-uuid="{{activitiesData.uuid}}" data-type="1">取消预订</text>
@@ -19,11 +21,13 @@
 			wx:if="{{activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&activitiesData.isPublisher==1&&activitiesData.reserve!=1}}"
 			catchtap="cancels" data-uuid="{{activitiesData.uuid}}" data-type="1">取消发布</text>
 
-			<text class="btnWork"
-			wx:if="{{activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&activitiesData.stay==1&&activitiesData.isPublisher!=1&&activitiesData.reserve!=1}}"
+		<text class="btnWork"
+			wx:if="{{activitiesData.organization!=1&&activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&activitiesData.stay==1&&activitiesData.isPublisher!=1&&activitiesData.reserve!=1}}"
 			catchtap="cancels" data-uuid="{{activitiesData.uuid}}" data-type="2">取消报名</text>
 
-
+			<text class="btnWork"
+			wx:if="{{activitiesData.organization==1&&activitiesData.PublicStatus==1&&activitiesData.stay==1&&activitiesData.isPublisher!=1&&activitiesData.reserve!=1}}"
+			catchtap="cancels" data-uuid="{{activitiesData.uuid}}" data-type="2">取消报名</text>
 
 
 	</view>
@@ -73,15 +77,16 @@
 							data-lng="{{activitiesData.siteLng}}"
 							data-address="{{activitiesData.siteAddress}}">{{activitiesData.siteAddress}}</text>
 					</view>
-					<view class="publisherTxt" wx:if="{{activitiesData.reserve!=1}}">
+					<view class="publisherTxt" wx:if="{{activitiesData.SportType!=22&&activitiesData.SportType!=24}}">
 						<text style="color:#9B9B9B">活动时间</text>
 						<text class="time">{{activitiesData.startDays}} {{activitiesData.startWeek}} {{activitiesData.startTimes}}-{{activitiesData.endTimes}}</text>
-				    <text class="xushi"  bindtap="duration" wx:if="{{activitiesData.PublicStatus!=1&&activitiesData.PublicStatus!=2&&activitiesData.PublicStatus!=7}}">续时</text>
+						<text class="xushi" bindtap="duration"
+							wx:if="{{activitiesData.PublicStatus!=1&&activitiesData.PublicStatus!=2&&activitiesData.PublicStatus!=7}}">续时</text>
 					</view>
 
-					<view class="publisherTxt" wx:if="{{activitiesData.reserve==1}}">
+					<view class="publisherTxt" wx:if="{{activitiesData.SportType==22||activitiesData.SportType==24}}">
 						<text style="color:#9B9B9B">活动时间</text>
-						<text class="time">不限,有效期至{{activitiesData.startDays}}</text>
+						<text class="time">{{activitiesData.FinishedTime}}</text>
 					</view>
 
 
@@ -94,8 +99,8 @@
 
 						<view class="two" wx:if="{{activitiesData.reserve!=1}}">
 							<text bindtap="showModelTwo" data-type="10">场 地 号</text>
-							<view class="time ojbk" bindtap="showModel" data-ven="{{activitiesData.venueid}}">
-								{{activitiesData.venueid}}
+							<view class="time ojbk" bindtap="showModel">
+								查看详情 >
 							</view>
 						</view>
 
@@ -136,8 +141,8 @@
 					<view class="publisherTxt" wx:if="{{activitiesData.reserve!=1}}">
 						<view class="one">
 							<text>性别要求</text>
-							<text
-								class="time">{{activitiesData.TeamMateSex==2?'不限':''||activitiesData.TeamMateSex==1?'女':'' ||activitiesData.TeamMateSex==0?'男':''}}</text>
+							<text class="time">{{activitiesData.TeamMateSex==2?'不限':''||activitiesData.TeamMateSex==1?'女':''
+								||activitiesData.TeamMateSex==0?'男':''}}</text>
 						</view>
 						<view class="two">
 							<text class="way">年龄要求</text>
@@ -150,12 +155,14 @@
 							<text>技术级别</text>
 							<text class="time">{{activitiesData.Leveexplain}}</text>
 						</view>
-						<view class="two" wx:if="{{activitiesData.PipeMain!=2&&activitiesData.isPublisher!=1&&activitiesData.SportModeTwo!='我找陪练'&&activitiesData.SportModeTwo!='我是陪练'&&activitiesData.organization!=1}}">
+						<view class="two"
+							wx:if="{{activitiesData.PipeMain!=2&&activitiesData.isPublisher!=1&&activitiesData.SportModeTwo!='我找陪练'&&activitiesData.SportModeTwo!='我是陪练'&&activitiesData.organization!=1}}">
 							<text class="way">入场费用</text>
 							<text>￥{{activitiesData.Tips}}/人</text>
 						</view>
 
-						<view class="two" wx:if="{{activitiesData.organization!=1&&activitiesData.PipeMain!=2&&activitiesData.isPublisher==1&&activitiesData.SportModeTwo!='我找陪练'&&activitiesData.SportModeTwo!='我是陪练'}}">
+						<view class="two"
+							wx:if="{{activitiesData.organization!=1&&activitiesData.PipeMain!=2&&activitiesData.isPublisher==1&&activitiesData.SportModeTwo!='我找陪练'&&activitiesData.SportModeTwo!='我是陪练'}}">
 							<text class="way">出场费用</text>
 							<text>￥{{activitiesData.Tips}}/人</text>
 						</view>
@@ -215,7 +222,8 @@
 									src="/assets/{{activitiesData.ballImgSon}}">
 								</image>
 								<text wx:if="{{item.playerUUID!='empty'}}" class="grade">{{item.heightLevel}}</text>
-								<text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4&&activitiesData.PublicStatus!=7}}" class="isSigin">{{item.nameStatus}}</text>
+								<text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4&&activitiesData.PublicStatus!=7}}"
+									class="isSigin">{{item.nameStatus}}</text>
 								<text class="TeamAsonTwo" wx:if="{{item.uuid==plarUUid}}">我</text>
 								<text class="TeamAsonTwo"
 									wx:if="{{item.uuid!=plarUUid&&item.playerUUID!='empty'&&activitiesData.SportModeTwo!='我是陪练'&&activitiesData.SportModeTwo!='我找陪练'}}">A{{index+1}}</text>
@@ -243,7 +251,8 @@
 								<image class="project" wx:if="{{item.playerUUID!='empty'}}" mode="aspectFill"
 									src="/assets/{{activitiesData.ballImgSon}}">
 								</image>
-								<text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4&&activitiesData.PublicStatus!=7}}" class="isSigin">{{item.nameStatus}}</text>
+								<text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4&&activitiesData.PublicStatus!=7}}"
+									class="isSigin">{{item.nameStatus}}</text>
 								<text wx:if="{{item.playerUUID!='empty'}}" class="grade">{{item.heightLevel}}</text>
 								<text wx:if="{{item.uuid==plarUUid}}" class="TeamAsonTwo">我</text>
 								<text
@@ -255,7 +264,8 @@
 							<view bindtap="checkedTwoyou" class="buchangjin"
 								wx:if="{{activitiesData.SportModeTwo=='我找陪练'&&activitiesData.teamB[0].playerUUID=='empty'}}">
 								<radio color="#D85D27" checked="{{checkedTwoyou}}" /><text>阅读并同意</text><text style="color:blue"
-									catchtap="rules">《补偿金规则》</text></view>
+									catchtap="rules">《补偿金规则》</text>
+							</view>
 						</view>
 					</view>
 
@@ -276,7 +286,8 @@
 								<image class="project" wx:if="{{item.playerUUID!='empty'}}" mode="aspectFill"
 									src="/assets/{{activitiesData.ballImgSon}}">
 								</image>
-								<text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4&&activitiesData.PublicStatus!=7}}" class="isSigin">{{item.nameStatus}}</text>
+								<text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4&&activitiesData.PublicStatus!=7}}"
+									class="isSigin">{{item.nameStatus}}</text>
 								<text wx:if="{{item.playerUUID!='empty'}}" class="grade">{{item.heightLevel}}</text>
 								<text wx:if="{{item.playerUUID!='empty'}}" class="TeamAsonTwo">C{{index+1}}</text>
 							</view>
@@ -305,108 +316,109 @@
 					<image src="/assets/right.png"></image>
 				</view> -->
 
-				<view wx:if="{{activitiesData.PublicStatus==6&&activitiesData.SportModeTwo=='竞技模式'||activitiesData.PublicStatus==5&&activitiesData.SportModeTwo=='竞技模式'||activitiesData.PublicStatus==7&&activitiesData.SportModeTwo=='竞技模式'}}">
-				<view class="lineTwo"
-					wx:if="{{type==1}}">
-				</view>
-				<view class="competitionRu"
-					wx:if="{{type==1}}">
-					<view class="title">比赛结果填写</view>
-					<view class="title" style="font-size:0.88rem;">运动者比赛结果填写</view>
-					<view class="one">
-						<text>A赢B:{{activitiesData.AwinBcount}}人</text>
-						<view class="avatarOne" wx:for="{{AwinBuserInfoOne}}" wx:key="index">
-							<image mode="aspectFill" src="{{img}}/{{item.imgURL}}"></image><text>{{item.team}}</text>
-						</view>
-						<view class="avatarOne" wx:if="{{activitiesData.AwinBuserInfo.length>4}}"
-							style="border-radius:50%;background:#F3F3F3;">
-							<view class="dian"></view>
-							<view class="dian"></view>
-							<view class="dian"></view>
-						</view>
+				<view
+					wx:if="{{activitiesData.PublicStatus==6&&activitiesData.SportModeTwo=='竞技模式'||activitiesData.PublicStatus==5&&activitiesData.SportModeTwo=='竞技模式'||activitiesData.PublicStatus==7&&activitiesData.SportModeTwo=='竞技模式'}}">
+					<view class="lineTwo" wx:if="{{type==1}}">
 					</view>
-					<view class="one">
-						<text>A输B:{{activitiesData.AloseBcount}}人</text>
-						<view class="avatarOne" wx:for="{{AloseBuserInfoTwo}}" wx:key="index">
-							<image mode="aspectFill" src="{{img}}/{{item.imgURL}}"></image><text>{{item.team}}</text>
-						</view>
-						<view class="avatarOne" wx:if="{{activitiesData.AloseBuserInfo.length>4}}"
-							style="border-radius:50%;background:#F3F3F3;">
-							<view class="dian"></view>
-							<view class="dian"></view>
-							<view class="dian"></view>
-						</view>
-					</view>
-					<view class="one">
-						<text>A平B:{{activitiesData.AdrawBcount}}人</text>
-						<view class="avatarOne" wx:for="{{AdrawBuserInfoThree}}" wx:key="index">
-							<image mode="aspectFill" src="{{img}}/{{item.imgURL}}"></image><text>{{item.team}}</text>
-						</view>
-						<view class="avatarOne" wx:if="{{activitiesData.AdrawBuserInfo.length>4}}"
-							style="border-radius:50%;background:#F3F3F3;">
-							<view class="dian"></view>
-							<view class="dian"></view>
-							<view class="dian"></view>
-						</view>
-					</view>
-					<view class="one">
-						<text>弃权:{{activitiesData.getwaiver}}人</text>
-						<view class="avatarOne" wx:for="{{getwaiverInfoFour}}" wx:key="index">
-							<image mode="aspectFill" src="{{img}}/{{item.imgURL}}"></image><text>{{item.team}}</text>
-						</view>
-						<view class="avatarOne" wx:if="{{activitiesData.getwaiverInfo.length>4}}"
-							style="border-radius:50%;background:#F3F3F3;">
-							<view class="dian"></view>
-							<view class="dian"></view>
-							<view class="dian"></view>
-						</view>
-					</view>
-
-					<view class="title" wx:if="{{activitiesData.referee==1}}" style="font-size:0.88rem;">裁判比赛结果填写</view>
-					<view class="one" wx:if="{{activitiesData.referee==1}}" style="overflow: hidden;height:4.63rem;">
-						<view class="boxx" wx:for="{{getRefereeResult}}" wx:key="index">
-							<view class="avatarTwo">
-								<image src="{{img}}/{{item.playerimg}}"></image><text>{{item.referee}}</text>
+					<view class="competitionRu" wx:if="{{type==1}}">
+						<view class="title">比赛结果填写</view>
+						<view class="title" style="font-size:0.88rem;">运动者比赛结果填写</view>
+						<view class="one">
+							<text>A赢B:{{activitiesData.AwinBcount}}人</text>
+							<view class="avatarOne" wx:for="{{AwinBuserInfoOne}}" wx:key="index">
+								<image mode="aspectFill" src="{{img}}/{{item.imgURL}}"></image><text>{{item.team}}</text>
 							</view>
-							<view class="result"
-								style="{{item.result==1?'background:#D85D27;':''||item.result==2?'background:#53A0FE':''||item.result==3?'background:#4A4A4A':''}}">
-								{{item.result==1?'A赢B':''||item.result==2?'A输B':''||item.result==3?'A平B':''}}</view>
+							<view class="avatarOne" wx:if="{{activitiesData.AwinBuserInfo.length>4}}"
+								style="border-radius:50%;background:#F3F3F3;">
+								<view class="dian"></view>
+								<view class="dian"></view>
+								<view class="dian"></view>
+							</view>
 						</view>
-					</view>
+						<view class="one">
+							<text>A输B:{{activitiesData.AloseBcount}}人</text>
+							<view class="avatarOne" wx:for="{{AloseBuserInfoTwo}}" wx:key="index">
+								<image mode="aspectFill" src="{{img}}/{{item.imgURL}}"></image><text>{{item.team}}</text>
+							</view>
+							<view class="avatarOne" wx:if="{{activitiesData.AloseBuserInfo.length>4}}"
+								style="border-radius:50%;background:#F3F3F3;">
+								<view class="dian"></view>
+								<view class="dian"></view>
+								<view class="dian"></view>
+							</view>
+						</view>
+						<view class="one">
+							<text>A平B:{{activitiesData.AdrawBcount}}人</text>
+							<view class="avatarOne" wx:for="{{AdrawBuserInfoThree}}" wx:key="index">
+								<image mode="aspectFill" src="{{img}}/{{item.imgURL}}"></image><text>{{item.team}}</text>
+							</view>
+							<view class="avatarOne" wx:if="{{activitiesData.AdrawBuserInfo.length>4}}"
+								style="border-radius:50%;background:#F3F3F3;">
+								<view class="dian"></view>
+								<view class="dian"></view>
+								<view class="dian"></view>
+							</view>
+						</view>
+						<view class="one">
+							<text>弃权:{{activitiesData.getwaiver}}人</text>
+							<view class="avatarOne" wx:for="{{getwaiverInfoFour}}" wx:key="index">
+								<image mode="aspectFill" src="{{img}}/{{item.imgURL}}"></image><text>{{item.team}}</text>
+							</view>
+							<view class="avatarOne" wx:if="{{activitiesData.getwaiverInfo.length>4}}"
+								style="border-radius:50%;background:#F3F3F3;">
+								<view class="dian"></view>
+								<view class="dian"></view>
+								<view class="dian"></view>
+							</view>
+						</view>
 
-					<view class="line" style="margin-top:0;"></view>
-					<view class="AccountFor">比赛结果说明</view>
-					<view class="AccountForSon">{{activitiesData.getexplain}}</view>
-					<view class="line" style="margin-top:0;"></view>
-					<view class="title">最终比赛结果</view>
-					<view class="contenEnd">
-						<view class="left">
-							<image class="image" src="/assets/Aleft.png"></image>
-							<image class="img" wx:if="{{activitiesData.finalresult==1}}" src="/assets/guan.png"></image>
-							<text>{{activitiesData.finalresult==1?'赢':''||activitiesData.finalresult==2?'输':''||activitiesData.finalresult==3?'平':''||activitiesData.finalresult==4?'输':''}}</text>
+						<view class="title" wx:if="{{activitiesData.referee==1}}" style="font-size:0.88rem;">裁判比赛结果填写</view>
+						<view class="one" wx:if="{{activitiesData.referee==1}}" style="overflow: hidden;height:4.63rem;">
+							<view class="boxx" wx:for="{{getRefereeResult}}" wx:key="index">
+								<view class="avatarTwo">
+									<image src="{{img}}/{{item.playerimg}}"></image><text>{{item.referee}}</text>
+								</view>
+								<view class="result"
+									style="{{item.result==1?'background:#D85D27;':''||item.result==2?'background:#53A0FE':''||item.result==3?'background:#4A4A4A':''}}">
+									{{item.result==1?'A赢B':''||item.result==2?'A输B':''||item.result==3?'A平B':''}}</view>
+							</view>
 						</view>
-						<view class="center">VS</view>
-						<view class="right">
-							<image class="image" src="/assets/Bright.png"></image>
-							<image class="img" wx:if="{{activitiesData.finalresult==2}}" src="/assets/guanTwo.png"></image>
-							<text>{{activitiesData.finalresult==1?'输':''||activitiesData.finalresult==2?'赢':''||activitiesData.finalresult==3?'平':''||activitiesData.finalresult==4?'输':''}}</text>
+
+						<view class="line" style="margin-top:0;"></view>
+						<view class="AccountFor">比赛结果说明</view>
+						<view class="AccountForSon">{{activitiesData.getexplain}}</view>
+						<view class="line" style="margin-top:0;"></view>
+						<view class="title">最终比赛结果</view>
+						<view class="contenEnd">
+							<view class="left">
+								<image class="image" src="/assets/Aleft.png"></image>
+								<image class="img" wx:if="{{activitiesData.finalresult==1}}" src="/assets/guan.png"></image>
+								<text>{{activitiesData.finalresult==1?'赢':''||activitiesData.finalresult==2?'输':''||activitiesData.finalresult==3?'平':''||activitiesData.finalresult==4?'输':''}}</text>
+							</view>
+							<view class="center">VS</view>
+							<view class="right">
+								<image class="image" src="/assets/Bright.png"></image>
+								<image class="img" wx:if="{{activitiesData.finalresult==2}}" src="/assets/guanTwo.png"></image>
+								<text>{{activitiesData.finalresult==1?'输':''||activitiesData.finalresult==2?'赢':''||activitiesData.finalresult==3?'平':''||activitiesData.finalresult==4?'输':''}}</text>
+							</view>
 						</view>
+						<view class="line" style="margin-top:0;"></view>
 					</view>
-					<view class="line" style="margin-top:0;"></view>
 				</view>
-			</view>
 
 				<view class="acquire"
 					wx:if="{{activitiesData.PublicStatus==6&&activitiesData.reserve!=1||activitiesData.PublicStatus==5&&activitiesData.reserve!=1||activitiesData.PublicStatus==7&&activitiesData.reserve!=1}}">
 					<view class="title">费用及对手果获得</view>
 					<view class="acquireSon"><text>场地费</text><text>{{activitiesData.getlist}}</text></view>
-					<view class="acquireSon"  wx:if="{{activitiesData.Tips!=0&&activitiesData.PipeMain!=2&&activitiesData.isPublisher!=1}}">
+					<view class="acquireSon"
+						wx:if="{{activitiesData.Tips!=0&&activitiesData.PipeMain!=2&&activitiesData.isPublisher!=1}}">
 						<text>入场费</text><text>{{activitiesData.getTips}}</text>
 					</view>
 					<view class="acquireSon" wx:if="{{activitiesData.SportModeTwo=='我找陪练'||activitiesData.SportModeTwo=='我是陪练'}}">
 						<text>陪练费</text><text>{{activitiesData.getMoneyPerhour}}</text>
 					</view>
-					<view class="acquireSon" wx:if="{{activitiesData.isPublisher==1&&activitiesData.SportModeTwo!='我找陪练'&&activitiesData.SportModeTwo!='我是陪练'}}">
+					<view class="acquireSon"
+						wx:if="{{activitiesData.isPublisher==1&&activitiesData.SportModeTwo!='我找陪练'&&activitiesData.SportModeTwo!='我是陪练'}}">
 						<text>出场费</text><text>{{activitiesData.getTips}}</text>
 					</view>
 					<view class="acquireSon"><text>对手果</text><text>{{activitiesData.GetCommonCoins}}枚</text></view>
@@ -457,51 +469,64 @@
 					<text>活动开始时间</text>
 					<text>{{activitiesData.StartTime}}</text>
 				</view>
-				<view class="releaseTime">
+				<view class="releaseTime" wx:if="{{activitiesData.PublicStatus!=7}}">
 					<text>活动结束时间</text>
 					<text>{{activitiesData.FinishedTime}}</text>
 				</view>
+				<view class="releaseTime" wx:if="{{activitiesData.PublicStatus==7}}">
+					<text>活动取消时间</text>
+					<text>{{activitiesData.cancelTime}}</text>
+				</view>
+				<view class="releaseTime" style="color:#d85d27" wx:if="{{activitiesData.PublicStatus==7}}">
+					<text style="color:#d85d27">活动取消原因</text>
+					<text style="color:#d85d27">{{activitiesData.SuspendReason}}</text>
+				</view>
 			</view>
 		</view>
-     
 
-		<view class="readyToGo" wx:if="{{activitiesData.organization==1&&activitiesData.ifMustSign==1&&activitiesData.PublicStatus==1&&activitiesData.reserve!=1}}">
-			<button class="btn" catchtap="signin" data-id="{{activitiesData.uuid}}"
-				style="color:#fff;background:#D85D27;"
+
+		<view class="readyToGo"
+			wx:if="{{activitiesData.organization==1&&activitiesData.ifMustSign==1&&activitiesData.PublicStatus==1&&activitiesData.reserve!=1}}">
+			<button class="btn" catchtap="signin" data-id="{{activitiesData.uuid}}" style="color:#fff;background:#D85D27;"
 				wx:if="{{activitiesData.SigninYes==1&&activitiesData.PublicStatus!=7&&activitiesData.isSignIn==0&&activitiesData.reserve!=1}}">场馆签到</button>
 			<button class="btn" style="background:#ccc"
 				wx:if="{{activitiesData.SigninYes==1&&activitiesData.PublicStatus!=7&&activitiesData.isSignIn==1&&activitiesData.reserve!=1}}">已签到</button>
-			</view>
+		</view>
 
-			
-		<view class="readyToGo" wx:if="{{activitiesData.organization!=1&&activitiesData.isQuit!=2&&activitiesData.ifMustSign==1&&activitiesData.PublicStatus==2&&activitiesData.reserve!=1}}">
+
+		<view class="readyToGo"
+			wx:if="{{activitiesData.organization!=1&&activitiesData.isQuit!=2&&activitiesData.ifMustSign==1&&activitiesData.PublicStatus==2&&activitiesData.reserve!=1}}">
 			<button class="btnTwo" catchtap="isQuit" data-uuid="{{activitiesData.uuid}}"
 				style="color:#fff;background:#D85D27;" wx:if="{{activitiesData.isQuit==1}}">提前退出</button>
 			<button class="btnTwo" wx:if="{{activitiesData.isQuit==2}}">提前退出</button>
 			<button class="btnTwo" catchtap="signin" data-id="{{activitiesData.uuid}}" style="color:#fff;background:#D85D27;"
 				wx:if="{{activitiesData.isQuit==1&&activitiesData.isSignIn==0}}">场馆签到</button>
-			<button class="btnTwo" style="color:#fff;background:#D85D27;" wx:if="{{activitiesData.isQuit==2&&activitiesData.isSignIn==0}}">场馆签到</button>
+			<button class="btnTwo" style="color:#fff;background:#D85D27;"
+				wx:if="{{activitiesData.isQuit==2&&activitiesData.isSignIn==0}}">场馆签到</button>
 			<button class="btnTwo" wx:if="{{activitiesData.isQuit==1&&activitiesData.isSignIn==1}}">已签到</button>
 			<button class="btnTwo" wx:if="{{activitiesData.isQuit==2&&activitiesData.isSignIn==1}}">已签到</button>
 		</view>
 
-		<view class="readyToGo" wx:if="{{activitiesData.isQuitInGame==1&&activitiesData.organization!=1&&activitiesData.ifMustSign==1&&activitiesData.PublicStatus==3&&activitiesData.reserve!=1}}">
-			<button class="btnTwo" catchtap="signin" data-id="{{activitiesData.uuid}}" style="color:#fff;background:#D85D27;"
+		<view class="readyToGo"
+			wx:if="{{activitiesData.isQuitInGame==1&&activitiesData.organization!=1&&activitiesData.ifMustSign==1&&activitiesData.PublicStatus==3&&activitiesData.reserve!=1}}">
+			<button class="btn" catchtap="signin" data-id="{{activitiesData.uuid}}" style="color:#fff;background:#D85D27;"
 				wx:if="{{activitiesData.isSignIn==0&&activitiesData.isQuit!=2}}">场馆签到</button>
-				<button class="btnTwo" 
-				wx:if="{{activitiesData.isSignIn==1&&activitiesData.isQuit!=2}}">已签到</button>
-			<button class="btnTwo" catchtap="SignOut" data-uuid="{{activitiesData.uuid}}" style="color:#fff;background:#D85D27;"
+			<button class="btnTwo" wx:if="{{activitiesData.isSignIn==1&&activitiesData.isQuit!=2}}">已签到</button>
+			<button class="btnTwo" catchtap="SignOut" data-uuid="{{activitiesData.uuid}}"
+				style="color:#fff;background:#D85D27;"
 				wx:if="{{activitiesData.isSignIn==1&&activitiesData.isQuitInGame==1&&activitiesData.isQuit!=2}}">中途退出</button>
 		</view>
 
-		<view class="readyToGo" wx:if="{{activitiesData.isQuit!=2&&activitiesData.isQuitInGame!=2&&activitiesData.PublicStatus==4&&activitiesData.isConfirmResult!=2&&activitiesData.isConfirmResult!=1&&activitiesData.reserve!=1}}">
-		<text class="jieguoTxt">请及时填写比赛结果，填写时间为48小时，该时间段如未操作，视为放弃。</text>
+		<view class="readyToGo"
+			wx:if="{{activitiesData.isQuit!=2&&activitiesData.isQuitInGame!=2&&activitiesData.PublicStatus==4&&activitiesData.isConfirmResult!=2&&activitiesData.isConfirmResult!=1&&activitiesData.reserve!=1}}">
+			<text class="jieguoTxt">请及时填写比赛结果，填写时间为48小时，该时间段如未操作，视为放弃。</text>
 			<button class="btn" bindtap="comResult" data-id="{{activitiesData.uuid}}" style="color:#fff;background:#D85D27;"
 				wx:if="{{activitiesData.isConfirmResult==0}}">填写比赛结果</button>
 			<button class="btn" style="background:#ccc" wx:if="{{activitiesData.isConfirmResult==1}}">已填写结果</button>
 		</view>
 
-		<view class="readyToGo" wx:if="{{activitiesData.isSignIn==1&&activitiesData.isQuit!=2&&activitiesData.PublicStatus==6&&activitiesData.isComment!=2&&activitiesData.reserve!=1}}">
+		<view class="readyToGo"
+			wx:if="{{activitiesData.isSignIn==1&&activitiesData.isQuit!=2&&activitiesData.PublicStatus==6&&activitiesData.isComment!=2&&activitiesData.reserve!=1}}">
 			<button class="btn" catchtap="comment" data-id="{{activitiesData.uuid}}" style="color:#fff;background:#D85D27;"
 				wx:if="{{activitiesData.isComment==0}}">去评价</button>
 			<button class="btn" style="background:#ccc" wx:if="{{activitiesData.isComment==1}}">已评价</button>
@@ -608,7 +633,7 @@
 			<view class="content" wx:if="{{activitiesData.sportTypeName=='散场'&&typeInfo!=10}}">
 				<view class="leftTwo">
 					<text>场地号</text>
-					<text class="contentSon" wx:for="{{activitiesData.venueid_details}}" wx:key="index">{{item.venueid}}</text>
+					<text class="contentSon" wx:for="{{activitiesData.venueid_details}}">{{item.venueid}}</text>
 				</view>
 
 				<view class="leftTwo">
@@ -711,7 +736,7 @@
 				</view>
 			</view>
 
-
+			
 		</scroll-view>
 
 
@@ -734,11 +759,28 @@
 
 
 <view class="certificate" wx:if="{{certificate==300}}">
-  <image src="../../../assets/daijinquan.png" bindtap="contentTgp"></image>
-	<image src="../../../assets/BtnDown@2x.png" bindtap="closeTorigin" ></image>
+	<image src="../../../assets/daijinquan.png" bindtap="contentTgp"></image>
 </view>
 
 <view class="certificate" wx:if="{{certificate==200}}">
-  <image src="../../../assets/3d43d36326fde0ae4b111faf473ccf7.png" bindtap="contentTgp"></image>
-	<image src="../../../assets/BtnDown@2x.png" bindtap="closeTorigin"></image>
+	<image src="../../../assets/3d43d36326fde0ae4b111faf473ccf7.png" bindtap="contentTgp"></image>
 </view>
+
+
+<view class="vienueNum" wx:if="{{isVenueNum}}">
+	<view class="vienueCon">
+		<text class="head">场地详情</text>
+		<view class="venueTime">
+			<text>时间段</text>
+			<text>场地编号</text>
+		</view>
+		<view class="venueTimeTwo" wx:for="{{activitiesData.venueid_details}}" wx:key="index">
+			<text>{{item.time}}</text>
+			<text>{{item.venueid}}</text>
+		</view>
+		<image class="closeVenue" bindtap="venueClose" src="../../../assets/BtnDown@2x.png"></image>
+	</view>
+
+</view>
+
+<canvas canvas-id="myCanvas" style="position:absolute;top:-500px"></canvas>

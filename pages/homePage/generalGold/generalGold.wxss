@@ -48,11 +48,18 @@ page {
 
 .contentSon {
   width: 95%;
-  height: 18.44rem;
   background: #FFFFFF;
   border-radius: 0.5rem;
   margin: 1rem auto 0;
 }
+
+.contentSonTwo {
+  width: 95%;
+  background: #FFFFFF;
+  border-radius: 0.5rem;
+  margin: 1rem auto 0;
+}
+
 
 .contentSon .title {
   width: 95%;
@@ -75,6 +82,7 @@ page {
 
 .contentSon .son .left {
   float: left;
+  padding-bottom: 0.8rem;
 }
 
 .contentSon .son .left .leftTop {

@@ -12,7 +12,7 @@
     </scroll-view>
   </view>
   <view style="height:100%">
-  <scroll-view enable-flex="true" scroll-y style="height:100%;">
+  <scroll-view enable-flex="true" scroll-y="auto" style="height:95%;">
   <view class="ccc"></view>
   <view class="title">
     <image src='/assets/PicTopPhb@2x.png'></image>

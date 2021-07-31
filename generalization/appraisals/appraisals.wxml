@@ -9,7 +9,7 @@
 		<text style="font-size:0.75rem;color:#9B9B9B;line-height:2.88rem;float:right;">（匿名）</text>
 	</view>
 	<view class="line"></view>
-	<view class="list" wx:for="{{list.usersInfo}}" wx:key="index" wx:for-index="idx">
+	<view class="list" wx:for="{{list.usersInfo}}" wx:key="idx" wx:for-index="idx">
 		<view class="head">
 			<view class="avatar">
 				<image src="{{img}}{{item.imgURL}}"></image>
@@ -26,7 +26,7 @@
 		<view class="content">
 			<text>基于对ta的印象点击下方标签评价吧！</text>
 			<view class="bossBabel">
-				<view class="listSon" wx:for="{{babelList[idx]}}" data-index="{{idx}}" style="{{user.background}}" bindtap="firHoom" data-id="{{user.id}}" wx:for-item="user" data-ben="{{idxTwo}}" wx:for-index="idxTwo" wx:key="index">{{user.labelName}}</view>
+				<view class="listSon" wx:for="{{babelList[idx]}}" data-index="{{idx}}" style="{{user.background}}" bindtap="firHoom" data-id="{{user.id}}" wx:for-item="user" data-ben="{{idxTwo}}" wx:for-index="idxTwo" wx:key="idxTwo">{{user.labelName}}</view>
 			</view>
 		</view>
 		<view class="line" style="margin-top:0.94rem;"></view>
@@ -55,21 +55,24 @@
 		<text>价格</text>
 		<view class="xing">
 			<image wx:for="{{imagesFour}}" bindtap="xingFour" data-index="{{index}}" wx:key="index" src="{{item.src}}"></image>
-			<text style="font-size:0.88rem;color:#4A4A4A;line-height:1.25rem;margin-left:0.2rem;">{{rangeFour==5?'超赞':''||rangeFour==4?'满意':''||rangeFour==3?'一般':''||rangeFour==2?'一般':''||rangeFour==1?'一般':''}}</text>
+			<text style="font-size:0.88rem;color:#4A4A4A;line-height:1.25rem;margin-left:0.2rem;">{{rangeFour==5?'超赞':''||rangeFour==4?'满意':''||rangeFour==3?'一般':''||rangeFour==2?'较差':''||rangeFour==1?'极差':''}}</text>
 		</view>
 	</view>
 
 
 	<view class="comment">
 		<textarea maxlength="100" placeholder="说一说您对本场馆的评价吧！" bindinput="textarea" placeholder-style="font-size:0.75rem;">
-
 	 </textarea>
-	 <image wx:for="{{imgList}}" wx:if="{{imgURLT!=''}}" src="{{imgURLT}}"></image>
 
-	 <view class="putier" bindtap="chooseImg">
-			<image wx:if="{{imgURLT==''}}" src="/assets/Shangchuanzhaopian.png"></image>
+	 <view class="imgContent">
+		<view wx:for="{{imgURLT}}" wx:key="index">
+			<image  src="{{img}}/{{item}}" mode="aspectFill"></image>
+			<view class="delet" bindtap="delet" data-src="{{item}}">×</view>
 		</view>
-
+		<view>
+			<image src="../../assets/uploadImg.png" wx:if="{{imgURLT.length<3}}" bindtap="chooseImg" mode="widthFix"></image>
+		</view>
+		</view>
 
 	</view>
 

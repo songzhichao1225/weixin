@@ -46,7 +46,6 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -84,7 +83,6 @@ Page({
         wx.hideLoading()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -92,7 +90,7 @@ Page({
 
   previewImage: function (e) {
     wx.previewImage({
-      current: e.currentTarget.dataset.src,
+      current: this.data.imgYph[e.currentTarget.dataset.index],
       urls: this.data.imgYph
     })
   },
@@ -104,7 +102,6 @@ Page({
         this.ko()
       },
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -127,7 +124,6 @@ Page({
         })
       },
       () => {
-        console.log("失败")
 
       },
       () => {}
@@ -156,7 +152,6 @@ Page({
       }, "post",
       (res) => {},
       () => {
-        console.log("失败")
       },
       () => {}
     )
@@ -177,7 +172,6 @@ Page({
     }
   },
   deleteComments: function (e) {
-    console.log(e.currentTarget.dataset.id)
     if (e.currentTarget.dataset.isown == 1) {
       let that = this
       wx.showModal({
@@ -192,8 +186,6 @@ Page({
                 that.noko()
               },
               () => {
-
-                console.log("失败")
               },
               () => {}
             )
@@ -219,7 +211,6 @@ Page({
               })
             },
             () => {
-              console.log("失败")
             },
             () => {}
           )
@@ -230,6 +221,7 @@ Page({
   },
   onShow: function () {
     this.ko()
+    this.setData({pages:1})
     let show = false
     this.noko(show)
   }

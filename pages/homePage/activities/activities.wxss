@@ -229,6 +229,8 @@ image {
   white-space: nowrap;
   margin-left: 4rem;
   font-size: 14px;
+  width: 5rem;
+  height: 1.5rem;
 }
 
 .participants {
@@ -1229,12 +1231,57 @@ image {
    margin-top: -12.245rem;
 }
 
-.certificate>image:last-child{
-  width: 2.06rem;
-  height: 2.06rem;
-  top: 50%;
-  left: 50%;
+
+.vienueNum{
+  width: 100%;
+  height: 100%;
+  background: rgba(000, 000, 000, 0.7);
   position: absolute;
-  margin-top: 12.245rem;
-  margin-left: -1.03rem;
+  top: 0;
+  left: 0;
+  
+}
+.vienueCon{
+  width: 90%;
+  min-height: 6rem;
+  background: #fff;
+  position: absolute;
+  top: 30%;
+  left: 5%;
+  border-radius: 1rem;
+  padding-bottom: 1rem;
+}
+.vienueCon .head{
+  font-size: 0.94rem;
+  display: block;
+  line-height: 2rem;
+  text-align: center;
+}
+.vienueCon .venueTime{
+  font-size: 0.88rem;
+}
+.vienueCon .venueTime>text{
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+
+.vienueCon .venueTimeTwo{
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+}
+.vienueCon .venueTimeTwo>text{
+  width: 50%;
+  float: left;
+  text-align: center;
+  color: #4b4747;
+}
+
+.closeVenue{
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  bottom: -3rem;
+  left: 50%;
+  margin-left: -1rem;
 }

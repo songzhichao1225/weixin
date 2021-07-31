@@ -38,7 +38,7 @@
         <view wx:for="{{dynameicListLeft}}" bindtap="dynamicDetails" data-uuid="{{item.uuid}}" class="boss"
           wx:key="index">
           <view class="kokglokg">
-            <image class='headImg' mode="aspectFill" src="{{img}}/{{item.firstImgURL}}"></image>
+            <image class='headImg' mode="aspectFill" src="{{img}}{{item.firstImgURL+'?x-oss-process=image/resize,m_fill,h_260,w_197'}}"></image>
             <view class="distance">{{item.range}}</view>
             <view class="fire">
               <image src="../../assets/fire.png"></image><text>人气指数:{{item.popularity}}</text>
@@ -47,26 +47,22 @@
           </view>
           <view class="title">{{item.title}}</view>
           <view class="userDetails">
-            <image src="{{img}}/{{item.imgURL}}"></image>
+            <image src="{{img}}{{item.imgURL+'?x-oss-process=image/resize,m_fill,h_24,w_24'}}"></image>
             <view class="view">{{item.nickname}}</view>
-            <!-- catchtap="thumbsUp" -->
-            <image data-uuid="{{item.uuid}}"
+            <image catchtap="thumbsUp" data-uuid="{{item.uuid}}"
               src="{{item.isown==1?'../../assets/xinhhTwo.png':'../../assets/xinhh.png'}}"></image>
             <view class="fabulou view">{{item.fabulou}}</view>
             <view class="join" catchtap="possible" data-num="{{item.publiccount}}" data-uuid="{{item.playeruuid}}">
               可参与活动({{item.publiccount}})</view>
           </view>
-
         </view>
-
-
       </view>
       <view class='right'>
         <view wx:for="{{dynameicListRight}}" class="boss" wx:key="index" bindtap="dynamicDetails"
           data-uuid="{{item.uuid}}">
           <view class="kokglokg">
 
-            <image class='headImg' mode="aspectFill" src="{{img}}/{{item.firstImgURL}}"></image>
+            <image class='headImg' mode="aspectFill" src="{{img}}{{item.firstImgURL+'?x-oss-process=image/resize,m_fill,h_260,w_197'}}"></image>
             <view class="distance">{{item.range}}</view>
             <view class="fire">
               <image src="../../assets/fire.png"></image><text>人气指数:{{item.popularity}}</text>
@@ -77,7 +73,7 @@
 
           <view class="title">{{item.title}}</view>
           <view class="userDetails">
-            <image src="{{img}}/{{item.imgURL}}"></image>
+            <image src="{{img}}{{item.imgURL+'?x-oss-process=image/resize,m_fill,h_24,w_24'}}"></image>
             <view class="view">{{item.nickname}}</view>
             <!-- catchtap="thumbsUp"  -->
             <image data-uuid="{{item.uuid}}"
@@ -175,10 +171,8 @@
 
 <view class="certificate" wx:if="{{certificate==300}}">
   <image src="../../assets/daijinquan.png" bindtap="contentTgp"></image>
-	<image src="../../assets/BtnDown@2x.png" bindtap="closeTorigin" ></image>
 </view>
 
 <view class="certificate" wx:if="{{certificate==200}}">
   <image src="../../assets/3d43d36326fde0ae4b111faf473ccf7.png" bindtap="contentTgp"></image>
-	<image src="../../assets/BtnDown@2x.png" bindtap="closeTorigin"></image>
 </view>

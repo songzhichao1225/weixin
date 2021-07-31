@@ -38,7 +38,7 @@ Page({
 
       wx.hideLoading()
     },
-    () => { console.log("失败") },
+    () => {  },
     () => {
     }
   )
@@ -54,7 +54,6 @@ Page({
     for(let i in filesURL){
       arr.push(this.data.img+'/'+filesURL[i])
     }
-    console.log(arr)
     wx.previewImage({
       current,
       urls: arr

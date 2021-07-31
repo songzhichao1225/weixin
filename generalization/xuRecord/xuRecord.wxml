@@ -1,5 +1,5 @@
 <view class="xuRecord">
-	<scroll-view class="scroll" scroll-y="auto"  bindscrolltolower="tolower"  refresher-enabled="true" refresher-triggered="{{enabled}}" bindrefresherrefresh="refresh">
+	<scroll-view class="scroll" wx:if="{{xuRecord.length!=0}}" scroll-y="auto"  bindscrolltolower="tolower"  refresher-enabled="true" refresher-triggered="{{enabled}}" bindrefresherrefresh="refresh">
 		<view class="son" wx:for="{{xuRecord}}" wx:key="index">
 			<view class="left">
 				<text>开始时间：{{item.datetime}}</text>
@@ -12,5 +12,11 @@
 		</view>
 
 	</scroll-view>
+
+	 <view class="notTxt"  wx:if="{{xuRecord.length==0}}">
+		 <image src="../../assets/nottxt.png"></image>
+		 <text>续时记录是空的！</text>
+	 </view>
+
 
 </view>

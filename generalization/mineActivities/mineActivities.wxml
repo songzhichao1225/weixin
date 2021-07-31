@@ -15,8 +15,8 @@
 						<view class="rightTop" wx:if="{{activitiesNum.matching!=0}}">{{activitiesNum.matching}}</view>
 					</view>
 					<view class="the" bindtap="navList" data-id="watinggo">
-						<image wx:if="{{statusType!='watinggo'}}" src="/assets/jooksd.png"></image>
-						<image wx:if="{{statusType=='watinggo'}}" src="/assets/lod.png"></image>
+						<image wx:if="{{statusType!='watinggo'}}" style="width:1.8rem" mode="aspectFill" src="/assets/jooksd.png"></image>
+						<image wx:if="{{statusType=='watinggo'}}" style="width:1.8rem" mode="aspectFill" src="/assets/lod.png"></image>
 						<text>待出发</text>
 						<view class="rightTop" wx:if="{{activitiesNum.waiting!=0}}">{{activitiesNum.waiting}}</view>
 					</view>
@@ -52,7 +52,7 @@
 				</view>
 			</view>
 			<view class="rightRight">
-				<image src="/assets/line_quanbu.png"></image>
+				<image mode="aspectFill" src="/assets/line_quanbu.png"></image>
 			</view>
 			<view class="right">
 				<view class="Two" bindtap="all">
@@ -101,7 +101,7 @@
 					
 					<text>{{item.sitesName}}</text>
 					<view class="cost">
-					<text style='margin:0;'>场地费:{{item.SportMode=='仅预订场馆'?'发布者买单':item.PaySiteMoneyType==1?'AA':item.PaySiteMoneyType==2?'输方买单':'练习方买单'}}</text>
+					<text style='margin:0;'>场地费:{{item.SportModeTwo=='仅预订场馆'?'发布者买单':item.PaySiteMoneyType==1?'AA':item.PaySiteMoneyType==2?'输方买单':'练习方买单'}}</text>
 					<text wx:if="{{item.SportMode==3&&item.organization!=1||item.SportMode==4&&item.organization!=1}}">陪练费:￥{{item.MoneyPerhour}}</text>
 					<text wx:if="{{item.IsPublisher==0&&item.SportMode!=3&&item.SportMode!=4&&item.reserve!=1&&item.organization!=1}}">入场费:￥{{item.Tips}}/人</text>
 					<text wx:if="{{item.IsPublisher==1&&item.SportMode!=3&&item.SportMode!=4&&item.reserve!=1&&item.organization!=1}}">出场费:￥{{item.Tips}}/人</text>

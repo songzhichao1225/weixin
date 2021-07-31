@@ -154,6 +154,7 @@ page{
   position: fixed;
   top: 0rem;
   right: 1rem;
+  color: #fff;
 }
 #myVideo{
   width: 100%;

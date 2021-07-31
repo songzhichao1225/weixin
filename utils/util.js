@@ -15,12 +15,12 @@ const formatNumber = n => {
 
 
 
-let API = "https://zhaoduishou.oss-cn-beijing.aliyuncs.com/";  //正式
-// let API = "https://zhaoduishoustg.oss-cn-beijing.aliyuncs.com/"; //测试
+// let API = "https://zhaoduishou.oss-cn-beijing.aliyuncs.com/";  //正式
+let API = "https://zhaoduishoustg.oss-cn-beijing.aliyuncs.com/"; //测试
 
 
-let apiS = "https://app.tiaozhanmeiyitian.com";  //正式 
-// let apiS = "https://appstg.tiaozhanmeiyitian.com"; //测试 
+// let apiS = "https://app.tiaozhanmeiyitian.com";  //正式 
+let apiS = "https://appstg.tiaozhanmeiyitian.com"; //测试 
 
 
 
@@ -75,7 +75,7 @@ function Request(url, data, method, successFn, failFn, completeFn) {
         completeFn();
       }
     })
-  } else if (url == '/api/PersonalprofileImg') {
+  } else if (url == '/api/PersonalprofileImg'||url == '/api/uploadWonderImgs') {
     wx.showLoading({
       title: '正在上传',
       mask: true
@@ -260,7 +260,6 @@ function Request(url, data, method, successFn, failFn, completeFn) {
       method: method,
       success: function (res) {
         if (res.data.code == 40101) {
-          console.log(res.data.code)
           wx.showToast({
             title: '身份验证失败',
             icon: 'none',
@@ -268,12 +267,12 @@ function Request(url, data, method, successFn, failFn, completeFn) {
             mask: true
           })
         } else if (res.data.code == 4001||res.data.code == 4000) {
-          wx.showToast({
-            title: '登录超时',
-            icon: 'none',
-            duration: 1500,
-            mask: true
-          })
+          // wx.showToast({
+          //   title: '登录超时',
+          //   icon: 'none',
+          //   duration: 1500,
+          //   mask: true
+          // })
           wx.navigateTo({
             url: '/pages/authorization/authorization'
           })
@@ -406,11 +405,58 @@ function imgRequest(url, data,formData, method, successFn, failFn, completeFn) {
 }
 
 
+function imgRequestTwo(url, data,formData, method, successFn, failFn, completeFn) {
+
+  if (url == '/api/smallAppUpload') {
+   
+    wx.uploadFile({
+      url: apiS + url,
+      filePath: data,
+      name: 'img',
+      formData:formData,
+      header: {
+        "Content-Type": "multipart/form-data",
+        "token": wx.getStorageSync('token'),
+      },
+      method: method,
+      success: function (res) {
+        let data=JSON.parse(res.data)
+        if (data.code == 2000) {
+          successFn(res);
+        } else if (data.code == 40101) {
+          wx.showToast({
+            title: '身份验证失败',
+            icon: 'none',
+            duration: 1500,
+            mask: true
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '加载失败',
+          icon: 'none',
+          duration: 1500,
+          mask: true
+        })
+        failFn(res);
+      },
+      complete: function () {
+        wx.stopPullDownRefresh(); //停止下拉刷新
+        wx.hideNavigationBarLoading() //完成停止加载
+        completeFn();
+      }
+    })
+  }
+ 
+}
+
 
 
 
 module.exports = {
   formatTime: formatTime,
+  imgRequestTwo:imgRequestTwo,
   request: request,
   Request: Request,
   imgRequest:imgRequest,
