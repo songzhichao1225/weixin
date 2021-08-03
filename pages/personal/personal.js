@@ -237,9 +237,9 @@ Page({
           if (projectDataNow[i].SportMode == '1' && projectDataNow[i].reserve == 1) {
             projectDataNow[i].SportMode = '仅预订场馆'
           } else if (projectDataNow[i].SportMode == '1') {
-            projectDataNow[i].SportMode = '娱乐模式'
+            projectDataNow[i].SportMode = '娱乐活动'
           } else if (projectDataNow[i].SportMode == '2') {
-            projectDataNow[i].SportMode = '竞技模式 '
+            projectDataNow[i].SportMode = '竞技活动'
           } else if (projectDataNow[i].SportMode == '3') {
             projectDataNow[i].SportMode = '我是陪练 '
           } else if (projectDataNow[i].SportMode == '4') {

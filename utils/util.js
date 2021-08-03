@@ -20,7 +20,7 @@ let API = "https://zhaoduishoustg.oss-cn-beijing.aliyuncs.com/"; //测试
 
 
 // let apiS = "https://app.tiaozhanmeiyitian.com";  //正式 
-let apiS = "https://appstg.tiaozhanmeiyitian.com"; //测试 
+let apiS = "https://appstg.tiaozhanmeiyitian.com"; //测试   (index 页面也要改)
 
 
 

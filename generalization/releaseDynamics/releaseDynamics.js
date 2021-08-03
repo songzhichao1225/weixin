@@ -11,9 +11,9 @@ Page({
     textInputTwo: '',
     disBtn: false,
     indexUp: 1,
-    video:'',
-    thumbTempFilePath:'',
-    oneImgs:'',
+    video: '',
+    thumbTempFilePath: '',
+    oneImgs: '',
   },
 
   /**
@@ -72,7 +72,6 @@ Page({
                           mask: true
                         })
                       }
-
                     },
                     () => {},
                     () => {}
@@ -117,11 +116,11 @@ Page({
             duration: 1500,
             mask: true
           })
-         setTimeout(function(){
-          wx.navigateBack({
-            delta: 1
-          })
-         },1500)
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 1500)
         } else {
           wx.showToast({
             title: res.data.msg,
@@ -159,8 +158,10 @@ Page({
     var that = this
     wx.chooseVideo({
       success: function (res) {
-      
-        that.setData({thumbTempFilePath:res.thumbTempFilePath})
+
+        that.setData({
+          thumbTempFilePath: res.thumbTempFilePath
+        })
         wx.compressVideo({
           src: res.tempFilePath,
           quality: 'medium',
@@ -168,27 +169,27 @@ Page({
             util.Request("/api/uploadWonderImgs", result.tempFilePath, 'post',
               (resTwo) => {
                 let data = JSON.parse(resTwo.data)
-                if(data.code==2000){
+                if (data.code == 2000) {
 
                   util.Request("/api/uploadWonderImgs", that.data.thumbTempFilePath, 'post',
-                  (resTwo) => {
-                    let data = JSON.parse(resTwo.data)
-                    if(data.code==2000){
-                     that.setData({
-                      oneImgs:data.data.baseURL+data.data.filesURL
-                     })
-                    }
-                  },
-                  () => {},
-                  () => {}
-                )
+                    (resTwo) => {
+                      let data = JSON.parse(resTwo.data)
+                      if (data.code == 2000) {
+                        that.setData({
+                          oneImgs: data.data.baseURL + data.data.filesURL
+                        })
+                      }
+                    },
+                    () => {},
+                    () => {}
+                  )
 
 
 
-                 that.setData({
-                   video:data.data.baseURL+data.data.filesURL
-                 })
-                }else{
+                  that.setData({
+                    video: data.data.baseURL + data.data.filesURL
+                  })
+                } else {
                   wx.showToast({
                     title: '上传失败',
                     icon: 'none',
@@ -196,7 +197,7 @@ Page({
                     mask: true
                   })
                 }
-                
+
               },
               () => {},
               () => {}
@@ -218,7 +219,7 @@ Page({
     util.Request("/api/PlayerDynamicSave", {
         'title': this.data.textInputTwo,
         'imgurl': this.data.video,
-        'oneImgs':this.data.oneImgs
+        'oneImgs': this.data.oneImgs
       }, 'post',
       (res) => {
         if (res.data.code === 2000) {
@@ -228,11 +229,11 @@ Page({
             duration: 1500,
             mask: true
           })
-         setTimeout(function(){
-          wx.navigateBack({
-            delta: 1
-          })
-         },1500)
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 1500)
         } else {
           wx.showToast({
             title: res.data.msg,
@@ -251,8 +252,11 @@ Page({
 
   },
 
-  deletTwo:function(){
-    this.setData({video:'',thumbTempFilePath:''})
+  deletTwo: function () {
+    this.setData({
+      video: '',
+      thumbTempFilePath: ''
+    })
   },
 
 

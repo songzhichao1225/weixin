@@ -36,10 +36,10 @@ Page({
     uuidArr: [],
     array: [{
       id: 1,
-      name: '娱乐模式'
+      name: '娱乐活动'
     }, {
       id: 2,
-      name: '竞技模式'
+      name: '竞技活动'
     }, {
       id: 3,
       name: '我是陪练'
@@ -49,22 +49,22 @@ Page({
     }],
     arrayLan: [{
       id: 1,
-      name: '娱乐模式'
+      name: '娱乐活动'
     }, {
       id: 2,
-      name: '竞技模式'
+      name: '竞技活动'
     }],
     arrayLanTwo: [{
       id: 1,
-      name: '娱乐模式'
+      name: '娱乐活动'
     }],
 
     arrayLanThree: [{
       id: 1,
-      name: '娱乐模式'
+      name: '娱乐活动'
     }, {
       id: 2,
-      name: '竞技模式'
+      name: '竞技活动'
     }],
 
     TrialArray: [{
@@ -102,7 +102,9 @@ Page({
       id: 100,
       name: '三级'
     }],
-
+    theTeamArray:['不分队','2队','3队','4队','5队','6队'],
+    theTeamArrayTwo:['不分队','2队','3队'],
+    personsArray:['2人','4人','6人','8人','10人','12人','14人','16人','18人','20人','22人','24人'],
     TrialRaderArrTwo: [{
       id: 400,
       name: '国际级'
@@ -167,7 +169,7 @@ Page({
     modeFive: '我找陪练', //运动模式名称
     modeNumFive: '4', //运动模式Id
 
-    modeSix: '竞技模式', //运动模式名称
+    modeSix: '竞技活动', //运动模式名称
     modeNumSix: '2', //运动模式Id
 
     siteidTwo: '', //预定的哪个场馆的id
@@ -271,9 +273,136 @@ Page({
     cbotContentCloas: false,
     rule: '',
     ruleFlag: false,
-    certificate: 0
+    certificate: 0,
+    theTeaIdx:1,
+    personsIdx:0,
+    theTeamClickDis:true,
+    numAll:0,
+    numABThree:[],
+    teamName:['A','B','C','D','E','F']
   },
 
+  theTeam:function(e){
+    this.setData({theTeaIdx:e.detail.value,personsIdx:0})
+
+
+    if(wx.getStorageSync('modeThree')=='竞技活动'){
+      if(wx.getStorageSync('sportTypeFThree')==12){
+        this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
+      }
+  
+     }else{
+    if(wx.getStorageSync('sportTypeFThree')==4||wx.getStorageSync('sportTypeFThree')==6||wx.getStorageSync('sportTypeFThree')==1||wx.getStorageSync('sportTypeFThree')==2||wx.getStorageSync('sportTypeFThree')==3||wx.getStorageSync('sportTypeFThree')==8){
+      if(e.detail.value!=0){
+        this.setData({personsArray:['1人']})
+      }else{
+        this.setData({personsArray:['6人','5人','4人','3人','2人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==5||wx.getStorageSync('sportTypeFThree')==7||wx.getStorageSync('sportTypeFThree')==9){
+      if(e.detail.value==0){
+        this.setData({personsArray:['24人','22人','20人','18人','16人','14人','12人','10人','8人','6人','4人','2人']})
+      }else{
+        this.setData({personsArray:['2人','3人','4人','5人','6人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==12){
+      if(e.detail.value==0){
+        this.setData({personsArray:['24人','22人','20人','18人','16人','14人','12人','10人','8人','6人','4人','2人']})
+      }else{
+        this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==11){
+      if(e.detail.value==0){
+        this.setData({personsArray:['15人','14人','13人','12人','11人','10人','9人','8人','7人','6人']})
+      }else{
+        this.setData({personsArray:['3人','4人','5人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==10){
+      if(e.detail.value==0){
+        this.setData({personsArray:['36人','34人','32人','30人','28人','26人','24人','22人','20人','18人','16人','14人','12人','10人']})
+      }else{
+        this.setData({personsArray:['5人','6人','7人','8人','9人','10人','11人','12人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==16){
+      if(e.detail.value==0){
+        this.setData({personsArray:['10人','12人','14人','16人','18人','20人','22人','24人','26人','28人','30人']})
+      }else{
+        this.setData({personsArray:['5人','6人','7人','8人','9人','10人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==23){
+      if(e.detail.value==0){
+        this.setData({personsArray:['12人','14人','16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人']})
+      }else{
+        this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==15){
+      if(e.detail.value==0){
+        this.setData({personsArray:['14人','16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人']})
+      }else{
+        this.setData({personsArray:['7人','8人','9人','10人','11人','12人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==14){
+      if(e.detail.value==0){
+        this.setData({personsArray:['16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人','38人','39人']})
+      }else{
+        this.setData({personsArray:['8人','9人','10人','11人','12人','13人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==25){
+      if(e.detail.value==0){
+        this.setData({personsArray:['18人','20人','22人','24人','26人','28人','30人','32人','34人','36人','38人','40人','42人']})
+      }else{
+        this.setData({personsArray:['8人','9人','10人','11人','12人','14人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==13){
+      if(e.detail.value==0){
+        this.setData({personsArray:['22人','24人','26人','28人','30人','32人','34人','36人','38人','40人','42人','44人','46人','48人','50人','52人','54人']})
+      }else{
+        this.setData({personsArray:['11人','12人','13人','14人','15人','16人','17人','18人']})
+      }
+    }
+  }
+
+    if(this.data.theTeamArray[e.detail.value]=='不分队'){
+      this.setData({numAll:parseFloat(this.data.personsArray[this.data.personsIdx])})
+    }else{
+      this.setData({numAll:parseFloat(this.data.personsArray[this.data.personsIdx])*parseFloat(this.data.theTeamArray[e.detail.value])})
+    }
+    let that=this
+    setTimeout(function(){that.onKO()},500)
+  },
+
+  theTeamClick:function(){
+    if(this.data.modeThree=='请选择'){
+      wx.showToast({
+        title: '请选择运动模式',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    }
+  },
+
+  theTeamClickTwo:function(){
+    if(this.data.modeThree=='请选择'){
+      wx.showToast({
+        title: '请选择运动模式',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    }
+  },
+
+  personsNum:function(e){
+    this.setData({personsIdx:e.detail.value})
+    if(this.data.theTeamArray[this.data.theTeaIdx]=='不分队'){
+      this.setData({numAll:parseFloat(this.data.personsArray[e.detail.value])})
+    }else{
+      this.setData({numAll:parseFloat(this.data.personsArray[e.detail.value])*parseFloat(this.data.theTeamArray[this.data.theTeaIdx])})
+    }
+    let that=this
+    setTimeout(function(){that.onKO()},500)
+    
+  },
  
 
   contentTgp: function () {
@@ -380,7 +509,7 @@ Page({
       this.setData({
         closeKOp: true,
         titleKOp: '技术等级说明',
-        textKOp: '发布者对报名者该运动项目的技术级别要求。用户在某运动项目的技术级别由技术分决定，用户在竞技模式活动结束后会输赢技术分。如有裁判，裁判不受该要求限制'
+        textKOp: '发布者对报名者该运动项目的技术级别要求。用户在某运动项目的技术级别由技术分决定，用户在竞技活动活动结束后会输赢技术分。如有裁判，裁判不受该要求限制'
       })
     } else if (e.currentTarget.dataset.type == 4) {
       if (this.data.indexSw == 2) {
@@ -583,6 +712,94 @@ Page({
         data: '不限',
       })
     }
+    if(this.data.modeThree!='请选择'){
+      this.setData({theTeamClickDis:false})
+    }
+
+   if(wx.getStorageSync('modeThree')=='竞技活动'){
+    if(wx.getStorageSync('sportTypeFThree')==12){
+      this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
+    }
+
+   }else{
+    if(wx.getStorageSync('sportTypeFThree')==4||wx.getStorageSync('sportTypeFThree')==6||wx.getStorageSync('sportTypeFThree')==1||wx.getStorageSync('sportTypeFThree')==2||wx.getStorageSync('sportTypeFThree')==3||wx.getStorageSync('sportTypeFThree')==8){
+      if(this.data.theTeaIdx!=0){
+        this.setData({personsArray:['1人']})
+      }else{
+        this.setData({personsArray:['6人','5人','4人','3人','2人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==5||wx.getStorageSync('sportTypeFThree')==7||wx.getStorageSync('sportTypeFThree')==9){
+      if(this.data.theTeaIdx==0){
+        this.setData({personsArray:['24人','22人','20人','18人','16人','14人','12人','10人','8人','6人','4人','2人']})
+      }else{
+        this.setData({personsArray:['2人','3人','4人','5人','6人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==12){
+      if(this.data.theTeaIdx==0){
+        this.setData({personsArray:['24人','22人','20人','18人','16人','14人','12人','10人','8人','6人','4人','2人']})
+      }else{
+        this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==11){
+      if(this.data.theTeaIdx==0){
+        this.setData({personsArray:['15人','14人','13人','12人','11人','10人','9人','8人','7人','6人']})
+      }else{
+        this.setData({personsArray:['3人','4人','5人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==10){
+      if(this.data.theTeaIdx==0){
+        this.setData({personsArray:['36人','34人','32人','30人','28人','26人','24人','22人','20人','18人','16人','14人','12人','10人']})
+      }else{
+        this.setData({personsArray:['5人','6人','7人','8人','9人','10人','11人','12人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==16){
+      if(this.data.theTeaIdx==0){
+        this.setData({personsArray:['10人','12人','14人','16人','18人','20人','22人','24人','26人','28人','30人']})
+      }else{
+        this.setData({personsArray:['5人','6人','7人','8人','9人','10人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==23){
+      if(this.data.theTeaIdx==0){
+        this.setData({personsArray:['12人','14人','16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人']})
+      }else{
+        this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==15){
+      if(this.data.theTeaIdx==0){
+        this.setData({personsArray:['14人','16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人']})
+      }else{
+        this.setData({personsArray:['7人','8人','9人','10人','11人','12人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==14){
+      if(this.data.theTeaIdx==0){
+        this.setData({personsArray:['16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人','38人','39人']})
+      }else{
+        this.setData({personsArray:['8人','9人','10人','11人','12人','13人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==25){
+      if(this.data.theTeaIdx==0){
+        this.setData({personsArray:['18人','20人','22人','24人','26人','28人','30人','32人','34人','36人','38人','40人','42人']})
+      }else{
+        this.setData({personsArray:['8人','9人','10人','11人','12人','14人']})
+      }
+    }else if(wx.getStorageSync('sportTypeFThree')==13){
+      if(this.data.theTeaIdx==0){
+        this.setData({personsArray:['22人','24人','26人','28人','30人','32人','34人','36人','38人','40人','42人','44人','46人','48人','50人','52人','54人']})
+      }else{
+        this.setData({personsArray:['11人','12人','13人','14人','15人','16人','17人','18人']})
+      }
+    }
+  }
+
+
+    if(this.data.theTeamArray[this.data.theTeaIdx]=='不分队'){
+      this.setData({numAll:parseFloat(this.data.personsArray[this.data.personsIdx])})
+    }else{
+      this.setData({numAll:parseFloat(this.data.personsArray[this.data.personsIdx])*parseFloat(this.data.theTeamArray[this.data.theTeaIdx])})
+    }
+
+   
+   
     this.setData({
       sportId: wx.getStorageSync('sportIdF'),
       sportType: wx.getStorageSync('sportTypeF'),
@@ -1194,10 +1411,10 @@ Page({
       this.setData({
         mode: this.data.array[e.detail.value].name,
         modeNum: Number(e.detail.value) + 1,
-        shouldered: this.data.array[e.detail.value].name == '娱乐模式' ? 'AA' : 'AA'
+        shouldered: this.data.array[e.detail.value].name == '娱乐活动' ? 'AA' : 'AA'
       })
 
-      if (this.data.array[e.detail.value].name != '竞技模式') {
+      if (this.data.array[e.detail.value].name != '竞技活动') {
         this.setData({
           TrialNum: '0人',
           umpire: []
@@ -1248,10 +1465,12 @@ Page({
       this.setData({
         modeThree: this.data.arrayLanThree[e.detail.value].name,
         modeNumThree: Number(e.detail.value) + 1,
-        shoulderedThree: 'AA'
+        shoulderedThree: 'AA',
+        theTeamClickDis:false,
+        theTeaIdx:1
       })
 
-      if (this.data.arrayLanThree[e.detail.value].name != '竞技模式') {
+      if (this.data.arrayLanThree[e.detail.value].name != '竞技活动') {
         this.setData({
           TrialNumThree: '0人',
           umpireThree: []
@@ -1267,6 +1486,7 @@ Page({
         key: 'modeNumThree',
         data: Number(e.detail.value) + 1,
       })
+
     }
 
   },
@@ -3263,7 +3483,9 @@ Page({
     } else {
       this.setData({
         modeThree: '请选择',
-        modeNumThree: 0
+        modeNumThree: 0,
+        theTeamClickDis:true,
+        theTeaIdx:1
       })
     }
     if (wx.getStorageSync('TrialPickerF') == '') {
@@ -3675,6 +3897,93 @@ Page({
     if (currPage.data.sportsList != undefined) {
       currPage.data.sportsList = undefined
     }
+
+    if(this.data.modeThree!='请选择'){
+      this.setData({theTeamClickDis:false})
+    }
+
+    if(wx.getStorageSync('modeThree')=='竞技活动'){
+      if(wx.getStorageSync('sportTypeFThree')==12){
+        this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
+      }
+  
+     }else{
+      if(wx.getStorageSync('sportTypeFThree')==4||wx.getStorageSync('sportTypeFThree')==6||wx.getStorageSync('sportTypeFThree')==1||wx.getStorageSync('sportTypeFThree')==2||wx.getStorageSync('sportTypeFThree')==3||wx.getStorageSync('sportTypeFThree')==8){
+        if(this.data.theTeaIdx!=0){
+          this.setData({personsArray:['1人']})
+        }else{
+          this.setData({personsArray:['6人','5人','4人','3人','2人']})
+        }
+      }else if(wx.getStorageSync('sportTypeFThree')==5||wx.getStorageSync('sportTypeFThree')==7||wx.getStorageSync('sportTypeFThree')==9){
+        if(this.data.theTeaIdx==0){
+          this.setData({personsArray:['24人','22人','20人','18人','16人','14人','12人','10人','8人','6人','4人','2人']})
+        }else{
+          this.setData({personsArray:['2人','3人','4人','5人','6人']})
+        }
+      }else if(wx.getStorageSync('sportTypeFThree')==12){
+        if(this.data.theTeaIdx==0){
+          this.setData({personsArray:['24人','22人','20人','18人','16人','14人','12人','10人','8人','6人','4人','2人']})
+        }else{
+          this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
+        }
+      }else if(wx.getStorageSync('sportTypeFThree')==11){
+        if(this.data.theTeaIdx==0){
+          this.setData({personsArray:['15人','14人','13人','12人','11人','10人','9人','8人','7人','6人']})
+        }else{
+          this.setData({personsArray:['3人','4人','5人']})
+        }
+      }else if(wx.getStorageSync('sportTypeFThree')==10){
+        if(this.data.theTeaIdx==0){
+          this.setData({personsArray:['36人','34人','32人','30人','28人','26人','24人','22人','20人','18人','16人','14人','12人','10人']})
+        }else{
+          this.setData({personsArray:['5人','6人','7人','8人','9人','10人','11人','12人']})
+        }
+      }else if(wx.getStorageSync('sportTypeFThree')==16){
+        if(this.data.theTeaIdx==0){
+          this.setData({personsArray:['10人','12人','14人','16人','18人','20人','22人','24人','26人','28人','30人']})
+        }else{
+          this.setData({personsArray:['5人','6人','7人','8人','9人','10人']})
+        }
+      }else if(wx.getStorageSync('sportTypeFThree')==23){
+        if(this.data.theTeaIdx==0){
+          this.setData({personsArray:['12人','14人','16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人']})
+        }else{
+          this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
+        }
+      }else if(wx.getStorageSync('sportTypeFThree')==15){
+        if(this.data.theTeaIdx==0){
+          this.setData({personsArray:['14人','16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人']})
+        }else{
+          this.setData({personsArray:['7人','8人','9人','10人','11人','12人']})
+        }
+      }else if(wx.getStorageSync('sportTypeFThree')==14){
+        if(this.data.theTeaIdx==0){
+          this.setData({personsArray:['16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人','38人','39人']})
+        }else{
+          this.setData({personsArray:['8人','9人','10人','11人','12人','13人']})
+        }
+      }else if(wx.getStorageSync('sportTypeFThree')==25){
+        if(this.data.theTeaIdx==0){
+          this.setData({personsArray:['18人','20人','22人','24人','26人','28人','30人','32人','34人','36人','38人','40人','42人']})
+        }else{
+          this.setData({personsArray:['8人','9人','10人','11人','12人','14人']})
+        }
+      }else if(wx.getStorageSync('sportTypeFThree')==13){
+        if(this.data.theTeaIdx==0){
+          this.setData({personsArray:['22人','24人','26人','28人','30人','32人','34人','36人','38人','40人','42人','44人','46人','48人','50人','52人','54人']})
+        }else{
+          this.setData({personsArray:['11人','12人','13人','14人','15人','16人','17人','18人']})
+        }
+      }
+    }
+    
+    
+    if(this.data.theTeamArray[this.data.theTeaIdx]=='不分队'){
+      this.setData({numAll:parseFloat(this.data.personsArray[this.data.personsIdx])})
+    }else{
+      this.setData({numAll:parseFloat(this.data.personsArray[this.data.personsIdx])*parseFloat(this.data.theTeamArray[this.data.theTeaIdx])})
+    }
+
     this.setData({
       sportId: wx.getStorageSync('sportIdF'),
       sportType: wx.getStorageSync('sportTypeF'),
@@ -3730,7 +4039,7 @@ Page({
       TrialRaderThree: wx.getStorageSync('TrialRaderFThree') == '' ? '三级' : wx.getStorageSync('TrialRaderFThree'),
       TrialRaderSix: wx.getStorageSync('TrialRaderFSix') == '' ? '三级' : wx.getStorageSync('TrialRaderFSix'),
       shouldered: wx.getStorageSync('shoulderedF') == '' ? 'AA' : wx.getStorageSync('shoulderedF'),
-      shoulderedThree: wx.getStorageSync('modeThree') == '娱乐模式' ? 'AA' : wx.getStorageSync('shoulderedFThree'),
+      shoulderedThree: wx.getStorageSync('modeThree') == '娱乐活动' ? 'AA' : wx.getStorageSync('shoulderedFThree'),
     })
 
 
@@ -3852,7 +4161,7 @@ Page({
         organization: tipsThree,
         Tips: 0,
         Reward: 0,
-        Accompany: this.data.modeThree != '娱乐模式' && this.data.modeThree != '竞技模式' ? tipsThree : 0,
+        Accompany: this.data.modeThree != '娱乐活动' && this.data.modeThree != '竞技活动' ? tipsThree : 0,
         comments: commentsThree,
         member: [...numArr, ...numBrr, ...numCrr],
         MoneyPerhour: '',
@@ -3868,11 +4177,13 @@ Page({
         payType: 'balance',
         lr: wx.getStorageSync('bookinThree').data[0].lr,
         openPrice: wx.getStorageSync('bookinThree').data[0].openPrice,
-        ifMustSign: this.data.switch1Checked == false ? 0 : 1
+        ifMustSign: this.data.switch1Checked == false ? 0 : 1,
+        Ranks:this.data.theTeamArray[this.data.theTeaIdx]=='不分队'?1:parseFloat(this.data.theTeamArray[this.data.theTeaIdx]),
+        teamName:parseFloat(this.data.personsArray[this.data.personsIdx])
       }
 
 
-      util.Request("/api/userAddorganization", obj, "post",
+      util.Request("/api/xinuserAddorganization", obj, "post",
         (res) => {
           if (res.data.code == 2000) {
 
@@ -4123,86 +4434,24 @@ Page({
                       () => {}
                     )
                   } else if (this.data.indexSw == '2') {
-                    let numAB = 0
-                    switch (wx.getStorageSync('sportypeNameFThree')) {
-                      case '单打':
-                        numAB = 1
-                        break;
-                      case '双打':
-                        numAB = 2
-                        break;
-                      case '中式黑八':
-                        numAB = 1
-                        break;
-                      case '美式9球':
-                        numAB = 1
-                        break;
-                      case '斯诺克':
-                        numAB = 1
-                        break;
-                      case '5v5':
-                        numAB = 5
-                        break;
-                      case '3v3':
-                        numAB = 3
-                        break;
-                      case '11人制':
-                        numAB = 11
-                        break;
-                      case '8人制':
-                        numAB = 8
-                        break;
-                      case '7人制':
-                        numAB = 7
-                        break;
-                      case '6人制':
-                        numAB = 6
-                        break;
-                      case '5人制':
-                        numAB = 5
-                        break;
-                      case '6v6':
-                        numAB = 6
-                        break;
-                      case '单打':
-                        numAB = 1
-                        break;
-                      case '双打':
-                        numAB = 2
-                        break;
-                      case '比杆赛':
-                        numAB = 1
-                        break;
-                      case '比洞赛':
-                        numAB = 1
-                        break;
-                      case '双打(3队)':
-                        numAB = 2
-                        break;
-                      case '3v3(3队)':
-                        numAB = 3
-                        break;
-                      default:
-                        numAB = 0
-                    }
-                    var arr2 = new Array();
-                    var arr1 = []
-                    var arr3 = []
-
-                    for (var i = 0; i < numAB; i++) {
-                      let obj = {}
-                      arr2.push(obj);
-                      arr1.push(obj)
-                      arr3.push(obj)
-                      if (wx.getStorageSync('sportypeNameFThree') != '双打(3队)' && wx.getStorageSync('sportypeNameFThree') != '3v3(3队)') {
-                        arr3 = []
+                   
+                    let theTeam=this.data.theTeamArray[this.data.theTeaIdx]=='不分队'?1:parseFloat(this.data.theTeamArray[this.data.theTeaIdx])
+                    let persons=parseFloat(this.data.personsArray[this.data.personsIdx])
+                    let arru=[]
+                    for(let i=0;i<theTeam;i++){
+                      let arr=[]
+                      let obj = {
+                        imgURL: '',
+                        heightLevel:'',
+                        name: ''
                       }
+                      for(let j=0;j<persons;j++){
+                         arr.push(obj)
+                      }
+                      arru.push(arr)
                     }
-                    this.setData({
-                      numBThree: arr1,
-                      numAThree: arr2,
-                      numCThree: arr3
-                    })
+                    this.setData({numABThree:arru})
+                    
                   } else if (this.data.indexSw == '3') {
                     let numAB = 0
                     switch (wx.getStorageSync('sportypeNameFFour')) {
@@ -4775,7 +5024,7 @@ Page({
         LevelMin: rank == '不限' ? '1' : parseFloat(rank.split('-')[0]),
         Tips: tips,
         Reward: 0,
-        Accompany: this.data.mode != '娱乐模式' && this.data.mode != '竞技模式' ? tips : 0,
+        Accompany: this.data.mode != '娱乐活动' && this.data.mode != '竞技活动' ? tips : 0,
         comments: comments,
         member: [...numArr, ...numBrr, ...numCrr],
         MoneyPerhour: '',

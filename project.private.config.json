@@ -108,10 +108,9 @@
           "scene": null
         },
         {
-          "id": -1,
           "name": "发布活动",
           "pathName": "pages/publishing/publishing",
-          "query": "",
+          "query": "indexSw=2",
           "scene": null
         },
         {

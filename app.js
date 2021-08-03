@@ -28,6 +28,8 @@ App({
       })
     })
 
+   
+
 
    
       
@@ -43,13 +45,13 @@ App({
             'code': res.code
           }, "get",
             (res) => {
-
-            
-    
-      
               wx.setStorageSync('openid', res.data.data.openid);
               wx.setStorageSync('sessionKey', res.data.data.session_key);
               wx.setStorageSync('unionid', res.data.data.unionid);
+
+            
+
+
             },
             () => {
             },

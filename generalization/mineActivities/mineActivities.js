@@ -23,7 +23,7 @@ Page({
   },
 
   common: function (page, statusType, type) {
-    util.Request("/api/getMyActiveLst", {
+    util.Request("/api/xingetMyActiveLst", {
         type: type,
         statusType: statusType,
         page: page
@@ -34,9 +34,9 @@ Page({
           if(projectDataNow[i].SportMode == '1'&&projectDataNow[i].reserve==1){
             projectDataNow[i].SportModeTwo = '仅预订场馆'
           }else if (projectDataNow[i].SportMode == '1') {
-            projectDataNow[i].SportModeTwo = '娱乐模式'
+            projectDataNow[i].SportModeTwo = '娱乐活动'
           } else if (projectDataNow[i].SportMode == '2') {
-            projectDataNow[i].SportModeTwo = '竞技模式 '
+            projectDataNow[i].SportModeTwo = '竞技活动'
           } else if (projectDataNow[i].SportMode == '3') {
             projectDataNow[i].SportModeTwo = '我是陪练 '
           } else if (projectDataNow[i].SportMode == '4') {

@@ -179,6 +179,7 @@ Page({
     })
   },
   competition: function () {
+   
     wx.navigateTo({
       url: '/generalization/contentTxt/contentTxt?flag=6',
     })
@@ -298,9 +299,9 @@ Page({
           let projectDataNow = res.data.data.activeLst
           for (let i in projectDataNow) {
             if (projectDataNow[i].SportMode == '1') {
-              projectDataNow[i].SportMode = '娱乐模式'
+              projectDataNow[i].SportMode = '娱乐活动'
             } else if (projectDataNow[i].SportMode == '2') {
-              projectDataNow[i].SportMode = '竞技模式'
+              projectDataNow[i].SportMode = '竞技活动'
             } else if (projectDataNow[i].SportMode == '3') {
               projectDataNow[i].SportMode = '我是陪练'
             } else if (projectDataNow[i].SportMode == '4') {
@@ -448,9 +449,9 @@ Page({
         let projectDataNow = res.data.data.activeLst
         for (let i in projectDataNow) {
           if (projectDataNow[i].SportMode == '1') {
-            projectDataNow[i].SportMode = '娱乐模式'
+            projectDataNow[i].SportMode = '娱乐活动'
           } else if (projectDataNow[i].SportMode == '2') {
-            projectDataNow[i].SportMode = '竞技模式'
+            projectDataNow[i].SportMode = '竞技活动'
           } else if (projectDataNow[i].SportMode == '3') {
             projectDataNow[i].SportMode = '我是陪练'
           } else if (projectDataNow[i].SportMode == '4') {
@@ -493,9 +494,16 @@ Page({
 
   },
 
+  test2:function(){
+    
+  },
 
   //页面返回 带参
   onShow: function () {
+
+
+   
+
 
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];

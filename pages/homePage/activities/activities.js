@@ -454,7 +454,7 @@ Page({
   //接口函数
   koopdf: function () {
     let that = this
-    util.Request("/api/getActivityInfo", {
+    util.Request("/api/xingetActivityInfo", {
         'uuid': this.data.uuid
       }, "get",
       (res) => {
@@ -464,9 +464,9 @@ Page({
           projectNow.SportModeTwo = '仅预订场馆'
         } else {
           if (projectNow.SportMode == '1') {
-            projectNow.SportModeTwo = '娱乐模式'
+            projectNow.SportModeTwo = '娱乐活动'
           } else if (projectNow.SportMode == '2') {
-            projectNow.SportModeTwo = '竞技模式'
+            projectNow.SportModeTwo = '竞技活动'
           } else if (projectNow.SportMode == '3') {
             projectNow.SportModeTwo = '我是陪练'
           } else if (projectNow.SportMode == '4') {

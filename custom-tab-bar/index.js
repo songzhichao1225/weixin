@@ -1,3 +1,4 @@
+
 Component({
   data: {
     selected: '啥也不是',
@@ -40,7 +41,7 @@ Component({
     ]
   },
   attached() {
-   
+    
   },
   methods: {
 
@@ -50,6 +51,33 @@ Component({
       wx.switchTab({
         url
       })
+     
+      if(wx.getStorageSync('subscribe')!=1&&wx.getStorageSync('token')){
+        wx.requestSubscribeMessage({
+          tmplIds: ['b5CYgMlk8CBhBe1fPZExShwhA4qvPQV7vr8GK8UVbtk'],
+          success (res) {
+            
+            wx.request({
+              url: 'https://appstg.tiaozhanmeiyitian.com/api/WechatSmallOpenid',
+              header: {
+                "enctype": "multipart/form-data",
+                "token": wx.getStorageSync('token'),
+              },
+              data: {uid:wx.getStorageSync('uuid'),SmallOpenid:wx.getStorageSync('openid')},
+              method: 'post',
+              success: function (res) {
+                  wx.setStorageSync('subscribe', 1)
+              }
+            })
+            
+          },fail(res){
+              console.log(res)
+          }
+        })
+      }
+     
+
+      
       
 
     }
