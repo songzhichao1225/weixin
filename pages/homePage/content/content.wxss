@@ -142,8 +142,8 @@ page {
 
 
 .content .homeSelect view>image {
-  width: 2.3rem;
-  height: 2.3rem;
+  width: 3rem;
+  height: 3rem;
   display: block;
   margin: 0 auto;
 }

@@ -11,7 +11,7 @@
 
 	<view class="countdown">
 		<text class="firstTxt" wx:if="{{end==true}}"
-			style="{{activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&activitiesData.isPublisher==1||activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&activitiesData.stay==1||activitiesData.PublicStatus==1&&activitiesData.organization==1&&activitiesData.stay==1?'':'width:100%;text-align:center'}}">截至报名倒计时:{{countDownDay}}天{{countDownHour}}小时{{countDownMinute}}分{{countDownSecond}}秒</text>
+			style="{{activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&activitiesData.isPublisher==1||activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&activitiesData.stay==1||activitiesData.PublicStatus==1&&activitiesData.type==2&&activitiesData.stay==1?'':'width:100%;text-align:center'}}">截至报名倒计时:{{countDownDay}}天{{countDownHour}}小时{{countDownMinute}}分{{countDownSecond}}秒</text>
 	
 	
 		<text class="btnWork"
@@ -19,14 +19,14 @@
 			catchtap="cancels" data-uuid="{{activitiesData.uuid}}" data-type="1">取消预订</text>
 		<text class="btnWork"
 			wx:if="{{activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&activitiesData.isPublisher==1&&activitiesData.reserve!=1}}"
-			catchtap="cancels" data-uuid="{{activitiesData.uuid}}" data-type="1">取消发布</text>
+			catchtap="cancels" data-uuid="{{activitiesData.uuid}}" data-type="2">取消发布</text>
 
 		<text class="btnWork"
-			wx:if="{{activitiesData.organization!=1&&activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&activitiesData.stay==1&&activitiesData.isPublisher!=1&&activitiesData.reserve!=1}}"
+			wx:if="{{activitiesData.type!=2&&activitiesData.PublicStatus==1&&activitiesData.isSignIn==0&&activitiesData.stay==1&&activitiesData.isPublisher!=1&&activitiesData.reserve!=1}}"
 			catchtap="cancels" data-uuid="{{activitiesData.uuid}}" data-type="2">取消报名</text>
 
 			<text class="btnWork"
-			wx:if="{{activitiesData.organization==1&&activitiesData.PublicStatus==1&&activitiesData.stay==1&&activitiesData.isPublisher!=1&&activitiesData.reserve!=1}}"
+			wx:if="{{activitiesData.type==2&&activitiesData.PublicStatus==1&&activitiesData.stay==1&&activitiesData.reserve!=1}}"
 			catchtap="cancels" data-uuid="{{activitiesData.uuid}}" data-type="2">取消报名</text>
 
 
@@ -156,13 +156,13 @@
 							<text class="time">{{activitiesData.Leveexplain}}</text>
 						</view>
 						<view class="two"
-							wx:if="{{activitiesData.PipeMain!=2&&activitiesData.isPublisher!=1&&activitiesData.SportModeTwo!='我找陪练'&&activitiesData.SportModeTwo!='我是陪练'&&activitiesData.organization!=1}}">
+							wx:if="{{activitiesData.PipeMain!=2&&activitiesData.isPublisher!=1&&activitiesData.SportModeTwo!='我找陪练'&&activitiesData.SportModeTwo!='我是陪练'&&activitiesData.type!=2}}">
 							<text class="way">入场费用</text>
 							<text>￥{{activitiesData.Tips}}/人</text>
 						</view>
 
 						<view class="two"
-							wx:if="{{activitiesData.organization!=1&&activitiesData.PipeMain!=2&&activitiesData.isPublisher==1&&activitiesData.SportModeTwo!='我找陪练'&&activitiesData.SportModeTwo!='我是陪练'}}">
+							wx:if="{{activitiesData.type!=2&&activitiesData.PipeMain!=2&&activitiesData.isPublisher==1&&activitiesData.SportModeTwo!='我找陪练'&&activitiesData.SportModeTwo!='我是陪练'}}">
 							<text class="way">出场费用</text>
 							<text>￥{{activitiesData.Tips}}/人</text>
 						</view>
@@ -176,7 +176,7 @@
 							<text class="way">奖金</text>
 							<text>￥{{activitiesData.PipeMainMoney}}</text>
 						</view>
-						<view class="two" wx:if="{{activitiesData.isPublisher==1&&activitiesData.organization==1}}">
+						<view class="two" wx:if="{{activitiesData.isPublisher==1&&activitiesData.type==2}}">
 							<text class="way">组织费用</text>
 							<text>￥{{activitiesData.organizations}}</text>
 						</view>
@@ -203,16 +203,20 @@
 				<view class="line"></view>
 				<view class="participants" wx:if="{{activitiesData.reserve!=1}}">
 					<text class="people">参与人员</text>
-					<view class="TeamA">
-						<text class="titleBDui">A队</text>
+					<view class="TeamA" wx:for="{{numAB}}" wx:key="index">
+						<text class="titleBDui" wx:if="{{numAB.length>1}}">{{numABName[index]}}队</text>
+						<text class="titleBDui" wx:if="{{numAB.length==1}}">运动者</text>
 						<view class="peopleList">
-							<view class="son" wx:for="{{activitiesData.teamA}}" wx:key='index'>
+							<view class="son" wx:for="{{numAB[index]}}" wx:key='idx' wx:for-index="idx">
 								<view class="invite" wx:if="{{item.playerUUID=='empty'}}" bindtap="userSignUp" data-index="{{index}}"
-									data-team="1">
+									data-team="{{index+1}}">
 									<text
 										class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'':'报名':'已结束'}}</text>
 									<text class="TeamAson"
-										wx:if="{{activitiesData.SportModeTwo!='我是陪练'&&activitiesData.SportModeTwo!='我找陪练'}}">A{{index+1}}</text>
+										wx:if="{{activitiesData.SportModeTwo!='我是陪练'&&activitiesData.SportModeTwo!='我找陪练'&&numAB.length>1}}">{{numABName[index]}}{{idx+1}}</text>
+										<text class="TeamAson"
+										wx:if="{{activitiesData.SportModeTwo!='我是陪练'&&activitiesData.SportModeTwo!='我找陪练'&&numAB.length==1}}">{{idx+1}}</text>
+								
 									<text class="TeamAson"
 										wx:if="{{activitiesData.SportModeTwo=='我是陪练'||activitiesData.SportModeTwo=='我找陪练'}}">{{activitiesData.SportModeTwo=='我是陪练'?'陪练方':'练习方'}}</text>
 								</view>
@@ -226,60 +230,27 @@
 									class="isSigin">{{item.nameStatus}}</text>
 								<text class="TeamAsonTwo" wx:if="{{item.uuid==plarUUid}}">我</text>
 								<text class="TeamAsonTwo"
-									wx:if="{{item.uuid!=plarUUid&&item.playerUUID!='empty'&&activitiesData.SportModeTwo!='我是陪练'&&activitiesData.SportModeTwo!='我找陪练'}}">A{{index+1}}</text>
+									wx:if="{{item.uuid!=plarUUid&&item.playerUUID!='empty'&&activitiesData.SportModeTwo!='我是陪练'&&activitiesData.SportModeTwo!='我找陪练'&&numAB.length>1}}">{{numABName[index]}}{{idx+1}}</text>
+									<text class="TeamAsonTwo"
+									wx:if="{{item.uuid!=plarUUid&&item.playerUUID!='empty'&&activitiesData.SportModeTwo!='我是陪练'&&activitiesData.SportModeTwo!='我找陪练'&&numAB.length==1}}">{{idx+1}}</text>
+								
 								<text class="TeamAsonTwo"
 									wx:if="{{item.uuid!=plarUUid&&item.playerUUID!='empty'&&activitiesData.SportModeTwo=='我是陪练'||item.uuid!=plarUUid&&item.playerUUID!='empty'&&activitiesData.SportModeTwo=='我找陪练'}}">{{activitiesData.SportModeTwo=='我是陪练'?'陪练方':'练习方'}}</text>
 							</view>
 						</view>
 					</view>
-					<view class="TeamB">
-						<text class="titleBDui">B队</text>
-						<view class="peopleList">
-							<view class="son" wx:for="{{activitiesData.teamB}}" wx:key='index'>
-								<view class="invite" wx:if="{{item.playerUUID=='empty'}}" data-name="{{activitiesData.SportModeTwo}}"
-									data-uuid="{{activitiesData.uuid}}" bindtap="userSignUp" data-index="{{index}}" data-team="2">
-									<!-- 邀请 -->
-									<text
-										class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'':'报名':'已结束'}}</text>
-									<text class="TeamAson"
-										wx:if="{{activitiesData.SportModeTwo!='我是陪练'&&activitiesData.SportModeTwo!='我找陪练'}}">B{{index+1}}</text>
-									<text class="TeamAson"
-										wx:if="{{activitiesData.SportModeTwo=='我是陪练'||activitiesData.SportModeTwo=='我找陪练'}}">{{activitiesData.SportModeTwo=='我是陪练'?'练习方':'陪练方'}}</text>
-								</view>
-								<image class="logo" wx:if="{{item.playerUUID!='empty'}}" bindtap="getUserDetailInfo"
-									data-uid="{{item.uuid}}" mode="aspectFill" src='{{img}}{{item.imgURL}}'></image>
-								<image class="project" wx:if="{{item.playerUUID!='empty'}}" mode="aspectFill"
-									src="/assets/{{activitiesData.ballImgSon}}">
-								</image>
-								<text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4&&activitiesData.PublicStatus!=7}}"
-									class="isSigin">{{item.nameStatus}}</text>
-								<text wx:if="{{item.playerUUID!='empty'}}" class="grade">{{item.heightLevel}}</text>
-								<text wx:if="{{item.uuid==plarUUid}}" class="TeamAsonTwo">我</text>
-								<text
-									wx:if="{{item.uuid!=plarUUid&&item.playerUUID!='empty'&&activitiesData.SportModeTwo!='我是陪练'&&activitiesData.SportModeTwo!='我找陪练'}}"
-									class="TeamAsonTwo">B{{index+1}}</text>
-								<text class="TeamAsonTwo"
-									wx:if="{{item.uuid!=plarUUid&&item.playerUUID!='empty'&&activitiesData.SportModeTwo=='我是陪练'||item.uuid!=plarUUid&&item.playerUUID!='empty'&&activitiesData.SportModeTwo=='我找陪练'}}">{{activitiesData.SportModeTwo=='我是陪练'?'练习方':'陪练方'}}</text>
-							</view>
-							<view bindtap="checkedTwoyou" class="buchangjin"
-								wx:if="{{activitiesData.SportModeTwo=='我找陪练'&&activitiesData.teamB[0].playerUUID=='empty'}}">
-								<radio color="#D85D27" checked="{{checkedTwoyou}}" /><text>阅读并同意</text><text style="color:blue"
-									catchtap="rules">《补偿金规则》</text>
-							</view>
-						</view>
-					</view>
+				
 
 
-					<view class="TeamB" style="border:none;" wx:if="{{activitiesData.teamC.length!=0}}">
-						<text class="titleBDui">{{activitiesData.SportType==21||activitiesData.SportType==20?'C队':'裁判'}}</text>
+					<view class="TeamB" style="border:none;" wx:if="{{activitiesData.teamG.length!=0}}">
+						<text class="titleBDui">裁判</text>
 						<view class="peopleList" style="margin-left:38rpx;width:75%">
-							<view class="son" wx:for="{{activitiesData.teamC}}" wx:key='index'>
-								<view class="invite" wx:if="{{item.playerUUID=='empty'}}"
-									bindtap="{{activitiesData.SportType==21||activitiesData.SportType==20?'userSignUp':'addReferees'}}"
+							<view class="son" wx:for="{{activitiesData.teamG}}" wx:key='index'>
+								<view class="invite" wx:if="{{item.playerUUID=='empty'}}" bindtap="addReferees"
 									data-index="{{index}}" data-team="3">
-									<text wx:if="{{activitiesData.SportType==21||activitiesData.SportType==20}}"
+									<text 
 										class="textTxt">{{activitiesData.PublicStatus==1||activitiesData.PublicStatus==2||activitiesData.PublicStatus==3?typeTwo==1?'':'报名':'已结束'}}</text>
-									<text class="TeamAson">C{{index+1}}</text>
+									<text class="TeamAson">裁判{{index+1}}</text>
 								</view>
 								<image class="logo" wx:if="{{item.playerUUID!='empty'}}" bindtap="getUserDetailInfo"
 									data-uid="{{item.uuid}}" mode="aspectFill" src='{{img}}{{item.imgURL}}'></image>
@@ -289,7 +260,7 @@
 								<text wx:if="{{item.playerUUID!='empty'&&item.isSignIns!=4&&activitiesData.PublicStatus!=7}}"
 									class="isSigin">{{item.nameStatus}}</text>
 								<text wx:if="{{item.playerUUID!='empty'}}" class="grade">{{item.heightLevel}}</text>
-								<text wx:if="{{item.playerUUID!='empty'}}" class="TeamAsonTwo">C{{index+1}}</text>
+								<text wx:if="{{item.playerUUID!='empty'}}" class="TeamAsonTwo">裁判{{index+1}}</text>
 							</view>
 						</view>
 					</view>
@@ -486,7 +457,7 @@
 
 
 		<view class="readyToGo"
-			wx:if="{{activitiesData.organization==1&&activitiesData.ifMustSign==1&&activitiesData.PublicStatus==1&&activitiesData.reserve!=1}}">
+			wx:if="{{activitiesData.type==2&&activitiesData.ifMustSign==1&&activitiesData.PublicStatus==1&&activitiesData.reserve!=1}}">
 			<button class="btn" catchtap="signin" data-id="{{activitiesData.uuid}}" style="color:#fff;background:#D85D27;"
 				wx:if="{{activitiesData.SigninYes==1&&activitiesData.PublicStatus!=7&&activitiesData.isSignIn==0&&activitiesData.reserve!=1}}">场馆签到</button>
 			<button class="btn" style="background:#ccc"
@@ -495,7 +466,7 @@
 
 
 		<view class="readyToGo"
-			wx:if="{{activitiesData.organization!=1&&activitiesData.isQuit!=2&&activitiesData.ifMustSign==1&&activitiesData.PublicStatus==2&&activitiesData.reserve!=1}}">
+			wx:if="{{activitiesData.type!=2&&activitiesData.isQuit!=2&&activitiesData.ifMustSign==1&&activitiesData.PublicStatus==2&&activitiesData.reserve!=1}}">
 			<button class="btnTwo" catchtap="isQuit" data-uuid="{{activitiesData.uuid}}"
 				style="color:#fff;background:#D85D27;" wx:if="{{activitiesData.isQuit==1}}">提前退出</button>
 			<button class="btnTwo" wx:if="{{activitiesData.isQuit==2}}">提前退出</button>
@@ -508,7 +479,7 @@
 		</view>
 
 		<view class="readyToGo"
-			wx:if="{{activitiesData.isQuitInGame==1&&activitiesData.organization!=1&&activitiesData.ifMustSign==1&&activitiesData.PublicStatus==3&&activitiesData.reserve!=1}}">
+			wx:if="{{activitiesData.isQuitInGame==1&&activitiesData.type!=2&&activitiesData.ifMustSign==1&&activitiesData.PublicStatus==3&&activitiesData.reserve!=1}}">
 			<button class="btn" catchtap="signin" data-id="{{activitiesData.uuid}}" style="color:#fff;background:#D85D27;"
 				wx:if="{{activitiesData.isSignIn==0&&activitiesData.isQuit!=2}}">场馆签到</button>
 			<button class="btnTwo" wx:if="{{activitiesData.isSignIn==1&&activitiesData.isQuit!=2}}">已签到</button>

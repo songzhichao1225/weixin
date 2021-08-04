@@ -26,7 +26,7 @@
 					<text>{{item.SportMode}}</text>
 					<text>{{item.SportName}}</text>
 					<text>{{item.SportTypeName}}</text>
-					<text>缺{{item.lockNumber}}人</text>
+					<text>{{item.lockNumbers}}</text>
 				</view>
 				<view class="patterns">
 					<text style="color:#000">{{item.startDays}}</text>

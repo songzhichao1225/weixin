@@ -18,6 +18,7 @@ Page({
     triggered:true,
     page:1,
     falg:0,
+    type:1
   },
 
   onLoad: function(option) {
@@ -28,7 +29,8 @@ Page({
     })
     this.setData({
       falg:option.falg,
-      img:util.API
+      img:util.API,
+      type:option.type
     })
     qqmapsdk = new QQMapWX({
       key: 'GMCBZ-TDALO-6ZRWH-S6TPE-66PIZ-M4FIJ'
@@ -67,7 +69,8 @@ Page({
               area: area,
               sportId: option.sportid,
               sporttype: option.sporttype,
-              page: 1
+              page: 1,
+              type:_this.data.type
             }
             util.Request("/api/getSiteLst", obj, "get",
               (res) => {
@@ -146,7 +149,8 @@ Page({
               area: area,
               sportId: _this.data.sportId,
               sporttype: _this.data.sporttype,
-              page: 1
+              page: 1,
+              type:_this.data.type
             }
             util.Request("/api/getSiteLst", obj, "get",
               (res) => {
@@ -202,7 +206,8 @@ Page({
           area:  e.detail.value[2],   
           sportId: _this.data.sportId,
           sporttype: _this.data.sporttype,
-          page: 1
+          page: 1,
+          type:_this.data.type
         }
         util.Request("/api/getSiteLst", obj, "get",
           (res) => {
@@ -259,7 +264,8 @@ Page({
         area: addressLst.district,
         sportId: this.data.sportId,
         sporttype: this.data.sporttype,
-        page: 1
+        page: 1,
+        type:this.data.type
       }
       this.setData({
         latitude:addressLst.latitude,
@@ -342,7 +348,8 @@ getsuggest: function(e) {
       area: this.data.area,
       sportId: this.data.sportId,
       sporttype: this.data.sporttype,
-      page: 1
+      page: 1,
+      type:this.data.type
     }
     util.Request("/api/getSiteLst", obj, "get",
       (res) => {
@@ -381,7 +388,8 @@ getsuggest: function(e) {
       area: this.data.area,
       sportId: this.data.sportId,
       sporttype: this.data.sporttype,
-      page: Number(this.data.page+1)
+      page: Number(this.data.page+1),
+      type:this.data.type
     }
     util.Request("/api/getSiteLst", obj, "get",
       (res) => {

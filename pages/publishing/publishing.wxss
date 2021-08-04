@@ -115,7 +115,7 @@ page {
 }
 
 .content .TeamA text {
-  font-size: 17px;
+  font-size: 0.88rem;
   color: #333;
   float: left;
   margin-top: 26rpx;
@@ -615,7 +615,7 @@ page {
 
 .theTeam {
   float: left;
-  width: 40%;
+  width: 38%;
 }
 
 .theTeamKer {
@@ -623,15 +623,16 @@ page {
 }
 
 .pickerTeam{
-  width: 4rem;
+  width: 3.5rem;
   text-align: right;
   color: #9b9b9b;
   font-size: 0.75rem;
 }
 .theTeamTwo{
-  width: 20%;
-  float: left;
+  width: 22%;
+  float: right;
   color: #9b9b9b;
   text-align: center;
   font-size: 0.75rem;
+  text-align: center;
 }

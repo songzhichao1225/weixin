@@ -395,10 +395,12 @@ Page({
               openID: wx.getStorageSync('openid'),
               openPrice: app.globalData.openPrice,
               lr: app.globalData.lr,
-              PipeMain: 0
+              PipeMain: 0,
+              Ranks: app.globalData.Ranks,
+              teamName: app.globalData.teamName
             }
 
-            util.Request("/api/userAddActivity_ADD", obj, "post",
+            util.Request("/api/xinuserAddActivity_ADD ", obj, "post",
               (resTwo) => {
                 wx.hideLoading()
                 if (resTwo.data.code == 2000) {
@@ -442,7 +444,7 @@ Page({
         } else if (this.data.ko == 1) {
 
 
-          util.Request("/api/userSignUp", {
+          util.Request("/api/xinuserSignUp", {
               inviteId: app.globalData.inviteId,
               team: Number(app.globalData.team),
               SecondSportId: app.globalData.SecondSportId,
@@ -615,10 +617,12 @@ Page({
                     Insurance: this.data.checkedFlag == true ? '1' : '0',
                     openPrice: app.globalData.openPrice,
                     lr: app.globalData.lr,
-                    PipeMain: 0
+                    PipeMain: 0,
+                    Ranks: app.globalData.Ranks,
+              teamName: app.globalData.teamName
                   }
 
-                  util.Request("/api/userAddActivity_ADD", obj, "post",
+                  util.Request("/api/xinuserAddActivity_ADD", obj, "post",
                     (res) => {
                       if (res.data.code == 2000) {
                         wx.removeStorage({
@@ -668,7 +672,7 @@ Page({
 
 
               } else if (this.data.ko == 1) {
-                util.Request("/api/userSignUp", {
+                util.Request("/api/xinuserSignUp", {
                     inviteId: app.globalData.inviteId,
                     team: Number(app.globalData.team),
                     SecondSportId: app.globalData.SecondSportId,
@@ -997,9 +1001,16 @@ Page({
 
   },
   deductibles() {
-    wx.navigateTo({
-      url: '/generalization/deductibles/deductibles?siteMoney=' + this.data.getElplainInfo.siteMoney + '&offsetquota=' + this.data.getElplainInfo.offsetquota,
-    })
+    if(this.data.getElplainInfo.siteMoney==undefined){
+      wx.navigateTo({
+        url: '/generalization/deductibles/deductibles?siteMoney=' + this.data.getElplainInfo.Total + '&offsetquota=' + this.data.getElplainInfo.offsetquota,
+      })
+    }else{
+      wx.navigateTo({
+        url: '/generalization/deductibles/deductibles?siteMoney=' + this.data.getElplainInfo.siteMoney + '&offsetquota=' + this.data.getElplainInfo.offsetquota,
+      })
+    }
+    
   },
   previewImage: function (e) {
     wx.previewImage({

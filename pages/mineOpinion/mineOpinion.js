@@ -17,7 +17,7 @@ Page({
   })
   },
   textarea:function(e){
-   this.setData({number:e.detail.cursor,textValue:e.detail.value})
+   this.setData({number:e.detail.value.length,textValue:e.detail.value})
   },
   phone:function(e){
     this.setData({phone:e.detail.value})

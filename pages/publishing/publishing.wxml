@@ -66,18 +66,30 @@
 					</view>
 				</view>
 
-				<!-- <view class="list">
-				<view style="width:30%">
-					<text style="padding-left:0.5rem;float:left;">选择队伍</text>
-					<picker bindchange="theTeam"  range="{{array}}">
-						<view class="picker" style="float:left">
-							当前选择：{{array[index]}}
-						</view>
+				<view class="list" wx:if="{{mode!='请选择'}}">
+					<view class="theTeam">
+						<text style="padding-left:0.5rem;float:left">选择队伍</text>
+						<picker bindchange="theTeamOne" style="float:left" bindtap="theTeamClickOneone" disabled="{{mode=='竞技活动'?true:theTeamClickDisOne}}" range="{{sportType==12||sportType==11||sportType==10||sportType==16||sportType==23||sportType==15||sportType==14||sportType==25||sportType==13?theTeamArrayThree:theTeamArrayOne}}">
+							<view class="picker pickerTeam " style="float:left;">
+								{{theTeamArrayOne[theTeaIdxOne]}}
+							</view>
+						</picker>
 						<image class="image" src="/assets/right.png"></image>
-					</picker>
+					</view>
+
+					<view class="theTeam">
+						<text style="padding-left:0.5rem;float:left">选择人数</text>
+						<picker bindchange="personsNumOne" style="float:left" bindtap="theTeamClickThree" disabled="{{theTeamClickDisOne}}"   range="{{personsArrayOne}}">
+							<view class="picker pickerTeam " style="float:left;">
+								{{personsArrayOne[personsIdxOne]}}/队
+							</view>
+						</picker>
+						<image class="image" src="/assets/right.png"></image>
+					</view>
+
+					<view class="theTeamTwo">总人数：{{numAllOne}}人</view>
 
 				</view>
-				</view> -->
 
 
 
@@ -241,89 +253,53 @@
           </textarea>
 				</view>
 				<view class="line"></view>
-				<view class="joinTil" wx:if="{{sportName!=='请选择'&&sportName!==''}}">
+
+
+				<view class="joinTil" wx:if="{{sportName!=='请选择'&&mode!=='请选择'}}">
 					参与人员
 				</view>
-				<view class="aList" wx:if="{{sportName!=='请选择'&&sportName!==''}}">
+				<view class="aList" wx:for="{{numABOne}}" wx:if="{{sportName!=='请选择'&&mode!=='请选择'}}" wx:for-index="index" wx:key="it">
 					<view class="TeamA">
-						<text>A队</text>
+						<text wx:if="{{numABOne.length>1}}">{{teamName[index]}}队</text>
+						<text wx:if="{{numABOne.length==1}}">运动者</text>
 						<view class="peopleList">
-							<view class="son" wx:for="{{numA}}" wx:key='index'>
+							<view class="son" wx:for="{{numABOne[index]}}" wx:for-index="idx" wx:key="it">
 								<view class="invite" bindtap="invitaional" data-index="{{index}}" data-uuid="{{item.uuid}}"
-									data-team="1" wx:if="{{item.imgURL==undefined}}">
-									邀请
-									<text class="TeamAson" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">A{{index+1}}</text>
-									<text class="TeamAson" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我找陪练'?'练习方':'陪练方'}}</text>
-									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
+									data-team="1" wx:if="{{item.imgURL==''}}">
+									<!-- 邀请 -->
+									<text class="TeamAson" wx:if="{{modeThree!='我找陪练'&&modeThree!='我是陪练'}}">{{teamName[index]}}{{idx+1}}</text>
+									<text class="TeamAson"
+										wx:if="{{modeThree=='我找陪练'||modeThree=='我是陪练'}}">{{modeThree=='我找陪练'?'练习方':'陪练方'}}</text>
+									<image class="logo" style="top:0;" wx:if="{{item.imgURL==''}}" src='/assets/peologo.png'>
 									</image>
 								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'>
+								<image class="logo" wx:if="{{item.imgURL!=''}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'>
 								</image>
-								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
-								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">A{{index+1}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我找陪练'?'练习方':'陪练方'}}</text>
+								<image wx:if="{{item.name!=''}}" class="project" src="/assets/{{item.name}}"></image>
+								<text wx:if="{{item.heightLevel!=''}}" class="grade">{{item.heightLevel}}</text>
+								<text class="TeamAsonTwo" wx:if="{{modeThree!='我找陪练'&&modeThree!='我是陪练'}}">{{teamName[index]}}{{idx+1}}</text>
+								<text class="TeamAsonTwo"
+									wx:if="{{modeThree=='我找陪练'||modeThree=='我是陪练'}}">{{modeThree=='我找陪练'?'练习方':'陪练方'}}</text>
 							</view>
 						</view>
 					</view>
-					<view class="TeamB" style="{{umpire.length!==0?'border-bottom:0.06rem solid #e9e9e9':''}}">
-						<text>B队</text>
-						<view class="peopleList">
-							<view class="son" wx:for="{{numB}}" wx:key='index'>
-								<view class="invite" bindtap="invitaional" data-index="{{index}}" data-uuid="{{item.uuid}}"
-									data-team="2" style="font-size:12px;" wx:if="{{item.imgURL==undefined}}">
-									邀请
-									<text class="TeamAson" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">B{{index+1}}</text>
-									<text class="TeamAson" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我是陪练'?'练习方':'陪练方'}}</text>
-									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
-									</image>
-								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'>
-								</image>
-								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
-								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">B{{index+1}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我是陪练'?'练习方':'陪练方'}}</text>
-							</view>
-						</view>
-					</view>
-
-					<view class="TeamB" wx:if="{{numC.length!=0}}" style="border-top:0.06rem solid #e9e9e9">
-						<text>C队</text>
-						<view class="peopleList">
-							<view class="son" wx:for="{{numC}}" wx:key='index'>
-								<view class="invite" bindtap="invitaional" data-index="{{index}}" data-uuid="{{item.uuid}}"
-									data-team="3" style="font-size:12px;" wx:if="{{item.imgURL==undefined}}">
-									邀请
-									<text class="TeamAson" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">B{{index+1}}</text>
-									<text class="TeamAson" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我是陪练'?'练习方':'陪练方'}}</text>
-									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
-									</image>
-								</view>
-								<image class="logo" wx:if="{{item.imgURL!=undefined}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'>
-								</image>
-								<image wx:if="{{item.name!=undefined}}" class="project" src="/assets/{{item.name}}"></image>
-								<text wx:if="{{item.heightLevel!=undefined}}" class="grade">{{item.heightLevel}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode!='我找陪练'&&mode!='我是陪练'}}">C{{index+1}}</text>
-								<text class="TeamAsonTwo" wx:if="{{mode=='我找陪练'||mode=='我是陪练'}}">{{mode=='我是陪练'?'练习方':'陪练方'}}</text>
-							</view>
-						</view>
-					</view>
+				</view>
 
 
+				<view class="aList" wx:if="{{sportName!=='请选择'&&mode!=='请选择'}}">
 					<view class="TeamB" wx:if="{{umpire.length!==0&&mode=='竞技活动'}}">
-						<text>裁判</text>
-						<view class="peopleList" style="margin-left:19px;">
+						<text style="font-size:0.88rem">裁判</text>
+						<view class="peopleList" style="margin-left:1.3rem;">
 							<view class="son" wx:for="{{umpire}}" wx:key='index'>
 								<view class="invite" wx:if="{{item.imgURL==undefined}}">
-									<text class="TeamAsonTwo">C{{index+1}}</text>
+									<text class="TeamAsonTwo">裁判{{index+1}}</text>
 									<image class="logo" style="top:0;" wx:if="{{item.imgURL==undefined}}" src='/assets/peologo.png'>
 									</image>
 								</view>
 								<image class="logo" wx:if="{{item.name!='报名'}}" mode="aspectFill" src='{{img}}/{{item.imgURL}}'></image>
 								<image class="project" wx:if="{{item.name!='报名'}}" src="/assets/{{activitiesData.ballImgSon}}"></image>
 								<text wx:if="{{item.name!='报名'}}" class="grade">{{item.heightLevel}}</text>
-								<text class="TeamAsonTwo">C{{index+1}}</text>
+								<text class="TeamAsonTwo">裁判{{index+1}}</text>
 							</view>
 						</view>
 					</view>
@@ -439,7 +415,7 @@
 				</view>
 
 
-				<view class="list">
+				<view class="list" wx:if="{{modeThree!='请选择'}}">
 					<view class="theTeam">
 						<text style="padding-left:0.5rem;float:left">选择队伍</text>
 						<picker bindchange="theTeam" style="float:left" bindtap="theTeamClick" disabled="{{modeThree=='竞技活动'?true:theTeamClickDis}}" range="{{sportTypeThree==12||sportTypeThree==11||sportTypeThree==10||sportTypeThree==16||sportTypeThree==23||sportTypeThree==15||sportTypeThree==14||sportTypeThree==25||sportTypeThree==13?theTeamArrayTwo:theTeamArray}}">
@@ -460,9 +436,12 @@
 						<image class="image" src="/assets/right.png"></image>
 					</view>
 
-					<view class="theTeamTwo">{{numAll}}人</view>
+					<view class="theTeamTwo">总人数：{{numAll}}人</view>
 
 				</view>
+
+
+
 
 
 
@@ -636,10 +615,10 @@
 
 
 				<view class="line"></view>
-				<view class="joinTil" wx:if="{{sportNameThree!=='请选择'&&sportNameThree!==''}}">
+				<view class="joinTil" wx:if="{{sportNameThree!=='请选择'&&modeThree!=='请选择'}}">
 					参与人员
 				</view>
-				<view class="aList" wx:for="{{numABThree}}" wx:for-index="index" wx:key="it">
+				<view class="aList" wx:for="{{numABThree}}" wx:if="{{sportNameThree!=='请选择'&&modeThree!=='请选择'}}"  wx:for-index="index" wx:key="it">
 					<view class="TeamA">
 						<text wx:if="{{numABThree.length>1}}">{{teamName[index]}}队</text>
 						<text wx:if="{{numABThree.length==1}}">运动者</text>
@@ -665,9 +644,9 @@
 						</view>
 					</view>
 				</view>
-				<view class="aList" wx:if="{{sportNameThree!=='请选择'&&sportNameThree!==''}}">
+				<view class="aList" wx:if="{{sportNameThree!=='请选择'&&modeThree!=='请选择'}}">
 					<view class="TeamB" wx:if="{{umpireThree.length!==0&&modeThree=='竞技活动'}}">
-						<text>裁判</text>
+						<text style="font-size:0.88rem">裁判</text>
 						<view class="peopleList" style="margin-left:19px;">
 							<view class="son" wx:for="{{umpireThree}}" wx:key='index'>
 								<view class="invite" wx:if="{{item.imgURL==undefined}}">

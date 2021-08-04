@@ -216,7 +216,7 @@
 				<view class="patterns">
 					<text style="color:#000" >场地费:{{item.PaySiteMoneyType==1?'AA':item.PaySiteMoneyType==2?'输方买单':'练习方买单'}}</text>
 					<text wx:if="{{item.MoneyPerhour!=0}}">陪练费:￥{{item.MoneyPerhour}}</text>
-					<text wx:if="{{item.Tips!=0.00||item.Tips!=0}}">￥入场费:{{item.Tips}}/人</text>
+					<text wx:if="{{item.Tips!=0.00||item.Tips!=0}}">入场费:￥{{item.Tips}}/人</text>
 					<text style="float:right">{{item.range}}</text>
 				</view>
 			</view>

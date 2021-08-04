@@ -102,9 +102,12 @@ Page({
       id: 100,
       name: '三级'
     }],
-    theTeamArray:['不分队','2队','3队','4队','5队','6队'],
-    theTeamArrayTwo:['不分队','2队','3队'],
-    personsArray:['2人','4人','6人','8人','10人','12人','14人','16人','18人','20人','22人','24人'],
+    theTeamArray: ['不分队', '2队', '3队', '4队', '5队', '6队'],
+    theTeamArrayTwo: ['不分队', '2队', '3队'],
+    personsArray: ['2人', '4人', '6人', '8人', '10人', '12人', '14人', '16人', '18人', '20人', '22人', '24人'],
+    theTeamArrayOne: ['不分队', '2队', '3队', '4队', '5队', '6队'],
+    theTeamArrayThree: ['不分队', '2队', '3队'],
+    personsArrayOne: ['2人', '4人', '6人', '8人', '10人', '12人', '14人', '16人', '18人', '20人', '22人', '24人'],
     TrialRaderArrTwo: [{
       id: 400,
       name: '国际级'
@@ -274,104 +277,182 @@ Page({
     rule: '',
     ruleFlag: false,
     certificate: 0,
-    theTeaIdx:1,
-    personsIdx:0,
-    theTeamClickDis:true,
-    numAll:0,
-    numABThree:[],
-    teamName:['A','B','C','D','E','F']
+    theTeaIdx: 1,
+    personsIdx: 0,
+    theTeamClickDis: true,
+    theTeaIdxOne: 1,
+    personsIdxOne: 0,
+    theTeamClickDisOne: true,
+    numAll: 0,
+    numAllOne: 0,
+    numABThree: [],
+    teamName: ['A', 'B', 'C', 'D', 'E', 'F'],
+    numABOne: [],
   },
 
-  theTeam:function(e){
-    this.setData({theTeaIdx:e.detail.value,personsIdx:0})
-
-
-    if(wx.getStorageSync('modeThree')=='竞技活动'){
-      if(wx.getStorageSync('sportTypeFThree')==12){
-        this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
-      }
-  
-     }else{
-    if(wx.getStorageSync('sportTypeFThree')==4||wx.getStorageSync('sportTypeFThree')==6||wx.getStorageSync('sportTypeFThree')==1||wx.getStorageSync('sportTypeFThree')==2||wx.getStorageSync('sportTypeFThree')==3||wx.getStorageSync('sportTypeFThree')==8){
-      if(e.detail.value!=0){
-        this.setData({personsArray:['1人']})
-      }else{
-        this.setData({personsArray:['6人','5人','4人','3人','2人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==5||wx.getStorageSync('sportTypeFThree')==7||wx.getStorageSync('sportTypeFThree')==9){
-      if(e.detail.value==0){
-        this.setData({personsArray:['24人','22人','20人','18人','16人','14人','12人','10人','8人','6人','4人','2人']})
-      }else{
-        this.setData({personsArray:['2人','3人','4人','5人','6人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==12){
-      if(e.detail.value==0){
-        this.setData({personsArray:['24人','22人','20人','18人','16人','14人','12人','10人','8人','6人','4人','2人']})
-      }else{
-        this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==11){
-      if(e.detail.value==0){
-        this.setData({personsArray:['15人','14人','13人','12人','11人','10人','9人','8人','7人','6人']})
-      }else{
-        this.setData({personsArray:['3人','4人','5人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==10){
-      if(e.detail.value==0){
-        this.setData({personsArray:['36人','34人','32人','30人','28人','26人','24人','22人','20人','18人','16人','14人','12人','10人']})
-      }else{
-        this.setData({personsArray:['5人','6人','7人','8人','9人','10人','11人','12人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==16){
-      if(e.detail.value==0){
-        this.setData({personsArray:['10人','12人','14人','16人','18人','20人','22人','24人','26人','28人','30人']})
-      }else{
-        this.setData({personsArray:['5人','6人','7人','8人','9人','10人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==23){
-      if(e.detail.value==0){
-        this.setData({personsArray:['12人','14人','16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人']})
-      }else{
-        this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==15){
-      if(e.detail.value==0){
-        this.setData({personsArray:['14人','16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人']})
-      }else{
-        this.setData({personsArray:['7人','8人','9人','10人','11人','12人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==14){
-      if(e.detail.value==0){
-        this.setData({personsArray:['16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人','38人','39人']})
-      }else{
-        this.setData({personsArray:['8人','9人','10人','11人','12人','13人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==25){
-      if(e.detail.value==0){
-        this.setData({personsArray:['18人','20人','22人','24人','26人','28人','30人','32人','34人','36人','38人','40人','42人']})
-      }else{
-        this.setData({personsArray:['8人','9人','10人','11人','12人','14人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==13){
-      if(e.detail.value==0){
-        this.setData({personsArray:['22人','24人','26人','28人','30人','32人','34人','36人','38人','40人','42人','44人','46人','48人','50人','52人','54人']})
-      }else{
-        this.setData({personsArray:['11人','12人','13人','14人','15人','16人','17人','18人']})
+  theTeam: function (e) {
+    this.setData({
+      theTeaIdx: e.detail.value,
+      personsIdx: 0
+    })
+    if (wx.getStorageSync('modeThree') == '竞技活动' && wx.getStorageSync('sportTypeFThree') == 12) {
+      this.setData({
+        personsArray: ['6人', '7人', '8人', '9人', '10人', '11人', '12人']
+      })
+    } else if (wx.getStorageSync('modeThree') == '竞技活动' && wx.getStorageSync('sportTypeFThree') == 4 || wx.getStorageSync('modeThree') == '竞技活动' && wx.getStorageSync('sportTypeFThree') == 6 || wx.getStorageSync('modeThree') == '竞技活动' && wx.getStorageSync('sportTypeFThree') == 1 || wx.getStorageSync('modeThree') == '竞技活动' && wx.getStorageSync('sportTypeFThree') == 2 || wx.getStorageSync('modeThree') == '竞技活动' && wx.getStorageSync('sportTypeFThree') == 3 || wx.getStorageSync('modeThree') == '竞技活动' && wx.getStorageSync('sportTypeFThree') == 8) {
+      this.setData({
+        personsArray: ['1人']
+      })
+    } else {
+      if (wx.getStorageSync('sportTypeFThree') == 4 || wx.getStorageSync('sportTypeFThree') == 6 || wx.getStorageSync('sportTypeFThree') == 1 || wx.getStorageSync('sportTypeFThree') == 2 || wx.getStorageSync('sportTypeFThree') == 3 || wx.getStorageSync('sportTypeFThree') == 8) {
+        if (e.detail.value != 0) {
+          this.setData({
+            personsArray: ['1人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['6人', '5人', '4人', '3人', '2人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 5 || wx.getStorageSync('sportTypeFThree') == 7 || wx.getStorageSync('sportTypeFThree') == 9) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArray: ['24人', '22人', '20人', '18人', '16人', '14人', '12人', '10人', '8人', '6人', '4人', '2人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['2人', '3人', '4人', '5人', '6人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 12) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArray: ['24人', '22人', '20人', '18人', '16人', '14人', '12人', '10人', '8人', '6人', '4人', '2人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['6人', '7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 11) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArray: ['15人', '14人', '13人', '12人', '11人', '10人', '9人', '8人', '7人', '6人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['3人', '4人', '5人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 10) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArray: ['36人', '34人', '32人', '30人', '28人', '26人', '24人', '22人', '20人', '18人', '16人', '14人', '12人', '10人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['5人', '6人', '7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 16) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArray: ['10人', '12人', '14人', '16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['5人', '6人', '7人', '8人', '9人', '10人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 23) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArray: ['12人', '14人', '16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['6人', '7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 15) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArray: ['14人', '16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 14) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArray: ['16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人', '38人', '39人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['8人', '9人', '10人', '11人', '12人', '13人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 25) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArray: ['18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人', '38人', '40人', '42人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['8人', '9人', '10人', '11人', '12人', '14人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 13) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArray: ['22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人', '38人', '40人', '42人', '44人', '46人', '48人', '50人', '52人', '54人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['11人', '12人', '13人', '14人', '15人', '16人', '17人', '18人']
+          })
+        }
       }
     }
-  }
 
-    if(this.data.theTeamArray[e.detail.value]=='不分队'){
-      this.setData({numAll:parseFloat(this.data.personsArray[this.data.personsIdx])})
-    }else{
-      this.setData({numAll:parseFloat(this.data.personsArray[this.data.personsIdx])*parseFloat(this.data.theTeamArray[e.detail.value])})
+    if (this.data.theTeamArray[e.detail.value] == '不分队') {
+      this.setData({
+        numAll: parseFloat(this.data.personsArray[this.data.personsIdx])
+      })
+    } else {
+      this.setData({
+        numAll: parseFloat(this.data.personsArray[this.data.personsIdx]) * parseFloat(this.data.theTeamArray[e.detail.value])
+      })
     }
-    let that=this
-    setTimeout(function(){that.onKO()},500)
+    let that = this
+    setTimeout(function () {
+      that.onKO()
+    }, 500)
   },
 
-  theTeamClick:function(){
-    if(this.data.modeThree=='请选择'){
+  theTeamClick: function () {
+    if (this.data.modeThree == '请选择') {
+      wx.showToast({
+        title: '请选择运动模式',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (this.data.modeThree == '竞技活动') {
+      wx.showToast({
+        title: '竞技活动队伍不可更改',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    }
+  },
+
+
+  theTeamClickTwo: function () {
+    if (this.data.modeThree == '请选择') {
       wx.showToast({
         title: '请选择运动模式',
         icon: 'none',
@@ -381,8 +462,8 @@ Page({
     }
   },
 
-  theTeamClickTwo:function(){
-    if(this.data.modeThree=='请选择'){
+  theTeamClickThree: function () {
+    if (this.data.mode == '请选择') {
       wx.showToast({
         title: '请选择运动模式',
         icon: 'none',
@@ -392,18 +473,211 @@ Page({
     }
   },
 
-  personsNum:function(e){
-    this.setData({personsIdx:e.detail.value})
-    if(this.data.theTeamArray[this.data.theTeaIdx]=='不分队'){
-      this.setData({numAll:parseFloat(this.data.personsArray[e.detail.value])})
-    }else{
-      this.setData({numAll:parseFloat(this.data.personsArray[e.detail.value])*parseFloat(this.data.theTeamArray[this.data.theTeaIdx])})
+  personsNum: function (e) {
+    this.setData({
+      personsIdx: e.detail.value
+    })
+    if (this.data.theTeamArray[this.data.theTeaIdx] == '不分队') {
+      this.setData({
+        numAll: parseFloat(this.data.personsArray[e.detail.value])
+      })
+    } else {
+      this.setData({
+        numAll: parseFloat(this.data.personsArray[e.detail.value]) * parseFloat(this.data.theTeamArray[this.data.theTeaIdx])
+      })
     }
-    let that=this
-    setTimeout(function(){that.onKO()},500)
-    
+    let that = this
+    setTimeout(function () {
+      that.onKO()
+    }, 500)
+
   },
- 
+
+  theTeamOne: function (e) {
+    this.setData({
+      theTeaIdxOne: e.detail.value,
+      personsIdxOne: 0
+    })
+    if (wx.getStorageSync('mode') == '竞技活动' && wx.getStorageSync('sportTypeF') == 12) {
+      this.setData({
+        personsArrayOne: ['6人', '7人', '8人', '9人', '10人', '11人', '12人']
+      })
+    } else if (wx.getStorageSync('mode') == '竞技活动' && wx.getStorageSync('sportTypeF') == 4 || wx.getStorageSync('mode') == '竞技活动' && wx.getStorageSync('sportTypeF') == 6 || wx.getStorageSync('mode') == '竞技活动' && wx.getStorageSync('sportTypeF') == 1 || wx.getStorageSync('mode') == '竞技活动' && wx.getStorageSync('sportTypeF') == 2 || wx.getStorageSync('mode') == '竞技活动' && wx.getStorageSync('sportTypeF') == 3 || wx.getStorageSync('mode') == '竞技活动' && wx.getStorageSync('sportTypeF') == 8) {
+      this.setData({
+        personsArrayOne: ['1人']
+      })
+    } else {
+      if (wx.getStorageSync('sportTypeF') == 4 || wx.getStorageSync('sportTypeF') == 6 || wx.getStorageSync('sportTypeF') == 1 || wx.getStorageSync('sportTypeF') == 2 || wx.getStorageSync('sportTypeF') == 3 || wx.getStorageSync('sportTypeF') == 8) {
+        if (e.detail.value != 0) {
+          this.setData({
+            personsArrayOne: ['1人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['6人', '5人', '4人', '3人', '2人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 5 || wx.getStorageSync('sportTypeF') == 7 || wx.getStorageSync('sportTypeF') == 9) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArrayOne: ['24人', '22人', '20人', '18人', '16人', '14人', '12人', '10人', '8人', '6人', '4人', '2人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['2人', '3人', '4人', '5人', '6人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 12) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArrayOne: ['24人', '22人', '20人', '18人', '16人', '14人', '12人', '10人', '8人', '6人', '4人', '2人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['6人', '7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 11) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArrayOne: ['15人', '14人', '13人', '12人', '11人', '10人', '9人', '8人', '7人', '6人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['3人', '4人', '5人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 10) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArrayOne: ['36人', '34人', '32人', '30人', '28人', '26人', '24人', '22人', '20人', '18人', '16人', '14人', '12人', '10人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['5人', '6人', '7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 16) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArrayOne: ['10人', '12人', '14人', '16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['5人', '6人', '7人', '8人', '9人', '10人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 23) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArrayOne: ['12人', '14人', '16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['6人', '7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 15) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArrayOne: ['14人', '16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 14) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArrayOne: ['16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人', '38人', '39人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['8人', '9人', '10人', '11人', '12人', '13人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 25) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArrayOne: ['18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人', '38人', '40人', '42人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['8人', '9人', '10人', '11人', '12人', '14人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 13) {
+        if (e.detail.value == 0) {
+          this.setData({
+            personsArrayOne: ['22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人', '38人', '40人', '42人', '44人', '46人', '48人', '50人', '52人', '54人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['11人', '12人', '13人', '14人', '15人', '16人', '17人', '18人']
+          })
+        }
+      }
+    }
+
+    if (this.data.theTeamArrayOne[e.detail.value] == '不分队') {
+      this.setData({
+        numAllOne: parseFloat(this.data.personsArrayOne[this.data.personsIdxOne])
+      })
+    } else {
+      this.setData({
+        numAllOne: parseFloat(this.data.personsArrayOne[this.data.personsIdxOne]) * parseFloat(this.data.theTeamArrayOne[e.detail.value])
+      })
+    }
+    let that = this
+    setTimeout(function () {
+      that.onKO()
+    }, 500)
+  },
+
+  theTeamClickOneone: function () {
+    if (this.data.mode == '请选择') {
+      wx.showToast({
+        title: '请选择运动模式',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    } else if (this.data.mode == '竞技活动') {
+      wx.showToast({
+        title: '竞技活动队伍不可更改',
+        icon: 'none',
+        duration: 1500,
+        mask: true
+      })
+    }
+  },
+
+  personsNumOne: function (e) {
+    this.setData({
+      personsIdxOne: e.detail.value
+    })
+    if (this.data.theTeamArrayOne[this.data.theTeaIdxOne] == '不分队') {
+      this.setData({
+        numAllOne: parseFloat(this.data.personsArrayOne[e.detail.value])
+      })
+    } else {
+      this.setData({
+        numAllOne: parseFloat(this.data.personsArrayOne[e.detail.value]) * parseFloat(this.data.theTeamArrayOne[this.data.theTeaIdxOne])
+      })
+    }
+    let that = this
+    setTimeout(function () {
+      that.onKO()
+    }, 500)
+
+  },
+
+
+
+
+
+
 
   contentTgp: function () {
     util.Request("/api/AddOffsetRoll", {
@@ -465,8 +739,7 @@ Page({
           ruleFlag: true
         })
       },
-      () => {
-      },
+      () => {},
       () => {}
     )
   },
@@ -548,8 +821,7 @@ Page({
         })
 
       },
-      () => {
-      },
+      () => {},
       () => {}
     )
 
@@ -712,94 +984,42 @@ Page({
         data: '不限',
       })
     }
-    if(this.data.modeThree!='请选择'){
-      this.setData({theTeamClickDis:false})
+    if (this.data.modeThree != '请选择') {
+      this.setData({
+        theTeamClickDis: false
+      })
     }
 
-   if(wx.getStorageSync('modeThree')=='竞技活动'){
-    if(wx.getStorageSync('sportTypeFThree')==12){
-      this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
+    if (this.data.mode != '请选择') {
+      this.setData({
+        theTeamClickDisOne: false
+      })
     }
 
-   }else{
-    if(wx.getStorageSync('sportTypeFThree')==4||wx.getStorageSync('sportTypeFThree')==6||wx.getStorageSync('sportTypeFThree')==1||wx.getStorageSync('sportTypeFThree')==2||wx.getStorageSync('sportTypeFThree')==3||wx.getStorageSync('sportTypeFThree')==8){
-      if(this.data.theTeaIdx!=0){
-        this.setData({personsArray:['1人']})
-      }else{
-        this.setData({personsArray:['6人','5人','4人','3人','2人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==5||wx.getStorageSync('sportTypeFThree')==7||wx.getStorageSync('sportTypeFThree')==9){
-      if(this.data.theTeaIdx==0){
-        this.setData({personsArray:['24人','22人','20人','18人','16人','14人','12人','10人','8人','6人','4人','2人']})
-      }else{
-        this.setData({personsArray:['2人','3人','4人','5人','6人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==12){
-      if(this.data.theTeaIdx==0){
-        this.setData({personsArray:['24人','22人','20人','18人','16人','14人','12人','10人','8人','6人','4人','2人']})
-      }else{
-        this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==11){
-      if(this.data.theTeaIdx==0){
-        this.setData({personsArray:['15人','14人','13人','12人','11人','10人','9人','8人','7人','6人']})
-      }else{
-        this.setData({personsArray:['3人','4人','5人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==10){
-      if(this.data.theTeaIdx==0){
-        this.setData({personsArray:['36人','34人','32人','30人','28人','26人','24人','22人','20人','18人','16人','14人','12人','10人']})
-      }else{
-        this.setData({personsArray:['5人','6人','7人','8人','9人','10人','11人','12人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==16){
-      if(this.data.theTeaIdx==0){
-        this.setData({personsArray:['10人','12人','14人','16人','18人','20人','22人','24人','26人','28人','30人']})
-      }else{
-        this.setData({personsArray:['5人','6人','7人','8人','9人','10人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==23){
-      if(this.data.theTeaIdx==0){
-        this.setData({personsArray:['12人','14人','16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人']})
-      }else{
-        this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==15){
-      if(this.data.theTeaIdx==0){
-        this.setData({personsArray:['14人','16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人']})
-      }else{
-        this.setData({personsArray:['7人','8人','9人','10人','11人','12人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==14){
-      if(this.data.theTeaIdx==0){
-        this.setData({personsArray:['16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人','38人','39人']})
-      }else{
-        this.setData({personsArray:['8人','9人','10人','11人','12人','13人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==25){
-      if(this.data.theTeaIdx==0){
-        this.setData({personsArray:['18人','20人','22人','24人','26人','28人','30人','32人','34人','36人','38人','40人','42人']})
-      }else{
-        this.setData({personsArray:['8人','9人','10人','11人','12人','14人']})
-      }
-    }else if(wx.getStorageSync('sportTypeFThree')==13){
-      if(this.data.theTeaIdx==0){
-        this.setData({personsArray:['22人','24人','26人','28人','30人','32人','34人','36人','38人','40人','42人','44人','46人','48人','50人','52人','54人']})
-      }else{
-        this.setData({personsArray:['11人','12人','13人','14人','15人','16人','17人','18人']})
-      }
-    }
-  }
+    this.headCount()
+    this.headCountOne()
 
-
-    if(this.data.theTeamArray[this.data.theTeaIdx]=='不分队'){
-      this.setData({numAll:parseFloat(this.data.personsArray[this.data.personsIdx])})
-    }else{
-      this.setData({numAll:parseFloat(this.data.personsArray[this.data.personsIdx])*parseFloat(this.data.theTeamArray[this.data.theTeaIdx])})
+    if (this.data.theTeamArray[this.data.theTeaIdx] == '不分队') {
+      this.setData({
+        numAll: parseFloat(this.data.personsArray[this.data.personsIdx])
+      })
+    } else {
+      this.setData({
+        numAll: parseFloat(this.data.personsArray[this.data.personsIdx]) * parseFloat(this.data.theTeamArray[this.data.theTeaIdx])
+      })
     }
 
-   
-   
+    if (this.data.theTeamArrayOne[this.data.theTeaIdxOne] == '不分队') {
+      this.setData({
+        numAllOne: parseFloat(this.data.personsArrayOne[this.data.personsIdxOne])
+      })
+    } else {
+      this.setData({
+        numAllOne: parseFloat(this.data.personsArrayOne[this.data.personsIdxOne]) * parseFloat(this.data.theTeamArrayOne[this.data.theTeaIdxOne])
+      })
+    }
+
+
     this.setData({
       sportId: wx.getStorageSync('sportIdF'),
       sportType: wx.getStorageSync('sportTypeF'),
@@ -857,7 +1077,7 @@ Page({
       TrialRaderSix: wx.getStorageSync('TrialRaderFSix') == '' ? '三级' : wx.getStorageSync('TrialRaderFSix'),
 
 
-      shouldered: wx.getStorageSync('shoulderedF')==''?'AA':wx.getStorageSync('shoulderedF'),
+      shouldered: wx.getStorageSync('shoulderedF') == '' ? 'AA' : wx.getStorageSync('shoulderedF'),
       shoulderedThree: wx.getStorageSync('shoulderedFThree'),
       comments: wx.getStorageSync('commentsF'),
       commentsFour: wx.getStorageSync('commentsFFour'),
@@ -984,7 +1204,7 @@ Page({
       this.setData({
         cf: false
       })
-    }else if (wx.getStorageSync('sportTypeFThree') == 10) {
+    } else if (wx.getStorageSync('sportTypeFThree') == 10) {
       this.setData({
         cf: false
       })
@@ -1173,8 +1393,7 @@ Page({
                   bannerTop: [res.data.data]
                 })
               },
-              () => {
-              },
+              () => {},
               () => {}
             )
           } else {
@@ -1186,8 +1405,7 @@ Page({
             })
           }
         },
-        () => {
-        },
+        () => {},
         () => {}
       )
     } else {
@@ -1203,8 +1421,7 @@ Page({
             bannerTop: [res.data.data]
           })
         },
-        () => {
-        },
+        () => {},
         () => {}
       )
     }
@@ -1226,8 +1443,7 @@ Page({
                   bannerTop: [res.data.data]
                 })
               },
-              () => {
-              },
+              () => {},
               () => {}
             )
             this.onKO()
@@ -1240,8 +1456,7 @@ Page({
             })
           }
         },
-        () => {
-        },
+        () => {},
         () => {}
       )
     } else {
@@ -1257,8 +1472,7 @@ Page({
             bannerTop: [res.data.data]
           })
         },
-        () => {
-        },
+        () => {},
         () => {}
       )
       this.onShow()
@@ -1385,33 +1599,35 @@ Page({
         mask: true
       })
     } else {
-      if(wx.getStorageSync('bookin')!=''&&e.detail.value==0){
-        util.Request("/api/display", {
-          SportType: this.data.sportType,
-          type: Number(this.data.indexSw) + 1,
-          status: 1,
-          referee:0,
-          siteMoney: wx.getStorageSync('bookin').data[0].placeMoney + '.00',
-          lr: wx.getStorageSync('bookin').data[0].lr,
-          openPrice: wx.getStorageSync('bookin').data[0].openPrice
-        }, "post",
-        (res) => {
-          this.setData({
-            displayTxt: res.data.data
-          })
-        },
-        () => {
-        },
-        () => {}
-      )
+      if (wx.getStorageSync('bookin') != '' && e.detail.value == 0) {
+        util.Request("/api/xindisplay", {
+            SportType: this.data.sportType,
+            type: Number(this.data.indexSw) + 1,
+            status: 1,
+            referee: 0,
+            siteMoney: wx.getStorageSync('bookin').data[0].placeMoney + '.00',
+            lr: wx.getStorageSync('bookin').data[0].lr,
+            openPrice: wx.getStorageSync('bookin').data[0].openPrice,
+            Number: this.data.numAllOne
+          }, "post",
+          (res) => {
+            this.setData({
+              displayTxt: res.data.data
+            })
+          },
+          () => {},
+          () => {}
+        )
       }
-      
+
 
 
       this.setData({
         mode: this.data.array[e.detail.value].name,
         modeNum: Number(e.detail.value) + 1,
-        shouldered: this.data.array[e.detail.value].name == '娱乐活动' ? 'AA' : 'AA'
+        shouldered: this.data.array[e.detail.value].name == '娱乐活动' ? 'AA' : 'AA',
+        theTeamClickDisOne: false,
+        theTeaIdxOne: 1
       })
 
       if (this.data.array[e.detail.value].name != '竞技活动') {
@@ -1431,10 +1647,271 @@ Page({
         data: Number(e.detail.value) + 1,
       })
     }
+    this.headCountOne()
+
+  },
+
+  headCount: function () {
+    if (wx.getStorageSync('modeThree') == '竞技活动' && wx.getStorageSync('sportTypeFThree') == 12) {
+      this.setData({
+        personsArray: ['6人', '7人', '8人', '9人', '10人', '11人', '12人']
+      })
+    } else if (wx.getStorageSync('modeThree') == '竞技活动' && wx.getStorageSync('sportTypeFThree') == 4 || wx.getStorageSync('modeThree') == '竞技活动' && wx.getStorageSync('sportTypeFThree') == 6 || wx.getStorageSync('modeThree') == '竞技活动' && wx.getStorageSync('sportTypeFThree') == 1 || wx.getStorageSync('modeThree') == '竞技活动' && wx.getStorageSync('sportTypeFThree') == 2 || wx.getStorageSync('modeThree') == '竞技活动' && wx.getStorageSync('sportTypeFThree') == 3 || wx.getStorageSync('modeThree') == '竞技活动' && wx.getStorageSync('sportTypeFThree') == 8) {
+      this.setData({
+        personsArray: ['1人']
+      })
+    } else {
+      console.log(8585)
+      if (wx.getStorageSync('sportTypeFThree') == 4 || wx.getStorageSync('sportTypeFThree') == 6 || wx.getStorageSync('sportTypeFThree') == 1 || wx.getStorageSync('sportTypeFThree') == 2 || wx.getStorageSync('sportTypeFThree') == 3 || wx.getStorageSync('sportTypeFThree') == 8) {
+        if (this.data.theTeaIdx != 0) {
+          this.setData({
+            personsArray: ['1人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['6人', '5人', '4人', '3人', '2人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 5 || wx.getStorageSync('sportTypeFThree') == 7 || wx.getStorageSync('sportTypeFThree') == 9) {
+        if (this.data.theTeaIdx == 0) {
+          this.setData({
+            personsArray: ['24人', '22人', '20人', '18人', '16人', '14人', '12人', '10人', '8人', '6人', '4人', '2人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['2人', '3人', '4人', '5人', '6人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 12) {
+        if (this.data.theTeaIdx == 0) {
+          this.setData({
+            personsArray: ['24人', '22人', '20人', '18人', '16人', '14人', '12人', '10人', '8人', '6人', '4人', '2人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['6人', '7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 11) {
+        if (this.data.theTeaIdx == 0) {
+          this.setData({
+            personsArray: ['15人', '14人', '13人', '12人', '11人', '10人', '9人', '8人', '7人', '6人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['3人', '4人', '5人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 10) {
+        if (this.data.theTeaIdx == 0) {
+          this.setData({
+            personsArray: ['36人', '34人', '32人', '30人', '28人', '26人', '24人', '22人', '20人', '18人', '16人', '14人', '12人', '10人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['5人', '6人', '7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 16) {
+        if (this.data.theTeaIdx == 0) {
+          this.setData({
+            personsArray: ['10人', '12人', '14人', '16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['5人', '6人', '7人', '8人', '9人', '10人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 23) {
+        if (this.data.theTeaIdx == 0) {
+          this.setData({
+            personsArray: ['12人', '14人', '16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['6人', '7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 15) {
+        if (this.data.theTeaIdx == 0) {
+          this.setData({
+            personsArray: ['14人', '16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 14) {
+        if (this.data.theTeaIdx == 0) {
+          this.setData({
+            personsArray: ['16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人', '38人', '39人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['8人', '9人', '10人', '11人', '12人', '13人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 25) {
+        if (this.data.theTeaIdx == 0) {
+          this.setData({
+            personsArray: ['18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人', '38人', '40人', '42人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['8人', '9人', '10人', '11人', '12人', '14人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeFThree') == 13) {
+        if (this.data.theTeaIdx == 0) {
+          this.setData({
+            personsArray: ['22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人', '38人', '40人', '42人', '44人', '46人', '48人', '50人', '52人', '54人']
+          })
+        } else {
+          this.setData({
+            personsArray: ['11人', '12人', '13人', '14人', '15人', '16人', '17人', '18人']
+          })
+        }
+      }
+    }
 
   },
 
 
+  headCountOne: function () {
+    if (wx.getStorageSync('mode') == '竞技活动' && wx.getStorageSync('sportTypeF') == 12) {
+      this.setData({
+        personsArrayOne: ['6人', '7人', '8人', '9人', '10人', '11人', '12人']
+      })
+    } else if (wx.getStorageSync('mode') == '竞技活动' && wx.getStorageSync('sportTypeF') == 4 || wx.getStorageSync('mode') == '竞技活动' && wx.getStorageSync('sportTypeF') == 6 || wx.getStorageSync('mode') == '竞技活动' && wx.getStorageSync('sportTypeF') == 1 || wx.getStorageSync('mode') == '竞技活动' && wx.getStorageSync('sportTypeF') == 2 || wx.getStorageSync('mode') == '竞技活动' && wx.getStorageSync('sportTypeF') == 3 || wx.getStorageSync('mode') == '竞技活动' && wx.getStorageSync('sportTypeF') == 8) {
+      this.setData({
+        personsArrayOne: ['1人']
+      })
+    } else {
+      if (wx.getStorageSync('sportTypeF') == 4 || wx.getStorageSync('sportTypeF') == 6 || wx.getStorageSync('sportTypeF') == 1 || wx.getStorageSync('sportTypeF') == 2 || wx.getStorageSync('sportTypeF') == 3 || wx.getStorageSync('sportTypeF') == 8) {
+        if (this.data.theTeaIdxOne != 0) {
+          this.setData({
+            personsArrayOne: ['1人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['6人', '5人', '4人', '3人', '2人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 5 || wx.getStorageSync('sportTypeF') == 7 || wx.getStorageSync('sportTypeF') == 9) {
+        if (this.data.theTeaIdxOne == 0) {
+          this.setData({
+            personsArrayOne: ['24人', '22人', '20人', '18人', '16人', '14人', '12人', '10人', '8人', '6人', '4人', '2人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['2人', '3人', '4人', '5人', '6人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 12) {
+        if (this.data.theTeaIdxOne == 0) {
+          this.setData({
+            personsArrayOne: ['24人', '22人', '20人', '18人', '16人', '14人', '12人', '10人', '8人', '6人', '4人', '2人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['6人', '7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 11) {
+        if (this.data.theTeaIdxOne == 0) {
+          this.setData({
+            personsArrayOne: ['15人', '14人', '13人', '12人', '11人', '10人', '9人', '8人', '7人', '6人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['3人', '4人', '5人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 10) {
+        if (this.data.theTeaIdxOne == 0) {
+          this.setData({
+            personsArrayOne: ['36人', '34人', '32人', '30人', '28人', '26人', '24人', '22人', '20人', '18人', '16人', '14人', '12人', '10人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['5人', '6人', '7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 16) {
+        if (this.data.theTeaIdxOne == 0) {
+          this.setData({
+            personsArrayOne: ['10人', '12人', '14人', '16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['5人', '6人', '7人', '8人', '9人', '10人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 23) {
+        if (this.data.theTeaIdxOne == 0) {
+          this.setData({
+            personsArrayOne: ['12人', '14人', '16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['6人', '7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 15) {
+        if (this.data.theTeaIdxOne == 0) {
+          this.setData({
+            personsArrayOne: ['14人', '16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['7人', '8人', '9人', '10人', '11人', '12人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 14) {
+        if (this.data.theTeaIdxOne == 0) {
+          this.setData({
+            personsArrayOne: ['16人', '18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人', '38人', '39人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['8人', '9人', '10人', '11人', '12人', '13人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 25) {
+        if (this.data.theTeaIdxOne == 0) {
+          this.setData({
+            personsArrayOne: ['18人', '20人', '22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人', '38人', '40人', '42人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['8人', '9人', '10人', '11人', '12人', '14人']
+          })
+        }
+      } else if (wx.getStorageSync('sportTypeF') == 13) {
+        if (this.data.theTeaIdxOne == 0) {
+          this.setData({
+            personsArrayOne: ['22人', '24人', '26人', '28人', '30人', '32人', '34人', '36人', '38人', '40人', '42人', '44人', '46人', '48人', '50人', '52人', '54人']
+          })
+        } else {
+          this.setData({
+            personsArrayOne: ['11人', '12人', '13人', '14人', '15人', '16人', '17人', '18人']
+          })
+        }
+      }
+    }
+    if (this.data.theTeamArrayOne[this.data.theTeaIdxOne] == '不分队') {
+      this.setData({
+        numAllOne: parseFloat(this.data.personsArrayOne[this.data.personsIdxOne])
+      })
+    } else {
+      this.setData({
+        numAllOne: parseFloat(this.data.personsArrayOne[this.data.personsIdxOne]) * parseFloat(this.data.theTeamArrayOne[this.data.theTeaIdxOne])
+      })
+    }
+
+
+  },
 
 
   pickerThree: function (e) {
@@ -1466,9 +1943,13 @@ Page({
         modeThree: this.data.arrayLanThree[e.detail.value].name,
         modeNumThree: Number(e.detail.value) + 1,
         shoulderedThree: 'AA',
-        theTeamClickDis:false,
-        theTeaIdx:1
+        theTeamClickDis: false,
+        theTeaIdx: 1
       })
+
+
+
+
 
       if (this.data.arrayLanThree[e.detail.value].name != '竞技活动') {
         this.setData({
@@ -1486,6 +1967,8 @@ Page({
         key: 'modeNumThree',
         data: Number(e.detail.value) + 1,
       })
+
+      this.headCount()
 
     }
 
@@ -1506,11 +1989,11 @@ Page({
     wx.setStorage({
       key: 'TrialPickerF',
       data: e.detail.value,
-    }) 
+    })
     wx.setStorage({
       key: 'shoulderedF',
       data: 'AA',
-    }) 
+    })
 
     let TrialNum = e.detail.value
     let arr1 = []
@@ -1535,22 +2018,22 @@ Page({
           refereeFee: res.data.data.toFixed(2)
         })
         if (wx.getStorageSync('bookin') != '') {
-          util.Request("/api/display", {
+          util.Request("/api/xindisplay", {
               SportType: this.data.sportType,
               type: Number(this.data.indexSw) + 1,
               status: 1,
               referee: res.data.data,
               siteMoney: wx.getStorageSync('bookin').data[0].placeMoney + '.00',
               lr: wx.getStorageSync('bookin').data[0].lr,
-              openPrice: wx.getStorageSync('bookin').data[0].openPrice
+              openPrice: wx.getStorageSync('bookin').data[0].openPrice,
+              Number: this.data.numAllOne
             }, "post",
             (res) => {
               this.setData({
                 displayTxt: res.data.data
               })
             },
-            () => {
-            },
+            () => {},
             () => {}
           )
         }
@@ -1564,8 +2047,7 @@ Page({
         })
         this.onShow()
       },
-      () => {
-      },
+      () => {},
       () => {}
     )
 
@@ -1606,7 +2088,7 @@ Page({
         })
 
         if (wx.getStorageSync('bookinSix') != '') {
-          util.Request("/api/display", {
+          util.Request("/api/xindisplay", {
               SportType: this.data.sportTypeSix,
               type: 1,
               status: 1,
@@ -1620,8 +2102,7 @@ Page({
                 displayTxtSix: res.data.data
               })
             },
-            () => {
-            },
+            () => {},
             () => {}
           )
         }
@@ -1633,8 +2114,7 @@ Page({
         })
         this.onShow()
       },
-      () => {
-      },
+      () => {},
       () => {}
     )
   },
@@ -1672,7 +2152,7 @@ Page({
           refereeFeeThree: res.data.data.toFixed(2)
         })
         if (wx.getStorageSync('bookinThree') != '') {
-          util.Request("/api/display", {
+          util.Request("/api/xindisplay", {
               SportType: this.data.sportTypeThree,
               type: 2,
               status: 1,
@@ -1686,8 +2166,7 @@ Page({
                 displayTxtThree: res.data.data
               })
             },
-            () => {
-            },
+            () => {},
             () => {}
           )
         }
@@ -1697,8 +2176,7 @@ Page({
         })
         this.onShow()
       },
-      () => {
-      },
+      () => {},
       () => {}
     )
   },
@@ -1727,22 +2205,22 @@ Page({
         })
 
         if (wx.getStorageSync('bookin') != '') {
-          util.Request("/api/display", {
+          util.Request("/api/xindisplay", {
               SportType: this.data.sportType,
               type: Number(this.data.indexSw) + 1,
               status: 1,
               referee: res.data.data,
               siteMoney: wx.getStorageSync('bookin').data[0].placeMoney + '.00',
               lr: wx.getStorageSync('bookin').data[0].lr,
-              openPrice: wx.getStorageSync('bookin').data[0].openPrice
+              openPrice: wx.getStorageSync('bookin').data[0].openPrice,
+              Number: this.data.numAllOne
             }, "post",
             (res) => {
               this.setData({
                 displayTxt: res.data.data
               })
             },
-            () => {
-            },
+            () => {},
             () => {}
           )
         }
@@ -1758,8 +2236,7 @@ Page({
           data: res.data.data.toFixed(2),
         })
       },
-      () => {
-      },
+      () => {},
       () => {}
     )
     this.setData({
@@ -1788,7 +2265,7 @@ Page({
         })
 
         if (wx.getStorageSync('bookinThree') != '') {
-          util.Request("/api/display", {
+          util.Request("/api/xindisplay", {
               SportType: this.data.sportTypeThree,
               type: 2,
               status: 1,
@@ -1803,8 +2280,7 @@ Page({
                 displayTxtThree: res.data.data
               })
             },
-            () => {
-            },
+            () => {},
             () => {}
           )
         }
@@ -1816,8 +2292,7 @@ Page({
         })
 
       },
-      () => {
-      },
+      () => {},
       () => {}
     )
     this.setData({
@@ -1845,7 +2320,7 @@ Page({
           refereeFeeSix: res.data.data.toFixed(2)
         })
         if (wx.getStorageSync('bookinSix') != '') {
-          util.Request("/api/display", {
+          util.Request("/api/xindisplay", {
               SportType: this.data.sportTypeSix,
               type: 1,
               status: 1,
@@ -1859,8 +2334,7 @@ Page({
                 displayTxtSix: res.data.data
               })
             },
-            () => {
-            },
+            () => {},
             () => {}
           )
         }
@@ -1873,8 +2347,7 @@ Page({
         })
 
       },
-      () => {
-      },
+      () => {},
       () => {}
     )
     this.setData({
@@ -2156,7 +2629,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=0'
+        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=0' + '&type=1'
       })
     }
   },
@@ -2171,7 +2644,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=1'
+        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=1' + '&type=1'
       })
     }
   },
@@ -2194,7 +2667,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=2'
+        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=2' + '&type=2'
       })
     }
   },
@@ -2210,7 +2683,7 @@ Page({
 
     } else {
       wx.navigateTo({
-        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=3'
+        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=3' + '&type=1'
       })
     }
   },
@@ -2225,7 +2698,7 @@ Page({
 
     } else {
       wx.navigateTo({
-        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=4'
+        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=4' + '&type=1'
       })
     }
   },
@@ -2240,7 +2713,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=5'
+        url: "/generalization/map/map?sportid=" + e.currentTarget.dataset.sportid + '&sporttype=' + e.currentTarget.dataset.sporttype + '&falg=5' + '&type=1'
       })
     }
   },
@@ -2751,8 +3224,7 @@ Page({
           }
 
         },
-        () => {
-        },
+        () => {},
         () => {}
       )
 
@@ -2943,29 +3415,28 @@ Page({
           this.setData({
             refereeFee: res.data.data.toFixed(2)
           })
-          util.Request("/api/display", {
+          util.Request("/api/xindisplay", {
               SportType: this.data.sportType,
               type: Number(this.data.indexSw) + 1,
               status: 1,
               referee: res.data.data,
               siteMoney: wx.getStorageSync('bookin').data[0].placeMoney,
               lr: wx.getStorageSync('bookin').data[0].lr,
-              openPrice: wx.getStorageSync('bookin').data[0].openPrice
+              openPrice: wx.getStorageSync('bookin').data[0].openPrice,
+              Number: this.data.numAllOne
             }, "post",
             (res) => {
               this.setData({
                 displayTxt: res.data.data
               })
             },
-            () => {
-            },
+            () => {},
             () => {}
           )
           wx.setStorageSync('refereeFee', res.data.data.toFixed(2))
 
         },
-        () => {
-        },
+        () => {},
         () => {}
       )
 
@@ -3009,7 +3480,7 @@ Page({
           this.setData({
             refereeFeeThree: res.data.data.toFixed(2)
           })
-          util.Request("/api/display", {
+          util.Request("/api/xindisplay", {
               SportType: this.data.sportTypeThree,
               type: 2,
               status: 1,
@@ -3025,15 +3496,13 @@ Page({
               })
 
             },
-            () => {
-            },
+            () => {},
             () => {}
           )
           wx.setStorageSync('refereeFeeThree', res.data.data.toFixed(2))
 
         },
-        () => {
-        },
+        () => {},
         () => {}
       )
 
@@ -3083,8 +3552,7 @@ Page({
               displayTxtTwo: res.data.data
             })
           },
-          () => {
-          },
+          () => {},
           () => {}
         )
 
@@ -3131,8 +3599,7 @@ Page({
             tipsFour: res.data.data
           })
         },
-        () => {
-        },
+        () => {},
         () => {}
       )
 
@@ -3194,7 +3661,7 @@ Page({
           this.setData({
             tipsFive: res.data.data
           })
-          util.Request("/api/display", {
+          util.Request("/api/xindisplay", {
               SportType: this.data.sportTypeFive,
               type: 4,
               status: 1,
@@ -3209,13 +3676,11 @@ Page({
                 displayTxtFive: res.data.data
               })
             },
-            () => {
-            },
+            () => {},
             () => {}
           )
         },
-        () => {
-        },
+        () => {},
         () => {}
       )
 
@@ -3286,7 +3751,7 @@ Page({
           })
         }, 500)
 
-        util.Request("/api/display", {
+        util.Request("/api/xindisplay", {
             SportType: this.data.sportTypeSix,
             type: 1,
             status: 1,
@@ -3300,13 +3765,12 @@ Page({
               displayTxtSix: res.data.data
             })
           },
-          () => {
-          },
+          () => {},
           () => {}
         )
       } else {
 
-        util.Request("/api/display", {
+        util.Request("/api/xindisplay", {
             SportType: this.data.sportType,
             type: 1,
             status: 1,
@@ -3320,8 +3784,7 @@ Page({
               displayTxtSix: res.data.data
             })
           },
-          () => {
-          },
+          () => {},
           () => {}
         )
         setTimeout(() => {
@@ -3349,7 +3812,7 @@ Page({
           this.setData({
             refereeFeeSix: res.data.data.toFixed(2)
           })
-          util.Request("/api/display", {
+          util.Request("/api/xindisplay", {
               SportType: this.data.sportTypeSix,
               type: 1,
               status: 1,
@@ -3364,15 +3827,13 @@ Page({
               })
 
             },
-            () => {
-            },
+            () => {},
             () => {}
           )
           wx.setStorageSync('refereeFeeSix', res.data.data.toFixed(2))
 
         },
-        () => {
-        },
+        () => {},
         () => {}
       )
 
@@ -3471,7 +3932,9 @@ Page({
     } else {
       this.setData({
         mode: '请选择',
-        modeNum: 0
+        modeNum: 0,
+        theTeamClickDisOne: true,
+        theTeaIdxOne: 1
       })
     }
 
@@ -3484,8 +3947,8 @@ Page({
       this.setData({
         modeThree: '请选择',
         modeNumThree: 0,
-        theTeamClickDis:true,
-        theTeaIdx:1
+        theTeamClickDis: true,
+        theTeaIdx: 1
       })
     }
     if (wx.getStorageSync('TrialPickerF') == '') {
@@ -3601,16 +4064,14 @@ Page({
               }
               currPage.data.memberUid = undefined
             },
-            () => {
-            },
+            () => {},
             () => {}
           )
 
 
 
         },
-        () => {
-        },
+        () => {},
         () => {}
       )
 
@@ -3643,9 +4104,9 @@ Page({
       case 7:
         cfTwo = false
         break;
-        case 8:
-          cfTwo = false
-          break;
+      case 8:
+        cfTwo = false
+        break;
       case 10:
         cfTwo = false
         break;
@@ -3709,7 +4170,7 @@ Page({
       case 7:
         cf = false
         break;
-        case 8:
+      case 8:
         cf = false
         break;
       case 10:
@@ -3898,90 +4359,32 @@ Page({
       currPage.data.sportsList = undefined
     }
 
-    if(this.data.modeThree!='请选择'){
-      this.setData({theTeamClickDis:false})
+    if (this.data.modeThree != '请选择') {
+      this.setData({
+        theTeamClickDis: false
+      })
     }
 
-    if(wx.getStorageSync('modeThree')=='竞技活动'){
-      if(wx.getStorageSync('sportTypeFThree')==12){
-        this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
-      }
-  
-     }else{
-      if(wx.getStorageSync('sportTypeFThree')==4||wx.getStorageSync('sportTypeFThree')==6||wx.getStorageSync('sportTypeFThree')==1||wx.getStorageSync('sportTypeFThree')==2||wx.getStorageSync('sportTypeFThree')==3||wx.getStorageSync('sportTypeFThree')==8){
-        if(this.data.theTeaIdx!=0){
-          this.setData({personsArray:['1人']})
-        }else{
-          this.setData({personsArray:['6人','5人','4人','3人','2人']})
-        }
-      }else if(wx.getStorageSync('sportTypeFThree')==5||wx.getStorageSync('sportTypeFThree')==7||wx.getStorageSync('sportTypeFThree')==9){
-        if(this.data.theTeaIdx==0){
-          this.setData({personsArray:['24人','22人','20人','18人','16人','14人','12人','10人','8人','6人','4人','2人']})
-        }else{
-          this.setData({personsArray:['2人','3人','4人','5人','6人']})
-        }
-      }else if(wx.getStorageSync('sportTypeFThree')==12){
-        if(this.data.theTeaIdx==0){
-          this.setData({personsArray:['24人','22人','20人','18人','16人','14人','12人','10人','8人','6人','4人','2人']})
-        }else{
-          this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
-        }
-      }else if(wx.getStorageSync('sportTypeFThree')==11){
-        if(this.data.theTeaIdx==0){
-          this.setData({personsArray:['15人','14人','13人','12人','11人','10人','9人','8人','7人','6人']})
-        }else{
-          this.setData({personsArray:['3人','4人','5人']})
-        }
-      }else if(wx.getStorageSync('sportTypeFThree')==10){
-        if(this.data.theTeaIdx==0){
-          this.setData({personsArray:['36人','34人','32人','30人','28人','26人','24人','22人','20人','18人','16人','14人','12人','10人']})
-        }else{
-          this.setData({personsArray:['5人','6人','7人','8人','9人','10人','11人','12人']})
-        }
-      }else if(wx.getStorageSync('sportTypeFThree')==16){
-        if(this.data.theTeaIdx==0){
-          this.setData({personsArray:['10人','12人','14人','16人','18人','20人','22人','24人','26人','28人','30人']})
-        }else{
-          this.setData({personsArray:['5人','6人','7人','8人','9人','10人']})
-        }
-      }else if(wx.getStorageSync('sportTypeFThree')==23){
-        if(this.data.theTeaIdx==0){
-          this.setData({personsArray:['12人','14人','16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人']})
-        }else{
-          this.setData({personsArray:['6人','7人','8人','9人','10人','11人','12人']})
-        }
-      }else if(wx.getStorageSync('sportTypeFThree')==15){
-        if(this.data.theTeaIdx==0){
-          this.setData({personsArray:['14人','16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人']})
-        }else{
-          this.setData({personsArray:['7人','8人','9人','10人','11人','12人']})
-        }
-      }else if(wx.getStorageSync('sportTypeFThree')==14){
-        if(this.data.theTeaIdx==0){
-          this.setData({personsArray:['16人','18人','20人','22人','24人','26人','28人','30人','32人','34人','36人','38人','39人']})
-        }else{
-          this.setData({personsArray:['8人','9人','10人','11人','12人','13人']})
-        }
-      }else if(wx.getStorageSync('sportTypeFThree')==25){
-        if(this.data.theTeaIdx==0){
-          this.setData({personsArray:['18人','20人','22人','24人','26人','28人','30人','32人','34人','36人','38人','40人','42人']})
-        }else{
-          this.setData({personsArray:['8人','9人','10人','11人','12人','14人']})
-        }
-      }else if(wx.getStorageSync('sportTypeFThree')==13){
-        if(this.data.theTeaIdx==0){
-          this.setData({personsArray:['22人','24人','26人','28人','30人','32人','34人','36人','38人','40人','42人','44人','46人','48人','50人','52人','54人']})
-        }else{
-          this.setData({personsArray:['11人','12人','13人','14人','15人','16人','17人','18人']})
-        }
-      }
+    this.headCount()
+    this.headCountOne()
+    if (this.data.theTeamArray[this.data.theTeaIdx] == '不分队') {
+      this.setData({
+        numAll: parseFloat(this.data.personsArray[this.data.personsIdx])
+      })
+    } else {
+      this.setData({
+        numAll: parseFloat(this.data.personsArray[this.data.personsIdx]) * parseFloat(this.data.theTeamArray[this.data.theTeaIdx])
+      })
     }
-    
-    
-    if(this.data.theTeamArray[this.data.theTeaIdx]=='不分队'){
-      this.setData({numAll:parseFloat(this.data.personsArray[this.data.personsIdx])})
-    }else{
-      this.setData({numAll:parseFloat(this.data.personsArray[this.data.personsIdx])*parseFloat(this.data.theTeamArray[this.data.theTeaIdx])})
+
+    if (this.data.theTeamArrayOne[this.data.theTeaIdxOne] == '不分队') {
+      this.setData({
+        numAllOne: parseFloat(this.data.personsArrayOne[this.data.personsIdxOne])
+      })
+    } else {
+      this.setData({
+        numAllOne: parseFloat(this.data.personsArrayOne[this.data.personsIdxOne]) * parseFloat(this.data.theTeamArrayOne[this.data.theTeaIdxOne])
+      })
     }
 
     this.setData({
@@ -4178,8 +4581,8 @@ Page({
         lr: wx.getStorageSync('bookinThree').data[0].lr,
         openPrice: wx.getStorageSync('bookinThree').data[0].openPrice,
         ifMustSign: this.data.switch1Checked == false ? 0 : 1,
-        Ranks:this.data.theTeamArray[this.data.theTeaIdx]=='不分队'?1:parseFloat(this.data.theTeamArray[this.data.theTeaIdx]),
-        teamName:parseFloat(this.data.personsArray[this.data.personsIdx])
+        Ranks: this.data.theTeamArray[this.data.theTeaIdx] == '不分队' ? 1 : parseFloat(this.data.theTeamArray[this.data.theTeaIdx]),
+        teamName: parseFloat(this.data.personsArray[this.data.personsIdx])
       }
 
 
@@ -4205,8 +4608,7 @@ Page({
 
           }
         },
-        () => {
-        },
+        () => {},
         () => {}
       )
 
@@ -4328,71 +4730,7 @@ Page({
               (res) => {
                 if (res.data.code === 2000) {
                   if (this.data.indexSw == '0') {
-                    let numAB = 0
-                    switch (wx.getStorageSync('sportypeNameF')) {
-                      case '单打':
-                        numAB = 1
-                        break;
-                      case '双打':
-                        numAB = 2
-                        break;
-                      case '中式黑八':
-                        numAB = 1
-                        break;
-                      case '美式9球':
-                        numAB = 1
-                        break;
-                      case '斯诺克':
-                        numAB = 1
-                        break;
-                      case '5v5':
-                        numAB = 5
-                        break;
-                      case '3v3':
-                        numAB = 3
-                        break;
-                      case '11人制':
-                        numAB = 11
-                        break;
-                      case '8人制':
-                        numAB = 8
-                        break;
-                      case '7人制':
-                        numAB = 7
-                        break;
-                      case '6人制':
-                        numAB = 6
-                        break;
-                      case '5人制':
-                        numAB = 5
-                        break;
-                      case '6v6':
-                        numAB = 6
-                        break;
-                      case '单打':
-                        numAB = 1
-                        break;
-                      case '双打':
-                        numAB = 2
-                        break;
-                      case '比杆赛':
-                        numAB = 1
-                        break;
-                      case '比洞赛':
-                        numAB = 1
-                        break;
-                      case '双打(3队)':
-                        numAB = 2
-                        break;
-                      case '3v3(3队)':
-                        numAB = 3
-                        break;
-                      default:
-                        numAB = 0
-                    }
-                    var arr2 = new Array();
-                    var arr1 = []
-                    var arr3 = []
+
                     util.Request("/api/getSportLevel", {
                         'sportId': this.data.sportId
                       }, "get",
@@ -4403,55 +4741,63 @@ Page({
                         let projectNow = res.data.data
                         let name = res.data.data.name
                         this.judgmentBall(name, projectNow)
+
+                        let theTeam = this.data.theTeamArrayOne[this.data.theTeaIdxOne] == '不分队' ? 1 : parseFloat(this.data.theTeamArrayOne[this.data.theTeaIdxOne])
+                        let persons = parseFloat(this.data.personsArrayOne[this.data.personsIdxOne])
+                        let arru = []
+                        for (let i = 0; i < theTeam; i++) {
+                          let arr = []
+                          let obj = {
+                            imgURL: '',
+                            heightLevel: '',
+                            name: ''
+                          }
+                          for (let j = 0; j < persons; j++) {
+                            arr.push(obj)
+                          }
+                          arru.push(arr)
+                        }
                         let obj = {
                           imgURL: wx.getStorageSync('imgURL'),
                           heightLevel: 'Lv' + projectNow.level,
                           name: projectNow.nameSon
                         }
-                        for (var i = 0; i < numAB; i++) {
-                          let obj = {}
-                          arr2.push(obj);
-                          arr1.push(obj)
-                          arr3.push(obj)
-                          if (wx.getStorageSync('sportypeNameF') != '双打(3队)' && wx.getStorageSync('sportypeNameF') != '3v3(3队)') {
-                            arr3 = []
-                          }
-                        }
-                        arr2.unshift(obj)
+                        arru[0].splice(0, 1, obj)
                         this.setData({
-                          numB: arr1,
-                          numBThree: arr1,
-                          numA: arr2.slice(0, arr2.length - 1),
-                          numC: arr3
+                          numABOne: arru
                         })
+
+
+
 
 
 
                         wx.hideLoading()
                       },
-                      () => {
-                      },
+                      () => {},
                       () => {}
                     )
                   } else if (this.data.indexSw == '2') {
-                   
-                    let theTeam=this.data.theTeamArray[this.data.theTeaIdx]=='不分队'?1:parseFloat(this.data.theTeamArray[this.data.theTeaIdx])
-                    let persons=parseFloat(this.data.personsArray[this.data.personsIdx])
-                    let arru=[]
-                    for(let i=0;i<theTeam;i++){
-                      let arr=[]
+
+                    let theTeam = this.data.theTeamArray[this.data.theTeaIdx] == '不分队' ? 1 : parseFloat(this.data.theTeamArray[this.data.theTeaIdx])
+                    let persons = parseFloat(this.data.personsArray[this.data.personsIdx])
+                    let arru = []
+                    for (let i = 0; i < theTeam; i++) {
+                      let arr = []
                       let obj = {
                         imgURL: '',
-                        heightLevel:'',
+                        heightLevel: '',
                         name: ''
                       }
-                      for(let j=0;j<persons;j++){
-                         arr.push(obj)
+                      for (let j = 0; j < persons; j++) {
+                        arr.push(obj)
                       }
                       arru.push(arr)
                     }
-                    this.setData({numABThree:arru})
-                    
+                    this.setData({
+                      numABThree: arru
+                    })
+
                   } else if (this.data.indexSw == '3') {
                     let numAB = 0
                     switch (wx.getStorageSync('sportypeNameFFour')) {
@@ -4553,8 +4899,7 @@ Page({
 
                         wx.hideLoading()
                       },
-                      () => {
-                      },
+                      () => {},
                       () => {}
                     )
                   } else if (this.data.indexSw == '4') {
@@ -4658,8 +5003,7 @@ Page({
 
                         wx.hideLoading()
                       },
-                      () => {
-                      },
+                      () => {},
                       () => {}
                     )
                   } else if (this.data.indexSw == '5') {
@@ -4763,8 +5107,7 @@ Page({
 
                         wx.hideLoading()
                       },
-                      () => {
-                      },
+                      () => {},
                       () => {}
                     )
                   }
@@ -4773,8 +5116,7 @@ Page({
 
 
               },
-              () => {
-              },
+              () => {},
               () => {}
             )
 
@@ -4785,8 +5127,7 @@ Page({
 
 
       },
-      () => {
-      },
+      () => {},
       () => {}
     )
 
@@ -4833,7 +5174,7 @@ Page({
       tipsThree: e.detail.value
     })
     if (wx.getStorageSync('bookinThree') != '') {
-      util.Request("/api/display", {
+      util.Request("/api/xindisplay", {
           SportType: this.data.sportTypeThree,
           type: 2,
           status: 1,
@@ -4848,8 +5189,7 @@ Page({
             displayTxtThree: res.data.data
           })
         },
-        () => {
-        },
+        () => {},
         () => {}
       )
     }
@@ -4870,7 +5210,7 @@ Page({
       tipsFive: e.detail.value
     })
 
-    util.Request("/api/display", {
+    util.Request("/api/xindisplay", {
         SportType: this.data.sportTypeFive,
         type: 4,
         status: 1,
@@ -4885,8 +5225,7 @@ Page({
           displayTxtFive: res.data.data
         })
       },
-      () => {
-      },
+      () => {},
       () => {}
     )
 
@@ -4948,6 +5287,7 @@ Page({
       timer,
       checked,
       siteName,
+      numAllOne,
       sumMoney
     } = this.data
     let numArr = []
@@ -5032,14 +5372,16 @@ Page({
         refereefee: refereeFee,
         RefereeNumber: Number(TrialNum.slice(0, 1)),
         Refereegrade: TrialRader == '请选择' ? '' : TrialRader,
-        number: numA.length + numB.length + numC.length,
+        number: numAllOne,
         isPublisher: 1,
         Agemin: age == '不限' ? '10' : parseFloat(age.split('-')[0]),
         Agemax: age == '不限' ? '70' : parseFloat(age.split('-')[1]),
         SiteSumMoney: sumMoney,
         openPrice: wx.getStorageSync('bookin').data[0].openPrice,
         lr: wx.getStorageSync('bookin').data[0].lr,
-        organization: 1
+        organization: 1,
+        Ranks: this.data.theTeamArrayOne[this.data.theTeaIdxOne] == '不分队' ? 1 : parseFloat(this.data.theTeamArrayOne[this.data.theTeaIdxOne]),
+        teamName: parseFloat(this.data.personsArrayOne[this.data.personsIdxOne])
       }
 
 
@@ -5317,7 +5659,7 @@ Page({
       success: function (data) {},
       fail: function (err) {
         if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
-         
+
 
           wx.openSetting({
             success(settingdata) {

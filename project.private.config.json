@@ -55,7 +55,7 @@
         {
           "name": "活动详情",
           "pathName": "pages/homePage/activities/activities",
-          "query": "uuid= 3a416d97-1141-63c0-d71f-248cdbd6f7fd",
+          "query": "uuid= 5ef15219-535b-1660-afe3-f593dda99138",
           "scene": null
         },
         {
@@ -110,7 +110,7 @@
         {
           "name": "发布活动",
           "pathName": "pages/publishing/publishing",
-          "query": "indexSw=2",
+          "query": "indexSw=0",
           "scene": null
         },
         {
